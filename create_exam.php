@@ -4,498 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExamMaker - Create Interactive Exams</title>
-    <style>
-        :root {
-            --primary: #8854C0;
-            --primary-light: #a671d6;
-            --secondary: #30b9a5;
-            --dark: #333;
-            --light: #f8f9fa;
-            --light-gray: #f1f1f1;
-            --border-color: #e0e0e0;
-            --text-gray: #5a5a5a;
-        }
+    <link rel="stylesheet" href="assets/css/styles.css">
+        <!-- Linking Google Fonts For Icons -->
+        <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="assets/css/exam.css">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-
-        body {
-            background-color: #f8f8f8;
-            color: var(--dark);
-        }
-
-        header {
-            background-color: white;
-            border-bottom: 1px solid var(--border-color);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .back-button {
-            color: var(--dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-        }
-        
-        .back-button i {
-            margin-right: 8px;
-        }
-
-        .quiz-title {
-            font-weight: normal;
-            font-size: 16px;
-            color: var(--dark);
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-settings {
-            background-color: white;
-            color: var(--dark);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-preview {
-            background-color: white;
-            color: var(--dark);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-publish {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 15px;
-        }
-
-        .quiz-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--dark);
-        }
-
-        .topic-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 300px;
-            margin-left: auto;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 10px 15px 10px 35px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-            background-color: var(--light-gray);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-gray);
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 20px 0;
-            color: var(--dark);
-        }
-
-        .question-types-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .section-divider {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin: 30px 0 15px;
-            font-weight: 500;
-        }
-
-        .question-type-btn {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .question-type-btn:hover {
-            background-color: var(--light-gray);
-        }
-
-        .question-type-btn.selected {
-            border-color: var(--primary);
-            background-color: #f9f4ff;
-        }
-
-        .question-type-icon {
-            width: 28px;
-            height: 28px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-        }
-
-        .interactive-icon {
-            background-color: #30b9a5;
-        }
-
-        .open-ended-icon {
-            background-color: #3f8cff;
-        }
-
-        .question-preview {
-            margin-top: 30px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .preview-header {
-            background-color: #490A73;
-            color: white;
-            padding: 15px;
-            font-weight: 500;
-        }
-
-        .preview-content {
-            padding: 20px;
-            background-color: var(--light);
-        }
-
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .preview-option {
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 4px;
-        }
-
-        .option-a {
-            background-color: #2271b3;
-        }
-        
-        .option-b {
-            background-color: #30b9a5;
-        }
-        
-        .option-c {
-            background-color: #f1af41;
-        }
-        
-        .option-d {
-            background-color: #d75c55;
-        }
-
-        .question-description {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: white;
-            border-radius: 8px;
-        }
-
-        .description-title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .description-text {
-            color: var(--text-gray);
-            line-height: 1.5;
-            font-size: 14px;
-        }
-
-        /* Question card styling for when questions are added */
-        .question-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .question-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .options-container {
-            margin-bottom: 15px;
-        }
-
-        .option-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .option-checkbox {
-            margin-right: 10px;
-        }
-
-        .option-input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .add-option-btn {
-            background-color: white;
-            border: 1px dashed var(--border-color);
-            color: var(--text-gray);
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .add-option-btn:hover {
-            background-color: var(--light-gray);
-        }
-
-        .programming-container {
-            margin-top: 15px;
-        }
-
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 15px;
-        }
-
-        .tab {
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 14px;
-            color: var(--text-gray);
-            border-bottom: 2px solid transparent;
-        }
-
-        .tab.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            font-weight: 500;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .code-editor {
-            width: 100%;
-            min-height: 200px;
-            font-family: monospace;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 1.5;
-            background-color: #f8f8f8;
-        }
-
-        .language-select {
-            margin-top: 15px;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-            width: 200px;
-        }
-
-        .add-question-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .add-question-btn {
-            padding: 15px 30px;
-            background-color: #f8f4ff;
-            color: var(--primary);
-            border: 1px dashed var(--primary);
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .add-question-btn:hover {
-            background-color: #f0e6ff;
-        }
-
-        /* Modal for question type selection */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            display: none;
-        }
-
-        .modal-content {
-            background-color: white;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 8px;
-            padding: 30px;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--text-gray);
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .question-types-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .preview-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <a href="#" class="back-button">
-            <i>&lt;</i>
-            <h2 class="quiz-title">Untitled Quiz</h2>
-        </a>
-        <div class="header-actions">
-            <button class="btn btn-settings">
-                <i>⚙️</i>
-                Settings
-            </button>
-            <button class="btn btn-preview">
-                <i>▶️</i>
-                Preview
-            </button>
-            <button class="btn btn-publish">
-                <i>📤</i>
-                Publish
-            </button>
-        </div>
-    </header>
+<div class="container">
+    <?php include 'sidebar.php'; ?>
 
-    <div class="container">
+    <div class="main">
+    <header class="exam-header">
+    <a href="exam.php" class="back-button">
+        <i>&lt;</i>
+        <h2 class="quiz-title">Untitled Quiz</h2>
+    </a>
+    <div class="header-actions">
+        <button class="btn btn-settings">
+            <i>⚙️</i>
+            Settings
+        </button>
+        <button class="btn btn-preview">
+            <i>▶️</i>
+            Preview
+        </button>
+        <button class="btn btn-publish">
+            <i>📤</i>
+            Publish
+        </button>
+    </div>
+</header>
+
+    <div class="container-wrapper">
         <div class="quiz-container">
             <h1>Create a new quiz</h1>
             
             <input type="text" class="topic-input" placeholder="Enter topic name">
             
-            <div class="search-container">
-                <i class="search-icon">🔍</i>
-                <input type="text" class="search-input" placeholder="Search questions">
+            <div class="import-container">
+                <div class="import-buttons">
+                    <button class="import-btn" id="import-spreadsheet-btn">
+                        <i>📊</i>
+                        Import from Spreadsheet
+                    </button>
+                    <button class="import-btn" id="import-gform-btn">
+                        <i>📝</i>
+                        Import from Google Forms
+                    </button>
+                </div>
+                
+                <div class="search-container">
+                    <i class="search-icon">🔍</i>
+                    <input type="text" class="search-input" placeholder="Search questions">
+                </div>
             </div>
             
             <h2 class="section-title">Add a new question</h2>
@@ -581,23 +144,6 @@
                 </div>
             </div>
             
-            <div class="question-preview">
-                <div class="preview-header">
-                    Questions with more than one correct answer
-                </div>
-                <div class="preview-content">
-                    <div class="preview-grid">
-                        <div class="preview-option option-a">A</div>
-                        <div class="preview-option option-b">B</div>
-                        <div class="preview-option option-c">C</div>
-                        <div class="preview-option option-d">D</div>
-                    </div>
-                </div>
-                <div class="question-description">
-                    <h3 class="description-title">Multiple Choice</h3>
-                    <p class="description-text">Check for retention by asking students to pick one or more correct answers. Use text, images, or math equations to spice things up!</p>
-                </div>
-            </div>
             
             <div id="questions-container">
                 <!-- Added questions will appear here -->
@@ -677,6 +223,53 @@
         </div>
     </div>
 
+    <!-- Import Modal -->
+    <div class="modal-overlay import-modal-overlay" id="import-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="import-modal-title">Import Questions</h3>
+                <button class="close-modal" id="close-import-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="import-tabs">
+                    <div class="import-tab active" data-tab="spreadsheet">Spreadsheet</div>
+                    <div class="import-tab" data-tab="google-forms">Google Forms</div>
+                </div>
+                
+                <div class="import-tab-content active" data-content="spreadsheet">
+                    <div class="file-upload">
+                        <p>Upload your spreadsheet file (.xlsx, .csv)</p>
+                        <p>Make sure your spreadsheet has columns for question text, options, and correct answers</p>
+                        <input type="file" id="spreadsheet-file" accept=".xlsx,.csv" style="display: none;">
+                        <button class="file-upload-btn" id="spreadsheet-upload-btn">Choose File</button>
+                        <p id="selected-file-name" style="margin-top: 10px; font-size: 14px;"></p>
+                    </div>
+                    
+                    <div class="template-download" style="text-align: center; margin-bottom: 20px;">
+                        <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Download template spreadsheet</a>
+                    </div>
+                </div>
+                
+                <div class="import-tab-content" data-content="google-forms">
+                    <p style="margin-bottom: 15px;">Paste the URL of your Google Form:</p>
+                    <input type="text" class="google-form-input" placeholder="https://forms.google.com/...">
+                    
+                    <p style="margin-bottom: 15px; color: var(--text-gray);">
+                        We'll import your Google Form questions and answer choices. Multiple choice, 
+                        checkboxes, dropdown, and short answer questions are supported.
+                    </p>
+                </div>
+                
+                <div class="modal-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                    <button class="btn btn-settings" id="cancel-import">Cancel</button>
+                    <button class="btn btn-publish" id="start-import">Import Questions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                    </div>
+                </div>
+
     <script>
         // DOM Elements
         const questionTypeButtons = document.querySelectorAll('.question-type-btn');
@@ -688,11 +281,23 @@
         const modalTitle = document.querySelector('.modal-title');
         const programmingContainer = document.querySelector('.programming-container');
         
+        // Import modal elements
+        const importModal = document.getElementById('import-modal');
+        const importSpreadsheetBtn = document.getElementById('import-spreadsheet-btn');
+        const importGFormBtn = document.getElementById('import-gform-btn');
+        const closeImportModalBtn = document.getElementById('close-import-modal');
+        const cancelImportBtn = document.getElementById('cancel-import');
+        const startImportBtn = document.getElementById('start-import');
+        const spreadsheetFileInput = document.getElementById('spreadsheet-file');
+        const spreadsheetUploadBtn = document.getElementById('spreadsheet-upload-btn');
+        const selectedFileName = document.getElementById('selected-file-name');
+        const importTabs = document.querySelectorAll('.import-tab');
+        
         // Variables to track state
         let selectedQuestionType = 'multiple-choice';
         let questionCounter = 0;
         
-        // Event Listeners
+        // Event Listeners for question type buttons
         questionTypeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Remove selection from all buttons
@@ -724,6 +329,7 @@
             });
         });
         
+        // Event listeners for question modal
         closeModalBtn.addEventListener('click', () => {
             questionModal.style.display = 'none';
         });
@@ -737,152 +343,66 @@
             questionModal.style.display = 'none';
         });
         
-        // Setup tabs in programming container
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and content
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Show corresponding content
-                const contentId = tab.getAttribute('data-tab');
-                document.querySelector(`.tab-content[data-content="${contentId}"]`).classList.add('active');
+        // Event listeners for import functionality
+        importSpreadsheetBtn.addEventListener('click', () => {
+            // Set active tab to spreadsheet
+            importTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.import-tab[data-tab="spreadsheet"]').classList.add('active');
+            
+            // Show spreadsheet content, hide others
+            document.querySelectorAll('.import-tab-content').forEach(content => {
+                content.classList.remove('active');
             });
+            document.querySelector('.import-tab-content[data-content="spreadsheet"]').classList.add('active');
+            
+            // Update modal title
+            document.getElementById('import-modal-title').textContent = 'Import from Spreadsheet';
+            
+            // Show the import modal
+            importModal.style.display = 'flex';
         });
         
-        // Add "Add option" button functionality
-        document.querySelector('.add-option-btn').addEventListener('click', () => {
-            const optionsContainer = document.querySelector('.options-container');
-            const optionCount = optionsContainer.children.length + 1;
+        importGFormBtn.addEventListener('click', () => {
+            // Set active tab to Google Forms
+            importTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.import-tab[data-tab="google-forms"]').classList.add('active');
             
-            const optionRow = document.createElement('div');
-            optionRow.className = 'option-row';
-            optionRow.innerHTML = `
-                <input type="checkbox" class="option-checkbox">
-                <input type="text" class="option-input" placeholder="Option ${optionCount}">
-            `;
+            // Show Google Forms content, hide others
+            document.querySelectorAll('.import-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.import-tab-content[data-content="google-forms"]').classList.add('active');
             
-            optionsContainer.appendChild(optionRow);
+            // Update modal title
+            document.getElementById('import-modal-title').textContent = 'Import from Google Forms';
+            
+            // Show the import modal            
+            importModal.style.display = 'flex';            
         });
         
-        function updatePreview(type) {
-            const previewHeader = document.querySelector('.preview-header');
-            const descriptionTitle = document.querySelector('.description-title');
-            const descriptionText = document.querySelector('.description-text');
-            
-            if (type === 'multiple-choice') {
-                previewHeader.textContent = 'Questions with more than one correct answer';
-                descriptionTitle.textContent = 'Multiple Choice';
-                descriptionText.textContent = 'Check for retention by asking students to pick one or more correct answers. Use text, images, or math equations to spice things up!';
-            } else if (type === 'programming') {
-                previewHeader.textContent = 'Test programming skills with custom code challenges';
-                descriptionTitle.textContent = 'Programming Question';
-                descriptionText.textContent = 'Create coding problems with starter code, test cases, and auto-grading. Support for multiple programming languages.';
-            }
-            // Add more types as needed
-        }
+        closeImportModalBtn.addEventListener('click', () => {
+            importModal.style.display = 'none';            
+        });
         
-        function addQuestion() {
-            questionCounter++;
-            const questionId = `question-${questionCounter}`;
+        cancelImportBtn.addEventListener('click', () => {
+            importModal.style.display = 'none';            
+        });
+        
+        startImportBtn.addEventListener('click', () => {
+            importModal.style.display = 'none';            
+        });
+        
+        spreadsheetFileInput.addEventListener('change', () => {
+            const file = spreadsheetFileInput.files[0];
+            if (file) {
+                selectedFileName.textContent = file.name;
+            }            
+        });
+        
+        spreadsheetUploadBtn.addEventListener('click', () => {
+            spreadsheetFileInput.click();            
+        });                
+    </script>                
+</body>                
+</html>
             
-            const questionCard = document.createElement('div');
-            questionCard.className = 'question-card';
-            questionCard.id = questionId;
-            
-            // Get the question text from the modal
-            const questionText = document.querySelector('.question-input').value || `Question ${questionCounter}`;
-            
-            if (selectedQuestionType === 'multiple-choice') {
-                // Create a multiple choice question card
-                
-                // Get options from the modal
-                const optionRows = document.querySelectorAll('.option-row');
-                let optionsHTML = '';
-                
-                optionRows.forEach((row, index) => {
-                    const optionText = row.querySelector('.option-input').value || `Option ${index + 1}`;
-                    const isChecked = row.querySelector('.option-checkbox').checked;
-                    
-                    optionsHTML += `
-                        <div class="option-row">
-                            <input type="checkbox" class="option-checkbox" ${isChecked ? 'checked' : ''}>
-                            <input type="text" class="option-input" value="${optionText}">
-                        </div>
-                    `;
-                });
-                
-                questionCard.innerHTML = `
-                    <div class="question-header">
-                        <h3>Question ${questionCounter}</h3>
-                        <div>
-                            <button class="btn btn-settings">Edit</button>
-                            <button class="btn btn-settings" onclick="deleteQuestion('${questionId}')">Delete</button>
-                        </div>
-                    </div>
-                    <input type="text" class="question-input" value="${questionText}">
-                    <div class="options-container">
-                        ${optionsHTML}
-                    </div>
-                    <button class="add-option-btn">+ Add Option</button>
-                `;
-            } else if (selectedQuestionType === 'programming') {
-                // Create a programming question card
-                
-                // Get programming data from the modal
-                const instructions = document.querySelector('.tab-content[data-content="instructions"] textarea').value;
-                const starterCode = document.querySelector('.tab-content[data-content="starter-code"] textarea').value;
-                const language = document.querySelector('.language-select').value;
-                
-                questionCard.innerHTML = `
-                    <div class="question-header">
-                        <h3>Question ${questionCounter}</h3>
-                        <div>
-                            <button class="btn btn-settings">Edit</button>
-                            <button class="btn btn-settings" onclick="deleteQuestion('${questionId}')">Delete</button>
-                        </div>
-                    </div>
-                    <input type="text" class="question-input" value="${questionText}">
-                    <div class="programming-container">
-                        <div class="tabs">
-                            <div class="tab active" data-tab="instructions">Instructions</div>
-                            <div class="tab" data-tab="starter-code">Starter Code</div>
-                            <div class="tab" data-tab="solution">Solution</div>
-                            <div class="tab" data-tab="test-cases">Test Cases</div>
-                        </div>
-                        
-                        <div class="tab-content active" data-content="instructions">
-                            <textarea class="code-editor">${instructions}</textarea>
-                        </div>
-                        
-                        <div class="tab-content" data-content="starter-code">
-                            <textarea class="code-editor">${starterCode}</textarea>
-                        </div>
-                        
-                        <div class="tab-content" data-content="solution">
-                            <textarea class="code-editor"></textarea>
-                        </div>
-                        
-                        <div class="tab-content" data-content="test-cases">
-                            <textarea class="code-editor"></textarea>
-                        </div>
-                        
-                        <select class="language-select">
-                            <option value="javascript" ${language === 'javascript' ? 'selected' : ''}>JavaScript</option>
-                            <option value="python" ${language === 'python' ? 'selected' : ''}>Python</option>
-                            <option value="java" ${language === 'java' ? 'selected' : ''}>Java</option>
-                            <option value="csharp" ${language === 'csharp' ? 'selected' : ''}>C#</option>
-                            <option value="cpp" ${language === 'cpp' ? 'selected' : ''}>C++</option>
-                        </select>
-                    </div>
-                `;
-                
-                // Set up tabs for the new card
-                setupTabs(questionId);
-            }
-            
-            questionsContainer.appendChild(
