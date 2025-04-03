@@ -1,0 +1,3309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Knight Game - Database Dictionary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #16a085;
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .nav {
+            background-color: #2c3e50;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .nav li {
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .nav a:hover {
+            background-color: #3498db;
+        }
+        
+        .section {
+            margin-top: 50px;
+            padding-top: 10px;
+        }
+        
+        .relationship {
+            background-color: #e8f4fc;
+            padding: 10px;
+            border-left: 3px solid #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .enum-values {
+            background-color: #f0fff0;
+            padding: 10px;
+            border-left: 3px solid #16a085;
+            margin-bottom: 15px;
+        }
+        
+        code {
+            background-color: #f8f8f8;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+            }
+            
+            .nav li {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Soul Knight Game - Database Dictionary</h1>
+    
+    <div class="nav">
+        <ul>
+            <li><a href="#player">Player System</a></li>
+            <li><a href="#items">Item/Weapon System</a></li>
+            <li><a href="#dungeon">Dungeon System</a></li>
+            <li><a href="#enemy">Enemy System</a></li>
+            <li><a href="#trap">Trap System</a></li>
+            <li><a href="#buff">Buff/Debuff System</a></li>
+            <li><a href="#question">Question System</a></li>
+            <li><a href="#boss-question">Boss Question System</a></li>
+        </ul>
+    </div>
+    
+    <div class="section" id="player">
+        <h2>Player-Related Tables</h2>
+        
+        <h3>Players</h3>
+        <p>Stores information about user accounts that can have multiple character profiles.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>PlayerID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each player account</td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL, UNIQUE</td>
+                <td>-</td>
+                <td>Player's unique username used for login</td>
+            </tr>
+            <tr>
+                <td>CreatedAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the account was created</td>
+            </tr>
+            <tr>
+                <td>LastLoginAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp of the player's most recent login</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Players → Profiles (One-to-Many): One player account can have multiple character profiles</li>
+                <li>Players → GameSettings (One-to-One): Each player has one set of game settings</li>
+            </ul>
+        </div>
+        
+        <h3>Profiles</h3>
+        <p>Represents individual character profiles that belong to player accounts.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each character profile</td>
+            </tr>
+            <tr>
+                <td>PlayerID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the player account that owns this profile</td>
+            </tr>
+            <tr>
+                <td>ProfileName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the character profile</td>
+            </tr>
+            <tr>
+                <td>CreatedAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the profile was created</td>
+            </tr>
+            <tr>
+                <td>LastPlayedAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the profile was last played</td>
+            </tr>
+            <tr>
+                <td>TotalPlayTime</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Total time (in seconds) spent playing with this profile</td>
+            </tr>
+            <tr>
+                <td>CurrentDungeonID</td>
+                <td>INT</td>
+                <td>FK, NULL</td>
+                <td>NULL</td>
+                <td>References the dungeon the player is currently in, if any</td>
+            </tr>
+            <tr>
+                <td>CurrentFloor</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>1</td>
+                <td>The current floor number in the dungeon</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Profiles → Players (Many-to-One): Each profile belongs to one player account</li>
+                <li>Profiles → PlayerStats (One-to-One): Each profile has one set of player stats</li>
+                <li>Profiles → PlayerWeapons (One-to-Many): A profile can own multiple weapons</li>
+                <li>Profiles → PlayerInventory (One-to-Many): A profile can have multiple inventory items</li>
+                <li>Profiles → Dungeons (Many-to-One): A profile can be in one dungeon at a time</li>
+                <li>Profiles → SavedProgress (One-to-Many): Each profile can have multiple saved game states</li>
+            </ul>
+        </div>
+        
+        <h3>PlayerStats</h3>
+        <p>Stores the current stats for each player profile.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>StatID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each stat record</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile these stats belong to</td>
+            </tr>
+            <tr>
+                <td>Health</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>100</td>
+                <td>Current health points</td>
+            </tr>
+            <tr>
+                <td>MaxHealth</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>100</td>
+                <td>Maximum possible health points</td>
+            </tr>
+            <tr>
+                <td>Mana</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>100</td>
+                <td>Current mana points for using skills</td>
+            </tr>
+            <tr>
+                <td>MaxMana</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>100</td>
+                <td>Maximum possible mana points</td>
+            </tr>
+            <tr>
+                <td>MovementSpeed</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Player movement speed multiplier</td>
+            </tr>
+            <tr>
+                <td>Armor</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Amount of damage reduction from armor</td>
+            </tr>
+            <tr>
+                <td>Currency</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Amount of in-game currency owned</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>PlayerStats → Profiles (One-to-One): Each stat record belongs to exactly one profile</li>
+            </ul>
+        </div>
+        
+        <h3>GameSettings</h3>
+        <p>Stores game settings preferences for each player account.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>SettingID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each settings record</td>
+            </tr>
+            <tr>
+                <td>PlayerID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the player account these settings belong to</td>
+            </tr>
+            <tr>
+                <td>ControlType</td>
+                <td>ENUM</td>
+                <td>-</td>
+                <td>'Touch'</td>
+                <td>Preferred control scheme (Touch, Joystick)</td>
+            </tr>
+            <tr>
+                <td>SoundVolume</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Sound effects volume (0.0-1.0)</td>
+            </tr>
+            <tr>
+                <td>MusicVolume</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Background music volume (0.0-1.0)</td>
+            </tr>
+            <tr>
+                <td>LastUpdated</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when settings were last updated</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>ControlType</code>: 'Touch', 'Joystick'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>GameSettings → Players (One-to-One): Each settings record belongs to exactly one player account</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="items">
+        <h2>Item/Weapon System</h2>
+        
+        <h3>Weapons</h3>
+        <p>Defines all weapons available in the game.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>WeaponID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each weapon</td>
+            </tr>
+            <tr>
+                <td>WeaponName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the weapon</td>
+            </tr>
+            <tr>
+                <td>WeaponType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Type of weapon (Melee, Ranged, Magic)</td>
+            </tr>
+            <tr>
+                <td>BaseDamage</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Base damage dealt by the weapon</td>
+            </tr>
+            <tr>
+                <td>AttackSpeed</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Attack speed in attacks per second</td>
+            </tr>
+            <tr>
+                <td>Range</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Attack range in game units</td>
+            </tr>
+            <tr>
+                <td>ManaCost</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Mana cost per attack</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the weapon</td>
+            </tr>
+            <tr>
+                <td>Rarity</td>
+                <td>ENUM</td>
+                <td>-</td>
+                <td>'Common'</td>
+                <td>Rarity level affecting stats and drop rate</td>
+            </tr>
+            <tr>
+                <td>MaxLevel</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>10</td>
+                <td>Maximum upgrade level possible</td>
+            </tr>
+            <tr>
+                <td>UnlockRequirement</td>
+                <td>VARCHAR(100)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Requirements to unlock this weapon</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>WeaponType</code>: 'Melee', 'Ranged', 'Magic'</li>
+                <li><code>Rarity</code>: 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Weapons → WeaponSkills (One-to-One): Each weapon has exactly one skill</li>
+                <li>Weapons → PlayerWeapons (One-to-Many): A weapon type can be owned by multiple players</li>
+                <li>Weapons → TrapRewards (One-to-Many): A weapon can be given as a reward from multiple traps</li>
+            </ul>
+        </div>
+        
+        <h3>WeaponSkills</h3>
+        <p>Defines special skills associated with each weapon.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>SkillID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each weapon skill</td>
+            </tr>
+            <tr>
+                <td>WeaponID</td>
+                <td>INT</td>
+                <td>NOT NULL, UNIQUE, FK</td>
+                <td>-</td>
+                <td>References the weapon this skill belongs to</td>
+            </tr>
+            <tr>
+                <td>SkillName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the weapon skill</td>
+            </tr>
+            <tr>
+                <td>SkillEffect</td>
+                <td>TEXT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Description of what the skill does</td>
+            </tr>
+            <tr>
+                <td>ManaCost</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Mana required to use this skill</td>
+            </tr>
+            <tr>
+                <td>Cooldown</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Cooldown time in seconds before skill can be used again</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description for UI display</td>
+            </tr>
+            <tr>
+                <td>VisualEffectPath</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the visual effect asset</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>WeaponSkills → Weapons (One-to-One): Each skill belongs to exactly one weapon</li>
+            </ul>
+        </div>
+        
+        <h3>PlayerWeapons</h3>
+        <p>Tracks weapons owned by each player profile and their upgrade progress.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>PlayerWeaponID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each player-weapon combination</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile that owns this weapon</td>
+            </tr>
+            <tr>
+                <td>WeaponID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the weapon type</td>
+            </tr>
+            <tr>
+                <td>CurrentLevel</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>1</td>
+                <td>Current upgrade level of the weapon</td>
+            </tr>
+            <tr>
+                <td>CurrentExperience</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Current experience points for the weapon</td>
+            </tr>
+            <tr>
+                <td>ExperienceToNextLevel</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>100</td>
+                <td>Experience points required to reach the next level</td>
+            </tr>
+            <tr>
+                <td>IsUnlocked</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether the player has unlocked this weapon</td>
+            </tr>
+            <tr>
+                <td>TimeUnlocked</td>
+                <td>DATETIME</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Timestamp when the weapon was unlocked</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>PlayerWeapons → Profiles (Many-to-One): Each player weapon belongs to one profile</li>
+                <li>PlayerWeapons → Weapons (Many-to-One): Each player weapon is an instance of one weapon type</li>
+            </ul>
+        </div>
+        
+        <h3>Items</h3>
+        <p>Defines consumable items, accessories, and materials available in the game.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>ItemID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each item</td>
+            </tr>
+            <tr>
+                <td>ItemName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the item</td>
+            </tr>
+            <tr>
+                <td>ItemType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Type of item (Consumable, Accessory, Material)</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the item</td>
+            </tr>
+            <tr>
+                <td>Rarity</td>
+                <td>ENUM</td>
+                <td>-</td>
+                <td>'Common'</td>
+                <td>Rarity level affecting stats and drop rate</td>
+            </tr>
+            <tr>
+                <td>CoinValue</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>10</td>
+                <td>Value in coins when sold to vendors</td>
+            </tr>
+            <tr>
+                <td>UseEffect</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Effect when the item is used</td>
+            </tr>
+            <tr>
+                <td>IsSellable</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>TRUE</td>
+                <td>Whether the item can be sold to vendors</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>ItemType</code>: 'Consumable', 'Accessory', 'Material'</li>
+                <li><code>Rarity</code>: 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Items → PlayerInventory (One-to-Many): An item type can be in multiple players' inventories</li>
+                <li>Items → TrapRewards (One-to-Many): An item can be given as a reward from multiple traps</li>
+            </ul>
+        </div>
+        
+        <h3>PlayerInventory</h3>
+        <p>Tracks items owned by each player profile.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>InventoryID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each inventory entry</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile that owns this item</td>
+            </tr>
+            <tr>
+                <td>ItemID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the item type</td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>1</td>
+                <td>Number of items of this type owned</td>
+            </tr>
+            <tr>
+                <td>IsEquipped</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether the item is currently equipped</td>
+            </tr>
+            <tr>
+                <td>SlotPosition</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Position in the inventory grid/slots</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>PlayerInventory → Profiles (Many-to-One): Each inventory item belongs to one profile</li>
+                <li>PlayerInventory → Items (Many-to-One): Each inventory entry is an instance of one item type</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section" id="dungeon">
+        <h2>Dungeon System</h2>
+        
+        <h3>DungeonTypes</h3>
+        <p>Defines the different types of dungeons available in the game.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>DungeonTypeID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each dungeon type</td>
+            </tr>
+            <tr>
+                <td>TypeName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Category of the dungeon</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the dungeon type</td>
+            </tr>
+            <tr>
+                <td>QuestionFocus</td>
+                <td>VARCHAR(100)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>The educational focus of questions in this dungeon</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>TypeName</code>: 'English', 'Science', 'Math', 'PE'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>DungeonTypes → Dungeons (One-to-Many): A dungeon type can have multiple dungeons</li>
+                <li>DungeonTypes → QuestionCategories (One-to-Many): A dungeon type can have multiple question categories</li>
+                <li>DungeonTypes → Questions (One-to-Many): A dungeon type can have multiple questions</li>
+            </ul>
+        </div>
+        
+        <h3>Dungeons</h3>
+        <p>Defines individual dungeons the player can explore.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>DungeonID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each dungeon</td>
+            </tr>
+            <tr>
+                <td>DungeonName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the dungeon</td>
+            </tr>
+            <tr>
+                <td>DungeonTypeID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the type of dungeon</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the dungeon</td>
+            </tr>
+            <tr>
+                <td>TotalFloors</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>9</td>
+                <td>Total number of floors in the dungeon</td>
+            </tr>
+            <tr>
+                <td>IsUnlocked</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>TRUE</td>
+                <td>Whether the dungeon is available to players initially</td>
+            </tr>
+            <tr>
+                <td>VisualTheme</td>
+                <td>VARCHAR(50)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Visual theme for the dungeon environment</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Dungeons → DungeonTypes (Many-to-One): Each dungeon belongs to one dungeon type</li>
+                <li>Dungeons → DungeonFloors (One-to-Many): A dungeon has multiple floors</li>
+                <li>Dungeons → Bosses (One-to-Many): A dungeon can have multiple bosses</li>
+                <li>Dungeons → SavedProgress (One-to-Many): A dungeon can have multiple saved states</li>
+                <li>Dungeons → Profiles (One-to-Many): Multiple profiles can be in this dungeon</li>
+            </ul>
+        </div>
+        
+        <h3>DungeonFloors</h3>
+        <p>Represents individual floors within dungeons.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>FloorID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each floor</td>
+            </tr>
+            <tr>
+                <td>DungeonID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the dungeon this floor belongs to</td>
+            </tr>
+            <tr>
+                <td>FloorNumber</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>The sequential number of this floor in the dungeon</td>
+            </tr>
+            <tr>
+                <td>Difficulty</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Difficulty level of the floor</td>
+            </tr>
+            <tr>
+                <td>BossID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References a boss on this floor, if any</td>
+            </tr>
+            <tr>
+                <td>MapLayout</td>
+                <td>JSON</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Layout data for the floor's maze</td>
+            </tr>
+            <tr>
+                <td>HasStaircase</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>TRUE</td>
+                <td>Whether the floor has a staircase to the next floor</td>
+            </tr>
+            <tr>
+                <td>StaircaseLocation</td>
+                <td>VARCHAR(50)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Location coordinates of the staircase</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>Difficulty</code>: 'Easy', 'Medium', 'Hard'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>DungeonFloors → Dungeons (Many-to-One): Each floor belongs to one dungeon</li>
+                <li>DungeonFloors → Bosses (Many-to-One): A floor may have one boss</li>
+                <li>DungeonFloors → MazeRooms (One-to-Many): A floor has multiple rooms</li>
+                <li>DungeonFloors → EnemyHordes (One-to-Many): A floor can have multiple enemy hordes</li>
+                <li>DungeonFloors → PlayerQuestionEncounters (One-to-Many): A floor can have multiple question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>FloorDifficulty</h3>
+        <p>Defines difficulty parameters for dungeon floors based on floor number ranges.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>FloorDifficultyID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each difficulty record</td>
+            </tr>
+            <tr>
+                <td>DifficultyName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of difficulty level</td>
+            </tr>
+            <tr>
+                <td>FloorRangeStart</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Starting floor number for this difficulty</td>
+            </tr>
+            <tr>
+                <td>FloorRangeEnd</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Ending floor number for this difficulty</td>
+            </tr>
+            <tr>
+                <td>EnemyHealthMultiplier</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Multiplier applied to enemy health</td>
+            </tr>
+            <tr>
+                <td>EnemyDamageMultiplier</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Multiplier applied to enemy damage</td>
+            </tr>
+            <tr>
+                <td>TrapDamageMultiplier</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Multiplier applied to trap damage</td>
+            </tr>
+            <tr>
+                <td>QuestionDifficultyID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the question difficulty level</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>DifficultyName</code>: 'Easy', 'Medium', 'Hard'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>FloorDifficulty → DifficultyLevels (Many-to-One): Each floor difficulty links to a question difficulty level</li>
+            </ul>
+        </div>
+        
+        <h3>MazeRooms</h3>
+        <p>Defines individual rooms within a floor's maze layout.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>RoomID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each room</td>
+            </tr>
+            <tr>
+                <td>FloorID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the floor this room is on</td>
+            </tr>
+            <tr>
+                <td>RoomType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Type of room</td>
+            </tr>
+            <tr>
+                <td>PositionX</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>X-coordinate of the room in the maze grid</td>
+            </tr>
+            <tr>
+                <td>PositionY</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Y-coordinate of the room in the maze grid</td>
+            </tr>
+            <tr>
+                <td>IsDiscovered</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether the player has discovered this room</td>
+            </tr>
+            <tr>
+                <td>RequiresQuestion</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether entry requires answering a question</td>
+            </tr>
+            <tr>
+                <td>TriesRemaining</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>3</td>
+                <td>Number of attempts remaining to answer a question</td>
+            </tr>
+            <tr>
+                <td>ContainsChest</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether the room contains a treasure chest</td>
+            </tr>
+            <tr>
+                <td>ChestContents</td>
+                <td>VARCHAR(100)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Description of chest contents, if any</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>RoomType</code>: 'Normal', 'Locked', 'Boss', 'Treasure', 'Trap', 'Start', 'Exit'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>MazeRooms → DungeonFloors (Many-to-One): Each room belongs to one floor</li>
+                <li>MazeRooms → SavedProgress (One-to-Many): A room can be referenced as current room in multiple save records</li>
+                <li>MazeRooms → TrapEncounters (One-to-Many): A room can have multiple trap encounters</li>
+                <li>MazeRooms → LockedRoomAttempts (One-to-Many): A room can have multiple question answer attempts</li>
+            </ul>
+        </div>
+        
+        <h3>SavedProgress</h3>
+        <p>Stores player progress in dungeons.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>SaveID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each save record</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile this save belongs to</td>
+            </tr>
+            <tr>
+                <td>DungeonID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the dungeon being played</td>
+            </tr>
+            <tr>
+                <td>CurrentFloor</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>1</td>
+                <td>Current floor number the player is on</td>
+            </tr>
+            <tr>
+                <td>CurrentRoomID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the current room the player is in</td>
+            </tr>
+            <tr>
+                <td>CheckpointID</td>
+                <td>VARCHAR(50)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Identifier for the last checkpoint reached</td>
+            </tr>
+            <tr>
+                <td>SavedAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when progress was saved</td>
+            </tr>
+            <tr>
+                <td>PlayTime</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Total play time in seconds for this dungeon run</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>SavedProgress → Profiles (Many-to-One): Each save record belongs to one profile</li>
+                <li>SavedProgress → Dungeons (Many-to-One): Each save record is for one dungeon</li>
+                <li>SavedProgress → MazeRooms (Many-to-One): Each save record references one current room</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="enemy">
+        <h2>Enemy System</h2>
+        
+        <h3>Enemies</h3>
+        <p>Defines the common enemies players encounter in dungeons.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>EnemyID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each enemy type</td>
+            </tr>
+            <tr>
+                <td>EnemyName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the enemy</td>
+            </tr>
+            <tr>
+                <td>BaseHealth</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Base health points of the enemy</td>
+            </tr>
+            <tr>
+                <td>BaseDamage</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Base damage dealt by the enemy</td>
+            </tr>
+            <tr>
+                <td>ExperienceReward</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>10</td>
+                <td>Experience points rewarded when defeated</td>
+            </tr>
+            <tr>
+                <td>CoinReward</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>5</td>
+                <td>Coins rewarded when defeated</td>
+            </tr>
+            <tr>
+                <td>AttackType</td>
+                <td>ENUM</td>
+                <td>-</td>
+                <td>'Melee'</td>
+                <td>Type of attack the enemy uses</td>
+            </tr>
+            <tr>
+                <td>MovePattern</td>
+                <td>VARCHAR(50)</td>
+                <td>-</td>
+                <td>'Chase'</td>
+                <td>Movement behavior pattern</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>VARCHAR(50)</td>
+                <td>-</td>
+                <td>'Normal'</td>
+                <td>Classification of enemy</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the enemy</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>AttackType</code>: 'Melee', 'Ranged', 'Magic'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Enemies → Bosses (One-to-One): An enemy can be upgraded to a boss</li>
+                <li>Enemies → HordeEnemies (One-to-Many): An enemy type can appear in multiple hordes</li>
+            </ul>
+        </div>
+        
+        <h3>Bosses</h3>
+        <p>Defines boss enemies that appear at specific floors in dungeons.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>BossID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each boss</td>
+            </tr>
+            <tr>
+                <td>EnemyID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the base enemy type for this boss</td>
+            </tr>
+            <tr>
+                <td>DungeonID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the dungeon this boss appears in</td>
+            </tr>
+            <tr>
+                <td>AppearanceFloor</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>3</td>
+                <td>Floor number where this boss appears</td>
+            </tr>
+            <tr>
+                <td>SpecialAbilities</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Description of special abilities</td>
+            </tr>
+            <tr>
+                <td>PhaseChanges</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>1</td>
+                <td>Number of phase changes during the fight</td>
+            </tr>
+            <tr>
+                <td>WeaponExperienceReward</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>50</td>
+                <td>Weapon experience rewarded when defeated</td>
+            </tr>
+            <tr>
+                <td>SpecialItemDrops</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Special items that can be dropped</td>
+            </tr>
+            <tr>
+                <td>DebuffVulnerabilities</td>
+                <td>TEXT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Types of debuffs this boss is vulnerable to</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Bosses → Enemies (One-to-One): Each boss is based on one enemy type</li>
+                <li>Bosses → Dungeons (Many-to-One): Each boss appears in one dungeon</li>
+                <li>Bosses → DungeonFloors (One-to-Many): A boss can appear on multiple floors</li>
+                <li>Bosses → BossEncounters (One-to-Many): A boss can be encountered multiple times</li>
+                <li>Bosses → BossFightQuestions (One-to-Many): A boss can have multiple associated questions</li>
+            </ul>
+        </div>
+        
+        <h3>BossEncounters</h3>
+        <p>Records individual boss encounters by players.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>BossEncounterID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each boss encounter</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile that encountered the boss</td>
+            </tr>
+            <tr>
+                <td>BossID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the boss that was encountered</td>
+            </tr>
+            <tr>
+                <td>FloorID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the floor where the encounter occurred</td>
+            </tr>
+            <tr>
+                <td>EncounterTimestamp</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the encounter began</td>
+            </tr>
+            <tr>
+                <td>OutcomeVictory</td>
+                <td>BOOLEAN</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Whether the player defeated the boss</td>
+            </tr>
+            <tr>
+                <td>PlayTime</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Duration of the encounter in seconds</td>
+            </tr>
+            <tr>
+                <td>QuestionsAsked</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Number of questions asked during the fight</td>
+            </tr>
+            <tr>
+                <td>QuestionsCorrect</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Number of questions answered correctly</td>
+            </tr>
+            <tr>
+                <td>AppliedDebuffs</td>
+                <td>TEXT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>List of debuffs applied to the boss</td>
+            </tr>
+            <tr>
+                <td>AppliedBuffs</td>
+                <td>TEXT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>List of buffs applied to the player</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>BossEncounters → Profiles (Many-to-One): Each boss encounter involves one profile</li>
+                <li>BossEncounters → Bosses (Many-to-One): Each boss encounter involves one boss</li>
+                <li>BossEncounters → DungeonFloors (Many-to-One): Each boss encounter occurs on one floor</li>
+                <li>BossEncounters → ActiveBossEffects (One-to-Many): A boss encounter can have multiple active effects</li>
+                <li>BossEncounters → BossFightQuestionEncounters (One-to-Many): A boss encounter can involve multiple question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>EnemyHordes</h3>
+        <p>Defines groups of enemies that appear together.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>HordeID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each enemy horde</td>
+            </tr>
+            <tr>
+                <td>FloorID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the floor this horde appears on</td>
+            </tr>
+            <tr>
+                <td>DifficultyLevel</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Difficulty level of the horde</td>
+            </tr>
+            <tr>
+                <td>EnemyCount</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>5</td>
+                <td>Number of enemies in the horde</td>
+            </tr>
+            <tr>
+                <td>EnemyTypes</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Text description of enemy types in this horde</td>
+            </tr>
+            <tr>
+                <td>TrapTriggered</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether this horde was triggered by a trap</td>
+            </tr>
+            <tr>
+                <td>TrapEncounterID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the trap encounter that triggered this horde</td>
+            </tr>
+            <tr>
+                <td>Completed</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether all enemies in the horde have been defeated</td>
+            </tr>
+            <tr>
+                <td>CompletionTimestamp</td>
+                <td>DATETIME</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Timestamp when the horde was defeated</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>DifficultyLevel</code>: 'Easy', 'Medium', 'Hard'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>EnemyHordes → DungeonFloors (Many-to-One): Each horde appears on one floor</li>
+                <li>EnemyHordes → TrapEncounters (Many-to-One): A horde may be triggered by one trap encounter</li>
+                <li>EnemyHordes → HordeEnemies (One-to-Many): A horde consists of multiple individual enemies</li>
+            </ul>
+        </div>
+        
+        <h3>HordeEnemies</h3>
+        <p>Tracks individual enemies within a horde.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>HordeEnemyID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each horde enemy</td>
+            </tr>
+            <tr>
+                <td>HordeID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the horde this enemy belongs to</td>
+            </tr>
+            <tr>
+                <td>EnemyID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the enemy type</td>
+            </tr>
+            <tr>
+                <td>Defeated</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether this individual enemy has been defeated</td>
+            </tr>
+            <tr>
+                <td>PositionX</td>
+                <td>INT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>X-coordinate of the enemy's spawn position</td>
+            </tr>
+            <tr>
+                <td>PositionY</td>
+                <td>INT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Y-coordinate of the enemy's spawn position</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>HordeEnemies → EnemyHordes (Many-to-One): Each horde enemy belongs to one horde</li>
+                <li>HordeEnemies → Enemies (Many-to-One): Each horde enemy is an instance of one enemy type</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="trap">
+        <h2>Trap System</h2>
+        
+        <h3>Traps</h3>
+        <p>Defines different types of traps that players can encounter in dungeons.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>TrapID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each trap type</td>
+            </tr>
+            <tr>
+                <td>TrapName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the trap</td>
+            </tr>
+            <tr>
+                <td>TrapType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Type of trap mechanism</td>
+            </tr>
+            <tr>
+                <td>EffectType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Type of effect the trap produces</td>
+            </tr>
+            <tr>
+                <td>DamageAmount</td>
+                <td>INT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Base damage dealt by the trap, if applicable</td>
+            </tr>
+            <tr>
+                <td>VisualEffectPath</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the visual effect asset</td>
+            </tr>
+            <tr>
+                <td>SoundEffectPath</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the sound effect asset</td>
+            </tr>
+            <tr>
+                <td>TeleportType</td>
+                <td>VARCHAR(50)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Type of teleportation if applicable</td>
+            </tr>
+            <tr>
+                <td>HasReward</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether the trap offers a reward</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the trap</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>TrapType</code>: 'SpikeTrap', 'TrapDoor', 'SpringTrap', 'PressurePlate', 'HordeTrap', 'TreasureTrap', 'Portal', 'TrapChest'</li>
+                <li><code>EffectType</code>: 'Damage', 'Teleport', 'Question', 'BossEncounter', 'EnemyHorde'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Traps → TrapRewards (One-to-Many): A trap type can have multiple possible rewards</li>
+                <li>Traps → TrapEncounters (One-to-Many): A trap type can be encountered multiple times</li>
+            </ul>
+        </div>
+        
+        <h3>TrapRewards</h3>
+        <p>Defines rewards that can be obtained from traps.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>RewardID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each trap reward</td>
+            </tr>
+            <tr>
+                <td>TrapID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the trap this reward is associated with</td>
+            </tr>
+            <tr>
+                <td>RewardType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Type of reward</td>
+            </tr>
+            <tr>
+                <td>ItemID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the item given as reward, if applicable</td>
+            </tr>
+            <tr>
+                <td>WeaponID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the weapon given as reward, if applicable</td>
+            </tr>
+            <tr>
+                <td>EffectID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the buff effect given as reward, if applicable</td>
+            </tr>
+            <tr>
+                <td>RewardValue</td>
+                <td>INT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Value of the reward (for currency, experience, etc.)</td>
+            </tr>
+            <tr>
+                <td>DifficultyScaling</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>TRUE</td>
+                <td>Whether the reward scales with floor difficulty</td>
+            </tr>
+            <tr>
+                <td>FloorLevelMultiplier</td>
+                <td>FLOAT</td>
+                <td>-</td>
+                <td>1.0</td>
+                <td>Multiplier applied based on floor level</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Description of the reward</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>RewardType</code>: 'Item', 'Weapon', 'Currency', 'Experience', 'Buff', 'HealthRestore', 'ManaRestore'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>TrapRewards → Traps (Many-to-One): Each reward is associated with one trap type</li>
+                <li>TrapRewards → Items (Many-to-One): A reward may refer to one item</li>
+                <li>TrapRewards → Weapons (Many-to-One): A reward may refer to one weapon</li>
+                <li>TrapRewards → BuffsAndDebuffs (Many-to-One): A reward may refer to one buff effect</li>
+                <li>TrapRewards → TrapEncounters (One-to-Many): A reward can be given in multiple trap encounters</li>
+                <li>TrapRewards → PlayerQuestionEncounters (One-to-Many): A reward can be given in multiple question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>TrapEncounters</h3>
+        <p>Records individual trap encounters by players.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>EncounterID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each trap encounter</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile that encountered the trap</td>
+            </tr>
+            <tr>
+                <td>TrapID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the trap that was encountered</td>
+            </tr>
+            <tr>
+                <td>FloorID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the floor where the encounter occurred</td>
+            </tr>
+            <tr>
+                <td>RoomID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the room where the encounter occurred</td>
+            </tr>
+            <tr>
+                <td>EncounterTimestamp</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the encounter occurred</td>
+            </tr>
+            <tr>
+                <td>QuestionID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References a question asked during the encounter, if any</td>
+            </tr>
+            <tr>
+                <td>AnsweredCorrectly</td>
+                <td>BOOLEAN</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Whether the question was answered correctly</td>
+            </tr>
+            <tr>
+                <td>PlayerDecision</td>
+                <td>ENUM</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Player's choice of action if applicable</td>
+            </tr>
+            <tr>
+                <td>HordeEncounterID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References an enemy horde triggered by this trap</td>
+            </tr>
+            <tr>
+                <td>RewardID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the reward given for this encounter</td>
+            </tr>
+            <tr>
+                <td>RewardClaimed</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether the reward has been claimed</td>
+            </tr>
+            <tr>
+                <td>OutcomeType</td>
+                <td>VARCHAR(50)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Description of the encounter outcome</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>PlayerDecision</code>: 'Fight', 'Escape'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>TrapEncounters → Profiles (Many-to-One): Each trap encounter involves one profile</li>
+                <li>TrapEncounters → Traps (Many-to-One): Each trap encounter involves one trap type</li>
+                <li>TrapEncounters → DungeonFloors (Many-to-One): Each trap encounter occurs on one floor</li>
+                <li>TrapEncounters → MazeRooms (Many-to-One): Each trap encounter occurs in one room</li>
+                <li>TrapEncounters → Questions (Many-to-One): A trap encounter may involve one question</li>
+                <li>TrapEncounters → EnemyHordes (One-to-One): A trap encounter may trigger one enemy horde</li>
+                <li>TrapEncounters → TrapRewards (Many-to-One): Each trap encounter offers one reward</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="buff">
+        <h2>Buff/Debuff System</h2>
+        
+        <h3>BuffsAndDebuffs</h3>
+        <p>Defines status effects that can be applied to players and bosses.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>EffectID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each effect</td>
+            </tr>
+            <tr>
+                <td>EffectName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the effect</td>
+            </tr>
+            <tr>
+                <td>EffectType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Whether it's a positive or negative effect</td>
+            </tr>
+            <tr>
+                <td>TargetType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Who the effect can be applied to</td>
+            </tr>
+            <tr>
+                <td>StatAffected</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Which stat is affected by this effect</td>
+            </tr>
+            <tr>
+                <td>Value</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Magnitude of the effect</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>60</td>
+                <td>Duration in seconds</td>
+            </tr>
+            <tr>
+                <td>VisualEffectPath</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the visual effect asset</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the effect</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>EffectType</code>: 'Buff', 'Debuff'</li>
+                <li><code>TargetType</code>: 'Player', 'Boss'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>BuffsAndDebuffs → ActivePlayerEffects (One-to-Many): An effect can be active on multiple players</li>
+                <li>BuffsAndDebuffs → ActiveBossEffects (One-to-Many): An effect can be active on multiple bosses</li>
+                <li>BuffsAndDebuffs → TrapRewards (One-to-Many): An effect can be given as a reward from multiple traps</li>
+            </ul>
+        </div>
+        
+        <h3>PlayerBuffTypes</h3>
+        <p>Defines specific buff effects that can be applied to players.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>PlayerBuffTypeID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each player buff type</td>
+            </tr>
+            <tr>
+                <td>BuffName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the buff effect</td>
+            </tr>
+            <tr>
+                <td>StatModified</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Which player stat is modified</td>
+            </tr>
+            <tr>
+                <td>ModifierValue</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Value by which the stat is modified</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>60</td>
+                <td>Duration in seconds</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the buff</td>
+            </tr>
+            <tr>
+                <td>VisualEffect</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the visual effect asset</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>BuffName</code>: 'DamageUp', 'MovementSpeed', 'DoubleTap', 'AllStatsUp', 'ExtraLife'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>PlayerBuffTypes → BossFightQuestionEncounters (One-to-Many): A player buff can be applied in multiple boss question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>PlayerDebuffTypes</h3>
+        <p>Defines specific debuff effects that can be applied to players.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>PlayerDebuffTypeID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each player debuff type</td>
+            </tr>
+            <tr>
+                <td>DebuffName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the debuff effect</td>
+            </tr>
+            <tr>
+                <td>StatModified</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Which player stat is modified</td>
+            </tr>
+            <tr>
+                <td>ModifierValue</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Value by which the stat is modified</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>60</td>
+                <td>Duration in seconds</td>
+            </tr>
+            <tr>
+                <td>SpecialEffect</td>
+                <td>TEXT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Any special effect beyond stat modification</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the debuff</td>
+            </tr>
+            <tr>
+                <td>VisualEffect</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the visual effect asset</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>DebuffName</code>: 'SizeX5', '30PercentSlow', '30PercentLessDamage', '30PercentMoreDamage', 'MoveitMoveit'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>PlayerDebuffTypes → BossFightQuestionEncounters (One-to-Many): A player debuff can be applied in multiple boss question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>BossDebuffTypes</h3>
+        <p>Defines specific debuff effects that can be applied to bosses.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>BossDebuffTypeID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each boss debuff type</td>
+            </tr>
+            <tr>
+                <td>DebuffName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the debuff effect</td>
+            </tr>
+            <tr>
+                <td>StatModified</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Which boss stat is modified</td>
+            </tr>
+            <tr>
+                <td>ModifierValue</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Value by which the stat is modified</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>60</td>
+                <td>Duration in seconds</td>
+            </tr>
+            <tr>
+                <td>SecondaryEffect</td>
+                <td>VARCHAR(100)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Secondary effect of the debuff</td>
+            </tr>
+            <tr>
+                <td>SecondaryDuration</td>
+                <td>INT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Duration of secondary effect in seconds</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Detailed description of the debuff</td>
+            </tr>
+            <tr>
+                <td>VisualEffect</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the visual effect asset</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>DebuffName</code>: 'Stasis', 'DamagePenalty', 'SmallAreaAttack', 'Biggy', 'DefenseDown'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>BossDebuffTypes → BossFightQuestionEncounters (One-to-Many): A boss debuff can be applied in multiple boss question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>ActivePlayerEffects</h3>
+        <p>Tracks active status effects on players.</p>
+        
+        <table>
+            <tr>
+                <th>                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>ActiveEffectID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each active effect</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile this effect is applied to</td>
+            </tr>
+            <tr>
+                <td>EffectID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the effect type</td>
+            </tr>
+            <tr>
+                <td>RemainingDuration</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Time remaining in seconds</td>
+            </tr>
+            <tr>
+                <td>CurrentValue</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Current magnitude of the effect</td>
+            </tr>
+            <tr>
+                <td>SourceType</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Source that applied this effect</td>
+            </tr>
+            <tr>
+                <td>SourceID</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>ID of the specific source instance</td>
+            </tr>
+            <tr>
+                <td>AppliedAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the effect was applied</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>SourceType</code>: 'Trap', 'Item', 'Weapon', 'Boss', 'BossQuestion', 'Environment'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>ActivePlayerEffects → Profiles (Many-to-One): Each active effect is applied to one profile</li>
+                <li>ActivePlayerEffects → BuffsAndDebuffs (Many-to-One): Each active effect is an instance of one effect type</li>
+            </ul>
+        </div>
+        
+        <h3>ActiveBossEffects</h3>
+        <p>Tracks active status effects on bosses.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>ActiveBossEffectID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each active boss effect</td>
+            </tr>
+            <tr>
+                <td>BossEncounterID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the boss encounter this effect is applied to</td>
+            </tr>
+            <tr>
+                <td>EffectID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the effect type</td>
+            </tr>
+            <tr>
+                <td>RemainingDuration</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Time remaining in seconds</td>
+            </tr>
+            <tr>
+                <td>CurrentValue</td>
+                <td>FLOAT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Current magnitude of the effect</td>
+            </tr>
+            <tr>
+                <td>SourceType</td>
+                <td>ENUM</td>
+                <td>-</td>
+                <td>'BossQuestion'</td>
+                <td>Source that applied this effect</td>
+            </tr>
+            <tr>
+                <td>SourceID</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>ID of the specific source instance</td>
+            </tr>
+            <tr>
+                <td>AppliedAt</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the effect was applied</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>SourceType</code>: 'PlayerWeapon', 'PlayerItem', 'BossQuestion'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>ActiveBossEffects → BossEncounters (Many-to-One): Each active effect is applied to one boss encounter</li>
+                <li>ActiveBossEffects → BuffsAndDebuffs (Many-to-One): Each active effect is an instance of one effect type</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="question">
+        <h2>Question System</h2>
+        
+        <h3>DifficultyLevels</h3>
+        <p>Defines difficulty levels for questions.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>DifficultyLevelID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each difficulty level</td>
+            </tr>
+            <tr>
+                <td>DifficultyName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the difficulty level</td>
+            </tr>
+            <tr>
+                <td>NumericValue</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Numeric representation of difficulty (1=Easy, 2=Medium, 3=Hard)</td>
+            </tr>
+            <tr>
+                <td>FloorRangeStart</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Starting floor where this difficulty appears</td>
+            </tr>
+            <tr>
+                <td>FloorRangeEnd</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Ending floor where this difficulty appears</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Description of this difficulty level</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>DifficultyName</code>: 'Easy', 'Medium', 'Hard'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>DifficultyLevels → Questions (One-to-Many): A difficulty level can be applied to multiple questions</li>
+                <li>DifficultyLevels → FloorDifficulty (One-to-Many): A difficulty level can be referenced by multiple floor difficulty records</li>
+            </ul>
+        </div>
+        
+        <h3>QuestionCategories</h3>
+        <p>Defines categories for questions within each dungeon type.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>CategoryID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each category</td>
+            </tr>
+            <tr>
+                <td>CategoryName</td>
+                <td>VARCHAR(50)</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the question category</td>
+            </tr>
+            <tr>
+                <td>DungeonTypeID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the dungeon type this category belongs to</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Description of this category</td>
+            </tr>
+            <tr>
+                <td>IconPath</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to the category icon asset</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>QuestionCategories → DungeonTypes (Many-to-One): Each category belongs to one dungeon type</li>
+                <li>QuestionCategories → Questions (One-to-Many): A category can contain multiple questions</li>
+            </ul>
+        </div>
+        
+        <h3>Questions</h3>
+        <p>Stores educational questions used throughout the game.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>QuestionID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each question</td>
+            </tr>
+            <tr>
+                <td>QuestionText</td>
+                <td>TEXT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>The text of the question</td>
+            </tr>
+            <tr>
+                <td>DifficultyLevelID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the difficulty level of this question</td>
+            </tr>
+            <tr>
+                <td>CategoryID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the category this question belongs to</td>
+            </tr>
+            <tr>
+                <td>DungeonTypeID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the dungeon type this question is for</td>
+            </tr>
+            <tr>
+                <td>TimeLimit</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>30</td>
+                <td>Time limit in seconds to answer the question</td>
+            </tr>
+            <tr>
+                <td>ImagePath</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to an image associated with the question, if any</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>Questions → DifficultyLevels (Many-to-One): Each question has one difficulty level</li>
+                <li>Questions → QuestionCategories (Many-to-One): Each question belongs to one category</li>
+                <li>Questions → DungeonTypes (Many-to-One): Each question is for one dungeon type</li>
+                <li>Questions → QuestionAnswers (One-to-Many): A question has multiple possible answers</li>
+                <li>Questions → PlayerQuestionEncounters (One-to-Many): A question can be encountered multiple times</li>
+                <li>Questions → BossFightQuestions (One-to-Many): A question can be used in multiple boss fights</li>
+                <li>Questions → TrapEncounters (One-to-Many): A question can be used in multiple trap encounters</li>
+            </ul>
+        </div>
+        
+        <h3>QuestionAnswers</h3>
+        <p>Stores possible answers for questions.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>AnswerID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each answer option</td>
+            </tr>
+            <tr>
+                <td>QuestionID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the question this answer belongs to</td>
+            </tr>
+            <tr>
+                <td>AnswerText</td>
+                <td>TEXT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>The text of the answer option</td>
+            </tr>
+            <tr>
+                <td>IsCorrect</td>
+                <td>BOOLEAN</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Whether this is the correct answer</td>
+            </tr>
+            <tr>
+                <td>AnswerOrder</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>0</td>
+                <td>Order in which to display this answer</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>QuestionAnswers → Questions (Many-to-One): Each answer belongs to one question</li>
+            </ul>
+        </div>
+        
+        <h3>QuestionEncounterTypes</h3>
+        <p>Defines different contexts in which questions can be presented to players.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>EncounterTypeID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each encounter type</td>
+            </tr>
+            <tr>
+                <td>EncounterTypeName</td>
+                <td>ENUM</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Name of the encounter type</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>NULL</td>
+                <td>Description of this encounter type</td>
+            </tr>
+            <tr>
+                <td>VisualEffect</td>
+                <td>VARCHAR(255)</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Path to a visual effect for this encounter type</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>EncounterTypeName</code>: 'ForcedTeleport', 'TrapDoor', 'PreBossFight', 'BossFight', 'ExtraLife', 'LockedDoor', 'TreasureChest', 'RandomExploration'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>QuestionEncounterTypes → PlayerQuestionEncounters (One-to-Many): An encounter type can be used in multiple question encounters</li>
+            </ul>
+        </div>
+        
+        <h3>LockedRoomAttempts</h3>
+        <p>Tracks attempts to answer questions for locked rooms.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>AttemptID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each attempt</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile making the attempt</td>
+            </tr>
+            <tr>
+                <td>RoomID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the locked room</td>
+            </tr>
+            <tr>
+                <td>QuestionID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the question asked</td>
+            </tr>
+            <tr>
+                <td>AttemptNumber</td>
+                <td>INT</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Which attempt this is (1, 2, 3, etc.)</td>
+            </tr>
+            <tr>
+                <td>AnsweredCorrectly</td>
+                <td>BOOLEAN</td>
+                <td>NOT NULL</td>
+                <td>-</td>
+                <td>Whether the question was answered correctly</td>
+            </tr>
+            <tr>
+                <td>AttemptTime</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the attempt was made</td>
+            </tr>
+            <tr>
+                <td>UnlockedRoom</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether this attempt successfully unlocked the room</td>
+            </tr>
+            <tr>
+                <td>RewardGiven</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>FALSE</td>
+                <td>Whether a reward was given for this attempt</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>LockedRoomAttempts → Profiles (Many-to-One): Each attempt is made by one profile</li>
+                <li>LockedRoomAttempts → MazeRooms (Many-to-One): Each attempt is for one locked room</li>
+                <li>LockedRoomAttempts → Questions (Many-to-One): Each attempt involves answering one question</li>
+            </ul>
+        </div>
+        
+        <h3>PlayerQuestionEncounters</h3>
+        <p>Records instances when players encounter questions in the game.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>PlayerEncounterID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each question encounter</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile that encountered the question</td>
+            </tr>
+            <tr>
+                <td>QuestionID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the question that was encountered</td>
+            </tr>
+            <tr>
+                <td>EncounterTypeID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the type of encounter</td>
+            </tr>
+            <tr>
+                <td>FloorID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the floor where the encounter occurred</td>
+            </tr>
+            <tr>
+                <td>RoomID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the room where the encounter occurred, if any</td>
+            </tr>
+            <tr>
+                <td>EncounterTimestamp</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the encounter occurred</td>
+            </tr>
+            <tr>
+                <td>AnsweredCorrectly</td>
+                <td>BOOLEAN</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Whether the question was answered correctly</td>
+            </tr>
+            <tr>
+                <td>AnswerTime</td>
+                <td>FLOAT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Time taken to answer in seconds</td>
+            </tr>
+            <tr>
+                <td>RewardID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the reward given, if any</td>
+            </tr>
+            <tr>
+                <td>PenaltyID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the penalty applied, if any</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>PlayerQuestionEncounters → Profiles (Many-to-One): Each encounter involves one profile</li>
+                <li>PlayerQuestionEncounters → Questions (Many-to-One): Each encounter involves one question</li>
+                <li>PlayerQuestionEncounters → QuestionEncounterTypes (Many-to-One): Each encounter is of one type</li>
+                <li>PlayerQuestionEncounters → DungeonFloors (Many-to-One): Each encounter occurs on one floor</li>
+                <li>PlayerQuestionEncounters → MazeRooms (Many-to-One): Each encounter may occur in one room</li>
+                <li>PlayerQuestionEncounters → TrapRewards (Many-to-One): An encounter may give one reward</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="boss-question">
+        <h2>Boss Question System</h2>
+        
+        <h3>BossFightQuestions</h3>
+        <p>Defines questions that can be triggered during boss fights.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>BossFightQuestionID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each boss fight question</td>
+            </tr>
+            <tr>
+                <td>BossID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the boss this question is for</td>
+            </tr>
+            <tr>
+                <td>QuestionID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the question to be asked</td>
+            </tr>
+            <tr>
+                <td>TriggerCondition</td>
+                <td>ENUM</td>
+                <td>-</td>
+                <td>'Random'</td>
+                <td>Condition that triggers this question</td>
+            </tr>
+            <tr>
+                <td>TriggerValue</td>
+                <td>INT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Value associated with the trigger condition</td>
+            </tr>
+            <tr>
+                <td>QuestionDifficulty</td>
+                <td>INT</td>
+                <td>-</td>
+                <td>2</td>
+                <td>Difficulty level of the question (1=Easy, 2=Medium, 3=Hard)</td>
+            </tr>
+            <tr>
+                <td>IsActive</td>
+                <td>BOOLEAN</td>
+                <td>-</td>
+                <td>TRUE</td>
+                <td>Whether this question is currently active</td>
+            </tr>
+        </table>
+        
+        <div class="enum-values">
+            <strong>Enum Values:</strong>
+            <ul>
+                <li><code>TriggerCondition</code>: 'StartFight', 'PhaseChange', 'HealthThreshold', 'TimeBased', 'Random'</li>
+            </ul>
+        </div>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>BossFightQuestions → Bosses (Many-to-One): Each boss fight question is for one boss</li>
+                <li>BossFightQuestions → Questions (Many-to-One): Each boss fight question uses one question</li>
+                <li>BossFightQuestions → BossFightQuestionEncounters (One-to-Many): A boss fight question can be encountered multiple times</li>
+            </ul>
+        </div>
+        
+        <h3>BossFightQuestionEncounters</h3>
+        <p>Records individual instances when questions are asked during boss fights.</p>
+        
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Data Type</th>
+                <th>Constraints</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>EncounterID</td>
+                <td>INT</td>
+                <td>PK, AUTO_INCREMENT</td>
+                <td>-</td>
+                <td>Unique identifier for each boss question encounter</td>
+            </tr>
+            <tr>
+                <td>ProfileID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the profile that encountered the question</td>
+            </tr>
+            <tr>
+                <td>BossFightQuestionID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the boss fight question</td>
+            </tr>
+            <tr>
+                <td>BossEncounterID</td>
+                <td>INT</td>
+                <td>FK</td>
+                <td>-</td>
+                <td>References the boss encounter this question is part of</td>
+            </tr>
+            <tr>
+                <td>EncounterTimestamp</td>
+                <td>DATETIME</td>
+                <td>-</td>
+                <td>CURRENT_TIMESTAMP</td>
+                <td>Timestamp when the question was asked</td>
+            </tr>
+            <tr>
+                <td>AnsweredCorrectly</td>
+                <td>BOOLEAN</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Whether the question was answered correctly</td>
+            </tr>
+            <tr>
+                <td>AnswerTime</td>
+                <td>FLOAT</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>Time taken to answer in seconds</td>
+            </tr>
+            <tr>
+                <td>PlayerBuffTypeID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the buff applied to the player if answered correctly                </td>
+            </tr>
+            <tr>
+                <td>BossDebuffTypeID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the debuff applied to the boss if answered correctly</td>
+            </tr>
+            <tr>
+                <td>PlayerDebuffTypeID</td>
+                <td>INT</td>
+                <td>NULL, FK</td>
+                <td>NULL</td>
+                <td>References the debuff applied to the player if answered incorrectly</td>
+            </tr>
+        </table>
+        
+        <div class="relationship">
+            <strong>Relationships:</strong>
+            <ul>
+                <li>BossFightQuestionEncounters → Profiles (Many-to-One): Each encounter involves one profile</li>
+                <li>BossFightQuestionEncounters → BossFightQuestions (Many-to-One): Each encounter is of one boss question</li>
+                <li>BossFightQuestionEncounters → BossEncounters (Many-to-One): Each question encounter is part of one boss encounter</li>
+                <li>BossFightQuestionEncounters → PlayerBuffTypes (Many-to-One): An encounter may apply one player buff</li>
+                <li>BossFightQuestionEncounters → BossDebuffTypes (Many-to-One): An encounter may apply one boss debuff</li>
+                <li>BossFightQuestionEncounters → PlayerDebuffTypes (Many-to-One): An encounter may apply one player debuff</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Simple smooth scrolling for navigation links
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

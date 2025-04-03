@@ -1,0 +1,4946 @@
+2025-03-17 21:29:08
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing-score] => 13
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+    [passing_score] => 13
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:31:22
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 16
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:31:22
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 16
+--------------------
+2025-03-17 21:32:10
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 65
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:32:10
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 65
+--------------------
+2025-03-17 21:33:13
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 87
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:33:13
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 87
+--------------------
+2025-03-17 21:37:00
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 9
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:37:00
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 9
+--------------------
+2025-03-17 21:38:13
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:38:13
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 64
+--------------------
+2025-03-17 21:54:14
+POST data:
+Array
+(
+    [exam_id] => 4
+    [quiz-name] => Practice Question 
+    [quiz-description] => 
+    [exam-type] => non-tech
+    [schedule-exam] => on
+    [exam-date] => 2025-04-05
+    [exam-time] => 08:54
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 2
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:54:15
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 2
+--------------------
+2025-03-17 21:58:31
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [exam-date] => 
+    [exam-time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 449292499_481139171214456_1108316609890498134_n.png
+            [full_path] => 449292499_481139171214456_1108316609890498134_n.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\php5D15.tmp
+            [error] => 0
+            [size] => 1296978
+        )
+
+)
+
+--------------------
+2025-03-17 21:58:31
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 64
+--------------------
+2025-03-17 21:59:08
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [schedule-exam] => on
+    [exam-date] => 2025-03-21
+    [exam-time] => 11:03
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 21:59:08
+Processed values:
+passingScoreType: 'percentage'
+passingScore: 64
+--------------------
+2025-03-17 22:05:11
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:05:28
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:05:35
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:07:44
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-21
+    [scheduled_time] => 09:07
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:09:27
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-04
+    [scheduled_time] => 11:14
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:20:06
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-20
+    [scheduled_time] => 08:22
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:20:25
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-27
+    [scheduled_time] => 23:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:23:21
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-27
+    [scheduled_time] => 10:23
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:25:20
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-24
+    [scheduled_time] => 08:27
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-17 22:36:52
+POST data:
+Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-24
+    [scheduled_time] => 08:28
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-30 02:27:27
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-03-30 02:57:22
+POST data:
+Array
+(
+    [exam_id] => 6
+    [quiz-name] => please be good
+    [quiz-description] => click wisely
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-12
+    [scheduled_time] => 09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 449467909_1205163000647861_8408110911620157242_n.png
+            [full_path] => 449467909_1205163000647861_8408110911620157242_n.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\php1D78.tmp
+            [error] => 0
+            [size] => 2007115
+        )
+
+)
+
+--------------------
+2025-03-31 01:41:21
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-03-31 01:42:20
+POST data:
+Array
+(
+    [exam_id] => 7
+    [quiz-name] => Multiple choice test
+    [quiz-description] => dfasfsa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 09:41
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-31 01:42:44
+POST data:
+Array
+(
+    [exam_id] => 7
+    [quiz-name] => Multiple choice test
+    [quiz-description] => dfasfsa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 09:41
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 449467909_1205163000647861_8408110911620157242_n.png
+            [full_path] => 449467909_1205163000647861_8408110911620157242_n.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\php2A5B.tmp
+            [error] => 0
+            [size] => 2007115
+        )
+
+)
+
+--------------------
+2025-03-31 01:42:56
+POST data:
+Array
+(
+    [exam_id] => 7
+    [quiz-name] => Multiple choice test
+    [quiz-description] => dfasfsa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 09:41
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 449467909_1205163000647861_8408110911620157242_n.png
+            [full_path] => 449467909_1205163000647861_8408110911620157242_n.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\php5738.tmp
+            [error] => 0
+            [size] => 2007115
+        )
+
+)
+
+--------------------
+2025-03-31 03:33:15
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-03-31 03:34:54
+POST data:
+Array
+(
+    [exam_id] => 8
+    [quiz-name] => True or False test
+    [quiz-description] => tree 
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 11:34
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-03-31 03:35:20
+POST data:
+Array
+(
+    [exam_id] => 8
+    [quiz-name] => True or False test
+    [quiz-description] => tree 
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 11:34
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 449467909_1205163000647861_8408110911620157242_n.png
+            [full_path] => 449467909_1205163000647861_8408110911620157242_n.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\php4189.tmp
+            [error] => 0
+            [size] => 2007115
+        )
+
+)
+
+--------------------
+2025-03-31 10:31:20
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-03-31 10:32:42
+POST data:
+Array
+(
+    [exam_id] => 9
+    [quiz-name] => Programming testing 
+    [quiz-description] => bebebe
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 18:32
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 449292499_481139171214456_1108316609890498134_n.png
+            [full_path] => 449292499_481139171214456_1108316609890498134_n.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\php5E19.tmp
+            [error] => 0
+            [size] => 1296978
+        )
+
+)
+
+--------------------
+2025-04-01 07:13:46
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-01 07:16:55
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 07:17:20
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 472568514_1130674665258579_3819052826367829519_n.jpg
+            [full_path] => 472568514_1130674665258579_3819052826367829519_n.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\wamp64\tmp\phpDB10.tmp
+            [error] => 0
+            [size] => 112166
+        )
+
+)
+
+--------------------
+2025-04-01 07:31:31
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:31:29
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:31:29
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:32:04
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:32:04
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:36:55
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:36:55
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:37:06
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:44:00
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:44:00
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:44:10
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:44:10
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:57:32
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:57:32
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:58:24
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:58:24
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:59:56
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 1234
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 10:59:56
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 1234
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 11:02:46
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 11:02:46
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 11:03:08
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 11:03:08
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 13:08:42
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123341
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-01 13:08:42
+POST data:
+Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123341
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:41:10
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 00:42:43
+POST data:
+Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:42:43
+POST data:
+Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:43:36
+POST data:
+Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:43:36
+POST data:
+Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:56:47
+POST data:
+Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:56:47
+POST data:
+Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 00:59:43
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 01:00:39
+POST data:
+Array
+(
+    [exam_id] => 12
+    [quiz-name] => Untitled Quizfdsa
+    [quiz-description] => fdasfsadfa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:00:39
+POST data:
+Array
+(
+    [exam_id] => 12
+    [quiz-name] => Untitled Quizfdsa
+    [quiz-description] => fdasfsadfa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:04:20
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 01:04:44
+POST data:
+Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:04:44
+POST data:
+Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:19:38
+POST data:
+Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04:00
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:19:38
+POST data:
+Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04:00
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:20:06
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 01:20:42
+POST data:
+Array
+(
+    [exam_id] => 14
+    [quiz-name] => fdsafsadf
+    [quiz-description] => fsadfasdfasd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => Announcement Background.png
+            [full_path] => Announcement Background.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\phpBBD8.tmp
+            [error] => 0
+            [size] => 631787
+        )
+
+)
+
+--------------------
+2025-04-02 01:20:42
+POST data:
+Array
+(
+    [exam_id] => 14
+    [quiz-name] => fdsafsadf
+    [quiz-description] => fsadfasdfasd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => Announcement Background.png
+            [full_path] => Announcement Background.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\phpBBD7.tmp
+            [error] => 0
+            [size] => 631787
+        )
+
+)
+
+--------------------
+2025-04-02 01:20:58
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 01:21:19
+POST data:
+Array
+(
+    [exam_id] => 15
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => sdafsadf
+    [exam-type] => tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:21:19
+POST data:
+Array
+(
+    [exam_id] => 15
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => sdafsadf
+    [exam-type] => tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:34:59
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 01:35:36
+POST data:
+Array
+(
+    [exam_id] => 16
+    [quiz-name] => fsdafsadfsadf
+    [quiz-description] => fdfaasfasdfasdf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:35
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:35:36
+POST data:
+Array
+(
+    [exam_id] => 16
+    [quiz-name] => fsdafsadfsadf
+    [quiz-description] => fdfaasfasdfasdf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:35
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:36:42
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 01:37:12
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:37:14
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:37:23
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => Announcement Background.png
+            [full_path] => Announcement Background.png
+            [type] => image/png
+            [tmp_name] => C:\wamp64\tmp\phpFF70.tmp
+            [error] => 0
+            [size] => 631787
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:00
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:03
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:03
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:03
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:03
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:04
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:05
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:06
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:06
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:06
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:06
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:06
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:06
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:12
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:13
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:13
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:13
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:13
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:44:13
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:45:45
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 01:59:50
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadczczfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 02:01:00
+POST data:
+Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadfdsf
+    [quiz-description] => dsfsadfsadczczfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 02:04:00
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 02:04:28
+POST data:
+Array
+(
+    [exam_id] => 18
+    [quiz-name] => fsadfasdfs
+    [quiz-description] => dfasdfsadfasdf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:04
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 02:04:43
+POST data:
+Array
+(
+    [exam_id] => 18
+    [quiz-name] => fsadfasdfs
+    [quiz-description] => dfasdfsadfasdfdsd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:04:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 02:24:23
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 02:24:53
+POST data:
+Array
+(
+    [exam_id] => 19
+    [quiz-name] => fsadfsadfsadf
+    [quiz-description] => fsfasdfasdfsd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:24
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 02:25:11
+POST data:
+Array
+(
+    [exam_id] => 19
+    [quiz-name] => fsadfsadfsadfdssadfdasf
+    [quiz-description] => fsfasdfasdfsd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:24:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 05:14:05
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 05:14:39
+POST data:
+Array
+(
+    [exam_id] => 20
+    [quiz-name] => fdsafsdfasd
+    [quiz-description] => dfasdfsadf
+    [exam-type] => non-tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 06:19:49
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-02 13:18:31
+POST data:
+Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-02 13:42:33
+POST data:
+Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 30
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 21:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-03 03:38:59
+POST data:
+Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [scheduled_time] => 21:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-03 03:40:12
+POST data:
+Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-03
+    [scheduled_time] => 23:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-03 03:47:12
+POST data:
+Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-04
+    [scheduled_time] => 23:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-03 04:29:29
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:29:32
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:35:31
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:35:51
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:36:26
+POST data:
+Array
+(
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:36:43
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:38:38
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:38:58
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:41:45
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:45:29
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:45:31
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:45:44
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:45:46
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:49:50
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:54:46
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:54:54
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:32
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:35
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:36
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:37
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:38
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:39
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:42
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:43
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:44
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 04:59:45
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:06:19
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:06:20
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:06:22
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:06:24
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:06:25
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:06:27
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:12:32
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 05:16:09
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-03 11:39:49
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-04
+    [scheduled_time] => 08:40
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------

@@ -1,0 +1,21 @@
+Exam ID: 23
+Total Questions: 1
+Questions found:
+Array
+(
+    [0] => Array
+        (
+            [question_id] => 66
+            [exam_id] => 23
+            [question_text] => <p>dfsfasfdadf</p>
+            [question_type] => programming
+            [points] => 1
+            [position] => 0
+            [created_at] => 2025-04-03 19:38:53
+            [updated_at] => 2025-04-03 19:38:53
+            [programming_id] => 17
+            [starter_code] => sdafsdf
+            [language] => python
+        )
+
+)

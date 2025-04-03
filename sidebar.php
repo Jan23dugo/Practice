@@ -22,7 +22,7 @@
             <!-- Primary-nav -->
             <ul class="nav-list primary-nav">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link">
+                    <a href="dashboard.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
                             dashboard
                         </span>
@@ -68,7 +68,7 @@
                     <span class="nav-tooltip">Exam</span>
                     <ul class="dropdown-menu">
                     <li class="nav-item">
-                            <a href="create_exam.php" class="nav-link">
+                            <a href="exam.php" class="nav-link">
                                 <span class="nav-label">Create Exam</span>
                             </a>
                         </li>
@@ -77,10 +77,15 @@
                                 <span class="nav-label">Question Bank</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="manage_results.php" class="nav-link">
+                                <span class="nav-label">Exam Results</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="calendar.html" class="nav-link">
+                    <a href="calendar.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
                             calendar_today
                         </span>
@@ -97,29 +102,8 @@
                     </a>
                     <span class="nav-tooltip">Notification</span>
                 </li>
-                <li class="nav-item has-dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <span class="nav-icon material-symbols-rounded">
-                            group
-                        </span>
-                        <span class="nav-label">Students</span>
-                    </a>
-                    <span class="nav-tooltip">Students</span>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a href="qualified_students.html" class="nav-link">
-                                <span class="nav-label">Qualified Students</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="student_tracker.html" class="nav-link">
-                                <span class="nav-label">Student Tracker</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="analytics.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
                             analytics
                         </span>
@@ -128,19 +112,19 @@
                     <span class="nav-tooltip">Analytics</span>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="announcement.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
-                            settings
+                            announcement
                         </span>
-                        <span class="nav-label">Setting</span>
+                        <span class="nav-label">Announcement</span>
                     </a>
-                    <span class="nav-tooltip">Setting</span>
+                    <span class="nav-tooltip">Announcement</span>
                 </li>
             </ul>
             <!-- Secondary-Nav -->
             <ul class="nav-list secondary-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="admin_profile.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
                             account_circle
                         </span>
@@ -149,7 +133,7 @@
                     <span class="nav-tooltip">Profile</span>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="logout.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
                             logout
                         </span>

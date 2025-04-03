@@ -1,0 +1,395 @@
+ Player-Related Tables
+
+Players
+PlayerID: INT AUTO_INCREMENT [PK]
+Username: VARCHAR(50) [NOT NULL, UNIQUE]
+CreatedAt: DATETIME DEFAULT CURRENT_TIMESTAMP
+LastLoginAt: DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+Profiles
+ProfileID: INT AUTO_INCREMENT [PK]
+PlayerID: INT [FK]
+ProfileName: VARCHAR(50) [NOT NULL]
+CreatedAt: DATETIME DEFAULT CURRENT_TIMESTAMP
+LastPlayedAt: DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+TotalPlayTime: INT DEFAULT 0
+CurrentDungeonID: INT NULL [FK]
+CurrentFloor: INT DEFAULT 1
+
+PlayerStats
+StatID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+Health: INT DEFAULT 100
+MaxHealth: INT DEFAULT 100
+Mana: INT DEFAULT 100
+MaxMana: INT DEFAULT 100
+MovementSpeed: FLOAT DEFAULT 1.0
+Armor: INT DEFAULT 0
+Currency: INT DEFAULT 0
+
+GameSettings
+SettingID: INT AUTO_INCREMENT [PK]
+PlayerID: INT [FK]
+ControlType: ENUM('Touch', 'Joystick') DEFAULT 'Touch'
+SoundVolume: FLOAT DEFAULT 1.0
+MusicVolume: FLOAT DEFAULT 1.0
+LastUpdated: DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+## Item/Weapon System
+
+Weapons
+WeaponID: INT AUTO_INCREMENT [PK]
+WeaponName: VARCHAR(50) [NOT NULL]
+WeaponType: ENUM('Melee', 'Ranged', 'Magic') [NOT NULL]
+BaseDamage: INT [NOT NULL]
+AttackSpeed: FLOAT [NOT NULL]
+Range: INT [NOT NULL]
+ManaCost: INT DEFAULT 0
+Description: TEXT
+Rarity: ENUM('Common', 'Uncommon', 'Rare', 'Epic', 'Legendary') DEFAULT 'Common'
+MaxLevel: INT DEFAULT 10
+UnlockRequirement: VARCHAR(100) NULL
+
+WeaponSkills
+SkillID: INT AUTO_INCREMENT [PK]
+WeaponID: INT [NOT NULL, UNIQUE, FK]  // UNIQUE constraint ensures one skill per weapon
+SkillName: VARCHAR(50) [NOT NULL]
+SkillEffect: TEXT [NOT NULL]
+ManaCost: INT DEFAULT 0
+Cooldown: FLOAT DEFAULT 0
+Description: TEXT
+VisualEffectPath: VARCHAR(255) NULL
+
+PlayerWeapons
+PlayerWeaponID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+WeaponID: INT [FK]
+CurrentLevel: INT DEFAULT 1
+CurrentExperience: INT DEFAULT 0
+ExperienceToNextLevel: INT DEFAULT 100
+IsUnlocked: BOOLEAN DEFAULT FALSE
+TimeUnlocked: DATETIME NULL
+
+Items
+ItemID: INT AUTO_INCREMENT [PK]
+ItemName: VARCHAR(50) [NOT NULL]
+ItemType: ENUM('Consumable', 'Accessory', 'Material') [NOT NULL]
+Description: TEXT
+Rarity: ENUM('Common', 'Uncommon', 'Rare', 'Epic', 'Legendary') DEFAULT 'Common'
+CoinValue: INT DEFAULT 10
+UseEffect: VARCHAR(255) NULL
+IsSellable: BOOLEAN DEFAULT TRUE
+
+PlayerInventory
+InventoryID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+ItemID: INT [FK]
+Quantity: INT DEFAULT 1
+IsEquipped: BOOLEAN DEFAULT FALSE
+SlotPosition: INT DEFAULT 0
+
+## Dungeon System
+
+DungeonTypes
+DungeonTypeID: INT AUTO_INCREMENT [PK]
+TypeName: ENUM('English', 'Science', 'Math', 'PE') [NOT NULL]
+Description: TEXT
+QuestionFocus: VARCHAR(100) [NOT NULL]
+
+Dungeons
+DungeonID: INT AUTO_INCREMENT [PK]
+DungeonName: VARCHAR(50) [NOT NULL]
+DungeonTypeID: INT [FK]
+Description: TEXT
+TotalFloors: INT DEFAULT 9
+IsUnlocked: BOOLEAN DEFAULT TRUE
+VisualTheme: VARCHAR(50) NULL
+
+DungeonFloors
+FloorID: INT AUTO_INCREMENT [PK]
+DungeonID: INT [FK]
+FloorNumber: INT [NOT NULL]
+Difficulty: ENUM('Easy', 'Medium', 'Hard') [NOT NULL]
+BossID: INT NULL [FK]
+MapLayout: JSON
+HasStaircase: BOOLEAN DEFAULT TRUE
+StaircaseLocation: VARCHAR(50) NULL
+
+FloorDifficulty
+FloorDifficultyID: INT AUTO_INCREMENT [PK]
+DifficultyName: ENUM('Easy', 'Medium', 'Hard') [NOT NULL]
+FloorRangeStart: INT [NOT NULL]
+FloorRangeEnd: INT [NOT NULL]
+EnemyHealthMultiplier: FLOAT DEFAULT 1.0
+EnemyDamageMultiplier: FLOAT DEFAULT 1.0
+TrapDamageMultiplier: FLOAT DEFAULT 1.0
+QuestionDifficultyID: INT [FK]
+
+MazeRooms
+RoomID: INT AUTO_INCREMENT [PK]
+FloorID: INT [FK]
+RoomType: ENUM('Normal', 'Locked', 'Boss', 'Treasure', 'Trap', 'Start', 'Exit') [NOT NULL]
+PositionX: INT [NOT NULL]
+PositionY: INT [NOT NULL]
+IsDiscovered: BOOLEAN DEFAULT FALSE
+RequiresQuestion: BOOLEAN DEFAULT FALSE
+TriesRemaining: INT DEFAULT 3
+ContainsChest: BOOLEAN DEFAULT FALSE
+ChestContents: VARCHAR(100) NULL
+
+SavedProgress
+SaveID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+DungeonID: INT [FK]
+CurrentFloor: INT DEFAULT 1
+CurrentRoomID: INT NULL [FK]
+CheckpointID: VARCHAR(50) NULL
+SavedAt: DATETIME DEFAULT CURRENT_TIMESTAMP
+PlayTime: INT DEFAULT 0
+
+## Enemy System
+
+Enemies
+EnemyID: INT AUTO_INCREMENT [PK]
+EnemyName: VARCHAR(50) [NOT NULL]
+BaseHealth: INT [NOT NULL]
+BaseDamage: INT [NOT NULL]
+ExperienceReward: INT DEFAULT 10
+CoinReward: INT DEFAULT 5
+AttackType: ENUM('Melee', 'Ranged', 'Magic') DEFAULT 'Melee'
+MovePattern: VARCHAR(50) DEFAULT 'Chase'
+Type: VARCHAR(50) DEFAULT 'Normal'
+Description: TEXT
+
+Bosses
+BossID: INT AUTO_INCREMENT [PK]
+EnemyID: INT [FK]
+DungeonID: INT [FK]
+AppearanceFloor: INT DEFAULT 3
+SpecialAbilities: TEXT
+PhaseChanges: INT DEFAULT 1
+WeaponExperienceReward: INT DEFAULT 50
+SpecialItemDrops: VARCHAR(255) NULL
+DebuffVulnerabilities: TEXT NULL
+
+BossEncounters
+BossEncounterID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+BossID: INT [FK]
+FloorID: INT [FK]
+EncounterTimestamp: DATETIME DEFAULT CURRENT_TIMESTAMP
+OutcomeVictory: BOOLEAN NULL
+PlayTime: INT DEFAULT 0
+QuestionsAsked: INT DEFAULT 0
+QuestionsCorrect: INT DEFAULT 0
+AppliedDebuffs: TEXT NULL
+AppliedBuffs: TEXT NULL
+
+## Trap System
+
+Traps
+TrapID: INT AUTO_INCREMENT [PK] 
+TrapName: VARCHAR(50) [NOT NULL]
+TrapType: ENUM('SpikeTrap', 'TrapDoor', 'SpringTrap', 'PressurePlate', 'HordeTrap', 'TreasureTrap', 'Portal', 'TrapChest') [NOT NULL]
+EffectType: ENUM('Damage', 'Teleport', 'Question', 'BossEncounter', 'EnemyHorde') [NOT NULL]
+DamageAmount: INT NULL
+VisualEffectPath: VARCHAR(255) NULL
+SoundEffectPath: VARCHAR(255) NULL
+TeleportType: VARCHAR(50) NULL
+HasReward: BOOLEAN DEFAULT FALSE
+Description: TEXT
+
+TrapRewards
+RewardID: INT AUTO_INCREMENT [PK]
+TrapID: INT [FK]
+RewardType: ENUM('Item', 'Weapon', 'Currency', 'Experience', 'Buff', 'HealthRestore', 'ManaRestore') [NOT NULL]
+ItemID: INT NULL [FK]
+WeaponID: INT NULL [FK]
+EffectID: INT NULL [FK]  /* Renamed from BuffID to EffectID for consistency */
+RewardValue: INT NULL
+DifficultyScaling: BOOLEAN DEFAULT TRUE
+FloorLevelMultiplier: FLOAT DEFAULT 1.0
+Description: TEXT
+
+TrapEncounters
+EncounterID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+TrapID: INT [FK]
+FloorID: INT [FK]
+RoomID: INT [FK]
+EncounterTimestamp: DATETIME DEFAULT CURRENT_TIMESTAMP
+QuestionID: INT NULL [FK]
+AnsweredCorrectly: BOOLEAN NULL
+PlayerDecision: ENUM('Fight', 'Escape') NULL
+HordeEncounterID: INT NULL [FK]
+RewardID: INT [FK]
+RewardClaimed: BOOLEAN DEFAULT FALSE
+OutcomeType: VARCHAR(50) NULL
+
+EnemyHordes
+HordeID: INT AUTO_INCREMENT [PK]
+FloorID: INT [FK]
+DifficultyLevel: ENUM('Easy', 'Medium', 'Hard') [NOT NULL]
+EnemyCount: INT DEFAULT 5
+EnemyTypes: TEXT
+TrapTriggered: BOOLEAN DEFAULT FALSE
+TrapEncounterID: INT NULL [FK]
+Completed: BOOLEAN DEFAULT FALSE
+CompletionTimestamp: DATETIME NULL
+
+HordeEnemies
+HordeEnemyID: INT AUTO_INCREMENT [PK]
+HordeID: INT [FK]
+EnemyID: INT [FK]
+Defeated: BOOLEAN DEFAULT FALSE
+PositionX: INT NULL
+PositionY: INT NULL
+
+## Buff/Debuff System
+
+BuffsAndDebuffs
+EffectID: INT AUTO_INCREMENT [PK]
+EffectName: VARCHAR(50) [NOT NULL]
+EffectType: ENUM('Buff', 'Debuff') [NOT NULL]
+TargetType: ENUM('Player', 'Boss') [NOT NULL]
+StatAffected: VARCHAR(50) [NOT NULL]
+Value: FLOAT [NOT NULL]
+Duration: INT DEFAULT 60
+VisualEffectPath: VARCHAR(255) NULL
+Description: TEXT
+
+PlayerBuffTypes
+PlayerBuffTypeID: INT AUTO_INCREMENT [PK]
+BuffName: ENUM('DamageUp', 'MovementSpeed', 'DoubleTap', 'AllStatsUp', 'ExtraLife') [NOT NULL]
+StatModified: VARCHAR(50) [NOT NULL]
+ModifierValue: FLOAT [NOT NULL]
+Duration: INT DEFAULT 60
+Description: TEXT
+VisualEffect: VARCHAR(255) NULL
+
+PlayerDebuffTypes
+PlayerDebuffTypeID: INT AUTO_INCREMENT [PK]
+DebuffName: ENUM('SizeX5', '30PercentSlow', '30PercentLessDamage', '30PercentMoreDamage', 'MoveitMoveit') [NOT NULL]
+StatModified: VARCHAR(50) [NOT NULL]
+ModifierValue: FLOAT [NOT NULL]
+Duration: INT DEFAULT 60
+SpecialEffect: TEXT NULL
+Description: TEXT
+VisualEffect: VARCHAR(255) NULL
+
+BossDebuffTypes
+BossDebuffTypeID: INT AUTO_INCREMENT [PK]
+DebuffName: ENUM('Stasis', 'DamagePenalty', 'SmallAreaAttack', 'Biggy', 'DefenseDown') [NOT NULL]
+StatModified: VARCHAR(50) [NOT NULL]
+ModifierValue: FLOAT [NOT NULL]
+Duration: INT DEFAULT 60
+SecondaryEffect: VARCHAR(100) NULL
+SecondaryDuration: INT NULL
+Description: TEXT
+VisualEffect: VARCHAR(255) NULL
+
+ActivePlayerEffects
+ActiveEffectID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+EffectID: INT [FK]
+RemainingDuration: INT [NOT NULL]
+CurrentValue: FLOAT [NOT NULL]
+SourceType: ENUM('Trap', 'Item', 'Weapon', 'Boss', 'BossQuestion', 'Environment') [NOT NULL]
+SourceID: INT [NOT NULL]
+AppliedAt: DATETIME DEFAULT CURRENT_TIMESTAMP
+
+ActiveBossEffects
+ActiveBossEffectID: INT AUTO_INCREMENT [PK]
+BossEncounterID: INT [FK]
+EffectID: INT [FK]
+RemainingDuration: INT [NOT NULL]
+CurrentValue: FLOAT [NOT NULL]
+SourceType: ENUM('PlayerWeapon', 'PlayerItem', 'BossQuestion') DEFAULT 'BossQuestion'
+SourceID: INT [NOT NULL]
+AppliedAt: DATETIME DEFAULT CURRENT_TIMESTAMP
+
+## Question System
+
+DifficultyLevels
+DifficultyLevelID: INT AUTO_INCREMENT [PK]
+DifficultyName: ENUM('Easy', 'Medium', 'Hard') [NOT NULL]
+NumericValue: INT [NOT NULL]
+FloorRangeStart: INT [NOT NULL]
+FloorRangeEnd: INT [NOT NULL]
+Description: TEXT
+
+QuestionCategories
+CategoryID: INT AUTO_INCREMENT [PK]
+CategoryName: VARCHAR(50) [NOT NULL]
+DungeonTypeID: INT [FK]
+Description: TEXT
+IconPath: VARCHAR(255) NULL
+
+Questions
+QuestionID: INT AUTO_INCREMENT [PK]
+QuestionText: TEXT [NOT NULL]
+DifficultyLevelID: INT [FK]
+CategoryID: INT [FK]
+DungeonTypeID: INT [FK]
+TimeLimit: INT DEFAULT 30
+ImagePath: VARCHAR(255) NULL
+
+QuestionAnswers
+AnswerID: INT AUTO_INCREMENT [PK]
+QuestionID: INT [FK]
+AnswerText: TEXT [NOT NULL]
+IsCorrect: BOOLEAN [NOT NULL]
+AnswerOrder: INT DEFAULT 0
+
+QuestionEncounterTypes
+EncounterTypeID: INT AUTO_INCREMENT [PK]
+EncounterTypeName: ENUM('ForcedTeleport', 'TrapDoor', 'PreBossFight', 'BossFight', 'ExtraLife', 'LockedDoor', 'TreasureChest', 'RandomExploration') [NOT NULL]
+Description: TEXT
+VisualEffect: VARCHAR(255) NULL
+
+LockedRoomAttempts
+AttemptID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+RoomID: INT [FK]
+QuestionID: INT [FK]
+AttemptNumber: INT [NOT NULL]
+AnsweredCorrectly: BOOLEAN [NOT NULL]
+AttemptTime: DATETIME DEFAULT CURRENT_TIMESTAMP
+UnlockedRoom: BOOLEAN DEFAULT FALSE
+RewardGiven: BOOLEAN DEFAULT FALSE
+
+PlayerQuestionEncounters
+PlayerEncounterID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+QuestionID: INT [FK]
+EncounterTypeID: INT [FK]
+FloorID: INT [FK]
+RoomID: INT NULL [FK]
+EncounterTimestamp: DATETIME DEFAULT CURRENT_TIMESTAMP
+AnsweredCorrectly: BOOLEAN NULL
+AnswerTime: FLOAT NULL
+RewardID: INT NULL [FK]
+PenaltyID: INT NULL [FK]
+
+## Boss Question System
+
+BossFightQuestions
+BossFightQuestionID: INT AUTO_INCREMENT [PK]
+BossID: INT [FK]
+QuestionID: INT [FK]
+TriggerCondition: ENUM('StartFight', 'PhaseChange', 'HealthThreshold', 'TimeBased', 'Random') DEFAULT 'Random'
+TriggerValue: INT NULL
+QuestionDifficulty: INT DEFAULT 2
+IsActive: BOOLEAN DEFAULT TRUE
+
+BossFightQuestionEncounters
+EncounterID: INT AUTO_INCREMENT [PK]
+ProfileID: INT [FK]
+BossFightQuestionID: INT [FK]
+BossEncounterID: INT [FK]
+EncounterTimestamp: DATETIME DEFAULT CURRENT_TIMESTAMP
+AnsweredCorrectly: BOOLEAN NULL
+AnswerTime: FLOAT NULL
+PlayerBuffTypeID: INT NULL [FK]
+BossDebuffTypeID: INT NULL [FK]
+PlayerDebuffTypeID: INT NULL [FK]

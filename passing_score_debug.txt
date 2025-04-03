@@ -1,0 +1,100 @@
+Passing Score Type: percentage
+Passing Score: 70
+Raw POST passing_score_type: percentage
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------
+Passing Score Type: NULL
+Passing Score: NULL
+Raw POST passing_score_type: NOT SET
+--------------------

@@ -1,0 +1,13 @@
+2025-03-26 00:08:51 - Interactive API Call
+Language: python3
+Input: 
+Status: 200
+Response: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"4608","cpuTime":"0.03","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+2025-03-26 00:09:17 - Interactive API Call
+Language: python3
+Input: 1 
+
+Status: 200
+Response: {"output":"Enter first number: Enter second number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 7, in <module>\n    num2 = float(input(\"Enter second number: \"))\nValueError: could not convert string to float: ","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+

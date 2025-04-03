@@ -1,12 +1,39 @@
 <?php
     session_start(); // Start session if needed
+    include('config/config.php');
+
+    // Check if admin is logged in
+   // if (!isset($_SESSION['admin_id'])) {
+    //    header("Location: admin_login.php");
+    //    exit();
+    //}
+
+    // Fetch all applicants with pagination
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $records_per_page = 10;
+    $offset = ($page - 1) * $records_per_page;
+
+    // Get total number of records
+    $total_query = "SELECT COUNT(*) as total FROM register_studentsqe";
+    $total_result = $conn->query($total_query);
+    $total_records = $total_result->fetch_assoc()['total'];
+    $total_pages = ceil($total_records / $records_per_page);
+
+    // Fetch applicants with pagination
+    $query = "SELECT * FROM register_studentsqe 
+              ORDER BY registration_date DESC 
+              LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ii", $records_per_page, $offset);
+    $stmt->execute();
+    $result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Applicants Dashboard</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <!-- Linking Google Fonts For Icons -->
     <link rel="stylesheet"
@@ -15,11 +42,11 @@
  /* Apply styles ONLY to the "Registered Students" title */
  .registered-students-title {
     font-size: 22px;
-    font-weight: bold;
-    color: #0a192f; /* Dark blue to match the table */
+    font-weight: 500;
+    color: #75343A;
     text-align: left;
     padding: 10px 0;
-    
+    margin-bottom: 20px;
 }
    /* Table Styling */
 table {
@@ -29,134 +56,230 @@ table {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    margin-top: 20px;
 }
 
 /* Table Header */
 th {
-    background: #062575 ;
+    background: #75343A; /* PUP's maroon color */
     color: white;
-    padding: 12px;
+    padding: 12px 15px;
     text-align: left;
-    
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
 /* Table Rows */
 td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eef0f3;
+    color: #333;
+    font-size: 14px;
 }
 
 /* Alternate Row Color */
 tbody tr:nth-child(even) {
-    background-color: #FCFCFC ;
+    background-color: #f9f9f9;
 }
 
 /* Hover Effect */
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
+    transition: background-color 0.2s ease;
 }
 
 /* Status Dropdown */
 .status {
-    padding: 5px;
-    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
     border-radius: 4px;
     background-color: white;
     cursor: pointer;
+    font-size: 14px;
+    width: 120px;
 }
 
 /* View Button */
 .view-btn {
-    background: #28a745;
+    background: #75343A;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 6px 12px;
     cursor: pointer;
     border-radius: 4px;
     transition: background 0.3s;
+    font-size: 14px;
 }
 
 .view-btn:hover {
-    background: #218838;
+    background: #5c2930;
 }
 
-/* Modal Background */
+/* Modal Background Overlay */
 .modal {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    height: 80vh;
-    max-height: 600px;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
 }
 
 .modal.show {
-    display: flex;
-    opacity: 1;
+    display: block; /* Changed from flex to block */
 }
 
+/* Modal Content Container */
 .modal-content {
     position: relative;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+    animation: modalFade 0.3s ease-in-out;
 }
 
+/* Modal Animation */
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Header Styling */
+.modal-content h5 {
+    color: #800000;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 25px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #800000;
+}
+
+/* Modal Close Button */
 .close {
     position: absolute;
     top: 15px;
     right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-h5 {
-    margin-bottom: 15px;
+    font-size: 28px;
     font-weight: bold;
+    color: #800000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
+.close:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Information Layout */
 .row {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 -15px;
+    padding: 10px 0;
     gap: 15px;
 }
 
 .col-md-4, .col-md-6 {
+    padding: 0 15px;
     flex: 1;
-    min-width: 250px;
+    min-width: 300px;
+    margin-bottom: 15px;
 }
 
+/* Information Text Styling */
+.modal-content p {
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.modal-content strong {
+    color: #444;
+    min-width: 160px;
+    max-width: 160px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.modal-content span:not(.close) {
+    color: #666;
+    flex: 1;
+    min-width: 200px;
+    word-break: break-word;
+    line-height: 1.5;
+}
+
+/* Document Cards */
 .card {
-    border: 1px solid #ddd;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Scrollbar Styling */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #800000;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #660000;
+}
+
+/* Document Preview Improvements */
+.card {
+    border: 1px solid #dee2e6;
     border-radius: 8px;
     overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.card-header {
-    background: #062575;
-    color: white;
-    padding: 8px;
-    font-weight: bold;
-    text-align: center;
-}
-
+/* Document Preview Container */
 .doc-preview {
     height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 15px;
+    background-color: #f8f9fa;
 }
 
 .doc-preview img {
@@ -165,6 +288,253 @@ h5 {
     object-fit: contain;
 }
 
+/* Status Colors */
+.status-pending {
+    color: #f0ad4e;
+    font-weight: 500;
+}
+
+.status-accepted {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.status-rejected {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 10px;
+}
+
+.filter-section select, 
+.filter-section input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.filter-section input {
+    width: 250px;
+}
+
+.filter-button {
+    background: #75343A;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.filter-button:hover {
+    background: #5c2930;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #75343A;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.pagination a.active {
+    background-color: #75343A;
+    color: white;
+    border-color: #75343A;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #f5f5f5;
+}
+
+/* Enhanced View Details Button */
+.view-btn {
+    background: #2c3e50;  /* Darker blue */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.view-btn:hover {
+    background: #34495e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Enhanced Status Dropdown */
+.status {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    width: 140px;
+    border: 2px solid transparent;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Status-specific styles */
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border-color: #ffeeba;
+}
+
+.status-accepted {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.status-rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* Enhanced Table Spacing */
+td, th {
+    padding: 16px 20px;  /* Increased padding */
+    line-height: 1.5;
+}
+
+/* Improved Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0;
+}
+
+.pagination a {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #dee2e6;
+    color: #75343A;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.pagination a.active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
+}
+
+.pagination a:hover:not(.active) {
+    background: #f8f9fa;
+    border-color: #75343A;
+}
+
+/* Enhanced Filter Section */
+.filter-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.filter-section select,
+.filter-section input {
+    padding: 10px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.filter-section select:focus,
+.filter-section input:focus {
+    border-color: #75343A;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(117, 52, 58, 0.1);
+}
+
+.filter-section input {
+    width: 300px;
+}
+
+/* Remove filter button as we'll make it dynamic */
+.filter-button {
+    display: none;
+}
+
+/* Loading Spinner */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Academic Information specific styling */
+.modal-content .academic-info span:not(.close) {
+    max-width: calc(100% - 170px);
+}
+
+/* Document View Button */
+.doc-view-btn {
+    background-color: #007BFF; /* Primary Blue color */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.doc-view-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
 
     </style>
 </head>
@@ -177,53 +547,89 @@ h5 {
     <h2 class="page-title registered-students-title">
         <i class="fas fa-users"></i> Registered Students
     </h2>
-        <table>
-            <thead>
+
+    <div class="filter-section">
+        <select name="status" id="statusFilter" onchange="applyFilters()">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+        </select>
+        <input type="text" 
+               id="searchInput" 
+               placeholder="Search by name or reference ID"
+               oninput="applyFilters()">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Reference ID</th>
+                <th>Name</th>
+                <th>Student Type</th>
+                <th>Email</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($result->num_rows == 0): ?>
                 <tr>
-                    <th>Name</th>
-                    <th>Student Type</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Juan Dela Cruz</td>
-                    <td>Transferee</td>
-                    <td>juan@email.com</td>
-                    <td>
-                        <select class="status">
-                            <option value="pending">Pending</option>
-                            <option value="accepted">Accepted</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
+                    <td colspan="7" style="text-align: center; padding: 20px; color: #666;">
+                        No registered students found.
                     </td>
-                    <td><button class="btn btn-primary btn-sm" onclick="openModal({
-        ref_id: '20241234',
-        first_name: 'Juan',
-        middle_name: 'Dela',
-        last_name: 'Cruz',
-        gender: 'Male',
-        dob: '1999-05-21',
-        email: 'juan@email.com',
-        contact: '09123456789',
-        address: 'Manila, Philippines',
-        student_type: 'Transferee',
-        prev_school: 'ABC University',
-        year_level: '3rd Year',
-        prev_program: 'BS Computer Science',
-        desired_program: 'BS Information Systems',
-        is_tech: 'Yes',
-        tor: 'img/tor/tor.png',
-        school_id: 'img/school_id/school_id.png'
-    })">
-        View Details
-    </button>
-</td>
                 </tr>
-            </tbody>
-        </table>
+            <?php else: ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['reference_id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['student_type']); ?></td>
+                        <td><?php echo htmlspecialchars($row['email']); ?></td>
+                        <td><?php echo date('M d, Y h:i A', strtotime($row['registration_date'])); ?></td>
+                        <td>
+                            <select class="status status-<?php echo strtolower($row['status']); ?>" 
+                                    onchange="updateStatus(this.value, '<?php echo $row['reference_id']; ?>')">
+                                <option value="pending" <?php echo $row['status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
+                                <option value="accepted" <?php echo $row['status'] == 'accepted' ? 'selected' : ''; ?>>Accepted</option>
+                                <option value="rejected" <?php echo $row['status'] == 'rejected' ? 'selected' : ''; ?>>Rejected</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="view-btn" onclick="viewDetails(this, {
+                                ref_id: '<?php echo $row['reference_id']; ?>',
+                                first_name: '<?php echo $row['first_name']; ?>',
+                                middle_name: '<?php echo $row['middle_name']; ?>',
+                                last_name: '<?php echo $row['last_name']; ?>',
+                                gender: '<?php echo $row['gender']; ?>',
+                                dob: '<?php echo $row['dob']; ?>',
+                                email: '<?php echo $row['email']; ?>',
+                                contact: '<?php echo $row['contact_number']; ?>',
+                                address: '<?php echo $row['street']; ?>',
+                                student_type: '<?php echo $row['student_type']; ?>',
+                                prev_school: '<?php echo $row['previous_school']; ?>',
+                                year_level: '<?php echo $row['year_level']; ?>',
+                                prev_program: '<?php echo $row['previous_program']; ?>',
+                                desired_program: '<?php echo $row['desired_program']; ?>',
+                                is_tech: '<?php echo $row['is_tech']; ?>',
+                                tor: '<?php echo $row['tor']; ?>',
+                                school_id: '<?php echo $row['school_id']; ?>'
+                            })">View Details</button>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <?php if ($total_records > $records_per_page): ?>
+        <div class="pagination">
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?php echo $i; ?>" <?php echo $page == $i ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
+        </div>
+    <?php endif; ?>
     </div>
 </div>
 
@@ -275,9 +681,9 @@ h5 {
                     <div class="card-body doc-preview">
                         <img id="tor_preview" src="" alt="TOR">
                     </div>
-                </div>
-                <div class="text-center mt-2">
-                    <button class="btn btn-primary btn-sm" onclick="viewDocument('tor')">View Full Size</button>
+                    <div style="text-align: center; padding: 10px;">
+                        <button class="doc-view-btn" onclick="viewDocument('tor')">View Full Size</button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -286,9 +692,9 @@ h5 {
                     <div class="card-body doc-preview">
                         <img id="school_id_preview" src="" alt="School ID">
                     </div>
-                </div>
-                <div class="text-center mt-2">
-                    <button class="btn btn-primary btn-sm" onclick="viewDocument('school_id')">View Full Size</button>
+                    <div style="text-align: center; padding: 10px;">
+                        <button class="doc-view-btn" onclick="viewDocument('school_id')">View Full Size</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -346,6 +752,84 @@ window.onclick = function (event) {
           window.open(imageSrc, "_blank");
       }
   }
+
+function updateStatus(status, referenceId) {
+    console.log("Updating status:", status, "for reference ID:", referenceId);
+    
+    fetch('update_status.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `status=${status}&reference_id=${referenceId}`
+    })
+    .then(response => {
+        console.log("Response status:", response.status);
+        return response.text().then(text => {
+            console.log("Raw response:", text);
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                console.error("Error parsing JSON:", e);
+                return { success: false, message: "Invalid JSON response" };
+            }
+        });
+    })
+    .then(data => {
+        console.log("Parsed data:", data);
+        if (data.success) {
+            // Update the select element's class
+            const select = document.querySelector(`select[onchange*="${referenceId}"]`);
+            select.className = `status status-${status}`;
+            alert("Status updated successfully!");
+        } else {
+            alert('Failed to update status: ' + (data.message || 'Unknown error'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the status: ' + error.message);
+    });
+}
+
+function applyFilters() {
+    const status = document.getElementById('statusFilter').value;
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+        const statusCell = row.querySelector('.status').value;
+        const nameCell = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        const refIdCell = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+
+        const statusMatch = status === '' || statusCell === status;
+        const searchMatch = search === '' || 
+                          nameCell.includes(search) || 
+                          refIdCell.includes(search);
+
+        row.style.display = statusMatch && searchMatch ? '' : 'none';
+    });
+}
+
+// Enhance status dropdown interaction
+document.querySelectorAll('.status').forEach(select => {
+    select.addEventListener('change', function() {
+        this.className = `status status-${this.value}`;
+    });
+});
+
+// Add loading state to View Details button
+function viewDetails(button, details) {
+    button.innerHTML = '<span class="spinner"></span> Loading...';
+    button.disabled = true;
+    
+    openModal(details);
+    
+    setTimeout(() => {
+        button.innerHTML = 'View Details';
+        button.disabled = false;
+    }, 500);
+}
 </script>
 
 </body>

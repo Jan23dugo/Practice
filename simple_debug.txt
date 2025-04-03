@@ -1,0 +1,13 @@
+2025-04-03 04:43:08 - Request received
+POST: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+FILES: Array
+(
+)
+
+-------------------

@@ -1,0 +1,2724 @@
+Form submission at 2025-03-17 22:05:11
+is_scheduled: YES
+scheduled_date: NULL
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:05:28
+is_scheduled: YES
+scheduled_date: NULL
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:05:35
+is_scheduled: YES
+scheduled_date: NULL
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:07:44
+is_scheduled: YES
+scheduled_date: 2025-03-21
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-21
+    [scheduled_time] => 09:07
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:09:27
+is_scheduled: YES
+scheduled_date: 2025-04-04
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-04
+    [scheduled_time] => 11:14
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:20:06
+is_scheduled: YES
+scheduled_date: 2025-03-20
+scheduled_time: 08:22
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-20
+    [scheduled_time] => 08:22
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:20:25
+is_scheduled: YES
+scheduled_date: 2025-03-27
+scheduled_time: 23:20
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-27
+    [scheduled_time] => 23:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+    [randomize_questions] => 1
+    [randomize_choices] => 1
+)
+
+------------------------------
+Form submission at 2025-03-17 22:23:21
+is_scheduled: YES
+scheduled_date: 2025-03-27
+scheduled_time: 10:23
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-27
+    [scheduled_time] => 10:23
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-17 22:25:20
+is_scheduled: YES
+scheduled_date: 2025-03-24
+scheduled_time: 08:27
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-24
+    [scheduled_time] => 08:27
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-17 22:36:52
+is_scheduled: YES
+scheduled_date: 2025-03-24
+scheduled_time: 08:28
+POST data: Array
+(
+    [exam_id] => 5
+    [quiz-name] => aafd
+    [quiz-description] => gsdfgds
+    [exam-type] => tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-24
+    [scheduled_time] => 08:28
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 64
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-30 02:27:27
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-03-30 02:57:22
+is_scheduled: YES
+scheduled_date: 2025-04-12
+scheduled_time: 09:00
+POST data: Array
+(
+    [exam_id] => 6
+    [quiz-name] => please be good
+    [quiz-description] => click wisely
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-12
+    [scheduled_time] => 09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-31 01:41:21
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-03-31 01:42:20
+is_scheduled: YES
+scheduled_date: 2025-03-31
+scheduled_time: 09:41
+POST data: Array
+(
+    [exam_id] => 7
+    [quiz-name] => Multiple choice test
+    [quiz-description] => dfasfsa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 09:41
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-31 01:42:44
+is_scheduled: YES
+scheduled_date: 2025-03-31
+scheduled_time: 09:41
+POST data: Array
+(
+    [exam_id] => 7
+    [quiz-name] => Multiple choice test
+    [quiz-description] => dfasfsa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 09:41
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-31 01:42:56
+is_scheduled: YES
+scheduled_date: 2025-03-31
+scheduled_time: 09:41
+POST data: Array
+(
+    [exam_id] => 7
+    [quiz-name] => Multiple choice test
+    [quiz-description] => dfasfsa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 09:41
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-31 03:33:15
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-03-31 03:34:54
+is_scheduled: YES
+scheduled_date: 2025-03-31
+scheduled_time: 11:34
+POST data: Array
+(
+    [exam_id] => 8
+    [quiz-name] => True or False test
+    [quiz-description] => tree 
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 11:34
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-31 03:35:20
+is_scheduled: YES
+scheduled_date: 2025-03-31
+scheduled_time: 11:34
+POST data: Array
+(
+    [exam_id] => 8
+    [quiz-name] => True or False test
+    [quiz-description] => tree 
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 11:34
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-03-31 10:31:20
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-03-31 10:32:42
+is_scheduled: YES
+scheduled_date: 2025-03-31
+scheduled_time: 18:32
+POST data: Array
+(
+    [exam_id] => 9
+    [quiz-name] => Programming testing 
+    [quiz-description] => bebebe
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-03-31
+    [scheduled_time] => 18:32
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 07:13:46
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-01 07:16:55
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 07:17:20
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 07:31:31
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:31:29
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:31:29
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:32:04
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:32:04
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:36:55
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:36:55
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:37:06
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:37:06
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:44:00
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:44:00
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 1
+)
+
+------------------------------
+Form submission at 2025-04-01 10:44:10
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:44:10
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:57:32
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:57:33
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:58:24
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:58:24
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:59:56
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 1234
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 10:59:56
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 1234
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 11:02:46
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 11:02:46
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 11:03:08
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 11:03:08
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 12334
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 13:08:42
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123341
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-01 13:08:42
+is_scheduled: YES
+scheduled_date: 2025-04-17
+scheduled_time: 18:19:00
+POST data: Array
+(
+    [exam_id] => 10
+    [quiz-name] => testing 123341
+    [quiz-description] => answer 12341da
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 18:19:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:41:10
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 00:42:43
+is_scheduled: YES
+scheduled_date: 2025-04-30
+scheduled_time: 00:42
+POST data: Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:42:43
+is_scheduled: YES
+scheduled_date: 2025-04-30
+scheduled_time: 00:42
+POST data: Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:43:37
+is_scheduled: YES
+scheduled_date: 2025-04-30
+scheduled_time: 00:42:00
+POST data: Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:43:37
+is_scheduled: YES
+scheduled_date: 2025-04-30
+scheduled_time: 00:42:00
+POST data: Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:56:47
+is_scheduled: YES
+scheduled_date: 2025-04-30
+scheduled_time: 00:42:00
+POST data: Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:56:47
+is_scheduled: YES
+scheduled_date: 2025-04-30
+scheduled_time: 00:42:00
+POST data: Array
+(
+    [exam_id] => 11
+    [quiz-name] => test
+    [quiz-description] => fdadsaf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 00:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 00:59:43
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 01:00:39
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:00
+POST data: Array
+(
+    [exam_id] => 12
+    [quiz-name] => Untitled Quizfdsa
+    [quiz-description] => fdasfsadfa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:00:39
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:00
+POST data: Array
+(
+    [exam_id] => 12
+    [quiz-name] => Untitled Quizfdsa
+    [quiz-description] => fdasfsadfa
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:04:20
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 01:04:45
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:04
+POST data: Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:04:45
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:04
+POST data: Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:19:38
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:04:00
+POST data: Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04:00
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:19:38
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:04:00
+POST data: Array
+(
+    [exam_id] => 13
+    [quiz-name] => Untitled Quizdsafs
+    [quiz-description] => fdsaasf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:04:00
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:20:06
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 01:20:42
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:20
+POST data: Array
+(
+    [exam_id] => 14
+    [quiz-name] => fdsafsadf
+    [quiz-description] => fsadfasdfasd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:20:42
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:20
+POST data: Array
+(
+    [exam_id] => 14
+    [quiz-name] => fdsafsadf
+    [quiz-description] => fsadfasdfasd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:20:58
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 01:21:19
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [exam_id] => 15
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => sdafsadf
+    [exam-type] => tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:21:19
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [exam_id] => 15
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => sdafsadf
+    [exam-type] => tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:34:59
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 01:35:36
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:35
+POST data: Array
+(
+    [exam_id] => 16
+    [quiz-name] => fsdafsadfsadf
+    [quiz-description] => fdfaasfasdfasdf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:35
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:35:36
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:35
+POST data: Array
+(
+    [exam_id] => 16
+    [quiz-name] => fsdafsadfsadf
+    [quiz-description] => fdfaasfasdfasdf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:35
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:36:43
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 01:37:12
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:37:14
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:37:23
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:00
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:03
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:03
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:03
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:03
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:04
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:05
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:06
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:06
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:06
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:06
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:06
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:06
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:12
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:13
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:13
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:13
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:13
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:44:13
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:45:45
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 01:59:50
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadf
+    [quiz-description] => dsfsadfsadczczfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 02:01:00
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 09:37:00
+POST data: Array
+(
+    [exam_id] => 17
+    [quiz-name] => fsdsadfsadfdsf
+    [quiz-description] => dsfsadfsadczczfsadf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 09:37:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 02:04:00
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 02:04:28
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 10:04
+POST data: Array
+(
+    [exam_id] => 18
+    [quiz-name] => fsadfasdfs
+    [quiz-description] => dfasdfsadfasdf
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:04
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 02:04:44
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 10:04:00
+POST data: Array
+(
+    [exam_id] => 18
+    [quiz-name] => fsadfasdfs
+    [quiz-description] => dfasdfsadfasdfdsd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:04:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 02:24:23
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 02:24:53
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 10:24
+POST data: Array
+(
+    [exam_id] => 19
+    [quiz-name] => fsadfsadfsadf
+    [quiz-description] => fsfasdfasdfsd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:24
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 02:25:11
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 10:24:00
+POST data: Array
+(
+    [exam_id] => 19
+    [quiz-name] => fsadfsadfsadfdssadfdasf
+    [quiz-description] => fsfasdfasdfsd
+    [exam-type] => non-tech
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 10:24:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 05:14:05
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 05:14:39
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [exam_id] => 20
+    [quiz-name] => fdsafsdfasd
+    [quiz-description] => dfasdfsadf
+    [exam-type] => non-tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 06:19:49
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-02 13:18:31
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-02 13:42:34
+is_scheduled: YES
+scheduled_date: 2025-04-02
+scheduled_time: 21:42
+POST data: Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 30
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-02
+    [scheduled_time] => 21:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-03 03:38:59
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 
+    [scheduled_time] => 21:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-03 03:40:12
+is_scheduled: YES
+scheduled_date: 2025-04-03
+scheduled_time: 23:42
+POST data: Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-03
+    [scheduled_time] => 23:42
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-03 03:47:12
+is_scheduled: YES
+scheduled_date: 2025-04-04
+scheduled_time: 23:42:00
+POST data: Array
+(
+    [exam_id] => 21
+    [quiz-name] => This is the final test
+    [quiz-description] => No more bugs
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-04
+    [scheduled_time] => 23:42:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+------------------------------
+Form submission at 2025-04-03 04:29:29
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:29:32
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:35:31
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:35:51
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:36:43
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:38:38
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:38:58
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:45:29
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:45:31
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:45:44
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:45:46
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:49:50
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+)
+
+------------------------------
+Form submission at 2025-04-03 04:54:46
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:54:54
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:32
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:35
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:36
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:37
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:38
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:39
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:42
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:43
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:44
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------
+Form submission at 2025-04-03 04:59:45
+is_scheduled: NO
+scheduled_date: NULL
+scheduled_time: NULL
+POST data: Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+------------------------------

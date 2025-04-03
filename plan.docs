@@ -1,0 +1,12 @@
+-- Check the test case side bar if it also includes the hidden test cases and description ( just make sure we have it)
+
+-- Create a timer for the Exam. Put it on the topbar
+- make sure that the time we are getting is from the database which is located on exams table
+its name is `duration` int DEFAULT '60' COMMENT 'Duration in minutes',
+
+-- Create an Instruction page: showing the Exam TITLE and DESCRIPTION, along side the rules of the exam, make sure to align the design
+properly to our current desing on our files. 
+- the exam TITLE and DESCRIPTION should be connected to our exams also so check the @exams.sql file for our tables like exams etc. 
+
+-- Make the submit button work properly. Lets first create the tables we need for saving the exam. Make sure nothing left our as for our question like programming, true or false and multiple choice since we will be needing it 
+for analytics later on, and ofcourse reference it to the exam table and question table so that we can fetch it later on that is connected to the exam

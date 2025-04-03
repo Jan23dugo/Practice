@@ -1,0 +1,29 @@
+Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          scheduled_date = ?,
+                          scheduled_time = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?, passing_score_type = ?, passing_score = ?, updated_at = NOW(), cover_image = ? WHERE exam_id = ?
+Types: sssiissiisisi
+Params: Array
+(
+    [0] => This is the final test
+    [1] => No more bugs
+    [2] => non-tech
+    [3] => 60
+    [4] => 1
+    [5] => 2025-04-04
+    [6] => 23:42:00
+    [7] => 1
+    [8] => 1
+    [9] => percentage
+    [10] => 70
+    [11] => assets/images/default-exam-cover.jpg
+    [12] => 21
+)
+
+--------------------

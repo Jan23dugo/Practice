@@ -1,0 +1,1216 @@
+=== RAW OCR DATA ===
+Array
+(
+    [0] => Array
+        (
+            [text] => Course
+            [x] => 46
+            [y] => 24
+        )
+
+    [1] => Array
+        (
+            [text] => Code
+            [x] => 86
+            [y] => 24
+        )
+
+    [2] => Array
+        (
+            [text] => Credit
+            [x] => 717
+            [y] => 24
+        )
+
+    [3] => Array
+        (
+            [text] => Course
+            [x] => 373
+            [y] => 25
+        )
+
+    [4] => Array
+        (
+            [text] => Title
+            [x] => 415
+            [y] => 25
+        )
+
+    [5] => Array
+        (
+            [text] => Grade
+            [x] => 672
+            [y] => 25
+        )
+
+    [6] => Array
+        (
+            [text] => Unit
+            [x] => 753
+            [y] => 25
+        )
+
+    [7] => Array
+        (
+            [text] => /
+            [x] => 772
+            [y] => 26
+        )
+
+    [8] => Array
+        (
+            [text] => s
+            [x] => 778
+            [y] => 26
+        )
+
+    [9] => Array
+        (
+            [text] => OF
+            [x] => 388
+            [y] => 46
+        )
+
+    [10] => Array
+        (
+            [text] => PERPETUAL
+            [x] => 408
+            [y] => 46
+        )
+
+    [11] => Array
+        (
+            [text] => HELP
+            [x] => 481
+            [y] => 46
+        )
+
+    [12] => Array
+        (
+            [text] => SYSTEM
+            [x] => 514
+            [y] => 46
+        )
+
+    [13] => Array
+        (
+            [text] => DALTA
+            [x] => 565
+            [y] => 46
+        )
+
+    [14] => Array
+        (
+            [text] => 1ST
+            [x] => 378
+            [y] => 60
+        )
+
+    [15] => Array
+        (
+            [text] => ,
+            [x] => 463
+            [y] => 60
+        )
+
+    [16] => Array
+        (
+            [text] => 2019-2020
+            [x] => 470
+            [y] => 60
+        )
+
+    [17] => Array
+        (
+            [text] => The
+            [x] => 149
+            [y] => 77
+        )
+
+    [18] => Array
+        (
+            [text] => Perpetualite
+            [x] => 174
+            [y] => 77
+        )
+
+    [19] => Array
+        (
+            [text] => :
+            [x] => 238
+            [y] => 77
+        )
+
+    [20] => Array
+        (
+            [text] => Identity
+            [x] => 246
+            [y] => 77
+        )
+
+    [21] => Array
+        (
+            [text] => and
+            [x] => 291
+            [y] => 77
+        )
+
+    [22] => Array
+        (
+            [text] => Dignity
+            [x] => 314
+            [y] => 77
+        )
+
+    [23] => Array
+        (
+            [text] => 1.00
+            [x] => 676
+            [y] => 77
+        )
+
+    [24] => Array
+        (
+            [text] => FCL
+            [x] => 46
+            [y] => 78
+        )
+
+    [25] => Array
+        (
+            [text] => 1101
+            [x] => 69
+            [y] => 78
+        )
+
+    [26] => Array
+        (
+            [text] => 2.0
+            [x] => 748
+            [y] => 78
+        )
+
+    [27] => Array
+        (
+            [text] => 1.00
+            [x] => 676
+            [y] => 92
+        )
+
+    [28] => Array
+        (
+            [text] => 3.0
+            [x] => 748
+            [y] => 93
+        )
+
+    [29] => Array
+        (
+            [text] => FIL
+            [x] => 45
+            [y] => 94
+        )
+
+    [30] => Array
+        (
+            [text] => 1000
+            [x] => 65
+            [y] => 94
+        )
+
+    [31] => Array
+        (
+            [text] => Komunikasyon
+            [x] => 150
+            [y] => 95
+        )
+
+    [32] => Array
+        (
+            [text] => sa
+            [x] => 232
+            [y] => 95
+        )
+
+    [33] => Array
+        (
+            [text] => Akademikong
+            [x] => 246
+            [y] => 95
+        )
+
+    [34] => Array
+        (
+            [text] => Filipino
+            [x] => 322
+            [y] => 95
+        )
+
+    [35] => Array
+        (
+            [text] => 1.25
+            [x] => 676
+            [y] => 110
+        )
+
+    [36] => Array
+        (
+            [text] => 3.0
+            [x] => 749
+            [y] => 110
+        )
+
+    [37] => Array
+        (
+            [text] => GEC
+            [x] => 45
+            [y] => 111
+        )
+
+    [38] => Array
+        (
+            [text] => 1000
+            [x] => 71
+            [y] => 111
+        )
+
+    [39] => Array
+        (
+            [text] => Understanding
+            [x] => 149
+            [y] => 111
+        )
+
+    [40] => Array
+        (
+            [text] => the
+            [x] => 230
+            [y] => 111
+        )
+
+    [41] => Array
+        (
+            [text] => Self
+            [x] => 251
+            [y] => 111
+        )
+
+    [42] => Array
+        (
+            [text] => 3.0
+            [x] => 749
+            [y] => 126
+        )
+
+    [43] => Array
+        (
+            [text] => 1.00
+            [x] => 677
+            [y] => 127
+        )
+
+    [44] => Array
+        (
+            [text] => Purposive
+            [x] => 149
+            [y] => 128
+        )
+
+    [45] => Array
+        (
+            [text] => Communication
+            [x] => 204
+            [y] => 128
+        )
+
+    [46] => Array
+        (
+            [text] => GEC
+            [x] => 45
+            [y] => 129
+        )
+
+    [47] => Array
+        (
+            [text] => 4000
+            [x] => 70
+            [y] => 129
+        )
+
+    [48] => Array
+        (
+            [text] => 1.00
+            [x] => 677
+            [y] => 142
+        )
+
+    [49] => Array
+        (
+            [text] => 3.0
+            [x] => 749
+            [y] => 144
+        )
+
+    [50] => Array
+        (
+            [text] => GEC
+            [x] => 45
+            [y] => 146
+        )
+
+    [51] => Array
+        (
+            [text] => 5000
+            [x] => 70
+            [y] => 146
+        )
+
+    [52] => Array
+        (
+            [text] => Mathematics
+            [x] => 150
+            [y] => 147
+        )
+
+    [53] => Array
+        (
+            [text] => in
+            [x] => 221
+            [y] => 147
+        )
+
+    [54] => Array
+        (
+            [text] => the
+            [x] => 234
+            [y] => 147
+        )
+
+    [55] => Array
+        (
+            [text] => Modern
+            [x] => 255
+            [y] => 147
+        )
+
+    [56] => Array
+        (
+            [text] => World
+            [x] => 297
+            [y] => 147
+        )
+
+    [57] => Array
+        (
+            [text] => 3.0
+            [x] => 750
+            [y] => 159
+        )
+
+    [58] => Array
+        (
+            [text] => 1.25
+            [x] => 677
+            [y] => 160
+        )
+
+    [59] => Array
+        (
+            [text] => National
+            [x] => 150
+            [y] => 162
+        )
+
+    [60] => Array
+        (
+            [text] => Service
+            [x] => 197
+            [y] => 162
+        )
+
+    [61] => Array
+        (
+            [text] => Training
+            [x] => 239
+            [y] => 162
+        )
+
+    [62] => Array
+        (
+            [text] => Program
+            [x] => 287
+            [y] => 163
+        )
+
+    [63] => Array
+        (
+            [text] => 1
+            [x] => 335
+            [y] => 163
+        )
+
+    [64] => Array
+        (
+            [text] => NSTP
+            [x] => 46
+            [y] => 164
+        )
+
+    [65] => Array
+        (
+            [text] => 1101
+            [x] => 76
+            [y] => 164
+        )
+
+    [66] => Array
+        (
+            [text] => 1.00
+            [x] => 677
+            [y] => 177
+        )
+
+    [67] => Array
+        (
+            [text] => 2.0
+            [x] => 750
+            [y] => 178
+        )
+
+    [68] => Array
+        (
+            [text] => Foundations
+            [x] => 149
+            [y] => 181
+        )
+
+    [69] => Array
+        (
+            [text] => of
+            [x] => 217
+            [y] => 181
+        )
+
+    [70] => Array
+        (
+            [text] => Physical
+            [x] => 232
+            [y] => 181
+        )
+
+    [71] => Array
+        (
+            [text] => Education
+            [x] => 278
+            [y] => 181
+        )
+
+    [72] => Array
+        (
+            [text] => PE
+            [x] => 45
+            [y] => 182
+        )
+
+    [73] => Array
+        (
+            [text] => 1101
+            [x] => 61
+            [y] => 182
+        )
+
+    [74] => Array
+        (
+            [text] => 1.25
+            [x] => 677
+            [y] => 193
+        )
+
+    [75] => Array
+        (
+            [text] => 3.0
+            [x] => 750
+            [y] => 194
+        )
+
+    [76] => Array
+        (
+            [text] => Introduction
+            [x] => 149
+            [y] => 198
+        )
+
+    [77] => Array
+        (
+            [text] => to
+            [x] => 219
+            [y] => 198
+        )
+
+    [78] => Array
+        (
+            [text] => Psychology
+            [x] => 233
+            [y] => 198
+        )
+
+    [79] => Array
+        (
+            [text] => PSY
+            [x] => 45
+            [y] => 199
+        )
+
+    [80] => Array
+        (
+            [text] => 1101
+            [x] => 69
+            [y] => 199
+        )
+
+    [81] => Array
+        (
+            [text] => ,
+            [x] => 461
+            [y] => 211
+        )
+
+    [82] => Array
+        (
+            [text] => 2019-2020
+            [x] => 469
+            [y] => 211
+        )
+
+    [83] => Array
+        (
+            [text] => 2ND
+            [x] => 376
+            [y] => 212
+        )
+
+    [84] => Array
+        (
+            [text] => 1.00
+            [x] => 678
+            [y] => 225
+        )
+
+    [85] => Array
+        (
+            [text] => 2.0
+            [x] => 750
+            [y] => 226
+        )
+
+    [86] => Array
+        (
+            [text] => FCL
+            [x] => 45
+            [y] => 229
+        )
+
+    [87] => Array
+        (
+            [text] => 1202
+            [x] => 67
+            [y] => 229
+        )
+
+    [88] => Array
+        (
+            [text] => The
+            [x] => 149
+            [y] => 229
+        )
+
+    [89] => Array
+        (
+            [text] => Perpetualite
+            [x] => 173
+            [y] => 229
+        )
+
+    [90] => Array
+        (
+            [text] => :
+            [x] => 238
+            [y] => 229
+        )
+
+    [91] => Array
+        (
+            [text] => A
+            [x] => 245
+            [y] => 229
+        )
+
+    [92] => Array
+        (
+            [text] => Man
+            [x] => 256
+            [y] => 229
+        )
+
+    [93] => Array
+        (
+            [text] => of
+            [x] => 281
+            [y] => 229
+        )
+
+    [94] => Array
+        (
+            [text] => God
+            [x] => 295
+            [y] => 229
+        )
+
+    [95] => Array
+        (
+            [text] => 1.75
+            [x] => 678
+            [y] => 243
+        )
+
+    [96] => Array
+        (
+            [text] => 3.0
+            [x] => 751
+            [y] => 243
+        )
+
+    [97] => Array
+        (
+            [text] => GEC
+            [x] => 44
+            [y] => 246
+        )
+
+    [98] => Array
+        (
+            [text] => 6000
+            [x] => 69
+            [y] => 246
+        )
+
+    [99] => Array
+        (
+            [text] => The
+            [x] => 149
+            [y] => 246
+        )
+
+    [100] => Array
+        (
+            [text] => Contemporary
+            [x] => 171
+            [y] => 246
+        )
+
+    [101] => Array
+        (
+            [text] => World
+            [x] => 252
+            [y] => 246
+        )
+
+    [102] => Array
+        (
+            [text] => 1.50
+            [x] => 677
+            [y] => 261
+        )
+
+    [103] => Array
+        (
+            [text] => 3.0
+            [x] => 751
+            [y] => 261
+        )
+
+    [104] => Array
+        (
+            [text] => GEC
+            [x] => 44
+            [y] => 263
+        )
+
+    [105] => Array
+        (
+            [text] => 8000
+            [x] => 69
+            [y] => 263
+        )
+
+    [106] => Array
+        (
+            [text] => Science
+            [x] => 149
+            [y] => 263
+        )
+
+    [107] => Array
+        (
+            [text] => ,
+            [x] => 191
+            [y] => 263
+        )
+
+    [108] => Array
+        (
+            [text] => Technology
+            [x] => 197
+            [y] => 263
+        )
+
+    [109] => Array
+        (
+            [text] => ,
+            [x] => 259
+            [y] => 263
+        )
+
+    [110] => Array
+        (
+            [text] => and
+            [x] => 266
+            [y] => 263
+        )
+
+    [111] => Array
+        (
+            [text] => Society
+            [x] => 288
+            [y] => 264
+        )
+
+    [112] => Array
+        (
+            [text] => 1.75
+            [x] => 677
+            [y] => 278
+        )
+
+    [113] => Array
+        (
+            [text] => 2.0
+            [x] => 750
+            [y] => 278
+        )
+
+    [114] => Array
+        (
+            [text] => Living
+            [x] => 150
+            [y] => 281
+        )
+
+    [115] => Array
+        (
+            [text] => in
+            [x] => 185
+            [y] => 281
+        )
+
+    [116] => Array
+        (
+            [text] => the
+            [x] => 197
+            [y] => 281
+        )
+
+    [117] => Array
+        (
+            [text] => IT
+            [x] => 220
+            [y] => 281
+        )
+
+    [118] => Array
+        (
+            [text] => Era
+            [x] => 234
+            [y] => 281
+        )
+
+    [119] => Array
+        (
+            [text] => -
+            [x] => 255
+            [y] => 281
+        )
+
+    [120] => Array
+        (
+            [text] => Lec
+            [x] => 263
+            [y] => 281
+        )
+
+    [121] => Array
+        (
+            [text] => GEE
+            [x] => 44
+            [y] => 282
+        )
+
+    [122] => Array
+        (
+            [text] => 1000
+            [x] => 70
+            [y] => 282
+        )
+
+    [123] => Array
+        (
+            [text] => 1.0
+            [x] => 751
+            [y] => 294
+        )
+
+    [124] => Array
+        (
+            [text] => 1.25
+            [x] => 677
+            [y] => 295
+        )
+
+    [125] => Array
+        (
+            [text] => Era
+            [x] => 233
+            [y] => 296
+        )
+
+    [126] => Array
+        (
+            [text] => -
+            [x] => 254
+            [y] => 296
+        )
+
+    [127] => Array
+        (
+            [text] => Lab
+            [x] => 263
+            [y] => 296
+        )
+
+    [128] => Array
+        (
+            [text] => Living
+            [x] => 149
+            [y] => 297
+        )
+
+    [129] => Array
+        (
+            [text] => in
+            [x] => 183
+            [y] => 297
+        )
+
+    [130] => Array
+        (
+            [text] => the
+            [x] => 197
+            [y] => 297
+        )
+
+    [131] => Array
+        (
+            [text] => IT
+            [x] => 218
+            [y] => 297
+        )
+
+    [132] => Array
+        (
+            [text] => GEE
+            [x] => 44
+            [y] => 299
+        )
+
+    [133] => Array
+        (
+            [text] => 1000L
+            [x] => 70
+            [y] => 299
+        )
+
+    [134] => Array
+        (
+            [text] => 1.00
+            [x] => 678
+            [y] => 312
+        )
+
+    [135] => Array
+        (
+            [text] => 3.0
+            [x] => 751
+            [y] => 312
+        )
+
+    [136] => Array
+        (
+            [text] => National
+            [x] => 150
+            [y] => 315
+        )
+
+    [137] => Array
+        (
+            [text] => Service
+            [x] => 197
+            [y] => 315
+        )
+
+    [138] => Array
+        (
+            [text] => Training
+            [x] => 240
+            [y] => 315
+        )
+
+    [139] => Array
+        (
+            [text] => Progrm
+            [x] => 287
+            [y] => 315
+        )
+
+    [140] => Array
+        (
+            [text] => 2
+            [x] => 329
+            [y] => 315
+        )
+
+    [141] => Array
+        (
+            [text] => NSTP
+            [x] => 44
+            [y] => 316
+        )
+
+    [142] => Array
+        (
+            [text] => 1202
+            [x] => 75
+            [y] => 316
+        )
+
+    [143] => Array
+        (
+            [text] => 1.00
+            [x] => 677
+            [y] => 329
+        )
+
+    [144] => Array
+        (
+            [text] => 2.0
+            [x] => 751
+            [y] => 329
+        )
+
+    [145] => Array
+        (
+            [text] => PE
+            [x] => 44
+            [y] => 333
+        )
+
+    [146] => Array
+        (
+            [text] => 1202
+            [x] => 60
+            [y] => 333
+        )
+
+    [147] => Array
+        (
+            [text] => Rhythmic
+            [x] => 150
+            [y] => 333
+        )
+
+    [148] => Array
+        (
+            [text] => Activities
+            [x] => 203
+            [y] => 333
+        )
+
+    [149] => Array
+        (
+            [text] => 3.0
+            [x] => 752
+            [y] => 346
+        )
+
+    [150] => Array
+        (
+            [text] => 1.25
+            [x] => 677
+            [y] => 347
+        )
+
+    [151] => Array
+        (
+            [text] => Psychological
+            [x] => 149
+            [y] => 350
+        )
+
+    [152] => Array
+        (
+            [text] => Statistics
+            [x] => 224
+            [y] => 350
+        )
+
+    [153] => Array
+        (
+            [text] => -
+            [x] => 276
+            [y] => 350
+        )
+
+    [154] => Array
+        (
+            [text] => Lec
+            [x] => 284
+            [y] => 350
+        )
+
+    [155] => Array
+        (
+            [text] => PSY
+            [x] => 44
+            [y] => 351
+        )
+
+    [156] => Array
+        (
+            [text] => 1202
+            [x] => 67
+            [y] => 351
+        )
+
+)
+
+
+=== ORGANIZED DATA ===
+Subject Codes:
+Array
+(
+    [0] => Course
+    [1] => OF
+    [2] => FCL 1101
+    [3] => FIL 1000
+    [4] => GEC 1000
+    [5] => GEC 4000
+    [6] => GEC 5000
+    [7] => NSTP 1101
+    [8] => PE 1101
+    [9] => PSY 1101
+    [10] => FCL 1202
+    [11] => GEC 6000
+    [12] => GEC 8000
+    [13] => GEE 1000
+    [14] => GEE
+    [15] => NSTP 1202
+    [16] => PE 1202
+    [17] => PSY 1202
+)
+
+
+Descriptions:
+Array
+(
+    [0] => The Perpetualite : Identity and Dignity
+    [1] => Komunikasyon sa Akademikong Filipino
+    [2] => Understanding the Self
+    [3] => Purposive Communication
+    [4] => Mathematics in the Modern World
+    [5] => National Service Training Program 1
+    [6] => Foundations of Physical Education
+    [7] => Introduction to Psychology
+    [8] => The Perpetualite : A Man of God
+    [9] => The Contemporary World
+    [10] => Science , Technology , and Society
+    [11] => Living in the IT Era - Lec
+    [12] => 1000L Living in the IT Era - Lab
+    [13] => National Service Training Progrm 2
+    [14] => Rhythmic Activities
+    [15] => Psychological Statistics - Lec
+)
+
+
+Units:
+Array
+(
+    [0] => 1.00
+    [1] => 1.00
+    [2] => 1.25
+    [3] => 1.00
+    [4] => 1.00
+    [5] => 1.25
+    [6] => 1.00
+    [7] => 1.25
+    [8] => 1.00
+    [9] => 1.75
+    [10] => 1.50
+    [11] => 1.75
+    [12] => 1.25
+    [13] => 1.00
+    [14] => 1.00
+    [15] => 1.25
+)
+
+
+Grades:
+Array
+(
+    [0] => 2.0
+    [1] => 3.0
+    [2] => 3.0
+    [3] => 3.0
+    [4] => 3.0
+    [5] => 3.0
+    [6] => 2.0
+    [7] => 3.0
+    [8] => 2.0
+    [9] => 3.0
+    [10] => 3.0
+    [11] => 2.0
+    [12] => 1.0
+    [13] => 3.0
+    [14] => 2.0
+    [15] => 3.0
+)
+
+
+=== FINAL STRUCTURED TEXT ===
+TERM SUBJECT CODE DESCRIPTIVE TITLE
+
+Course	The Perpetualite : Identity and Dignity	1.00	2.0
+OF	Komunikasyon sa Akademikong Filipino	1.00	3.0
+FCL 1101	Understanding the Self	1.25	3.0
+FIL 1000	Purposive Communication	1.00	3.0
+GEC 1000	Mathematics in the Modern World	1.00	3.0
+GEC 4000	National Service Training Program 1	1.25	3.0
+GEC 5000	Foundations of Physical Education	1.00	2.0
+NSTP 1101	Introduction to Psychology	1.25	3.0
+PE 1101	The Perpetualite : A Man of God	1.00	2.0
+PSY 1101	The Contemporary World	1.75	3.0
+FCL 1202	Science , Technology , and Society	1.50	3.0
+GEC 6000	Living in the IT Era - Lec	1.75	2.0
+GEC 8000	1000L Living in the IT Era - Lab	1.25	1.0
+GEE 1000	National Service Training Progrm 2	1.00	3.0
+GEE	Rhythmic Activities	1.00	2.0
+NSTP 1202	Psychological Statistics - Lec	1.25	3.0
+

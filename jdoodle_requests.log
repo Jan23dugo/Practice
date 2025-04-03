@@ -1,0 +1,40 @@
+==== 2025-03-26 00:26:16 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"print(\"Hello World\")","language":"python3","versionIndex":"0","stdin":""}
+STATUS: 200
+RESPONSE: {"output":"Hello World","error":null,"statusCode":200,"memory":"4992","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":true,"isCompiled":true}
+
+==== 2025-03-26 00:26:34 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":""}
+STATUS: 200
+RESPONSE: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+==== 2025-03-26 00:26:41 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":"1\n"}
+STATUS: 200
+RESPONSE: {"output":"Enter first number: Enter second number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 7, in <module>\n    num2 = float(input(\"Enter second number: \"))\nValueError: could not convert string to float: ","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.01","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+==== 2025-03-26 00:26:55 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":""}
+STATUS: 200
+RESPONSE: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+==== 2025-03-26 00:27:07 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":"1\n"}
+STATUS: 200
+RESPONSE: {"output":"Enter first number: Enter second number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 7, in <module>\n    num2 = float(input(\"Enter second number: \"))\nValueError: could not convert string to float: ","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+==== 2025-03-26 00:27:25 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":""}
+==== 2025-03-26 00:27:26 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":""}
+STATUS: 200
+RESPONSE: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"5120","cpuTime":"0.01","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+STATUS: 200
+RESPONSE: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.03","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+
+==== 2025-03-26 00:27:37 ====
+REQUEST: {"clientId":"8c686c1b1579a59d4b1757074bb59fd2","clientSecret":"33aff191a34149669be03ad9e1853e67a894f9460fff913952c1e2441ea4ac77","script":"# Function to add two numbers\ndef add_numbers(a, b):\n    return a + b\n\n# Input from user\nnum1 = float(input(\"Enter first number: \"))\nnum2 = float(input(\"Enter second number: \"))\n\n# Calculate sum\nresult = add_numbers(num1, num2)\n\n# Display result\nprint(\"The sum is:\", result)\n","language":"python3","versionIndex":"0","stdin":"2\n"}
+STATUS: 200
+RESPONSE: {"output":"Enter first number: Enter second number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 7, in <module>\n    num2 = float(input(\"Enter second number: \"))\nValueError: could not convert string to float: ","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+

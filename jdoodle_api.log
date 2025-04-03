@@ -1,0 +1,74 @@
+2025-03-26 01:02:01 - Request
+Language: python3
+Input: 
+Response code: 403
+Response: {"error":"Unauthorized Request","statusCode":403}
+
+2025-03-26 01:02:26 - Request
+Language: python3
+Input: 
+Response code: 403
+Response: {"error":"Unauthorized Request","statusCode":403}
+
+=== 2025-03-26 01:11:02 ===
+REQUEST:
+ClientID: 8c686...
+Language: python3
+Input: 
+Script:
+# Function to add two numbers
+def add_numbers(a, b):
+    return a + b
+
+# Input from user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Calculate sum
+resul...
+RESPONSE:
+Status: 200
+Response: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"5120","cpuTime":"0.02","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+===============
+
+=== 2025-03-26 01:11:29 ===
+REQUEST:
+ClientID: 8c686...
+Language: python3
+Input: 
+Script:
+def sum_array(arr):
+    # Your code here
+    total = 0
+    
+    return total
+
+# Test with sample input
+test_array = [1, 2, 3, 4, 5]
+print(f"Sum of array is: {sum_array(test_array)}")...
+RESPONSE:
+Status: 200
+Response: {"output":"\n  File \"jdoodle.py\", line 9\n    print(f\"Sum of array is: {sum_array(test_array)}\")\n                                                    ^\nSyntaxError: invalid syntax","error":null,"statusCode":200,"memory":"5248","cpuTime":"0.03","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+===============
+
+=== 2025-03-26 01:11:44 ===
+REQUEST:
+ClientID: 8c686...
+Language: python3
+Input: 
+Script:
+# Function to add two numbers
+def add_numbers(a, b):
+    return a + b
+
+# Input from user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Calculate sum
+resul...
+RESPONSE:
+Status: 200
+Response: {"output":"Enter first number: \nTraceback (most recent call last):\n  File \"jdoodle.py\", line 6, in <module>\n    num1 = float(input(\"Enter first number: \"))\nEOFError: EOF when reading a line","error":null,"statusCode":200,"memory":"4992","cpuTime":"0.01","compilationStatus":null,"projectKey":null,"isExecutionSuccess":false,"isCompiled":true}
+===============
+
