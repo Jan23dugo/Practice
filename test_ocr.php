@@ -100,40 +100,35 @@ function displayResults($results) {
                 // Format data for output
                 $formattedData = [];
                 
-                // Extract and clean the transcript data
-                $subjectCodes = isset($document['fields']['subject_code']['content']) ? 
-                    array_filter(explode('-M', $document['fields']['subject_code']['content'])) : [];
-                    
-                // Clean up subject codes
+                // Extract and clean the subject codes
+                $subjectCodesStr = isset($document['fields']['subject_code']['content']) ? 
+                    $document['fields']['subject_code']['content'] : '';
+                // Split by -M and clean up
+                $subjectCodes = array_filter(explode('-M', $subjectCodesStr), 'strlen');
                 $subjectCodes = array_map(function($code) {
-                    return trim($code) . '-M'; // Add back the -M suffix
+                    return trim($code) . '-M';
                 }, $subjectCodes);
                 
-                // Get units and convert to array
+                // Get units and convert to array (remove 'CREDITS' and split)
                 $unitsStr = isset($document['fields']['units']['content']) ? 
-                    trim($document['fields']['units']['content']) : '';
-                $unitsStr = str_replace('CREDITS', '', $unitsStr); // Remove 'CREDITS' text
-                $units = array_values(array_filter(explode(' ', $unitsStr), 'strlen'));
+                    str_replace('CREDITS', '', $document['fields']['units']['content']) : '';
+                $units = array_values(array_filter(array_map('trim', explode(' ', $unitsStr))));
                 
-                // Get grades and clean up
+                // Get grades (remove prefix and split)
                 $gradesStr = isset($document['fields']['grade']['content']) ? 
-                    $document['fields']['grade']['content'] : '';
-                $gradesStr = preg_replace('/^GRADES\s+Final\s+Completion\s+/', '', $gradesStr);
-                $grades = array_values(array_filter(explode(' ', $gradesStr), 'strlen'));
+                    preg_replace('/^GRADES\s+Final\s+Completion\s+/', '', $document['fields']['grade']['content']) : '';
+                $grades = array_values(array_filter(array_map('trim', explode(' ', $gradesStr))));
                 
                 // Get and parse subject descriptions
                 $descriptionsStr = isset($document['fields']['subject_description']['content']) ? 
                     $document['fields']['subject_description']['content'] : '';
                 
-                // Split descriptions into an array based on common patterns
+                // Split descriptions by common delimiters
                 $descriptions = [];
-                $descriptionParts = explode(' and ', $descriptionsStr);
-                foreach ($descriptionParts as $part) {
-                    $subParts = explode(', ', $part);
-                    foreach ($subParts as $subPart) {
-                        if (!empty(trim($subPart))) {
-                            $descriptions[] = trim($subPart);
-                        }
+                $descParts = preg_split('/(?<=\w)(?=[A-Z][a-z])|\s+(?=[A-Z][a-z]+\s)/', $descriptionsStr);
+                foreach ($descParts as $part) {
+                    if (!empty(trim($part))) {
+                        $descriptions[] = trim($part);
                     }
                 }
                 
@@ -142,19 +137,14 @@ function displayResults($results) {
                 
                 // Process each subject
                 foreach ($subjectCodes as $index => $code) {
-                    if (trim($code) !== '') {
-                        // Get corresponding description if available
-                        $description = isset($descriptions[$index]) ? $descriptions[$index] : '';
-                        
-                        $subject = [
-                            'subject_code' => trim($code),
-                            'subject_description' => $description,
-                            'units' => isset($units[$index]) ? floatval($units[$index]) : 0,
-                            'grade' => isset($grades[$index]) ? floatval($grades[$index]) : 0
-                        ];
-                        
-                        $formattedData['subjects'][] = $subject;
-                    }
+                    $subject = [
+                        'subject_code' => trim($code),
+                        'subject_description' => isset($descriptions[$index]) ? trim($descriptions[$index]) : '',
+                        'units' => isset($units[$index]) ? floatval($units[$index]) : 0,
+                        'grade' => isset($grades[$index]) ? floatval($grades[$index]) : 0
+                    ];
+                    
+                    $formattedData['subjects'][] = $subject;
                 }
                 
                 // Display formatted JSON
@@ -163,44 +153,56 @@ function displayResults($results) {
                 echo json_encode($formattedData, JSON_PRETTY_PRINT);
                 echo "</pre>";
                 
-                // Display debug information
-                echo "<h4>Debug Information:</h4>";
-                echo "<pre>";
-                echo "Subject Codes (" . count($subjectCodes) . "):\n";
-                print_r($subjectCodes);
-                echo "\nDescriptions (" . count($descriptions) . "):\n";
-                print_r($descriptions);
-                echo "\nUnits (" . count($units) . "):\n";
-                print_r($units);
-                echo "\nGrades (" . count($grades) . "):\n";
-                print_r($grades);
-                echo "</pre>";
+                // Display data in table format
+                echo "<h4>Tabular Format:</h4>";
+                echo "<div style='margin-left: 20px; overflow-x: auto;'>";
+                echo "<table border='1' cellpadding='5' style='border-collapse: collapse; min-width: 800px;'>";
+                echo "<tr style='background-color: #f2f2f2;'>";
+                echo "<th>Subject Code</th>";
+                echo "<th>Description</th>";
+                echo "<th>Units</th>";
+                echo "<th>Grade</th>";
+                echo "</tr>";
                 
-                // Download button for JSON
-                $jsonData = json_encode($formattedData);
-                echo "<div style='margin: 20px 0;'>";
-                echo "<a href='data:application/json;charset=utf-8," . urlencode($jsonData) . "' download='transcript_data.json' class='download-btn'>Download JSON</a>";
-                echo "</div>";
-                
-                // Display original extracted information in table format
-                echo "<h4>Raw Extracted Information:</h4>";
-                echo "<div style='margin-left: 20px;'>";
-                echo "<table border='1' cellpadding='5' style='border-collapse: collapse;'>";
-                echo "<tr><th>Field</th><th>Value</th><th>Confidence</th></tr>";
-                
-                foreach ($document['fields'] as $fieldName => $fieldData) {
-                    $value = isset($fieldData['content']) ? $fieldData['content'] : 'N/A';
-                    $confidence = isset($fieldData['confidence']) ? number_format($fieldData['confidence'] * 100, 2) . '%' : 'N/A';
-                    
+                foreach ($formattedData['subjects'] as $subject) {
                     echo "<tr>";
-                    echo "<td><strong>$fieldName</strong></td>";
-                    echo "<td>$value</td>";
-                    echo "<td>$confidence</td>";
+                    echo "<td>{$subject['subject_code']}</td>";
+                    echo "<td>{$subject['subject_description']}</td>";
+                    echo "<td>{$subject['units']}</td>";
+                    echo "<td>{$subject['grade']}</td>";
                     echo "</tr>";
                 }
                 
                 echo "</table>";
                 echo "</div>";
+                
+                // Download buttons
+                echo "<div style='margin: 20px 0;'>";
+                echo "<a href='data:application/json;charset=utf-8," . urlencode(json_encode($formattedData)) . "' download='transcript_data.json' class='download-btn'>Download JSON</a>";
+                
+                // Add CSV download option
+                $csv = "Subject Code,Description,Units,Grade\n";
+                foreach ($formattedData['subjects'] as $subject) {
+                    $csv .= "\"{$subject['subject_code']}\",\"{$subject['subject_description']}\",{$subject['units']},{$subject['grade']}\n";
+                }
+                echo " <a href='data:text/csv;charset=utf-8," . urlencode($csv) . "' download='transcript_data.csv' class='download-btn'>Download CSV</a>";
+                echo "</div>";
+                
+                // Display debug information
+                echo "<h4>Debug Information:</h4>";
+                echo "<pre>";
+                echo "Number of subjects found: " . count($subjectCodes) . "\n";
+                echo "Number of descriptions matched: " . count($descriptions) . "\n";
+                echo "Number of units found: " . count($units) . "\n";
+                echo "Number of grades found: " . count($grades) . "\n\n";
+                
+                echo "Subject Codes:\n";
+                print_r($subjectCodes);
+                echo "\nUnits:\n";
+                print_r($units);
+                echo "\nGrades:\n";
+                print_r($grades);
+                echo "</pre>";
             }
         } else {
             echo "<p>No documents or fields found in the results.</p>";
@@ -208,13 +210,6 @@ function displayResults($results) {
         
         // Clear the session
         unset($_SESSION['operation_location']);
-        
-        echo "<h4>Raw API Response:</h4>";
-        echo "<div style='max-height: 300px; overflow: auto;'>";
-        echo "<pre>";
-        print_r($results);
-        echo "</pre>";
-        echo "</div>";
     } elseif ($results['status'] === 'failed') {
         echo "<h3>❌ Analysis Failed</h3>";
         echo "<pre>";
