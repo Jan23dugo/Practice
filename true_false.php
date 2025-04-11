@@ -60,12 +60,12 @@
 }
 
 .question-type:hover, .question-points:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
 
 .question-type:focus, .question-points:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -96,12 +96,12 @@
 
 .toolbar button:hover {
     background: #f5f0ff;
-    border-color: #8e68cc;
-    color: #8e68cc;
+    border-color: #75343A;
+    color: #75343A;
 }
 
 .save-btn {
-    background: #8e68cc;
+    background: #75343A;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -157,7 +157,7 @@
 
 .question-textarea:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -188,11 +188,11 @@ label {
 
 .option:hover {
     background-color: #f8f9fa;
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
 
 .option input[type="radio"] {
-    accent-color: #8e68cc;
+    accent-color: #75343A;
     width: 18px;
     height: 18px;
     cursor: pointer;

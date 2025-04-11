@@ -68,7 +68,7 @@
         }
         
         .btn-publish {
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
         }
         
@@ -128,7 +128,7 @@
             right: 8px;
             top: 50%;
             transform: translateY(-50%);
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -170,7 +170,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -423,7 +423,7 @@
 
         .settings-input:focus, .settings-select:focus {
             outline: none;
-            border-color: #8e68cc;
+            border-color: #75343A;
             box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
         }
 
@@ -546,7 +546,7 @@
         }
 
         .publish-btn {
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -591,7 +591,7 @@
 
         .settings-textarea:focus {
             outline: none;
-            border-color: #8e68cc;
+            border-color: #75343A;
             box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
         }
 
@@ -605,7 +605,7 @@
         .settings-checkbox {
             width: 18px;
             height: 18px;
-            accent-color: #8e68cc;
+            accent-color: #75343Ab;
         }
 
         .date-picker-wrapper, .time-picker-wrapper {
@@ -640,7 +640,7 @@
         
         .question-type-card:hover {
             background-color: #f5f0ff;
-            border-color: #8e68cc;
+            border-color: #75343A;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(142, 104, 204, 0.15);
         }
@@ -658,7 +658,7 @@
         }
         
         .question-type-card:hover .question-type-icon {
-            background-color: #8e68cc;
+            background-color: #75343A;
         }
         
         .question-type-icon .material-symbols-rounded {
@@ -827,7 +827,7 @@
 
         .stat-value {
             font-weight: 500;
-            color: #8e68cc;
+            color: #75343A;
         }
 
         .stat-breakdown {
@@ -849,7 +849,7 @@
         }
 
         .clear-search-button:hover {
-            color: #8e68cc;
+            color: #75343A;
         }
 
         .no-search-results {
@@ -931,7 +931,7 @@
         }
 
         .publish-btn {
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -1065,7 +1065,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: all 0.2s ease;
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             min-width: 100px;
@@ -1320,10 +1320,6 @@
                         <div class="sidebar-item" id="auto-generate-questions">
                             <span class="sidebar-item-icon material-symbols-rounded">auto_awesome</span>
                             <span>Auto Generate Questions</span>
-                        </div>
-                        <div class="sidebar-item">
-                            <span class="sidebar-item-icon material-symbols-rounded">table_chart</span>
-                            <span>Spreadsheet</span>
                         </div>
                     </div>
                 </div>

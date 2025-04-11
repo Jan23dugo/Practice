@@ -5244,3 +5244,107 @@ Array
 )
 
 --------------------
+2025-04-11 13:19:23
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-11 13:22:00
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-11 13:24:49
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-11 13:28:49
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-11 15:38:55
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 09:30
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------

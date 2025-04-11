@@ -60,12 +60,12 @@
 }
 
 .question-type:hover, .question-points:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
 
 .question-type:focus, .question-points:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -96,12 +96,12 @@
 
 .toolbar button:hover {
     background: #f5f0ff;
-    border-color: #8e68cc;
-    color: #8e68cc;
+    border-color: #75343A;
+    color: #75343A;
 }
 
 .save-btn {
-    background: #8e68cc;
+    background: #75343A;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -159,7 +159,7 @@
 
 .question-textarea:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -190,7 +190,7 @@ label {
 
 .code-textarea:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
     height: auto; /* Allow height to adjust when focused */
 }
@@ -206,7 +206,7 @@ label {
 }
 
 .test-case:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
 
 .test-case-header {
@@ -239,7 +239,7 @@ label {
 .hidden-checkbox input[type="checkbox"] {
     width: 16px;
     height: 16px;
-    accent-color: #8e68cc;
+    accent-color: #75343A;
     cursor: pointer;
 }
 
@@ -320,7 +320,7 @@ label {
 
 .mce-content-body:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -352,12 +352,12 @@ select#programming_language {
 
 select#programming_language:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
 select#programming_language:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
     </style>
 </head>

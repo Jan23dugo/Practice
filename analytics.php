@@ -1177,7 +1177,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
 
         .modal-header h3 {
             margin: 0;
-            color: #333;
+            color: white;
         }
 
         .close-modal {
@@ -1283,11 +1283,6 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .modal-header h3 {
-            margin: 0;
-            color: #333;
         }
 
         .close-modal {

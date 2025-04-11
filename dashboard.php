@@ -53,7 +53,12 @@ $recent_announcements = $conn->query($query);
 
 // Upcoming exams - only fetch if table exists
 try {
-$query = "SELECT * FROM exams WHERE is_scheduled = 1 AND scheduled_date >= CURDATE() ORDER BY scheduled_date ASC LIMIT 5";
+$query = "SELECT e.exam_id, e.title, e.exam_type, e.scheduled_date, e.scheduled_time, e.duration, e.description
+          FROM exams e 
+          WHERE e.is_scheduled = 1 
+          AND e.scheduled_date >= CURDATE() 
+          ORDER BY e.scheduled_date ASC, e.scheduled_time ASC 
+          LIMIT 5";
 $upcoming_exams = $conn->query($query);
 } catch (Exception $e) {
     // Create empty result set if table doesn't exist
@@ -268,14 +273,21 @@ $mock_difficult_exams = [
         }
         
         .list-item-title {
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 700;
             color: #333;
             margin-bottom: 5px;
         }
         
         .list-item-subtitle {
-            font-size: 13px;
+            font-size: 14px;
             color: #777;
+        }
+
+        .exam-description {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
         }
         
         .list-item-badge {
@@ -519,7 +531,7 @@ $mock_difficult_exams = [
         <div class="dashboard-section">
             <div class="section-header">
                 <span>Recent Student Registrations</span>
-                <a href="registered_students.php">View All</a>
+                <a href="Applicants.php">View All</a>
             </div>
             <div class="section-body">
                 <?php if (isset($recent_registrations) && $recent_registrations->num_rows > 0): ?>
@@ -571,62 +583,35 @@ $mock_difficult_exams = [
         <div class="dashboard-section">
             <div class="section-header">
                 <span>Upcoming Exams</span>
-                <a href="exams.php">View All</a>
+                <a href="exam_schedule.php">View All</a>
             </div>
             <div class="section-body">
-                <?php if (isset($upcoming_exams) && $upcoming_exams->num_rows > 0): ?>
-                    <?php while ($exam = $upcoming_exams->fetch_assoc()): ?>
+                <?php if ($upcoming_exams->num_rows > 0): ?>
+                    <?php while ($exam = $upcoming_exams->fetch_assoc()): 
+                        $exam_date = date('M d, Y', strtotime($exam['scheduled_date']));
+                        $exam_time = date('h:i A', strtotime($exam['scheduled_time']));
+                    ?>
                         <div class="list-item">
                             <div class="list-item-content">
-                                <div class="list-item-title">
-                                    <?php echo htmlspecialchars($exam['title']); ?>
-                                </div>
+                                <div class="list-item-title"><?php echo htmlspecialchars($exam['title']); ?></div>
                                 <div class="list-item-subtitle">
-                                    <strong>Date:</strong> <?php echo date('M d, Y', strtotime($exam['scheduled_date'])); ?> •
-                                    <strong>Time:</strong> <?php echo date('h:i A', strtotime($exam['scheduled_time'])); ?> •
+                                    <?php if (!empty($exam['description'])): ?>
+                                        <div class="exam-description">
+                                            <?php echo htmlspecialchars($exam['description']); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <strong>Date:</strong> <?php echo $exam_date; ?> •
+                                    <strong>Time:</strong> <?php echo $exam_time; ?> •
                                     <strong>Duration:</strong> <?php echo $exam['duration']; ?> minutes
                                 </div>
                             </div>
-                            <span class="list-item-badge <?php echo $exam['exam_type'] === 'tech' ? 'badge-tech' : 'badge-non-tech'; ?>">
-                                <?php echo $exam['exam_type'] === 'tech' ? 'Technical' : 'Non-Technical'; ?>
+                            <span class="list-item-badge <?php echo $exam['exam_type'] === 'technical' ? 'badge-tech' : 'badge-non-tech'; ?>">
+                                <?php echo ucfirst($exam['exam_type']); ?>
                             </span>
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <!-- Mock data for demonstration -->
-                    <div class="list-item">
-                        <div class="list-item-content">
-                            <div class="list-item-title">Technical Assessment Exam</div>
-                            <div class="list-item-subtitle">
-                                <strong>Date:</strong> Mar 24, 2025 •
-                                <strong>Time:</strong> 08:28 AM •
-                                <strong>Duration:</strong> 60 minutes
-                            </div>
-                        </div>
-                        <span class="list-item-badge badge-tech">Technical</span>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-item-content">
-                            <div class="list-item-title">General Programming Knowledge</div>
-                            <div class="list-item-subtitle">
-                                <strong>Date:</strong> Apr 15, 2025 •
-                                <strong>Time:</strong> 10:00 AM •
-                                <strong>Duration:</strong> 90 minutes
-                            </div>
-                        </div>
-                        <span class="list-item-badge badge-tech">Technical</span>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-item-content">
-                            <div class="list-item-title">Math & Logic Assessment</div>
-                            <div class="list-item-subtitle">
-                                <strong>Date:</strong> Apr 20, 2025 •
-                                <strong>Time:</strong> 01:30 PM •
-                                <strong>Duration:</strong> 45 minutes
-                            </div>
-                        </div>
-                        <span class="list-item-badge badge-non-tech">Non-Technical</span>
-                    </div>
+                    <div class="empty-state">No upcoming exams scheduled</div>
                 <?php endif; ?>
             </div>
         </div>

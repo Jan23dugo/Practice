@@ -113,7 +113,7 @@ function getImageUrl($imagePath) {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: rgba(142, 104, 204, 0.9);
+            background-color: rgba(212, 99, 99, 0.9);
             color: white;
             padding: 4px 8px;
             border-radius: 4px;
@@ -338,6 +338,15 @@ function getImageUrl($imagePath) {
             padding: 5px 10px;
         }
 
+        .page-title {
+            font-size: 36px;
+            color: #75343A;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border-bottom: 2px solid #f0f0f0;
+        }
+
     </style>
 </head>
 <body>
@@ -346,7 +355,7 @@ function getImageUrl($imagePath) {
     <div class="main">
         <h2 class="page-title registered-students-title">
             <i class="fas fa-users"></i> Exams
-        </h2>
+        </h2><br>
         
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success">

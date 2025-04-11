@@ -89,33 +89,6 @@ tbody tr:hover {
     transition: background-color 0.2s ease;
 }
 
-/* Status Dropdown */
-.status {
-    padding: 6px 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    cursor: pointer;
-    font-size: 14px;
-    width: 120px;
-}
-
-/* View Button */
-.view-btn {
-    background: #75343A;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.3s;
-    font-size: 14px;
-}
-
-.view-btn:hover {
-    background: #5c2930;
-}
-
 /* Modal Background Overlay */
 .modal {
     display: none;
@@ -288,22 +261,6 @@ tbody tr:hover {
     object-fit: contain;
 }
 
-/* Status Colors */
-.status-pending {
-    color: #f0ad4e;
-    font-weight: 500;
-}
-
-.status-accepted {
-    color: #2ecc71;
-    font-weight: 500;
-}
-
-.status-rejected {
-    color: #e74c3c;
-    font-weight: 500;
-}
-
 /* Filter Section */
 .filter-section {
     margin-bottom: 20px;
@@ -371,7 +328,7 @@ tbody tr:hover {
 
 /* Enhanced View Details Button */
 .view-btn {
-    background: #2c3e50;  /* Darker blue */
+    background: #75343A;  /* Darker blue */
     color: white;
     border: none;
     padding: 8px 16px;
@@ -383,7 +340,8 @@ tbody tr:hover {
 }
 
 .view-btn:hover {
-    background: #34495e;
+    background:rgb(255, 229, 231);
+    color: #75343A;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -518,7 +476,7 @@ td, th {
 
 /* Document View Button */
 .doc-view-btn {
-    background-color: #007BFF; /* Primary Blue color */
+    background-color: #75343A;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -531,12 +489,22 @@ td, th {
 }
 
 .doc-view-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background:rgb(255, 229, 231);
+    color: #75343A;
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
 
-    </style>
+.page-title {
+    font-size: 36px;
+    color: #75343A;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-bottom: 2px solid #f0f0f0;
+}
+
+</style>
 </head>
 <body>
 
@@ -701,6 +669,23 @@ td, th {
     </div>
 </div>
 
+<!-- Status Update Modal -->
+<div id="statusModal" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+        <span class="close" onclick="closeStatusModal()">&times;</span>
+        <h5 class="text-primary">Status Update</h5>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <p id="statusMessage"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: right; margin-top: 20px;">
+                <button class="view-btn" onclick="closeStatusModal()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="assets/js/side.js"></script>
 <script>
@@ -742,6 +727,11 @@ window.onclick = function (event) {
     if (event.target === modal) {
         closeModal();
     }
+    
+    const statusModal = document.getElementById("statusModal");
+    if (event.target === statusModal) {
+        closeStatusModal();
+    }
 };
 
 
@@ -781,15 +771,29 @@ function updateStatus(status, referenceId) {
             // Update the select element's class
             const select = document.querySelector(`select[onchange*="${referenceId}"]`);
             select.className = `status status-${status}`;
-            alert("Status updated successfully!");
+            
+            // Show status update modal instead of alert
+            showStatusModal("Status updated successfully!");
         } else {
-            alert('Failed to update status: ' + (data.message || 'Unknown error'));
+            showStatusModal('Failed to update status: ' + (data.message || 'Unknown error'));
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred while updating the status: ' + error.message);
+        showStatusModal('An error occurred while updating the status: ' + error.message);
     });
+}
+
+// Function to show status update modal
+function showStatusModal(message) {
+    const modal = document.getElementById("statusModal");
+    document.getElementById("statusMessage").textContent = message;
+    modal.classList.add("show");
+}
+
+// Function to close status update modal
+function closeStatusModal() {
+    document.getElementById("statusModal").classList.remove("show");
 }
 
 function applyFilters() {
