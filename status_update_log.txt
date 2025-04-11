@@ -1,18 +1,21 @@
-Request received: 2025-04-11 12:48:15
+Request received: 2025-04-11 18:13:57
 POST data: Array
 (
-    [status] => accepted
+    [status] => pending
     [reference_id] => CCIS-2025-36864
 )
 
 Session data: Array
 (
-    [admin_id] => 1
+    [stud_id] => 7
+    [firstname] => Melody
+    [lastname] => Tapay
     [email] => pupccisfaculty@gmail.com
+    [admin_id] => 1
     [is_admin] => 1
 )
 
-Status: accepted, Reference ID: CCIS-2025-36864
+Status: pending, Reference ID: CCIS-2025-36864
 Skipping authentication check for debugging
 Query: UPDATE register_studentsqe SET status = ? WHERE reference_id = ?
 Execute successful. Affected rows: 1

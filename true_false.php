@@ -100,6 +100,18 @@
     color: #75343A;
 }
 
+.toolbar button:active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
+}
+
+.toolbar button.active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
+}
+
 .save-btn {
     background: #75343A;
     color: white;
@@ -521,6 +533,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log('Edit mode detected, question ID:', questionId);
         // We'll load the question data after TinyMCE is initialized
     }
+
+    document.querySelectorAll('.toolbar button').forEach(button => {
+        button.addEventListener('click', function() {
+            // Toggle active class
+            this.classList.toggle('active');
+        });
+    });
 });
 </script>
 </body>

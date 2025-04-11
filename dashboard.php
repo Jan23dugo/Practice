@@ -466,6 +466,120 @@ $mock_difficult_exams = [
         .difficulty-easy { background-color: #4CAF50; }
         .difficulty-medium { background-color: #FF9800; }
         .difficulty-hard { background-color: #F44336; }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .dashboard-title {
+                margin-top: 50px;
+            }
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+
+            .main {
+                margin-left: 0px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .dashboard-title {
+                font-size: 1.5rem;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+            
+            .upcoming-exams {
+                padding: 1rem;
+            }
+            
+            .exam-card {
+                padding: 1rem;
+            }
+            
+            .exam-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .exam-card p {
+                font-size: 0.9rem;
+            }
+            
+            .exam-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .exam-info span {
+                font-size: 0.85rem;
+            }
+            
+            .exam-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .exam-actions button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .dashboard-header {
+                padding: 1rem;
+            }
+            
+            .dashboard-title {
+                font-size: 1.3rem;
+            }
+            
+            .chart-container {
+                height: 200px;
+            }
+            
+            .upcoming-exams {
+                padding: 0.75rem;
+            }
+            
+            .exam-card {
+                padding: 0.75rem;
+            }
+            
+            .exam-card h3 {
+                font-size: 1rem;
+            }
+            
+            .exam-card p {
+                font-size: 0.85rem;
+            }
+            
+            .exam-info span {
+                font-size: 0.8rem;
+            }
+            
+            .exam-actions button {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>

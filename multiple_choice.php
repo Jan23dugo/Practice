@@ -101,6 +101,18 @@
     color: #75343A;
 }
 
+.toolbar button:active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
+}
+
+.toolbar button.active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
+}
+
 .save-btn {
     background: #75343A;
     color: white;
@@ -206,7 +218,7 @@ label {
 }
 
 #addChoice {
-    background: #28a745;
+    background: #75343A;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -595,6 +607,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert('An error occurred while loading the question. Please try again.');
             });
     }
+
+    // Add active class toggle for toolbar buttons
+    document.querySelectorAll('.toolbar button').forEach(button => {
+        button.addEventListener('click', function() {
+            // Toggle active class
+            this.classList.toggle('active');
+        });
+    });
 });
 
 </script>

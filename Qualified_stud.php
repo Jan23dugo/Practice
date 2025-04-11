@@ -285,7 +285,7 @@ tbody tr:hover {
 
 /* Document View Button */
 .doc-view-btn {
-    background-color: #007BFF; /* Primary Blue color */
+    background-color: #75343A; /* Primary Blue color */
     color: white;
     border: none;
     padding: 8px 20px;
@@ -298,7 +298,8 @@ tbody tr:hover {
 }
 
 .doc-view-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background: rgb(255, 229, 231);
+    color: #75343A;
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }

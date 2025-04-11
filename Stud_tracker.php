@@ -84,33 +84,144 @@ tbody tr:hover {
 .modal {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    height: 80vh;
-    max-height: 600px;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
 }
 
 .modal.show {
-    display: flex;
-    opacity: 1;
-    background-color: white;
+    display: block;
 }
 
 .modal-content {
     position: relative;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+    animation: modalFade 0.3s ease-in-out;
+}
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content h5 {
+    color: #800000;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 25px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #800000;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #800000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Information Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    padding: 10px 0;
+    gap: 15px;
+}
+
+.col-md-4, .col-md-6 {
+    padding: 0 15px;
+    flex: 1;
+    min-width: 300px;
+    margin-bottom: 15px;
+}
+
+/* Information Text Styling */
+.modal-content p {
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.modal-content strong {
+    color: #444;
+    min-width: 160px;
+    max-width: 160px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.modal-content span:not(.close) {
+    color: #666;
+    flex: 1;
+    min-width: 200px;
+    word-break: break-word;
+    line-height: 1.5;
+}
+
+/* Document Cards */
+.card {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+/* Scrollbar Styling */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #800000;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #660000;
 }
 
 .close {
@@ -337,7 +448,6 @@ h5 {
                 <p><strong>Contact:</strong> <span id="contact"></span></p>
             </div>
         </div>
-        <br>
 
         <!-- Academic Information -->
         <h5 class="text-primary">Academic Information</h5>
@@ -353,7 +463,7 @@ h5 {
                 <p><strong>Tech Student:</strong> <span id="is_tech"></span></p>
             </div>
         </div>
-        <br>
+        
         <!-- Uploaded Documents -->
         <h5 class="text-primary">Uploaded Documents</h5>
         <div class="row">

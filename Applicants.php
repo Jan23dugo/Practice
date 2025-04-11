@@ -504,6 +504,13 @@ td, th {
     border-bottom: 2px solid #f0f0f0;
 }
 
+@media (max-width: 1024px) {
+    .main {
+        margin-left: 0px;
+    }
+    
+}
+
 </style>
 </head>
 <body>
