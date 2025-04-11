@@ -708,7 +708,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
         }
         
         .download-template-btn {
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -728,7 +728,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
         .back-link {
             display: inline-flex;
             align-items: center;
-            color: #8e68cc;
+            color: #75343A;
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
@@ -737,7 +737,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
         }
         
         .back-link:hover {
-            color: #7d5bb9;
+            color: #75343A;
         }
         
         .back-link .material-symbols-rounded {
@@ -962,6 +962,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
             margin-bottom: 15px;
             color: #333;
         }
+
+        
     </style>
 </head>
 <body>
@@ -969,33 +971,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
     <?php include 'sidebar.php'; ?>
 
     <div class="main">
-        <div class="import-container">
-            <div class="page-header">
-                <div class="header-navigation">
-                    <a href="question_bank.php" class="back-link">
+        <div class="import-container" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 2rem; margin: 20px;">
+            <div class="page-header" style="margin-bottom: 2rem;">
+                <div class="header-navigation" style="margin-bottom: 1rem;">
+                    <a href="question_bank.php" class="back-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #666; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
                         <span class="material-symbols-rounded">arrow_back</span>
                         <span>Back to Question Bank</span>
                     </a>
                 </div>
-                <h1>Import Questions</h1>
+                <h1 style="font-size: 36px; color: #75343A; font-weight: 700; letter-spacing: 0.5px; text-shadow: 0 1px 1px rgba(0,0,0,0.1); margin: 0;">Import Questions</h1>
             </div>
 
             <?php if (!empty($success)): ?>
-                <div class="alert alert-success"><?php echo $success; ?></div>
+                <div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"><?php echo $success; ?></div>
             <?php endif; ?>
 
             <?php if (!empty($error)): ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
+                <div class="alert alert-danger" style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"><?php echo $error; ?></div>
             <?php endif; ?>
 
-            <div class="import-section">
-                <h2>Select CSV File</h2>
+            <div class="import-section" style="background: #f8f9fa; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; max-width: 2000px; margin-left: auto; margin-right: auto;">
+                <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 1.2rem; text-align: center;">Select CSV File</h2>
                 <form id="csv-upload-form" method="POST" enctype="multipart/form-data" action="questionBank_import.php">
-                    <div class="file-upload-container">
-                        <label for="csv-file" class="file-upload-label">Choose a CSV file:</label>
-                        <div class="file-input-wrapper">
-                            <input type="file" id="csv-file" name="csv_file" accept=".csv" <?php echo !isset($_SESSION['csv_file_path']) ? 'required' : ''; ?>>
-                            <div class="file-name" id="file-name">
+                    <div class="file-upload-container" style="background: white; border: 2px dashed #ddd; border-radius: 8px; padding: 2rem; text-align: center; transition: border-color 0.3s; max-width: 700px; margin: 0 auto;">
+                        <label for="csv-file" class="file-upload-label" style="display: block; margin-bottom: 1rem; color: #333; font-weight: 500;">Choose a CSV file:</label>
+                        <div class="file-input-wrapper" style="position: relative; margin-bottom: 1rem; display: flex; justify-content: center;">
+                            <input type="file" id="csv-file" name="csv_file" accept=".csv" <?php echo !isset($_SESSION['csv_file_path']) ? 'required' : ''; ?> 
+                                   style="position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
+                            <div class="file-name" id="file-name" style="display: inline-block; padding: 0.5rem 1rem; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; color: #666; min-width: 200px; text-align: center;">
                                 <?php 
                                 if (isset($_SESSION['uploaded_filename'])) {
                                     echo htmlspecialchars($_SESSION['uploaded_filename']);
@@ -1005,15 +1008,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
                                 ?>
                             </div>
                         </div>
-                        <p class="file-upload-help">Please upload a CSV file with the required columns. See the template section below for details.</p>
+                        <p class="file-upload-help" style="color: #666; font-size: 0.9rem; margin-top: 1rem;">Please upload a CSV file with the required columns. See the template section below for details.</p>
                     </div>
 
-                    <div class="button-container">
-                        <button type="submit" name="preview" id="preview-btn" class="preview-btn">
+                    <div class="button-container" style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                        <button type="submit" name="preview" id="preview-btn" class="preview-btn" 
+                                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #f8f9fa; color: #333; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: all 0.3s;">
                             <span class="material-symbols-rounded">visibility</span>
                             Preview
                         </button>
-                        <button type="submit" name="import" id="import-btn" class="import-btn" <?php echo (!isset($_FILES['csv_file']) && !isset($_SESSION['csv_file_path'])) ? 'disabled' : ''; ?>>
+                        <button type="submit" name="import" id="import-btn" class="import-btn" 
+                                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #75343A; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: all 0.3s;"
+                                <?php echo (!isset($_FILES['csv_file']) && !isset($_SESSION['csv_file_path'])) ? 'disabled' : ''; ?>>
                             <span class="material-symbols-rounded">upload</span>
                             Import Questions
                         </button>
@@ -1021,140 +1027,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
                 </form>
             </div>
 
+            <div class="template-section" style="background: #f8f9fa; border-radius: 8px; padding: 2rem; margin-top: 2rem;">
+                <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 1.2rem;">CSV Template</h2>
+                <div class="template-content" style="background: white; border-radius: 8px; padding: 1.5rem;">
+                    <table class="template-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left; background: #f8f9fa; font-weight: 500;">Column Name</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left; background: #f8f9fa; font-weight: 500;">Description</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left; background: #f8f9fa; font-weight: 500;">Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">question_text</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">The question text</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Yes</td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">question_type</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Type of question (multiple-choice, true-false, programming)</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Yes</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">category</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Question category</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">No</td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">points</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Points for the question</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">No</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="download-template-btn" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #75343A; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: background 0.3s;">
+                        <span class="material-symbols-rounded">download</span>
+                        Download Template
+                    </button>
+                </div>
+            </div>
+
             <?php if (!empty($preview_questions)): ?>
-                <div class="preview-section">
-                    <h2>Preview (<?php echo count($preview_questions); ?> questions)</h2>
-                    <p class="preview-info">This is how your questions will appear after import:</p>
-                    
-                    <div class="questions-preview">
-                        <?php foreach ($preview_questions as $index => $question): ?>
-                            <div class="question-preview-card">
-                                <div class="question-preview-header">
-                                    <div class="question-number">Question <?php echo $index + 1; ?></div>
-                                    <div class="question-meta">
-                                        <span class="question-type-badge <?php echo str_replace('_', '-', $question['question_type']); ?>">
-                                            <?php 
-                                            $type_label = '';
-                                            switch ($question['question_type']) {
-                                                case 'multiple-choice':
-                                                    $type_label = 'Multiple Choice';
-                                                    break;
-                                                case 'true-false':
-                                                    $type_label = 'True/False';
-                                                    break;
-                                                case 'programming':
-                                                    $type_label = 'Programming';
-                                                    break;
-                                                default:
-                                                    $type_label = ucfirst($question['question_type']);
-                                            }
-                                            echo $type_label;
-                                            ?>
-                                        </span>
-                                        <?php if (!empty($question['category'])): ?>
-                                            <span class="category-badge">
-                                                <span class="material-symbols-rounded">folder</span>
-                                                <?php echo htmlspecialchars($question['category']); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        <span class="points-badge">
-                                            <span class="material-symbols-rounded">star</span>
-                                            <?php echo $question['points']; ?> point<?php echo $question['points'] !== 1 ? 's' : ''; ?>
-                                        </span>
-                                    </div>
-                                </div>
-                                
-                                <div class="question-preview-body">
-                                    <div class="question-text">
-                                        <?php echo nl2br(htmlspecialchars($question['question_text'])); ?>
-                                    </div>
-                                    
-                                    <?php if ($question['question_type'] === 'multiple-choice' && !empty($question['answers'])): ?>
-                                        <div class="answer-preview">
-                                            <?php foreach ($question['answers'] as $answer): ?>
-                                                <div class="answer-choice <?php echo $answer['is_correct'] ? 'correct' : 'incorrect'; ?>">
-                                                    <span class="choice-icon material-symbols-rounded">
-                                                        <?php echo $answer['is_correct'] ? 'check_circle' : 'radio_button_unchecked'; ?>
-                                                    </span>
-                                                    <span><?php echo htmlspecialchars($answer['answer_text']); ?></span>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php elseif ($question['question_type'] === 'true-false' && !empty($question['answers'])): ?>
-                                        <div class="answer-preview">
-                                            <?php foreach ($question['answers'] as $answer): ?>
-                                                <?php if ($answer['is_correct']): ?>
-                                                    <div class="answer-choice correct">
-                                                        <span class="choice-icon material-symbols-rounded">check_circle</span>
-                                                        <span>Correct answer: <?php echo htmlspecialchars($answer['answer_text']); ?></span>
-                                                    </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php elseif ($question['question_type'] === 'programming'): ?>
-                                        <div class="programming-preview">
-                                            <div class="programming-language">
-                                                <span class="material-symbols-rounded">code</span>
-                                                <span>Language: <?php echo ucfirst(htmlspecialchars($question['language'])); ?></span>
-                                            </div>
-                                            
-                                            <?php if (!empty($question['starter_code'])): ?>
-                                                <div class="code-preview">
-                                                    <span class="material-symbols-rounded">description</span>
-                                                    <span>Starter code:</span>
-                                                    <pre class="code-block"><?php echo htmlspecialchars($question['starter_code']); ?></pre>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; ?>
+            <div class="preview-section" style="margin-top: 2rem;">
+                <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 1.2rem;">Preview Questions</h2>
+                <div class="preview-questions" style="display: grid; gap: 1rem;">
+                    <?php foreach ($preview_questions as $question): ?>
+                        <div class="preview-question" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                            <div class="question-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <div class="question-type" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.75rem; background: #f8f9fa; border-radius: 4px; font-size: 0.9rem; color: #666;">
+                                    <span class="material-symbols-rounded">
+                                        <?php 
+                                        switch($question['question_type']) {
+                                            case 'multiple-choice':
+                                                echo 'radio_button_checked';
+                                                break;
+                                            case 'true-false':
+                                                echo 'check_circle';
+                                                break;
+                                            case 'programming':
+                                                echo 'code';
+                                                break;
+                                        }
+                                        ?>
+                                    </span>
+                                    <?php echo ucfirst($question['question_type']); ?>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                    
-                    <div class="preview-actions">
-                        <p class="preview-note">
-                            <span class="material-symbols-rounded">info</span>
-                            These are the first <?php echo count($preview_questions); ?> questions from your CSV file. 
-                            Click "Import Questions" to add all questions to your question bank.
-                        </p>
-                    </div>
+                            <div class="question-text" style="margin-bottom: 1rem; color: #333; line-height: 1.5;">
+                                <?php echo htmlspecialchars($question['question_text']); ?>
+                            </div>
+                            <?php if ($question['question_type'] === 'multiple-choice'): ?>
+                                <div class="answers-preview" style="display: grid; gap: 0.5rem;">
+                                    <?php foreach ($question['answers'] as $answer): ?>
+                                        <div class="answer-item <?php echo $answer['is_correct'] ? 'correct' : ''; ?>" 
+                                             style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: <?php echo $answer['is_correct'] ? '#d4edda' : '#f8f9fa'; ?>; border-radius: 4px; color: <?php echo $answer['is_correct'] ? '#155724' : '#666'; ?>;">
+                                            <span class="material-symbols-rounded">
+                                                <?php echo $answer['is_correct'] ? 'check_circle' : 'radio_button_unchecked'; ?>
+                                            </span>
+                                            <?php echo htmlspecialchars($answer['answer_text']); ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endif; ?>
-
-            <div class="template-section">
-                <h3>CSV Template Format</h3>
-                <p class="template-info">Your CSV file should include the following columns:</p>
-                
-                <div class="template-columns">
-                    <span class="template-column">question_text</span>
-                    <span class="template-column">question_type</span>
-                    <span class="template-column">category</span>
-                    <span class="template-column">points</span>
-                    <span class="template-column">answer_1</span>
-                    <span class="template-column">answer_2</span>
-                    <span class="template-column">answer_3</span>
-                    <span class="template-column">answer_4</span>
-                    <span class="template-column">correct_1</span>
-                    <span class="template-column">correct_2</span>
-                    <span class="template-column">correct_3</span>
-                    <span class="template-column">correct_4</span>
-                    <span class="template-column">correct_answer</span>
-                    <span class="template-column">language</span>
-                    <span class="template-column">starter_code</span>
+                <div class="preview-actions" style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <p class="preview-note" style="display: flex; align-items: center; gap: 0.5rem; color: #666; font-size: 0.9rem;">
+                        <span class="material-symbols-rounded">info</span>
+                        These are the first <?php echo count($preview_questions); ?> questions from your CSV file. 
+                        Click "Import Questions" to add all questions to your question bank.
+                    </p>
                 </div>
-                
-                <p class="template-info">
-                    <strong>Note:</strong> For multiple-choice questions, use answer_1, answer_2, etc. and mark correct answers with 1 in correct_1, correct_2, etc.
-                    For true-false questions, use "true" or "false" in the correct_answer column.
-                    For programming questions, specify the language and optional starter_code.
-                </p>
-                
-                <button class="download-template-btn">
-                    <span class="material-symbols-rounded">download</span>
-                    Download Template
-                </button>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

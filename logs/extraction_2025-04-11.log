@@ -1,0 +1,27 @@
+[2025-04-11 16:59:20] Starting POST request processing
+----------------------------------------
+[2025-04-11 16:59:20] Files uploaded successfully
+Data: Array
+(
+    [tor_name] => Screenshot 2025-04-09 154434.png
+    [school_id_name] => Screenshot 2023-12-26 155640.png
+)
+
+----------------------------------------
+[2025-04-11 16:59:20] TOR file moved to destination
+Data: Array
+(
+    [path] => C:\xampp\htdocs\Practice/uploads/tor/Screenshot 2025-04-09 154434.png
+    [size] => 92304
+)
+
+----------------------------------------
+[2025-04-11 16:59:20] Starting OCR process
+----------------------------------------
+[2025-04-11 16:59:20] Starting OCR process for file
+Data: Array
+(
+    [path] => C:\xampp\htdocs\Practice/uploads/tor/Screenshot 2025-04-09 154434.png
+)
+
+----------------------------------------

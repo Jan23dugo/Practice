@@ -444,6 +444,24 @@ $activePage = 'results';
             font-size: 14px;
             font-weight: 500;
         }
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+        
+        .page-title h2 {
+            font-size: 36px;
+            color: #75343A;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        
+        .page-title p {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
