@@ -1120,3 +1120,9 @@ lines = sys.stdin.readlines()
 [04-Apr-2025 00:02:21 UTC] Processing test case ID: 46 for programming_id: 18
 [04-Apr-2025 00:02:21 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICciTm90IFByaW1lIicNCiAgICBmb3IgaSBpbiByYW5nZSgyLCBpbnQobiAqKiAwLjUpICsgMSk6DQogICAgICAgIGlmIG4gJSBpID09IDA6DQogICAgICAgICAgICByZXR1cm4gJyJOb3QgUHJpbWUiJw0KICAgIHJldHVybiAnIlByaW1lIicNCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
 [04-Apr-2025 00:02:23 UTC] Judge0 Response (HTTP 200): {"stdout":"IlByaW1lIgo=","time":"0.008","memory":3224,"stderr":null,"token":"1fb18d06-bb6f-477b-bced-b32780a17e6d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[11-Apr-2025 12:32:10 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'exam' in C:\xampp\htdocs\Practice\config\config.php:9
+Stack trace:
+#0 C:\xampp\htdocs\Practice\config\config.php(9): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'exam')
+#1 C:\xampp\htdocs\Practice\test_exam.php(11): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\Practice\config\config.php on line 9
