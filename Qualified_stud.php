@@ -3,11 +3,11 @@
     include('config/config.php');
 
     // Check if user is logged in as admin
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+//if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     // Not logged in as admin, redirect to admin login page
-    header("Location: admin_login.php");
-    exit();
-}
+//    header("Location: admin_login.php");
+//    exit();
+//}
     // Fetch all qualified students (with accepted status)
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $records_per_page = 10;
@@ -708,6 +708,20 @@ function viewAccreditedSubjects(studentId) {
     fetch('get_accredited_subjects.php?student_id=' + studentId)
         .then(response => response.json())
         .then(data => {
+            // Check if data is an array
+            if (!Array.isArray(data)) {
+                // Handle error response or convert to array if needed
+                if (data.error) {
+                    // If we received an error object
+                    content.innerHTML = `<div class="no-subjects-message">Error: ${data.error}</div>`;
+                } else {
+                    // Force it to be an empty array if it's something else
+                    data = [];
+                    content.innerHTML = '<div class="no-subjects-message">Invalid data format received. No subjects available.</div>';
+                }
+                return;
+            }
+
             if (data.length === 0) {
                 content.innerHTML = '<div class="no-subjects-message">No accredited subjects found for this student.</div>';
             } else {

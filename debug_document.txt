@@ -1,0 +1,48 @@
+Subject Code
+Description
+Faculty Name
+Units
+Sect Code
+Final Grade
+COMP 20123
+Fundamentals of Research
+PAYNE, ANGELICA P.
+3.0
+BSIT 3-3
+1.00
+COMP 20163
+Web Development
+COMP 20213
+Database Administration
+CANLAS, ARLENE B.
+3.0
+BSIT 3-3
+2.25
+BARRETTO, MONINA DIONISIO
+3.0
+BSIT 3-3
+2.50
+GEED 10073
+Art Appreciation
+ANGOLUAN, MARY SARAH L.
+3.0
+BSIT 3-3
+2.50
+INTE 30033
+Systems Integration and Architecture 1
+FRIAS, DALE ANTHONY N.
+3.0
+BSIT 3-3
+1.00
+INTE 30043
+Multimedia
+LUNA, ANTONIO T.
+3.0
+BSIT 3-3
+1.25
+INTE-E1
+IT Elective 1
+SANTOS, JOHN DUSTIN D.
+3.0
+BSIT 3-3
+1.25

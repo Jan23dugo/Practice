@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 18, 2025 at 03:10 AM
+-- Generation Time: Apr 05, 2025 at 11:07 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`admin_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -59,14 +59,14 @@ CREATE TABLE IF NOT EXISTS `admin_login_attempts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `idx_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_login_attempts`
 --
 
 INSERT INTO `admin_login_attempts` (`id`, `email`, `login_attempts`, `last_attempt`) VALUES
-(1, 'pupccisfaculty@gmail.com', 0, '2025-03-17 16:09:33');
+(1, 'pupccisfaculty@gmail.com', 0, '2025-04-04 05:50:18');
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `admin_login_logs` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `admin_id` (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_login_logs`
@@ -92,7 +92,12 @@ CREATE TABLE IF NOT EXISTS `admin_login_logs` (
 
 INSERT INTO `admin_login_logs` (`id`, `admin_id`, `email`, `ip_address`, `status`, `created_at`) VALUES
 (1, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-16 13:13:05'),
-(2, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-17 16:10:02');
+(2, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-17 16:10:02'),
+(3, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-20 01:58:06'),
+(4, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-20 06:32:31'),
+(5, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-30 02:22:54'),
+(6, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-04-01 06:56:46'),
+(7, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-04-04 05:50:48');
 
 -- --------------------------------------------------------
 
@@ -109,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` enum('active','inactive') DEFAULT 'active',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `announcements`
@@ -133,42 +138,91 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `position` int NOT NULL,
   PRIMARY KEY (`answer_id`),
   KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `answers`
 --
 
 INSERT INTO `answers` (`answer_id`, `question_id`, `answer_text`, `is_correct`, `position`) VALUES
-(1, 1, 'dfas', 1, 0),
-(2, 1, 'asdfasdf', 0, 1),
-(3, 2, 'True', 1, 0),
-(4, 2, 'False', 0, 1),
-(5, 3, 'True', 1, 0),
-(6, 3, 'False', 0, 1),
-(7, 4, 'fadsfsd', 1, 0),
-(8, 4, 'fadssad', 0, 1),
-(9, 4, 'fsdaas', 0, 2),
-(10, 4, 'asfdasdfasd', 0, 3),
-(11, 9, 'True', 1, 0),
-(12, 9, 'False', 0, 1),
-(13, 14, 'True', 1, 0),
-(14, 14, 'False', 0, 1),
-(15, 15, 'fadsfsd', 1, 0),
-(16, 15, 'fadssad', 0, 1),
-(17, 15, 'fsdaas', 0, 2),
-(18, 15, 'asfdasdfasd', 0, 3),
-(19, 17, 'True', 1, 0),
-(20, 17, 'False', 0, 1),
-(27, 21, 'True', 1, 0),
-(28, 21, 'False', 0, 1),
-(29, 23, '4', 1, 0),
-(30, 23, '3', 0, 1),
-(31, 23, '5', 0, 2),
-(32, 23, '6', 0, 3),
-(33, 24, 'xvzxv', 1, 0),
-(34, 24, 'xvzxvxz', 0, 1),
-(35, 24, 'vzxvzxvz', 0, 2);
+(130, 53, 'fsdfsadfa', 1, 0),
+(131, 53, 'fbfbbgsdfg', 0, 1),
+(132, 53, 'dsfgsdfgdfg', 0, 2),
+(133, 53, 'gdsfgsdgsdfg', 0, 3),
+(134, 57, 'True', 0, 0),
+(135, 57, 'False', 1, 1),
+(136, 59, 'True', 1, 0),
+(137, 59, 'False', 0, 1),
+(139, 60, '4', 1, 0),
+(140, 60, '3', 0, 1),
+(141, 60, '5', 0, 2),
+(142, 60, '6', 0, 3),
+(146, 62, 'True', 1, 0),
+(147, 62, 'False', 0, 1),
+(148, 63, '4', 1, 0),
+(149, 63, '3', 0, 1),
+(150, 63, '5', 0, 2),
+(151, 63, '6', 0, 3),
+(156, 68, 'Central Processing Unit', 1, 0),
+(157, 68, 'Computer Processing Unit', 0, 1),
+(158, 68, 'Central Peripheral Unit', 0, 2),
+(159, 68, 'Control Processing Unit', 0, 3),
+(160, 69, 'ROM', 0, 0),
+(161, 69, 'Hard Drive', 0, 1),
+(162, 69, 'RAM', 1, 2),
+(163, 69, 'SSD', 0, 3),
+(164, 70, 'Manage hardware and software resources', 1, 0),
+(165, 70, 'Create documents and spreadsheets', 0, 1),
+(166, 70, 'Connect to the internet', 0, 2),
+(167, 70, 'Store data permanently', 0, 3),
+(168, 71, 'HyperText Transfer Protocol', 1, 0),
+(169, 71, 'HyperText Transmission Process', 0, 1),
+(170, 71, 'High Transfer Technology Protocol', 0, 2),
+(171, 71, 'Hyperlink Text Technology Protocol', 0, 3),
+(172, 72, 'Windows 11', 0, 0),
+(173, 72, 'macOS', 0, 1),
+(174, 72, 'Linux', 1, 2),
+(175, 72, 'Chrome OS', 0, 3),
+(176, 73, 'Store data securely', 0, 0),
+(177, 73, 'Prevent unauthorized access', 1, 1),
+(178, 73, 'Speed up internet connections', 0, 2),
+(179, 73, 'Boost Wi-Fi signals', 0, 3),
+(180, 74, 'A method to terminate a program', 0, 0),
+(181, 74, 'A function that runs only once', 0, 1),
+(182, 74, 'A structure that repeats a set of instructions', 1, 2),
+(183, 74, 'A syntax error', 0, 3),
+(184, 75, 'MySQL', 1, 0),
+(185, 75, 'Python', 0, 1),
+(186, 75, 'JavaScript', 0, 2),
+(187, 75, 'HTML', 0, 3),
+(188, 76, 'Internet Provider', 0, 0),
+(189, 76, 'Internet Protocol', 1, 1),
+(190, 76, 'Internal Processing', 0, 2),
+(191, 76, 'Interconnected Program', 0, 3),
+(192, 77, 'C++', 0, 0),
+(193, 77, 'Java', 0, 1),
+(194, 77, 'HTML', 1, 2),
+(195, 77, 'Assembly', 0, 3),
+(196, 78, 'True', 1, 0),
+(197, 78, 'False', 0, 1),
+(198, 79, 'True', 0, 0),
+(199, 79, 'False', 1, 1),
+(200, 80, 'True', 1, 0),
+(201, 80, 'False', 0, 1),
+(202, 81, 'True', 0, 0),
+(203, 81, 'False', 1, 1),
+(204, 82, 'True', 1, 0),
+(205, 82, 'False', 0, 1),
+(206, 83, 'True', 0, 0),
+(207, 83, 'False', 1, 1),
+(208, 84, 'True', 1, 0),
+(209, 84, 'False', 0, 1),
+(210, 85, 'True', 0, 0),
+(211, 85, 'False', 1, 1),
+(212, 86, 'True', 1, 0),
+(213, 86, 'False', 0, 1),
+(214, 87, 'True', 1, 0),
+(215, 87, 'False', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -181,39 +235,46 @@ CREATE TABLE IF NOT EXISTS `coded_courses` (
   `course_id` int NOT NULL AUTO_INCREMENT,
   `subject_code` varchar(100) NOT NULL,
   `subject_description` varchar(255) NOT NULL,
+  `program` varchar(50) DEFAULT NULL,
   `units` decimal(5,2) NOT NULL,
   PRIMARY KEY (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `coded_courses`
 --
 
-INSERT INTO `coded_courses` (`course_id`, `subject_code`, `subject_description`, `units`) VALUES
-(1, 'COMP 20033', 'Computer Programming 2', 3.00),
-(2, 'COMP 20013', 'Introduction to Computing', 3.00),
-(3, 'COMP 20023', 'Computer Programming 1', 3.00),
-(4, 'CWTS 10013', 'Civic Welfare Training Service 1', 3.00),
-(5, 'GEED 10053', 'Mathematics in the Modern World', 3.00),
-(6, 'GEED 10063', 'Purposive Communication', 3.00),
-(7, 'GEED 10103', 'Filipinolohiya at Pambansang Kaunlaran', 3.00),
-(8, 'PHED 10012', 'Physical Fitness and Self-Testing Activities', 2.00),
-(9, 'COMP 20043', 'Discrete Structures 1', 3.00),
-(10, 'CWTS 10023', 'Civic Welfare Training Service 2', 3.00),
-(11, 'GEED 10033', 'Readings in Philippine History', 3.00),
-(12, 'GEED 10113', 'Pagsasalin sa Kontekstong Filipino', 3.00),
-(13, 'GEED 20023', 'Politics, Governance and Citizenship', 3.00),
-(14, 'PHED 10022', 'Rhythmic Activities', 2.00),
-(15, 'COMP 20013', 'Introduction to Computing', 3.00),
-(16, 'COMP 20023', 'Computer Programming 1', 3.00),
-(17, 'PHED 20023', 'Physical Education 1', 2.00),
-(18, 'NSTP 20023', 'National Service Training Program 1', 3.00),
-(19, 'GEED 10083', 'Science, Technology and Society', 3.00),
-(20, 'GEED 10113', 'Intelektwaslisasyon ng Filipino sa ibat ibang Larangan', 3.00),
-(21, 'MATH 20333', 'Differential Calculus', 3.00),
-(22, 'GEED 10023', 'Understanding the Self', 3.00),
-(23, 'PHED 10022', 'Physical Education', 2.00),
-(24, 'NSTP 10023', 'National Service Training Program 2', 3.00);
+INSERT INTO `coded_courses` (`course_id`, `subject_code`, `subject_description`, `program`, `units`) VALUES
+(25, 'ACCO 20213', 'Accounting Principles', 'BSIT', 3.00),
+(26, 'COMP 20033', 'Computer Programming 2', 'BSIT', 3.00),
+(27, 'COMP 20013', 'Introduction to Computing', 'BSIT', 3.00),
+(28, 'COMP 20023', 'Computer Programming 1', 'BSIT', 3.00),
+(29, 'CWTS 10013', 'Civic Welfare Training Service 1', 'BSIT', 3.00),
+(30, 'GEED 10053', 'Mathematics in the Modern World', 'BSIT', 3.00),
+(31, 'GEED 10063', 'Purposive Communication', 'BSIT', 3.00),
+(32, 'GEED 10103', 'Filipinolohiya at Pambansang Kaunlaran', 'BSIT', 3.00),
+(33, 'PHED 10012', 'Physical Fitness and Self-Testing Activities', 'BSIT', 2.00),
+(34, 'COMP 20043', 'Discrete Structures 1', 'BSIT', 3.00),
+(35, 'CWTS 10023', 'Civic Welfare Training Service 2', 'BSIT', 3.00),
+(36, 'GEED 10033', 'Readings in Philippine History', 'BSIT', 3.00),
+(37, 'GEED 10113', 'Pagsasalin sa Kontekstong Filipino', 'BSIT', 3.00),
+(38, 'GEED 20023', 'Politics, Governance and Citizenship', 'BSIT', 3.00),
+(39, 'PHED 10022', 'Rhythmic Activities', 'BSIT', 2.00),
+(40, 'GEED 005', 'Purposive Communication', 'BSCS', 3.00),
+(41, 'GEED 004', 'Mathematics in the Modern World', 'BSCS', 3.00),
+(42, 'GEED 032', 'Filipinolohiya at Pambansang Kaunlaran', 'BSCS', 3.00),
+(43, 'GEED 020', 'Politics, Governance and Citizenship', 'BSCS', 3.00),
+(44, 'COMP 001', 'Introduction to Computing', 'BSCS', 3.00),
+(45, 'COMP 002', 'Computer Programming 1', 'BSCS', 3.00),
+(46, 'PATHFit 1', 'Physical Activities Towards Health and Fitness 1', 'BSCS', 2.00),
+(47, 'NSTP 001', 'National Service Training Program 1', 'BSCS', 3.00),
+(48, 'GEED 007', 'Science, Technology and Society', 'BSCS', 3.00),
+(49, 'GEED 033', 'Pagsasalin sa Kontekstong Filipino', 'BSCS', 3.00),
+(50, 'GEED 012', 'Intelektwaslisasyon ng Filipino sa ibat ibang Larangan', 'BSCS', 3.00),
+(51, 'MATH 017', 'Differential Calculus for Computer Science Students', 'BSCS', 3.00),
+(52, 'GEED 001', 'Understanding the Self', 'BSCS', 3.00),
+(53, 'PATHFit 2', 'Physical Activities Towards Health and Fitness 2', 'BSCS', 2.00),
+(54, 'NSTP 002', 'National Service Training Program 2', 'BSCS', 3.00);
 
 -- --------------------------------------------------------
 
@@ -239,17 +300,16 @@ CREATE TABLE IF NOT EXISTS `exams` (
   `passing_score_type` enum('percentage','points') DEFAULT NULL,
   `passing_score` int DEFAULT NULL,
   PRIMARY KEY (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `exams`
 --
 
 INSERT INTO `exams` (`exam_id`, `title`, `description`, `exam_type`, `is_scheduled`, `scheduled_date`, `scheduled_time`, `duration`, `cover_image`, `created_at`, `updated_at`, `randomize_questions`, `randomize_choices`, `passing_score_type`, `passing_score`) VALUES
-(2, 'dfasdf', 'sdfsdafaf', 'tech', 0, NULL, NULL, 60, '/uploads/exam_covers/67d693bdd19f2_DALL·E 2025-03-13 13.13.36 - Pixel art stone tiles for a 2D game, designed to be seamless and loopable. The stones vary in size and shape, with subtle shading and texture to add d.webp', '2025-03-13 09:23:53', '2025-03-16 09:02:53', 1, 1, '', 70),
-(3, 'fdssdfsdbc', 'dsfasfdds', 'non-tech', 0, NULL, NULL, 60, NULL, '2025-03-13 09:45:36', '2025-03-16 07:37:25', 1, 1, 'percentage', 70),
-(4, 'Practice Question ', '', 'non-tech', 0, NULL, NULL, 60, '/uploads/exam_covers/67d89085a872e_449467909_1205163000647861_8408110911620157242_n.png', '2025-03-15 09:54:04', '2025-03-17 21:14:20', 1, 1, 'percentage', 2),
-(5, 'aafd', 'gsdfgds', 'tech', 1, '2025-03-24', '08:28:00', 60, 'uploads/covers/1742248711_449292499_481139171214456_1108316609890498134_n.png', '2025-03-17 21:16:53', '2025-03-17 22:36:52', 1, 1, 'percentage', 64);
+(21, 'This is the final test', 'No more bugs', 'non-tech', 1, '2025-04-04', '23:42:00', 60, 'assets/images/default-exam-cover.jpg', '2025-04-02 06:19:49', '2025-04-03 03:47:12', 1, 1, 'percentage', 70),
+(23, 'Programming ', 'dddddd', 'non-tech', 1, '2025-04-04', '08:40:00', 60, '0', '2025-04-03 05:16:09', '2025-04-03 11:39:49', 0, 0, 'percentage', 70),
+(24, 'Tech Exam', 'Carefully answer the questions', 'non-tech', 0, NULL, NULL, 60, 'uploads/covers/1743727309_images (2).jpg', '2025-04-03 23:41:56', '2025-04-04 00:41:49', 1, 1, 'percentage', 70);
 
 -- --------------------------------------------------------
 
@@ -264,11 +324,26 @@ CREATE TABLE IF NOT EXISTS `exam_assignments` (
   `student_id` int NOT NULL,
   `assigned_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `completion_status` enum('pending','completed','expired') DEFAULT 'pending',
-  `score` int DEFAULT NULL,
+  `is_released` tinyint(1) DEFAULT '0',
+  `completion_time` datetime DEFAULT NULL,
+  `passed` tinyint(1) DEFAULT NULL,
+  `final_score` decimal(5,2) DEFAULT NULL,
+  `auto_submitted` tinyint(1) DEFAULT '0',
+  `auto_submission_reason` varchar(255) DEFAULT NULL,
+  `answered_questions` int DEFAULT '0',
+  `total_questions` int DEFAULT '0',
   PRIMARY KEY (`assignment_id`),
   KEY `exam_id` (`exam_id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exam_assignments`
+--
+
+INSERT INTO `exam_assignments` (`assignment_id`, `exam_id`, `student_id`, `assigned_date`, `completion_status`, `is_released`, `completion_time`, `passed`, `final_score`, `auto_submitted`, `auto_submission_reason`, `answered_questions`, `total_questions`) VALUES
+(54, 23, 79, '2025-04-03 19:39:49', 'completed', 0, '2025-04-03 19:41:12', 1, 100.00, 0, NULL, 1, 1),
+(55, 24, 79, '2025-04-04 07:47:58', 'completed', 0, '2025-04-04 08:56:21', 0, 9.09, 0, NULL, 1, 21);
 
 -- --------------------------------------------------------
 
@@ -287,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `exam_results` (
   PRIMARY KEY (`result_id`),
   KEY `exam_id` (`exam_id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -307,18 +382,7 @@ CREATE TABLE IF NOT EXISTS `matched_courses` (
   `matched_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`matched_id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `matched_courses`
---
-
-INSERT INTO `matched_courses` (`matched_id`, `subject_code`, `original_code`, `subject_description`, `units`, `grade`, `student_id`, `matched_at`) VALUES
-(135, 'GEED 10023', 'FCL 1101', 'Understanding the Self', 3.00, 1.25, 79, '2025-03-11 14:02:47'),
-(136, 'GEED 10063', 'FIL 1000', 'Purposive Communication', 3.00, 1.00, 79, '2025-03-11 14:02:47'),
-(137, 'GEED 10053', 'GEC 1000', 'Mathematics in the Modern World', 3.00, 1.00, 79, '2025-03-11 14:02:47'),
-(138, 'NSTP 20023', 'GEC 4000', 'National Service Training Program 1', 3.00, 1.25, 79, '2025-03-11 14:02:47'),
-(139, 'PHED 10022', 'GEE', 'Rhythmic Activities', 2.00, 1.00, 79, '2025-03-11 14:02:47');
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -334,16 +398,15 @@ CREATE TABLE IF NOT EXISTS `programming_questions` (
   `language` varchar(50) DEFAULT 'python',
   PRIMARY KEY (`programming_id`),
   KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `programming_questions`
 --
 
 INSERT INTO `programming_questions` (`programming_id`, `question_id`, `starter_code`, `language`) VALUES
-(4, 13, 'sdfsadfdafadf', 'python'),
-(5, 16, 'sdfsadfdafadf', 'python'),
-(6, 22, 'def add(a, b):\n    pass', 'python');
+(17, 66, 'sdafsdf', 'python'),
+(18, 67, 'def is_prime(n: int) -> str:\r\n    # Complete the code below\r\n    # The function should return \"Prime\" if the number is prime, \r\n    # and \"Not Prime\" if the number is not prime.\r\n    pass', 'python');
 
 -- --------------------------------------------------------
 
@@ -363,27 +426,41 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`question_id`),
   KEY `exam_id` (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `questions`
 --
 
 INSERT INTO `questions` (`question_id`, `exam_id`, `question_text`, `question_type`, `points`, `position`, `created_at`, `updated_at`) VALUES
-(1, 2, 'fsefsa', 'multiple-choice', 1, 0, '2025-03-13 17:23:53', '2025-03-13 17:23:53'),
-(2, 3, '<p>fdsfsdfsd</p>', 'true-false', 1, 0, '2025-03-13 17:45:36', '2025-03-13 17:45:36'),
-(3, 2, '<p>gdfgsg</p>', 'true-false', 1, 1, '2025-03-13 17:45:59', '2025-03-13 17:45:59'),
-(4, 4, 'fdasfsad', 'multiple-choice', 1, 0, '2025-03-15 18:11:58', '2025-03-15 18:11:58'),
-(9, 4, '<p>fdsafasf</p>', 'true-false', 1, 0, '2025-03-15 18:54:17', '2025-03-15 18:54:17'),
-(13, 4, '<p>fdsafadsf</p>', 'programming', 1, 0, '2025-03-15 19:30:00', '2025-03-15 19:30:00'),
-(14, 4, '<p>fdsafasf</p>', 'true-false', 1, 1, '2025-03-15 21:15:45', '2025-03-15 21:15:45'),
-(15, 4, 'fdasfsad', 'multiple-choice', 1, 2, '2025-03-15 21:15:53', '2025-03-15 21:15:53'),
-(16, 4, '<p>fdsafadsf</p>', 'programming', 1, 3, '2025-03-15 21:16:01', '2025-03-15 21:16:01'),
-(17, 4, 'The sky is blue.', 'true-false', 1, 4, '2025-03-16 01:04:25', '2025-03-16 01:04:25'),
-(21, 4, 'The sky is blue.', 'true-false', 2, 5, '2025-03-16 09:32:29', '2025-03-16 09:32:29'),
-(22, 4, 'Write a function that returns the sum of two numbers.', 'programming', 2, 6, '2025-03-16 09:32:29', '2025-03-16 09:32:29'),
-(23, 4, 'What is 2+2?', 'multiple-choice', 2, 7, '2025-03-16 09:32:29', '2025-03-16 09:32:29'),
-(24, 5, 'vxvxzv', 'multiple-choice', 1, 0, '2025-03-18 05:17:01', '2025-03-18 05:17:01');
+(53, 21, '<p><strong>dadasfsdadfsf</strong></p>', 'multiple-choice', 1, 0, '2025-04-02 17:58:05', '2025-04-02 19:26:16'),
+(57, 21, '<p><strong>fadsfasdfasd</strong></p>', 'true-false', 1, 0, '2025-04-02 19:19:37', '2025-04-02 19:30:37'),
+(59, 21, 'The sky is blue.', 'true-false', 1, 2, '2025-04-02 20:28:38', '2025-04-02 20:28:38'),
+(60, 21, 'What is 2+2?', 'multiple-choice', 1, 3, '2025-04-02 20:28:44', '2025-04-02 20:28:44'),
+(62, 21, 'The sky is blue.', 'true-false', 2, 5, '2025-04-02 20:28:59', '2025-04-02 20:28:59'),
+(63, 21, 'What is 2+2?', 'multiple-choice', 2, 6, '2025-04-02 20:28:59', '2025-04-02 20:28:59'),
+(66, 23, '<p>dfsfasfdadf</p>', 'programming', 1, 0, '2025-04-03 19:38:53', '2025-04-03 19:38:53'),
+(67, 24, '<p>Write a function to check whether a number is prime or not.<br><br>A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. Write a function is_prime(n: int) -&gt; str that checks if a number n is prime and returns \"Prime\" if it is, and \"Not Prime\" if it isn\'t.</p>', 'programming', 2, 0, '2025-04-04 07:46:25', '2025-04-04 07:46:25'),
+(68, 24, '<p>What does CPU stand for?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:30:42', '2025-04-04 08:30:42'),
+(69, 24, '<p>Which of the following is a type of volatile memory?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:31:38', '2025-04-04 08:31:38'),
+(70, 24, '<p>What is the main function of an operating system?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:32:44', '2025-04-04 08:32:44'),
+(71, 24, '<p>What does HTTP stand for?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:33:33', '2025-04-04 08:33:33'),
+(72, 24, '<p>Which of the following is an example of an open-source operating system?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:34:23', '2025-04-04 08:34:23'),
+(73, 24, '<p>What is the primary purpose of a firewall in a network?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:35:10', '2025-04-04 08:35:10'),
+(74, 24, '<p>In programming, what does \"loop\" refer to?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:35:51', '2025-04-04 08:35:51'),
+(75, 24, '<p>Which of the following is a relational database management system?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:36:38', '2025-04-04 08:36:38'),
+(76, 24, '<p>What does IP in \"IP Address\" stand for?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:37:14', '2025-04-04 08:37:14'),
+(77, 24, '<p>Which of these programming languages is primarily used for web development?</p>', 'multiple-choice', 1, 0, '2025-04-04 08:38:03', '2025-04-04 08:38:03'),
+(78, 24, '<p>The BIOS is responsible for loading the operating system when a computer starts.</p>', 'true-false', 1, 0, '2025-04-04 08:38:20', '2025-04-04 08:38:20'),
+(79, 24, '<p>Cloud computing eliminates the need for all physical storage devices.</p>', 'true-false', 1, 0, '2025-04-04 08:38:34', '2025-04-04 08:38:34'),
+(80, 24, '<p>A VPN (Virtual Private Network) encrypts internet traffic to provide security and privacy.</p>', 'true-false', 1, 0, '2025-04-04 08:38:48', '2025-04-04 08:38:48'),
+(81, 24, '<p>IPv6 addresses are shorter than IPv4 addresses.</p>', 'true-false', 1, 0, '2025-04-04 08:39:07', '2025-04-04 08:39:07'),
+(82, 24, '<p>Machine learning is a subset of artificial intelligence.</p>', 'true-false', 1, 0, '2025-04-04 08:39:23', '2025-04-04 08:39:23'),
+(83, 24, '<p>The Internet and the World Wide Web (WWW) are the same thing.</p>', 'true-false', 1, 0, '2025-04-04 08:39:33', '2025-04-04 08:39:33'),
+(84, 24, '<p>SQL is used to manage and query databases.</p>', 'true-false', 1, 0, '2025-04-04 08:39:51', '2025-04-04 08:39:51'),
+(85, 24, '<p>JavaScript can only be used for front-end development.</p>', 'true-false', 1, 0, '2025-04-04 08:40:07', '2025-04-04 08:40:07'),
+(86, 24, '<p>A Trojan horse is a type of malware that disguises itself as a legitimate program.</p>', 'true-false', 1, 0, '2025-04-04 08:40:22', '2025-04-04 08:40:22'),
+(87, 24, '<p>Binary code is composed of only two digits: 0 and 1.</p>', 'true-false', 1, 0, '2025-04-04 08:40:35', '2025-04-04 08:40:35');
 
 -- --------------------------------------------------------
 
@@ -403,7 +480,7 @@ CREATE TABLE IF NOT EXISTS `question_bank` (
   PRIMARY KEY (`question_id`),
   KEY `idx_question_type` (`question_type`),
   KEY `idx_category` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank`
@@ -429,7 +506,7 @@ CREATE TABLE IF NOT EXISTS `question_bank_answers` (
   `position` int NOT NULL,
   PRIMARY KEY (`answer_id`),
   KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank_answers`
@@ -457,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `question_bank_programming` (
   `language` varchar(50) NOT NULL,
   PRIMARY KEY (`programming_id`),
   KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank_programming`
@@ -482,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `question_bank_test_cases` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`test_case_id`),
   KEY `programming_id` (`programming_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank_test_cases`
@@ -520,17 +597,21 @@ CREATE TABLE IF NOT EXISTS `register_studentsqe` (
   `is_tech` tinyint(1) DEFAULT NULL,
   `registration_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `status` varchar(20) NOT NULL DEFAULT 'pending',
+  `stud_id` int DEFAULT NULL,
   PRIMARY KEY (`student_id`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `reference_id` (`reference_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `reference_id` (`reference_id`),
+  KEY `stud_id` (`stud_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `register_studentsqe`
 --
 
-INSERT INTO `register_studentsqe` (`student_id`, `last_name`, `first_name`, `middle_name`, `gender`, `dob`, `email`, `contact_number`, `street`, `student_type`, `previous_school`, `year_level`, `previous_program`, `desired_program`, `tor`, `school_id`, `reference_id`, `is_tech`, `registration_date`, `status`) VALUES
-(79, 'Dugo', 'Janlloyd', 'Yamoyam', 'Male', '2025-03-20', 'jdugo23@gmail.com', '09667311122', 'C Raymundo Ave', 'transferee', 'University of Perpetual', '1', 'Bachelor of Science in Physics (BSP)', 'BSIT', 'uploads/tor/Screenshot 2024-11-08 194747.png', 'uploads/school_id/449292499_481139171214456_1108316609890498134_n.png', 'CCIS-2025-64341', 0, '2025-03-11 14:02:42', 'accepted');
+INSERT INTO `register_studentsqe` (`student_id`, `last_name`, `first_name`, `middle_name`, `gender`, `dob`, `email`, `contact_number`, `street`, `student_type`, `previous_school`, `year_level`, `previous_program`, `desired_program`, `tor`, `school_id`, `reference_id`, `is_tech`, `registration_date`, `status`, `stud_id`) VALUES
+(79, 'Dugo', 'Janlloyd', 'Yamoyam', 'Male', '2025-03-20', 'jdugo23@gmail.com', '09667311122', 'C Raymundo Ave', 'transferee', 'University of Perpetual', '1', 'Bachelor of Science in Physics (BSP)', 'BSIT', 'uploads/tor/Screenshot 2024-11-08 194747.png', 'uploads/school_id/449292499_481139171214456_1108316609890498134_n.png', 'CCIS-2025-64341', 0, '2025-03-11 14:02:42', 'accepted', 1),
+(80, 'fff', 'fvvvv', 'a', 'Male', '2025-04-30', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '09667311956', 'c raymundo', 'transferee', 'Polytechnic University of the Philippines', '1', 'Bachelor in Advertising and Public Relation (BAPR)', 'BSIT', 'uploads/tor/Screenshot 2024-10-18 080627.png', 'uploads/school_id/449292499_481139171214456_1108316609890498134_n.png', 'CCIS-2025-50935', 0, '2025-04-04 05:49:14', 'accepted', 3),
+(81, 'lesly', 'dugo', 'C.', 'Female', '2025-04-01', 'janlloyddugo3@gmail.com', '09667311956', 'c raymundo', 'transferee', 'Technological University of the Philippines', '1', 'Bachelor of Science in Entrepreneurship (BSEntrep)', 'BSIT', 'uploads/tor/Screenshot 2024-11-10 192747.png', 'uploads/school_id/449467909_1205163000647861_8408110911620157242_n.png', 'CCIS-2025-36864', 0, '2025-04-04 06:14:22', 'accepted', 4);
 
 -- --------------------------------------------------------
 
@@ -548,7 +629,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`stud_id`),
   UNIQUE KEY `unq_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
@@ -556,7 +637,50 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 INSERT INTO `students` (`stud_id`, `firstname`, `lastname`, `email`, `password`, `created_at`) VALUES
 (1, 'Janlloyd', 'Dugo', 'jdugo23@gmail.com', '$2y$10$hk6iwl9PFJVdozSiQNOBLuWsgkNQnjDuvgx0dMVag38BFjN0fI8Fu', '2025-03-08 23:48:15'),
-(2, 'Janlloyd', 'Dugong', 'janlloyddugo101@gmail.com', '$2y$10$74HkKhTuM/tAo9cUnv6CG.t4QwARhnkYuJevV.Dm580WHU.N2pxoS', '2025-03-09 07:12:58');
+(2, 'Janlloyd', 'Dugong', 'janlloyddugo101@gmail.com', '$2y$10$74HkKhTuM/tAo9cUnv6CG.t4QwARhnkYuJevV.Dm580WHU.N2pxoS', '2025-03-09 07:12:58'),
+(3, 'Jan', 'Dugs', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '$2y$10$xB4C/y0/sTs095cHn7pud.2k0..cfq1rN3h17xl29ZuVIv5mYfn/.', '2025-04-04 05:47:50'),
+(4, 'lloyd ', 'dugo', 'janlloyddugo3@gmail.com', '$2y$10$WPkERYgswQSkc9cSk97vPO0OXHIj2fVyAMABneFYljZQ2soLOAw..', '2025-04-04 06:05:08'),
+(5, 'jani', 'dugi', 'janlloyddugo11@gmail.com', '$2y$10$d4lhTMG6VVjp6iNX1nwNAOpbSeE.qjLWXFtWsecGDIY/GvfILUrKe', '2025-04-04 07:41:03'),
+(6, 'gan', 'llody', 'janlloyddugo2@gmail.com', '$2y$10$GSQ64peIt.8N1/U4XJmb5ujrf4oJ8SLl9m5QvXFXviKmkLT4xle5y', '2025-04-04 11:35:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_answers`
+--
+
+DROP TABLE IF EXISTS `student_answers`;
+CREATE TABLE IF NOT EXISTS `student_answers` (
+  `answer_id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `exam_id` int NOT NULL,
+  `question_id` int NOT NULL,
+  `programming_id` int DEFAULT NULL,
+  `programming_answer` text,
+  `answer_id_selected` int DEFAULT NULL,
+  `question_type` enum('multiple-choice','true-false','programming') NOT NULL,
+  `submission_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `is_correct` tinyint(1) DEFAULT NULL,
+  `score` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`answer_id`),
+  KEY `idx_student_exam` (`student_id`,`exam_id`),
+  KEY `idx_question` (`question_id`),
+  KEY `exam_id` (`exam_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `student_answers`
+--
+
+INSERT INTO `student_answers` (`answer_id`, `student_id`, `exam_id`, `question_id`, `programming_id`, `programming_answer`, `answer_id_selected`, `question_type`, `submission_time`, `is_correct`, `score`) VALUES
+(130, 79, 21, 53, NULL, NULL, NULL, 'multiple-choice', '2025-04-03 11:48:14', 1, 1.00),
+(135, 79, 21, 57, NULL, NULL, NULL, 'true-false', '2025-04-03 11:48:14', 1, 1.00),
+(136, 79, 21, 59, NULL, NULL, NULL, 'true-false', '2025-04-03 11:48:14', 1, 1.00),
+(139, 79, 21, 60, NULL, NULL, NULL, 'multiple-choice', '2025-04-03 11:48:14', 1, 1.00),
+(146, 79, 21, 62, NULL, NULL, NULL, 'true-false', '2025-04-03 11:48:14', 1, 2.00),
+(148, 79, 21, 63, NULL, NULL, NULL, 'multiple-choice', '2025-04-03 11:48:14', 1, 2.00),
+(149, 79, 23, 66, 17, 'import sys\r\n\r\n# Read all input lines (including hidden test cases)\r\nlines = sys.stdin.readlines()\r\n\r\n# Iterate over the test cases\r\nfor i, line in enumerate(lines, start=1):\r\n    # Split and convert the input numbers to integers\r\n    a, b = map(int, line.split())\r\n    \r\n    # Print the result\r\n    print(a + b)', NULL, 'programming', '2025-04-03 19:41:12', NULL, 1.00),
+(150, 79, 24, 67, 18, 'def is_prime(n: int) -&gt; str:\n    # Complete the code below\n    # The function should return &quot;Prime&quot; if the number is prime, \n    # and &quot;Not Prime&quot; if the number is not prime.\n    pass', NULL, 'programming', '2025-04-04 08:56:21', NULL, 2.00);
 
 -- --------------------------------------------------------
 
@@ -574,17 +698,18 @@ CREATE TABLE IF NOT EXISTS `test_cases` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`test_case_id`),
   KEY `programming_id` (`programming_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `test_cases`
 --
 
 INSERT INTO `test_cases` (`test_case_id`, `programming_id`, `input`, `expected_output`, `is_hidden`, `description`) VALUES
-(7, 4, '1 2', '3', 0, NULL),
-(8, 5, '1 2', '3', 0, NULL),
-(9, 6, ' 5, 3', '8', 0, ''),
-(10, 6, '10, 20', '30', 1, 'Test with larger numbers ');
+(42, 17, '1 2', '3', 1, ''),
+(43, 17, '2 3', '5', 0, 'fdgasfds'),
+(44, 18, '5', '\"Prime\" ', 1, ''),
+(45, 18, '4', '\"Not Prime\" ', 0, ''),
+(46, 18, '7 ', '\"Prime\" ', 0, '');
 
 -- --------------------------------------------------------
 
@@ -600,7 +725,7 @@ CREATE TABLE IF NOT EXISTS `university_grading_systems` (
   `max_percentage` decimal(5,2) NOT NULL,
   `grade_value` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`grading_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `university_grading_systems`
@@ -710,6 +835,20 @@ ALTER TABLE `question_bank_programming`
 --
 ALTER TABLE `question_bank_test_cases`
   ADD CONSTRAINT `qb_test_cases_ibfk_1` FOREIGN KEY (`programming_id`) REFERENCES `question_bank_programming` (`programming_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `register_studentsqe`
+--
+ALTER TABLE `register_studentsqe`
+  ADD CONSTRAINT `register_studentsqe_ibfk_1` FOREIGN KEY (`stud_id`) REFERENCES `students` (`stud_id`);
+
+--
+-- Constraints for table `student_answers`
+--
+ALTER TABLE `student_answers`
+  ADD CONSTRAINT `student_answers_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `register_studentsqe` (`student_id`),
+  ADD CONSTRAINT `student_answers_ibfk_2` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`exam_id`),
+  ADD CONSTRAINT `student_answers_ibfk_3` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`);
 
 --
 -- Constraints for table `test_cases`

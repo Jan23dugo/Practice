@@ -16,22 +16,58 @@ $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $items_per_page = 20;
 $offset = ($current_page - 1) * $items_per_page;
 
-// Fetch total question count for pagination
+// Get selected exam ID from GET parameter
+$selected_exam_id = isset($_GET['exam_id']) ? (int)$_GET['exam_id'] : null;
+
+// Get filter parameters
+$filter_type = isset($_GET['filter_type']) ? $_GET['filter_type'] : '';
+$filter_difficulty = isset($_GET['filter_difficulty']) ? $_GET['filter_difficulty'] : '';
+$filter_status = isset($_GET['filter_status']) ? $_GET['filter_status'] : '';
+
+// Fetch all exams for the dropdown
+$exams_list_query = "SELECT exam_id, title FROM exams ORDER BY title";
+$exams_list_result = $conn->query($exams_list_query);
+$exams_list = [];
+if ($exams_list_result && $exams_list_result->num_rows > 0) {
+    while ($row = $exams_list_result->fetch_assoc()) {
+        $exams_list[] = $row;
+    }
+}
+
+// Modify the count query to include exam filter if selected
 $count_query = "
 SELECT COUNT(*) as total
 FROM questions q
-JOIN exams e ON q.exam_id = e.exam_id
-WHERE q.question_type != 'programming'";
+JOIN exams e ON q.exam_id = e.exam_id";
+if ($selected_exam_id) {
+    $count_query .= " AND e.exam_id = " . $selected_exam_id;
+}
 
 $count_result = $conn->query($count_query);
 $total_questions = $count_result->fetch_assoc()['total'];
 $total_pages = ceil($total_questions / $items_per_page);
 
-// Fetch real data for item analysis - questions with stats
+// Modify questions query to include exam filter and filters
 $questions_query = "
 SELECT 
     q.question_id,
-    q.question_text,
+    REPLACE(
+        REPLACE(
+            REPLACE(
+                REPLACE(
+                    REPLACE(
+                        question_text,
+                        '<p>', ''
+                    ),
+                    '</p>', ''
+                ),
+                '<br>', ' '
+            ),
+            '<br/>', ' '
+        ),
+        '<br />', ' '
+    ) AS question_text,
+    q.question_type,
     e.title AS exam_title,
     (
         SELECT COUNT(DISTINCT sa.student_id) 
@@ -42,16 +78,55 @@ SELECT
         SELECT COUNT(DISTINCT sa.student_id) 
         FROM student_answers sa 
         WHERE sa.question_id = q.question_id AND (sa.is_correct = 0 OR sa.is_correct IS NULL)
-    ) AS incorrect_answers
+    ) AS incorrect_answers,
+    CASE 
+        WHEN (
+            SELECT CASE 
+                WHEN COUNT(*) = 0 THEN 0.5
+                ELSE CAST(SUM(CASE WHEN sa.is_correct = 0 OR sa.is_correct IS NULL THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)
+            END
+            FROM student_answers sa 
+            WHERE sa.question_id = q.question_id
+        ) < 0.3 THEN 'easy'
+        WHEN (
+            SELECT CASE 
+                WHEN COUNT(*) = 0 THEN 0.5
+                ELSE CAST(SUM(CASE WHEN sa.is_correct = 0 OR sa.is_correct IS NULL THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)
+            END
+            FROM student_answers sa 
+            WHERE sa.question_id = q.question_id
+        ) < 0.7 THEN 'medium'
+        ELSE 'hard'
+    END as difficulty_level
 FROM questions q
 JOIN exams e ON q.exam_id = e.exam_id
-WHERE q.question_type != 'programming'
-GROUP BY q.question_id
+WHERE 1=1";
+
+if ($selected_exam_id) {
+    $questions_query .= " AND e.exam_id = ?";
+}
+if ($filter_type) {
+    $questions_query .= " AND q.question_type = '" . $conn->real_escape_string($filter_type) . "'";
+}
+if ($filter_difficulty) {
+    $questions_query .= " HAVING difficulty_level = '" . $conn->real_escape_string($filter_difficulty) . "'";
+}
+if ($filter_status === 'revision') {
+    $questions_query .= " HAVING difficulty_level = 'hard'";
+} elseif ($filter_status === 'good') {
+    $questions_query .= " HAVING difficulty_level IN ('easy', 'medium')";
+}
+
+$questions_query .= "
 ORDER BY e.title, q.question_id
-LIMIT ?, ?"; // Use prepared statement for LIMIT with pagination
+LIMIT ?, ?";
 
 $stmt = $conn->prepare($questions_query);
-$stmt->bind_param("ii", $offset, $items_per_page);
+if ($selected_exam_id) {
+    $stmt->bind_param("iii", $selected_exam_id, $offset, $items_per_page);
+} else {
+    $stmt->bind_param("ii", $offset, $items_per_page);
+}
 $stmt->execute();
 $questions_result = $stmt->get_result();
 $questions = [];
@@ -69,6 +144,7 @@ if ($questions_result && $questions_result->num_rows > 0) {
             'exam_title' => $row['exam_title'],
             'question_id' => $row['question_id'],
             'question_text' => $row['question_text'],
+            'question_type' => $row['question_type'],
             'correct_answers' => $row['correct_answers'],
             'incorrect_answers' => $row['incorrect_answers'],
             'difficulty_score' => $difficulty_score,
@@ -84,6 +160,7 @@ if (empty($questions)) {
             'exam_title' => 'Sample Exam',
             'question_id' => 1,
             'question_text' => 'Sample question (no real data found)',
+            'question_type' => 'multiple-choice',
             'correct_answers' => 5,
             'incorrect_answers' => 5,
             'difficulty_score' => 0.5,
@@ -174,10 +251,14 @@ SELECT
     MIN(ea.final_score) AS lowest_score
 FROM exams e
 JOIN exam_assignments ea ON e.exam_id = ea.exam_id
-WHERE ea.completion_status = 'completed'
+WHERE ea.completion_status = 'completed'";
+if ($selected_exam_id) {
+    $results_query .= " AND e.exam_id = " . $selected_exam_id;
+}
+$results_query .= "
 GROUP BY e.exam_id
 ORDER BY e.exam_id DESC
-LIMIT 10"; // Limit to 10 most recent exams
+LIMIT 10";
 
 $results_result = $conn->query($results_query);
 $exam_results = [];
@@ -270,6 +351,127 @@ function getScoreDistribution($conn, $exam_id) {
 $score_distribution = [];
 if (!empty($exam_results)) {
     $score_distribution = getScoreDistribution($conn, $exam_results[0]['exam_id']);
+}
+
+// Add at the top of the file after session_start()
+if (isset($_GET['export']) && $_GET['export'] === 'csv') {
+    // Set headers for CSV download
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="item_analysis_' . date('Y-m-d') . '.csv"');
+    
+    // Create output stream
+    $output = fopen('php://output', 'w');
+    
+    // Add UTF-8 BOM for proper Excel encoding
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    
+    // Add CSV headers
+    fputcsv($output, [
+        'Exam',
+        'Question',
+        'Type',
+        'Correct Answers',
+        'Correct %',
+        'Incorrect Answers',
+        'Incorrect %',
+        'Difficulty Level',
+        'Status'
+    ]);
+    
+    // Modify export query to remove LIMIT
+    $export_query = "
+    SELECT 
+        q.question_id,
+        REPLACE(
+            REPLACE(
+                REPLACE(
+                    REPLACE(
+                        REPLACE(
+                            question_text,
+                            '<p>', ''
+                        ),
+                        '</p>', ''
+                    ),
+                    '<br>', ' '
+                ),
+                '<br/>', ' '
+            ),
+            '<br />', ' '
+        ) AS question_text,
+        q.question_type,
+        e.title AS exam_title,
+        (
+            SELECT COUNT(DISTINCT sa.student_id) 
+            FROM student_answers sa 
+            WHERE sa.question_id = q.question_id AND sa.is_correct = 1
+        ) AS correct_answers,
+        (
+            SELECT COUNT(DISTINCT sa.student_id) 
+            FROM student_answers sa 
+            WHERE sa.question_id = q.question_id AND (sa.is_correct = 0 OR sa.is_correct IS NULL)
+        ) AS incorrect_answers,
+        CASE 
+            WHEN (
+                SELECT CASE 
+                    WHEN COUNT(*) = 0 THEN 0.5
+                    ELSE CAST(SUM(CASE WHEN sa.is_correct = 0 OR sa.is_correct IS NULL THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)
+                END
+                FROM student_answers sa 
+                WHERE sa.question_id = q.question_id
+            ) < 0.3 THEN 'easy'
+            WHEN (
+                SELECT CASE 
+                    WHEN COUNT(*) = 0 THEN 0.5
+                    ELSE CAST(SUM(CASE WHEN sa.is_correct = 0 OR sa.is_correct IS NULL THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)
+                END
+                FROM student_answers sa 
+                WHERE sa.question_id = q.question_id
+            ) < 0.7 THEN 'medium'
+            ELSE 'hard'
+        END as difficulty_level
+    FROM questions q
+    JOIN exams e ON q.exam_id = e.exam_id
+    WHERE 1=1";
+    
+    if ($selected_exam_id) {
+        $export_query .= " AND e.exam_id = " . (int)$selected_exam_id;
+    }
+    if ($filter_type) {
+        $export_query .= " AND q.question_type = '" . $conn->real_escape_string($filter_type) . "'";
+    }
+    if ($filter_difficulty) {
+        $export_query .= " HAVING difficulty_level = '" . $conn->real_escape_string($filter_difficulty) . "'";
+    }
+    if ($filter_status === 'revision') {
+        $export_query .= " HAVING difficulty_level = 'hard'";
+    } elseif ($filter_status === 'good') {
+        $export_query .= " HAVING difficulty_level IN ('easy', 'medium')";
+    }
+    
+    $export_query .= " ORDER BY e.title, q.question_id";
+    
+    $result = $conn->query($export_query);
+    
+    while ($row = $result->fetch_assoc()) {
+        $total = $row['correct_answers'] + $row['incorrect_answers'];
+        $correct_percentage = $total > 0 ? round(($row['correct_answers'] / $total) * 100) : 0;
+        $incorrect_percentage = $total > 0 ? round(($row['incorrect_answers'] / $total) * 100) : 0;
+        
+        fputcsv($output, [
+            $row['exam_title'],
+            $row['question_text'],
+            ucfirst($row['question_type']),
+            $row['correct_answers'] . ' (' . $correct_percentage . '%)',
+            $correct_percentage,
+            $row['incorrect_answers'] . ' (' . $incorrect_percentage . '%)',
+            $incorrect_percentage,
+            ucfirst($row['difficulty_level']),
+            $row['difficulty_level'] === 'hard' ? 'For Revision' : 'Good'
+        ]);
+    }
+    
+    fclose($output);
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -579,9 +781,9 @@ if (!empty($exam_results)) {
         .difficulty-indicator {
             display: inline-block;
             width: 100%;
-            height: 6px;
+            height: 8px;
             background-color: #f0f0f0;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
             position: relative;
         }
@@ -591,6 +793,7 @@ if (!empty($exam_results)) {
             top: 0;
             left: 0;
             height: 100%;
+            transition: width 0.3s ease;
         }
         
         .easy { background-color: #4CAF50; }
@@ -755,864 +958,664 @@ if (!empty($exam_results)) {
             color: #666;
             font-size: 14px;
         }
+
+        /* Add styles for exam selector */
+        .exam-selector {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .exam-selector select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            min-width: 200px;
+            font-size: 14px;
+        }
+        
+        .exam-selector label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Enhanced table styles */
+        .question-text {
+            max-width: 400px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .question-text:hover {
+            white-space: normal;
+            overflow: visible;
+            background-color: #fff;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .success-rate {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rate-value {
+            min-width: 45px;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .summary-insights-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .insight-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #75343A;
+            margin-bottom: 8px;
+        }
+        
+        .insight-label {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Add styles for the summary statistics */
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #75343A;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Filter Panel Styles */
+        .filter-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .filter-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .modal-header {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .close-modal {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #75343A;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(117, 52, 58, 0.1);
+        }
+
+        .edit-btn {
+            margin-left: 8px;
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+        
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+        
+        .material-symbols-rounded {
+            font-size: 16px;
+        }
+
+        /* Add these styles to your existing CSS */
+        .status-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .modal-header {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .close-modal {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #75343A;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(117, 52, 58, 0.1);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <?php include 'sidebar.php'; ?>
 
-<?php include 'sidebar.php'; ?>
-
-<div class="main">
-    <div class="analytics-header">
-        <h1 class="analytics-title">Analytics Dashboard</h1>
-        <div class="analytics-date">
-            <?php echo date('l, F j, Y'); ?>
-        </div>
-    </div>
-    
-    <!-- Analytics Navigation Tabs -->
-    <div class="analytics-tabs">
-        <button class="analytics-tab active" data-tab="item-analysis">Item Analysis</button>
-        <button class="analytics-tab" data-tab="demographics">Student Demographics</button>
-        <button class="analytics-tab" data-tab="exam-overview">Exam Overview</button>
-        <button class="analytics-tab" data-tab="exam-results">Exam Results</button>
-    </div>
-    
-    <!-- Item Analysis Tab Content -->
-    <div id="item-analysis" class="tab-content active">
-        <div class="analytics-card">
-            <div class="card-header">
-                <h2 class="card-title">Question Difficulty Analysis</h2>
-                <div class="action-buttons">
-                    <button class="btn btn-secondary">
-                        <span class="material-symbols-rounded">filter_alt</span> Filter
-                    </button>
-                    <button class="btn btn-primary">
-                        <span class="material-symbols-rounded">download</span> Export
-                    </button>
-                </div>
+    <div class="main">
+        <div class="analytics-header">
+            <h1 class="analytics-title">Analytics Dashboard</h1>
+            <div class="analytics-date">
+                <?php echo date('l, F j, Y'); ?>
             </div>
-            
-            <p>This analysis evaluates the difficulty of exam questions based on student performance. Questions with high incorrect answer rates are flagged for potential revision.</p>
-            
-            <table class="analytics-table">
-                <thead>
-                    <tr>
-                        <th>Exam</th>
-                        <th>Question</th>
-                        <th>Correct Answers</th>
-                        <th>Incorrect Answers</th>
-                        <th>Difficulty Level</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($questions as $question): 
-                        $difficulty_class = '';
-                        if ($question['difficulty_score'] < 0.3) {
-                            $difficulty_class = 'easy';
-                        } else if ($question['difficulty_score'] < 0.7) {
-                            $difficulty_class = 'medium';
-                        } else {
-                            $difficulty_class = 'hard';
+        </div>
+        
+        <!-- Add exam selector -->
+        <div class="exam-selector">
+            <label for="exam-select">Select Exam:</label>
+            <select id="exam-select" onchange="changeExam(this.value)">
+                <option value="">All Exams</option>
+                <?php foreach ($exams_list as $exam): ?>
+                    <option value="<?php echo $exam['exam_id']; ?>" 
+                            <?php echo ($selected_exam_id == $exam['exam_id']) ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($exam['title']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        
+        <!-- Analytics Navigation Tabs -->
+        <div class="analytics-tabs">
+            <button class="analytics-tab active" data-tab="item-analysis">Item Analysis</button>
+            <button class="analytics-tab" data-tab="demographics">Student Demographics</button>
+            <button class="analytics-tab" data-tab="exam-overview">Exam Overview</button>
+            <button class="analytics-tab" data-tab="exam-results">Exam Results</button>
+        </div>
+        
+        <!-- Item Analysis Tab Content -->
+        <div id="item-analysis" class="tab-content active">
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h2 class="card-title">Question Difficulty Analysis</h2>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="toggleFilterPanel()">
+                            <span class="material-symbols-rounded">filter_alt</span> Filter
+                        </button>
+                        <button class="btn btn-primary" onclick="exportData()">
+                            <span class="material-symbols-rounded">download</span> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filter Panel -->
+                <div id="filterPanel" class="filter-panel" style="display: none;">
+                    <form id="filterForm" method="GET" class="filter-form">
+                        <!-- Preserve exam_id if it exists -->
+                        <?php if ($selected_exam_id): ?>
+                            <input type="hidden" name="exam_id" value="<?php echo $selected_exam_id; ?>">
+                        <?php endif; ?>
+                        
+                        <div class="filter-group">
+                            <label for="filter_type">Question Type:</label>
+                            <select name="filter_type" id="filter_type">
+                                <option value="">All Types</option>
+                                <option value="multiple-choice" <?php echo $filter_type === 'multiple-choice' ? 'selected' : ''; ?>>Multiple Choice</option>
+                                <option value="programming" <?php echo $filter_type === 'programming' ? 'selected' : ''; ?>>Programming</option>
+                                <option value="true-false" <?php echo $filter_type === 'true-false' ? 'selected' : ''; ?>>True/False</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filter_difficulty">Difficulty Level:</label>
+                            <select name="filter_difficulty" id="filter_difficulty">
+                                <option value="">All Levels</option>
+                                <option value="easy" <?php echo $filter_difficulty === 'easy' ? 'selected' : ''; ?>>Easy</option>
+                                <option value="medium" <?php echo $filter_difficulty === 'medium' ? 'selected' : ''; ?>>Medium</option>
+                                <option value="hard" <?php echo $filter_difficulty === 'hard' ? 'selected' : ''; ?>>Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filter_status">Status:</label>
+                            <select name="filter_status" id="filter_status">
+                                <option value="">All Status</option>
+                                <option value="good" <?php echo $filter_status === 'good' ? 'selected' : ''; ?>>Good</option>
+                                <option value="revision" <?php echo $filter_status === 'revision' ? 'selected' : ''; ?>>For Revision</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button type="submit" class="btn btn-primary">Apply Filters</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Summary Statistics Panel -->
+                <div class="stats-summary">
+                    <div class="stat-card">
+                        <div class="stat-value"><?php echo $total_questions; ?></div>
+                        <div class="stat-label">Total Questions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <?php 
+                            $flagged = array_filter($questions, function($q) { return $q['for_revision']; });
+                            echo count($flagged); 
+                            ?>
+                        </div>
+                        <div class="stat-label">Flagged for Revision</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <?php 
+                            $success_rates = array_map(function($q) {
+                                $total = $q['correct_answers'] + $q['incorrect_answers'];
+                                return $total > 0 ? ($q['correct_answers'] / $total) * 100 : 0;
+                            }, $questions);
+                            echo !empty($success_rates) ? round(array_sum($success_rates) / count($success_rates), 1) : 0;
+                            ?>%
+                        </div>
+                        <div class="stat-label">Average Success Rate</div>
+                    </div>
+                </div>
+                
+                <p>This analysis evaluates the difficulty of exam questions based on student performance. Questions with high incorrect answer rates are flagged for potential revision.</p>
+                
+                <table class="analytics-table">
+                    <thead>
+                        <tr>
+                            <th>Exam</th>
+                            <th>Question</th>
+                            <th>Type</th>
+                            <th>Correct Answers</th>
+                            <th>Incorrect Answers</th>
+                            <th>Difficulty Level</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($questions as $question): 
+                            $difficulty_class = '';
+                            if ($question['difficulty_score'] < 0.3) {
+                                $difficulty_class = 'easy';
+                            } else if ($question['difficulty_score'] < 0.7) {
+                                $difficulty_class = 'medium';
+                            } else {
+                                $difficulty_class = 'hard';
+                            }
+                            
+                            $total = $question['correct_answers'] + $question['incorrect_answers'];
+                            $correct_percentage = $total > 0 ? round(($question['correct_answers'] / $total) * 100) : 0;
+                            $incorrect_percentage = $total > 0 ? round(($question['incorrect_answers'] / $total) * 100) : 0;
+                        ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($question['exam_title']); ?></td>
+                                <td>
+                                    <div class="question-text">
+                                        <?php echo htmlspecialchars($question['question_text']); ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge <?php echo $question['question_type'] === 'programming' ? 'badge-warning' : 'badge-good'; ?>">
+                                        <?php echo ucfirst($question['question_type']); ?>
+                                    </span>
+                                </td>
+                                <td><?php echo $question['correct_answers']; ?> (<?php echo $correct_percentage; ?>%)</td>
+                                <td><?php echo $question['incorrect_answers']; ?> (<?php echo $incorrect_percentage; ?>%)</td>
+                                <td>
+                                    <div class="difficulty-indicator">
+                                        <div class="difficulty-level <?php echo $difficulty_class; ?>" 
+                                             style="width: <?php echo ($question['difficulty_score'] * 100); ?>%">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <?php if ($question['for_revision']): ?>
+                                        <div class="status-actions">
+                                            <span class="badge badge-revision">For Revision</span>
+                                            <button type="button" class="btn btn-sm btn-secondary edit-btn" 
+                                                    data-question-id="<?php echo $question['question_id']; ?>"
+                                                    data-question-text="<?php echo htmlspecialchars($question['question_text']); ?>"
+                                                    data-question-type="<?php echo $question['question_type']; ?>"
+                                                    onclick="openEditModal(
+                                                        <?php echo json_encode($question['question_id']); ?>, 
+                                                        <?php echo json_encode($question['question_text']); ?>, 
+                                                        <?php echo json_encode($question['question_type']); ?>,
+                                                        <?php echo json_encode($selected_exam_id); ?>
+                                                    )">
+                                                <span class="material-symbols-rounded">edit</span>
+                                            </button>
+                                        </div>
+                                    <?php else: ?>
+                                        <span class="badge badge-good">Good</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                
+                <!-- Pagination controls -->
+                <?php if($total_pages > 1): ?>
+                <div class="pagination-container">
+                    <div class="pagination">
+                        <?php if($current_page > 1): ?>
+                            <a href="?page=1<?php echo $selected_exam_id ? '&exam_id='.$selected_exam_id : ''; ?>" class="pagination-btn">&laquo;</a>
+                            <a href="?page=<?php echo $current_page - 1; ?><?php echo $selected_exam_id ? '&exam_id='.$selected_exam_id : ''; ?>" class="pagination-btn">&lsaquo;</a>
+                        <?php else: ?>
+                            <span class="pagination-btn disabled">&laquo;</span>
+                            <span class="pagination-btn disabled">&lsaquo;</span>
+                        <?php endif; ?>
+                        
+                        <?php
+                        $start_page = max(1, $current_page - 2);
+                        $end_page = min($total_pages, $current_page + 2);
+                        
+                        if($start_page > 1) {
+                            echo '<a href="?page=1'.($selected_exam_id ? '&exam_id='.$selected_exam_id : '').'" class="pagination-btn">1</a>';
+                            if($start_page > 2) {
+                                echo '<span class="pagination-ellipsis">...</span>';
+                            }
                         }
                         
-                        $total = $question['correct_answers'] + $question['incorrect_answers'];
-                        $correct_percentage = $total > 0 ? round(($question['correct_answers'] / $total) * 100) : 0;
-                        $incorrect_percentage = $total > 0 ? round(($question['incorrect_answers'] / $total) * 100) : 0;
-                    ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($question['exam_title']); ?></td>
-                            <td><?php echo htmlspecialchars(substr($question['question_text'], 0, 50)) . (strlen($question['question_text']) > 50 ? '...' : ''); ?></td>
-                            <td><?php echo $question['correct_answers']; ?> (<?php echo $correct_percentage; ?>%)</td>
-                            <td><?php echo $question['incorrect_answers']; ?> (<?php echo $incorrect_percentage; ?>%)</td>
-                            <td>
-                                <div class="difficulty-indicator">
-                                    <div class="difficulty-level <?php echo $difficulty_class; ?>" style="width: <?php echo ($question['difficulty_score'] * 100); ?>%"></div>
-                                </div>
-                            </td>
-                            <td>
-                                <?php if ($question['for_revision']): ?>
-                                    <span class="badge badge-revision">For Revision</span>
-                                <?php else: ?>
-                                    <span class="badge badge-good">Good</span>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            
-            <div class="chart-container">
-                <canvas id="questionDifficultyChart"></canvas>
-            </div>
-            
-            <!-- Pagination controls -->
-            <?php if($total_pages > 1): ?>
-            <div class="pagination-container">
-                <div class="pagination">
-                    <?php if($current_page > 1): ?>
-                        <a href="?page=1" class="pagination-btn">&laquo;</a>
-                        <a href="?page=<?php echo $current_page - 1; ?>" class="pagination-btn">&lsaquo;</a>
-                    <?php else: ?>
-                        <span class="pagination-btn disabled">&laquo;</span>
-                        <span class="pagination-btn disabled">&lsaquo;</span>
-                    <?php endif; ?>
-                    
-                    <?php
-                    // Calculate range of page numbers to display
-                    $start_page = max(1, $current_page - 2);
-                    $end_page = min($total_pages, $current_page + 2);
-                    
-                    // Always show first page
-                    if($start_page > 1) {
-                        echo '<a href="?page=1" class="pagination-btn">1</a>';
-                        if($start_page > 2) {
-                            echo '<span class="pagination-ellipsis">...</span>';
+                        for($i = $start_page; $i <= $end_page; $i++) {
+                            if($i == $current_page) {
+                                echo '<span class="pagination-btn active">' . $i . '</span>';
+                            } else {
+                                echo '<a href="?page=' . $i . ($selected_exam_id ? '&exam_id='.$selected_exam_id : '').'" class="pagination-btn">' . $i . '</a>';
+                            }
                         }
-                    }
-                    
-                    // Display page numbers
-                    for($i = $start_page; $i <= $end_page; $i++) {
-                        if($i == $current_page) {
-                            echo '<span class="pagination-btn active">' . $i . '</span>';
-                        } else {
-                            echo '<a href="?page=' . $i . '" class="pagination-btn">' . $i . '</a>';
+                        
+                        if($end_page < $total_pages) {
+                            if($end_page < $total_pages - 1) {
+                                echo '<span class="pagination-ellipsis">...</span>';
+                            }
+                            echo '<a href="?page=' . $total_pages . ($selected_exam_id ? '&exam_id='.$selected_exam_id : '').'" class="pagination-btn">' . $total_pages . '</a>';
                         }
-                    }
-                    
-                    // Always show last page
-                    if($end_page < $total_pages) {
-                        if($end_page < $total_pages - 1) {
-                            echo '<span class="pagination-ellipsis">...</span>';
-                        }
-                        echo '<a href="?page=' . $total_pages . '" class="pagination-btn">' . $total_pages . '</a>';
-                    }
-                    
-                    // Next and last buttons
-                    if($current_page < $total_pages) {
-                        echo '<a href="?page=' . ($current_page + 1) . '" class="pagination-btn">&rsaquo;</a>';
-                        echo '<a href="?page=' . $total_pages . '" class="pagination-btn">&raquo;</a>';
-                    } else {
-                        echo '<span class="pagination-btn disabled">&rsaquo;</span>';
-                        echo '<span class="pagination-btn disabled">&raquo;</span>';
-                    }
-                    ?>
-                </div>
-                <div class="pagination-info">
-                    Showing <?php echo min(($current_page - 1) * $items_per_page + 1, $total_questions); ?> - 
-                    <?php echo min($current_page * $items_per_page, $total_questions); ?> of <?php echo $total_questions; ?> questions
-                </div>
-            </div>
-            <?php endif; ?>
-            
-            <div class="card-footer">
-                <p><strong>Note:</strong> Questions flagged "For Revision" must be manually updated in the question bank by administrators. This system identifies potentially problematic questions but does not automatically modify them.</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Student Demographics Tab Content -->
-    <div id="demographics" class="tab-content">
-        <div class="analytics-card">
-            <div class="card-header">
-                <h2 class="card-title">Student Demographics</h2>
-                <button class="card-action">
-                    <span class="material-symbols-rounded">download</span> Export Data
-                </button>
-            </div>
-            
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $demographics['total']; ?></div>
-                    <div class="metric-label">Total Students</div>
-                </div>
-                
-                <?php if ($demographics['transferee'] > 0): ?>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $demographics['transferee']; ?></div>
-                    <div class="metric-label">Transferees</div>
+                        
+                        if($current_page < $total_pages): ?>
+                            <a href="?page=<?php echo $current_page + 1; ?><?php echo $selected_exam_id ? '&exam_id='.$selected_exam_id : ''; ?>" class="pagination-btn">&rsaquo;</a>
+                            <a href="?page=<?php echo $total_pages; ?><?php echo $selected_exam_id ? '&exam_id='.$selected_exam_id : ''; ?>" class="pagination-btn">&raquo;</a>
+                        <?php else: ?>
+                            <span class="pagination-btn disabled">&rsaquo;</span>
+                            <span class="pagination-btn disabled">&raquo;</span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="pagination-info">
+                        Showing <?php echo min(($current_page - 1) * $items_per_page + 1, $total_questions); ?> - 
+                        <?php echo min($current_page * $items_per_page, $total_questions); ?> of <?php echo $total_questions; ?> questions
+                    </div>
                 </div>
                 <?php endif; ?>
                 
-                <?php if ($demographics['shiftee'] > 0): ?>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $demographics['shiftee']; ?></div>
-                    <div class="metric-label">Shiftees</div>
-                </div>
-                <?php endif; ?>
-                
-                <?php if ($demographics['ladderized'] > 0): ?>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $demographics['ladderized']; ?></div>
-                    <div class="metric-label">Ladderized</div>
-                </div>
-                <?php endif; ?>
-                
-                <?php if ($demographics['regular'] > 0): ?>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $demographics['regular']; ?></div>
-                    <div class="metric-label">Regular</div>
-                </div>
-                <?php endif; ?>
-            </div>
-            
-            <div class="two-columns">
-                <div class="chart-container">
-                    <canvas id="demographicsPieChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <canvas id="demographicsTrendChart"></canvas>
-                </div>
-            </div>
-            
-            <div class="card-footer">
-                <p>This data represents the distribution of student types registered for the CCIS qualifying exams. Understanding the demographic breakdown helps in tailoring exam content and support resources appropriately.</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Exam Overview Tab Content -->
-    <div id="exam-overview" class="tab-content">
-        <div class="analytics-card">
-            <div class="card-header">
-                <h2 class="card-title">Exam Overview</h2>
-                <a href="exams.php" class="card-action">
-                    <span class="material-symbols-rounded">list</span> View All Exams
-                </a>
-            </div>
-            
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $exams['total']; ?></div>
-                    <div class="metric-label">Total Exams</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $exams['technical']; ?></div>
-                    <div class="metric-label">Technical Exams</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $exams['non_technical']; ?></div>
-                    <div class="metric-label">Non-Technical Exams</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $exams['scheduled']; ?></div>
-                    <div class="metric-label">Scheduled Exams</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value"><?php echo $exams['completed']; ?></div>
-                    <div class="metric-label">Completed Exams</div>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <canvas id="examTypesChart"></canvas>
-            </div>
-            
-            <div class="card-footer">
-                <p>The exam overview provides a snapshot of the current exam database, including technical and non-technical assessments. Click "View All Exams" to see the comprehensive list and manage individual exams.</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Exam Results Tab Content -->
-    <div id="exam-results" class="tab-content">
-        <div class="analytics-card">
-            <div class="card-header">
-                <h2 class="card-title">Exam Results Summary</h2>
-                <div class="action-buttons">
-                    <button class="btn btn-secondary" id="downloadSelectedBtn" disabled>
-                        <span class="material-symbols-rounded">download</span> Download Selected
-                    </button>
-                    <button class="btn btn-primary" id="downloadAllBtn">
-                        <span class="material-symbols-rounded">download</span> Download All
-                    </button>
-                </div>
-            </div>
-            
-            <table class="analytics-table">
-                <thead>
-                    <tr>
-                        <th><input type="checkbox" id="selectAll"></th>
-                        <th>Exam Title</th>
-                        <th>Total Students</th>
-                        <th>Pass Rate</th>
-                        <th>Average Score</th>
-                        <th>Score Range</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($exam_results as $index => $result): ?>
-                        <tr>
-                            <td><input type="checkbox" class="examCheckbox" value="<?php echo $result['exam_id']; ?>"></td>
-                            <td><?php echo htmlspecialchars($result['exam_title']); ?></td>
-                            <td><?php echo $result['total_students']; ?></td>
-                            <td>
-                                <?php echo $result['pass_rate']; ?>%
-                                <div class="progress-bar">
-                                    <div class="progress progress-pass" style="width: <?php echo $result['pass_rate']; ?>%"></div>
-                                </div>
-                            </td>
-                            <td><?php echo $result['average_score']; ?></td>
-                            <td><?php echo $result['lowest_score']; ?> - <?php echo $result['highest_score']; ?></td>
-                            <td>
-                                <button class="btn btn-secondary view-details-btn" data-exam-id="<?php echo $result['exam_id']; ?>" data-exam-title="<?php echo htmlspecialchars($result['exam_title']); ?>">
-                                    <span class="material-symbols-rounded">visibility</span> Details
-                                </button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            
-            <!-- Detailed Results Panel (hidden by default) -->
-            <div id="exam-detail-panel" class="detail-panel">
-                <div class="detail-header">
-                    <h3 class="detail-title" id="detail-exam-title">Technical Assessment Exam Results</h3>
-                    <button class="btn btn-secondary" id="close-detail-btn">
-                        <span class="material-symbols-rounded">close</span> Close
-                    </button>
-                </div>
-                
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-value" id="detail-total-students">0</div>
-                        <div class="metric-label">Total Students</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="detail-pass-count">0</div>
-                        <div class="metric-label">Passed</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="detail-fail-count">0</div>
-                        <div class="metric-label">Failed</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="detail-pass-rate">0%</div>
-                        <div class="metric-label">Pass Rate</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="detail-avg-score">0</div>
-                        <div class="metric-label">Average Score</div>
-                    </div>
-                </div>
-                
-                <div class="chart-container">
-                    <canvas id="scoreDistributionChart"></canvas>
-                </div>
-                
-                <h4 style="margin-top: 30px; margin-bottom: 15px;">Score Distribution</h4>
-                <div class="distribution-grid" id="score-distribution-grid">
-                    <!-- Distribution items will be populated via JavaScript -->
-                </div>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-secondary">
-                        <span class="material-symbols-rounded">print</span> Print Results
-                    </button>
-                    <button class="btn btn-primary">
-                        <span class="material-symbols-rounded">download</span> Download Full Report
-                    </button>
+                <div class="card-footer">
+                    <p><strong>Note:</strong> Questions flagged "For Revision" must be manually updated in the question bank by administrators. This system identifies potentially problematic questions but does not automatically modify them.</p>
                 </div>
             </div>
         </div>
+        
+        <!-- Include Student Demographics Tab -->
+        <?php include 'stud_demographics.php'; ?>
+        
+        <!-- Include Exam Overview Tab -->
+        <?php include 'exam_overview.php'; ?>
+        
+        <!-- Include Exam Results Tab -->
+        <?php include 'exam_results.php'; ?>
     </div>
-</div>
 </div>
 
+<!-- Include the question edit modal -->
+<?php include 'question_edit_modal.php'; ?>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/js/side.js"></script>
-<script>
-    // Tab Navigation
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.analytics-tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                               // Remove active class from all tabs
-                               tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(tc => tc.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Item Analysis Chart
-        const questionLabels = <?php echo json_encode(array_map(function($q) { 
-            return substr($q['question_text'], 0, 30) . '...'; 
-        }, $questions)); ?>;
-        
-        const correctData = <?php echo json_encode(array_map(function($q) { 
-            return $q['correct_answers']; 
-        }, $questions)); ?>;
-        
-        const incorrectData = <?php echo json_encode(array_map(function($q) { 
-            return $q['incorrect_answers']; 
-        }, $questions)); ?>;
-        
-        const questionDifficultyCtx = document.getElementById('questionDifficultyChart').getContext('2d');
-        new Chart(questionDifficultyCtx, {
-            type: 'bar',
-            data: {
-                labels: questionLabels,
-                datasets: [
-                    {
-                        label: 'Correct Answers',
-                        data: correctData,
-                        backgroundColor: '#4CAF50',
-                    },
-                    {
-                        label: 'Incorrect Answers',
-                        data: incorrectData,
-                        backgroundColor: '#F44336',
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        stacked: true,
-                    },
-                    y: {
-                        stacked: true,
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        
-        // Demographics Pie Chart
-        const demographicsCtx = document.getElementById('demographicsPieChart').getContext('2d');
-        const demoLabels = [];
-        const demoData = [];
-        
-        <?php foreach (['transferee', 'shiftee', 'ladderized', 'regular'] as $type): ?>
-            <?php if ($demographics[$type] > 0): ?>
-                demoLabels.push('<?php echo ucfirst($type); ?>');
-                demoData.push(<?php echo $demographics[$type]; ?>);
-            <?php endif; ?>
-        <?php endforeach; ?>
-        
-        new Chart(demographicsCtx, {
-            type: 'doughnut',
-            data: {
-                labels: demoLabels,
-                datasets: [{
-                    data: demoData,
-                    backgroundColor: ['#4a6cf7', '#6c5ce7', '#00b894', '#75343A'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    },
-                    title: {
-                        display: true,
-                        text: 'Student Type Distribution',
-                        font: {
-                            size: 16
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Demographics Trend Chart - since we don't have historical data yet,
-        // we'll keep this as a placeholder with mock data
-        const trendCtx = document.getElementById('demographicsTrendChart').getContext('2d');
-        new Chart(trendCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [
-                    {
-                        label: 'Transferees',
-                        data: [15, 20, 25, 30, 38, 45],
-                        borderColor: '#4a6cf7',
-                        tension: 0.3,
-                        fill: false
-                    },
-                    {
-                        label: 'Shiftees',
-                        data: [10, 15, 18, 22, 26, 30],
-                        borderColor: '#6c5ce7',
-                        tension: 0.3,
-                        fill: false
-                    },
-                    {
-                        label: 'Ladderized',
-                        data: [8, 10, 12, 15, 20, 25],
-                        borderColor: '#00b894',
-                        tension: 0.3,
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Monthly Registration Trend (Sample)',
-                        font: {
-                            size: 16
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        
-        // Exam Types Chart
-        const examTypesCtx = document.getElementById('examTypesChart').getContext('2d');
-        new Chart(examTypesCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Total Exams', 'Technical', 'Non-Technical', 'Scheduled', 'Completed'],
-                datasets: [{
-                    data: [
-                        <?php echo $exams['total']; ?>,
-                        <?php echo $exams['technical']; ?>,
-                        <?php echo $exams['non_technical']; ?>,
-                        <?php echo $exams['scheduled']; ?>,
-                        <?php echo $exams['completed']; ?>
-                    ],
-                    backgroundColor: ['#75343A', '#d63031', '#e84393', '#00cec9', '#6c5ce7'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: 'Exam Categories Overview',
-                        font: {
-                            size: 16
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        
-        // Score Distribution Chart for Detailed Results View
-        const scoreDistributionCtx = document.getElementById('scoreDistributionChart').getContext('2d');
-        const scoreDistributionData = <?php echo json_encode(array_values($score_distribution)); ?>;
-        const scoreDistributionLabels = <?php echo json_encode(array_keys($score_distribution)); ?>;
-        
-        const scoreDistributionChart = new Chart(scoreDistributionCtx, {
-            type: 'bar',
-            data: {
-                labels: scoreDistributionLabels,
-                datasets: [{
-                    label: 'Number of Students',
-                    data: scoreDistributionData,
-                    backgroundColor: '#75343A',
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Score Distribution',
-                        font: {
-                            size: 16
-                        }
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Students'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Score Range'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Global score distribution data
-        let globalScoreDistribution = <?php echo json_encode($score_distribution); ?>;
-        const allExamData = <?php echo json_encode($exam_results); ?>;
-        
-        // Populate Score Distribution Grid
-        function populateScoreDistribution(distribution) {
-            const grid = document.getElementById('score-distribution-grid');
-            grid.innerHTML = '';
-            
-            for (const [range, count] of Object.entries(distribution)) {
-                const item = document.createElement('div');
-                item.className = 'distribution-item';
-                
-                const rangeElem = document.createElement('div');
-                rangeElem.className = 'distribution-range';
-                rangeElem.textContent = range;
-                
-                const countElem = document.createElement('div');
-                countElem.className = 'distribution-count';
-                countElem.textContent = `${count} students`;
-                
-                item.appendChild(rangeElem);
-                item.appendChild(countElem);
-                grid.appendChild(item);
-            }
-        }
-        
-        // Initially populate with first exam's data
-        populateScoreDistribution(globalScoreDistribution);
-        
-        // Handle View Details button clicks
-        const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
-        const closeDetailBtn = document.getElementById('close-detail-btn');
-        const detailPanel = document.getElementById('exam-detail-panel');
-        
-        viewDetailsBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const examId = this.getAttribute('data-exam-id');
-                const examTitle = this.getAttribute('data-exam-title');
-                
-                // Update the detail panel title
-                document.getElementById('detail-exam-title').textContent = examTitle;
-                
-                // Reset the detail view
-                document.getElementById('detail-total-students').textContent = '...';
-                document.getElementById('detail-pass-count').textContent = '...';
-                document.getElementById('detail-fail-count').textContent = '...';
-                document.getElementById('detail-pass-rate').textContent = '...';
-                document.getElementById('detail-avg-score').textContent = '...';
-                
-                // Show the loading overlay
-                document.getElementById('detail-loading').style.display = 'flex';
-                document.getElementById('exam-detail-panel').style.display = 'block';
-                
-                // Fetch the score distribution data
-                fetch(`get_score_distribution.php?exam_id=${examId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Update the score distribution grid
-                            updateScoreDistributionGrid(data.distribution);
-                            
-                            // Find the exam in the exam_results array
-                            const examResult = findExamResult(examId);
-                            if (examResult) {
-                                document.getElementById('detail-total-students').textContent = examResult.total_students;
-                                document.getElementById('detail-pass-count').textContent = examResult.pass_count;
-                                document.getElementById('detail-fail-count').textContent = examResult.fail_count;
-                                document.getElementById('detail-pass-rate').textContent = examResult.pass_rate + '%';
-                                document.getElementById('detail-avg-score').textContent = examResult.average_score;
-                            }
-                            
-                            // Update the score distribution chart
-                            updateScoreDistributionChart(data.distribution);
-                        } else {
-                            console.error('Error fetching score distribution:', data.error);
-                            alert('Failed to load exam details. Please try again.');
-                        }
-                        
-                        // Hide the loading overlay
-                        document.getElementById('detail-loading').style.display = 'none';
-                    })
-                    .catch(error => {
-                        console.error('Network error:', error);
-                        alert('Network error. Please check your connection and try again.');
-                        document.getElementById('detail-loading').style.display = 'none';
-                    });
-            });
-        });
-        
-        function findExamResult(examId) {
-            // Convert examId to number for comparison
-            examId = Number(examId);
-            
-            // This assumes we have a global examResults variable with the exam data
-            // We'll define this variable with PHP
-            return allExamData.find(exam => exam.exam_id === examId);
-        }
-        
-        function updateScoreDistributionGrid(distribution) {
-            const grid = document.getElementById('score-distribution-grid');
-            grid.innerHTML = ''; // Clear existing content
-            
-            const ranges = Object.keys(distribution).sort((a, b) => {
-                // Extract the first number from each range (e.g., "91-100" -> 91)
-                const aStart = parseInt(a.split('-')[0]);
-                const bStart = parseInt(b.split('-')[0]);
-                return bStart - aStart; // Sort in descending order
-            });
-            
-            ranges.forEach(range => {
-                const count = distribution[range];
-                const percentage = count > 0 ? Math.round((count / getTotalStudents(distribution)) * 100) : 0;
-                
-                const row = document.createElement('div');
-                row.className = 'score-range-row';
-                
-                const rangeLabel = document.createElement('div');
-                rangeLabel.className = 'score-range-label';
-                rangeLabel.textContent = range;
-                
-                const barContainer = document.createElement('div');
-                barContainer.className = 'score-bar-container';
-                
-                const bar = document.createElement('div');
-                bar.className = 'score-bar';
-                bar.style.width = `${percentage}%`;
-                
-                const countLabel = document.createElement('div');
-                countLabel.className = 'score-count';
-                countLabel.textContent = `${count} (${percentage}%)`;
-                
-                barContainer.appendChild(bar);
-                barContainer.appendChild(countLabel);
-                
-                row.appendChild(rangeLabel);
-                row.appendChild(barContainer);
-                
-                grid.appendChild(row);
-            });
-        }
-        
-        function getTotalStudents(distribution) {
-            return Object.values(distribution).reduce((sum, count) => sum + count, 0);
-        }
-        
-        function updateScoreDistributionChart(distribution) {
-            const ctx = document.getElementById('scoreDistributionChart').getContext('2d');
-            
-            // Sort the ranges
-            const ranges = Object.keys(distribution).sort((a, b) => {
-                const aStart = parseInt(a.split('-')[0]);
-                const bStart = parseInt(b.split('-')[0]);
-                return aStart - bStart; // Sort in ascending order for the chart
-            });
-            
-            // Get the data in the sorted order
-            const counts = ranges.map(range => distribution[range]);
-            
-            // If we already have a chart, destroy it
-            if (window.scoreDistChart) {
-                window.scoreDistChart.destroy();
-            }
-            
-            // Create the new chart
-            window.scoreDistChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ranges,
-                    datasets: [{
-                        label: 'Number of Students',
-                        data: counts,
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                precision: 0
-                            }
-                        }
-                    },
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Score Distribution'
-                        }
-                    }
-                }
-            });
-        }
-        
-        // Close button for the detail panel
-        closeDetailBtn.addEventListener('click', function() {
-            document.getElementById('exam-detail-panel').style.display = 'none';
-        });
-        
-        // Handle checkbox selection for downloading
-        const selectAllCheckbox = document.getElementById('selectAll');
-        const examCheckboxes = document.querySelectorAll('.examCheckbox');
-        const downloadSelectedBtn = document.getElementById('downloadSelectedBtn');
-        
-        selectAllCheckbox.addEventListener('change', function() {
-            const isChecked = this.checked;
-            
-            examCheckboxes.forEach(checkbox => {
-                checkbox.checked = isChecked;
-            });
-            
-            downloadSelectedBtn.disabled = !isChecked;
-        });
-        
-        examCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const anyChecked = Array.from(examCheckboxes).some(cb => cb.checked);
-                downloadSelectedBtn.disabled = !anyChecked;
-                
-                // Update "select all" checkbox
-                const allChecked = Array.from(examCheckboxes).every(cb => cb.checked);
-                selectAllCheckbox.checked = allChecked;
-            });
-        });
-        
-        // Download buttons (mock functionality)
-        document.getElementById('downloadSelectedBtn').addEventListener('click', function() {
-            const selectedExams = Array.from(examCheckboxes)
-                .filter(cb => cb.checked)
-                .map(cb => cb.value);
-                
-            alert('Downloading reports for selected exams: ' + selectedExams.join(', '));
-            // In a real application, this would trigger a download of the selected reports
-        });
-        
-        document.getElementById('downloadAllBtn').addEventListener('click', function() {
-            alert('Downloading reports for all exams');
-            // In a real application, this would trigger a download of all reports
-        });
-    });
-</script>
+<script src="assets/js/analytics.js"></script>
 </body>
 </html>

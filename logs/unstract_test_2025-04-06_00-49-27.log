@@ -1,0 +1,162 @@
+=== UNSTRACT API TEST LOG ===
+Date: 2025-04-06 00:49:27
+
+File check:
+File details:
+Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/sample.pdf
+    [exists] => Yes
+    [size] => 444365 bytes
+    [mime_type] => application/pdf
+    [permissions] => 0666
+)
+
+cURL Options:
+Array
+(
+    [10002] => https://us-central.unstract.com/deployment/api/org_SBbh31LYckHO5i28/tor-data-extractor/
+    [19913] => 1
+    [10102] => 
+    [68] => 10
+    [13] => 300
+    [84] => 2
+    [10036] => POST
+    [10015] => Array
+        (
+            [files] => CURLFile Object
+                (
+                    [name] => C:\wamp64\www\Practice/uploads/tor/sample.pdf
+                    [mime] => 
+                    [postname] => 
+                )
+
+            [timeout] => 300
+            [include_metadata] => false
+        )
+
+    [10023] => Array
+        (
+            [0] => Authorization: Bearer de67f363-837e-4ef7-a095-9ab5368dad50
+        )
+
+    [41] => 1
+    [64] => 1
+    [81] => 2
+    [10065] => C:\wamp64\www\Practice/cacert.pem
+    [32] => 6
+    [10083] => TLSv1.2
+    [52] => 1
+    [58] => 1
+)
+
+Connection Info:
+Array
+(
+    [url] => https://us-central.unstract.com/deployment/api/org_SBbh31LYckHO5i28/tor-data-extractor/
+    [content_type] => application/json
+    [http_code] => 401
+    [header_size] => 487
+    [request_size] => 0
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.722456
+    [namelookup_time] => 0.011031
+    [connect_time] => 0.037338
+    [pretransfer_time] => 0.51506
+    [size_upload] => 444836
+    [size_download] => 87
+    [speed_download] => 120
+    [speed_upload] => 615727
+    [download_content_length] => 87
+    [upload_content_length] => 444836
+    [starttransfer_time] => 0.722428
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 35.190.115.45
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.100.6
+    [local_port] => 65267
+    [http_version] => 2
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 514185
+    [connect_time_us] => 37338
+    [namelookup_time_us] => 11031
+    [pretransfer_time_us] => 515060
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 722428
+    [total_time_us] => 722456
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+Verbose cURL log:
+* Host us-central.unstract.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 35.190.115.45
+*   Trying 35.190.115.45:443...
+* Connected to us-central.unstract.com (35.190.115.45) port 443
+* ALPN: curl offers http/1.1
+* Cipher selection: TLSv1.2
+*  CAfile: C:\wamp64\www\Practice/cacert.pem
+*  CApath: none
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / RSASSA-PSS
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=us-central.unstract.com
+*  start date: Feb 25 02:49:44 2025 GMT
+*  expire date: May 26 03:39:15 2025 GMT
+*  subjectAltName: host "us-central.unstract.com" matched cert's "us-central.unstract.com"
+*  issuer: C=US; O=Google Trust Services; CN=WR3
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 1: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 2: Public key type RSA (4096/152 Bits/secBits), signed using sha384WithRSAEncryption
+* using HTTP/1.x
+> POST /deployment/api/org_SBbh31LYckHO5i28/tor-data-extractor/ HTTP/1.1
+Host: us-central.unstract.com
+Accept: */*
+Accept-Encoding: deflate, gzip
+Authorization: Bearer de67f363-837e-4ef7-a095-9ab5368dad50
+Content-Length: 444836
+Content-Type: multipart/form-data; boundary=------------------------RjSRt9rPZxf45ptEMjEB9Q
+
+* upload completely sent off: 444836 bytes
+* old SSL session ID is stale, removing
+< HTTP/1.1 401 Unauthorized
+< Server: 
+< Date: Sun, 06 Apr 2025 00:49:27 GMT
+< Content-Type: application/json
+< Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+< X-Frame-Options: DENY
+< Content-Length: 87
+< Vary: Cookie, origin
+< X-Content-Type-Options: nosniff
+< Referrer-Policy: same-origin
+< Cross-Origin-Opener-Policy: same-origin
+< Via: 1.1 google
+< Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+< Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+< 
+* Connection #0 to host us-central.unstract.com left intact
+
+
+API Response:
+{
+    "type": "client_error",
+    "errors": [
+        {
+            "code": "error",
+            "detail": "Unauthorized",
+            "attr": null
+        }
+    ]
+}

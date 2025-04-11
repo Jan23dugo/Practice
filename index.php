@@ -563,8 +563,6 @@
         </div>
     </section>
 
-    
-
     <!-- Footer -->
     <footer>
         <div class="container">

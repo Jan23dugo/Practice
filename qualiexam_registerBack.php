@@ -7,7 +7,6 @@ session_start();
 include('config/config.php');
 require 'send_email.php';
 
-
 // Session management
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -16,12 +15,98 @@ if (!isset($_SESSION['success'])) {
     $_SESSION['success'] = '';
 }
 
+// Add this near the top of the file after session_start()
+if (!isset($_SESSION['debug_output'])) {
+    $_SESSION['debug_output'] = '';
+}
+
 function debug_log($message) {
     // Store debug messages in session instead of echoing
     if (!isset($_SESSION['debug_messages'])) {
         $_SESSION['debug_messages'] = [];
     }
     $_SESSION['debug_messages'][] = $message;
+}
+
+// Add this near the top of the file after other includes
+if (!file_exists(__DIR__ . '/logs')) {
+    mkdir(__DIR__ . '/logs', 0777, true);
+}
+
+function logExtraction($message, $data = null) {
+    $logFile = __DIR__ . '/logs/extraction_' . date('Y-m-d') . '.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $logMessage = "[{$timestamp}] {$message}\n";
+    
+    if ($data !== null) {
+        $logMessage .= "Data: " . print_r($data, true) . "\n";
+    }
+    
+    $logMessage .= "----------------------------------------\n";
+    file_put_contents($logFile, $logMessage, FILE_APPEND);
+}
+
+// Add the logging function here, before it's used
+function logExtractionResults($methodName, $data = [], $extraInfo = [], $message = '') {
+    // Create logs directory if it doesn't exist
+    $logsDir = __DIR__ . '/logs';
+    if (!file_exists($logsDir)) {
+        mkdir($logsDir, 0777, true);
+    }
+    
+    // Create a standardized log filename with timestamp
+    $timestamp = date('Y-m-d_H-i-s');
+    $logFile = $logsDir . '/extraction_log_' . $timestamp . '.txt';
+    
+    // Check if this is the first entry in this log file
+    $isNewLog = !file_exists($logFile);
+    
+    // Start log content
+    $logContent = '';
+    if ($isNewLog) {
+        $logContent .= "=== TRANSCRIPT EXTRACTION LOG ===\n";
+        $logContent .= "Timestamp: " . date('Y-m-d H:i:s') . "\n\n";
+    }
+    
+    // Add method section header
+    $logContent .= "=== " . strtoupper($methodName) . " EXTRACTION ===\n";
+    
+    // Add message if provided
+    if (!empty($message)) {
+        $logContent .= "Message: $message\n";
+    }
+    
+    // Add extra information if provided
+    if (!empty($extraInfo)) {
+        $logContent .= "Additional Information:\n";
+        foreach ($extraInfo as $key => $value) {
+            if (is_array($value) || is_object($value)) {
+                $logContent .= "$key:\n" . print_r($value, true) . "\n";
+            } else {
+                $logContent .= "$key: $value\n";
+            }
+        }
+        $logContent .= "\n";
+    }
+    
+    // Add the data
+    if (!empty($data)) {
+        if (is_array($data) || is_object($data)) {
+            $logContent .= "Results:\n" . print_r($data, true) . "\n";
+        } else {
+            $logContent .= "Results: $data\n";
+        }
+    }
+    
+    $logContent .= "---------------------------------------------\n\n";
+    
+    // Append to the log file
+    file_put_contents($logFile, $logContent, FILE_APPEND);
+    
+    // Store the current log file path in the session for easy access
+    $_SESSION['current_extraction_log'] = $logFile;
+    
+    return $logFile;
 }
 
 error_reporting(E_ALL);
@@ -185,19 +270,19 @@ function extractSubjectsByPosition($text) {
     $lines = array_map('trim', explode("\n", $text));
     
     foreach ($lines as $line) {
-        // Split line into segments
-        $parts = preg_split('/\s{2,}|\t/', $line);
-        
+            // Split line into segments
+            $parts = preg_split('/\s{2,}|\t/', $line);
+            
         if (count($parts) >= 4) {
             // Get numeric values (last two columns)
-            $numeric_values = array_filter($parts, function($part) {
+                $numeric_values = array_filter($parts, function($part) {
                 return preg_match('/^[0-9.,]+$/', str_replace(' ', '', $part));
-            });
-            
-            if (count($numeric_values) >= 2) {
-                $numeric_values = array_values($numeric_values);
+                });
+                
+                if (count($numeric_values) >= 2) {
+                    $numeric_values = array_values($numeric_values);
                 // SWAP the order: now units is second-to-last, grade is last
-                $subjects[] = [
+                    $subjects[] = [
                     'subject_code' => $parts[0],
                     'description' => implode(' ', array_slice($parts, 1, -2)),
                     'units' => str_replace(',', '.', $numeric_values[1]), // Changed from [0]
@@ -232,109 +317,552 @@ function validateSubjectData($subject) {
     return true;
 }
 
-// Main extraction function that combines all methods
-function extractSubjects($text) {
-    $logFile = __DIR__ . '/logs/subject_extraction_' . date('Y-m-d_H-i-s') . '.txt';
-    $logContent = "=== EXTRACTION PROCESS LOG ===\n\n";
+function cleanOCRText($text) {
+    // Replace common OCR mistakes
+    $replacements = [
+        'Chernistry' => 'Chemistry',
+        'Sprituality' => 'Spirituality',
+        '\s*,\s*(?=\d)' => ' ', // Remove commas before numbers
+        '(?<=\d)\s*,\s*(?=\d)' => '.', // Convert comma to decimal in numbers
+        '\s+[-—]\s+[MX]\s+' => ' - ', // Standardize separator patterns
+        '\s*:\s*' => ' ', // Remove colons
+        '(?<=\d)l(?=\s|$)' => '1', // Fix common '1' misread as 'l'
+    ];
     
-    // Try different extraction methods
-    $results_generic = extractSubjectsGeneric($text);
-    $results_position = extractSubjectsByPosition($text);
-    
-    // Log raw results
-    $logContent .= "Generic Method Results:\n" . print_r($results_generic, true) . "\n\n";
-    $logContent .= "Position Method Results:\n" . print_r($results_position, true) . "\n\n";
-    
-    // Validate results from each method
-    $valid_generic = array_filter($results_generic, 'validateSubjectData');
-    $valid_position = array_filter($results_position, 'validateSubjectData');
-    
-    // Log validated results
-    $logContent .= "Valid Generic Results: " . count($valid_generic) . "\n";
-    $logContent .= "Valid Position Results: " . count($valid_position) . "\n\n";
-    
-    // Choose the method that found more valid subjects
-    $results = count($valid_generic) > count($valid_position) ? 
-               $valid_generic : $valid_position;
-    
-    // If both methods failed, try to salvage any valid subjects from either method
-    if (empty($results)) {
-        $logContent .= "Both methods failed to extract subjects. Attempting to combine valid results.\n";
-        $results = array_merge($valid_generic, $valid_position);
-        $results = array_unique($results, SORT_REGULAR);
+    foreach ($replacements as $pattern => $replacement) {
+        $text = preg_replace('/' . $pattern . '/', $replacement, $text);
     }
     
-    // Final validation and cleanup
-    $final_results = array_values(array_filter($results, function($subject) {
-        return validateSubjectData($subject);
-    }));
-    
-    // Log final results
-    $logContent .= "Final Extracted Subjects:\n" . print_r($final_results, true);
-    file_put_contents($logFile, $logContent);
-    
-    return $final_results;
+    return $text;
 }
 
-// 1. Function to compare parsed subjects with coded courses in the database and save matches
-function matchCreditedSubjects($conn, $subjects, $student_id) {
-    addDebugOutput("Starting Subject Matching Process");
-    $_SESSION['matches'] = [];
+function extractSubjects($text) {
+    if (!is_string($text)) {
+        error_log("Warning: extractSubjects received non-string input: " . print_r($text, true));
+        return [];
+    }
     
-    foreach ($subjects as $subject) {
-        // Clean and standardize the description
-        $description = strtolower(trim($subject['description']));
-        // Remove extra spaces and standardize common words
-        $description = preg_replace('/\s+/', ' ', $description);
-        $units = $subject['units'];
-        
-        addDebugOutput("Checking Subject:", [
-            'description' => $description,
-            'units' => $units,
-            'grade' => $subject['grade']
+    $subjects = [];
+    
+    // Remove code block markers if present
+    $text = preg_replace('/```json\s*|\s*```/', '', $text);
+    
+    // Check if the text is JSON and contains subjects
+    $data = json_decode($text, true);
+    if (json_last_error() === JSON_ERROR_NONE && isset($data['subjects'])) {
+        logExtraction("Successfully parsed JSON subjects", [
+            'count' => count($data['subjects'])
         ]);
+        
+        foreach ($data['subjects'] as $subject) {
+            $subjects[] = [
+                'subject_code' => $subject['subject_code'],
+                'subject_description' => $subject['subject_description'],
+                'units' => floatval($subject['units']),
+                'grade' => floatval($subject['grade'])
+            ];
+        }
+        return $subjects;
+    }
 
-        // Modified query to match only by description (using LIKE for better matching)
-        $sql = "SELECT * FROM coded_courses 
-                WHERE LOWER(subject_description) LIKE ? 
-                AND units = ?";
+    logExtraction("Falling back to text parsing", [
+        'text_length' => strlen($text)
+    ]);
 
-        $description_pattern = "%" . $description . "%";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sd", $description_pattern, $units);
+    // If not JSON, try parsing as plain text
+    $lines = array_map('trim', explode("\n", $text));
+    
+    foreach ($lines as $line) {
+        if (empty($line)) continue;
+        
+        // Skip header rows and footers
+        if (preg_match('/(SUBJECT|COURSE|CODE|TITLE|TERM|SEMESTER|NOTHING FOLLOWS)/i', $line)) {
+            continue;
+        }
+        
+        // Try to match subject pattern
+        if (preg_match('/([A-Z0-9]+[-]?[A-Z0-9]*)\s*[-]?\s*([^0-9]+?)\s+([\d.]+)\s+([\d.]+)/i', $line, $matches)) {
+            $subjects[] = [
+                'subject_code' => trim($matches[1]),
+                'subject_description' => trim($matches[2]),
+                'units' => floatval($matches[3]),
+                'grade' => floatval($matches[4])
+            ];
+        }
+    }
+    
+    logExtraction("Extraction complete", [
+        'subjects_found' => count($subjects)
+    ]);
+    
+    return $subjects;
+}
+
+function standardizeText($text) {
+    // Convert to lowercase
+    $text = strtolower($text);
+    // Remove special characters except spaces and letters
+    $text = preg_replace('/[^a-z\s]/', '', $text);
+    // Standardize spaces
+    $text = preg_replace('/\s+/', ' ', trim($text));
+    return $text;
+}
+
+// Add these functions after the includes but before other functions
+function getNewConnection() {
+    try {
+        // Include database configuration
+        require 'config/config.php';
+        
+        // Log database configuration (without sensitive info)
+        logExtraction("Database configuration loaded", [
+            'host' => $servername,
+            'database' => $dbname
+        ]);
+        
+        // Set longer timeout in PHP
+        ini_set('mysql.connect_timeout', '600');
+        ini_set('default_socket_timeout', '600');
+        
+        // First establish connection to MySQL server
+        $newConn = new mysqli($servername, $username, $password);
+        
+        if ($newConn->connect_error) {
+            logExtraction("Database connection failed", [
+                'error' => $newConn->connect_error
+            ]);
+            throw new Exception("Connection failed: " . $newConn->connect_error);
+        }
+        
+        // Explicitly select the database
+        if (!$newConn->select_db($dbname)) {
+            logExtraction("Failed to select database", [
+                'error' => $newConn->error,
+                'database' => $dbname,
+                'databases_list' => implode(', ', getDatabasesList($newConn))
+            ]);
+            throw new Exception("Failed to select database '$dbname': " . $newConn->error);
+        }
+        
+        // Set MySQL session variables for longer timeouts
+        $newConn->query("SET SESSION wait_timeout=28800"); // 8 hours
+        $newConn->query("SET SESSION interactive_timeout=28800"); // 8 hours
+        $newConn->query("SET SESSION net_read_timeout=600"); // 10 minutes
+        $newConn->query("SET SESSION net_write_timeout=600"); // 10 minutes
+        
+        // Set connection options
+        $newConn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 600);
+        $newConn->options(MYSQLI_OPT_READ_TIMEOUT, 600);
+        
+        // Set connection charset and collation
+        $newConn->set_charset('utf8mb4');
+        $newConn->query("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
+        
+        // Enable keep-alive
+        $newConn->options(MYSQLI_OPT_INT_AND_FLOAT_NATIVE, 1);
+        
+        // Verify database selection
+        $result = $newConn->query("SELECT DATABASE()");
+        $row = $result->fetch_row();
+        $currentDb = $row[0];
+        
+        logExtraction("New connection established with extended timeouts", [
+            'wait_timeout' => 28800,
+            'interactive_timeout' => 28800,
+            'net_read_timeout' => 600,
+            'net_write_timeout' => 600,
+            'database' => $currentDb,
+            'connection_id' => $newConn->thread_id
+        ]);
+        
+        return $newConn;
+        
+    } catch (Exception $e) {
+        logExtraction("Error in getNewConnection", [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        throw $e;
+    }
+}
+
+// Helper function to get list of available databases
+function getDatabasesList($conn) {
+    $databases = [];
+    if ($result = $conn->query("SHOW DATABASES")) {
+        while ($row = $result->fetch_row()) {
+            $databases[] = $row[0];
+        }
+        $result->close();
+    }
+    return $databases;
+}
+
+function closeConnection($conn) {
+    try {
+        if ($conn && $conn instanceof mysqli) {
+            $conn->close();
+        }
+    } catch (Exception $e) {
+        logExtraction("Error closing connection", [
+            'error' => $e->getMessage()
+        ]);
+    }
+}
+
+function ensureValidConnection($conn) {
+    try {
+        // If no connection exists, create a new one
+        if (!$conn) {
+            logExtraction("No connection exists, creating new connection");
+            return getNewConnection();
+        }
+
+        // Try to ping, but catch any errors
+        try {
+            if (!$conn->ping()) {
+                logExtraction("Ping failed, creating new connection");
+                closeConnection($conn);
+                return getNewConnection();
+            }
+        } catch (Exception $e) {
+            logExtraction("Error during ping, creating new connection", [
+                'error' => $e->getMessage()
+            ]);
+            closeConnection($conn);
+            return getNewConnection();
+        }
+
+        // If we get here, connection is valid
+        return $conn;
+    } catch (Exception $e) {
+        logExtraction("Error in ensureValidConnection", [
+            'error' => $e->getMessage()
+        ]);
+        // Always return a new connection if anything fails
+        return getNewConnection();
+    }
+}
+
+// Keep all existing functions but update database operations in these three main functions
+function matchCreditedSubjects($conn, $subjects, $student_id) {
+    $conn = ensureValidConnection($conn);
+    
+    try {
+        // Get the student's desired program
+        $stmt = $conn->prepare("SELECT desired_program FROM register_studentsqe WHERE student_id = ?");
+        if (!$stmt) {
+            throw new Exception("Database error: " . $conn->error);
+        }
+        
+        $stmt->bind_param("i", $student_id);
         $stmt->execute();
         $result = $stmt->get_result();
+        $student = $result->fetch_assoc();
+        $desired_program = $student['desired_program'];
+        $stmt->close();
+        
+        logExtraction("Starting Subject Matching Process", [
+            'student_id' => $student_id,
+            'desired_program' => $desired_program,
+            'total_subjects_from_tor' => count($subjects)
+        ]);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                addDebugOutput("Match Found:", $row);
-                
-                // Insert the matched course
-                $insert_sql = "INSERT INTO matched_courses 
-                             (subject_code, subject_description, units, student_id, matched_at, original_code, grade) 
-                             VALUES (?, ?, ?, ?, NOW(), ?, ?)";
-                             
-                $insert_stmt = $conn->prepare($insert_sql);
-                $insert_stmt->bind_param(
-                    "ssdiss", 
-                    $row['subject_code'],        // Our database subject code
-                    $row['subject_description'], // Our database description
-                    $row['units'],              // Units
-                    $student_id,                // Student ID
-                    $subject['subject_code'],   // Original subject code from TOR
-                    $subject['grade']           // Grade from TOR
-                );
-                $insert_stmt->execute();
-                
-                $_SESSION['matches'][] = "✓ Matched: {$subject['subject_code']} - {$subject['description']} ({$subject['units']} units) with grade {$subject['grade']}";
-            }
-        } else {
-            addDebugOutput("No Match Found for Subject", [
-                'searched_description' => $description,
-                'searched_units' => $units
-            ]);
-            $_SESSION['matches'][] = "✗ No match for: {$subject['subject_code']} - {$subject['description']} ({$subject['units']} units)";
+        // Get all subjects for the desired program
+        $sql = "SELECT * FROM coded_courses WHERE program = ?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement for fetching program subjects: " . $conn->error);
         }
+        
+        $stmt->bind_param("s", $desired_program);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $program_subjects = [];
+        while($row = $result->fetch_assoc()) {
+            $program_subjects[] = $row;
+        }
+        $stmt->close();
+
+        logExtraction("Retrieved Program Subjects", [
+            'program' => $desired_program,
+            'total_program_subjects' => count($program_subjects)
+        ]);
+
+        $_SESSION['matches'] = [];
+        
+        // For each subject in student's TOR
+        foreach ($subjects as $tor_subject) {
+            $conn = ensureValidConnection($conn);
+            
+            if (!isset($tor_subject['subject_code']) || !isset($tor_subject['subject_description']) || 
+                !isset($tor_subject['units']) || !isset($tor_subject['grade'])) {
+                continue;
+            }
+            
+            $tor_description = $tor_subject['subject_description'];
+            $tor_units = floatval($tor_subject['units']);
+            $tor_code = $tor_subject['subject_code'];
+            $tor_grade = $tor_subject['grade'];
+            
+            logExtraction("Processing TOR Subject", [
+                'code' => $tor_code,
+                'description' => $tor_description,
+                'units' => $tor_units
+            ]);
+
+            $bestMatch = null;
+            $highestSimilarity = 0;
+
+            foreach ($program_subjects as $program_subject) {
+                // Only consider subjects with matching units
+                if ($program_subject['units'] == $tor_units) {
+                    // Calculate similarity between descriptions
+                    similar_text(
+                        strtolower($program_subject['subject_description']),
+                        strtolower($tor_description),
+                        $similarity
+                    );
+
+                    logExtraction("Checking similarity", [
+                        'program_subject' => $program_subject['subject_description'],
+                        'tor_subject' => $tor_description,
+                        'similarity' => $similarity
+                    ]);
+
+                    // Only consider matches with high similarity (80% or more)
+                    if ($similarity > $highestSimilarity && $similarity >= 80) {
+                        $highestSimilarity = $similarity;
+                        $bestMatch = $program_subject;
+                    }
+                }
+            }
+
+            // If we found a good match
+            if ($bestMatch) {
+                $conn = ensureValidConnection($conn);
+                
+                // Check for existing match
+                $checkSql = "SELECT COUNT(*) as count FROM matched_courses 
+                            WHERE student_id = ? AND subject_code = ? AND original_code = ?";
+                $checkStmt = $conn->prepare($checkSql);
+                $checkStmt->bind_param("iss", $student_id, $bestMatch['subject_code'], $tor_code);
+                $checkStmt->execute();
+                $checkResult = $checkStmt->get_result()->fetch_assoc();
+                
+                if ($checkResult['count'] == 0) {
+                    $insert_sql = "INSERT INTO matched_courses 
+                                 (subject_code, subject_description, units, student_id, matched_at, original_code, grade) 
+                                 VALUES (?, ?, ?, ?, NOW(), ?, ?)";
+                    
+                    $insert_stmt = $conn->prepare($insert_sql);
+                    if ($insert_stmt) {
+                        $insert_stmt->bind_param(
+                            "ssdiss",
+                            $bestMatch['subject_code'],
+                            $bestMatch['subject_description'],
+                            $bestMatch['units'],
+                            $student_id,
+                            $tor_code,
+                            $tor_grade
+                        );
+                        
+                        if ($insert_stmt->execute()) {
+                            logExtraction("Successfully matched and inserted", [
+                                'tor_subject' => $tor_description,
+                                'program_subject' => $bestMatch['subject_description'],
+                                'similarity' => $highestSimilarity
+                            ]);
+                            
+                            $_SESSION['matches'][] = "✓ Matched: {$tor_description} ({$tor_units} units) with {$bestMatch['subject_description']} ({$bestMatch['subject_code']})";
+                        }
+                        $insert_stmt->close();
+                    }
+                }
+                $checkStmt->close();
+            } else {
+                logExtraction("No suitable match found", [
+                    'tor_subject' => $tor_description,
+                    'best_similarity' => $highestSimilarity
+                ]);
+                $_SESSION['matches'][] = "✗ No match found for: {$tor_description} ({$tor_units} units)";
+            }
+        }
+        
+        logExtraction("Matching Process Complete", [
+            'total_matches' => count($_SESSION['matches'])
+        ]);
+        
+        return true;
+        
+    } catch (Exception $e) {
+        logExtraction("Error in matchCreditedSubjects", [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        throw $e;
+    }
+}
+
+function getGradingSystemRules($conn, $universityName) {
+    try {
+        // Always start with a fresh connection for this operation
+        $conn = getNewConnection();
+        
+        logExtraction("Getting grading system rules", [
+            'university' => $universityName
+        ]);
+        
+        $query = "SELECT min_percentage, max_percentage, grade_value FROM university_grading_systems WHERE university_name = ?";
+        $stmt = $conn->prepare($query);
+        if (!$stmt) {
+            throw new Exception("Database error: " . $conn->error);
+        }
+        
+        $stmt->bind_param("s", $universityName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows == 0) {
+            $stmt->close();
+            
+            // Get a fresh connection for the second query
+            $conn = getNewConnection();
+            
+            $universityName = "%$universityName%";
+            $query = "SELECT min_percentage, max_percentage, grade_value FROM university_grading_systems WHERE university_name LIKE ?";
+            $stmt = $conn->prepare($query);
+            if (!$stmt) {
+                throw new Exception("Database error: " . $conn->error);
+            }
+            $stmt->bind_param("s", $universityName);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }
+        
+        $gradingRules = [];
+        while ($row = $result->fetch_assoc()) {
+            $gradingRules[] = $row;
+        }
+        
+        $stmt->close();
+        closeConnection($conn);
+        
+        logExtraction("Successfully retrieved grading rules", [
+            'rules_count' => count($gradingRules)
+        ]);
+        
+        return $gradingRules;
+        
+    } catch (Exception $e) {
+        logExtraction("Error in getGradingSystemRules", [
+            'error' => $e->getMessage()
+        ]);
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            closeConnection($conn);
+        }
+        throw $e;
+    }
+}
+
+function registerStudent($conn, $studentData, $subjects) {
+    $conn = ensureValidConnection($conn);
+    
+    try {
+        // Start transaction
+        $conn->begin_transaction();
+    
+        // Generate reference ID
+        $year = date('Y');
+        $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+    $reference_id = "CCIS-{$year}-{$unique}";
+    
+        $conn = ensureValidConnection($conn); // Ensure connection before check
+        
+        // Check for existing reference ID
+    $check_stmt = $conn->prepare("SELECT reference_id FROM register_studentsqe WHERE reference_id = ?");
+        if (!$check_stmt) {
+            throw new Exception("Database error: " . $conn->error);
+        }
+        
+    $check_stmt->bind_param("s", $reference_id);
+        while (true) {
+    $check_stmt->execute();
+            if ($check_stmt->get_result()->num_rows == 0) {
+                break;
+            }
+        $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+        $reference_id = "CCIS-{$year}-{$unique}";
+    }
+        $check_stmt->close();
+        
+    $studentData['reference_id'] = $reference_id;
+    
+        $conn = ensureValidConnection($conn); // Ensure connection before insert
+        
+        // Insert student data
+    $stmt = $conn->prepare("INSERT INTO register_studentsqe (
+        last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
+        student_type, previous_school, year_level, previous_program, desired_program, 
+        tor, school_id, reference_id, is_tech, status, stud_id
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)");
+        
+        if (!$stmt) {
+            throw new Exception("Database error: " . $conn->error);
+        }
+
+    $stmt->bind_param(
+        "ssssssssssssssssii", 
+        $studentData['last_name'],
+        $studentData['first_name'],
+        $studentData['middle_name'],
+        $studentData['gender'],
+        $studentData['dob'],
+        $studentData['email'],
+        $studentData['contact_number'],
+        $studentData['street'],
+        $studentData['student_type'],
+        $studentData['previous_school'],
+        $studentData['year_level'],
+        $studentData['previous_program'],
+        $studentData['desired_program'],
+        $studentData['tor_path'],
+        $studentData['school_id_path'],
+        $studentData['reference_id'],
+        $studentData['is_tech'],
+            $_SESSION['stud_id']
+    );
+
+        if (!$stmt->execute()) {
+            throw new Exception("Error registering student: " . $stmt->error);
+        }
+        
+        $student_id = $stmt->insert_id;
+        $_SESSION['success'] = "Your reference ID is: " . $reference_id;
+        $_SESSION['reference_id'] = $reference_id;
+        $_SESSION['student_id'] = $student_id;
+        
+        // Match credited subjects
+        matchCreditedSubjects($conn, $subjects, $student_id);
+        
+        // If everything is successful, commit the transaction
+        $conn->commit();
+        
+        // Send email
+        sendRegistrationEmail($studentData['email'], $studentData['reference_id']);
+        
+        $stmt->close();
+        return true;
+        
+    } catch (Exception $e) {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        $conn->rollback();
+        throw $e;
     }
 }
 
@@ -372,7 +900,7 @@ function determineEligibility($subjects, $gradingRules) {
             if ($ruleMinPercentage >= $minPassingPercentage) {
                 $isSubjectEligible = true;
                
-            } else {
+    } else {
                 $_SESSION['debug_output'] .= "Subject is not eligible: Grade $grade corresponds to percentage $ruleMinPercentage% (< $minPassingPercentage%)<br>";
             }
         } else {
@@ -393,21 +921,39 @@ function determineEligibility($subjects, $gradingRules) {
 
 // 3. Function to check if the student is a tech student based on parsed subjects
 function isTechStudent($subjects) {
-    addDebugOutput("Starting Tech Student Check");
+    logExtraction("Starting Tech Student Check");
     
     $tech_subjects = [
-        'Computer Programming 1', 'Software Engineering', 'Database Systems', 'Operating Systems',
-        'Data Structures', 'Algorithms', 'Web Development', 'Computer Programming 2', 'Information Technology',
-        'Cybersecurity', 'System Analysis and Design'
+        'Computer Programming',
+        'Software Engineering',
+        'Database Systems',
+        'Operating Systems',
+        'Data Structures',
+        'Algorithms',
+        'Web Development',
+        'Information Technology',
+        'Cybersecurity',
+        'System Analysis',
+        'Introduction to Computing'
     ];
 
-    addDebugOutput("Tech Subject Keywords:", $tech_subjects);
+    logExtraction("Checking tech subjects against", [
+        'tech_keywords' => $tech_subjects,
+        'total_subjects' => count($subjects)
+    ]);
 
     foreach ($subjects as $subject) {
+        // Make sure we're accessing the correct key
+        $description = isset($subject['subject_description']) ? $subject['subject_description'] : '';
+        
+        if (empty($description)) {
+            continue;
+        }
+
         foreach ($tech_subjects as $tech_subject) {
-            if (stripos($subject['description'], $tech_subject) !== false) {
-                addDebugOutput("Tech Subject Found:", [
-                    'subject' => $subject['description'],
+            if (stripos($description, $tech_subject) !== false) {
+                logExtraction("Found tech subject match", [
+                    'subject' => $description,
                     'matched_keyword' => $tech_subject
                 ]);
                 return true;
@@ -415,125 +961,21 @@ function isTechStudent($subjects) {
         }
     }
     
-    addDebugOutput("No Tech Subjects Found in Student's Records");
+    logExtraction("No tech subjects found");
     return false;
 }
 
-// Function to register the student with updated fields
-// Function to register the student with updated fields and also pass subjects
-// Function to register the student with updated fields and also pass subjects
-function registerStudent($conn, $studentData, $subjects) {
-    // Get current year
-    $year = date('Y');
-    
-    // Generate a unique number (5 digits)
-    $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
-    
-    // Create reference ID in format CCIS-YEAR-UNIQUE
-    $reference_id = "CCIS-{$year}-{$unique}";
-    
-    // Check if reference ID already exists
-    $check_stmt = $conn->prepare("SELECT reference_id FROM register_studentsqe WHERE reference_id = ?");
-    $check_stmt->bind_param("s", $reference_id);
-    $check_stmt->execute();
-    
-    // If reference ID exists, generate a new one
-    while ($check_stmt->get_result()->num_rows > 0) {
-        $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
-        $reference_id = "CCIS-{$year}-{$unique}";
-        $check_stmt->execute();
+// Add this function at the top of the file
+function ensureConnection($conn) {
+    if (!$conn->ping()) {
+        // Connection is dead, create a new connection
+        $conn->close();
+        include('config/config.php'); // This should recreate the $conn variable
+        return $GLOBALS['conn'];
     }
-    $studentData['reference_id'] = $reference_id;
-    
-    // Set year_level to NULL for ladderized students
-    if ($studentData['student_type'] === 'ladderized') {
-        $studentData['year_level'] = null;
-        // Ensure DICT is set as previous program
-        $studentData['previous_program'] = 'Diploma in Information and Communication Technology (DICT)';
-    }
-    
-    $stmt = $conn->prepare("INSERT INTO register_studentsqe (
-        last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
-        student_type, previous_school, year_level, previous_program, desired_program, 
-        tor, school_id, reference_id, is_tech, status, stud_id
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)");
-
-    $stmt->bind_param(
-        "ssssssssssssssssii", 
-        $studentData['last_name'],
-        $studentData['first_name'],
-        $studentData['middle_name'],
-        $studentData['gender'],
-        $studentData['dob'],
-        $studentData['email'],
-        $studentData['contact_number'],
-        $studentData['street'],
-        $studentData['student_type'],
-        $studentData['previous_school'],
-        $studentData['year_level'],
-        $studentData['previous_program'],
-        $studentData['desired_program'],
-        $studentData['tor_path'],
-        $studentData['school_id_path'],
-        $studentData['reference_id'],
-        $studentData['is_tech'],
-        $_SESSION['stud_id']  // Add the stud_id from session
-    );
-
-    if ($stmt->execute()) {
-        $student_id = $stmt->insert_id;
-        $_SESSION['success'] = "Your reference ID is: " . $reference_id;
-        $_SESSION['reference_id'] = $reference_id;
-        $_SESSION['student_id'] = $student_id;
-        
-        // Store debug information in session
-        $_SESSION['debug_output'] = ob_get_clean();
-        
-        sendRegistrationEmail($studentData['email'], $studentData['reference_id']);
-        matchCreditedSubjects($conn, $subjects, $student_id);
-        
-        // Clean output buffer before redirect
-        while (ob_get_level()) {
-            ob_end_clean();
-        }
-        
-        header("Location: registration_success.php");
-        exit();
-    } else {
-        $_SESSION['last_error'] = "Error registering student: " . $stmt->error;
-        header("Location: registerFront.php");
-        exit();
-    }
-    $stmt->close();
+    return $conn;
 }
 
-function getGradingSystemRules($conn, $universityName) {
-    $query = "SELECT min_percentage, max_percentage, grade_value FROM university_grading_systems WHERE university_name = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $universityName);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows == 0) {
-        $stmt->close();
-        $universityName = "%$universityName%";
-        $query = "SELECT min_percentage, max_percentage, grade_value FROM university_grading_systems WHERE university_name LIKE ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $universityName);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    }
-    
-    $gradingRules = [];
-    while ($row = $result->fetch_assoc()) {
-        $gradingRules[] = $row;
-    }
-
-    $stmt->close();
-    return $gradingRules;
-}
-
-// Add this function at the top
 function addDebugOutput($message, $data = null) {
     if (!isset($_SESSION['debug_output'])) {
         $_SESSION['debug_output'] = '';
@@ -546,289 +988,249 @@ function addDebugOutput($message, $data = null) {
     $_SESSION['debug_output'] .= "</div>";
 }
 
-// Add Google Cloud Vision SDK
-require 'vendor/autoload.php';
-use GuzzleHttp\Client;
+// Add this near the top of your file after the includes
+define('UNSTRACT_API_KEY', 'dff56a8a-6d02-4089-bd87-996d7be8b1bb');
 
-// Add Google Cloud configuration
-function performOCR($imagePath) {
-    require_once 'config/google_cloud_config.php';
-    
+// Update the performOCR function
+function performOCR($filePath) {
     try {
-        $client = new GuzzleHttp\Client();
-        
-        // Prepare the request payload for Google Cloud Vision API
-        $imageContent = base64_encode(file_get_contents($imagePath));
-        
-        $payload = [
-            'requests' => [
-                [
-                    'image' => [
-                        'content' => $imageContent
-                    ],
-                    'features' => [
-                        [
-                            'type' => 'DOCUMENT_TEXT_DETECTION',
-                            'maxResults' => 100
-                        ]
-                    ]
-                ]
-            ]
-        ];
-        
-        // Make the API request to Google Cloud Vision
-        $response = $client->post(GOOGLE_CLOUD_VISION_ENDPOINT . '?key=' . GOOGLE_CLOUD_API_KEY, [
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ],
-            'json' => $payload
-        ]);
-        
-        $result = json_decode($response->getBody(), true);
-        
-        // Process the results
-        $lines = [];
-        
-        // Check if we have text annotations
-        if (isset($result['responses'][0]['textAnnotations'])) {
-            $textAnnotations = $result['responses'][0]['textAnnotations'];
-            
-            // Skip the first element as it contains the entire text
-            for ($i = 1; $i < count($textAnnotations); $i++) {
-                $annotation = $textAnnotations[$i];
-                $text = trim($annotation['description']);
-                
-                // Skip empty lines and headers
-                if (empty($text) || preg_match('/(UNIVERSITY|SEMESTER|Course Code|Page|Student Name|ID Number)/i', $text)) {
-                    continue;
-                }
-                
-                // Get bounding polygon coordinates
-                $vertices = $annotation['boundingPoly']['vertices'];
-                $x = $vertices[0]['x'] ?? 0;
-                $y = $vertices[0]['y'] ?? 0;
-                
-                $lines[] = [
-                    'text' => $text,
-                    'x' => $x,
-                    'y' => $y
-                ];
-            }
-        } elseif (isset($result['responses'][0]['fullTextAnnotation'])) {
-            // Alternative approach using fullTextAnnotation
-            $fullText = $result['responses'][0]['fullTextAnnotation'];
-            
-            foreach ($fullText['pages'] as $page) {
-                foreach ($page['blocks'] as $block) {
-                    foreach ($block['paragraphs'] as $paragraph) {
-                        foreach ($paragraph['words'] as $word) {
-                            $wordText = '';
-                            foreach ($word['symbols'] as $symbol) {
-                                $wordText .= $symbol['text'];
-                            }
-                            
-                            // Skip empty words and headers
-                            if (empty($wordText) || preg_match('/(UNIVERSITY|SEMESTER|Course Code|Page|Student Name|ID Number)/i', $wordText)) {
-                                continue;
-                            }
-                            
-                            // Get bounding box coordinates
-                            $vertices = $word['boundingBox']['vertices'];
-                            $x = $vertices[0]['x'] ?? 0;
-                            $y = $vertices[0]['y'] ?? 0;
-                            
-                            $lines[] = [
-                                'text' => $wordText,
-                                'x' => $x,
-                                'y' => $y
-                            ];
-                        }
-                    }
-                }
-            }
-        }
-        
-        // Sort lines by vertical position first, then horizontal
-        usort($lines, function($a, $b) {
-            $yDiff = $a['y'] - $b['y'];
-            return $yDiff == 0 ? $a['x'] - $b['x'] : $yDiff;
-        });
-        
-        // Group lines into rows based on Y position
-        $rows = [];
-        $currentRow = [];
-        $lastY = null;
-        $yThreshold = 10; // Pixels threshold for same row
-        
-        foreach ($lines as $line) {
-            if ($lastY === null || abs($line['y'] - $lastY) > $yThreshold) {
-                if (!empty($currentRow)) {
-                    // Sort items in current row by X position
-                    usort($currentRow, function($a, $b) {
-                        return $a['x'] - $b['x'];
-                    });
-                    $rows[] = array_column($currentRow, 'text');
-                }
-                $currentRow = [];
-                $lastY = $line['y'];
-            }
-            $currentRow[] = $line;
-        }
-        
-        // Add the last row
-        if (!empty($currentRow)) {
-            usort($currentRow, function($a, $b) {
-                return $a['x'] - $b['x'];
-            });
-            $rows[] = array_column($currentRow, 'text');
-        }
-        
-        // Modified text processing section
-        $structuredText = '';
-        
-        // Initialize arrays for each category
-        $subjectCodes = [];
-        $descriptions = [];
-        $units = [];
-        $grades = [];
-        
-        foreach ($rows as $row) {
-            $lineItems = array_filter($row); // Remove empty elements
-            
-            // Skip semester headers or other non-subject rows
-            if (preg_match('/(1ST|2ND|SEMESTER|TERM)/i', implode(' ', $lineItems))) {
-                continue;
-            }
-            
-            if (count($lineItems) >= 4) {
-                // Get subject code (usually first element)
-                $code = array_shift($lineItems);
-                if (!empty($lineItems) && is_numeric(current($lineItems))) {
-                    $code .= ' ' . array_shift($lineItems);
-                }
-                $subjectCodes[] = $code;
-                
-                // Get the last two numeric values (grade and units)
-                $numericValues = array_filter($lineItems, function($item) {
-                    return preg_match('/^[0-9.]+$/', str_replace(',', '.', $item));
-                });
-                
-                if (count($numericValues) >= 2) {
-                    $grade = array_pop($numericValues);
-                    $unit = array_pop($numericValues);
-                    
-                    // Remove these values from lineItems
-                    $lineItems = array_diff($lineItems, [$grade, $unit]);
-                    
-                    // Add to respective arrays
-                    $grades[] = $grade;
-                    $units[] = $unit;
-                    
-                    // Remaining elements form the description
-                    $descriptions[] = implode(' ', array_values($lineItems));
-                }
-            }
-        }
-        
-        // Format the output as lists with proper order
-        $structuredText = '';
-        
-        // First add any header text that might help trigger the subject section
-        $structuredText .= "TERM SUBJECT CODE DESCRIPTIVE TITLE\n\n";
-        
-        foreach ($subjectCodes as $index => $code) {
-            if (isset($descriptions[$index]) && isset($grades[$index]) && isset($units[$index])) {
-                // Combine all info in one line with tabs as separators
-                // Note: We swap grades and units here to correct the order
-                $structuredText .= $code . "\t" . 
-                                 $descriptions[$index] . "\t" . 
-                                 $units[$index] . "\t" . // This was grades before
-                                 $grades[$index] . "\n"; // This was units before
-            }
-        }
-        
-        // Add detailed logging before returning the structured text
-        $logFile = __DIR__ . '/logs/ocr_extraction_' . date('Y-m-d_H-i-s') . '.txt';
-        
-        // Log raw data first
-        $logContent = "=== RAW OCR DATA ===\n";
-        $logContent .= print_r($lines, true) . "\n\n";
-        
-        // Log the organized arrays
-        $logContent .= "=== ORGANIZED DATA ===\n";
-        $logContent .= "Subject Codes:\n" . print_r($subjectCodes, true) . "\n\n";
-        $logContent .= "Descriptions:\n" . print_r($descriptions, true) . "\n\n";
-        $logContent .= "Units:\n" . print_r($units, true) . "\n\n";
-        $logContent .= "Grades:\n" . print_r($grades, true) . "\n\n";
-        
-        // Log the final structured text
-        $logContent .= "=== FINAL STRUCTURED TEXT ===\n";
-        $logContent .= $structuredText . "\n";        
-        file_put_contents($logFile, $logContent);
+        logExtraction("Starting OCR process for file", ['path' => $filePath]);
 
-        // Also add to debug output
-        addDebugOutput("OCR Processing Results", [
-            'subject_count' => count($subjectCodes),
-            'sample_subject' => !empty($subjectCodes) ? $subjectCodes[0] : 'None found',
-            'log_file' => $logFile
+        // Load the Google Cloud Document AI client library
+        require 'vendor/autoload.php';
+
+        // Set the path to your service account key file
+        $keyFilePath = __DIR__ . '/config/document-ai-demo-456309-16d7de1fbb5e.json';
+
+        // Create a client
+        $client = new Google\Cloud\DocumentAI\V1\DocumentUnderstandingServiceClient([
+            'credentials' => $keyFilePath
         ]);
 
-        // Add format detection
-        $format = detectTORFormat($structuredText);
-        
-        // Process lines with format-specific rules
-        foreach ($lines as &$line) {
-            $context = [
-                'position' => $line === reset($lines) ? 'start' : 
-                             ($line === end($lines) ? 'end' : 'middle')
-            ];
-            $line['type'] = identifyDataType($line['text'], $context);
-        }
-        
-        // Group by detected types
-        $groupedData = [
-            'subject_codes' => [],
-            'descriptions' => [],
-            'units' => [],
-            'grades' => []
-        ];
-        
-        foreach ($lines as $line) {
-            switch ($line['type']) {
-                case 'subject_code':
-                    $groupedData['subject_codes'][] = $line['text'];
-                    break;
-                case 'grade':
-                    $groupedData['grades'][] = $line['text'];
-                    break;
-                case 'units':
-                    $groupedData['units'][] = $line['text'];
-                    break;
-                default:
-                    $groupedData['descriptions'][] = $line['text'];
-            }
-        }
-        
-        return $structuredText;
-        
+        // Read the file content
+        $fileContent = file_get_contents($filePath);
+
+        // Configure the request
+        $inputConfig = new Google\Cloud\DocumentAI\V1\InputConfig();
+        $inputConfig->setMimeType('application/pdf'); // or 'image/jpeg', 'image/png' based on your file type
+        $inputConfig->setContent($fileContent);
+
+        $request = new Google\Cloud\DocumentAI\V1\ProcessRequest();
+        $request->setName('projects/document-ai-demo-456309/locations/us/processors/YOUR_PROCESSOR_ID');
+        $request->setRawDocument($inputConfig);
+
+        // Process the document
+        $response = $client->processDocument($request);
+        $document = $response->getDocument();
+
+        // Extract text from the document
+        $text = $document->getText();
+
+        logExtraction("OCR completed successfully", [
+            'text_length' => strlen($text)
+        ]);
+
+        return $text;
+
     } catch (Exception $e) {
-        error_log("OCR Error: " . $e->getMessage());
+        logExtraction("Error in OCR process", [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
         throw $e;
     }
 }
 
 function preprocessImage($imagePath) {
+    try {
     // Get image info
     $imageInfo = getimagesize($imagePath);
     if ($imageInfo === false) {
         throw new Exception("Invalid image file");
     }
     
-    // Log image details
-    error_log("Image Type: " . $imageInfo['mime']);
-    error_log("Image Dimensions: " . $imageInfo[0] . "x" . $imageInfo[1]);
-    
+        // Log original image details
+        logExtractionResults('IMAGE_PREPROCESSING', [], [
+            'original_type' => $imageInfo['mime'],
+            'original_dimensions' => $imageInfo[0] . 'x' . $imageInfo[1]
+        ]);
+
+        // Create image resource based on file type
+        $sourceImage = null;
+        switch ($imageInfo['mime']) {
+            case 'image/jpeg':
+            case 'image/jpg':
+                $sourceImage = imagecreatefromjpeg($imagePath);
+                break;
+            case 'image/png':
+                $sourceImage = imagecreatefrompng($imagePath);
+                break;
+            default:
+                throw new Exception("Unsupported image type: " . $imageInfo['mime']);
+        }
+
+        if (!$sourceImage) {
+            throw new Exception("Failed to create image resource");
+        }
+
+        // Get original dimensions
+        $originalWidth = imagesx($sourceImage);
+        $originalHeight = imagesy($sourceImage);
+
+        // Calculate crop dimensions
+        // We'll focus on the middle 60% of the image vertically
+        // and keep 80% of the width from the center
+        $cropStartY = (int)($originalHeight * 0.2); // Start at 20% from top
+        $cropHeight = (int)($originalHeight * 0.6); // Take 60% of height
+        $cropStartX = (int)($originalWidth * 0.1); // Start at 10% from left
+        $cropWidth = (int)($originalWidth * 0.8); // Take 80% of width
+
+        // Create new image with cropped dimensions
+        $croppedImage = imagecreatetruecolor($cropWidth, $cropHeight);
+
+        // Preserve transparency for PNG images
+        if ($imageInfo['mime'] === 'image/png') {
+            imagealphablending($croppedImage, false);
+            imagesavealpha($croppedImage, true);
+            $transparent = imagecolorallocatealpha($croppedImage, 255, 255, 255, 127);
+            imagefilledrectangle($croppedImage, 0, 0, $cropWidth, $cropHeight, $transparent);
+        }
+
+        // Perform the crop
+        imagecopy(
+            $croppedImage, 
+            $sourceImage, 
+            0, 0,                    // Destination X, Y
+            $cropStartX, $cropStartY, // Source X, Y
+            $cropWidth, $cropHeight   // Width and Height
+        );
+
+        // Create path for cropped image
+        $pathInfo = pathinfo($imagePath);
+        $croppedPath = $pathInfo['dirname'] . '/cropped_' . $pathInfo['basename'];
+
+        // Save the cropped image
+        switch ($imageInfo['mime']) {
+            case 'image/jpeg':
+            case 'image/jpg':
+                imagejpeg($croppedImage, $croppedPath, 100); // Maximum quality
+                break;
+            case 'image/png':
+                imagepng($croppedImage, $croppedPath, 0); // No compression
+                break;
+        }
+
+        // Clean up resources
+        imagedestroy($sourceImage);
+        imagedestroy($croppedImage);
+
+        // Log preprocessing results
+        logExtractionResults('IMAGE_PREPROCESSING', [], [
+            'original_dimensions' => "${originalWidth}x${originalHeight}",
+            'cropped_dimensions' => "${cropWidth}x${cropHeight}",
+            'crop_region' => [
+                'start_x' => $cropStartX,
+                'start_y' => $cropStartY,
+                'width' => $cropWidth,
+                'height' => $cropHeight
+            ]
+        ]);
+
+        return $croppedPath;
+
+    } catch (Exception $e) {
+        error_log("Image preprocessing error: " . $e->getMessage());
+        // If preprocessing fails, return original image
     return $imagePath;
+    }
+}
+
+// Add this function to help with dynamic crop region detection
+function detectTableRegion($imagePath) {
+    try {
+        // Create GD image resource
+        $image = imagecreatefromstring(file_get_contents($imagePath));
+        if (!$image) {
+            throw new Exception("Failed to create image resource");
+        }
+
+        $width = imagesx($image);
+        $height = imagesy($image);
+
+        // Convert to grayscale and detect edges
+        $edges = [];
+        $threshold = 30; // Adjust this value based on image contrast
+
+        for ($y = 0; $y < $height; $y++) {
+            for ($x = 0; $x < $width; $x++) {
+                $rgb = imagecolorat($image, $x, $y);
+                $colors = imagecolorsforindex($image, $rgb);
+                
+                // Convert to grayscale
+                $gray = ($colors['red'] + $colors['green'] + $colors['blue']) / 3;
+                
+                // Simple edge detection
+                if ($x > 0 && $y > 0) {
+                    $prevX = imagecolorat($image, $x - 1, $y);
+                    $prevY = imagecolorat($image, $x, $y - 1);
+                    
+                    $prevXColors = imagecolorsforindex($image, $prevX);
+                    $prevYColors = imagecolorsforindex($image, $prevY);
+                    
+                    $prevXGray = ($prevXColors['red'] + $prevXColors['green'] + $prevXColors['blue']) / 3;
+                    $prevYGray = ($prevYColors['red'] + $prevYColors['green'] + $prevYColors['blue']) / 3;
+                    
+                    if (abs($gray - $prevXGray) > $threshold || abs($gray - $prevYGray) > $threshold) {
+                        $edges[] = ['x' => $x, 'y' => $y];
+                    }
+                }
+            }
+        }
+
+        // Find the region with the highest concentration of edges
+        $regionSize = 100; // Size of sliding window
+        $maxEdges = 0;
+        $bestRegion = [
+            'x' => $width * 0.1,  // Default to standard crop if no better region found
+            'y' => $height * 0.2,
+            'width' => $width * 0.8,
+            'height' => $height * 0.6
+        ];
+
+        for ($y = 0; $y < $height - $regionSize; $y += $regionSize / 2) {
+            for ($x = 0; $x < $width - $regionSize; $x += $regionSize / 2) {
+                $edgeCount = count(array_filter($edges, function($edge) use ($x, $y, $regionSize) {
+                    return $edge['x'] >= $x && $edge['x'] < $x + $regionSize &&
+                           $edge['y'] >= $y && $edge['y'] < $y + $regionSize;
+                }));
+
+                if ($edgeCount > $maxEdges) {
+                    $maxEdges = $edgeCount;
+                    $bestRegion = [
+                        'x' => $x,
+                        'y' => $y,
+                        'width' => $regionSize,
+                        'height' => $regionSize
+                    ];
+                }
+            }
+        }
+
+        // Clean up
+        imagedestroy($image);
+
+        return $bestRegion;
+
+    } catch (Exception $e) {
+        error_log("Region detection error: " . $e->getMessage());
+        // Return default crop region on error
+        return [
+            'x' => $width * 0.1,
+            'y' => $height * 0.2,
+            'width' => $width * 0.8,
+            'height' => $height * 0.6
+        ];
+    }
 }
 
 // Add this function to help identify data types
@@ -936,6 +1338,8 @@ function validateUploadedFile($file) {
 // Main processing code
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
+        logExtraction("Starting POST request processing");
+        
         // Clear any existing output buffers
         while (ob_get_level()) {
             ob_end_clean();
@@ -945,72 +1349,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_FILES['tor']) && $_FILES['tor']['error'] == UPLOAD_ERR_OK &&
             isset($_FILES['school_id']) && $_FILES['school_id']['error'] == UPLOAD_ERR_OK) {
             
+            logExtraction("Files uploaded successfully", [
+                'tor_name' => $_FILES['tor']['name'],
+                'school_id_name' => $_FILES['school_id']['name']
+            ]);
+            
             validateUploadedFile($_FILES['tor']);
-            $tor_path = 'uploads/tor/' . basename($_FILES['tor']['name']);
-            move_uploaded_file($_FILES['tor']['tmp_name'], __DIR__ . '/' . $tor_path);
+            $tor_path = __DIR__ . '/uploads/tor/' . basename($_FILES['tor']['name']);
+            move_uploaded_file($_FILES['tor']['tmp_name'], $tor_path);
+            
+            logExtraction("TOR file moved to destination", [
+                'path' => $tor_path,
+                'size' => filesize($tor_path)
+            ]);
 
             validateUploadedFile($_FILES['school_id']);
-            $school_id_path = 'uploads/school_id/' . basename($_FILES['school_id']['name']);
-            move_uploaded_file($_FILES['school_id']['tmp_name'], __DIR__ . '/' . $school_id_path);
+            $school_id_path = __DIR__ . '/uploads/school_id/' . basename($_FILES['school_id']['name']);
+            move_uploaded_file($_FILES['school_id']['tmp_name'], $school_id_path);
 
-            // Preprocess the image before OCR
-            $tor_path = preprocessImage($tor_path);
-
-            // Add this function at the top
             try {
-                addDebugOutput("Starting OCR Process");
+                logExtraction("Starting OCR process");
                 
-                // Replace Tesseract OCR with Google Cloud OCR
+                // Use Unstract API for OCR
                 $ocr_output = performOCR($tor_path);
                 
                 if (empty($ocr_output)) {
-                    $_SESSION['ocr_error'] = "The system could not read any text from the uploaded document. Please ensure you have uploaded a clear, high-quality image.";
-                    header("Location: registration_success.php");
-                    exit();
+                    throw new Exception("The system could not read any text from the uploaded document. Please ensure you have uploaded a clear, high-quality image.");
                 }
-
-                // Store the raw OCR output in debug but don't show it in the error message
-                addDebugOutput("Raw OCR Output:", $ocr_output);
-
-                // Remove the keyword validation section and go straight to subject extraction
+                
+                logExtraction("OCR completed successfully", [
+                    'output_length' => strlen($ocr_output)
+                ]);
+                
+                // Extract subjects from OCR output
                 $subjects = extractSubjects($ocr_output);
-                addDebugOutput("Extracted Subjects:", $subjects);
+                
+                if (empty($subjects)) {
+                    throw new Exception("No subjects could be extracted from the document. Please ensure you have uploaded a valid Transcript of Records containing grades and subject information.");
+                }
+                
+                logExtraction("Subjects extracted successfully", [
+                    'count' => count($subjects),
+                    'first_subject' => isset($subjects[0]) ? json_encode($subjects[0]) : 'none'
+                ]);
 
                 // Process eligibility
                 $isEligible = false;
                 $student_type = $_POST['student_type'] ?? '';
                 
-                addDebugOutput("Student Type:", $student_type);
+                logExtraction("Processing eligibility", [
+                    'student_type' => $student_type
+                ]);
 
                 if (strtolower($student_type) === 'ladderized') {
                     $isEligible = true;
-                    addDebugOutput("Ladderized Student - Automatically Eligible");
+                    logExtraction("Ladderized student - automatically eligible");
                 } else {
                     $previous_school = $_POST['previous_school'] ?? '';
-                    addDebugOutput("Previous School:", $previous_school);
+                    
+                    if (empty($previous_school)) {
+                        throw new Exception("Previous school information is required.");
+                    }
+                    
+                    logExtraction("Checking grading rules", [
+                        'previous_school' => $previous_school
+                    ]);
                     
                     $gradingRules = getGradingSystemRules($conn, $previous_school);
-                    addDebugOutput("Retrieved Grading Rules:", $gradingRules);
+                    
+                    if (empty($gradingRules)) {
+                        throw new Exception("No grading system found for the specified school. Please contact support.");
+                    }
+                    
+                    logExtraction("Retrieved grading rules", [
+                        'rules_count' => count($gradingRules)
+                    ]);
                     
                     $isEligible = determineEligibility($subjects, $gradingRules);
                 }
 
-                // Check if student is tech
-                $is_tech = isTechStudent($subjects);
-                addDebugOutput("Tech Student Check:", [
-                    'is_tech' => $is_tech ? 'Yes' : 'No',
-                    'checked_subjects' => $subjects
-                ]);
-
-            } catch (Exception $e) {
-                // Log the full error for debugging but show a cleaner message to users
-                error_log("OCR Error: " . $e->getMessage());
-                $_SESSION['ocr_error'] = "There was an error processing your document. Please try uploading again with a clearer image.";
-                header("Location: registration_success.php");
-                exit();
-            }
-
-            // Store eligibility status in session
             $_SESSION['is_eligible'] = $isEligible;
 
             if ($isEligible) {
@@ -1030,30 +1447,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'Diploma in Information and Communication Technology (DICT)' : 
                         ($_POST['previous_program'] ?? ''),
                     'desired_program' => $_POST['desired_program'] ?? '',
-                    'tor_path' => $tor_path,
-                    'school_id_path' => $school_id_path,
-                    'is_tech' => $is_tech,
+                        'tor_path' => str_replace(__DIR__ . '/', '', $tor_path),
+                        'school_id_path' => str_replace(__DIR__ . '/', '', $school_id_path),
+                        'is_tech' => isTechStudent($subjects),
                     'status' => 'pending'
                 ];
                 
-                // Clean any output before registration
-                while (ob_get_level()) {
-                    ob_end_clean();
-                }
+                    logExtraction("Prepared student data", [
+                        'data' => $studentData
+                    ]);
                 
                 registerStudent($conn, $studentData, $subjects);
+                    logExtraction("Student registration completed successfully");
             } else {
+                    logExtraction("Student not eligible", [
+                        'reason' => 'Did not meet eligibility criteria'
+                    ]);
                 $_SESSION['success'] = "Registration completed, but you are not eligible for credit transfer.";
                 $_SESSION['eligibility_message'] = "Based on your grades and our criteria, you do not meet the eligibility requirements for credit transfer.";
+                }
+                
                 header("Location: registration_success.php");
                 exit();
-            }
-        } else {
-            $_SESSION['ocr_error'] = "Please upload both TOR and School ID files.";
+
+            } catch (Exception $e) {
+                logExtraction("Error in registration process", [
+                    'error' => $e->getMessage()
+                ]);
+                $_SESSION['ocr_error'] = $e->getMessage();
             header("Location: registration_success.php");
             exit();
+            }
+        } else {
+            throw new Exception("Please upload both TOR and School ID files.");
         }
     } catch (Exception $e) {
+        logExtraction("Fatal error in main process", [
+            'error' => $e->getMessage()
+        ]);
         $_SESSION['ocr_error'] = $e->getMessage();
         header("Location: registration_success.php");
         exit();
@@ -1061,8 +1492,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // If we reach here, something went wrong
-$_SESSION['ocr_error'] = "An unexpected error occurred.";
+$_SESSION['ocr_error'] = "An unexpected error occurred. Please try again.";
 header("Location: registration_success.php");
 exit();
-?>
 
+// Add this before the matchCreditedSubjects function
+function isGeneralEducation($subjectCode) {
+    // List of general education subject code prefixes
+    $geSubjects = ['GEED', 'GEC', 'GEE', 'NSTP', 'PE', 'PATH'];
+    
+    // Convert subject code to uppercase for consistent comparison
+    $subjectCode = strtoupper($subjectCode);
+    
+    foreach ($geSubjects as $prefix) {
+        if (stripos($subjectCode, $prefix) === 0) {
+            logExtraction("GE subject identified", [
+                'subject_code' => $subjectCode,
+                'matched_prefix' => $prefix
+            ]);
+            return true;
+        }
+    }
+    
+    // Also check for common GE course numbers
+    if (preg_match('/^(GE|GEN)\d/', $subjectCode)) {
+        logExtraction("GE subject identified by number pattern", [
+            'subject_code' => $subjectCode
+        ]);
+        return true;
+    }
+    
+    return false;
+}
+?>

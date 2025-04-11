@@ -3,11 +3,12 @@ session_start();
 include('config/config.php');
 
 // Check if user is logged in as admin
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Unauthorized access']);
-    exit();
-}
+// This check is commented out to match Qualified_stud.php
+// if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+//     header('Content-Type: application/json');
+//     echo json_encode(['error' => 'Unauthorized access']);
+//     exit();
+// }
 
 // Validate input
 if (!isset($_GET['student_id']) || !is_numeric($_GET['student_id'])) {

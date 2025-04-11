@@ -236,6 +236,18 @@ try {
                     $response['success'] = true;
                     $response['message'] = "Exam updated successfully!";
                     $response['exam_id'] = $exam_id;
+
+                    // Check if exam is now scheduled and assign to students
+                    if ($is_scheduled) {
+                        $assignment_result = assignExamToStudents($exam_id, $exam_type);
+                        
+                        if ($assignment_result) {
+                            // Get assignment statistics
+                            $stats = getAssignmentStats($exam_id);
+                            $response['assignment_stats'] = $stats;
+                            $response['message'] = "Exam updated and assigned successfully!";
+                        }
+                    }
                 } else {
                     throw new Exception("Error updating exam: " . $conn->error);
                 }

@@ -5,39 +5,46 @@ function assignExamToStudents($exam_id, $exam_type) {
     global $conn;
     
     try {
-        // Check if this exam already has assignments
-        $check_query = "SELECT COUNT(*) as assignment_count FROM exam_assignments WHERE exam_id = ?";
-        $check_stmt = $conn->prepare($check_query);
-        $check_stmt->bind_param("i", $exam_id);
-        $check_stmt->execute();
-        $check_result = $check_stmt->get_result()->fetch_assoc();
-        
-        // If assignments already exist, don't reassign
-        if ($check_result['assignment_count'] > 0) {
-            // Log that we're skipping assignment because it already exists
-            $log_file = 'exam_assignment.log';
-            file_put_contents($log_file, "Skipping assignment for exam_id: $exam_id - Assignments already exist\n", FILE_APPEND);
-            return true; // Return true to indicate success (existing assignments)
-        }
-        
+        // Log the start of the assignment process
+        $log_file = 'exam_assignment.log';
+        file_put_contents($log_file, "Starting exam assignment for exam_id: $exam_id (Type: $exam_type)\n", FILE_APPEND);
+
         // Get all eligible students based on exam type from register_studentsqe
-        $student_query = "SELECT student_id, first_name, last_name, email 
-                         FROM register_studentsqe 
-                         WHERE status = 'accepted' 
-                         AND is_tech = ?";
+        // Only select students who don't already have this exam assigned
+        $student_query = "SELECT rs.student_id, rs.first_name, rs.last_name, rs.email 
+                         FROM register_studentsqe rs
+                         WHERE rs.status = 'accepted' 
+                         AND rs.is_tech = ?
+                         AND NOT EXISTS (
+                             SELECT 1 FROM exam_assignments ea 
+                             WHERE ea.exam_id = ? 
+                             AND ea.student_id = rs.student_id
+                         )";
         
         $stmt = $conn->prepare($student_query);
         // For tech exam (is_tech = 1), for non-tech exam (is_tech = 0)
         $is_tech = ($exam_type === 'tech') ? 1 : 0;
-        $stmt->bind_param("i", $is_tech);
+        $stmt->bind_param("ii", $is_tech, $exam_id);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Log the assignment process
-        $log_file = 'exam_assignment.log';
-        file_put_contents($log_file, "Starting exam assignment for exam_id: $exam_id (Type: $exam_type)\n", FILE_APPEND);
+        // Log the number of eligible students found
+        $eligible_count = $result->num_rows;
+        file_put_contents($log_file, "Found $eligible_count new eligible students for assignment\n", FILE_APPEND);
         
-        if ($result->num_rows === 0) {
+        if ($eligible_count === 0) {
+            // Check if there are any existing assignments
+            $check_query = "SELECT COUNT(*) as assignment_count FROM exam_assignments WHERE exam_id = ?";
+            $check_stmt = $conn->prepare($check_query);
+            $check_stmt->bind_param("i", $exam_id);
+            $check_stmt->execute();
+            $check_result = $check_stmt->get_result()->fetch_assoc();
+            
+            if ($check_result['assignment_count'] > 0) {
+                file_put_contents($log_file, "No new students to assign, exam already has {$check_result['assignment_count']} existing assignments\n", FILE_APPEND);
+                return true;
+            }
+            
             file_put_contents($log_file, "No eligible students found for exam type: $exam_type\n", FILE_APPEND);
             return false;
         }
@@ -45,8 +52,7 @@ function assignExamToStudents($exam_id, $exam_type) {
         // Prepare the assignment insert statement
         $assign_query = "INSERT INTO exam_assignments 
                         (exam_id, student_id, assigned_date, completion_status) 
-                        VALUES (?, ?, NOW(), 'pending')
-                        ON DUPLICATE KEY UPDATE assigned_date = NOW()";
+                        VALUES (?, ?, NOW(), 'pending')";
         
         $assign_stmt = $conn->prepare($assign_query);
         $students_assigned = 0;
@@ -63,9 +69,9 @@ function assignExamToStudents($exam_id, $exam_type) {
             }
         }
 
-        file_put_contents($log_file, "Completed exam assignment. Total students assigned: $students_assigned\n", FILE_APPEND);
+        file_put_contents($log_file, "Completed exam assignment. Total new students assigned: $students_assigned\n", FILE_APPEND);
         
-        return $students_assigned > 0;
+        return true;
 
     } catch (Exception $e) {
         file_put_contents($log_file, "Error in exam assignment: " . $e->getMessage() . "\n", FILE_APPEND);

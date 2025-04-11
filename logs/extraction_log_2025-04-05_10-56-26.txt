@@ -1,0 +1,26 @@
+=== TRANSCRIPT EXTRACTION LOG ===
+Timestamp: 2025-04-05 10:56:26
+
+=== IMAGE_PREPROCESSING EXTRACTION ===
+Additional Information:
+original_type: image/jpeg
+original_dimensions: 1268x1900
+
+---------------------------------------------
+
+=== IMAGE_PREPROCESSING EXTRACTION ===
+Additional Information:
+original_dimensions: 1268x1900
+cropped_dimensions: 1014x1140
+crop_region:
+Array
+(
+    [start_x] => 126
+    [start_y] => 380
+    [width] => 1014
+    [height] => 1140
+)
+
+
+---------------------------------------------
+

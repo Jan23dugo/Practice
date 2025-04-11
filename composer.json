@@ -2,7 +2,9 @@
     "require": {
         "php": ">=7.4",
         "guzzlehttp/guzzle": "^7.0",
-        "phpmailer/phpmailer": "^6.9"
+        "phpmailer/phpmailer": "^6.9",
+        "google/cloud-document-ai": "^0.1.0",
+        "google/cloud-core": "^1.47"
     },
     "autoload": {
         "psr-4": {

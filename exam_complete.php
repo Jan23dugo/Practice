@@ -8,7 +8,7 @@ if (!isset($_SESSION['stud_id'])) {
     exit;
 }
 
-$success_message = "Your exam has been submitted successfully!";
+$success_message = "Your exam has been submitted successfully! Your instructor will release the results once all exams have been reviewed.";
 $error_message = "";
 
 // Check if there's a message from the submission process
@@ -126,6 +126,7 @@ $stmt->close();
             <h1>Exam Submitted Successfully</h1>
             <p><?php echo $success_message; ?></p>
             <p>Thank you, <?php echo htmlspecialchars($student_name); ?>, for completing your exam.</p>
+            <p>The results will be available on your dashboard once they are released by your instructor.</p>
         <?php else: ?>
             <span class="material-symbols-rounded completion-icon error-icon">error</span>
             <h1>Error Submitting Exam</h1>

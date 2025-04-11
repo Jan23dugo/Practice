@@ -8,10 +8,10 @@
         let timeRemaining = 0;
 
         // Security monitoring variables
-        // let warningCount = 0;
-        // const MAX_WARNINGS = 3;
-        // let lastWarningTime = 0;
-        // const WARNING_COOLDOWN = 5000; // 5 seconds
+        let warningCount = 0;
+        const MAX_WARNINGS = 3;
+        let lastWarningTime = 0;
+        const WARNING_COOLDOWN = 5000; // 5 seconds
         let isSubmitting = false;
         let isAlertModalOpen = false; // Flag to track if an alert modal is open
         // let isLegitimateAction = false;
@@ -47,6 +47,15 @@
                 default: // info
                     alertIconSymbol.textContent = 'info';
                     break;
+            }
+            
+            // Set appropriate button text based on alert type
+            if (type === 'warning' || type === 'error') {
+                confirmBtn.textContent = 'OK';
+            } else if (type === 'confirm') {
+                confirmBtn.textContent = 'Yes, Submit';
+            } else {
+                confirmBtn.textContent = 'OK';
             }
             
             // Set flag that modal is open
@@ -1042,12 +1051,49 @@
             }
         }
 
-        // Add this to your window.onbeforeunload handler
-        window.onbeforeunload = function() {
-            if (timeRemaining > 0) {
-                return "Are you sure you want to leave? Your exam progress will be lost.";
+        // Add this to prevent refreshing or closing the page
+        window.addEventListener('beforeunload', function(e) {
+            // Only show warning if exam is in progress (not when submitting)
+            if (!isSubmitting) {
+                // This will be ignored in many browsers for security reasons,
+                // but will still trigger the warning in others
+                const message = 'Warning: Refreshing or closing the page during the exam is prohibited. This action will be recorded as a security violation.';
+                
+                // Record this as a security violation
+                warningCount++;
+                
+                // Auto-submit if max warnings reached
+                if (warningCount >= MAX_WARNINGS) {
+                    // We can't call autoSubmitExam here directly because the page is unloading
+                    // Instead, we'll store the count in localStorage to check on reload
+                    localStorage.setItem('warningCount', warningCount);
+                }
+                
+                e.returnValue = message;
+                return message;
             }
-        };
+        });
+
+        // Check warning count on load (detect if someone refreshed after warnings)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there were previous warnings
+            const storedWarningCount = localStorage.getItem('warningCount');
+            if (storedWarningCount) {
+                warningCount = parseInt(storedWarningCount);
+                localStorage.removeItem('warningCount'); // Clear it after reading
+                
+                // If they've exceeded warnings, auto-submit
+                if (warningCount >= MAX_WARNINGS) {
+                    // Show a message then auto-submit
+                    setTimeout(() => {
+                        autoSubmitExam();
+                    }, 1000); // Small delay to ensure page has loaded
+                } else if (warningCount > 0) {
+                    // Just show a warning about their remaining attempts
+                    showAlert(`Warning: Refreshing the page is a violation. You have ${MAX_WARNINGS - warningCount} warnings remaining.`, 'warning');
+                }
+            }
+        });
 
         // Initialize CodeMirror for all programming questions
         document.addEventListener('DOMContentLoaded', function() {
@@ -1165,12 +1211,12 @@
             const currentTime = Date.now();
             
             // Check cooldown period
-            // if (currentTime - lastWarningTime < WARNING_COOLDOWN) {
-            //     return;
-            // }
+            if (currentTime - lastWarningTime < WARNING_COOLDOWN) {
+                return;
+            }
             
-            // lastWarningTime = currentTime;
-            // warningCount++;
+            lastWarningTime = currentTime;
+            warningCount++;
             
             // Create warning message
             let warningMessage = '';
@@ -1188,20 +1234,86 @@
                     warningMessage = 'Warning: Unauthorized action detected.';
             }
 
-            // Use custom alert instead of popup
-            showAlert(warningMessage, 'warning');
-            
-            // Auto-submit if max warnings reached
-            // if (warningCount >= MAX_WARNINGS) {
-            //     autoSubmitExam();
-            // }
+            // Check if this is the final warning
+            if (warningCount >= MAX_WARNINGS) {
+                // Final warning - inform student their exam will be submitted
+                showAlert(`${warningMessage} You have reached the maximum allowed warnings. Your exam will be submitted automatically when you close this message.`, 'error', function() {
+                    // Call autoSubmit after they acknowledge the message
+                    autoSubmitExam();
+                });
+            } else {
+                // Regular warning with attempt counter
+                showAlert(`${warningMessage} (Attempt ${warningCount}/${MAX_WARNINGS})`, 'warning');
+            }
         }
 
-        // Auto-submit function
+        // Auto-submit function - MODIFIED to skip confirmation
         function autoSubmitExam() {
-            showAlert('Maximum warnings reached. Your exam will be submitted automatically.', 'error', function() {
-                submitExam(document.getElementById('current_exam_id').value);
+            // Set submitting flag to prevent further warnings
+            isSubmitting = true;
+            
+            // Show a brief notification that the exam is being submitted
+            showAlert('Maximum warnings reached. Your exam is being submitted automatically.', 'error', function() {
+                // Continue with auto-submission even if they click OK
+                // This keeps the submit process going while letting the user know what's happening
             });
+            
+            // Get all answers
+            let answers = {};
+
+            // Get all question containers
+            const questionContainers = document.querySelectorAll('.question-container');
+            questionContainers.forEach(container => {
+                const questionId = container.dataset.questionId;
+                const questionType = container.dataset.questionType;
+
+                if (questionType === 'programming') {
+                    // Handle programming questions
+                    const questionNumber = container.id.replace('question-', '');
+                    const editor = codeEditors[questionNumber];
+                    
+                    if (editor) {
+                        // Get the code as plain text
+                        const code = editor.session.getValue().trim();
+                        
+                        if (code && code !== '# Write your code here') {
+                            answers[questionId] = {
+                                code: code,
+                                programming_id: container.dataset.programmingId,
+                                question_type: 'programming'
+                            };
+                        }
+                    }
+                } else {
+                    // Handle multiple choice/true-false questions
+                    const selectedRadio = container.querySelector('input[type="radio"]:checked');
+                    if (selectedRadio) {
+                        answers[questionId] = {
+                            answer_id: selectedRadio.value,
+                            question_type: questionType
+                        };
+                    }
+                }
+            });
+
+            try {
+                // Using the simple form submission approach
+                const formData = document.getElementById('exam-submit-form');
+                const allAnswersInput = document.getElementById('all-answers');
+                
+                // Set the answers
+                allAnswersInput.value = JSON.stringify(answers);
+                
+                // Submit the form immediately, after a short delay to let the alert be seen
+                setTimeout(() => {
+                    formData.submit();
+                }, 1500);
+            } catch (error) {
+                console.error('Error during auto-submission:', error);
+                
+                // Even if there's an error, prevent further interaction
+                document.body.innerHTML = '<div style="text-align:center;margin-top:50px;"><h2>This exam has been terminated due to multiple violations.</h2><p>Please contact your proctor.</p></div>';
+            }
         }
 
         // Add event listeners for security monitoring

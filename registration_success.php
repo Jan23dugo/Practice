@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-// Clear any old session messages at the start
-if (isset($_SESSION['success']) && isset($_SESSION['ocr_error'])) {
-    // If both exist, prioritize showing the error
-    unset($_SESSION['success']);
-}
+// Initialize variables
+$hasError = isset($_SESSION['ocr_error']);
+$hasSuccess = isset($_SESSION['success']) && !empty($_SESSION['success']);
+$errorMessage = $hasError ? $_SESSION['ocr_error'] : '';
+$successMessage = $hasSuccess ? $_SESSION['success'] : '';
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration Successful</title>
+    <title>Registration Status</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -217,6 +217,59 @@ if (isset($_SESSION['success']) && isset($_SESSION['ocr_error'])) {
                 text-align: center;
             }
         }
+
+        /* Add these new styles */
+        .error-container {
+            background-color: #fff3f3;
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .error-title {
+            display: flex;
+            align-items: center;
+            color: var(--danger);
+            margin-bottom: 15px;
+        }
+
+        .error-title .material-symbols-rounded {
+            margin-right: 10px;
+        }
+
+        .error-message {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .error-checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .error-checklist li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .error-checklist li:before {
+            content: "check_circle";
+            font-family: 'Material Symbols Rounded';
+            position: absolute;
+            left: 0;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -249,64 +302,65 @@ if (isset($_SESSION['success']) && isset($_SESSION['ocr_error'])) {
             <div class="confirm-container">
             <div class="success-message">
                 <h2>Registration Status</h2>
-                <?php
-                if (isset($_SESSION['ocr_error'])) {
-                    echo "<div class='eligibility-status not-eligible'>";
-                        echo "<span class='material-symbols-rounded status-icon'>error</span>";
-                        echo "<h3>Document Verification Error</h3>";
-                    echo "<p>" . htmlspecialchars($_SESSION['ocr_error']) . "</p>";
-                        echo "<div class='requirements-list'>";
-                    echo "<p>Please ensure you have uploaded:</p>";
-                    echo "<ul>";
-                        echo "<li><span class='material-symbols-rounded'>description</span>A valid Transcript of Records (TOR)</li>";
-                        echo "<li><span class='material-symbols-rounded'>high_quality</span>A clear, readable copy of the document</li>";
-                        echo "<li><span class='material-symbols-rounded'>grade</span>The document contains your grades and subject information</li>";
-                        echo "<li><span class='material-symbols-rounded'>image</span>The image is not blurry or distorted</li>";
-                    echo "</ul>";
-                    echo "</div>";
-                        echo "</div>";
-                        echo "<div class='action-buttons'>";
-                        echo "<a href='registerFront.php' class='btn btn-primary'><span class='material-symbols-rounded'>refresh</span>Try Again</a>";
-                        echo "<a href='index.php' class='btn btn-secondary'><span class='material-symbols-rounded'>home</span>Back to Home</a>";
-                    echo "</div>";
-                    unset($_SESSION['ocr_error']);
-                } elseif (isset($_SESSION['is_eligible'])) {
-                    if ($_SESSION['is_eligible']) {
-                        echo "<div class='eligibility-status eligible'>";
-                            echo "<span class='material-symbols-rounded status-icon'>check_circle</span>";
-                            echo "<h3>Registration Successful!</h3>";
-                        echo "<p>Congratulations! Based on your grades you are qualified to take the Qualifying Exam</p>";
-                        if (isset($_SESSION['success'])) {
-                                echo "<p class='success-details'>" . htmlspecialchars($_SESSION['success']) . "</p>";
-                        }
-                        echo "</div>";
-                            echo "<div class='action-buttons'>";
-                            echo "<button class='btn btn-primary' onclick='showCreditedSubjectsModal()'>";
-                            echo "<span class='material-symbols-rounded'>list_alt</span>View Credited Subjects";
-                            echo "</button>";
-                            echo "<a href='stud_dashboard.php' class='btn btn-secondary'>";
-                            echo "<span class='material-symbols-rounded'>dashboard</span>Go to Dashboard";
-                            echo "</a>";
-                            echo "</div>";
-                    } else {
-                        echo "<div class='eligibility-status not-eligible'>";
-                            echo "<span class='material-symbols-rounded status-icon'>info</span>";
-                            echo "<h3>Registration Completed</h3>";
-                        if (isset($_SESSION['eligibility_message'])) {
-                            echo "<p>" . htmlspecialchars($_SESSION['eligibility_message']) . "</p>";
-                        }
-                        echo "</div>";
-                            echo "<div class='action-buttons'>";
-                            echo "<a href='stud_dashboard.php' class='btn btn-primary'>";
-                            echo "<span class='material-symbols-rounded'>dashboard</span>Go to Dashboard";
-                            echo "</a>";
-                            echo "</div>";
-                    }
-                    unset($_SESSION['is_eligible']);
-                    unset($_SESSION['success']);
-                    unset($_SESSION['eligibility_message']);
-                }
-                ?>
+                <?php if ($hasError): ?>
+                    <div class="error-container">
+                        <div class="error-title">
+                            <span class="material-symbols-rounded">error</span>
+                            <h3>Document Verification Error</h3>
+                        </div>
+                        <div class="error-message">
+                            <?php echo htmlspecialchars($errorMessage); ?>
+                        </div>
+                        <ul class="error-checklist">
+                            <li>A valid Transcript of Records (TOR)</li>
+                            <li>A clear, readable copy of the document</li>
+                            <li>The document contains your grades and subject information</li>
+                            <li>The image is not blurry or distorted</li>
+                        </ul>
+                        <div class="action-buttons">
+                            <a href="registration.php" class="btn btn-primary">Try Again</a>
+                            <a href="index.php" class="btn btn-secondary">Back to Home</a>
+                        </div>
+                    </div>
+                <?php elseif ($hasSuccess): ?>
+                    <div class="success-container">
+                        <?php if (isset($_SESSION['is_eligible']) && $_SESSION['is_eligible']): ?>
+                            <div class="status-icon">
+                                <span class="material-symbols-rounded" style="color: var(--success);">check_circle</span>
+                            </div>
+                            <h3 style="color: var(--success); margin-bottom: 15px;">Congratulations!</h3>
+                            <p>Based on our evaluation of your academic records, you are qualified to take the PUP Qualifying Examination.</p>
+                            <div class="success-details">
+                                <p><strong>Next Steps:</strong></p>
+                                <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">✓ Your application will be reviewed by our admin team</li>
+                                    <li style="margin-bottom: 8px;">✓ Please allow 2-3 business days for verification</li>
+                                    <li style="margin-bottom: 8px;">✓ You can check your application status on the Exam Registration Status page</li>
+                                </ul>
+                            </div>
+                        <?php else: ?>
+                            <div class="status-icon">
+                                <span class="material-symbols-rounded" style="color: var(--warning);">info</span>
+                            </div>
+                            <h3 style="color: var(--warning); margin-bottom: 15px;">We regret to inform you</h3>
+                            <p>Based on our evaluation of your academic records, you do not meet the qualifying criteria for the PUP Qualifying Examination at this time.</p>
+                            <div class="success-details">
+                                <p><strong>Reason:</strong></p>
+                                <p>Your grades do not meet the minimum requirements for credit transfer eligibility.</p>
+                                <p style="margin-top: 15px;"><strong>What you can do:</strong></p>
+                                <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">• Review our eligibility requirements</li>
+                                    <li style="margin-bottom: 8px;">• Consider regular admission options</li>
+                                    <li style="margin-bottom: 8px;">• Contact our admissions office for guidance</li>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+                        <div class="action-buttons">
+                            <a href="exam_registration_status.php" class="btn btn-primary">Check Application Status</a>
+                            <a href="stud_dashboard.php" class="btn btn-secondary">Back to Home</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         </div>
@@ -371,9 +425,19 @@ if (isset($_SESSION['success']) && isset($_SESSION['ocr_error'])) {
         }
 
         .status-icon {
-            font-size: 48px;
+            text-align: center;
             margin-bottom: 20px;
-            color: var(--primary);
+        }
+
+        .status-icon .material-symbols-rounded {
+            font-size: 48px;
+        }
+
+        .success-details {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--gray-light);
+            border-radius: 8px;
         }
 
         .action-buttons {
@@ -387,13 +451,8 @@ if (isset($_SESSION['success']) && isset($_SESSION['ocr_error'])) {
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .success-details {
-            margin-top: 15px;
-            padding: 15px;
-            background: var(--gray-light);
-            border-radius: 6px;
+            min-width: 200px;
+            justify-content: center;
         }
 
         footer {
@@ -412,7 +471,18 @@ if (isset($_SESSION['success']) && isset($_SESSION['ocr_error'])) {
             .logo-text h1 {
                 font-size: 18px;
             }
+
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </body>
 </html>
+<?php
+// Clear session messages after displaying
+unset($_SESSION['ocr_error']);
+unset($_SESSION['success']);
+unset($_SESSION['reference_id']);
+unset($_SESSION['is_eligible']);
+?>
