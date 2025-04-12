@@ -7,6 +7,17 @@ if (!isset($_SESSION['stud_id'])) {
     header("Location: stud_register.php");
     exit();
 }
+
+// Database connection
+require_once 'config/config.php';
+
+// Fetch student information
+$stud_id = $_SESSION['stud_id'];
+$stmt = $conn->prepare("SELECT * FROM students WHERE stud_id = ?");
+$stmt->bind_param("i", $stud_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$student = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -477,27 +488,27 @@ if (!isset($_SESSION['stud_id'])) {
                         <div class="form-group">
                             <div class="form-field">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" id="last_name" name="last_name" required>
+                                <input type="text" id="last_name" name="last_name" value="<?php echo htmlspecialchars($student['lastname']); ?>" required>
                             </div>
                             <div class="form-field">
                                 <label for="first_name">Given Name</label>
-                                <input type="text" id="first_name" name="first_name" required>
+                                <input type="text" id="first_name" name="first_name" value="<?php echo htmlspecialchars($student['firstname']); ?>" required>
                             </div>
                             <div class="form-field">
                                 <label for="middle_name">Middle Name (Optional)</label>
-                                <input type="text" id="middle_name" name="middle_name">
+                                <input type="text" id="middle_name" name="middle_name" value="<?php echo htmlspecialchars($student['middle_name'] ?? ''); ?>">
                             </div>
                             <div class="form-field">
                                 <label for="dob">Date of Birth</label>
-                                <input type="date" id="dob" name="dob" required>
+                                <input type="date" id="dob" name="dob" value="<?php echo htmlspecialchars($student['date_of_birth'] ?? ''); ?>" required>
                             </div>
                             <div class="form-field">
                                 <label for="gender">Gender</label>
                                 <select id="gender" name="gender" required>
                                     <option value="">--Select Gender--</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Male" <?php echo ($student['gender'] ?? '') === 'Male' ? 'selected' : ''; ?>>Male</option>
+                                    <option value="Female" <?php echo ($student['gender'] ?? '') === 'Female' ? 'selected' : ''; ?>>Female</option>
+                                    <option value="Other" <?php echo ($student['gender'] ?? '') === 'Other' ? 'selected' : ''; ?>>Other</option>
                                 </select>
                             </div>
                         </div>
@@ -513,15 +524,15 @@ if (!isset($_SESSION['stud_id'])) {
                         <div class="form-group">
                             <div class="form-field">
                                 <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($student['email']); ?>" required>
                             </div>
                             <div class="form-field">
                                 <label for="contact_number">Contact Number</label>
-                                <input type="text" id="contact_number" name="contact_number" required>
+                                <input type="text" id="contact_number" name="contact_number" value="<?php echo htmlspecialchars($student['phone'] ?? ''); ?>" required>
                             </div>
                             <div class="form-field">
                                 <label for="street">Address</label>
-                                <input type="text" id="street" name="street" required>
+                                <input type="text" id="street" name="street" value="<?php echo htmlspecialchars($student['address'] ?? ''); ?>" required>
                             </div>
                         </div>
                         <div class="buttons">

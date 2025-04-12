@@ -21,9 +21,12 @@ if (isset($_POST['register'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     
-    // Validate inputs
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($confirm_password)) {
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($phone) || empty($address) || empty($date_of_birth) || empty($gender)) {
         $registration_error = "All fields are required";
         $show_registration = true;
     } elseif ($password !== $confirm_password) {
@@ -60,9 +63,9 @@ if (isset($_POST['register'])) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
             // Insert new student
-            $insert_query = "INSERT INTO students (firstname, lastname, email, password) VALUES (?, ?, ?, ?)";
+            $insert_query = "INSERT INTO students (firstname, lastname, email, password, phone, address, date_of_birth, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($insert_query);
-            $stmt->bind_param("ssss", $firstname, $lastname, $email, $hashed_password);
+            $stmt->bind_param("ssssssss", $firstname, $lastname, $email, $hashed_password, $phone, $address, $date_of_birth, $gender);
             
             if ($stmt->execute()) {
                 $registration_success = "Registration successful! You can now login.";
@@ -528,6 +531,27 @@ if (isset($_POST['login'])) {
                             <div class="form-group">
                                 <label for="confirm_password">Confirm Password</label>
                                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date_of_birth">Date of Birth</label>
+                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" id="gender" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
                             </div>
                             <button type="submit" name="register" class="btn btn-primary">Register</button>
                         </form>

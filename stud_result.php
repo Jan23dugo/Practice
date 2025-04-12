@@ -14,6 +14,14 @@ $firstname = $_SESSION['firstname'];
 $lastname = $_SESSION['lastname'];
 $email = $_SESSION['email'];
 
+// Fetch student profile picture
+$query = "SELECT profile_picture FROM students WHERE stud_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $_SESSION['stud_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$student = $result->fetch_assoc();
+
 // Function to get all exam attempts (both released and pending)
 function getExamAttempts($stud_id) {
     global $conn;
@@ -181,7 +189,14 @@ $activePage = 'results';
             justify-content: center;
             color: var(--primary-dark);
             font-weight: bold;
-            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         
         /* Main Layout */
@@ -462,6 +477,39 @@ $activePage = 'results';
             color: var(--text-dark);
             opacity: 0.8;
         }
+
+        /* Profile Menu Styles */
+        .profile-menu {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--gray-light);
+        }
     </style>
 </head>
 <body>
@@ -480,9 +528,31 @@ $activePage = 'results';
                     <a href="#" id="notifications">
                         <span class="material-symbols-rounded">notifications</span>
                     </a>
-                    <a href="#" id="profile-menu">
-                        <div class="profile-icon"><?php echo substr($firstname, 0, 1); ?></div>
-                    </a>
+                    <div class="profile-menu">
+                        <a href="#" id="profile-menu">
+                            <div class="profile-icon">
+                                <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                                    <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                                <?php else: ?>
+                                    <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="stud_dashboard.php" class="dropdown-item">
+                                <span class="material-symbols-rounded">dashboard</span>
+                                Dashboard
+                            </a>
+                            <a href="stud_profile.php" class="dropdown-item">
+                                <span class="material-symbols-rounded">person</span>
+                                Profile
+                            </a>
+                            <a href="stud_logout.php" class="dropdown-item">
+                                <span class="material-symbols-rounded">logout</span>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -492,8 +562,14 @@ $activePage = 'results';
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-profile">
-                <div class="profile-image"><?php echo substr($firstname, 0, 1); ?></div>
-                <h3><?php echo $firstname . ' ' . $lastname; ?></h3>
+                <div class="profile-image">
+                    <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                        <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    <?php else: ?>
+                        <?php echo substr($_SESSION['firstname'], 0, 1); ?>
+                    <?php endif; ?>
+                </div>
+                <h3><?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?></h3>
                 <p>Student</p>
             </div>
             
@@ -526,12 +602,6 @@ $activePage = 'results';
                     <a href="stud_profile.php" class="<?php echo $activePage == 'profile' ? 'active' : ''; ?>">
                         <span class="material-symbols-rounded">person</span>
                         Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="stud_settings.php" class="<?php echo $activePage == 'settings' ? 'active' : ''; ?>">
-                        <span class="material-symbols-rounded">settings</span>
-                        Settings
                     </a>
                 </li>
                 <li>
@@ -658,17 +728,22 @@ $activePage = 'results';
     </footer>
 
     <script>
-        // Toggle mobile menu (for responsive design)
         document.addEventListener('DOMContentLoaded', function() {
-            const profileMenu = document.getElementById('profile-menu');
+            // Profile Menu Toggle
+            const profileMenu = document.querySelector('.profile-menu');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            const profileMenuTrigger = document.querySelector('#profile-menu');
             
-            if (profileMenu) {
-                profileMenu.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sidebar = document.querySelector('.sidebar');
-                    sidebar.classList.toggle('active');
-                });
-            }
+            document.addEventListener('click', function(event) {
+                if (!profileMenu.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+            
+            profileMenuTrigger.addEventListener('click', function(event) {
+                event.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
         });
     </script>
 </body>

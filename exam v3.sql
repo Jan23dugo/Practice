@@ -631,6 +631,13 @@ CREATE TABLE IF NOT EXISTS `students` (
   UNIQUE KEY `unq_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Add new columns to students table
+ALTER TABLE `students`
+ADD COLUMN `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+ADD COLUMN `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+ADD COLUMN `date_of_birth` date DEFAULT NULL,
+ADD COLUMN `gender` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL;
+
 --
 -- Dumping data for table `students`
 --

@@ -31,6 +31,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 $registration = $result->fetch_assoc();
 
+// Fetch student profile picture
+$query = "SELECT profile_picture FROM students WHERE stud_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $_SESSION['stud_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$student = $result->fetch_assoc();
+
 // Active page for sidebar highlighting
 $activePage = 'registration_status';
 ?>
@@ -147,6 +155,14 @@ $activePage = 'registration_status';
             font-size: 28px;
             color: var(--primary-dark);
             font-weight: bold;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .sidebar-menu {
@@ -206,6 +222,14 @@ $activePage = 'registration_status';
             justify-content: center;
             color: var(--primary-dark);
             font-weight: bold;
+            overflow: hidden;
+        }
+
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         /* Page Title Styles */
@@ -489,6 +513,96 @@ $activePage = 'registration_status';
                 padding-bottom: 80px;
             }
         }
+
+        /* Profile Menu Styles */
+        .profile-menu {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a{
+            color: var(--primary);
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--primary); 
+            color: var(--text-light);
+        }
+        
+        #profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        /* No Registration Found Styles */
+        .no-registration {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .no-registration .material-symbols-rounded {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .no-registration h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .no-registration p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .no-registration .btn {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .no-registration .btn:hover {
+            background-color: var(--primary-dark);
+        }
     </style>
 </head>
 <body>
@@ -507,9 +621,31 @@ $activePage = 'registration_status';
                     <a href="#" id="notifications">
                         <span class="material-symbols-rounded">notifications</span>
                     </a>
-                    <a href="#" id="profile-menu">
-                        <div class="profile-icon"><?php echo substr($firstname, 0, 1); ?></div>
-                    </a>
+                    <div class="profile-menu">
+                        <a href="#" id="profile-menu">
+                            <div class="profile-icon">
+                                <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                                    <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                                <?php else: ?>
+                                    <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="stud_dashboard.php" class="dropdown-item">
+                                <span class="material-symbols-rounded">dashboard</span>
+                                Dashboard
+                            </a>
+                            <a href="stud_profile.php" class="dropdown-item">
+                                <span class="material-symbols-rounded">person</span>
+                                Profile
+                            </a>
+                            <a href="stud_logout.php" class="dropdown-item">
+                                <span class="material-symbols-rounded">logout</span>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -519,8 +655,14 @@ $activePage = 'registration_status';
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-profile">
-                <div class="profile-image"><?php echo substr($firstname, 0, 1); ?></div>
-                <h3><?php echo $firstname . ' ' . $lastname; ?></h3>
+                <div class="profile-image">
+                    <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                        <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    <?php else: ?>
+                        <?php echo substr($_SESSION['firstname'], 0, 1); ?>
+                    <?php endif; ?>
+                </div>
+                <h3><?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?></h3>
                 <p>Student</p>
             </div>
             
@@ -683,11 +825,10 @@ $activePage = 'registration_status';
             <?php else: ?>
                 <div class="status-card">
                     <div class="no-registration">
-                        <span class="material-symbols-rounded">assignment_late</span>
+                        <span class="material-symbols-rounded">app_registration</span>
                         <h3>No Registration Found</h3>
-                        <p>You haven't registered for the qualifying exam yet.</p>
-                        <a href="qualiexam_register.php" class="btn btn-primary">
-                            <span class="material-symbols-rounded">app_registration</span>
+                        <p>You haven't registered for the qualifying exam yet. Click below to start your registration.</p>
+                        <a href="qualiexam_register.php" class="btn">
                             Register Now
                         </a>
                     </div>
@@ -704,17 +845,22 @@ $activePage = 'registration_status';
     </footer>
 
     <script>
-        // Toggle mobile menu (for responsive design)
         document.addEventListener('DOMContentLoaded', function() {
-            const profileMenu = document.getElementById('profile-menu');
+            // Profile Menu Toggle
+            const profileMenu = document.querySelector('.profile-menu');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            const profileMenuTrigger = document.querySelector('#profile-menu');
             
-            if (profileMenu) {
-                profileMenu.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sidebar = document.querySelector('.sidebar');
-                    sidebar.classList.toggle('active');
-                });
-            }
+            document.addEventListener('click', function(event) {
+                if (!profileMenu.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+            
+            profileMenuTrigger.addEventListener('click', function(event) {
+                event.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
         });
     </script>
 </body>

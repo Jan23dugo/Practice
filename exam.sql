@@ -626,6 +626,10 @@ CREATE TABLE IF NOT EXISTS `students` (
   `lastname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `gender` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`stud_id`),
   UNIQUE KEY `unq_email` (`email`)
@@ -635,13 +639,13 @@ CREATE TABLE IF NOT EXISTS `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`stud_id`, `firstname`, `lastname`, `email`, `password`, `created_at`) VALUES
-(1, 'Janlloyd', 'Dugo', 'jdugo23@gmail.com', '$2y$10$hk6iwl9PFJVdozSiQNOBLuWsgkNQnjDuvgx0dMVag38BFjN0fI8Fu', '2025-03-08 23:48:15'),
-(2, 'Janlloyd', 'Dugong', 'janlloyddugo101@gmail.com', '$2y$10$74HkKhTuM/tAo9cUnv6CG.t4QwARhnkYuJevV.Dm580WHU.N2pxoS', '2025-03-09 07:12:58'),
-(3, 'Jan', 'Dugs', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '$2y$10$xB4C/y0/sTs095cHn7pud.2k0..cfq1rN3h17xl29ZuVIv5mYfn/.', '2025-04-04 05:47:50'),
-(4, 'lloyd ', 'dugo', 'janlloyddugo3@gmail.com', '$2y$10$WPkERYgswQSkc9cSk97vPO0OXHIj2fVyAMABneFYljZQ2soLOAw..', '2025-04-04 06:05:08'),
-(5, 'jani', 'dugi', 'janlloyddugo11@gmail.com', '$2y$10$d4lhTMG6VVjp6iNX1nwNAOpbSeE.qjLWXFtWsecGDIY/GvfILUrKe', '2025-04-04 07:41:03'),
-(6, 'gan', 'llody', 'janlloyddugo2@gmail.com', '$2y$10$GSQ64peIt.8N1/U4XJmb5ujrf4oJ8SLl9m5QvXFXviKmkLT4xle5y', '2025-04-04 11:35:05');
+INSERT INTO `students` (`stud_id`, `firstname`, `lastname`, `email`, `password`, `phone`, `address`, `date_of_birth`, `gender`, `created_at`) VALUES
+(1, 'Janlloyd', 'Dugo', 'jdugo23@gmail.com', '$2y$10$hk6iwl9PFJVdozSiQNOBLuWsgkNQnjDuvgx0dMVag38BFjN0fI8Fu', '09667311122', 'C Raymundo Ave', '2025-03-20', 'Male', '2025-03-08 23:48:15'),
+(2, 'Janlloyd', 'Dugong', 'janlloyddugo101@gmail.com', '$2y$10$74HkKhTuM/tAo9cUnv6CG.t4QwARhnkYuJevV.Dm580WHU.N2pxoS', '09667311956', 'c raymundo', '2025-03-09', 'Male', '2025-03-09 07:12:58'),
+(3, 'Jan', 'Dugs', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '$2y$10$xB4C/y0/sTs095cHn7pud.2k0..cfq1rN3h17xl29ZuVIv5mYfn/.', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 05:47:50'),
+(4, 'lloyd ', 'dugo', 'janlloyddugo3@gmail.com', '$2y$10$WPkERYgswQSkc9cSk97vPO0OXHIj2fVyAMABneFYljZQ2soLOAw..', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 06:05:08'),
+(5, 'jani', 'dugi', 'janlloyddugo11@gmail.com', '$2y$10$d4lhTMG6VVjp6iNX1nwNAOpbSeE.qjLWXFtWsecGDIY/GvfILUrKe', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 07:41:03'),
+(6, 'gan', 'llody', 'janlloyddugo2@gmail.com', '$2y$10$GSQ64peIt.8N1/U4XJmb5ujrf4oJ8SLl9m5QvXFXviKmkLT4xle5y', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 11:35:05');
 
 -- --------------------------------------------------------
 
