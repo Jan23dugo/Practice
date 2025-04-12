@@ -344,32 +344,81 @@ function extractSubjects($text) {
     
     $subjects = [];
     
-    // Remove code block markers if present
-    $text = preg_replace('/```json\s*|\s*```/', '', $text);
-    
-    // Check if the text is JSON and contains subjects
+    // First try to parse as JSON directly
     $data = json_decode($text, true);
-    if (json_last_error() === JSON_ERROR_NONE && isset($data['subjects'])) {
-        logExtraction("Successfully parsed JSON subjects", [
-            'count' => count($data['subjects'])
-        ]);
+    if (json_last_error() === JSON_ERROR_NONE) {
+        logExtraction("Input appears to be JSON, checking structure");
         
-        foreach ($data['subjects'] as $subject) {
-            $subjects[] = [
-                'subject_code' => $subject['subject_code'],
-                'subject_description' => $subject['subject_description'],
-                'units' => floatval($subject['units']),
-                'grade' => floatval($subject['grade'])
-            ];
+        // If JSON has subjects array directly
+        if (isset($data['subjects'])) {
+            logExtraction("Found direct subjects array in JSON");
+            foreach ($data['subjects'] as $subject) {
+                $subjects[] = [
+                    'subject_code' => $subject['subject_code'],
+                    'subject_description' => $subject['subject_description'],
+                    'units' => floatval($subject['units']),
+                    'grade' => floatval($subject['grade'])
+                ];
+            }
+            return $subjects;
         }
-        return $subjects;
+        
+        // Check for Azure Document Intelligence structure
+        if (isset($data['analyzeResult']) && isset($data['analyzeResult']['documents']) 
+            && !empty($data['analyzeResult']['documents'])) {
+            
+            logExtraction("Found Azure Document Intelligence structure");
+            $document = $data['analyzeResult']['documents'][0];
+            
+            if (isset($document['fields']) && isset($document['fields']['extractTable']) 
+                && isset($document['fields']['extractTable']['valueArray'])) {
+                
+                logExtraction("Found table data in Azure results");
+                $rows = $document['fields']['extractTable']['valueArray'];
+                
+                // Skip the first row if it's a header
+                for ($i = 1; $i < count($rows); $i++) {
+                    if (isset($rows[$i]['valueObject'])) {
+                        $rowData = $rows[$i]['valueObject'];
+                        
+                        // Map the column names to our fields
+                        $subject_code = isset($rowData['Code']['valueString']) ? trim($rowData['Code']['valueString']) : '';
+                        $subject_description = isset($rowData['Description']['valueString']) ? trim($rowData['Description']['valueString']) : '';
+                        $grade = isset($rowData['Grades']['valueString']) ? trim($rowData['Grades']['valueString']) : '';
+                        $units = isset($rowData['Units']['valueString']) ? floatval($rowData['Units']['valueString']) : 0;
+                        
+                        // Check if this is a continuation line
+                        if (empty($subject_code) && !empty($subject_description) && !empty($subjects)) {
+                            // Append this description to the previous subject
+                            $lastIndex = count($subjects) - 1;
+                            $subjects[$lastIndex]['subject_description'] .= ' ' . $subject_description;
+                            continue;
+                        }
+                        
+                        // Only add if we have some data
+                        if (!empty($subject_code) || !empty($subject_description)) {
+                            $subjects[] = [
+                                'subject_code' => $subject_code,
+                                'subject_description' => $subject_description,
+                                'grade' => floatval(str_replace(',', '.', $grade)),
+                                'units' => $units
+                            ];
+                        }
+                    }
+                }
+                
+                if (!empty($subjects)) {
+                    logExtraction("Successfully extracted subjects from Azure format", ['count' => count($subjects)]);
+                    return $subjects;
+                }
+            }
+        }
     }
 
-    logExtraction("Falling back to text parsing", [
-        'text_length' => strlen($text)
-    ]);
+    // If we get here, try parsing as plain text
+    logExtraction("Falling back to text parsing", ['text_length' => strlen($text)]);
 
-    // If not JSON, try parsing as plain text
+    // Original text parsing code
     $lines = array_map('trim', explode("\n", $text));
     
     foreach ($lines as $line) {
@@ -391,10 +440,7 @@ function extractSubjects($text) {
         }
     }
     
-    logExtraction("Extraction complete", [
-        'subjects_found' => count($subjects)
-    ]);
-    
+    logExtraction("Extraction complete", ['subjects_found' => count($subjects)]);
     return $subjects;
 }
 
@@ -991,54 +1037,148 @@ function addDebugOutput($message, $data = null) {
 // Add this near the top of your file after the includes
 define('UNSTRACT_API_KEY', 'dff56a8a-6d02-4089-bd87-996d7be8b1bb');
 
-// Update the performOCR function
+// Replace the existing performOCR function with this Azure Document Intelligence version
 function performOCR($filePath) {
     try {
-        logExtraction("Starting OCR process for file", ['path' => $filePath]);
+        logExtraction("Starting Azure Document Intelligence OCR process for file", ['path' => $filePath]);
 
-        // Load the Google Cloud Document AI client library
-        require 'vendor/autoload.php';
+        // Azure Document Intelligence API credentials
+        $endpoint = "https://streamsocr.cognitiveservices.azure.com/";
+        $apiKey = "7YOiSya9zTZO2WkLje6TdmiSaoG0kKLvcWy2kdFuMXqzKcu9Jr0XJQQJ99BDACqBBLyXJ3w3AAALACOGbhSw";
+        $modelId = "transcript_extractor_v3";
 
-        // Set the path to your service account key file
-        $keyFilePath = __DIR__ . '/config/document-ai-demo-456309-16d7de1fbb5e.json';
+        // Read file content
+        $fileData = file_get_contents($filePath);
 
-        // Create a client
-        $client = new Google\Cloud\DocumentAI\V1\DocumentUnderstandingServiceClient([
-            'credentials' => $keyFilePath
+        // Get operation location from Azure
+        $operationLocation = analyzeDocument($endpoint, $apiKey, $modelId, $fileData);
+        
+        // Get analysis results
+        $results = getResults($operationLocation, $apiKey);
+        
+        // Log the raw result structure to debug
+        logExtraction("Raw result structure", [
+            'status' => $results['status'],
+            'has_documents' => isset($results['analyzeResult']['documents']),
+            'document_count' => isset($results['analyzeResult']['documents']) ? count($results['analyzeResult']['documents']) : 0,
+            'has_content' => isset($results['analyzeResult']['content']),
+            'keys' => array_keys($results['analyzeResult'])
         ]);
-
-        // Read the file content
-        $fileContent = file_get_contents($filePath);
-
-        // Configure the request
-        $inputConfig = new Google\Cloud\DocumentAI\V1\InputConfig();
-        $inputConfig->setMimeType('application/pdf'); // or 'image/jpeg', 'image/png' based on your file type
-        $inputConfig->setContent($fileContent);
-
-        $request = new Google\Cloud\DocumentAI\V1\ProcessRequest();
-        $request->setName('projects/document-ai-demo-456309/locations/us/processors/YOUR_PROCESSOR_ID');
-        $request->setRawDocument($inputConfig);
-
-        // Process the document
-        $response = $client->processDocument($request);
-        $document = $response->getDocument();
-
-        // Extract text from the document
-        $text = $document->getText();
-
-        logExtraction("OCR completed successfully", [
-            'text_length' => strlen($text)
+        
+        // Extract structured data if available
+        if ($results['status'] === 'succeeded' && 
+            isset($results['analyzeResult']['documents']) && 
+            !empty($results['analyzeResult']['documents'])) {
+            
+            $document = $results['analyzeResult']['documents'][0];
+            
+            // Log document fields
+            if (isset($document['fields'])) {
+                logExtraction("Document fields available", [
+                    'field_names' => array_keys($document['fields'])
+                ]);
+                
+                // Check for our table field
+                if (isset($document['fields']['extractTable'])) {
+                    // Return the full results as JSON for structured processing
+                    $json = json_encode($results);
+                    logExtraction("Returning structured JSON data", [
+                        'length' => strlen($json)
+                    ]);
+                    return $json;
+                }
+            }
+        }
+        
+        // If we get here, fall back to content text
+        if (isset($results['analyzeResult']['content'])) {
+            $text = $results['analyzeResult']['content'];
+            logExtraction("Falling back to raw text content", [
+                'text_sample' => substr($text, 0, 100) . '...',
+                'text_length' => strlen($text)
+            ]);
+            return $text;
+        }
+        
+        // Last resort - return the whole response as JSON
+        $json = json_encode($results);
+        logExtraction("No structured data or content found, returning full response", [
+            'json_length' => strlen($json)
         ]);
-
-        return $text;
-
+        return $json;
     } catch (Exception $e) {
-        logExtraction("Error in OCR process", [
+        logExtraction("Error in Azure OCR process", [
             'error' => $e->getMessage(),
             'trace' => $e->getTraceAsString()
         ]);
         throw $e;
     }
+}
+
+// Add these functions from test_ocr.php
+function analyzeDocument($endpoint, $apiKey, $modelId, $fileData) {
+    // Create the URL for the analyze operation
+    $url = $endpoint . "documentintelligence/documentModels/" . $modelId . ":analyze?api-version=2024-11-30";
+    
+    // Set up the headers
+    $headers = [
+        "Content-Type: application/octet-stream",
+        "Ocp-Apim-Subscription-Key: " . $apiKey
+    ];
+
+    // Initialize cURL
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fileData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, true);
+
+    // Execute the request
+    $response = curl_exec($ch);
+    $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+    $headers_str = substr($response, 0, $header_size);
+    $body = substr($response, $header_size);
+    
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // Get the operation-location header
+    if (preg_match('/operation-location: (.*)/i', $headers_str, $matches)) {
+        return trim($matches[1]);
+    } else {
+        throw new Exception("Failed to get operation location. HTTP Status: " . $http_code . "\nResponse: " . $body);
+    }
+}
+
+function getResults($operationLocation, $apiKey, $maxAttempts = 30) {
+    $headers = [
+        "Ocp-Apim-Subscription-Key: " . $apiKey
+    ];
+    
+    for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+        $ch = curl_init($operationLocation);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        
+        $resultData = json_decode($result, true);
+        
+        if (isset($resultData['status'])) {
+            if ($resultData['status'] === 'succeeded') {
+                return $resultData;
+            } else if ($resultData['status'] === 'failed') {
+                throw new Exception("Analysis failed: " . json_encode($resultData));
+            }
+        }
+        
+        // Wait before next attempt
+        $waitTime = min($attempt, 4); // Cap the wait time at 4 seconds
+        sleep($waitTime);
+    }
+    
+    throw new Exception("Operation timed out after " . $maxAttempts . " attempts");
 }
 
 function preprocessImage($imagePath) {
