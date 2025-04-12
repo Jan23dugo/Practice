@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Apr 05, 2025 at 11:07 PM
--- Server version: 9.1.0
--- PHP Version: 8.3.14
+-- Host: 127.0.0.1
+-- Generation Time: Apr 13, 2025 at 12:02 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,15 +27,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `admin_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`admin_id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -50,23 +47,19 @@ INSERT INTO `admin` (`admin_id`, `email`, `password`, `created_at`) VALUES
 -- Table structure for table `admin_login_attempts`
 --
 
-DROP TABLE IF EXISTS `admin_login_attempts`;
-CREATE TABLE IF NOT EXISTS `admin_login_attempts` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin_login_attempts` (
+  `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `login_attempts` int DEFAULT '0',
-  `last_attempt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `idx_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `login_attempts` int(11) DEFAULT 0,
+  `last_attempt` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_login_attempts`
 --
 
 INSERT INTO `admin_login_attempts` (`id`, `email`, `login_attempts`, `last_attempt`) VALUES
-(1, 'pupccisfaculty@gmail.com', 0, '2025-04-04 05:50:18');
+(1, 'pupccisfaculty@gmail.com', 0, '2025-04-11 14:56:51');
 
 -- --------------------------------------------------------
 
@@ -74,17 +67,14 @@ INSERT INTO `admin_login_attempts` (`id`, `email`, `login_attempts`, `last_attem
 -- Table structure for table `admin_login_logs`
 --
 
-DROP TABLE IF EXISTS `admin_login_logs`;
-CREATE TABLE IF NOT EXISTS `admin_login_logs` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `admin_id` int DEFAULT NULL,
+CREATE TABLE `admin_login_logs` (
+  `id` int(11) NOT NULL,
+  `admin_id` int(11) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `ip_address` varchar(45) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `admin_id` (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_login_logs`
@@ -97,7 +87,8 @@ INSERT INTO `admin_login_logs` (`id`, `admin_id`, `email`, `ip_address`, `status
 (4, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-20 06:32:31'),
 (5, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-03-30 02:22:54'),
 (6, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-04-01 06:56:46'),
-(7, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-04-04 05:50:48');
+(7, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-04-04 05:50:48'),
+(8, 1, 'pupccisfaculty@gmail.com', '::1', 'success', '2025-04-11 14:57:38');
 
 -- --------------------------------------------------------
 
@@ -105,16 +96,14 @@ INSERT INTO `admin_login_logs` (`id`, `admin_id`, `email`, `ip_address`, `status
 -- Table structure for table `announcements`
 --
 
-DROP TABLE IF EXISTS `announcements`;
-CREATE TABLE IF NOT EXISTS `announcements` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `announcements` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` enum('active','inactive') DEFAULT 'active',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` enum('active','inactive') DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `announcements`
@@ -129,16 +118,13 @@ INSERT INTO `announcements` (`id`, `title`, `content`, `created_at`, `updated_at
 -- Table structure for table `answers`
 --
 
-DROP TABLE IF EXISTS `answers`;
-CREATE TABLE IF NOT EXISTS `answers` (
-  `answer_id` int NOT NULL AUTO_INCREMENT,
-  `question_id` int NOT NULL,
+CREATE TABLE `answers` (
+  `answer_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
   `answer_text` text NOT NULL,
-  `is_correct` tinyint(1) DEFAULT '0',
-  `position` int NOT NULL,
-  PRIMARY KEY (`answer_id`),
-  KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `is_correct` tinyint(1) DEFAULT 0,
+  `position` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `answers`
@@ -230,15 +216,13 @@ INSERT INTO `answers` (`answer_id`, `question_id`, `answer_text`, `is_correct`, 
 -- Table structure for table `coded_courses`
 --
 
-DROP TABLE IF EXISTS `coded_courses`;
-CREATE TABLE IF NOT EXISTS `coded_courses` (
-  `course_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `coded_courses` (
+  `course_id` int(11) NOT NULL,
   `subject_code` varchar(100) NOT NULL,
   `subject_description` varchar(255) NOT NULL,
   `program` varchar(50) DEFAULT NULL,
-  `units` decimal(5,2) NOT NULL,
-  PRIMARY KEY (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `units` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `coded_courses`
@@ -282,25 +266,23 @@ INSERT INTO `coded_courses` (`course_id`, `subject_code`, `subject_description`,
 -- Table structure for table `exams`
 --
 
-DROP TABLE IF EXISTS `exams`;
-CREATE TABLE IF NOT EXISTS `exams` (
-  `exam_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `exams` (
+  `exam_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `exam_type` enum('tech','non-tech') NOT NULL,
-  `is_scheduled` tinyint(1) DEFAULT '0',
+  `is_scheduled` tinyint(1) DEFAULT 0,
   `scheduled_date` date DEFAULT NULL,
   `scheduled_time` time DEFAULT NULL,
-  `duration` int DEFAULT '60' COMMENT 'Duration in minutes',
+  `duration` int(11) DEFAULT 60 COMMENT 'Duration in minutes',
   `cover_image` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `randomize_questions` tinyint(1) DEFAULT '0',
-  `randomize_choices` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `randomize_questions` tinyint(1) DEFAULT 0,
+  `randomize_choices` tinyint(1) DEFAULT 0,
   `passing_score_type` enum('percentage','points') DEFAULT NULL,
-  `passing_score` int DEFAULT NULL,
-  PRIMARY KEY (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `passing_score` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `exams`
@@ -309,7 +291,8 @@ CREATE TABLE IF NOT EXISTS `exams` (
 INSERT INTO `exams` (`exam_id`, `title`, `description`, `exam_type`, `is_scheduled`, `scheduled_date`, `scheduled_time`, `duration`, `cover_image`, `created_at`, `updated_at`, `randomize_questions`, `randomize_choices`, `passing_score_type`, `passing_score`) VALUES
 (21, 'This is the final test', 'No more bugs', 'non-tech', 1, '2025-04-04', '23:42:00', 60, 'assets/images/default-exam-cover.jpg', '2025-04-02 06:19:49', '2025-04-03 03:47:12', 1, 1, 'percentage', 70),
 (23, 'Programming ', 'dddddd', 'non-tech', 1, '2025-04-04', '08:40:00', 60, '0', '2025-04-03 05:16:09', '2025-04-03 11:39:49', 0, 0, 'percentage', 70),
-(24, 'Tech Exam', 'Carefully answer the questions', 'non-tech', 0, NULL, NULL, 60, 'uploads/covers/1743727309_images (2).jpg', '2025-04-03 23:41:56', '2025-04-04 00:41:49', 1, 1, 'percentage', 70);
+(24, 'Tech Exam', 'Carefully answer the questions', 'non-tech', 1, '2025-04-30', '09:30:00', 60, 'uploads/covers/1743727309_images (2).jpg', '2025-04-03 23:41:56', '2025-04-11 13:38:55', 1, 1, 'percentage', 70),
+(28, 'Untitled Quiz', '', 'tech', 0, NULL, NULL, 60, '0', '2025-04-11 11:28:49', '2025-04-11 11:28:49', 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,25 +300,21 @@ INSERT INTO `exams` (`exam_id`, `title`, `description`, `exam_type`, `is_schedul
 -- Table structure for table `exam_assignments`
 --
 
-DROP TABLE IF EXISTS `exam_assignments`;
-CREATE TABLE IF NOT EXISTS `exam_assignments` (
-  `assignment_id` int NOT NULL AUTO_INCREMENT,
-  `exam_id` int NOT NULL,
-  `student_id` int NOT NULL,
-  `assigned_date` datetime DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `exam_assignments` (
+  `assignment_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `assigned_date` datetime DEFAULT current_timestamp(),
   `completion_status` enum('pending','completed','expired') DEFAULT 'pending',
-  `is_released` tinyint(1) DEFAULT '0',
+  `is_released` tinyint(1) DEFAULT 0,
   `completion_time` datetime DEFAULT NULL,
   `passed` tinyint(1) DEFAULT NULL,
   `final_score` decimal(5,2) DEFAULT NULL,
-  `auto_submitted` tinyint(1) DEFAULT '0',
+  `auto_submitted` tinyint(1) DEFAULT 0,
   `auto_submission_reason` varchar(255) DEFAULT NULL,
-  `answered_questions` int DEFAULT '0',
-  `total_questions` int DEFAULT '0',
-  PRIMARY KEY (`assignment_id`),
-  KEY `exam_id` (`exam_id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `answered_questions` int(11) DEFAULT 0,
+  `total_questions` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `exam_assignments`
@@ -343,7 +322,9 @@ CREATE TABLE IF NOT EXISTS `exam_assignments` (
 
 INSERT INTO `exam_assignments` (`assignment_id`, `exam_id`, `student_id`, `assigned_date`, `completion_status`, `is_released`, `completion_time`, `passed`, `final_score`, `auto_submitted`, `auto_submission_reason`, `answered_questions`, `total_questions`) VALUES
 (54, 23, 79, '2025-04-03 19:39:49', 'completed', 0, '2025-04-03 19:41:12', 1, 100.00, 0, NULL, 1, 1),
-(55, 24, 79, '2025-04-04 07:47:58', 'completed', 0, '2025-04-04 08:56:21', 0, 9.09, 0, NULL, 1, 21);
+(55, 24, 79, '2025-04-04 07:47:58', 'completed', 0, '2025-04-04 08:56:21', 0, 9.09, 0, NULL, 1, 21),
+(56, 24, 80, '2025-04-11 21:38:55', 'pending', 0, NULL, NULL, NULL, 0, NULL, 0, 0),
+(57, 24, 81, '2025-04-11 21:38:55', 'pending', 0, NULL, NULL, NULL, 0, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -351,17 +332,13 @@ INSERT INTO `exam_assignments` (`assignment_id`, `exam_id`, `student_id`, `assig
 -- Table structure for table `exam_results`
 --
 
-DROP TABLE IF EXISTS `exam_results`;
-CREATE TABLE IF NOT EXISTS `exam_results` (
-  `result_id` int NOT NULL AUTO_INCREMENT,
-  `exam_id` int NOT NULL,
-  `student_id` int NOT NULL,
-  `score` int DEFAULT NULL,
-  `total_questions` int DEFAULT NULL,
-  `completion_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`result_id`),
-  KEY `exam_id` (`exam_id`),
-  KEY `student_id` (`student_id`)
+CREATE TABLE `exam_results` (
+  `result_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `score` int(11) DEFAULT NULL,
+  `total_questions` int(11) DEFAULT NULL,
+  `completion_time` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -370,19 +347,16 @@ CREATE TABLE IF NOT EXISTS `exam_results` (
 -- Table structure for table `matched_courses`
 --
 
-DROP TABLE IF EXISTS `matched_courses`;
-CREATE TABLE IF NOT EXISTS `matched_courses` (
-  `matched_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `matched_courses` (
+  `matched_id` int(11) NOT NULL,
   `subject_code` varchar(100) NOT NULL,
   `original_code` varchar(20) DEFAULT NULL,
   `subject_description` varchar(255) NOT NULL,
   `units` decimal(5,2) NOT NULL,
   `grade` decimal(4,2) DEFAULT NULL,
-  `student_id` int NOT NULL,
-  `matched_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`matched_id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `student_id` int(11) NOT NULL,
+  `matched_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -390,15 +364,12 @@ CREATE TABLE IF NOT EXISTS `matched_courses` (
 -- Table structure for table `programming_questions`
 --
 
-DROP TABLE IF EXISTS `programming_questions`;
-CREATE TABLE IF NOT EXISTS `programming_questions` (
-  `programming_id` int NOT NULL AUTO_INCREMENT,
-  `question_id` int NOT NULL,
-  `starter_code` text,
-  `language` varchar(50) DEFAULT 'python',
-  PRIMARY KEY (`programming_id`),
-  KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `programming_questions` (
+  `programming_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `starter_code` text DEFAULT NULL,
+  `language` varchar(50) DEFAULT 'python'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `programming_questions`
@@ -414,19 +385,16 @@ INSERT INTO `programming_questions` (`programming_id`, `question_id`, `starter_c
 -- Table structure for table `questions`
 --
 
-DROP TABLE IF EXISTS `questions`;
-CREATE TABLE IF NOT EXISTS `questions` (
-  `question_id` int NOT NULL AUTO_INCREMENT,
-  `exam_id` int NOT NULL,
+CREATE TABLE `questions` (
+  `question_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
   `question_text` text NOT NULL,
   `question_type` enum('multiple-choice','true-false','programming') NOT NULL,
-  `points` int DEFAULT '1',
-  `position` int DEFAULT '0',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`question_id`),
-  KEY `exam_id` (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `points` int(11) DEFAULT 1,
+  `position` int(11) DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `questions`
@@ -468,19 +436,15 @@ INSERT INTO `questions` (`question_id`, `exam_id`, `question_text`, `question_ty
 -- Table structure for table `question_bank`
 --
 
-DROP TABLE IF EXISTS `question_bank`;
-CREATE TABLE IF NOT EXISTS `question_bank` (
-  `question_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `question_bank` (
+  `question_id` int(11) NOT NULL,
   `question_text` text NOT NULL,
   `question_type` enum('multiple-choice','true-false','programming') NOT NULL,
   `category` varchar(100) DEFAULT NULL,
-  `points` int DEFAULT '1',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`question_id`),
-  KEY `idx_question_type` (`question_type`),
-  KEY `idx_category` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `points` int(11) DEFAULT 1,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank`
@@ -497,16 +461,13 @@ INSERT INTO `question_bank` (`question_id`, `question_text`, `question_type`, `c
 -- Table structure for table `question_bank_answers`
 --
 
-DROP TABLE IF EXISTS `question_bank_answers`;
-CREATE TABLE IF NOT EXISTS `question_bank_answers` (
-  `answer_id` int NOT NULL AUTO_INCREMENT,
-  `question_id` int NOT NULL,
+CREATE TABLE `question_bank_answers` (
+  `answer_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
   `answer_text` text NOT NULL,
-  `is_correct` tinyint(1) DEFAULT '0',
-  `position` int NOT NULL,
-  PRIMARY KEY (`answer_id`),
-  KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `is_correct` tinyint(1) DEFAULT 0,
+  `position` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank_answers`
@@ -526,15 +487,12 @@ INSERT INTO `question_bank_answers` (`answer_id`, `question_id`, `answer_text`, 
 -- Table structure for table `question_bank_programming`
 --
 
-DROP TABLE IF EXISTS `question_bank_programming`;
-CREATE TABLE IF NOT EXISTS `question_bank_programming` (
-  `programming_id` int NOT NULL AUTO_INCREMENT,
-  `question_id` int NOT NULL,
-  `starter_code` text,
-  `language` varchar(50) NOT NULL,
-  PRIMARY KEY (`programming_id`),
-  KEY `question_id` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `question_bank_programming` (
+  `programming_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `starter_code` text DEFAULT NULL,
+  `language` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank_programming`
@@ -549,17 +507,14 @@ INSERT INTO `question_bank_programming` (`programming_id`, `question_id`, `start
 -- Table structure for table `question_bank_test_cases`
 --
 
-DROP TABLE IF EXISTS `question_bank_test_cases`;
-CREATE TABLE IF NOT EXISTS `question_bank_test_cases` (
-  `test_case_id` int NOT NULL AUTO_INCREMENT,
-  `programming_id` int NOT NULL,
-  `input` text,
+CREATE TABLE `question_bank_test_cases` (
+  `test_case_id` int(11) NOT NULL,
+  `programming_id` int(11) NOT NULL,
+  `input` text DEFAULT NULL,
   `expected_output` text NOT NULL,
-  `is_hidden` tinyint(1) DEFAULT '0',
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`test_case_id`),
-  KEY `programming_id` (`programming_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `is_hidden` tinyint(1) DEFAULT 0,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question_bank_test_cases`
@@ -575,16 +530,15 @@ INSERT INTO `question_bank_test_cases` (`test_case_id`, `programming_id`, `input
 -- Table structure for table `register_studentsqe`
 --
 
-DROP TABLE IF EXISTS `register_studentsqe`;
-CREATE TABLE IF NOT EXISTS `register_studentsqe` (
-  `student_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `register_studentsqe` (
+  `student_id` int(11) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) DEFAULT NULL,
   `gender` varchar(20) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `contact_number` varchar(20) DEFAULT NULL,
+  `contact_number` varchar(11) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
   `student_type` varchar(100) DEFAULT NULL,
   `previous_school` varchar(255) DEFAULT NULL,
@@ -595,14 +549,10 @@ CREATE TABLE IF NOT EXISTS `register_studentsqe` (
   `school_id` varchar(255) DEFAULT NULL,
   `reference_id` varchar(255) DEFAULT NULL,
   `is_tech` tinyint(1) DEFAULT NULL,
-  `registration_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `registration_date` timestamp NULL DEFAULT current_timestamp(),
   `status` varchar(20) NOT NULL DEFAULT 'pending',
-  `stud_id` int DEFAULT NULL,
-  PRIMARY KEY (`student_id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `reference_id` (`reference_id`),
-  KEY `stud_id` (`stud_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `stud_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `register_studentsqe`
@@ -611,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `register_studentsqe` (
 INSERT INTO `register_studentsqe` (`student_id`, `last_name`, `first_name`, `middle_name`, `gender`, `dob`, `email`, `contact_number`, `street`, `student_type`, `previous_school`, `year_level`, `previous_program`, `desired_program`, `tor`, `school_id`, `reference_id`, `is_tech`, `registration_date`, `status`, `stud_id`) VALUES
 (79, 'Dugo', 'Janlloyd', 'Yamoyam', 'Male', '2025-03-20', 'jdugo23@gmail.com', '09667311122', 'C Raymundo Ave', 'transferee', 'University of Perpetual', '1', 'Bachelor of Science in Physics (BSP)', 'BSIT', 'uploads/tor/Screenshot 2024-11-08 194747.png', 'uploads/school_id/449292499_481139171214456_1108316609890498134_n.png', 'CCIS-2025-64341', 0, '2025-03-11 14:02:42', 'accepted', 1),
 (80, 'fff', 'fvvvv', 'a', 'Male', '2025-04-30', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '09667311956', 'c raymundo', 'transferee', 'Polytechnic University of the Philippines', '1', 'Bachelor in Advertising and Public Relation (BAPR)', 'BSIT', 'uploads/tor/Screenshot 2024-10-18 080627.png', 'uploads/school_id/449292499_481139171214456_1108316609890498134_n.png', 'CCIS-2025-50935', 0, '2025-04-04 05:49:14', 'accepted', 3),
-(81, 'lesly', 'dugo', 'C.', 'Female', '2025-04-01', 'janlloyddugo3@gmail.com', '09667311956', 'c raymundo', 'transferee', 'Technological University of the Philippines', '1', 'Bachelor of Science in Entrepreneurship (BSEntrep)', 'BSIT', 'uploads/tor/Screenshot 2024-11-10 192747.png', 'uploads/school_id/449467909_1205163000647861_8408110911620157242_n.png', 'CCIS-2025-36864', 0, '2025-04-04 06:14:22', 'accepted', 4);
+(81, 'lesly', 'dugo', 'C.', 'Female', '2025-04-01', 'janlloyddugo3@gmail.com', '09667311956', 'c raymundo', 'transferee', 'Technological University of the Philippines', '1', 'Bachelor of Science in Entrepreneurship (BSEntrep)', 'BSIT', 'uploads/tor/Screenshot 2024-11-10 192747.png', 'uploads/school_id/449467909_1205163000647861_8408110911620157242_n.png', 'CCIS-2025-36864', 0, '2025-04-04 06:14:22', 'pending', 4);
 
 -- --------------------------------------------------------
 
@@ -619,33 +569,33 @@ INSERT INTO `register_studentsqe` (`student_id`, `last_name`, `first_name`, `mid
 -- Table structure for table `students`
 --
 
-DROP TABLE IF EXISTS `students`;
-CREATE TABLE IF NOT EXISTS `students` (
-  `stud_id` int NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `lastname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+CREATE TABLE `students` (
+  `stud_id` int(11) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `profile_picture` varchar(255) DEFAULT NULL,
+  `contact_number` varchar(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
-  `gender` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`stud_id`),
-  UNIQUE KEY `unq_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `gender` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`stud_id`, `firstname`, `lastname`, `email`, `password`, `phone`, `address`, `date_of_birth`, `gender`, `created_at`) VALUES
-(1, 'Janlloyd', 'Dugo', 'jdugo23@gmail.com', '$2y$10$hk6iwl9PFJVdozSiQNOBLuWsgkNQnjDuvgx0dMVag38BFjN0fI8Fu', '09667311122', 'C Raymundo Ave', '2025-03-20', 'Male', '2025-03-08 23:48:15'),
-(2, 'Janlloyd', 'Dugong', 'janlloyddugo101@gmail.com', '$2y$10$74HkKhTuM/tAo9cUnv6CG.t4QwARhnkYuJevV.Dm580WHU.N2pxoS', '09667311956', 'c raymundo', '2025-03-09', 'Male', '2025-03-09 07:12:58'),
-(3, 'Jan', 'Dugs', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '$2y$10$xB4C/y0/sTs095cHn7pud.2k0..cfq1rN3h17xl29ZuVIv5mYfn/.', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 05:47:50'),
-(4, 'lloyd ', 'dugo', 'janlloyddugo3@gmail.com', '$2y$10$WPkERYgswQSkc9cSk97vPO0OXHIj2fVyAMABneFYljZQ2soLOAw..', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 06:05:08'),
-(5, 'jani', 'dugi', 'janlloyddugo11@gmail.com', '$2y$10$d4lhTMG6VVjp6iNX1nwNAOpbSeE.qjLWXFtWsecGDIY/GvfILUrKe', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 07:41:03'),
-(6, 'gan', 'llody', 'janlloyddugo2@gmail.com', '$2y$10$GSQ64peIt.8N1/U4XJmb5ujrf4oJ8SLl9m5QvXFXviKmkLT4xle5y', '09667311956', 'c raymundo', '2025-04-04', 'Male', '2025-04-04 11:35:05');
+INSERT INTO `students` (`stud_id`, `firstname`, `lastname`, `email`, `password`, `created_at`, `profile_picture`, `contact_number`, `address`, `date_of_birth`, `gender`) VALUES
+(1, 'Janlloyd', 'Dugo', 'jdugo23@gmail.com', '$2y$10$hk6iwl9PFJVdozSiQNOBLuWsgkNQnjDuvgx0dMVag38BFjN0fI8Fu', '2025-03-08 23:48:15', NULL, NULL, NULL, NULL, NULL),
+(2, 'Janlloyd', 'Dugong', 'janlloyddugo101@gmail.com', '$2y$10$74HkKhTuM/tAo9cUnv6CG.t4QwARhnkYuJevV.Dm580WHU.N2pxoS', '2025-03-09 07:12:58', NULL, NULL, NULL, NULL, NULL),
+(3, 'Jan', 'Dugs', 'janlloydydugo@iskolarngbayan.pup.edu.ph', '$2y$10$xB4C/y0/sTs095cHn7pud.2k0..cfq1rN3h17xl29ZuVIv5mYfn/.', '2025-04-04 05:47:50', NULL, NULL, NULL, NULL, NULL),
+(4, 'lloyd ', 'dugo', 'janlloyddugo3@gmail.com', '$2y$10$WPkERYgswQSkc9cSk97vPO0OXHIj2fVyAMABneFYljZQ2soLOAw..', '2025-04-04 06:05:08', NULL, NULL, NULL, NULL, NULL),
+(5, 'jani', 'dugi', 'janlloyddugo11@gmail.com', '$2y$10$d4lhTMG6VVjp6iNX1nwNAOpbSeE.qjLWXFtWsecGDIY/GvfILUrKe', '2025-04-04 07:41:03', NULL, NULL, NULL, NULL, NULL),
+(6, 'gan', 'llody', 'janlloyddugo2@gmail.com', '$2y$10$GSQ64peIt.8N1/U4XJmb5ujrf4oJ8SLl9m5QvXFXviKmkLT4xle5y', '2025-04-04 11:35:05', NULL, NULL, NULL, NULL, NULL),
+(7, 'Melody', 'Tapay', 'melody.tapay04@gmail.com', '$2y$10$X061CZo44qNEZ74M2HY1xO2byfjLkYUoYRF5LLzX3gueMwj33Phwq', '2025-04-11 14:54:35', 'uploads/profile_pictures/profile_7.png', NULL, NULL, NULL, NULL),
+(8, 'Alyanna', 'Soliman', 'melodyvtapay@gmail.com', '$2y$10$MRCsK1/IdiDyeT/k6hzj0enKiVNchdAOPDL7L2S9FQKRH3wADnnOK', '2025-04-12 21:40:48', NULL, '09686196577', 'Tagapo, CSRL', '2003-04-21', 'Female');
 
 -- --------------------------------------------------------
 
@@ -653,24 +603,19 @@ INSERT INTO `students` (`stud_id`, `firstname`, `lastname`, `email`, `password`,
 -- Table structure for table `student_answers`
 --
 
-DROP TABLE IF EXISTS `student_answers`;
-CREATE TABLE IF NOT EXISTS `student_answers` (
-  `answer_id` int NOT NULL AUTO_INCREMENT,
-  `student_id` int NOT NULL,
-  `exam_id` int NOT NULL,
-  `question_id` int NOT NULL,
-  `programming_id` int DEFAULT NULL,
-  `programming_answer` text,
-  `answer_id_selected` int DEFAULT NULL,
+CREATE TABLE `student_answers` (
+  `answer_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `programming_id` int(11) DEFAULT NULL,
+  `programming_answer` text DEFAULT NULL,
+  `answer_id_selected` int(11) DEFAULT NULL,
   `question_type` enum('multiple-choice','true-false','programming') NOT NULL,
-  `submission_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `submission_time` datetime DEFAULT current_timestamp(),
   `is_correct` tinyint(1) DEFAULT NULL,
-  `score` decimal(5,2) DEFAULT NULL,
-  PRIMARY KEY (`answer_id`),
-  KEY `idx_student_exam` (`student_id`,`exam_id`),
-  KEY `idx_question` (`question_id`),
-  KEY `exam_id` (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `score` decimal(5,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `student_answers`
@@ -692,17 +637,14 @@ INSERT INTO `student_answers` (`answer_id`, `student_id`, `exam_id`, `question_i
 -- Table structure for table `test_cases`
 --
 
-DROP TABLE IF EXISTS `test_cases`;
-CREATE TABLE IF NOT EXISTS `test_cases` (
-  `test_case_id` int NOT NULL AUTO_INCREMENT,
-  `programming_id` int NOT NULL,
-  `input` text,
-  `expected_output` text,
-  `is_hidden` tinyint(1) DEFAULT '0',
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`test_case_id`),
-  KEY `programming_id` (`programming_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `test_cases` (
+  `test_case_id` int(11) NOT NULL,
+  `programming_id` int(11) NOT NULL,
+  `input` text DEFAULT NULL,
+  `expected_output` text DEFAULT NULL,
+  `is_hidden` tinyint(1) DEFAULT 0,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `test_cases`
@@ -721,15 +663,13 @@ INSERT INTO `test_cases` (`test_case_id`, `programming_id`, `input`, `expected_o
 -- Table structure for table `university_grading_systems`
 --
 
-DROP TABLE IF EXISTS `university_grading_systems`;
-CREATE TABLE IF NOT EXISTS `university_grading_systems` (
-  `grading_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `university_grading_systems` (
+  `grading_id` int(11) NOT NULL,
   `university_name` varchar(255) NOT NULL,
   `min_percentage` decimal(5,2) NOT NULL,
   `max_percentage` decimal(5,2) NOT NULL,
-  `grade_value` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`grading_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `grade_value` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `university_grading_systems`
@@ -773,6 +713,291 @@ INSERT INTO `university_grading_systems` (`grading_id`, `university_name`, `min_
 (35, 'University of Perpetual', 81.00, 83.00, '2.5'),
 (36, 'University of Perpetual', 78.00, 80.00, '2.75'),
 (37, 'University of Perpetual', 75.00, 77.00, '3.00');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `admin_login_attempts`
+--
+ALTER TABLE `admin_login_attempts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idx_email` (`email`);
+
+--
+-- Indexes for table `admin_login_logs`
+--
+ALTER TABLE `admin_login_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`answer_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Indexes for table `coded_courses`
+--
+ALTER TABLE `coded_courses`
+  ADD PRIMARY KEY (`course_id`);
+
+--
+-- Indexes for table `exams`
+--
+ALTER TABLE `exams`
+  ADD PRIMARY KEY (`exam_id`);
+
+--
+-- Indexes for table `exam_assignments`
+--
+ALTER TABLE `exam_assignments`
+  ADD PRIMARY KEY (`assignment_id`),
+  ADD KEY `exam_id` (`exam_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `exam_results`
+--
+ALTER TABLE `exam_results`
+  ADD PRIMARY KEY (`result_id`),
+  ADD KEY `exam_id` (`exam_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `matched_courses`
+--
+ALTER TABLE `matched_courses`
+  ADD PRIMARY KEY (`matched_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `programming_questions`
+--
+ALTER TABLE `programming_questions`
+  ADD PRIMARY KEY (`programming_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`question_id`),
+  ADD KEY `exam_id` (`exam_id`);
+
+--
+-- Indexes for table `question_bank`
+--
+ALTER TABLE `question_bank`
+  ADD PRIMARY KEY (`question_id`),
+  ADD KEY `idx_question_type` (`question_type`),
+  ADD KEY `idx_category` (`category`);
+
+--
+-- Indexes for table `question_bank_answers`
+--
+ALTER TABLE `question_bank_answers`
+  ADD PRIMARY KEY (`answer_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Indexes for table `question_bank_programming`
+--
+ALTER TABLE `question_bank_programming`
+  ADD PRIMARY KEY (`programming_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Indexes for table `question_bank_test_cases`
+--
+ALTER TABLE `question_bank_test_cases`
+  ADD PRIMARY KEY (`test_case_id`),
+  ADD KEY `programming_id` (`programming_id`);
+
+--
+-- Indexes for table `register_studentsqe`
+--
+ALTER TABLE `register_studentsqe`
+  ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `reference_id` (`reference_id`),
+  ADD KEY `stud_id` (`stud_id`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`stud_id`),
+  ADD UNIQUE KEY `unq_email` (`email`);
+
+--
+-- Indexes for table `student_answers`
+--
+ALTER TABLE `student_answers`
+  ADD PRIMARY KEY (`answer_id`),
+  ADD KEY `idx_student_exam` (`student_id`,`exam_id`),
+  ADD KEY `idx_question` (`question_id`),
+  ADD KEY `exam_id` (`exam_id`);
+
+--
+-- Indexes for table `test_cases`
+--
+ALTER TABLE `test_cases`
+  ADD PRIMARY KEY (`test_case_id`),
+  ADD KEY `programming_id` (`programming_id`);
+
+--
+-- Indexes for table `university_grading_systems`
+--
+ALTER TABLE `university_grading_systems`
+  ADD PRIMARY KEY (`grading_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `admin_login_attempts`
+--
+ALTER TABLE `admin_login_attempts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `admin_login_logs`
+--
+ALTER TABLE `admin_login_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+
+--
+-- AUTO_INCREMENT for table `coded_courses`
+--
+ALTER TABLE `coded_courses`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `exams`
+--
+ALTER TABLE `exams`
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `exam_assignments`
+--
+ALTER TABLE `exam_assignments`
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `exam_results`
+--
+ALTER TABLE `exam_results`
+  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `matched_courses`
+--
+ALTER TABLE `matched_courses`
+  MODIFY `matched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+
+--
+-- AUTO_INCREMENT for table `programming_questions`
+--
+ALTER TABLE `programming_questions`
+  MODIFY `programming_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- AUTO_INCREMENT for table `question_bank`
+--
+ALTER TABLE `question_bank`
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `question_bank_answers`
+--
+ALTER TABLE `question_bank_answers`
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `question_bank_programming`
+--
+ALTER TABLE `question_bank_programming`
+  MODIFY `programming_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `question_bank_test_cases`
+--
+ALTER TABLE `question_bank_test_cases`
+  MODIFY `test_case_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `register_studentsqe`
+--
+ALTER TABLE `register_studentsqe`
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `stud_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `student_answers`
+--
+ALTER TABLE `student_answers`
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+
+--
+-- AUTO_INCREMENT for table `test_cases`
+--
+ALTER TABLE `test_cases`
+  MODIFY `test_case_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `university_grading_systems`
+--
+ALTER TABLE `university_grading_systems`
+  MODIFY `grading_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
