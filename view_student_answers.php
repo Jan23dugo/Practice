@@ -162,10 +162,11 @@ if (isset($_GET['student_id'])) {
         .student-card {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(58, 25, 25, 0.44);
             overflow: hidden;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
+            text-decoration: none;
         }
         
         .student-card:hover {
@@ -179,11 +180,13 @@ if (isset($_GET['student_id'])) {
         
         .student-header {
             background: #f0f0f0;
+            color: #75343A;
             padding: 10px;
-            font-weight: 500;
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 18px;
         }
         
         .student-body {
@@ -193,6 +196,8 @@ if (isset($_GET['student_id'])) {
         .student-info {
             margin-bottom: 5px;
             font-size: 14px;
+            color:rgb(32, 32, 32);
+            font-size: 16px;
         }
         
         .student-score {
@@ -201,6 +206,7 @@ if (isset($_GET['student_id'])) {
             border-top: 1px solid #eee;
             display: flex;
             justify-content: space-between;
+            color: #75343A; 
         }
         
         .passed {
@@ -282,12 +288,13 @@ if (isset($_GET['student_id'])) {
             align-items: center;
             gap: 5px;
             padding: 8px 12px;
-            background: #f0f0f0;
+            background: #75343A;
+            color: white;
             border-radius: 4px;
             text-decoration: none;
-            color: #333;
             margin-bottom: 15px;
             transition: background 0.2s;
+            font-weight: 500;
         }
         
         .back-link:hover {

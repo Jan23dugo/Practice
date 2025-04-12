@@ -320,7 +320,7 @@ $questions_result = $stmt->get_result();
             display: flex;
             align-items: center;
             gap: 8px;
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -382,7 +382,7 @@ $questions_result = $stmt->get_result();
         }
 
         .filter-btn-primary {
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
         }
 
@@ -664,7 +664,7 @@ $questions_result = $stmt->get_result();
             display: flex;
             align-items: center;
             gap: 6px;
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -743,7 +743,7 @@ $questions_result = $stmt->get_result();
             display: flex;
             align-items: center;
             gap: 6px;
-            background-color: #8e68cc;
+            background-color: #75343A;
             color: white;
             border: none;
             border-radius: 4px;
@@ -858,7 +858,7 @@ $questions_result = $stmt->get_result();
         }
         
         .expand-btn {
-            color: #8e68cc;
+            color: #75343A;
             font-size: 13px;
             cursor: pointer;
             margin-top: 5px;

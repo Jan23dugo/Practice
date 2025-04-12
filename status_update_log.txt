@@ -1,32 +1,21 @@
-Request received: 2025-04-06 05:36:31
+Request received: 2025-04-11 18:13:57
 POST data: Array
 (
-    [status] => accepted
-    [reference_id] => CCIS-2025-61644
+    [status] => pending
+    [reference_id] => CCIS-2025-36864
 )
 
 Session data: Array
 (
     [stud_id] => 7
-    [firstname] => Angelica 
-    [lastname] => Dela Cruz
-    [email] => janlloyddugo21@gmail.com
-    [debug_output] => All subjects meet eligibility criteria<br></div>
-    [student_id] => 109
-    [matches] => Array
-        (
-            [0] => ✓ Matched: Computer Programming 2 (3 units) with Computer Programming 2 (COMP 20033)
-            [1] => ✓ Matched: Discrete Structures 1 (3 units) with Discrete Structures 1 (COMP 20043)
-            [2] => ✓ Matched: Civic Welfare Training Service 2 (3 units) with Civic Welfare Training Service 2 (CWTS 10023)
-            [3] => ✓ Matched: Readings In Philippine History (3 units) with Readings in Philippine History (GEED 10033)
-            [4] => ✓ Matched: Pagsasalin Sa Kontekstong Filipino (3 units) with Pagsasalin sa Kontekstong Filipino (GEED 10113)
-            [5] => ✓ Matched: Politics, Governance And Citizenship (3 units) with Politics, Governance and Citizenship (GEED 20023)
-            [6] => ✓ Matched: Rhythmic Activities (2 units) with Rhythmic Activities (PHED 10022)
-        )
-
+    [firstname] => Melody
+    [lastname] => Tapay
+    [email] => pupccisfaculty@gmail.com
+    [admin_id] => 1
+    [is_admin] => 1
 )
 
-Status: accepted, Reference ID: CCIS-2025-61644
+Status: pending, Reference ID: CCIS-2025-36864
 Skipping authentication check for debugging
 Query: UPDATE register_studentsqe SET status = ? WHERE reference_id = ?
 Execute successful. Affected rows: 1

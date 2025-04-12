@@ -150,7 +150,7 @@ $scheduledExams = getScheduledExams($month, $year);
             padding: 8px;
             border-radius: 4px;
             background-color: #e6f7ff;
-            border-left: 3px solid #8e68cc;
+            border-left: 3px solid rgba(212, 99, 99, 0.9);
             font-size: 0.85rem;
             cursor: pointer;
             transition: transform 0.2s;
@@ -179,7 +179,7 @@ $scheduledExams = getScheduledExams($month, $year);
             padding: 2px 6px;
             border-radius: 3px;
             font-size: 0.75rem;
-            background-color: #8e68cc;
+            background-color: rgba(212, 99, 99, 0.9);
             color: white;
             margin-top: 3px;
         }
@@ -260,12 +260,11 @@ $scheduledExams = getScheduledExams($month, $year);
         }
 
         .page-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 28px;
-            color: #333;
-            margin: 0 0 8px 0;
+            font-size: 36px;
+            color: #75343A;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
         }
 
         .page-title .material-symbols-rounded {

@@ -70,7 +70,7 @@ $result = $conn->query($query);
             padding: 12px 15px;
             text-align: left;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 16px;
             text-transform: uppercase;
         }
 
@@ -79,7 +79,7 @@ $result = $conn->query($query);
             padding: 12px 15px;
             border-bottom: 1px solid #eef0f3;
             color: #333;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         /* Alternate Row Color */
@@ -95,6 +95,9 @@ $result = $conn->query($query);
 
         /* Release Button */
         .release-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
             background: #4CAF50;
             color: white;
             border: none;
@@ -104,6 +107,7 @@ $result = $conn->query($query);
             transition: all 0.3s ease;
             font-weight: 500;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 16px;
         }
 
         .release-btn:hover {
@@ -128,6 +132,7 @@ $result = $conn->query($query);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-left: 8px;
             text-decoration: none;
+            font-size: 16px;
         }
 
         .view-answers-btn:hover {
@@ -137,7 +142,7 @@ $result = $conn->query($query);
         }
         
         .view-answers-btn .material-symbols-rounded {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         /* Alert Messages */
@@ -171,6 +176,126 @@ $result = $conn->query($query);
             padding: 20px;
             background-color: #f5f5f5;
         }
+        
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: popupSlideIn 0.3s ease-out;
+        }
+
+        @keyframes popupSlideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popup-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .popup-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .close-popup {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .close-popup:hover {
+            color: #333;
+        }
+
+        .popup-body {
+            padding: 20px;
+        }
+
+        .popup-body p {
+            margin: 0 0 15px 0;
+            line-height: 1.5;
+        }
+
+        .warning-text {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .popup-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-cancel, .btn-confirm {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+
+        .btn-cancel {
+            background:rgb(245, 230, 230);
+            color: #333;
+        }
+
+        .btn-cancel:hover {
+            background:rgb(233, 212, 212);
+        }
+
+        .btn-confirm {
+            background: #75343A;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background: #5c2930;
+        }
+
 
         /* Loading Spinner */
         .spinner {
@@ -212,26 +337,19 @@ $result = $conn->query($query);
                     <tr>
                         <th>Exam Title</th>
                         <th>Total Submissions</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ($result->num_rows == 0): ?>
-                        <tr>
-                            <td colspan="3" style="text-align: center; padding: 20px; color: #666;">
-                                No completed exams found.
-                            </td>
-                        </tr>
-                    <?php else: ?>
+                    <?php if($result && $result->num_rows > 0): ?>
                         <?php while($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($row['title']); ?></td>
                                 <td><?php echo $row['total_submissions']; ?></td>
                                 <td>
-                                    <form method="POST" style="display: inline;">
+                                    <form method="POST" style="display: inline;" id="releaseForm<?php echo $row['exam_id']; ?>">
                                         <input type="hidden" name="exam_id" value="<?php echo $row['exam_id']; ?>">
-                                        <button type="submit" name="release_results" class="release-btn"
-                                                onclick="return confirm('Are you sure you want to release the results for this exam?');">
+                                        <button type="button" class="release-btn" onclick="showReleasePopup(<?php echo $row['exam_id']; ?>, '<?php echo htmlspecialchars($row['title']); ?>')">
                                             Release Results
                                         </button>
                                     </form>
@@ -250,6 +368,53 @@ $result = $conn->query($query);
         </div>
     </div>
 
+    <!-- Release Results Popup -->
+    <div id="releasePopup" class="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>Release Exam Results</h3>
+                <button class="close-popup" onclick="closeReleasePopup()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="popup-body">
+                <p>Are you sure you want to release the results for <strong id="examTitle"></strong>?</p>
+                <p class="warning-text">This action cannot be undone. Students will be able to view their results immediately.</p>
+            </div>
+            <div class="popup-footer">
+                <button class="btn-cancel" onclick="closeReleasePopup()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmRelease()">Release Results</button>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/js/side.js"></script>
+    <script>
+        let currentExamId = null;
+
+        function showReleasePopup(examId, examTitle) {
+            currentExamId = examId;
+            document.getElementById('examTitle').textContent = examTitle;
+            document.getElementById('releasePopup').classList.add('active');
+        }
+
+        function closeReleasePopup() {
+            document.getElementById('releasePopup').classList.remove('active');
+            currentExamId = null;
+        }
+
+        function confirmRelease() {
+            if (currentExamId) {
+                document.getElementById('releaseForm' + currentExamId).submit();
+            }
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('releasePopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReleasePopup();
+            }
+        });
+    </script>
 </body>
 </html>

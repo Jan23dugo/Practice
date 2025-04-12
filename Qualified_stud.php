@@ -92,7 +92,7 @@ tbody tr:hover {
 
 /* View Button */
 .view-btn {
-    background: #2c3e50;  /* Darker blue */
+    background: #75343A;  /* Darker blue */
     color: white;
     border: none;
     padding: 8px 16px;
@@ -104,7 +104,8 @@ tbody tr:hover {
 }
 
 .view-btn:hover {
-    background: #34495e;
+    background:rgb(255, 229, 231);
+    color: #75343A;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -284,7 +285,7 @@ tbody tr:hover {
 
 /* Document View Button */
 .doc-view-btn {
-    background-color: #007BFF; /* Primary Blue color */
+    background-color: #75343A; /* Primary Blue color */
     color: white;
     border: none;
     padding: 8px 20px;
@@ -297,7 +298,8 @@ tbody tr:hover {
 }
 
 .doc-view-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background: rgb(255, 229, 231);
+    color: #75343A;
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
@@ -445,6 +447,15 @@ tbody tr:hover {
     border-radius: 50%;
     border-top-color: #75343A;
     animation: spin 1s linear infinite;
+}
+
+.page-title {
+    font-size: 36px;
+    color: #75343A;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-bottom: 2px solid #f0f0f0;
 }
 
     </style>

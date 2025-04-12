@@ -60,12 +60,12 @@
 }
 
 .question-type:hover, .question-points:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
 
 .question-type:focus, .question-points:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -96,12 +96,18 @@
 
 .toolbar button:hover {
     background: #f5f0ff;
-    border-color: #8e68cc;
-    color: #8e68cc;
+    border-color: #75343A;
+    color: #75343A;
+}
+
+.toolbar button:active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
 }
 
 .save-btn {
-    background: #8e68cc;
+    background: #75343A;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -159,7 +165,7 @@
 
 .question-textarea:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -190,7 +196,7 @@ label {
 
 .code-textarea:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
     height: auto; /* Allow height to adjust when focused */
 }
@@ -206,7 +212,7 @@ label {
 }
 
 .test-case:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
 }
 
 .test-case-header {
@@ -239,7 +245,7 @@ label {
 .hidden-checkbox input[type="checkbox"] {
     width: 16px;
     height: 16px;
-    accent-color: #8e68cc;
+    accent-color: #75343A;
     cursor: pointer;
 }
 
@@ -249,7 +255,7 @@ label {
 }
 
 #addTestCase {
-    background: #28a745;
+    background: #75343A;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -283,14 +289,15 @@ label {
 }
 
 .remove-test-case {
-    background: #dc3545;
+    background: #75343A;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     padding: 4px 8px;
     font-size: 12px;
     transition: all 0.2s ease;
+    font-weight: 500;   
 }
 
 .remove-test-case:hover {
@@ -320,7 +327,7 @@ label {
 
 .mce-content-body:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
@@ -352,12 +359,93 @@ select#programming_language {
 
 select#programming_language:focus {
     outline: none;
-    border-color: #8e68cc;
+    border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
 select#programming_language:hover {
-    border-color: #8e68cc;
+    border-color: #75343A;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+    animation: modalFade 0.3s ease-in-out;
+}
+
+.modal-content h5 {
+    color: #800000;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 25px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #800000;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #800000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-button:hover,
+.close-button:focus {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.toolbar button.active {
+    background: #75343A;
+    color: white;
+    border-color: #75343A;
 }
     </style>
 </head>
@@ -447,6 +535,13 @@ select#programming_language:hover {
             </div>
             <button type="button" id="addTestCase">Add Test Case</button>
         </form>
+    </div>
+</div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h5>Remove Test Case</h5>
+        <p>You need at least one test case.</p>
     </div>
 </div>
 <script src="assets/js/side.js"></script>
@@ -621,9 +716,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to remove test case
     function setupRemoveButtons() {
         const removeButtons = document.querySelectorAll(".remove-test-case");
+        const modal = document.getElementById("modal");
+        const closeButton = document.querySelector(".close-button");
+
         removeButtons.forEach(button => {
             button.addEventListener("click", function() {
-                // Don't remove if it's the only test case
                 if (testCasesContainer.children.length > 1) {
                     const testCase = this.closest(".test-case");
                     testCase.remove();
@@ -634,9 +731,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         tc.querySelector("h3").textContent = `Test Case ${index + 1}`;
                     });
                 } else {
-                    alert("You need at least one test case.");
+                    modal.style.display = "block"; // Show the modal
                 }
             });
+        });
+
+        closeButton.addEventListener("click", function() {
+            modal.style.display = "none"; // Hide the modal
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none"; // Hide the modal if clicked outside
+            }
         });
     }
     
@@ -888,6 +995,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert('Error loading question: ' + error.message);
             });
     }
+
+    document.querySelectorAll('.toolbar button').forEach(button => {
+        button.addEventListener('click', function() {
+            // Toggle active class
+            this.classList.toggle('active');
+        });
+    });
 });
 </script>
 </body>

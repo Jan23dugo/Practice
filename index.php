@@ -6,6 +6,7 @@
     <title>PUP Qualifying Exam Portal</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary: #75343A;
@@ -207,11 +208,11 @@
         }
         
         .feature-icon {
-            background-color: var(--primary-light);
+           background-color: transparent; 
             color: var(--text-light);
             width: 70px;
             height: 70px;
-            border-radius: 50%;
+           border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -219,7 +220,7 @@
         }
         
         .feature-icon span {
-            font-size: 32px;
+            font-size: 40px;
         }
         
         .feature-card h4 {
@@ -418,6 +419,7 @@
             opacity: 1;
         }
         
+        
         .contact-info {
             display: flex;
             align-items: center;
@@ -438,19 +440,25 @@
         }
         
         .social-links a {
-            display: flex;
+            color: rgba(117, 52, 58, 0.9);
+            background-color: antiquewhite;
+            display: inline-flex;
+            margin: 0 10px;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background-color:rgb(177, 130, 130);
+            border-radius: 50%; 
             transition: background-color 0.3s;
+            font-size: 20px;
         }
         
-        .social-links a:hover {
+        .social-links a:hover { 
             background-color: var(--accent);
+            border-radius: 50%;
         }
+        
         
         .copyright {
             text-align: center;
@@ -571,10 +579,10 @@
                     <h5>About PUP</h5>
                     <p>The Polytechnic University of the Philippines (PUP) is a government educational institution governed by Republic Act Number 8292 known as the Higher Education Modernization Act of 1997.</p>
                     <div class="social-links">
-                        <a href="#"><span class="material-symbols-rounded">facebook</span></a>
-                        <a href="#"><span class="material-symbols-rounded">twitter</span></a>
-                        <a href="#"><span class="material-symbols-rounded">instagram</span></a>
-                        <a href="#"><span class="material-symbols-rounded">youtube</span></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
