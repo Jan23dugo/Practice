@@ -67,6 +67,10 @@ if (isset($_POST['update_profile'])) {
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
     // Check if email already exists for other users
     $check_email = "SELECT stud_id FROM students WHERE email = ? AND stud_id != ?";
@@ -79,9 +83,9 @@ if (isset($_POST['update_profile'])) {
         $update_error = "Email already exists";
     } else {
         // Update profile
-        $update_query = "UPDATE students SET firstname = ?, lastname = ?, email = ? WHERE stud_id = ?";
+        $update_query = "UPDATE students SET firstname = ?, lastname = ?, email = ?, phone = ?, address = ?, date_of_birth = ?, gender = ? WHERE stud_id = ?";
         $stmt = $conn->prepare($update_query);
-        $stmt->bind_param("sssi", $firstname, $lastname, $email, $_SESSION['stud_id']);
+        $stmt->bind_param("sssssssi", $firstname, $lastname, $email, $phone, $address, $date_of_birth, $gender, $_SESSION['stud_id']);
         
         if ($stmt->execute()) {
             // Update session variables
@@ -93,6 +97,10 @@ if (isset($_POST['update_profile'])) {
             $student['firstname'] = $firstname;
             $student['lastname'] = $lastname;
             $student['email'] = $email;
+            $student['phone'] = $phone;
+            $student['address'] = $address;
+            $student['date_of_birth'] = $date_of_birth;
+            $student['gender'] = $gender;
             
             $update_success = "Profile updated successfully";
         } else {
@@ -1270,9 +1278,30 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         <label for="lastname">Last Name</label>
                         <input type="text" id="lastname" name="lastname" value="<?php echo $student['lastname']; ?>" required>
                     </div>
-                    <div class="form-group" style="grid-column: 1 / -1;">
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" value="<?php echo $student['email']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" value="<?php echo $student['phone'] ?? ''; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_birth">Date of Birth</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth" value="<?php echo $student['date_of_birth'] ?? ''; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male" <?php echo ($student['gender'] ?? '') === 'Male' ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo ($student['gender'] ?? '') === 'Female' ? 'selected' : ''; ?>>Female</option>
+                            <option value="Other" <?php echo ($student['gender'] ?? '') === 'Other' ? 'selected' : ''; ?>>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" value="<?php echo $student['address'] ?? ''; ?>" required>
                     </div>
                 </div>
                 
