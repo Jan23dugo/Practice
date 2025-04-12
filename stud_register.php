@@ -221,7 +221,7 @@ if (isset($_POST['login'])) {
         
         .auth-container {
             width: 100%;
-            max-width: 450px;
+            max-width: 800px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -247,55 +247,120 @@ if (isset($_POST['login'])) {
         }
         
         .auth-body {
-            padding: 30px;
+            padding: 30px 40px;
         }
         
-        .form-group {
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             margin-bottom: 20px;
         }
         
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--text-dark);
+        .form-group {
+            margin-bottom: 0;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
         }
         
         .form-control {
             width: 100%;
             padding: 12px 15px;
-            font-size: 16px;
-            border: 1px solid var(--gray);
-            border-radius: 6px;
-            transition: border-color 0.3s;
+            font-size: 15px;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: var(--gray-light);
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(117, 52, 58, 0.1);
         }
         
-        .form-row {
+        .form-control:hover {
+            border-color: var(--primary-light);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+        
+        .password-requirements {
+            grid-column: 1 / -1;
+            background-color: var(--gray-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 5px 0;
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .password-requirements.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .password-requirements ul {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 8px 0 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .password-requirements li {
+            font-size: 13px;
+            color: #666;
             display: flex;
-            gap: 15px;
+            align-items: center;
+            gap: 5px;
         }
         
-        .form-row .form-group {
-            flex: 1;
+        .password-requirements li::before {
+            content: "×";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #ff4444;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .password-requirements li.valid {
+            color: #4CAF50;
+        }
+        
+        .password-requirements li.valid::before {
+            content: "✓";
+            background-color: #4CAF50;
         }
         
         .btn {
-            display: block;
-            width: 100%;
-            padding: 12px 15px;
+            padding: 14px 20px;
             font-size: 16px;
             font-weight: 500;
-            text-align: center;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
         
         .btn-primary {
@@ -305,6 +370,8 @@ if (isset($_POST['login'])) {
         
         .btn-primary:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(117, 52, 58, 0.2);
         }
         
         .alert {
@@ -364,6 +431,19 @@ if (isset($_POST['login'])) {
             
             .auth-container {
                 max-width: 95%;
+                margin: 20px auto;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .auth-body {
+                padding: 20px;
+            }
+            
+            .password-requirements ul {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -389,10 +469,11 @@ if (isset($_POST['login'])) {
         }
     </style>
     <script>
-        // Password strength checker
         document.addEventListener('DOMContentLoaded', function() {
             const passwordInput = document.getElementById('password');
             const strengthIndicator = document.createElement('div');
+            const passwordRequirements = document.querySelector('.password-requirements');
+            
             strengthIndicator.className = 'password-strength';
             strengthIndicator.style.height = '5px';
             strengthIndicator.style.marginTop = '5px';
@@ -402,30 +483,52 @@ if (isset($_POST['login'])) {
             if (passwordInput) {
                 passwordInput.parentNode.insertBefore(strengthIndicator, passwordInput.nextSibling);
                 
+                // Show password requirements on focus
+                passwordInput.addEventListener('focus', function() {
+                    if (passwordRequirements) {
+                        passwordRequirements.classList.add('show');
+                    }
+                });
+
+                // Hide password requirements when focus is lost
+                passwordInput.addEventListener('blur', function() {
+                    if (passwordRequirements) {
+                        passwordRequirements.classList.remove('show');
+                    }
+                });
+                
+                // Function to check password requirements
+                function checkPasswordRequirements(password) {
+                    const requirements = {
+                        length: password.length >= 8,
+                        uppercase: /[A-Z]/.test(password),
+                        number: /[0-9]/.test(password),
+                        special: /[^A-Za-z0-9]/.test(password)
+                    };
+
+                    // Update requirement list items
+                    const requirementsList = passwordRequirements.querySelectorAll('li');
+                    requirementsList[0].classList.toggle('valid', requirements.length);
+                    requirementsList[1].classList.toggle('valid', requirements.uppercase);
+                    requirementsList[2].classList.toggle('valid', requirements.number);
+                    requirementsList[3].classList.toggle('valid', requirements.special);
+
+                    return Object.values(requirements).every(Boolean);
+                }
+                
                 passwordInput.addEventListener('input', function() {
                     const password = this.value;
                     let strength = 0;
                     let feedback = '';
                     
-                    // Length check
-                    if (password.length >= 8) {
-                        strength += 25;
-                    }
+                    // Check password requirements
+                    const allRequirementsMet = checkPasswordRequirements(password);
                     
-                    // Uppercase check
-                    if (/[A-Z]/.test(password)) {
-                        strength += 25;
-                    }
-                    
-                    // Number check
-                    if (/[0-9]/.test(password)) {
-                        strength += 25;
-                    }
-                    
-                    // Special character check
-                    if (/[^A-Za-z0-9]/.test(password)) {
-                        strength += 25;
-                    }
+                    // Update strength based on requirements
+                    if (password.length >= 8) strength += 25;
+                    if (/[A-Z]/.test(password)) strength += 25;
+                    if (/[0-9]/.test(password)) strength += 25;
+                    if (/[^A-Za-z0-9]/.test(password)) strength += 25;
                     
                     // Update the strength indicator
                     strengthIndicator.style.width = '100%';
@@ -457,6 +560,14 @@ if (isset($_POST['login'])) {
                         feedbackElement.style.marginTop = '5px';
                         feedbackElement.textContent = `Password strength: ${feedback}`;
                         strengthIndicator.parentNode.insertBefore(feedbackElement, strengthIndicator.nextSibling);
+                    }
+
+                    // Disable submit button if requirements are not met
+                    const submitButton = document.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = !allRequirementsMet;
+                        submitButton.style.opacity = allRequirementsMet ? '1' : '0.5';
+                        submitButton.style.cursor = allRequirementsMet ? 'pointer' : 'not-allowed';
                     }
                 });
             }
@@ -501,7 +612,7 @@ if (isset($_POST['login'])) {
                         <?php endif; ?>
                         
                         <form action="" method="post">
-                            <div class="form-row">
+                            <div class="form-grid">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
                                     <input type="text" class="form-control" id="firstname" name="firstname" required>
@@ -510,48 +621,48 @@ if (isset($_POST['login'])) {
                                     <label for="lastname">Last Name</label>
                                     <input type="text" class="form-control" id="lastname" name="lastname" required>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                                <small style="font-size: 12px; color: #666;">
-                                    Password requirements:
-                                    <ul style="margin-top: 5px; padding-left: 15px;">
-                                        <li>At least 8 characters long</li>
-                                        <li>At least one uppercase letter</li>
-                                        <li>At least one number</li>
-                                        <li>At least one special character</li>
-                                    </ul>
-                                </small>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm_password">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact_number">Contact Number</label>
-                                <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="date_of_birth">Date of Birth</label>
-                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select class="form-control" id="gender" name="gender" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                                <div class="form-group full-width">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <div class="password-requirements">
+                                        <p>Password requirements:</p>
+                                        <ul>
+                                            <li>At least 8 characters long</li>
+                                            <li>At least one uppercase letter</li>
+                                            <li>At least one number</li>
+                                            <li>At least one special character</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_number">Contact Number</label>
+                                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_of_birth">Date of Birth</label>
+                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" name="address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                             </div>
                             <button type="submit" name="register" class="btn btn-primary">Register</button>
                         </form>

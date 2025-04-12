@@ -3,11 +3,10 @@
     include('config/config.php');
 
     // Check if user is logged in as admin
-//if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    // Not logged in as admin, redirect to admin login page
-//    header("Location: admin_login.php");
-//    exit();
-//}
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    header("Location: admin_login.php");
+   exit();
+}
     // Fetch all qualified students (with accepted status)
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $records_per_page = 10;
