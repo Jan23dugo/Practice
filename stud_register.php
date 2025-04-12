@@ -21,12 +21,12 @@ if (isset($_POST['register'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($phone) || empty($address) || empty($date_of_birth) || empty($gender)) {
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($contact_number) || empty($address) || empty($date_of_birth) || empty($gender)) {
         $registration_error = "All fields are required";
         $show_registration = true;
     } elseif ($password !== $confirm_password) {
@@ -63,9 +63,9 @@ if (isset($_POST['register'])) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
             // Insert new student
-            $insert_query = "INSERT INTO students (firstname, lastname, email, password, phone, address, date_of_birth, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $insert_query = "INSERT INTO students (firstname, lastname, email, password, contact_number, address, date_of_birth, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($insert_query);
-            $stmt->bind_param("ssssssss", $firstname, $lastname, $email, $hashed_password, $phone, $address, $date_of_birth, $gender);
+            $stmt->bind_param("ssssssss", $firstname, $lastname, $email, $hashed_password, $contact_number, $address, $date_of_birth, $gender);
             
             if ($stmt->execute()) {
                 $registration_success = "Registration successful! You can now login.";
@@ -533,8 +533,8 @@ if (isset($_POST['login'])) {
                                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                                <label for="contact_number">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>

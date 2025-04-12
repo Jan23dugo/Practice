@@ -67,7 +67,7 @@ if (isset($_POST['update_profile'])) {
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
@@ -83,9 +83,9 @@ if (isset($_POST['update_profile'])) {
         $update_error = "Email already exists";
     } else {
         // Update profile
-        $update_query = "UPDATE students SET firstname = ?, lastname = ?, email = ?, phone = ?, address = ?, date_of_birth = ?, gender = ? WHERE stud_id = ?";
+        $update_query = "UPDATE students SET firstname = ?, lastname = ?, email = ?, contact_number = ?, address = ?, date_of_birth = ?, gender = ? WHERE stud_id = ?";
         $stmt = $conn->prepare($update_query);
-        $stmt->bind_param("sssssssi", $firstname, $lastname, $email, $phone, $address, $date_of_birth, $gender, $_SESSION['stud_id']);
+        $stmt->bind_param("sssssssi", $firstname, $lastname, $email, $contact_number, $address, $date_of_birth, $gender, $_SESSION['stud_id']);
         
         if ($stmt->execute()) {
             // Update session variables
@@ -97,7 +97,7 @@ if (isset($_POST['update_profile'])) {
             $student['firstname'] = $firstname;
             $student['lastname'] = $lastname;
             $student['email'] = $email;
-            $student['phone'] = $phone;
+            $student['contact_number'] = $contact_number;
             $student['address'] = $address;
             $student['date_of_birth'] = $date_of_birth;
             $student['gender'] = $gender;
@@ -1164,8 +1164,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                             <div class="info-value"><?php echo $student['email']; ?></div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Phone</div>
-                            <div class="info-value"><?php echo $student['phone'] ?? 'Not provided'; ?></div>
+                            <div class="info-label">Contact Number</div>
+                            <div class="info-value"><?php echo $student['contact_number'] ?? 'Not provided'; ?></div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Address</div>
@@ -1283,8 +1283,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         <input type="email" id="email" name="email" value="<?php echo $student['email']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" value="<?php echo $student['phone'] ?? ''; ?>" required>
+                        <label for="contact_number">Contact Number</label>
+                        <input type="tel" id="contact_number" name="contact_number" value="<?php echo $student['contact_number'] ?? ''; ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="date_of_birth">Date of Birth</label>
