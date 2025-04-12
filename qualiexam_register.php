@@ -26,7 +26,7 @@ $student = $result->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCIS Qualifying Examination Registration</title> 
-    <link rel="stylesheet" href="assets/css/style.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -133,20 +133,44 @@ $student = $result->fetch_assoc();
             font-size: 14px;
         }
         
-        /* Footer */
+        /* Footer Styles */
         footer {
             background-color: var(--primary);
             color: var(--text-light);
             padding: 20px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 900;
+            height: 60px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer p {
             text-align: center;
             font-size: 14px;
-            margin-top: auto;
+            opacity: 0.9;
+            margin: 0;
         }
-        
+
         /* Main content */
         .main-content {
             flex: 1;
             padding: 30px 0;
+            padding-bottom: 80px; /* Increased padding to account for fixed footer */
         }
         
         /* Modal styles */
@@ -158,33 +182,115 @@ $student = $result->fetch_assoc();
             top: 0;
             width: 100%; 
             height: 100%; 
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.6); /* Darker semi-transparent background */
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto; /* 10% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            border-radius: 8px;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 600px;
-            text-align: left;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            margin: 5% auto; /* Centered vertically */
+            padding: 40px;
+            border: none;
+            border-radius: 12px;
+            width: 90%; /* Responsive width */
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .modal-content h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-weight: 700;
+            padding-right: 30px; /* Space for close button */
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .modal-content strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .modal-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .modal-content li {
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            color: var(--primary);
+            font-size: 32px;
             font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        .close-btn:hover {
+            background-color: var(--gray-light);
+            transform: rotate(90deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 30px 20px;
+                width: 95%;
+            }
+            
+            .modal-content h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            
+            .modal-content p {
+                font-size: 15px;
+            }
+            
+            footer {
+                height: 50px; /* Slightly smaller on mobile */
+            }
+            
+            .main-content {
+                padding-bottom: 70px; /* Adjusted for mobile footer height */
+            }
         }
         
         /* Form styling */
@@ -528,7 +634,7 @@ $student = $result->fetch_assoc();
                             </div>
                             <div class="form-field">
                                 <label for="contact_number">Contact Number</label>
-                                <input type="text" id="contact_number" name="contact_number" value="<?php echo htmlspecialchars($student['phone'] ?? ''); ?>" required>
+                                <input type="text" id="contact_number" name="contact_number" value="<?php echo htmlspecialchars($student['contact_number'] ?? ''); ?>" required>
                             </div>
                             <div class="form-field">
                                 <label for="street">Address</label>

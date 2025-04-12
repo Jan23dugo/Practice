@@ -136,6 +136,18 @@ $activePage = 'registration_status';
         }
 
         /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+            padding: 25px 0;
+            height: calc(100vh - 140px); /* Account for header (80px) and footer (60px) */
+            position: fixed;
+            overflow-y: auto;
+            z-index: 900; /* Below header but above content */
+            transition: all 0.3s ease;
+        }
+
         .sidebar-profile {
             padding: 0 20px 20px;
             margin-bottom: 20px;
@@ -143,6 +155,17 @@ $activePage = 'registration_status';
             text-align: center;
         }
 
+        .sidebar-profile h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .sidebar-profile p {
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
         .profile-image {
             width: 80px;
             height: 80px;
@@ -167,6 +190,7 @@ $activePage = 'registration_status';
 
         .sidebar-menu {
             list-style: none;
+            padding: 0 10px;
         }
 
         .sidebar-menu li {
@@ -182,6 +206,7 @@ $activePage = 'registration_status';
             color: var(--text-dark);
             transition: all 0.3s;
             font-weight: 500;
+            border-radius: 8px;
         }
 
         .sidebar-menu a:hover {
@@ -279,40 +304,61 @@ $activePage = 'registration_status';
             flex: 1;
         }
 
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-            padding: 25px 0;
-            height: calc(100vh - 80px);
-            position: fixed;
-            overflow-y: auto;
-        }
-
         .main-content {
             flex: 1;
             margin-left: 250px;
             padding: 30px;
+            padding-bottom: 80px; /* Increased padding to account for fixed footer */
+            min-height: calc(100vh - 80px); /* Account for header */
+            position: relative;
         }
 
-        /* Copy all the responsive styles from stud_dashboard.php */
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .sidebar {
-                width: 0;
-                padding: 0;
-                overflow: hidden;
-                transition: width 0.3s;
+                transform: translateX(-100%);
+                width: 250px;
             }
             
             .sidebar.active {
-                width: 250px;
-                padding: 25px 0;
+                transform: translateX(0);
             }
             
             .main-content {
                 margin-left: 0;
                 padding: 20px;
+                padding-bottom: 70px; /* Adjusted for mobile footer height */
             }
+
+            /* Add hamburger menu button */
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--primary);
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        /* Add overlay for mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 899;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
         }
 
         /* Status Card Styles */
@@ -468,50 +514,37 @@ $activePage = 'registration_status';
             }
         }
 
-        /* Add these footer styles to your <style> section */
+        /* Footer Styles */
         footer {
             background-color: var(--primary);
             color: var(--text-light);
             padding: 20px 0;
-            margin-top: auto;
             width: 100%;
             position: fixed;
             bottom: 0;
             left: 0;
+            z-index: 900;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
-
+        
+        footer .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
         footer p {
             text-align: center;
             font-size: 14px;
             opacity: 0.9;
-        }
-
-        /* Adjust main content to account for footer */
-        .main-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 30px;
-            padding-bottom: 80px; /* Add padding to prevent content from being hidden by footer */
-        }
-
-        /* Adjust sidebar height to account for footer */
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-            padding: 25px 0;
-            height: calc(100vh - 160px); /* Adjust height to account for header and footer */
-            position: fixed;
-            overflow-y: auto;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .main-content {
-                margin-left: 0;
-                padding: 20px;
-                padding-bottom: 80px;
-            }
+            margin: 0;
         }
 
         /* Profile Menu Styles */
@@ -652,8 +685,16 @@ $activePage = 'registration_status';
     </header>
 
     <div class="main-wrapper">
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-profile">
                 <div class="profile-image">
                     <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
@@ -683,12 +724,6 @@ $activePage = 'registration_status';
                     <a href="stud_profile.php" class="<?php echo $activePage == 'profile' ? 'active' : ''; ?>">
                         <span class="material-symbols-rounded">person</span>
                         Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="stud_settings.php" class="<?php echo $activePage == 'settings' ? 'active' : ''; ?>">
-                        <span class="material-symbols-rounded">settings</span>
-                        Settings
                     </a>
                 </li>
                 <li>
@@ -860,6 +895,39 @@ $activePage = 'registration_status';
             profileMenuTrigger.addEventListener('click', function(event) {
                 event.preventDefault();
                 dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+            }
+
+            menuToggle.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+
+            // Close sidebar when clicking a menu item on mobile
+            const menuItems = document.querySelectorAll('.sidebar-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        toggleSidebar();
+                    }
+                });
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             });
         });
     </script>

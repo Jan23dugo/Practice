@@ -286,6 +286,7 @@ if (isset($_POST['verify'])) {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin: 0 auto;
+            margin-bottom: 80px;
         }
         
         .auth-header {
@@ -394,14 +395,37 @@ if (isset($_POST['verify'])) {
             font-size: 20px;
         }
         
-        /* Footer */
+        /* Footer Styles */
         footer {
             background-color: var(--primary);
             color: var(--text-light);
             padding: 20px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 900;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        footer p {
             text-align: center;
             font-size: 14px;
-            margin-top: auto;
+            opacity: 0.9;
+            margin: 0;
         }
         
         /* Responsive */
@@ -412,10 +436,15 @@ if (isset($_POST['verify'])) {
             
             .auth-container {
                 max-width: 95%;
+                margin-bottom: 70px;
             }
             
             .logo-text h1 {
                 font-size: 20px;
+            }
+            
+            footer {
+                height: 50px;
             }
         }
         
@@ -457,11 +486,6 @@ if (isset($_POST['verify'])) {
         /* Add a specific container class for the header */
         header .container {
             justify-content: flex-start;
-        }
-        
-        /* Add a specific container class for the footer */
-        footer .container {
-            justify-content: center;
         }
     </style>
 </head>
