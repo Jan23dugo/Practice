@@ -409,6 +409,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             flex: 1;
             padding: 30px;
             margin-left: 250px;
+            padding-bottom: 80px;
         }
         
         .page-title {
@@ -664,13 +665,37 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         }
         
     
-        /* Footer */
+        /* Footer Styles */
         footer {
             background-color: var(--primary);
             color: var(--text-light);
             padding: 20px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 900;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        footer p {
             text-align: center;
-            margin-top: auto;
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
         }
         
         /* Responsive Styles */
@@ -729,6 +754,14 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             .tab-btn {
                 flex: 1;
                 text-align: center;
+            }
+            
+            footer {
+                height: 50px;
+            }
+            
+            .main-content {
+                padding-bottom: 70px;
             }
         }
 

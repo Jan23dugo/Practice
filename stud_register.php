@@ -434,22 +434,54 @@ if (isset($_POST['login'])) {
             text-decoration: underline;
         }
         
-        /* Footer */
+        /* Footer Styles */
         footer {
             background-color: var(--primary);
             color: var(--text-light);
             padding: 20px 0;
-            text-align: center;
-            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 900;
+            height: 60px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        /* Adjust the container width for better centering */
+        footer .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        footer p {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Adjust main content to account for fixed footer */
+        .auth-container {
+            margin-bottom: 80px; /* Increased margin to account for fixed footer */
+        }
+        
+        /* Mobile responsiveness for footer */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
+            footer {
+                height: 50px; /* Slightly smaller on mobile */
             }
             
             .auth-container {
+<<<<<<< HEAD
+                margin-bottom: 70px; /* Adjusted for mobile footer height */
+=======
                 max-width: 95%;
                 margin: 20px auto;
             }
@@ -464,6 +496,10 @@ if (isset($_POST['login'])) {
             
             .password-requirements ul {
                 grid-template-columns: 1fr;
+<<<<<<< Updated upstream
+=======
+>>>>>>> 6cb0e3cb49376027075ce711647d4e1cdaa1be49
+>>>>>>> Stashed changes
             }
         }
         
