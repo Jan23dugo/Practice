@@ -258,7 +258,8 @@ if (isset($_POST['login'])) {
         }
         
         .form-group {
-            margin-bottom: 0;
+            margin-bottom: 20px;
+            position: relative;
         }
         
         .form-group.full-width {
@@ -402,6 +403,7 @@ if (isset($_POST['login'])) {
             font-size: 14px;
             color: var(--text-dark);
             opacity: 0.8;
+            margin-bottom: 10px;
         }
         
         .auth-footer a {
@@ -411,6 +413,24 @@ if (isset($_POST['login'])) {
         }
         
         .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+        
+        .forgot-password a {
+            color: var(--primary);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .forgot-password a:hover {
+            opacity: 1;
             text-decoration: underline;
         }
         
@@ -693,6 +713,9 @@ if (isset($_POST['login'])) {
                             <div class="form-group">
                                 <label for="login_password">Password</label>
                                 <input type="password" class="form-control" id="login_password" name="login_password" required>
+                                <div class="forgot-password">
+                                    <a href="forgot_password.php">Forgot Password?</a>
+                                </div>
                             </div>
                             <button type="submit" name="login" class="btn btn-primary">Login</button>
                         </form>
