@@ -3,10 +3,10 @@ session_start();
 require_once('config/config.php');
 
 // Check if user is logged in as admin
-//if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-//    header("Location: admin_login.php");
-//    exit();
-//}
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    header("Location: admin_login.php");
+    exit();
+}
 
 if(isset($_POST['release_results'])) {
     $exam_id = $_POST['exam_id'];

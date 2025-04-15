@@ -1,0 +1,1084 @@
+[2025-04-13 07:43:42] Starting POST request processing
+----------------------------------------
+[2025-04-13 07:43:42] Files uploaded successfully
+Data: Array
+(
+    [tor_name] => Screenshot 2024-10-18 080627.png
+    [school_id_name] => 449292499_481139171214456_1108316609890498134_n.png
+)
+
+----------------------------------------
+[2025-04-13 07:43:42] TOR file moved to destination
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/Screenshot 2024-10-18 080627.png
+    [size] => 80116
+)
+
+----------------------------------------
+[2025-04-13 07:43:42] Starting OCR process
+----------------------------------------
+[2025-04-13 07:43:42] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/Screenshot 2024-10-18 080627.png
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Raw result structure
+Data: Array
+(
+    [status] => succeeded
+    [has_documents] => 1
+    [document_count] => 1
+    [has_content] => 1
+    [keys] => Array
+        (
+            [0] => apiVersion
+            [1] => modelId
+            [2] => stringIndexType
+            [3] => content
+            [4] => pages
+            [5] => tables
+            [6] => paragraphs
+            [7] => styles
+            [8] => documents
+            [9] => contentFormat
+            [10] => sections
+        )
+
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Document fields available
+Data: Array
+(
+    [field_names] => Array
+        (
+            [0] => extractTable
+        )
+
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Returning structured JSON data
+Data: Array
+(
+    [length] => 46509
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] OCR completed successfully
+Data: Array
+(
+    [output_length] => 46509
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Input appears to be JSON, checking structure
+----------------------------------------
+[2025-04-13 07:43:49] Found Azure Document Intelligence structure
+----------------------------------------
+[2025-04-13 07:43:49] Found table data in Azure results
+----------------------------------------
+[2025-04-13 07:43:49] Successfully extracted subjects from Azure format
+Data: Array
+(
+    [count] => 7
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Subjects extracted successfully
+Data: Array
+(
+    [count] => 7
+    [first_subject] => {"subject_code":"COMP 20033","subject_description":"Computer Programming 2","grade":1,"units":3}
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing eligibility
+Data: Array
+(
+    [student_type] => shiftee
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking grading rules
+Data: Array
+(
+    [previous_school] => Polytechnic University of the Philippines
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Database configuration loaded
+Data: Array
+(
+    [host] => localhost
+    [database] => exam
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] New connection established with extended timeouts
+Data: Array
+(
+    [wait_timeout] => 28800
+    [interactive_timeout] => 28800
+    [net_read_timeout] => 600
+    [net_write_timeout] => 600
+    [database] => exam
+    [connection_id] => 414
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Getting grading system rules
+Data: Array
+(
+    [university] => Polytechnic University of the Philippines
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully retrieved grading rules
+Data: Array
+(
+    [rules_count] => 10
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Retrieved grading rules
+Data: Array
+(
+    [rules_count] => 10
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Starting Tech Student Check
+----------------------------------------
+[2025-04-13 07:43:49] Checking tech subjects against
+Data: Array
+(
+    [tech_keywords] => Array
+        (
+            [0] => Computer Programming
+            [1] => Software Engineering
+            [2] => Database Systems
+            [3] => Operating Systems
+            [4] => Data Structures
+            [5] => Algorithms
+            [6] => Web Development
+            [7] => Information Technology
+            [8] => Cybersecurity
+            [9] => System Analysis
+            [10] => Introduction to Computing
+        )
+
+    [total_subjects] => 7
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Found tech subject match
+Data: Array
+(
+    [subject] => Computer Programming 2
+    [matched_keyword] => Computer Programming
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Prepared student data
+Data: Array
+(
+    [data] => Array
+        (
+            [first_name] => Jand
+            [middle_name] => t
+            [last_name] => llodys
+            [gender] => Male
+            [dob] => 2025-04-01
+            [email] => jdugo23@gmail.com
+            [contact_number] => 09667311956
+            [street] => C Raymundo Avenue
+            [student_type] => shiftee
+            [previous_school] => Polytechnic University of the Philippines
+            [year_level] => 1
+            [previous_program] => Bachelor in Advertising and Public Relation (BAPR)
+            [desired_program] => BSIT
+            [tor_path] => uploads/tor/Screenshot 2024-10-18 080627.png
+            [school_id_path] => uploads/school_id/449292499_481139171214456_1108316609890498134_n.png
+            [is_tech] => 1
+            [status] => pending
+        )
+
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Starting Subject Matching Process
+Data: Array
+(
+    [student_id] => 112
+    [desired_program] => BSIT
+    [total_subjects_from_tor] => 7
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Retrieved Program Subjects
+Data: Array
+(
+    [program] => BSIT
+    [total_program_subjects] => 15
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => COMP 20033
+    [description] => Computer Programming 2
+    [units] => 3
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Accounting Principles
+    [tor_subject] => Computer Programming 2
+    [similarity] => 37.209302325581
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 2
+    [tor_subject] => Computer Programming 2
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Introduction to Computing
+    [tor_subject] => Computer Programming 2
+    [similarity] => 38.297872340426
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 1
+    [tor_subject] => Computer Programming 2
+    [similarity] => 95.454545454545
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 1
+    [tor_subject] => Computer Programming 2
+    [similarity] => 33.333333333333
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Mathematics in the Modern World
+    [tor_subject] => Computer Programming 2
+    [similarity] => 22.641509433962
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Purposive Communication
+    [tor_subject] => Computer Programming 2
+    [similarity] => 22.222222222222
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Filipinolohiya at Pambansang Kaunlaran
+    [tor_subject] => Computer Programming 2
+    [similarity] => 30
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Discrete Structures 1
+    [tor_subject] => Computer Programming 2
+    [similarity] => 32.558139534884
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 2
+    [tor_subject] => Computer Programming 2
+    [similarity] => 37.037037037037
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Readings in Philippine History
+    [tor_subject] => Computer Programming 2
+    [similarity] => 23.076923076923
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [tor_subject] => Computer Programming 2
+    [similarity] => 25
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Politics, Governance and Citizenship
+    [tor_subject] => Computer Programming 2
+    [similarity] => 20.689655172414
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Computer Programming 2
+    [program_subject] => Computer Programming 2
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => COMP 20043
+    [description] => Discrete Structures 1
+    [units] => 3
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Accounting Principles
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 28.571428571429
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 2
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 23.255813953488
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Introduction to Computing
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 30.434782608696
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 1
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 32.558139534884
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 1
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 33.962264150943
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Mathematics in the Modern World
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 23.076923076923
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Purposive Communication
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 18.181818181818
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Filipinolohiya at Pambansang Kaunlaran
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 13.559322033898
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Discrete Structures 1
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 2
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 26.415094339623
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Readings in Philippine History
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 15.686274509804
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 14.545454545455
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Politics, Governance and Citizenship
+    [tor_subject] => Discrete Structures 1
+    [similarity] => 17.543859649123
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Discrete Structures 1
+    [program_subject] => Discrete Structures 1
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => CWTS 10023
+    [description] => Civic Welfare Training Service 2
+    [units] => 3
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Accounting Principles
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 37.735849056604
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 2
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 33.333333333333
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Introduction to Computing
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 17.543859649123
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 1
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 29.62962962963
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 1
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 96.875
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Mathematics in the Modern World
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 25.396825396825
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Purposive Communication
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 25.454545454545
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Filipinolohiya at Pambansang Kaunlaran
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 22.857142857143
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Discrete Structures 1
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 26.415094339623
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 2
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Readings in Philippine History
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 32.258064516129
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 24.242424242424
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Politics, Governance and Citizenship
+    [tor_subject] => Civic Welfare Training Service 2
+    [similarity] => 26.470588235294
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Civic Welfare Training Service 2
+    [program_subject] => Civic Welfare Training Service 2
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => GEED 10033
+    [description] => Readings in Philippine History
+    [units] => 3
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Accounting Principles
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 39.21568627451
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 2
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 23.076923076923
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Introduction to Computing
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 18.181818181818
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 1
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 23.076923076923
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 1
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 32.258064516129
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Mathematics in the Modern World
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 39.344262295082
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Purposive Communication
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 22.641509433962
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Filipinolohiya at Pambansang Kaunlaran
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 26.470588235294
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Discrete Structures 1
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 31.372549019608
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 2
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 32.258064516129
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Readings in Philippine History
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 40.625
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Politics, Governance and Citizenship
+    [tor_subject] => Readings in Philippine History
+    [similarity] => 27.272727272727
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Readings in Philippine History
+    [program_subject] => Readings in Philippine History
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => GEED 10113
+    [description] => Pagsasalin sa Kontekstong Filipino
+    [units] => 3
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Accounting Principles
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 36.363636363636
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 2
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 25
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Introduction to Computing
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 33.898305084746
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 1
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 25
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 1
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 21.212121212121
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Mathematics in the Modern World
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 30.769230769231
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Purposive Communication
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 24.561403508772
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Filipinolohiya at Pambansang Kaunlaran
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 22.222222222222
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Discrete Structures 1
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 25.454545454545
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 2
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 21.212121212121
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Readings in Philippine History
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 40.625
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Politics, Governance and Citizenship
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 20
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Pagsasalin sa Kontekstong Filipino
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => GEED 20023
+    [description] => Politics, Governance and Citizenship
+    [units] => 3
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Accounting Principles
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 28.070175438596
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 2
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 20.689655172414
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Introduction to Computing
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 36.065573770492
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Computer Programming 1
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 20.689655172414
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 1
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 29.411764705882
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Mathematics in the Modern World
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 32.835820895522
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Purposive Communication
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 37.28813559322
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Filipinolohiya at Pambansang Kaunlaran
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 18.918918918919
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Discrete Structures 1
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 21.052631578947
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Civic Welfare Training Service 2
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 29.411764705882
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Readings in Philippine History
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 30.30303030303
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Pagsasalin sa Kontekstong Filipino
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 22.857142857143
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Politics, Governance and Citizenship
+    [tor_subject] => Politics, Governance and Citizenship
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Politics, Governance and Citizenship
+    [program_subject] => Politics, Governance and Citizenship
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Processing TOR Subject
+Data: Array
+(
+    [code] => PHED 10022
+    [description] => Rhythmic Activities
+    [units] => 2
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Physical Fitness and Self-Testing Activities
+    [tor_subject] => Rhythmic Activities
+    [similarity] => 47.619047619048
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Checking similarity
+Data: Array
+(
+    [program_subject] => Rhythmic Activities
+    [tor_subject] => Rhythmic Activities
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Successfully matched and inserted
+Data: Array
+(
+    [tor_subject] => Rhythmic Activities
+    [program_subject] => Rhythmic Activities
+    [similarity] => 100
+)
+
+----------------------------------------
+[2025-04-13 07:43:49] Matching Process Complete
+Data: Array
+(
+    [total_matches] => 7
+)
+
+----------------------------------------
+[2025-04-13 07:43:56] Student registration completed successfully
+----------------------------------------

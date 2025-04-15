@@ -18,64 +18,54 @@ include('config/config.php');
 // Set content type to JSON
 header('Content-Type: application/json');
 
-// Check if the request is a POST request
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the status and reference_id from the POST data
-    $status = isset($_POST['status']) ? $_POST['status'] : '';
-    $reference_id = isset($_POST['reference_id']) ? $_POST['reference_id'] : '';
-    
-    fwrite($log_file, "Status: $status, Reference ID: $reference_id\n");
-    
-    // Validate inputs
-    if (empty($status) || empty($reference_id)) {
-        fwrite($log_file, "Error: Missing required parameters\n");
-        echo json_encode(['success' => false, 'message' => 'Missing required parameters']);
-        fclose($log_file);
-        exit;
-    }
-    
-    // Validate status value
-    $allowed_statuses = ['pending', 'accepted', 'rejected'];
-    if (!in_array($status, $allowed_statuses)) {
-        fwrite($log_file, "Error: Invalid status value\n");
-        echo json_encode(['success' => false, 'message' => 'Invalid status value']);
-        fclose($log_file);
-        exit;
-    }
-    
-    // Skip authentication check for now
-    fwrite($log_file, "Skipping authentication check for debugging\n");
-    
-    // Prepare and execute the update query
-    $query = "UPDATE register_studentsqe SET status = ? WHERE reference_id = ?";
-    fwrite($log_file, "Query: $query\n");
-    
-    $stmt = $conn->prepare($query);
-    if (!$stmt) {
-        fwrite($log_file, "Prepare failed: " . $conn->error . "\n");
-        echo json_encode(['success' => false, 'message' => 'Prepare failed: ' . $conn->error]);
-        fclose($log_file);
-        exit;
-    }
-    
-    $stmt->bind_param("ss", $status, $reference_id);
-    
-    if ($stmt->execute()) {
-        fwrite($log_file, "Execute successful. Affected rows: " . $stmt->affected_rows . "\n");
-        echo json_encode(['success' => true, 'message' => 'Status updated successfully']);
-    } else {
-        fwrite($log_file, "Execute failed: " . $stmt->error . "\n");
-        echo json_encode(['success' => false, 'message' => 'Execute failed: ' . $stmt->error]);
-    }
-    
-    $stmt->close();
-} else {
-    // If not a POST request, return an error
-    fwrite($log_file, "Error: Invalid request method\n");
-    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+// Check if admin is logged in
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    echo json_encode(['success' => false, 'message' => 'Unauthorized access']);
+    exit();
 }
 
-// Close the database connection
+if (!isset($_POST['status']) || !isset($_POST['reference_id'])) {
+    echo json_encode(['success' => false, 'message' => 'Missing required parameters']);
+    exit();
+}
+
+$status = $_POST['status'];
+$reference_id = $_POST['reference_id'];
+
+try {
+    // Start transaction
+    $conn->begin_transaction();
+
+    // Update student status
+    $stmt = $conn->prepare("UPDATE register_studentsqe SET status = ? WHERE reference_id = ?");
+    $stmt->bind_param("ss", $status, $reference_id);
+    $stmt->execute();
+
+    // If status is rejected and reason is provided, store the reason
+    if ($status === 'rejected' && isset($_POST['rejection_reason'])) {
+        $reason = $_POST['rejection_reason'];
+        
+        // First, delete any existing rejection reason for this reference_id
+        $stmt = $conn->prepare("DELETE FROM rejection_reasons WHERE reference_id = ?");
+        $stmt->bind_param("s", $reference_id);
+        $stmt->execute();
+        
+        // Insert new rejection reason
+        $stmt = $conn->prepare("INSERT INTO rejection_reasons (reference_id, reason) VALUES (?, ?)");
+        $stmt->bind_param("ss", $reference_id, $reason);
+        $stmt->execute();
+    }
+
+    // Commit transaction
+    $conn->commit();
+    
+    echo json_encode(['success' => true]);
+} catch (Exception $e) {
+    // Rollback transaction on error
+    $conn->rollback();
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+}
+
 $conn->close();
 fwrite($log_file, "Database connection closed\n");
 fclose($log_file);

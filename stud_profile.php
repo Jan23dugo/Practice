@@ -113,9 +113,9 @@ if (isset($_POST['update_profile'])) {
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === 0) {
     $allowed = ['jpg', 'jpeg', 'png', 'gif'];
     $filename = $_FILES['profile_picture']['name'];
-    $filetype = pathinfo($filename, PATHINFO_EXTENSION);
+    $filetype = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
     
-    if (in_array(strtolower($filetype), $allowed)) {
+    if (in_array($filetype, $allowed)) {
         $temp_name = $_FILES['profile_picture']['tmp_name'];
         $new_filename = 'profile_' . $_SESSION['stud_id'] . '.' . $filetype;
         $upload_path = 'uploads/profile_pictures/';
@@ -125,8 +125,16 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             mkdir($upload_path, 0777, true);
         }
         
+        // Delete old profile picture if it exists
+        if (!empty($student['profile_picture'])) {
+            $old_file = $student['profile_picture'];
+            if (file_exists($old_file)) {
+                unlink($old_file);
+            }
+        }
+        
         if (move_uploaded_file($temp_name, $upload_path . $new_filename)) {
-            // Update database with new profile picture path
+            // Store the full path in the database
             $profile_picture_path = $upload_path . $new_filename;
             $update_query = "UPDATE students SET profile_picture = ? WHERE stud_id = ?";
             $stmt = $conn->prepare($update_query);
@@ -135,8 +143,12 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             if ($stmt->execute()) {
                 $student['profile_picture'] = $profile_picture_path;
                 $update_success = "Profile picture updated successfully";
+                
+                // Refresh the page to show the new profile picture
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
             } else {
-                $update_error = "Failed to update profile picture";
+                $update_error = "Failed to update profile picture in database";
             }
         } else {
             $update_error = "Failed to upload profile picture";
@@ -1026,6 +1038,67 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         #profile-picture-input {
             display: none;
         }
+
+        .modal-profile-picture {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+        }
+
+        .profile-picture-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--primary-dark);
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .profile-picture-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .picture-upload {
+            flex: 1;
+        }
+
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        .upload-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        .upload-info {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -1048,7 +1121,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         <a href="#" id="profile-menu">
                             <div class="profile-icon">
                                 <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
-                                    <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                                    <img src="<?php echo htmlspecialchars($student['profile_picture']); ?>" alt="Profile Picture">
                                 <?php else: ?>
                                     <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
                                 <?php endif; ?>
@@ -1081,7 +1154,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             <div class="sidebar-profile">
                 <div class="profile-image">
                     <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
-                        <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        <img src="<?php echo htmlspecialchars($student['profile_picture']); ?>" alt="Profile Picture">
                     <?php else: ?>
                         <?php echo substr($_SESSION['firstname'], 0, 1); ?>
                     <?php endif; ?>
@@ -1144,7 +1217,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     <div class="profile-picture-container">
                         <div class="profile-picture">
                             <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
-                                <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture">
+                                <img src="<?php echo htmlspecialchars($student['profile_picture']); ?>" alt="Profile Picture">
                             <?php else: ?>
                                 <?php 
                                     echo strtoupper(substr($student['firstname'], 0, 1) . substr($student['lastname'], 0, 1));
@@ -1301,7 +1374,23 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             <?php endif; ?>
             
             <form method="POST" action="" enctype="multipart/form-data">
-                <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*">
+                <div class="modal-profile-picture">
+                    <div class="profile-picture-preview">
+                        <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                            <img src="<?php echo htmlspecialchars($student['profile_picture']); ?>" alt="Profile Picture">
+                        <?php else: ?>
+                            <?php echo strtoupper(substr($student['firstname'], 0, 1) . substr($student['lastname'], 0, 1)); ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="picture-upload">
+                        <label for="modal-profile-picture-input" class="upload-btn">
+                            <span class="material-symbols-rounded">photo_camera</span>
+                            Change Picture
+                        </label>
+                        <input type="file" id="modal-profile-picture-input" name="profile_picture" accept="image/*" class="hidden-input">
+                        <p class="upload-info">Maximum file size: 5MB<br>Supported formats: JPG, JPEG, PNG</p>
+                    </div>
+                </div>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="firstname">First Name</label>
@@ -1431,6 +1520,27 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                 if (this.files && this.files[0]) {
                     const form = this.closest('form');
                     form.submit();
+                }
+            });
+
+            // Profile Picture Preview in Modal
+            const modalProfilePictureInput = document.getElementById('modal-profile-picture-input');
+            const profilePicturePreview = document.querySelector('.profile-picture-preview');
+            
+            modalProfilePictureInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (profilePicturePreview.querySelector('img')) {
+                            profilePicturePreview.querySelector('img').src = e.target.result;
+                        } else {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            profilePicturePreview.innerHTML = '';
+                            profilePicturePreview.appendChild(img);
+                        }
+                    }
+                    reader.readAsDataURL(this.files[0]);
                 }
             });
         });

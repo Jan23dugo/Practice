@@ -11,96 +11,88 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
 // Include database connection
 include('config/config.php');
 
-// Mock data (for UI demonstration only)
-$stats = [
-    'total_students' => 156,
-    'qualified_students' => 87,
-    'pending_students' => 69,
-    'total_exams' => 12,
-    'tech_exams' => 5,
-    'non_tech_exams' => 7,
-    'scheduled_exams' => 4,
-    'question_bank_total' => 234,
-    'total_attempts' => 324,
-    'passed_count' => 245,
-    'failed_count' => 79,
-    'pass_rate' => 76
-];
+// Fetch Student Statistics
+$stats = [];
 
-// Recent registrations - only fetch if table exists
-try {
-$query = "SELECT * FROM register_studentsqe ORDER BY registration_date DESC LIMIT 5";
+// Total Students
+$query = "SELECT COUNT(*) as total FROM register_studentsqe";
+$result = $conn->query($query);
+$stats['total_students'] = $result->fetch_assoc()['total'];
+
+// Qualified Students
+$query = "SELECT COUNT(*) as qualified FROM register_studentsqe WHERE status = 'accepted'";
+$result = $conn->query($query);
+$stats['qualified_students'] = $result->fetch_assoc()['qualified'];
+
+// Pending Students
+$query = "SELECT COUNT(*) as pending FROM register_studentsqe WHERE status = 'pending'";
+$result = $conn->query($query);
+$stats['pending_students'] = $result->fetch_assoc()['pending'];
+
+// Exam Statistics
+$query = "SELECT 
+    COUNT(*) as total_exams,
+    SUM(CASE WHEN exam_type = 'tech' THEN 1 ELSE 0 END) as technical_exams,
+    SUM(CASE WHEN exam_type = 'non-tech' THEN 1 ELSE 0 END) as non_technical_exams,
+    SUM(CASE WHEN is_scheduled = 1 THEN 1 ELSE 0 END) as scheduled_exams
+FROM exams";
+$result = $conn->query($query);
+$exam_stats = $result->fetch_assoc();
+$stats = array_merge($stats, $exam_stats);
+
+// Question Bank Total
+$query = "SELECT COUNT(*) as total FROM question_bank";
+$result = $conn->query($query);
+$stats['question_bank_total'] = $result->fetch_assoc()['total'];
+
+// Exam Results Statistics
+$query = "SELECT 
+    COUNT(*) as total_attempts,
+    SUM(CASE WHEN passed = 1 THEN 1 ELSE 0 END) as passed_count,
+    SUM(CASE WHEN passed = 0 THEN 1 ELSE 0 END) as failed_count
+FROM exam_assignments 
+WHERE completion_status = 'completed'";
+$result = $conn->query($query);
+$exam_results = $result->fetch_assoc();
+
+// Set default values if no results yet
+$stats['total_attempts'] = $exam_results['total_attempts'] ?? 0;
+$stats['passed_count'] = $exam_results['passed_count'] ?? 0;
+$stats['failed_count'] = $exam_results['failed_count'] ?? 0;
+
+// Calculate pass rate
+$stats['pass_rate'] = $stats['total_attempts'] > 0 
+    ? round(($stats['passed_count'] / $stats['total_attempts']) * 100) 
+    : 0;
+
+// Recent registrations
+$query = "SELECT * FROM register_studentsqe 
+          ORDER BY registration_date DESC 
+          LIMIT 5";
 $recent_registrations = $conn->query($query);
-} catch (Exception $e) {
-    // Create empty result set if table doesn't exist
-    $recent_registrations = new class {
-        public $num_rows = 0;
-        public function fetch_assoc() { return null; }
-    };
-}
 
-// Recent announcements - only fetch if table exists
-try {
-$query = "SELECT * FROM announcements ORDER BY created_at DESC LIMIT 5";
+// Recent announcements
+$query = "SELECT * FROM announcements 
+          WHERE status = 'active' 
+          ORDER BY created_at DESC 
+          LIMIT 5";
 $recent_announcements = $conn->query($query);
-} catch (Exception $e) {
-    // Create empty result set if table doesn't exist
-    $recent_announcements = new class {
-        public $num_rows = 0;
-        public function fetch_assoc() { return null; }
-    };
-}
 
-// Upcoming exams - only fetch if table exists
-try {
-$query = "SELECT e.exam_id, e.title, e.exam_type, e.scheduled_date, e.scheduled_time, e.duration, e.description
+// Upcoming exams
+$query = "SELECT 
+            e.exam_id, 
+            e.title, 
+            e.exam_type, 
+            e.scheduled_date, 
+            e.scheduled_time, 
+            e.duration, 
+            e.description
           FROM exams e 
           WHERE e.is_scheduled = 1 
-          AND e.scheduled_date >= CURDATE() 
+            AND e.scheduled_date >= CURDATE() 
           ORDER BY e.scheduled_date ASC, e.scheduled_time ASC 
           LIMIT 5";
 $upcoming_exams = $conn->query($query);
-} catch (Exception $e) {
-    // Create empty result set if table doesn't exist
-    $upcoming_exams = new class {
-        public $num_rows = 0;
-        public function fetch_assoc() { return null; }
-    };
-}
-
-// Mock data for difficult exams (for UI preview only)
-$mock_difficult_exams = [
-    [
-        'title' => 'Technical Assessment Exam',
-        'total_questions' => 50,
-        'difficult_questions' => 8,
-        'difficulty_percent' => 16
-    ],
-    [
-        'title' => 'Programming Fundamentals',
-        'total_questions' => 40,
-        'difficult_questions' => 12,
-        'difficulty_percent' => 30
-    ],
-    [
-        'title' => 'Database Systems',
-        'total_questions' => 35,
-        'difficult_questions' => 15,
-        'difficulty_percent' => 43
-    ],
-    [
-        'title' => 'Math Logic Exam',
-        'total_questions' => 30,
-        'difficult_questions' => 20, 
-        'difficulty_percent' => 67
-    ],
-    [
-        'title' => 'Web Development',
-        'total_questions' => 45,
-        'difficult_questions' => 5,
-        'difficulty_percent' => 11
-    ]
-];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,9 +101,7 @@ $mock_difficult_exams = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CCIS Qualifying Exam System</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <!-- Linking Google Fonts For Icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         /* Dashboard Stats Containers */
         .dashboard-header {
@@ -826,61 +816,6 @@ $mock_difficult_exams = [
                 <div class="metrics-label">Pass Rate</div>
             </div>
         </div>
-    </div>
-    
-    <!-- Item Analysis Preview -->
-    <div class="analytics-preview">
-        <div class="analytics-header">
-            <h3 class="analytics-title">Item Analysis Preview</h3>
-            <a href="item_analysis.php" class="analytics-action">
-                Full Item Analysis <span class="material-symbols-rounded">lab_profile</span>
-            </a>
-        </div>
-        
-        <p style="margin-bottom: 15px;">Items flagged for revision based on student performance difficulty analysis:</p>
-        
-            <table class="analysis-table">
-                <thead>
-                    <tr>
-                        <th>Exam Title</th>
-                        <th>Total Questions</th>
-                        <th>Questions for Revision</th>
-                        <th>Difficulty Level</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($mock_difficult_exams as $exam): 
-                        $difficulty_class = '';
-                        
-                    if ($exam['difficulty_percent'] < 30) {
-                            $difficulty_class = 'difficulty-easy';
-                    } else if ($exam['difficulty_percent'] < 70) {
-                            $difficulty_class = 'difficulty-medium';
-                        } else {
-                            $difficulty_class = 'difficulty-hard';
-                        }
-                    ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($exam['title']); ?></td>
-                            <td><?php echo $exam['total_questions']; ?></td>
-                            <td>
-                                <?php if ($exam['difficult_questions'] > 0): ?>
-                                    <span class="list-item-badge badge-revision">
-                                        <?php echo $exam['difficult_questions']; ?> for revision
-                                    </span>
-                                <?php else: ?>
-                                    <span class="list-item-badge badge-accepted">No revision needed</span>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <div class="difficulty-indicator">
-                                <div class="difficulty-level <?php echo $difficulty_class; ?>" style="width: <?php echo $exam['difficulty_percent']; ?>%"></div>
-                                </div>
-                            </td>
-                        </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
     </div>
 </div>
 </div>

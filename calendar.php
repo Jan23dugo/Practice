@@ -2,6 +2,11 @@
 session_start();
 include('config/config.php');
 
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    header("Location: admin_login.php");
+    exit();
+}
+
 // Fetch scheduled exams from database
 function getScheduledExams($month, $year) {
     global $conn;

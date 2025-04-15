@@ -19,8 +19,10 @@ require_once 'config/config.php';
 // Fetch registration details
 $query = "SELECT rs.*, 
           DATE_FORMAT(rs.registration_date, '%M %d, %Y') as formatted_date,
-          DATE_FORMAT(rs.registration_date, '%h:%i %p') as formatted_time
+          DATE_FORMAT(rs.registration_date, '%h:%i %p') as formatted_time,
+          rr.reason as rejection_reason
           FROM register_studentsqe rs
+          LEFT JOIN rejection_reasons rr ON rs.reference_id = rr.reference_id
           WHERE rs.email = ? 
           ORDER BY rs.registration_date DESC 
           LIMIT 1";
@@ -407,6 +409,16 @@ $activePage = 'registration_status';
             color: var(--text-dark);
         }
 
+        .status-badge.status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-badge.status-accepted {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
         /* Details Grid Styles */
         .details-grid {
             display: grid;
@@ -636,6 +648,24 @@ $activePage = 'registration_status';
         .no-registration .btn:hover {
             background-color: var(--primary-dark);
         }
+
+        /* Add these styles to your existing CSS */
+        .status-note-rejected {
+            background-color: #f8d7da !important;
+            color: #721c24 !important;
+            border-left: 4px solid #dc3545;
+            margin-top: 20px;
+            padding: 15px 20px !important;
+        }
+
+        .rejection-reason {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -854,6 +884,13 @@ $activePage = 'registration_status';
                         <p class="status-note">
                             <span class="material-symbols-rounded">info</span>
                             Your registration is currently under review. You will be notified once it has been processed.
+                        </p>
+                    <?php elseif ($registration['status'] === 'rejected' && isset($registration['rejection_reason'])): ?>
+                        <p class="status-note status-note-rejected">
+                            <span class="material-symbols-rounded">error</span>
+                            Your registration has been rejected for the following reason:
+                            <br>
+                            <span class="rejection-reason"><?php echo htmlspecialchars($registration['rejection_reason']); ?></span>
                         </p>
                     <?php endif; ?>
                 </div>

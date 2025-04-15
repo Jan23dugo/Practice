@@ -1,3 +1,15 @@
+<?php
+session_start(); 
+// Include database connection
+include('config/config.php');
+
+// Check if user is logged in as admin
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    // Not logged in as admin, redirect to admin login page
+    header("Location: admin_login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

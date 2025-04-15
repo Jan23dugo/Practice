@@ -189,7 +189,7 @@
                     <span class="nav-tooltip">Calendar</span>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="notifications.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
                             notifications
                         </span>

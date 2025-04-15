@@ -26,7 +26,41 @@ if (isset($_POST['register'])) {
     $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($contact_number) || empty($address) || empty($date_of_birth) || empty($gender)) {
+    // Profile picture handling
+    $profile_picture = null;
+    $upload_error = '';
+    
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === 0) {
+        $allowed_types = ['image/jpeg', 'image/png', 'image/jpg'];
+        $max_size = 5 * 1024 * 1024; // 5MB
+        $file = $_FILES['profile_picture'];
+        
+        if (!in_array($file['type'], $allowed_types)) {
+            $upload_error = "Only JPG, JPEG, and PNG files are allowed.";
+        } elseif ($file['size'] > $max_size) {
+            $upload_error = "File size must be less than 5MB.";
+        } else {
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $filename = uniqid('profile_') . '.' . $ext;
+            $upload_path = 'uploads/profile_pictures/';
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($upload_path)) {
+                mkdir($upload_path, 0777, true);
+            }
+            
+            if (move_uploaded_file($file['tmp_name'], $upload_path . $filename)) {
+                $profile_picture = $upload_path . $filename;
+            } else {
+                $upload_error = "Error uploading file. Please try again.";
+            }
+        }
+    }
+    
+    if (!empty($upload_error)) {
+        $registration_error = $upload_error;
+        $show_registration = true;
+    } else if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($contact_number) || empty($address) || empty($date_of_birth) || empty($gender)) {
         $registration_error = "All fields are required";
         $show_registration = true;
     } elseif ($password !== $confirm_password) {
@@ -62,10 +96,10 @@ if (isset($_POST['register'])) {
             // Hash the password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            // Insert new student
-            $insert_query = "INSERT INTO students (firstname, lastname, email, password, contact_number, address, date_of_birth, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            // Insert new student with profile picture
+            $insert_query = "INSERT INTO students (firstname, lastname, email, password, contact_number, address, date_of_birth, gender, profile_picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($insert_query);
-            $stmt->bind_param("ssssssss", $firstname, $lastname, $email, $hashed_password, $contact_number, $address, $date_of_birth, $gender);
+            $stmt->bind_param("sssssssss", $firstname, $lastname, $email, $hashed_password, $contact_number, $address, $date_of_birth, $gender, $profile_picture);
             
             if ($stmt->execute()) {
                 $registration_success = "Registration successful! You can now login.";
@@ -479,9 +513,6 @@ if (isset($_POST['login'])) {
             }
             
             .auth-container {
-<<<<<<< HEAD
-                margin-bottom: 70px; /* Adjusted for mobile footer height */
-=======
                 max-width: 95%;
                 margin: 20px auto;
             }
@@ -496,10 +527,6 @@ if (isset($_POST['login'])) {
             
             .password-requirements ul {
                 grid-template-columns: 1fr;
-<<<<<<< Updated upstream
-=======
->>>>>>> 6cb0e3cb49376027075ce711647d4e1cdaa1be49
->>>>>>> Stashed changes
             }
         }
         
@@ -522,6 +549,36 @@ if (isset($_POST['login'])) {
         
         .back-button .material-symbols-rounded {
             font-size: 20px;
+        }
+        
+        .image-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 10px auto;
+            background-color: var(--gray-light);
+            border: 2px dashed var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        input[type="file"] {
+            padding: 10px;
+            background-color: white;
+        }
+        
+        .form-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
         }
     </style>
     <script>
@@ -627,6 +684,24 @@ if (isset($_POST['login'])) {
                     }
                 });
             }
+            
+            const profilePicInput = document.getElementById('profile_picture');
+            const previewDiv = document.getElementById('image_preview');
+            
+            if (profilePicInput && previewDiv) {
+                profilePicInput.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewDiv.innerHTML = `<img src="${e.target.result}" alt="Profile Preview">`;
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                        previewDiv.innerHTML = '';
+                    }
+                });
+            }
         });
     </script>
 </head>
@@ -667,7 +742,7 @@ if (isset($_POST['login'])) {
                             <div class="alert alert-danger"><?php echo $registration_error; ?></div>
                         <?php endif; ?>
                         
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
@@ -676,6 +751,12 @@ if (isset($_POST['login'])) {
                                 <div class="form-group">
                                     <label for="lastname">Last Name</label>
                                     <input type="text" class="form-control" id="lastname" name="lastname" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="profile_picture">Profile Picture</label>
+                                    <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/jpeg,image/png,image/jpg">
+                                    <small class="form-text text-muted">Upload a profile picture (JPG, JPEG, or PNG, max 5MB)</small>
+                                    <div id="image_preview" class="image-preview"></div>
                                 </div>
                                 <div class="form-group full-width">
                                     <label for="email">Email</label>
