@@ -657,28 +657,7 @@ $upcoming_exams = $conn->query($query);
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <!-- Mock data for demonstration -->
-                    <div class="list-item">
-                        <div class="list-item-content">
-                            <div class="list-item-title">Janlloyd Dugo</div>
-                            <div class="list-item-subtitle">jdugo23@gmail.com • BSIT • Mar 11, 2025</div>
-                        </div>
-                        <span class="list-item-badge badge-accepted">Accepted</span>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-item-content">
-                            <div class="list-item-title">Maria Santos</div>
-                            <div class="list-item-subtitle">msantos@gmail.com • BSCS • Mar 10, 2025</div>
-                        </div>
-                        <span class="list-item-badge badge-pending">Pending</span>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-item-content">
-                            <div class="list-item-title">John Smith</div>
-                            <div class="list-item-subtitle">jsmith@gmail.com • BSIT • Mar 8, 2025</div>
-                        </div>
-                        <span class="list-item-badge badge-accepted">Accepted</span>
-                    </div>
+                    
                 <?php endif; ?>
             </div>
         </div>
