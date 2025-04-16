@@ -239,10 +239,7 @@ label {
         <option value="true-false" selected>True/False</option>
         <option value="programming">Programming</option>
     </select>
-    <select class="question-points" id="question_points">
-        <option value="1">1 point</option>
-        <option value="2">2 points</option>
-    </select>
+    <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
     
     <div class="toolbar">
         <button class="bold-btn"><b>B</b></button>
@@ -288,13 +285,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add save button functionality
     const saveQuestionBtn = document.getElementById("saveQuestionBtn");
     const questionForm = document.getElementById("questionForm");
-    const pointsSelect = document.getElementById("question_points");
     const pointsInput = document.getElementById("points_input");
 
     // Add event listener for save button
     saveQuestionBtn.addEventListener("click", function() {
-        // Update the points value from the select element
-        pointsInput.value = pointsSelect.value;
+        // Update the points value from the input field
+        pointsInput.value = document.getElementById('question_points').value;
         
         // Validate the form
         if (!validateForm()) {
@@ -322,11 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         return true;
     }
-
-    // Update points input when select changes
-    pointsSelect.addEventListener("change", function() {
-        pointsInput.value = this.value;
-    });
 
     // Function to handle question type changes
     window.handleQuestionTypeChange = function(value) {
