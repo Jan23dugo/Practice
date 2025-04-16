@@ -316,6 +316,76 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
                 justify-content: center;
             }
         }
+
+        /* Custom Popup Styles */
+        .custom-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .popup-content h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .popup-content p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .popup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .popup-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .cancel-btn {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .confirm-btn {
+            background-color: #75343A;
+            color: white;
+        }
+        
+        .confirm-btn:hover {
+            background-color: #5c2a2e;
+        }
     </style>
 </head>
 <body>
@@ -400,16 +470,47 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
         </div>
     </div>
 
+    <!-- Custom Popup Dialog -->
+    <div id="customPopup" class="custom-popup">
+        <div class="popup-content">
+            <h3>Start Exam</h3>
+            <p>Are you ready to start the exam? The timer will begin immediately.</p>
+            <div class="popup-buttons">
+                <button id="cancelButton" class="cancel-btn">Cancel</button>
+                <button id="confirmButton" class="confirm-btn">Start Exam</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Store the exam ID for use with the popup
+        let currentExamId = null;
+        
         function proceedToExam(examId) {
-            if (confirm('Are you ready to start the exam? The timer will begin immediately.')) {
-                console.log("Proceeding to exam with ID: " + examId);
-                <?php $_SESSION['current_exam_id'] = $assigned_exam['exam_id']; ?>
-                window.location.href = 'take_exam.php?exam_id=' + examId;
-                return false;
-            }
+            currentExamId = examId;
+            document.getElementById('customPopup').style.display = 'flex';
             return false;
         }
+        
+        // Close popup when Cancel is clicked
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            document.getElementById('customPopup').style.display = 'none';
+        });
+        
+        // Proceed to exam when Confirm is clicked
+        document.getElementById('confirmButton').addEventListener('click', function() {
+            console.log("Proceeding to exam with ID: " + currentExamId);
+            <?php $_SESSION['current_exam_id'] = $assigned_exam['exam_id']; ?>
+            window.location.href = 'take_exam.php?exam_id=' + currentExamId;
+        });
+        
+        // Close popup when clicking outside the popup content
+        window.addEventListener('click', function(event) {
+            const popup = document.getElementById('customPopup');
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html> 
