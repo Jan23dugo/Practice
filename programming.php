@@ -467,10 +467,7 @@ select#programming_language:hover {
         <option value="true-false">True/False</option>
         <option value="fill-in-the-blank">Fill in the Blank</option>
     </select>
-    <select class="question-points">
-        <option value="1">1 point</option>
-        <option value="2">2 points</option>
-    </select>
+    <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
     
     <div class="toolbar">
         <button class="bold-btn"><b>B</b></button>
@@ -801,18 +798,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add save button functionality
     const saveQuestionBtn = document.getElementById("saveQuestionBtn");
     const questionForm = document.getElementById("questionForm");
-    const pointsSelect = document.querySelector(".question-points");
     const pointsInput = document.getElementById("points_input");
-
-    // Add event listener for points selection
-    pointsSelect.addEventListener("change", function() {
-        pointsInput.value = this.value;
-    });
 
     // Add event listener for save button
     saveQuestionBtn.addEventListener("click", function() {
         // Update points value
-        pointsInput.value = pointsSelect.value;
+        pointsInput.value = document.getElementById('question_points').value;
         
         // Validate the form
         if (!validateForm()) {

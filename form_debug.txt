@@ -5366,6 +5366,7 @@ Array
 
 --------------------
 2025-04-16 23:51:15
+2025-04-16 16:42:59
 POST data:
 Array
 (
@@ -5377,6 +5378,13 @@ Array
     [is_scheduled] => 1
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51
+    [quiz-name] => Tech Exam
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => non-tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 09:30:00
     [randomize-questions] => on
     [randomize-choices] => on
     [passing_score_type] => percentage
@@ -5583,6 +5591,20 @@ Array
     [is_scheduled] => 1
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 08:22:00
+2025-04-16 16:48:42
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-30
+    [scheduled_time] => 09:30:00
+    [randomize-questions] => on
+    [randomize-choices] => on
     [passing_score_type] => percentage
     [passing_score] => 70
     [remove-cover-image] => 0

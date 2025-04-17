@@ -473,7 +473,7 @@ if ($login_logs->num_rows > 0) {
                     </a>
                 </li>
                 <li>
-                    <a href="admin_logout.php">
+                    <a href="logout.php">
                         <span class="material-symbols-rounded">logout</span>
                         Logout
                     </a>

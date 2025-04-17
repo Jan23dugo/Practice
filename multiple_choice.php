@@ -276,10 +276,7 @@ label {
         <option value="true-false">True/False</option>
         <option value="programming">Programming</option>
     </select>
-    <select class="question-points" id="question_points">
-        <option value="1">1 point</option>
-        <option value="2">2 points</option>
-    </select>
+    <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
     
     <div class="toolbar">
         <button class="bold-btn"><b>B</b></button>
@@ -327,7 +324,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const choicesContainer = document.getElementById("choices");
     const saveQuestionBtn = document.getElementById("saveQuestionBtn");
     const questionForm = document.getElementById("questionForm");
-    const pointsSelect = document.getElementById("question_points");
     const pointsInput = document.getElementById("points_input");
 
     // First, load TinyMCE script dynamically
@@ -437,8 +433,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listener for save button
     saveQuestionBtn.addEventListener("click", function() {
-        // Update the points value from the select element
-        pointsInput.value = pointsSelect.value;
+        // Update the points value from the input field
+        pointsInput.value = document.getElementById('question_points').value;
         
         // Make sure TinyMCE content is saved to the form
         if (window.questionEditor) {
@@ -488,11 +484,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         return true;
     }
-
-    // Update points input when select changes
-    pointsSelect.addEventListener("change", function() {
-        pointsInput.value = this.value;
-    });
 
     // Add choice button functionality
     addChoiceBtn.addEventListener("click", function () {
@@ -553,8 +544,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById('question').value = data.question.question_text;
                     
                     // Set points
-                    const pointsSelect = document.getElementById('question_points');
-                    pointsSelect.value = data.question.points;
+                    const pointsInput = document.getElementById('question_points');
+                    pointsInput.value = data.question.points;
                     document.getElementById('points_input').value = data.question.points;
                     
                     // Clear existing choices
