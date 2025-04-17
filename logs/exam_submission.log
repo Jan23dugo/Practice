@@ -1,0 +1,79 @@
+[2025-04-16 23:54:15][INFO] === Starting New Exam Submission ===
+[2025-04-16 23:54:15][INFO] Exam ID: 24, Answer count: 21
+[2025-04-16 23:54:15][INFO] Student ID: 11, Database ID: 113
+[2025-04-16 23:54:15][INFO] Processing answer for question 67, type: programming
+[2025-04-16 23:54:15][ERROR] Error processing answers: Unknown column 'pq.programming_language' in 'field list'
+[2025-04-17 00:13:58][INFO] === Starting New Exam Submission ===
+[2025-04-17 00:13:58][INFO] Exam ID: 24, Answer count: 21
+[2025-04-17 00:13:58][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 00:13:58][INFO] Processing answer for question 67, type: programming
+[2025-04-17 00:13:58][INFO] Executing python code for question 67
+[2025-04-17 00:13:58][ERROR] Error executing code for question 67
+[2025-04-17 00:13:58][INFO] Processing answer for question 68, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 69, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 70, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 71, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 72, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 73, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 74, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 75, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 76, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 77, type: multiple-choice
+[2025-04-17 00:13:58][INFO] Processing answer for question 78, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 79, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 80, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 81, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 82, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 83, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 84, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 85, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 86, type: true-false
+[2025-04-17 00:13:58][INFO] Processing answer for question 87, type: true-false
+[2025-04-17 00:13:58][INFO] Total score: 8, Max possible: 22, Question count: 21
+[2025-04-17 00:13:58][INFO] Percentage calculation: (8 / 22) * 100 = 36.363636363636%
+[2025-04-17 00:13:58][INFO] Passing check: 36.363636363636 >= 70 ? No
+[2025-04-17 00:13:58][INFO] Exam submitted successfully
+[2025-04-17 00:42:13][INFO] === Starting New Exam Submission ===
+[2025-04-17 00:42:13][INFO] Exam ID: 23, Answer count: 0
+[2025-04-17 00:42:13][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 00:42:13][INFO] Total score: 0, Max possible: 1, Question count: 0
+[2025-04-17 00:42:13][INFO] Percentage calculation: (0 / 1) * 100 = 0%
+[2025-04-17 00:42:13][INFO] Passing check: 0 >= 70 ? No
+[2025-04-17 00:42:13][INFO] Exam submitted successfully
+[2025-04-17 00:50:50][INFO] === Starting New Exam Submission ===
+[2025-04-17 00:50:50][INFO] Exam ID: 23, Answer count: 0
+[2025-04-17 00:50:50][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 00:50:50][INFO] Total score: 0, Max possible: 1, Question count: 0
+[2025-04-17 00:50:50][INFO] Percentage calculation: (0 / 1) * 100 = 0%
+[2025-04-17 00:50:50][INFO] Passing check: 0 >= 70 ? No
+[2025-04-17 00:50:50][INFO] Exam submitted successfully
+[2025-04-17 01:03:00][INFO] === Starting New Exam Submission ===
+[2025-04-17 01:03:00][INFO] Exam ID: 23, Answer count: 1
+[2025-04-17 01:03:00][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 01:03:00][INFO] Processing answer for question 66, type: programming
+[2025-04-17 01:03:00][INFO] Executing python code for question 66
+[2025-04-17 01:03:00][ERROR] Error executing code for question 66
+[2025-04-17 01:03:00][INFO] Total score: 0, Max possible: 1, Question count: 1
+[2025-04-17 01:03:00][INFO] Percentage calculation: (0 / 1) * 100 = 0%
+[2025-04-17 01:03:00][INFO] Passing check: 0 >= 70 ? No
+[2025-04-17 01:03:00][INFO] Exam submitted successfully
+[2025-04-17 01:11:13][INFO] === Starting New Exam Submission ===
+[2025-04-17 01:11:13][INFO] Exam ID: 23, Answer count: 1
+[2025-04-17 01:11:13][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 01:11:13][INFO] Processing answer for question 66, type: programming
+[2025-04-17 01:11:13][INFO] Executing python code for question 66
+[2025-04-17 01:11:13][ERROR] Error executing code for question 66
+[2025-04-17 01:11:13][INFO] Total score: 0, Max possible: 1, Question count: 1
+[2025-04-17 01:11:13][INFO] Percentage calculation: (0 / 1) * 100 = 0%
+[2025-04-17 01:11:13][INFO] Passing check: 0 >= 70 ? No
+[2025-04-17 01:11:13][INFO] Exam submitted successfully
+[2025-04-17 01:52:58][INFO] === Starting New Exam Submission ===
+[2025-04-17 01:52:58][INFO] Exam ID: 23, Answer count: 1
+[2025-04-17 01:52:58][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 01:52:58][INFO] Processing answer for question 66, type: programming
+[2025-04-17 01:52:58][INFO] Executing python code for question 66
+[2025-04-17 01:52:58][ERROR] Error executing code for question 66
+[2025-04-17 01:52:58][INFO] Total score: 0, Max possible: 1, Question count: 1
+[2025-04-17 01:52:58][INFO] Percentage calculation: (0 / 1) * 100 = 0%
+[2025-04-17 01:52:58][INFO] Passing check: 0 >= 70 ? No
+[2025-04-17 01:52:58][INFO] Exam submitted successfully

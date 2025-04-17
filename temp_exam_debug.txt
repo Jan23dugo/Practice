@@ -56,3 +56,8 @@ quiz_name: Untitled Quiz
 exam_type: tech
 duration: 60
 Successfully created temporary exam with ID: 28
+2025-04-15 02:33:00 - Creating temporary exam with minimal data
+quiz_name: Untitled Quiz
+exam_type: tech
+duration: 60
+Successfully created temporary exam with ID: 25

@@ -126,35 +126,100 @@ try {
                 // For programming questions
                 if (!isset($answer['code']) || !isset($answer['programming_id'])) {
                     writeLog("Missing required fields for programming question $question_id", 'WARNING');
-                        continue;
-                    }
+                    continue;
+                }
                 
-                // Get question points
-                $stmt = $conn->prepare("SELECT points FROM questions WHERE question_id = ?");
+                // Get question points and test cases
+                $stmt = $conn->prepare("SELECT q.points, q.question_id, pq.programming_id, pq.language 
+                                      FROM questions q 
+                                      JOIN programming_questions pq ON q.question_id = pq.question_id 
+                                      WHERE q.question_id = ?");
                 $stmt->bind_param("i", $question_id);
-                    $stmt->execute();
+                $stmt->execute();
                 $result = $stmt->get_result();
                 $questionData = $result->fetch_assoc();
                 $points = $questionData['points'] ?? 1; // Default to 1 if not set
+                $programming_language = $questionData['language'] ?? 'python'; // Get the language, default to python if not set
                 $stmt->close();
                 
-                // Add points to total score (if you want to give full credit for all programming submissions)
+                // Check if answer is empty or just whitespace
+                $code = trim($answer['code']);
+                if (empty($code)) {
+                    writeLog("Empty programming answer for question $question_id", 'WARNING');
+                    $points = 0; // No points for empty answers
+                    $is_correct = 0;
+                } else {
+                    // Get test cases for this programming question
+                    $stmt = $conn->prepare("SELECT * FROM test_cases WHERE programming_id = ?");
+                    $stmt->bind_param("i", $answer['programming_id']);
+                    $stmt->execute();
+                    $testCases = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                    $stmt->close();
+
+                    if (empty($testCases)) {
+                        writeLog("No test cases found for programming question $question_id", 'WARNING');
+                        $points = 0;
+                        $is_correct = 0;
+                    } else {
+                        // Prepare data for code execution with dynamic language
+                        $testData = [
+                            'code' => $code,
+                            'language' => $programming_language,
+                            'test_cases' => $testCases
+                        ];
+
+                        writeLog("Executing {$programming_language} code for question $question_id");
+
+                        // Execute code against test cases
+                        $ch = curl_init('test_exam.php');
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_POST, true);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($testData));
+                        $response = curl_exec($ch);
+                        curl_close($ch);
+
+                        $testResults = json_decode($response, true);
+
+                        if ($testResults && isset($testResults['result'])) {
+                            $totalTests = count($testResults['result']);
+                            $passedTests = 0;
+
+                            foreach ($testResults['result'] as $result) {
+                                if ($result['passed']) {
+                                    $passedTests++;
+                                }
+                            }
+
+                            // Calculate points based on passed test cases
+                            $points = ($points * $passedTests) / $totalTests;
+                            $is_correct = ($passedTests == $totalTests) ? 1 : 0;
+
+                            writeLog("Programming question $question_id: Passed $passedTests/$totalTests tests. Points awarded: $points");
+                        } else {
+                            writeLog("Error executing code for question $question_id", 'ERROR');
+                            $points = 0;
+                            $is_correct = 0;
+                        }
+                    }
+                }
+                
+                // Add points to total score
                 $totalScore += $points;
                 $questionCount++;
 
-                // Store the score in the database
+                // Store the programming answer in the database
                 $stmt = $conn->prepare("INSERT INTO student_answers 
                         (student_id, exam_id, question_id, programming_answer, 
-                     submission_time, question_type, programming_id, score) 
-                    VALUES (?, ?, ?, ?, NOW(), 'programming', ?, ?)");
+                         question_type, programming_id, is_correct) 
+                    VALUES (?, ?, ?, ?, 'programming', ?, ?)");
                     
-                $stmt->bind_param("iiisid", 
+                $stmt->bind_param("iiisis", 
                         $student_id, 
-                    $exam_id, 
+                        $exam_id, 
                         $question_id, 
-                        $answer['code'],
+                        $code,
                         $answer['programming_id'],
-                    $points
+                        $is_correct
                 );
                 
                 $stmt->execute();
@@ -189,20 +254,19 @@ try {
                 $totalScore += $score;
                 $questionCount++;
 
-                // Include score in the INSERT statement
+                // Insert the multiple choice answer
                 $stmt = $conn->prepare("INSERT INTO student_answers 
-                    (student_id, exam_id, question_id, answer_id, 
-                     submission_time, question_type, is_correct, score) 
-                    VALUES (?, ?, ?, ?, NOW(), ?, ?, ?)");
+                    (student_id, exam_id, question_id, answer_id_selected, 
+                     question_type, is_correct) 
+                    VALUES (?, ?, ?, ?, ?, ?)");
                     
-                $stmt->bind_param("iiiisid", 
+                $stmt->bind_param("iiiisi", 
                     $student_id, 
                     $exam_id, 
                     $question_id, 
-                    $answer['answer_id'], 
+                    $answer['answer_id'],
                     $answer['question_type'],
-                    $is_correct,
-                    $score
+                    $is_correct
                 );
                 
                 $stmt->execute();
@@ -288,12 +352,12 @@ try {
         // Rollback the transaction on error
         $conn->rollback();
         writeLog("Error processing answers: " . $e->getMessage(), 'ERROR');
-        redirectWithMessage('exams.php', 'Error submitting exam: ' . $e->getMessage());
+        redirectWithMessage('exam_complete.php', 'Error submitting exam: ' . $e->getMessage());
     }
 
 } catch (Exception $e) {
     writeLog("Error during submission: " . $e->getMessage(), 'ERROR');
-    redirectWithMessage('exams.php', 'Error submitting exam: ' . $e->getMessage());
+    redirectWithMessage('exam_complete.php', 'Error submitting exam: ' . $e->getMessage());
 } finally {
     writeLog("=== End of Exam Submission ===");
 }

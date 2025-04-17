@@ -5348,3 +5348,260 @@ Array
 )
 
 --------------------
+2025-04-15 02:33:00
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-04-16 23:51:15
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 07:51
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-17 00:22:16
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-17 00:42:50
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-17 00:51:15
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-17 01:03:20
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-17 01:11:29
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-04-17 01:53:11
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------

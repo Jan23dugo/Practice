@@ -133,6 +133,37 @@ if ($stmt === false) {
     <script>
         // Make sure this is set before loading exam.js
         window.totalQuestions = <?php echo json_encode($total_questions); ?>;
+
+        // Configure Ace Editor with minimal settings
+        document.addEventListener('DOMContentLoaded', function() {
+            const editors = document.querySelectorAll('.ace-editor');
+            editors.forEach(editorElement => {
+                const editor = ace.edit(editorElement.id);
+                
+                // Reset any session settings that might affect cursor
+                editor.session.setUseSoftTabs(false);
+                editor.session.setTabSize(4);
+                
+                // Basic editor configuration
+                editor.setOptions({
+                    fontSize: 14,
+                    theme: "ace/theme/dracula",
+                    printMarginColumn: false,
+                    showPrintMargin: false,
+                    showGutter: true,
+                    displayIndentGuides: false,
+                    behavioursEnabled: false,
+                    wrapBehavioursEnabled: false
+                });
+
+                // Disable all transformations
+                editor.renderer.setScrollMargin(0, 0, 0, 0);
+                editor.renderer.setPadding(0);
+                
+                // Force immediate update
+                editor.renderer.updateFull(true);
+            });
+        });
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -157,16 +188,18 @@ if ($stmt === false) {
             overflow: hidden;
             margin-bottom: 15px;
             position: relative;
-            background-color: #282a36; /* Dark background */
-            z-index: 5; /* Ensure proper stacking */
+            background-color: #282a36;
         }
         
+        /* Minimal Ace Editor styling */
         .ace_editor {
-            width: 100%;
-            height: 100%;
+            font-family: monospace;
             font-size: 14px;
-            z-index: 10; /* Higher than container */
-            position: relative; /* Ensure proper stacking context */
+        }
+
+        .ace_editor * {
+            font-family: monospace !important;
+            transform: none !important;
         }
         
         /* Ensure test cases sidebar doesn't overlap */

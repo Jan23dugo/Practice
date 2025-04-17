@@ -1,4 +1,4 @@
-<?php
+1<?php
     session_start(); // Start session if needed
 
 // Check if user is logged in as admin
@@ -11,184 +11,91 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
 // Include database connection
 include('config/config.php');
 
-// Initialize stats array
-$stats = array();
+// Mock data (for UI demonstration only)
+$stats = [
+    'total_students' => 156,
+    'qualified_students' => 87,
+    'pending_students' => 69,
+    'total_exams' => 12,
+    'tech_exams' => 5,
+    'non_tech_exams' => 7,
+    'scheduled_exams' => 4,
+    'question_bank_total' => 234,
+    'total_attempts' => 324,
+    'passed_count' => 245,
+    'failed_count' => 79,
+    'pass_rate' => 76
+];
 
-// Fetch Student Statistics with error handling
+// Recent registrations - only fetch if table exists
 try {
-    // Total Students
-    $query = "SELECT COUNT(*) as total FROM register_studentsqe";
-    $result = $conn->query($query);
-    $stats['total_students'] = ($result) ? $result->fetch_assoc()['total'] : 0;
-
-    // Qualified Students
-    $query = "SELECT COUNT(*) as qualified FROM register_studentsqe WHERE status = 'accepted'";
-    $result = $conn->query($query);
-    $stats['qualified_students'] = ($result) ? $result->fetch_assoc()['qualified'] : 0;
-
-    // Pending Students
-    $query = "SELECT COUNT(*) as pending FROM register_studentsqe WHERE status = 'pending'";
-    $result = $conn->query($query);
-    $stats['pending_students'] = ($result) ? $result->fetch_assoc()['pending'] : 0;
+$query = "SELECT * FROM register_studentsqe ORDER BY registration_date DESC LIMIT 5";
+$recent_registrations = $conn->query($query);
 } catch (Exception $e) {
-    error_log("Error fetching student statistics: " . $e->getMessage());
-    // Set default values if query fails
-    $stats['total_students'] = 0;
-    $stats['qualified_students'] = 0;
-    $stats['pending_students'] = 0;
-}
-
-// Exam Statistics with error handling
-try {
-    $query = "SELECT 
-        COUNT(*) as total_exams,
-        SUM(CASE WHEN exam_type = 'tech' THEN 1 ELSE 0 END) as technical_exams,
-        SUM(CASE WHEN exam_type = 'non-tech' THEN 1 ELSE 0 END) as non_technical_exams,
-        SUM(CASE WHEN is_scheduled = 1 THEN 1 ELSE 0 END) as scheduled_exams
-    FROM exams";
-    $result = $conn->query($query);
-    if ($result) {
-        $exam_stats = $result->fetch_assoc();
-        $stats = array_merge($stats, $exam_stats);
-    }
-} catch (Exception $e) {
-    error_log("Error fetching exam statistics: " . $e->getMessage());
-    // Set default values if query fails
-    $stats['total_exams'] = 0;
-    $stats['technical_exams'] = 0;
-    $stats['non_technical_exams'] = 0;
-    $stats['scheduled_exams'] = 0;
-}
-
-// Question Bank Total
-try {
-    $query = "SELECT COUNT(*) as total FROM question_bank";
-    $result = $conn->query($query);
-    $stats['question_bank_total'] = ($result) ? $result->fetch_assoc()['total'] : 0;
-} catch (Exception $e) {
-    error_log("Error fetching question bank total: " . $e->getMessage());
-    $stats['question_bank_total'] = 0;
-}
-
-// Exam Results Statistics
-try {
-    $query = "SELECT 
-        COUNT(*) as total_attempts,
-        SUM(CASE WHEN passed = 1 THEN 1 ELSE 0 END) as passed_count,
-        SUM(CASE WHEN passed = 0 THEN 1 ELSE 0 END) as failed_count
-    FROM exam_assignments 
-    WHERE completion_status = 'completed'";
-    $result = $conn->query($query);
-    if ($result) {
-        $exam_results = $result->fetch_assoc();
-        $stats['total_attempts'] = $exam_results['total_attempts'] ?? 0;
-        $stats['passed_count'] = $exam_results['passed_count'] ?? 0;
-        $stats['failed_count'] = $exam_results['failed_count'] ?? 0;
-        
-        // Calculate pass rate
-        $stats['pass_rate'] = $stats['total_attempts'] > 0 
-            ? round(($stats['passed_count'] / $stats['total_attempts']) * 100) 
-            : 0;
-    }
-} catch (Exception $e) {
-    error_log("Error fetching exam results: " . $e->getMessage());
-    $stats['total_attempts'] = 0;
-    $stats['passed_count'] = 0;
-    $stats['failed_count'] = 0;
-    $stats['pass_rate'] = 0;
-}
-
-// Recent registrations with error handling
-try {
-    $query = "SELECT * FROM register_studentsqe 
-              ORDER BY registration_date DESC 
-              LIMIT 5";
-    $recent_registrations = $conn->query($query);
-    if (!$recent_registrations) {
-        throw new Exception("Failed to fetch recent registrations");
-    }
-} catch (Exception $e) {
-    error_log("Error fetching recent registrations: " . $e->getMessage());
-    // Create empty result set if query fails
+    // Create empty result set if table doesn't exist
     $recent_registrations = new class {
         public $num_rows = 0;
         public function fetch_assoc() { return null; }
     };
 }
 
-// Recent announcements with error handling
+// Recent announcements - only fetch if table exists
 try {
-    $query = "SELECT * FROM announcements 
-              WHERE status = 'active' 
-              ORDER BY created_at DESC 
-              LIMIT 5";
-    $recent_announcements = $conn->query($query);
-    if (!$recent_announcements) {
-        throw new Exception("Failed to fetch recent announcements");
-    }
+$query = "SELECT * FROM announcements ORDER BY created_at DESC LIMIT 5";
+$recent_announcements = $conn->query($query);
 } catch (Exception $e) {
-    error_log("Error fetching recent announcements: " . $e->getMessage());
-    // Create empty result set if query fails
+    // Create empty result set if table doesn't exist
     $recent_announcements = new class {
         public $num_rows = 0;
         public function fetch_assoc() { return null; }
     };
 }
 
-// Upcoming exams with error handling
+// Upcoming exams - only fetch if table exists
 try {
-    $query = "SELECT 
-                e.exam_id, 
-                e.title, 
-                e.exam_type, 
-                e.scheduled_date, 
-                e.scheduled_time, 
-                e.duration, 
-                e.description
-              FROM exams e 
-              WHERE e.is_scheduled = 1 
-                AND e.scheduled_date >= CURDATE() 
-              ORDER BY e.scheduled_date ASC, e.scheduled_time ASC 
-              LIMIT 5";
-    $upcoming_exams = $conn->query($query);
-    if (!$upcoming_exams) {
-        throw new Exception("Failed to fetch upcoming exams");
-    }
+$query = "SELECT * FROM exams WHERE is_scheduled = 1 AND scheduled_date >= CURDATE() ORDER BY scheduled_date ASC LIMIT 5";
+$upcoming_exams = $conn->query($query);
 } catch (Exception $e) {
-    error_log("Error fetching upcoming exams: " . $e->getMessage());
-    // Create empty result set if query fails
+    // Create empty result set if table doesn't exist
     $upcoming_exams = new class {
         public $num_rows = 0;
         public function fetch_assoc() { return null; }
     };
 }
 
-// Remove mock data and add real query for difficult exams
-try {
-    $query = "SELECT 
-        e.title,
-        COUNT(q.question_id) as total_questions,
-        SUM(CASE WHEN q.difficulty_level = 'hard' THEN 1 ELSE 0 END) as difficult_questions,
-        (SUM(CASE WHEN q.difficulty_level = 'hard' THEN 1 ELSE 0 END) * 100.0 / COUNT(q.question_id)) as difficulty_percent
-    FROM exams e
-    LEFT JOIN exam_questions eq ON e.exam_id = eq.exam_id
-    LEFT JOIN question_bank q ON eq.question_id = q.question_id
-    GROUP BY e.exam_id, e.title
-    ORDER BY difficulty_percent DESC
-    LIMIT 5";
-    
-    $difficult_exams_result = $conn->query($query);
-    if (!$difficult_exams_result) {
-        throw new Exception("Failed to fetch exam difficulty analysis");
-    }
-} catch (Exception $e) {
-    error_log("Error fetching exam difficulty analysis: " . $e->getMessage());
-    // Create empty result set if query fails
-    $difficult_exams_result = new class {
-        public $num_rows = 0;
-        public function fetch_assoc() { return null; }
-    };
-}
+// Mock data for difficult exams (for UI preview only)
+$mock_difficult_exams = [
+    [
+        'title' => 'Technical Assessment Exam',
+        'total_questions' => 50,
+        'difficult_questions' => 8,
+        'difficulty_percent' => 16
+    ],
+    [
+        'title' => 'Programming Fundamentals',
+        'total_questions' => 40,
+        'difficult_questions' => 12,
+        'difficulty_percent' => 30
+    ],
+    [
+        'title' => 'Database Systems',
+        'total_questions' => 35,
+        'difficult_questions' => 15,
+        'difficulty_percent' => 43
+    ],
+    [
+        'title' => 'Math Logic Exam',
+        'total_questions' => 30,
+        'difficult_questions' => 20, 
+        'difficulty_percent' => 67
+    ],
+    [
+        'title' => 'Web Development',
+        'total_questions' => 45,
+        'difficult_questions' => 5,
+        'difficulty_percent' => 11
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,7 +104,9 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CCIS Qualifying Exam System</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Linking Google Fonts For Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         /* Dashboard Stats Containers */
         .dashboard-header {
@@ -359,21 +268,14 @@ try {
         }
         
         .list-item-title {
-            font-size: 18px;
-            font-weight: 700;
+            font-weight: 500;
             color: #333;
             margin-bottom: 5px;
         }
         
         .list-item-subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: #777;
-        }
-
-        .exam-description {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 5px;
         }
         
         .list-item-badge {
@@ -552,120 +454,6 @@ try {
         .difficulty-easy { background-color: #4CAF50; }
         .difficulty-medium { background-color: #FF9800; }
         .difficulty-hard { background-color: #F44336; }
-        
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .dashboard-title {
-                margin-top: 50px;
-            }
-            .dashboard-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .chart-container {
-                height: 300px;
-            }
-
-            .main {
-                margin-left: 0px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .dashboard-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .dashboard-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .dashboard-title {
-                font-size: 1.5rem;
-            }
-            
-            .chart-container {
-                height: 250px;
-            }
-            
-            .upcoming-exams {
-                padding: 1rem;
-            }
-            
-            .exam-card {
-                padding: 1rem;
-            }
-            
-            .exam-card h3 {
-                font-size: 1.1rem;
-            }
-            
-            .exam-card p {
-                font-size: 0.9rem;
-            }
-            
-            .exam-info {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .exam-info span {
-                font-size: 0.85rem;
-            }
-            
-            .exam-actions {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .exam-actions button {
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .dashboard-header {
-                padding: 1rem;
-            }
-            
-            .dashboard-title {
-                font-size: 1.3rem;
-            }
-            
-            .chart-container {
-                height: 200px;
-            }
-            
-            .upcoming-exams {
-                padding: 0.75rem;
-            }
-            
-            .exam-card {
-                padding: 0.75rem;
-            }
-            
-            .exam-card h3 {
-                font-size: 1rem;
-            }
-            
-            .exam-card p {
-                font-size: 0.85rem;
-            }
-            
-            .exam-info span {
-                font-size: 0.8rem;
-            }
-            
-            .exam-actions button {
-                padding: 0.5rem;
-                font-size: 0.9rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -731,10 +519,10 @@ try {
         <div class="dashboard-section">
             <div class="section-header">
                 <span>Recent Student Registrations</span>
-                <a href="Applicants.php">View All</a>
+                <a href="registered_students.php">View All</a>
             </div>
             <div class="section-body">
-                <?php if ($recent_registrations && $recent_registrations->num_rows > 0): ?>
+                <?php if (isset($recent_registrations) && $recent_registrations->num_rows > 0): ?>
                     <?php while ($student = $recent_registrations->fetch_assoc()): ?>
                         <div class="list-item">
                             <div class="list-item-content">
@@ -753,7 +541,28 @@ try {
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <div class="empty-state">No recent registrations found</div>
+                    <!-- Mock data for demonstration -->
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">Janlloyd Dugo</div>
+                            <div class="list-item-subtitle">jdugo23@gmail.com • BSIT • Mar 11, 2025</div>
+                        </div>
+                        <span class="list-item-badge badge-accepted">Accepted</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">Maria Santos</div>
+                            <div class="list-item-subtitle">msantos@gmail.com • BSCS • Mar 10, 2025</div>
+                        </div>
+                        <span class="list-item-badge badge-pending">Pending</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">John Smith</div>
+                            <div class="list-item-subtitle">jsmith@gmail.com • BSIT • Mar 8, 2025</div>
+                        </div>
+                        <span class="list-item-badge badge-accepted">Accepted</span>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -762,35 +571,62 @@ try {
         <div class="dashboard-section">
             <div class="section-header">
                 <span>Upcoming Exams</span>
-                <a href="exam.php">View All</a>
+                <a href="exams.php">View All</a>
             </div>
             <div class="section-body">
-                <?php if ($upcoming_exams && $upcoming_exams->num_rows > 0): ?>
-                    <?php while ($exam = $upcoming_exams->fetch_assoc()): 
-                        $exam_date = date('M d, Y', strtotime($exam['scheduled_date']));
-                        $exam_time = date('h:i A', strtotime($exam['scheduled_time']));
-                    ?>
+                <?php if (isset($upcoming_exams) && $upcoming_exams->num_rows > 0): ?>
+                    <?php while ($exam = $upcoming_exams->fetch_assoc()): ?>
                         <div class="list-item">
                             <div class="list-item-content">
-                                <div class="list-item-title"><?php echo htmlspecialchars($exam['title']); ?></div>
+                                <div class="list-item-title">
+                                    <?php echo htmlspecialchars($exam['title']); ?>
+                                </div>
                                 <div class="list-item-subtitle">
-                                    <?php if (!empty($exam['description'])): ?>
-                                        <div class="exam-description">
-                                            <?php echo htmlspecialchars($exam['description']); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <strong>Date:</strong> <?php echo $exam_date; ?> •
-                                    <strong>Time:</strong> <?php echo $exam_time; ?> •
+                                    <strong>Date:</strong> <?php echo date('M d, Y', strtotime($exam['scheduled_date'])); ?> •
+                                    <strong>Time:</strong> <?php echo date('h:i A', strtotime($exam['scheduled_time'])); ?> •
                                     <strong>Duration:</strong> <?php echo $exam['duration']; ?> minutes
                                 </div>
                             </div>
                             <span class="list-item-badge <?php echo $exam['exam_type'] === 'tech' ? 'badge-tech' : 'badge-non-tech'; ?>">
-                                <?php echo ucfirst($exam['exam_type']); ?>
+                                <?php echo $exam['exam_type'] === 'tech' ? 'Technical' : 'Non-Technical'; ?>
                             </span>
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <div class="empty-state">No upcoming exams scheduled</div>
+                    <!-- Mock data for demonstration -->
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">Technical Assessment Exam</div>
+                            <div class="list-item-subtitle">
+                                <strong>Date:</strong> Mar 24, 2025 •
+                                <strong>Time:</strong> 08:28 AM •
+                                <strong>Duration:</strong> 60 minutes
+                            </div>
+                        </div>
+                        <span class="list-item-badge badge-tech">Technical</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">General Programming Knowledge</div>
+                            <div class="list-item-subtitle">
+                                <strong>Date:</strong> Apr 15, 2025 •
+                                <strong>Time:</strong> 10:00 AM •
+                                <strong>Duration:</strong> 90 minutes
+                            </div>
+                        </div>
+                        <span class="list-item-badge badge-tech">Technical</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">Math & Logic Assessment</div>
+                            <div class="list-item-subtitle">
+                                <strong>Date:</strong> Apr 20, 2025 •
+                                <strong>Time:</strong> 01:30 PM •
+                                <strong>Duration:</strong> 45 minutes
+                            </div>
+                        </div>
+                        <span class="list-item-badge badge-non-tech">Non-Technical</span>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -799,10 +635,10 @@ try {
         <div class="dashboard-section">
             <div class="section-header">
                 <span>Recent Announcements</span>
-                <a href="announcement.php">View All</a>
+                <a href="announcements.php">View All</a>
             </div>
             <div class="section-body">
-                <?php if ($recent_announcements && $recent_announcements->num_rows > 0): ?>
+                <?php if (isset($recent_announcements) && $recent_announcements->num_rows > 0): ?>
                     <?php while ($announcement = $recent_announcements->fetch_assoc()): ?>
                         <div class="list-item">
                             <div class="list-item-content">
@@ -824,7 +660,29 @@ try {
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <div class="empty-state">No recent announcements found</div>
+                    <!-- Mock data for demonstration -->
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">CCIS Qualifying Exam Schedule</div>
+                            <div class="list-item-subtitle">
+                                Please be informed that the CCIS qualifying exam registration will be opened on March 17 - 20. Make sure to submit the necessary documents...
+                                <br>
+                                <small>Posted: Mar 16, 2025</small>
+                            </div>
+                        </div>
+                        <span class="list-item-badge badge-accepted">Active</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-content">
+                            <div class="list-item-title">Exam Location Update</div>
+                            <div class="list-item-subtitle">
+                                The qualifying exams will be held at the PUP CCIS Lab, 3rd floor. Please arrive 30 minutes before your scheduled time...
+                                <br>
+                                <small>Posted: Mar 14, 2025</small>
+                            </div>
+                        </div>
+                        <span class="list-item-badge badge-accepted">Active</span>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -837,7 +695,7 @@ try {
     <div class="analytics-preview">
         <div class="analytics-header">
             <h3 class="analytics-title">Exam Results</h3>
-            <a href="analytics.php" class="analytics-action">
+            <a href="exam_analytics.php" class="analytics-action">
                 Full Analysis <span class="material-symbols-rounded">analytics</span>
             </a>
         </div>
@@ -852,7 +710,7 @@ try {
                 <div class="metrics-value"><?php echo $stats['passed_count']; ?></div>
                 <div class="metrics-label">Passed</div>
                 <div class="progress-bar">
-                    <div class="progress progress-pass" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['passed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+                    <div class="progress progress-pass" style="width: <?php echo ($stats['passed_count'] / $stats['total_attempts'] * 100); ?>%"></div>
                 </div>
             </div>
             
@@ -860,7 +718,7 @@ try {
                 <div class="metrics-value"><?php echo $stats['failed_count']; ?></div>
                 <div class="metrics-label">Failed</div>
                 <div class="progress-bar">
-                    <div class="progress progress-fail" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['failed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+                    <div class="progress progress-fail" style="width: <?php echo ($stats['failed_count'] / $stats['total_attempts'] * 100); ?>%"></div>
                 </div>
             </div>
             
@@ -875,68 +733,58 @@ try {
     <div class="analytics-preview">
         <div class="analytics-header">
             <h3 class="analytics-title">Item Analysis Preview</h3>
-            <a href="analytics.php" class="analytics-action">
+            <a href="item_analysis.php" class="analytics-action">
                 Full Item Analysis <span class="material-symbols-rounded">lab_profile</span>
             </a>
         </div>
         
         <p style="margin-bottom: 15px;">Items flagged for revision based on student performance difficulty analysis:</p>
         
-        <table class="analysis-table">
-            <thead>
-                <tr>
-                    <th>Exam Title</th>
-                    <th>Total Questions</th>
-                    <th>Questions for Revision</th>
-                    <th>Difficulty Level</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php if ($difficult_exams_result && $difficult_exams_result->num_rows > 0): ?>
-                <?php while ($exam = $difficult_exams_result->fetch_assoc()): 
-                    $difficulty_class = '';
-                    $difficulty_percent = round($exam['difficulty_percent']);
-                    
-                    if ($difficulty_percent < 30) {
-                        $difficulty_class = 'difficulty-easy';
-                    } else if ($difficulty_percent < 70) {
-                        $difficulty_class = 'difficulty-medium';
-                    } else {
-                        $difficulty_class = 'difficulty-hard';
-                    }
-                ?>
+            <table class="analysis-table">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($exam['title']); ?></td>
-                        <td><?php echo (int)$exam['total_questions']; ?></td>
-                        <td>
-                            <?php if ((int)$exam['difficult_questions'] > 0): ?>
-                                <span class="list-item-badge badge-revision">
-                                    <?php echo (int)$exam['difficult_questions']; ?> for revision
-                                </span>
-                            <?php else: ?>
-                                <span class="list-item-badge badge-accepted">No revision needed</span>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <div class="difficulty-indicator">
-                                <div class="difficulty-level <?php echo $difficulty_class; ?>" style="width: <?php echo $difficulty_percent; ?>%"></div>
-                            </div>
-                        </td>
+                        <th>Exam Title</th>
+                        <th>Total Questions</th>
+                        <th>Questions for Revision</th>
+                        <th>Difficulty Level</th>
                     </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="4">
-                        <div class="empty-state">No exam difficulty analysis available</div>
-                    </td>
-                </tr>
-            <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <?php foreach ($mock_difficult_exams as $exam): 
+                        $difficulty_class = '';
+                        
+                    if ($exam['difficulty_percent'] < 30) {
+                            $difficulty_class = 'difficulty-easy';
+                    } else if ($exam['difficulty_percent'] < 70) {
+                            $difficulty_class = 'difficulty-medium';
+                        } else {
+                            $difficulty_class = 'difficulty-hard';
+                        }
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($exam['title']); ?></td>
+                            <td><?php echo $exam['total_questions']; ?></td>
+                            <td>
+                                <?php if ($exam['difficult_questions'] > 0): ?>
+                                    <span class="list-item-badge badge-revision">
+                                        <?php echo $exam['difficult_questions']; ?> for revision
+                                    </span>
+                                <?php else: ?>
+                                    <span class="list-item-badge badge-accepted">No revision needed</span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <div class="difficulty-indicator">
+                                <div class="difficulty-level <?php echo $difficulty_class; ?>" style="width: <?php echo $exam['difficulty_percent']; ?>%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
     </div>
 </div>
 </div>
-
 <script src="assets/js/side.js"></script>
 </body>
 </html>

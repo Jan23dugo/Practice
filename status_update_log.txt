@@ -1,18 +1,20 @@
-Request received: 2025-04-13 08:04:01
+Request received: 2025-04-16 23:50:50
 POST data: Array
 (
-    [status] => rejected
-    [reference_id] => CCIS-2025-92181
-    [rejection_reason] => dfdsffsdfasf
+    [status] => accepted
+    [reference_id] => CCIS-2025-10384
 )
 
 Session data: Array
 (
-    [stud_id] => 10
-    [firstname] => Jand
-    [lastname] => llodys
-    [email] => pupccisfaculty@gmail.com
-    [student_id] => 112
+    [admin_id] => 1
+    [email] => jdugo23@gmail.com
+    [is_admin] => 1
+    [stud_id] => 11
+    [firstname] => fsadfsd
+    [lastname] => asfsadf
+    [debug_output] => All subjects meet eligibility criteria<br></div>
+    [student_id] => 113
     [matches] => Array
         (
             [0] => ✓ Matched: Computer Programming 2 (3 units) with Computer Programming 2 (COMP 20033)
@@ -24,8 +26,6 @@ Session data: Array
             [6] => ✓ Matched: Rhythmic Activities (2 units) with Rhythmic Activities (PHED 10022)
         )
 
-    [admin_id] => 1
-    [is_admin] => 1
 )
 
 Database connection closed
