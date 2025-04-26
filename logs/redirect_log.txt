@@ -1,0 +1,2 @@
+[2025-04-24 11:53:59] Force redirect requested
+[2025-04-24 11:53:59] Redirect headers sent

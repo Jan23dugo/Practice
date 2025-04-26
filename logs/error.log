@@ -1,0 +1,242 @@
+2025-04-21 13:54:03 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 222
+2025-04-21 13:54:03 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 224
+2025-04-21 14:00:03 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 192
+2025-04-21 14:00:03 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 194
+2025-04-21 14:00:08 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 192
+2025-04-21 14:00:08 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 194
+2025-04-21 14:00:10 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 192
+2025-04-21 14:00:10 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 194
+2025-04-21 14:01:49 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:49 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:51 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:51 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:51 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:51 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:51 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:51 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:51 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:51 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:53 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:53 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:54 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:54 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:54 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:54 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:55 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:55 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:55 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:55 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:55 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:55 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:01:55 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:01:55 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:02:06 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 198
+2025-04-21 14:02:06 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 200
+2025-04-21 14:04:04 Error: [2] Undefined variable $upload_dir in C:\wamp64\www\Practice\questionBank_import.php on line 181
+2025-04-21 14:04:04 Error: [8192] is_dir(): Passing null to parameter #1 ($filename) of type string is deprecated in C:\wamp64\www\Practice\questionBank_import.php on line 183
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:01:50 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:55 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 162
+2025-04-23 11:03:56 Error: [2] Undefined array key "id" in C:\wamp64\www\Practice\manage_grading_systems.php on line 172
+2025-04-23 11:29:19 Error: [2] Undefined array key "description" in C:\wamp64\www\Practice\manage_grading_systems.php on line 511
+2025-04-23 11:29:19 Error: [8192] htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\wamp64\www\Practice\manage_grading_systems.php on line 511
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 31
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 32
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 33
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 37
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 38
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 39
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 40
+2025-04-23 14:22:06 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 41
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 31
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 32
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 33
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 37
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 38
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 39
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 40
+2025-04-23 14:23:14 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\stud_register.php on line 41
+2025-04-24 05:04:34 Error: [2] require_once(class/student.php): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 9
+2025-04-24 05:08:10 Error: [2] require_once(class/student.php): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 9
+2025-04-24 05:08:10 Error: [2] require_once(class/student.php): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 9
+2025-04-24 05:35:00 Error: [2] require_once(class/student.php): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 9
+2025-04-24 05:35:00 Error: [2] require_once(class/student.php): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 9
+2025-04-24 05:51:33 Error: [2] require_once(class/student.php): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 9
+2025-04-24 07:21:11 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1656
+2025-04-24 07:27:52 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1656
+2025-04-24 07:34:18 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1631
+2025-04-24 07:39:18 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1631
+2025-04-24 07:39:18 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1643
+2025-04-24 07:54:24 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1635
+2025-04-24 07:54:24 Error: [2] Undefined array key "reference_id" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1646
+2025-04-24 07:54:24 Error: [2] Cannot modify header information - headers already sent by (output started at C:\wamp64\www\Practice\qualiexam_registerBack.php:1646) in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1757
+2025-04-24 12:09:23 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_dashboard.php on line 20
+2025-04-24 12:09:28 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_dashboard.php on line 20
+2025-04-24 12:09:30 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_dashboard.php on line 20
+2025-04-24 12:09:42 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_dashboard.php on line 20
+2025-04-24 12:09:50 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_dashboard.php on line 20
+2025-04-24 12:09:53 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_dashboard.php on line 20
+2025-04-24 12:09:53 Error: [2] Undefined array key "email" in C:\wamp64\www\Practice\stud_result.php on line 15
+2025-04-25 04:22:52 Error: [2] Undefined array key "columns" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1164
+2025-04-25 09:35:26 Error: [2] Undefined array key "REQUEST_METHOD" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1341
+2025-04-25 09:37:31 Error: [2] Undefined array key "REQUEST_METHOD" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1370
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 11:18:37 Error: [2] Undefined array key "subject_description" in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1148
+2025-04-25 16:01:53 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
+2025-04-25 16:13:22 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
+2025-04-25 16:14:15 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
+2025-04-25 16:17:55 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
+2025-04-25 16:24:37 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
+2025-04-25 16:29:03 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
+2025-04-25 17:05:32 Error: [2] file_get_contents(C:\wamp64\www\Practice/tor_prompt.txt): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1056

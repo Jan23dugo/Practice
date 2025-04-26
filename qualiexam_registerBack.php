@@ -3,6 +3,27 @@
 ob_start();
 session_start();
 
+// Set JSON response headers for all AJAX requests
+if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    header('Content-Type: application/json');
+}
+
+// Function to send JSON response
+function sendJsonResponse($success, $data = [], $error = null) {
+    $response = [
+        'success' => $success,
+        'data' => $data
+    ];
+    
+    if ($error !== null) {
+        $response['error'] = $error;
+    }
+    
+    echo json_encode($response);
+    exit;
+}
+
 // Include necessary files and libraries
 include('config/config.php');
 require 'send_email.php';
@@ -1045,7 +1066,7 @@ function performOCR($filePath) {
         // Azure Document Intelligence API credentials
         $endpoint = "https://streamsocr.cognitiveservices.azure.com/";
         $apiKey = "7YOiSya9zTZO2WkLje6TdmiSaoG0kKLvcWy2kdFuMXqzKcu9Jr0XJQQJ99BDACqBBLyXJ3w3AAALACOGbhSw";
-        $modelId = "transcript_extractor_v3";
+        $modelId = "transcript_extractor_v4";
 
         // Read file content
         $fileData = file_get_contents($filePath);
@@ -1484,93 +1505,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         while (ob_get_level()) {
             ob_end_clean();
         }
-        ob_start();
-
-        if (isset($_FILES['tor']) && $_FILES['tor']['error'] == UPLOAD_ERR_OK &&
-            isset($_FILES['school_id']) && $_FILES['school_id']['error'] == UPLOAD_ERR_OK) {
+        
+        // If this is an AJAX request for OCR processing
+        if (isset($_POST['process_ocr'])) {
+            if (!isset($_FILES['academic_document']) || $_FILES['academic_document']['error'] !== UPLOAD_ERR_OK ||
+                !isset($_FILES['school_id']) || $_FILES['school_id']['error'] !== UPLOAD_ERR_OK) {
+                sendJsonResponse(false, [], 'Please upload both academic document and School ID files.');
+            }
             
-            logExtraction("Files uploaded successfully", [
-                'tor_name' => $_FILES['tor']['name'],
-                'school_id_name' => $_FILES['school_id']['name']
-            ]);
-            
-            validateUploadedFile($_FILES['tor']);
-            $tor_path = __DIR__ . '/uploads/tor/' . basename($_FILES['tor']['name']);
-            move_uploaded_file($_FILES['tor']['tmp_name'], $tor_path);
-            
-            logExtraction("TOR file moved to destination", [
-                'path' => $tor_path,
-                'size' => filesize($tor_path)
-            ]);
-
-            validateUploadedFile($_FILES['school_id']);
-            $school_id_path = __DIR__ . '/uploads/school_id/' . basename($_FILES['school_id']['name']);
-            move_uploaded_file($_FILES['school_id']['tmp_name'], $school_id_path);
-
             try {
-                logExtraction("Starting OCR process");
+                validateUploadedFile($_FILES['academic_document']);
+                $tor_path = __DIR__ . '/uploads/tor/' . basename($_FILES['academic_document']['name']);
+                move_uploaded_file($_FILES['academic_document']['tmp_name'], $tor_path);
                 
-                // Use Unstract API for OCR
+                validateUploadedFile($_FILES['school_id']);
+                $school_id_path = __DIR__ . '/uploads/school_id/' . basename($_FILES['school_id']['name']);
+                move_uploaded_file($_FILES['school_id']['tmp_name'], $school_id_path);
+                
+                // Perform OCR
                 $ocr_output = performOCR($tor_path);
-                
                 if (empty($ocr_output)) {
-                    throw new Exception("The system could not read any text from the uploaded document. Please ensure you have uploaded a clear, high-quality image.");
+                    sendJsonResponse(false, [], 'Could not read text from the uploaded document.');
                 }
                 
-                logExtraction("OCR completed successfully", [
-                    'output_length' => strlen($ocr_output)
-                ]);
-                
-                // Extract subjects from OCR output
+                // Extract subjects
                 $subjects = extractSubjects($ocr_output);
-                
                 if (empty($subjects)) {
-                    throw new Exception("No subjects could be extracted from the document. Please ensure you have uploaded a valid Transcript of Records containing grades and subject information.");
+                    sendJsonResponse(false, [], 'No subjects could be extracted from the document.');
                 }
                 
-                logExtraction("Subjects extracted successfully", [
-                    'count' => count($subjects),
-                    'first_subject' => isset($subjects[0]) ? json_encode($subjects[0]) : 'none'
+                // Return success with subjects and file paths
+                sendJsonResponse(true, [
+                    'subjects' => $subjects,
+                    'files' => [
+                        'academic_document' => str_replace(__DIR__ . '/', '', $tor_path),
+                        'school_id' => str_replace(__DIR__ . '/', '', $school_id_path)
+                    ]
                 ]);
-
-                // Process eligibility
-                $isEligible = false;
-                $student_type = $_POST['student_type'] ?? '';
                 
-                logExtraction("Processing eligibility", [
-                    'student_type' => $student_type
-                ]);
-
-                if (strtolower($student_type) === 'ladderized') {
-                    $isEligible = true;
-                    logExtraction("Ladderized student - automatically eligible");
-                } else {
-                    $previous_school = $_POST['previous_school'] ?? '';
-                    
-                    if (empty($previous_school)) {
-                        throw new Exception("Previous school information is required.");
-                    }
-                    
-                    logExtraction("Checking grading rules", [
-                        'previous_school' => $previous_school
-                    ]);
-                    
-                    $gradingRules = getGradingSystemRules($conn, $previous_school);
-                    
-                    if (empty($gradingRules)) {
-                        throw new Exception("No grading system found for the specified school. Please contact support.");
-                    }
-                    
-                    logExtraction("Retrieved grading rules", [
-                        'rules_count' => count($gradingRules)
-                    ]);
-                    
-                    $isEligible = determineEligibility($subjects, $gradingRules);
+            } catch (Exception $e) {
+                sendJsonResponse(false, [], $e->getMessage());
+            }
+        }
+        
+        // If this is a confirmation request
+        if (isset($_POST['confirm_registration'])) {
+            try {
+                $grades = json_decode($_POST['grades'] ?? '[]', true);
+                if (empty($grades)) {
+                    sendJsonResponse(false, [], 'No grades data provided.');
                 }
-
-            $_SESSION['is_eligible'] = $isEligible;
-
-            if ($isEligible) {
+                
+                // Process student registration
                 $studentData = [
                     'first_name' => $_POST['first_name'] ?? '',
                     'middle_name' => $_POST['middle_name'] ?? '',
@@ -1587,54 +1573,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'Diploma in Information and Communication Technology (DICT)' : 
                         ($_POST['previous_program'] ?? ''),
                     'desired_program' => $_POST['desired_program'] ?? '',
-                        'tor_path' => str_replace(__DIR__ . '/', '', $tor_path),
-                        'school_id_path' => str_replace(__DIR__ . '/', '', $school_id_path),
-                        'is_tech' => isTechStudent($subjects),
-                    'status' => 'pending'
+                    'tor_path' => $_POST['tor_path'] ?? '',
+                    'school_id_path' => $_POST['school_id_path'] ?? '',
+                    'is_tech' => isTechStudent($grades)
                 ];
                 
-                    logExtraction("Prepared student data", [
-                        'data' => $studentData
+                // Register student and get reference ID
+                if (registerStudent($conn, $studentData, $grades)) {
+                    sendJsonResponse(true, [
+                        'reference_id' => $_SESSION['reference_id'] ?? null,
+                        'message' => 'Registration completed successfully.'
                     ]);
-                
-                registerStudent($conn, $studentData, $subjects);
-                    logExtraction("Student registration completed successfully");
-            } else {
-                    logExtraction("Student not eligible", [
-                        'reason' => 'Did not meet eligibility criteria'
-                    ]);
-                $_SESSION['success'] = "Registration completed, but you are not eligible for credit transfer.";
-                $_SESSION['eligibility_message'] = "Based on your grades and our criteria, you do not meet the eligibility requirements for credit transfer.";
+                } else {
+                    sendJsonResponse(false, [], 'Failed to complete registration.');
                 }
                 
-                header("Location: registration_success.php");
-                exit();
-
             } catch (Exception $e) {
-                logExtraction("Error in registration process", [
-                    'error' => $e->getMessage()
-                ]);
-                $_SESSION['ocr_error'] = $e->getMessage();
-            header("Location: registration_success.php");
-            exit();
+                sendJsonResponse(false, [], $e->getMessage());
             }
-        } else {
-            throw new Exception("Please upload both TOR and School ID files.");
         }
+        
     } catch (Exception $e) {
-        logExtraction("Fatal error in main process", [
-            'error' => $e->getMessage()
-        ]);
-        $_SESSION['ocr_error'] = $e->getMessage();
-        header("Location: registration_success.php");
-        exit();
+        sendJsonResponse(false, [], $e->getMessage());
     }
 }
 
-// If we reach here, something went wrong
-$_SESSION['ocr_error'] = "An unexpected error occurred. Please try again.";
-header("Location: registration_success.php");
-exit();
+// If we reach here without sending a response, return an error
+sendJsonResponse(false, [], 'Invalid request.');
 
 // Add this before the matchCreditedSubjects function
 function isGeneralEducation($subjectCode) {

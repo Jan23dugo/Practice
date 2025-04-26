@@ -77,3 +77,13 @@
 [2025-04-17 01:52:58][INFO] Percentage calculation: (0 / 1) * 100 = 0%
 [2025-04-17 01:52:58][INFO] Passing check: 0 >= 70 ? No
 [2025-04-17 01:52:58][INFO] Exam submitted successfully
+[2025-04-17 02:11:59][INFO] === Starting New Exam Submission ===
+[2025-04-17 02:11:59][INFO] Exam ID: 23, Answer count: 1
+[2025-04-17 02:11:59][INFO] Student ID: 11, Database ID: 113
+[2025-04-17 02:11:59][INFO] Processing answer for question 66, type: programming
+[2025-04-17 02:11:59][INFO] Executing python code for question 66
+[2025-04-17 02:11:59][ERROR] Error executing code for question 66
+[2025-04-17 02:11:59][INFO] Total score: 0, Max possible: 1, Question count: 1
+[2025-04-17 02:11:59][INFO] Percentage calculation: (0 / 1) * 100 = 0%
+[2025-04-17 02:11:59][INFO] Passing check: 0 >= 70 ? No
+[2025-04-17 02:11:59][INFO] Exam submitted successfully

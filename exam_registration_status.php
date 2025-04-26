@@ -676,7 +676,7 @@ $activePage = 'registration_status';
                 <div class="logo">
                     <img src="img/Logo.png" alt="PUP Logo">
                     <div class="logo-text">
-                        <h1>PUP Qualifying Exam Portal</h1>
+                        <h1>STREAMS</h1>
                         <p>Registration Status</p>
                     </div>
                 </div>
@@ -724,7 +724,8 @@ $activePage = 'registration_status';
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
+                <!-- Sidebar -->
+                <aside class="sidebar">
             <div class="sidebar-profile">
                 <div class="profile-image">
                     <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
@@ -744,10 +745,24 @@ $activePage = 'registration_status';
                         Dashboard
                     </a>
                 </li>
+              
                 <li>
-                    <a href="exam_registration_status.php" class="<?php echo $activePage == 'registration_status' ? 'active' : ''; ?>">
+                    <a href="exam_instructions.php" class="<?php echo $activePage == 'take_exam' ? 'active' : ''; ?>">
+                        <span class="material-symbols-rounded">quiz</span>
+                        Take Exam
+                    </a>
+                </li>
+               
+                <li>
+                    <a href="exam_registration_status.php" class="<?php echo $activePage == 'registration' ? 'active' : ''; ?>">
                         <span class="material-symbols-rounded">app_registration</span>
                         Exam Registration Status
+                    </a>
+                </li>
+                <li>
+                    <a href="stud_result.php" class="<?php echo $activePage == 'results' ? 'active' : ''; ?>">
+                        <span class="material-symbols-rounded">grade</span>
+                        Exam Results
                     </a>
                 </li>
                 <li>
@@ -764,6 +779,7 @@ $activePage = 'registration_status';
                 </li>
             </ul>
         </aside>
+        
 
         <main class="main-content">
             <div class="page-title">

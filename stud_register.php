@@ -1,6 +1,17 @@
 <?php
 // Include database connection
 include 'config/config.php';
+
+// Add session security measures
+session_set_cookie_params([
+    'lifetime' => 3600,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+
 session_start();
 
 // Initialize variables
@@ -16,17 +27,44 @@ if (isset($_GET['register'])) {
 
 // Process registration form submission
 if (isset($_POST['register'])) {
-    $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
-    $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
-    $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
-    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+    // Updated sanitization methods
+    $firstname = htmlspecialchars(trim($_POST['firstname'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $middlename = htmlspecialchars(trim($_POST['middlename'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $lastname = htmlspecialchars(trim($_POST['lastname'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password']; // Don't sanitize password to preserve special characters
+    $confirm_password = $_POST['confirm_password'];
+    $contact_number = htmlspecialchars(trim($_POST['contact_number'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $address = htmlspecialchars(trim($_POST['address'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $date_of_birth = htmlspecialchars(trim($_POST['date_of_birth'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $gender = htmlspecialchars(trim($_POST['gender'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $student_type = htmlspecialchars(trim($_POST['student_type'] ?? ''), ENT_QUOTES, 'UTF-8');
     
-    // Profile picture handling
+    // Validate student type input
+    $allowed_student_types = ['Transferee', 'Shiftee', 'Ladderized'];
+    if (!in_array($student_type, $allowed_student_types)) {
+        $registration_error = "Invalid student type selection";
+        $show_registration = true;
+        exit();
+    }
+
+    // Validate gender input
+    $allowed_genders = ['Male', 'Female', 'Other'];
+    if (!in_array($gender, $allowed_genders)) {
+        $registration_error = "Invalid gender selection";
+        $show_registration = true;
+        exit();
+    }
+
+    // Validate date format
+    $date = DateTime::createFromFormat('Y-m-d', $date_of_birth);
+    if (!$date || $date->format('Y-m-d') !== $date_of_birth) {
+        $registration_error = "Invalid date format";
+        $show_registration = true;
+        exit();
+    }
+    
+    // Profile picture handling with additional security
     $profile_picture = null;
     $upload_error = '';
     
@@ -35,24 +73,37 @@ if (isset($_POST['register'])) {
         $max_size = 5 * 1024 * 1024; // 5MB
         $file = $_FILES['profile_picture'];
         
-        if (!in_array($file['type'], $allowed_types)) {
+        // Get the real MIME type
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime_type = finfo_file($finfo, $file['tmp_name']);
+        finfo_close($finfo);
+        
+        if (!in_array($mime_type, $allowed_types)) {
             $upload_error = "Only JPG, JPEG, and PNG files are allowed.";
         } elseif ($file['size'] > $max_size) {
             $upload_error = "File size must be less than 5MB.";
         } else {
-            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-            $filename = uniqid('profile_') . '.' . $ext;
-            $upload_path = 'uploads/profile_pictures/';
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            // Generate a random filename with limited characters
+            $filename = bin2hex(random_bytes(16)) . '.' . $ext;
             
-            // Create directory if it doesn't exist
-            if (!file_exists($upload_path)) {
-                mkdir($upload_path, 0777, true);
-            }
+            // Define upload paths using relative paths
+            $upload_dir = 'uploads/profile_pictures';
+            $destination = $upload_dir . '/' . $filename;
             
-            if (move_uploaded_file($file['tmp_name'], $upload_path . $filename)) {
-                $profile_picture = $upload_path . $filename;
+            // Check if directory exists and is writable
+            if (!is_dir($upload_dir)) {
+                $upload_error = "Upload directory does not exist.";
+            } elseif (!is_writable($upload_dir)) {
+                $upload_error = "Upload directory is not writable.";
             } else {
-                $upload_error = "Error uploading file. Please try again.";
+                if (!move_uploaded_file($file['tmp_name'], $destination)) {
+                    $upload_error = "Error uploading file. Please try again.";
+                } else {
+                    $profile_picture = $destination;
+                    // Set proper permissions
+                    @chmod($destination, 0644);
+                }
             }
         }
     }
@@ -82,71 +133,143 @@ if (isset($_POST['register'])) {
         $registration_error = "Invalid email format";
         $show_registration = true;
     } else {
-        // Check if email already exists
-        $check_query = "SELECT * FROM students WHERE email = ?";
-        $stmt = $conn->prepare($check_query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            $registration_error = "Email already exists";
-            $show_registration = true;
-        } else {
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        try {
+            // Use prepared statements for all database operations
+            $conn->begin_transaction();
             
-            // Insert new student with profile picture
-            $insert_query = "INSERT INTO students (firstname, lastname, email, password, contact_number, address, date_of_birth, gender, profile_picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($insert_query);
-            $stmt->bind_param("sssssssss", $firstname, $lastname, $email, $hashed_password, $contact_number, $address, $date_of_birth, $gender, $profile_picture);
+            // Check if email already exists
+            $check_query = "SELECT COUNT(*) as count FROM students WHERE email = ?";
+            $stmt = $conn->prepare($check_query);
+            if (!$stmt) {
+                throw new Exception("Preparation failed: " . $conn->error);
+            }
             
-            if ($stmt->execute()) {
+            $stmt->bind_param("s", $email);
+            if (!$stmt->execute()) {
+                throw new Exception("Execution failed: " . $stmt->error);
+            }
+            
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            
+            if ($row['count'] > 0) {
+                $registration_error = "Email already exists";
+                $show_registration = true;
+            } else {
+                // Hash the password with strong algorithm
+                $hashed_password = password_hash($password, PASSWORD_ARGON2ID, [
+                    'memory_cost' => 65536,
+                    'time_cost' => 4,
+                    'threads' => 2
+                ]);
+                
+                // Insert new student with prepared statement
+                $insert_query = "INSERT INTO students (firstname, middlename, lastname, email, password, contact_number, address, date_of_birth, gender, student_type, profile_picture, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+                $stmt = $conn->prepare($insert_query);
+                if (!$stmt) {
+                    throw new Exception("Preparation failed: " . $conn->error);
+                }
+                
+                $stmt->bind_param("sssssssssss", 
+                    $firstname,
+                    $middlename,
+                    $lastname, 
+                    $email, 
+                    $hashed_password, 
+                    $contact_number, 
+                    $address, 
+                    $date_of_birth, 
+                    $gender,
+                    $student_type,
+                    $profile_picture
+                );
+                
+                if (!$stmt->execute()) {
+                    throw new Exception("Execution failed: " . $stmt->error);
+                }
+                
+                $conn->commit();
                 $registration_success = "Registration successful! You can now login.";
                 $show_registration = false;
-            } else {
-                $registration_error = "Registration failed: " . $conn->error;
-                $show_registration = true;
+                
+                // Log successful registration
+                error_log("New user registered: " . $email . " at " . date('Y-m-d H:i:s'));
             }
+        } catch (Exception $e) {
+            $conn->rollback();
+            $registration_error = "Registration failed: " . $e->getMessage();
+            $show_registration = true;
+            error_log("Registration error: " . $e->getMessage());
         }
     }
 }
 
-// Process login form submission
+// Process login form submission with improved security
 if (isset($_POST['login'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $login_password = mysqli_real_escape_string($conn, $_POST['login_password']);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $login_password = $_POST['login_password'];
     
     if (empty($email) || empty($login_password)) {
         $login_error = "Both fields are required";
     } else {
-        // Check if the email exists
-        $login_query = "SELECT * FROM students WHERE email = ?";
-        $stmt = $conn->prepare($login_query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows === 1) {
-            $student = $result->fetch_assoc();
-            
-            if (password_verify($login_password, $student['password'])) {
-                // Login successful - store student info in session
-                $_SESSION['stud_id'] = $student['stud_id'];
-                $_SESSION['firstname'] = $student['firstname'];
-                $_SESSION['lastname'] = $student['lastname'];
-                $_SESSION['email'] = $student['email'];
-                
-                // Redirect to student dashboard
-                header("Location: stud_dashboard.php");
-                exit();
-            } else {
-                $login_error = "Invalid password";
+        try {
+            // Use prepared statement for login
+            $login_query = "SELECT * FROM students WHERE email = ? LIMIT 1";
+            $stmt = $conn->prepare($login_query);
+            if (!$stmt) {
+                throw new Exception("Preparation failed: " . $conn->error);
             }
-        } else {
-            $login_error = "Email not found";
+            
+            $stmt->bind_param("s", $email);
+            if (!$stmt->execute()) {
+                throw new Exception("Execution failed: " . $stmt->error);
+            }
+            
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows === 1) {
+                $student = $result->fetch_assoc();
+                
+                if (password_verify($login_password, $student['password'])) {
+                    // Generate a new session ID to prevent session fixation
+                    session_regenerate_id(true);
+                    
+                    // Store minimal information in session
+                    $_SESSION['stud_id'] = $student['stud_id'];
+                    $_SESSION['firstname'] = $student['firstname'];
+                    $_SESSION['lastname'] = $student['lastname'];
+                    $_SESSION['email'] = $student['email'];
+                    $_SESSION['last_activity'] = time();
+                    
+                    // Log successful login
+                    error_log("Successful login: " . $email . " at " . date('Y-m-d H:i:s'));
+                    
+                    // Redirect to student dashboard
+                    header("Location: stud_dashboard.php");
+                    exit();
+                } else {
+                    // Use generic error message for security
+                    $login_error = "Invalid email or password";
+                    error_log("Failed login attempt for email: " . $email . " at " . date('Y-m-d H:i:s'));
+                }
+            } else {
+                // Use generic error message for security
+                $login_error = "Invalid email or password";
+                error_log("Failed login attempt for non-existent email: " . $email . " at " . date('Y-m-d H:i:s'));
+            }
+        } catch (Exception $e) {
+            $login_error = "An error occurred. Please try again later.";
+            error_log("Login error: " . $e->getMessage());
         }
     }
+}
+
+// Check session timeout
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 1800)) {
+    session_unset();
+    session_destroy();
+    header("Location: stud_register.php?timeout=1");
+    exit();
 }
 ?>
 
@@ -749,6 +872,11 @@ if (isset($_POST['login'])) {
                                     <input type="text" class="form-control" id="firstname" name="firstname" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="middlename">Middle Name</label>
+                                    <input type="text" class="form-control" id="middlename" name="middlename">
+                                    <small class="form-text text-muted">Optional</small>
+                                </div>
+                                <div class="form-group">
                                     <label for="lastname">Last Name</label>
                                     <input type="text" class="form-control" id="lastname" name="lastname" required>
                                 </div>
@@ -798,6 +926,15 @@ if (isset($_POST['login'])) {
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student_type">Student Type</label>
+                                    <select class="form-control" id="student_type" name="student_type" required>
+                                        <option value="">Select Student Type</option>
+                                        <option value="Transferee">Transferee</option>
+                                        <option value="Shiftee">Shiftee</option>
+                                        <option value="Ladderized">Ladderized</option>
                                     </select>
                                 </div>
                             </div>

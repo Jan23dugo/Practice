@@ -1,0 +1,47 @@
+* Host api.unstructuredapp.io:443 was resolved.
+* IPv6: (none)
+* IPv4: 48.216.143.214, 4.227.53.74
+*   Trying 48.216.143.214:443...
+* Connected to api.unstructuredapp.io (48.216.143.214) port 443
+* ALPN: curl offers h2,http/1.1
+*  CAfile: C:/wamp64/bin/php/cacert.pem
+*  CApath: none
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / RSASSA-PSS
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.api.unstructuredapp.io
+*  start date: Mar 14 18:22:18 2025 GMT
+*  expire date: Jun 12 18:22:17 2025 GMT
+*  subjectAltName: host "api.unstructuredapp.io" matched cert's "api.unstructuredapp.io"
+*  issuer: C=US; O=Let's Encrypt; CN=R10
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 1: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 2: Public key type RSA (4096/152 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://api.unstructuredapp.io/general/v0/general
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: api.unstructuredapp.io]
+* [HTTP/2] [1] [:path: /general/v0/general]
+* [HTTP/2] [1] [accept: application/json]
+* [HTTP/2] [1] [unstructured-api-key: zE41DUlBIK12ACRa5fzN27bWKFFUKP]
+* [HTTP/2] [1] [content-length: 243818]
+* [HTTP/2] [1] [content-type: multipart/form-data; boundary=------------------------RrdNAUWrBWpJYYsHwhmHxd]
+> POST /general/v0/general HTTP/2
+Host: api.unstructuredapp.io
+Accept: application/json
+unstructured-api-key: zE41DUlBIK12ACRa5fzN27bWKFFUKP
+Content-Length: 243818
+Content-Type: multipart/form-data; boundary=------------------------RrdNAUWrBWpJYYsHwhmHxd
+
+* old SSL session ID is stale, removing
+* upload completely sent off: 243818 bytes
+< HTTP/2 200 
+< content-length: 11824
+< content-type: application/json
+< date: Fri, 25 Apr 2025 16:45:42 GMT
+< server: istio-envoy
+< x-envoy-upstream-service-time: 8541
+< 
+* Connection #0 to host api.unstructuredapp.io left intact

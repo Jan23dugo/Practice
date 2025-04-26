@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUP Qualifying Exam Portal</title>
+    <title>PUP Student Qualifying Exam Portal</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -531,6 +531,140 @@
                 justify-content: center;
             }
         }
+
+        /* New styles for process section */
+        .process-section {
+            padding: 100px 0;
+            background-color: var(--gray-light);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            background: var(--text-light);
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .process-step h4 {
+            margin: 20px 0 15px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .process-step p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Student Portal Button Styles */
+        .student-portal-section {
+            text-align: center;
+            padding: 60px 0;
+            background: var(--text-light);
+        }
+
+        .portal-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .portal-btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn {
+            background: var(--primary);
+            color: var(--text-light);
+        }
+
+        .register-btn {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .portal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Admin Link Style */
+        .admin-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .admin-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .admin-link .material-symbols-rounded {
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .admin-link {
+                margin: 10px 0;
+                justify-content: center;
+                background: var(--primary-dark);
+            }
+            
+            .admin-link:hover {
+                background: var(--primary);
+            }
+        }
     </style>
 </head>
 <body>
@@ -550,6 +684,10 @@
                     <a href="#"><span class="material-symbols-rounded">info</span> About</a>
                     <a href="#"><span class="material-symbols-rounded">contact_support</span> Contact</a>
                     <a href="#"><span class="material-symbols-rounded">help</span> FAQ</a>
+                    <a href="admin_login.php" class="admin-link">
+                        <span class="material-symbols-rounded">admin_panel_settings</span>
+                        Admin
+                    </a>
                 </nav>
             </div>
         </div>
@@ -558,17 +696,59 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h2>Welcome to PUP Qualifying Examination</h2>
-            <p>Experience a streamlined and efficient examination process through our modern digital platform. We're committed to providing a seamless experience for both students and administrators.</p>
-            <div class="cta-buttons">
-                <a href="stud_register.php" class="cta-btn primary-btn">
-                    <span class="material-symbols-rounded">person</span>
-                    Student Portal
+            <h2>CCIS Qualifying Examination Portal</h2>
+            <p>Welcome to the College of Computing and Information Sciences (CCIS) qualifying examination portal for transferees, shiftees, and ladderized program students. This examination is a mandatory requirement for admission to BSIT and BSCS programs at PUP.</p>
+        </div>
+    </section>
+
+    <!-- Student Portal Section -->
+    <section class="student-portal-section">
+        <div class="container">
+            <div class="section-title">
+                <h3>CCIS Admission Portal</h3>
+                <p>Take your qualifying examination to begin your journey in PUP's College of Computing and Information Sciences</p>
+            </div>
+            <div class="portal-buttons">
+                <a href="stud_register.php" class="portal-btn login-btn">
+                    <span class="material-symbols-rounded">login</span>
+                    Student Login
                 </a>
-                <a href="admin_login.php" class="cta-btn secondary-btn">
-                    <span class="material-symbols-rounded">admin_panel_settings</span>
-                    Administrator Login
+                <a href="stud_register.php?register=true" class="portal-btn register-btn">
+                    <span class="material-symbols-rounded">person_add</span>
+                    New Student Registration
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-title">
+                <h3>Admission Process</h3>
+                <p>Understanding the steps to complete your CCIS qualifying examination</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Eligibility Check</h4>
+                    <p>Verify that you qualify as either a transferee, shiftee, or ladderized program student seeking admission to BSIT or BSCS programs.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Registration</h4>
+                    <p>Create your account and submit required documents including transcript records and transfer credentials.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Examination</h4>
+                    <p>Complete the qualifying exam which covers programming fundamentals, logic, and computing concepts.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Results & Admission</h4>
+                    <p>Receive your examination results and further instructions for CCIS program admission.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -577,30 +757,37 @@
     <section class="features">
         <div class="container">
             <div class="section-title">
-                <h3>Key Features</h3>
-                <p>Discover the comprehensive tools and features designed to enhance your examination experience.</p>
+                <h3>Program Information</h3>
+                <p>Learn more about our CCIS programs and examination requirements</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
+                        <span class="material-symbols-rounded">computer</span>
+                    </div>
+                    <h4>BSIT Program</h4>
+                    <p>Bachelor of Science in Information Technology focusing on network administration, web technologies, and information systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-rounded">code</span>
+                    </div>
+                    <h4>BSCS Program</h4>
+                    <p>Bachelor of Science in Computer Science specializing in software development, algorithms, and computing theory.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-rounded">school</span>
+                    </div>
+                    <h4>Admission Types</h4>
+                    <p>Open to transferees from other schools, shiftees within PUP, and students from ladderized programs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <span class="material-symbols-rounded">quiz</span>
                     </div>
-                    <h4>Interactive Examinations</h4>
-                    <p>Engage with dynamic question formats including multiple choice, analytical problems, and comprehensive assessments.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">timer</span>
-                    </div>
-                    <h4>Smart Time Management</h4>
-                    <p>Experience realistic exam conditions with our advanced timing system and progress tracking features.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">insights</span>
-                    </div>
-                    <h4>Detailed Analytics</h4>
-                    <p>Access comprehensive performance reports and insights to understand your strengths and areas for improvement.</p>
+                    <h4>Exam Coverage</h4>
+                    <p>Assessment includes programming logic, mathematics, computing fundamentals, and analytical skills.</p>
                 </div>
             </div>
         </div>

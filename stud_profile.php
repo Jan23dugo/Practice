@@ -1109,8 +1109,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                 <div class="logo">
                     <img src="img/Logo.png" alt="PUP Logo">
                     <div class="logo-text">
-                        <h1>PUP Qualifying Exam Portal</h1>
-                        <p>Student Portal</p>
+                        <h1>STREAMS</h1>
+                        <p>Student Profile</p>
                     </div>
                 </div>
                 <div class="nav-links">

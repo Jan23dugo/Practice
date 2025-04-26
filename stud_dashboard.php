@@ -480,66 +480,72 @@ $activePage = 'dashboard';
         
         /* Registration Section */
         .registration-section {
-            margin-top: 30px;
+            margin-bottom: 30px;
         }
         
         .registration-card {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-left: 5px solid var(--primary);
         }
         
         .registration-info {
             display: flex;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 25px;
+            margin-bottom: 25px;
         }
         
         .registration-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            background-color: var(--primary-light);
+            background-color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            box-shadow: 0 4px 10px rgba(117, 52, 58, 0.2);
         }
         
         .registration-icon .material-symbols-rounded {
-            font-size: 30px;
+            font-size: 35px;
         }
         
         .registration-text h3 {
-            font-size: 20px;
+            font-size: 24px;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         
         .registration-text p {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--text-dark);
             opacity: 0.8;
+            line-height: 1.5;
         }
         
         .registration-action {
             background-color: var(--primary);
             color: var(--text-light);
             border: none;
-            padding: 12px 20px;
+            padding: 14px 28px;
             border-radius: 6px;
             font-size: 16px;
             font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
             display: inline-block;
             text-decoration: none;
+            box-shadow: 0 4px 10px rgba(117, 52, 58, 0.2);
         }
         
         .registration-action:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(117, 52, 58, 0.3);
         }
         
         /* Campus Notice */
@@ -712,7 +718,7 @@ $activePage = 'dashboard';
                 <div class="logo">
                     <img src="img/Logo.png" alt="PUP Logo">
                     <div class="logo-text">
-                        <h1>PUP Qualifying Exam Portal</h1>
+                        <h1>STREAMS</h1>
                         <p>Student Dashboard</p>
                     </div>
                 </div>
@@ -815,7 +821,23 @@ $activePage = 'dashboard';
                 <p>View exam schedules, announcements, and register for the CCIS Qualifying Exam</p>
             </div>
 
-            <!-- Important Notice Banner -->
+            <!-- Exam Registration Section - Moved to top -->
+            <div class="registration-section" style="margin-top: 0; margin-bottom: 30px;">
+                <div class="registration-card">
+                    <div class="registration-info">
+                        <div class="registration-icon">
+                            <span class="material-symbols-rounded">app_registration</span>
+                        </div>
+                        <div class="registration-text">
+                            <h3>CCIS Qualifying Exam Registration</h3>
+                            <p>Register for the upcoming CCIS Qualifying Exam to advance your academic journey.</p>
+                        </div>
+                    </div>
+                    <a href="qualiexam_register.php" class="registration-action">Register for Qualifying Exam</a>
+                </div>
+            </div>
+
+            <!-- Important Notice Banner - Keep only this one -->
             <div class="notice-banner">
                 <span class="material-symbols-rounded">info</span>
                 <div class="notice-content">
@@ -851,7 +873,6 @@ $activePage = 'dashboard';
                                     </div>
                                     <div>
                                         <?php
-                                        // Check if this exam is assigned using the registration email
                                         $check_assignment = "SELECT 1 FROM exam_assignments ea 
                                                            JOIN register_studentsqe rs ON ea.student_id = rs.student_id
                                                            WHERE ea.exam_id = ? 
@@ -876,12 +897,6 @@ $activePage = 'dashboard';
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        
-                        <!-- Keep the campus notice -->
-                        <div class="campus-notice">
-                            <span class="material-symbols-rounded">location_on</span>
-                            <p>All exams are conducted on-campus only</p>
-                        </div>
                     </div>
                 </div>
                 
@@ -914,26 +929,6 @@ $activePage = 'dashboard';
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Exam Registration Section -->
-            <div class="registration-section">
-                <div class="registration-card">
-                    <div class="registration-info">
-                        <div class="registration-icon">
-                            <span class="material-symbols-rounded">app_registration</span>
-                        </div>
-                        <div class="registration-text">
-                            <h3>CCIS Qualifying Exam Registration</h3>
-                            <p>Register for the upcoming CCIS Qualifying Exam to advance your academic journey.</p>
-                        </div>
-                    </div>
-                    <a href="qualiexam_register.php" class="registration-action">Register for Qualifying Exam</a>
-                    <div class="campus-notice">
-                        <span class="material-symbols-rounded">school</span>
-                        <p>Note: The qualifying exam will only be available on campus at the scheduled time and venue</p>
                     </div>
                 </div>
             </div>

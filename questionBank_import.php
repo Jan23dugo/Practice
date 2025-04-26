@@ -3,483 +3,192 @@
 include('config/config.php');
 
 // Initialize variables
-$preview_data = [];
-$headers = [];
 $error = null;
 $success = null;
-$preview_questions = []; // Array to store formatted question previews
 
-// At the top of your file, add:
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Set reasonable memory limit
+ini_set('memory_limit', '256M');
 
-// Create a debug log function
-function debug_log($message) {
-    error_log("[Question Import Debug] " . $message);
-}
+// Set maximum file size (10MB)
+$max_file_size = 10 * 1024 * 1024; // 10MB in bytes
 
-// Handle file upload for preview
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['preview'])) {
-    if (isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] === UPLOAD_ERR_OK) {
-        $file = $_FILES['csv_file']['tmp_name'];
-        $original_filename = $_FILES['csv_file']['name'];
-        
-        // Store the original filename in session for display
-        $_SESSION['uploaded_filename'] = $original_filename;
-        
-        // Check if it's a CSV file
-        $file_info = pathinfo($original_filename);
-        if (strtolower($file_info['extension']) !== 'csv') {
-            $error = "Please upload a CSV file.";
-        } else {
-            // Save the uploaded file to a temporary location
-            $temp_file = tempnam(sys_get_temp_dir(), 'csv_import_');
-            move_uploaded_file($file, $temp_file);
-            $_SESSION['csv_file_path'] = $temp_file;
+// Process the uploaded CSV file
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!empty($_FILES['csv_file']['name']) && $_FILES['csv_file']['error'] === UPLOAD_ERR_OK) {
+        try {
+            if ($_FILES['csv_file']['size'] > $max_file_size) {
+                throw new Exception("File size exceeds maximum limit of 10MB.");
+            }
+
+            $original_filename = $_FILES['csv_file']['name'];
+            $tmp_file = $_FILES['csv_file']['tmp_name'];
             
-            // Open the file
-            if (($handle = fopen($temp_file, "r")) !== FALSE) {
-                // Get headers
-                $headers = fgetcsv($handle, 1000, ",");
-                
-                // Map headers to column indices
-                $header_map = array_flip($headers);
-                
-                // Get up to 5 rows for preview
-                $row_count = 0;
-                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE && $row_count < 5) {
-                    $preview_data[] = $data;
-                    
-                    // Format the data as a question preview
-                    $question = [
-                        'question_text' => $data[$header_map['question_text']] ?? 'Missing question text',
-                        'question_type' => $data[$header_map['question_type']] ?? 'multiple-choice',
-                        'category' => $data[$header_map['category']] ?? '',
-                        'points' => (int)($data[$header_map['points']] ?? 1),
-                        'answers' => []
-                    ];
-                    
-                    // Process answers based on question type
-                    if ($question['question_type'] === 'multiple-choice') {
+            // Validate file extension
+            $file_info = pathinfo($original_filename);
+            if (strtolower($file_info['extension']) !== 'csv') {
+                throw new Exception("Please upload a CSV file.");
+            }
+
+            // Read file content
+            $content = file_get_contents($tmp_file);
+            if ($content === false) {
+                throw new Exception("Could not read the CSV file.");
+            }
+
+            // Create a temporary stream
+            $stream = fopen('php://temp', 'r+');
+            if ($stream === false) {
+                throw new Exception("Could not create temporary stream.");
+            }
+
+            // Write content to stream
+            fwrite($stream, $content);
+            rewind($stream);
+
+            // Get and validate headers
+            $header = fgetcsv($stream, 1000, ",");
+            if ($header === false || count($header) < 2) {
+                throw new Exception("Invalid CSV format");
+            }
+
+            // Map headers to column indices
+            $header_map = array_flip($header);
+
+            // Validate required columns
+            $required_columns = ['question_text', 'question_type'];
+            $missing_columns = array_diff($required_columns, $header);
+            if (!empty($missing_columns)) {
+                throw new Exception("CSV file is missing required columns: " . implode(', ', $missing_columns));
+            }
+
+            // Begin database transaction
+            $conn->begin_transaction();
+
+            $imported_count = 0;
+            $skipped_count = 0;
+            $chunk_size = 100;
+            $processed_rows = 0;
+
+            // Process each row
+            while (($data = fgetcsv($stream, 1000, ",")) !== FALSE) {
+                // Validate row data
+                if (count($data) !== count($header)) {
+                    $skipped_count++;
+                    continue;
+                }
+
+                // Map data to column names
+                $row = array_combine($header, $data);
+
+                // Validate required fields
+                if (empty($row['question_text']) || empty($row['question_type'])) {
+                    $skipped_count++;
+                    continue;
+                }
+
+                // Set default values
+                $row['category'] = $row['category'] ?? '';
+                $row['points'] = !empty($row['points']) ? (int)$row['points'] : 1;
+
+                // Store values in variables for binding
+                $question_text = $row['question_text'];
+                $question_type = $row['question_type'];
+                $category = $row['category'];
+                $points = $row['points'];
+
+                // Insert question
+                $stmt = $conn->prepare("INSERT INTO question_bank (question_text, question_type, category, points) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("sssi", $question_text, $question_type, $category, $points);
+                $stmt->execute();
+
+                $question_id = $conn->insert_id;
+
+                // Process answers based on question type
+                switch ($row['question_type']) {
+                    case 'multiple-choice':
                         // Handle multiple choice answers
                         for ($i = 1; $i <= 4; $i++) {
                             $answer_key = "answer_$i";
                             $correct_key = "correct_$i";
                             
-                            if (isset($header_map[$answer_key]) && !empty($data[$header_map[$answer_key]])) {
-                                $answer_text = $data[$header_map[$answer_key]];
-                                $is_correct = (isset($header_map[$correct_key]) && isset($data[$header_map[$correct_key]]) && $data[$header_map[$correct_key]] == 1) ? 1 : 0;
+                            if (!empty($row[$answer_key])) {
+                                $answer_text = $row[$answer_key];
+                                $is_correct = !empty($row[$correct_key]) && $row[$correct_key] == 1 ? 1 : 0;
+                                $position = $i - 1;
                                 
-                                $question['answers'][] = [
-                                    'answer_text' => $answer_text,
-                                    'is_correct' => $is_correct
-                                ];
+                                $stmt = $conn->prepare("INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) VALUES (?, ?, ?, ?)");
+                                $stmt->bind_param("isii", $question_id, $answer_text, $is_correct, $position);
+                                $stmt->execute();
                             }
                         }
-                    } elseif ($question['question_type'] === 'true-false') {
-                        // Handle true/false answers
-                        $correct_answer = isset($header_map['correct_answer']) ? strtolower($data[$header_map['correct_answer']]) : '';
-                        
-                        $question['answers'][] = [
-                            'answer_text' => 'True',
-                            'is_correct' => ($correct_answer === 'true') ? 1 : 0
-                        ];
-                        
-                        $question['answers'][] = [
-                            'answer_text' => 'False',
-                            'is_correct' => ($correct_answer === 'false') ? 1 : 0
-                        ];
-                    } elseif ($question['question_type'] === 'programming') {
-                        // Handle programming question
-                        $question['language'] = isset($header_map['language']) ? $data[$header_map['language']] : 'python';
-                        $question['starter_code'] = isset($header_map['starter_code']) ? $data[$header_map['starter_code']] : '';
-                    }
-                    
-                    $preview_questions[] = $question;
-                    $row_count++;
-                }
-                
-                fclose($handle);
-                
-                // Store the file path in session for later import
-                $_SESSION['csv_file_path'] = $temp_file;
-            } else {
-                $error = "Failed to open the file.";
-            }
-        }
-    } else {
-        $error = "Please select a file to upload.";
-    }
-}
+                        break;
 
-// Process the uploaded CSV file
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
-    debug_log("Import process started");
-    
-    // Check if we have a file path in session
-    if (isset($_SESSION['csv_file_path']) && file_exists($_SESSION['csv_file_path'])) {
-        debug_log("Using file from session: " . $_SESSION['csv_file_path']);
-        $file = $_SESSION['csv_file_path'];
-        
-        // Open the file
-        if (($handle = fopen($file, "r")) !== FALSE) {
-            // Get the header row
-            $header = fgetcsv($handle, 1000, ",");
-            
-            // Map headers to column indices for easier access
-            $header_map = array_flip($header);
-                
-            // Check if the CSV has the required columns
-            $required_columns = ['question_text', 'question_type'];
-            $missing_columns = array_diff($required_columns, $header);
-                
-            if (!empty($missing_columns)) {
-                $error = "CSV file is missing required columns: " . implode(', ', $missing_columns);
-            } else {
-                $conn->begin_transaction();
-                
-                try {
-                    $imported_count = 0;
-                    $skipped_count = 0;
-                    
-                    // Process each row
-                    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                        // Map data to column names
-                        $row = [];
-                        foreach ($header as $index => $column) {
-                            $row[$column] = $data[$index] ?? '';
-                        }
+                    case 'true-false':
+                        // Handle true-false answers
+                        $correct_answer = strtolower($row['correct_answer'] ?? 'true');
                         
-                        // Validate required fields
-                        if (empty($row['question_text']) || empty($row['question_type'])) {
-                            $skipped_count++;
-                            continue;
-                        }
-                        
-                        // Set default values if not provided
-                        $row['category'] = !empty($row['category']) ? $row['category'] : '';
-                        $row['points'] = !empty($row['points']) ? (int)$row['points'] : 1;
-                        
-                        // Insert question
-                        $query = "INSERT INTO question_bank (question_text, question_type, category, points) 
-                                VALUES (?, ?, ?, ?)";
-                        $stmt = $conn->prepare($query);
-                        $stmt->bind_param("sssi", $row['question_text'], $row['question_type'], $row['category'], $row['points']);
+                        // Insert True option
+                        $answer_text = 'True';
+                        $is_true_correct = ($correct_answer === 'true') ? 1 : 0;
+                        $position = 0;
+                        $stmt = $conn->prepare("INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) VALUES (?, ?, ?, ?)");
+                        $stmt->bind_param("isii", $question_id, $answer_text, $is_true_correct, $position);
                         $stmt->execute();
                         
-                        $question_id = $conn->insert_id;
+                        // Insert False option
+                        $answer_text = 'False';
+                        $is_false_correct = ($correct_answer === 'false') ? 1 : 0;
+                        $position = 1;
+                        $stmt = $conn->prepare("INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) VALUES (?, ?, ?, ?)");
+                        $stmt->bind_param("isii", $question_id, $answer_text, $is_false_correct, $position);
+                        $stmt->execute();
+                        break;
+
+                    case 'programming':
+                        // Handle programming questions
+                        $starter_code = $row['starter_code'] ?? '';
+                        $language = $row['language'] ?? 'python';
                         
-                        // Process answers based on question type
-                        if ($row['question_type'] === 'multiple-choice') {
-                            // Check if answers are provided
-                            $answers = [];
-                            $correct_answers = [];
-                            
-                            // Look for answer columns (answer_1, answer_2, etc.)
-                            for ($i = 1; $i <= 10; $i++) { // Support up to 10 answers
-                                $answer_key = "answer_$i";
-                                $correct_key = "correct_$i";
-                                
-                                if (isset($header_map[$answer_key]) && isset($data[$header_map[$answer_key]]) && !empty($data[$header_map[$answer_key]])) {
-                                    $answers[] = $data[$header_map[$answer_key]];
-                                    
-                                    // Check if this answer is marked as correct
-                                    if (isset($header_map[$correct_key]) && 
-                                        isset($data[$header_map[$correct_key]]) && 
-                                        $data[$header_map[$correct_key]] == 1) {
-                                        $correct_answers[] = count($answers) - 1; // 0-based index
-                                    }
-                                }
-                            }
-                            
-                            // Insert answers
-                            for ($i = 0; $i < count($answers); $i++) {
-                                $is_correct = in_array($i, $correct_answers) ? 1 : 0;
-                                
-                                $query = "INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) 
-                                        VALUES (?, ?, ?, ?)";
-                                $stmt = $conn->prepare($query);
-                                $stmt->bind_param("isii", $question_id, $answers[$i], $is_correct, $i);
-                                $stmt->execute();
-                            }
-                        } elseif ($row['question_type'] === 'true-false') {
-                            $correct_answer = isset($header_map['correct_answer']) && isset($data[$header_map['correct_answer']]) 
-                                ? strtolower($data[$header_map['correct_answer']]) : 'true';
-                            
-                            // Add True answer
-                            $is_true_correct = ($correct_answer === 'true') ? 1 : 0;
-                            $query = "INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) 
-                                    VALUES (?, 'True', ?, 0)";
-                            $stmt = $conn->prepare($query);
-                            $stmt->bind_param("ii", $question_id, $is_true_correct);
-                            $stmt->execute();
-                            
-                            // Add False answer
-                            $is_false_correct = ($correct_answer === 'false') ? 1 : 0;
-                            $query = "INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) 
-                                    VALUES (?, 'False', ?, 1)";
-                            $stmt = $conn->prepare($query);
-                            $stmt->bind_param("ii", $question_id, $is_false_correct);
-                            $stmt->execute();
-                        } elseif ($row['question_type'] === 'programming') {
-                            $starter_code = isset($header_map['starter_code']) && isset($data[$header_map['starter_code']]) 
-                                ? $data[$header_map['starter_code']] : '';
-                            $language = isset($header_map['language']) && isset($data[$header_map['language']]) 
-                                ? $data[$header_map['language']] : 'python';
-                            
-                            // Insert programming details
-                            $query = "INSERT INTO question_bank_programming (question_id, starter_code, language) 
-                                    VALUES (?, ?, ?)";
-                            $stmt = $conn->prepare($query);
-                            $stmt->bind_param("iss", $question_id, $starter_code, $language);
-                            $stmt->execute();
-                            
-                            $programming_id = $conn->insert_id;
-                            
-                            // Look for test case columns (test_input_1, test_output_1, etc.)
-                            for ($i = 1; $i <= 10; $i++) { // Support up to 10 test cases
-                                $input_key = "test_input_$i";
-                                $output_key = "test_output_$i";
-                                $hidden_key = "test_hidden_$i";
-                                $desc_key = "test_description_$i";
-                                
-                                // Only process if we have an output defined
-                                if (isset($header_map[$output_key]) && 
-                                    isset($data[$header_map[$output_key]]) && 
-                                    !empty($data[$header_map[$output_key]])) {
-                                    
-                                    $input = isset($header_map[$input_key]) && isset($data[$header_map[$input_key]]) 
-                                        ? $data[$header_map[$input_key]] : '';
-                                    $expected_output = $data[$header_map[$output_key]];
-                                    $is_hidden = isset($header_map[$hidden_key]) && isset($data[$header_map[$hidden_key]]) && 
-                                        $data[$header_map[$hidden_key]] == 1 ? 1 : 0;
-                                    $description = isset($header_map[$desc_key]) && isset($data[$header_map[$desc_key]]) 
-                                        ? $data[$header_map[$desc_key]] : null;
-                                    
-                                    $query = "INSERT INTO question_bank_test_cases (programming_id, input, expected_output, is_hidden, description) 
-                                            VALUES (?, ?, ?, ?, ?)";
-                                    $stmt = $conn->prepare($query);
-                                    $stmt->bind_param("issis", $programming_id, $input, $expected_output, $is_hidden, $description);
-                                    $stmt->execute();
-                                }
-                            }
-                        }
-                        
-                        $imported_count++;
-                    }
-                    
+                        $stmt = $conn->prepare("INSERT INTO question_bank_programming (question_id, starter_code, language) VALUES (?, ?, ?)");
+                        $stmt->bind_param("iss", $question_id, $starter_code, $language);
+                        $stmt->execute();
+                        break;
+                }
+
+                $imported_count++;
+                $processed_rows++;
+
+                // Commit every chunk_size rows
+                if ($processed_rows % $chunk_size === 0) {
                     $conn->commit();
-                    $success = "Successfully imported $imported_count questions" . ($skipped_count > 0 ? " (skipped $skipped_count invalid rows)" : "");
-                    
-                    // Clean up the temporary file after successful import
-                    if (!empty($success)) {
-                        @unlink($file);
-                        unset($_SESSION['csv_file_path']);
-                        unset($_SESSION['uploaded_filename']);
-                        
-                        // Redirect to question bank page after successful import
-                        // This ensures the page refreshes and doesn't stay in the loading state
-                        header("Location: question_bank.php?import_success=1");
-                        exit;
-                    }
-                } catch (Exception $e) {
-                    $conn->rollback();
-                    $error = "Error: " . $e->getMessage();
+                    $conn->begin_transaction();
                 }
             }
-            
-            fclose($handle);
-        } else {
-            $error = "Could not open the CSV file";
-        }
-    } else if (isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] === UPLOAD_ERR_OK) {
-        debug_log("Using newly uploaded file");
-        // If no file in session but a new file was uploaded, process it
-        // This is a fallback in case the session data is lost
-        
-        $file = $_FILES['csv_file']['tmp_name'];
-        $original_filename = $_FILES['csv_file']['name'];
-        
-        // Store the original filename in session for display
-        $_SESSION['uploaded_filename'] = $original_filename;
-        
-        // Check if it's a CSV file
-        $file_info = pathinfo($original_filename);
-        if (strtolower($file_info['extension']) !== 'csv') {
-            $error = "Please upload a CSV file";
-        } else {
-            // Open the file
-            if (($handle = fopen($file, "r")) !== FALSE) {
-                // Get the header row
-                $header = fgetcsv($handle, 1000, ",");
-                
-                // Map headers to column indices for easier access
-                $header_map = array_flip($header);
-                
-                // Check if the CSV has the required columns
-                $required_columns = ['question_text', 'question_type'];
-                $missing_columns = array_diff($required_columns, $header);
-                
-                if (!empty($missing_columns)) {
-                    $error = "CSV file is missing required columns: " . implode(', ', $missing_columns);
-                } else {
-                        $conn->begin_transaction();
-                        
-                        try {
-                            $imported_count = 0;
-                            $skipped_count = 0;
-                            
-                            // Process each row
-                            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                            // Map data to column names
-                                $row = [];
-                                foreach ($header as $index => $column) {
-                                    $row[$column] = $data[$index] ?? '';
-                                }
-                                
-                                // Validate required fields
-                                if (empty($row['question_text']) || empty($row['question_type'])) {
-                                    $skipped_count++;
-                                    continue;
-                                }
-                                
-                                // Set default values if not provided
-                                $row['category'] = !empty($row['category']) ? $row['category'] : '';
-                                $row['points'] = !empty($row['points']) ? (int)$row['points'] : 1;
-                                
-                                // Insert question
-                                $query = "INSERT INTO question_bank (question_text, question_type, category, points) 
-                                        VALUES (?, ?, ?, ?)";
-                                $stmt = $conn->prepare($query);
-                                $stmt->bind_param("sssi", $row['question_text'], $row['question_type'], $row['category'], $row['points']);
-                                $stmt->execute();
-                                
-                                $question_id = $conn->insert_id;
-                                
-                                // Process answers based on question type
-                                if ($row['question_type'] === 'multiple-choice') {
-                                    // Check if answers are provided
-                                    $answers = [];
-                                    $correct_answers = [];
-                                    
-                                    // Look for answer columns (answer_1, answer_2, etc.)
-                                for ($i = 1; $i <= 10; $i++) { // Support up to 10 answers
-                                    $answer_key = "answer_$i";
-                                    $correct_key = "correct_$i";
-                                    
-                                    if (isset($header_map[$answer_key]) && isset($data[$header_map[$answer_key]]) && !empty($data[$header_map[$answer_key]])) {
-                                        $answers[] = $data[$header_map[$answer_key]];
-                                            
-                                            // Check if this answer is marked as correct
-                                        if (isset($header_map[$correct_key]) && 
-                                            isset($data[$header_map[$correct_key]]) && 
-                                            $data[$header_map[$correct_key]] == 1) {
-                                            $correct_answers[] = count($answers) - 1; // 0-based index
-                                            }
-                                        }
-                                    }
-                                    
-                                    // Insert answers
-                                    for ($i = 0; $i < count($answers); $i++) {
-                                        $is_correct = in_array($i, $correct_answers) ? 1 : 0;
-                                        
-                                        $query = "INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) 
-                                                VALUES (?, ?, ?, ?)";
-                                        $stmt = $conn->prepare($query);
-                                        $stmt->bind_param("isii", $question_id, $answers[$i], $is_correct, $i);
-                                        $stmt->execute();
-                                    }
-                                } elseif ($row['question_type'] === 'true-false') {
-                                $correct_answer = isset($header_map['correct_answer']) && isset($data[$header_map['correct_answer']]) 
-                                    ? strtolower($data[$header_map['correct_answer']]) : 'true';
-                                    
-                                    // Add True answer
-                                    $is_true_correct = ($correct_answer === 'true') ? 1 : 0;
-                                    $query = "INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) 
-                                            VALUES (?, 'True', ?, 0)";
-                                    $stmt = $conn->prepare($query);
-                                    $stmt->bind_param("ii", $question_id, $is_true_correct);
-                                    $stmt->execute();
-                                    
-                                    // Add False answer
-                                    $is_false_correct = ($correct_answer === 'false') ? 1 : 0;
-                                    $query = "INSERT INTO question_bank_answers (question_id, answer_text, is_correct, position) 
-                                            VALUES (?, 'False', ?, 1)";
-                                    $stmt = $conn->prepare($query);
-                                    $stmt->bind_param("ii", $question_id, $is_false_correct);
-                                    $stmt->execute();
-                                } elseif ($row['question_type'] === 'programming') {
-                                $starter_code = isset($header_map['starter_code']) && isset($data[$header_map['starter_code']]) 
-                                    ? $data[$header_map['starter_code']] : '';
-                                $language = isset($header_map['language']) && isset($data[$header_map['language']]) 
-                                    ? $data[$header_map['language']] : 'python';
-                                    
-                                    // Insert programming details
-                                    $query = "INSERT INTO question_bank_programming (question_id, starter_code, language) 
-                                            VALUES (?, ?, ?)";
-                                    $stmt = $conn->prepare($query);
-                                    $stmt->bind_param("iss", $question_id, $starter_code, $language);
-                                    $stmt->execute();
-                                    
-                                    $programming_id = $conn->insert_id;
-                                    
-                                    // Look for test case columns (test_input_1, test_output_1, etc.)
-                                for ($i = 1; $i <= 10; $i++) { // Support up to 10 test cases
-                                    $input_key = "test_input_$i";
-                                    $output_key = "test_output_$i";
-                                    $hidden_key = "test_hidden_$i";
-                                    $desc_key = "test_description_$i";
-                                    
-                                    // Only process if we have an output defined
-                                    if (isset($header_map[$output_key]) && 
-                                        isset($data[$header_map[$output_key]]) && 
-                                        !empty($data[$header_map[$output_key]])) {
-                                        
-                                        $input = isset($header_map[$input_key]) && isset($data[$header_map[$input_key]]) 
-                                            ? $data[$header_map[$input_key]] : '';
-                                        $expected_output = $data[$header_map[$output_key]];
-                                        $is_hidden = isset($header_map[$hidden_key]) && isset($data[$header_map[$hidden_key]]) && 
-                                            $data[$header_map[$hidden_key]] == 1 ? 1 : 0;
-                                        $description = isset($header_map[$desc_key]) && isset($data[$header_map[$desc_key]]) 
-                                            ? $data[$header_map[$desc_key]] : null;
-                                        
-                                        $query = "INSERT INTO question_bank_test_cases (programming_id, input, expected_output, is_hidden, description) 
-                                                VALUES (?, ?, ?, ?, ?)";
-                                        $stmt = $conn->prepare($query);
-                                        $stmt->bind_param("issis", $programming_id, $input, $expected_output, $is_hidden, $description);
-                                        $stmt->execute();
-                                    }
-                                    }
-                                }
-                                
-                                $imported_count++;
-                            }
-                            
-                            $conn->commit();
-                            $success = "Successfully imported $imported_count questions" . ($skipped_count > 0 ? " (skipped $skipped_count invalid rows)" : "");
-                            
-                            // Add similar redirect after successful import
-                            if (!empty($success)) {
-                                header("Location: question_bank.php?import_success=1");
-                                exit;
-                            }
-                        } catch (Exception $e) {
-                            $conn->rollback();
-                            $error = "Error: " . $e->getMessage();
-                    }
-                }
-                
-                fclose($handle);
-            } else {
-                $error = "Could not open the CSV file";
+
+            // Commit remaining rows
+            $conn->commit();
+
+            // Close the stream
+            fclose($stream);
+
+            $success = "Successfully imported $imported_count questions" . ($skipped_count > 0 ? " (skipped $skipped_count invalid rows)" : "");
+            header("Location: question_bank.php?import_success=1");
+            exit;
+
+        } catch (Exception $e) {
+            if (isset($conn) && $conn->inTransaction()) {
+                $conn->rollback();
             }
+            if (isset($stream) && is_resource($stream)) {
+                fclose($stream);
+            }
+            $error = "Error: " . $e->getMessage();
         }
     } else {
-        debug_log("No valid file found for import");
         $error = "Please select a CSV file to upload";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -963,7 +672,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
             color: #333;
         }
 
-        
+        /* Add these styles to your existing CSS */
+        .preview-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .pagination-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .pagination-btn.active {
+            background: #75343A;
+            color: white;
+        }
+
+        .pagination-btn .material-symbols-rounded {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -991,13 +732,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
             <?php endif; ?>
 
             <div class="import-section" style="background: #f8f9fa; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; max-width: 2000px; margin-left: auto; margin-right: auto;">
-                <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 1.2rem; text-align: center;">Select CSV File</h2>
+                <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 1.2rem;">Select CSV File</h2>
                 <form id="csv-upload-form" method="POST" enctype="multipart/form-data" action="questionBank_import.php">
                     <div class="file-upload-container" style="background: white; border: 2px dashed #ddd; border-radius: 8px; padding: 2rem; text-align: center; transition: border-color 0.3s; max-width: 700px; margin: 0 auto;">
                         <label for="csv-file" class="file-upload-label" style="display: block; margin-bottom: 1rem; color: #333; font-weight: 500;">Choose a CSV file:</label>
                         <div class="file-input-wrapper" style="position: relative; margin-bottom: 1rem; display: flex; justify-content: center;">
-                            <input type="file" id="csv-file" name="csv_file" accept=".csv" <?php echo !isset($_SESSION['csv_file_path']) ? 'required' : ''; ?> 
-                                   style="position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
+                            <input type="file" id="csv-file" name="csv_file" accept=".csv" required style="position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
                             <div class="file-name" id="file-name" style="display: inline-block; padding: 0.5rem 1rem; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; color: #666; min-width: 200px; text-align: center;">
                                 <?php 
                                 if (isset($_SESSION['uploaded_filename'])) {
@@ -1012,14 +752,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
                     </div>
 
                     <div class="button-container" style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
-                        <button type="submit" name="preview" id="preview-btn" class="preview-btn" 
-                                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #f8f9fa; color: #333; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: all 0.3s;">
-                            <span class="material-symbols-rounded">visibility</span>
+                        <button type="button" id="preview-btn" class="preview-btn" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: all 0.3s;" disabled>
+                            <span class="material-symbols-rounded">preview</span>
                             Preview
                         </button>
                         <button type="submit" name="import" id="import-btn" class="import-btn" 
                                 style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #75343A; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: all 0.3s;"
-                                <?php echo (!isset($_FILES['csv_file']) && !isset($_SESSION['csv_file_path'])) ? 'disabled' : ''; ?>>
+                                disabled>
                             <span class="material-symbols-rounded">upload</span>
                             Import Questions
                         </button>
@@ -1067,61 +806,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
                     </button>
                 </div>
             </div>
-
-            <?php if (!empty($preview_questions)): ?>
-            <div class="preview-section" style="margin-top: 2rem;">
-                <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 1.2rem;">Preview Questions</h2>
-                <div class="preview-questions" style="display: grid; gap: 1rem;">
-                    <?php foreach ($preview_questions as $question): ?>
-                        <div class="preview-question" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                            <div class="question-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                                <div class="question-type" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.75rem; background: #f8f9fa; border-radius: 4px; font-size: 0.9rem; color: #666;">
-                                    <span class="material-symbols-rounded">
-                                        <?php 
-                                        switch($question['question_type']) {
-                                            case 'multiple-choice':
-                                                echo 'radio_button_checked';
-                                                break;
-                                            case 'true-false':
-                                                echo 'check_circle';
-                                                break;
-                                            case 'programming':
-                                                echo 'code';
-                                                break;
-                                        }
-                                        ?>
-                                    </span>
-                                    <?php echo ucfirst($question['question_type']); ?>
-                                </div>
-                            </div>
-                            <div class="question-text" style="margin-bottom: 1rem; color: #333; line-height: 1.5;">
-                                <?php echo htmlspecialchars($question['question_text']); ?>
-                            </div>
-                            <?php if ($question['question_type'] === 'multiple-choice'): ?>
-                                <div class="answers-preview" style="display: grid; gap: 0.5rem;">
-                                    <?php foreach ($question['answers'] as $answer): ?>
-                                        <div class="answer-item <?php echo $answer['is_correct'] ? 'correct' : ''; ?>" 
-                                             style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: <?php echo $answer['is_correct'] ? '#d4edda' : '#f8f9fa'; ?>; border-radius: 4px; color: <?php echo $answer['is_correct'] ? '#155724' : '#666'; ?>;">
-                                            <span class="material-symbols-rounded">
-                                                <?php echo $answer['is_correct'] ? 'check_circle' : 'radio_button_unchecked'; ?>
-                                            </span>
-                                            <?php echo htmlspecialchars($answer['answer_text']); ?>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="preview-actions" style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
-                    <p class="preview-note" style="display: flex; align-items: center; gap: 0.5rem; color: #666; font-size: 0.9rem;">
-                        <span class="material-symbols-rounded">info</span>
-                        These are the first <?php echo count($preview_questions); ?> questions from your CSV file. 
-                        Click "Import Questions" to add all questions to your question bank.
-                    </p>
-                </div>
-            </div>
-            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -1131,59 +815,264 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('csv-file');
     const fileName = document.getElementById('file-name');
-    const previewBtn = document.getElementById('preview-btn');
     const importBtn = document.getElementById('import-btn');
+    const previewBtn = document.getElementById('preview-btn');
     const uploadForm = document.getElementById('csv-upload-form');
     
-    // Update file name display when a file is selected and enable import button
+    let allQuestions = []; // Store all questions
+    const questionsPerPage = 5; // Number of questions per page
+    let currentPage = 1;
+
+    // Update file name display and enable/disable buttons when a file is selected
     fileInput.addEventListener('change', function() {
         if (this.files && this.files[0]) {
-            fileName.textContent = this.files[0].name;
-            // Enable import button as soon as a file is selected
+            const file = this.files[0];
+            fileName.textContent = file.name;
             importBtn.disabled = false;
+            previewBtn.disabled = false;
+
+            // Clear any existing preview
+            const existingPreview = document.querySelector('.preview-section');
+            if (existingPreview) {
+                existingPreview.remove();
+            }
+
+            // Clear any existing error messages
+            const existingError = document.querySelector('.alert-danger');
+            if (existingError) {
+                existingError.remove();
+            }
         } else {
             fileName.textContent = 'No file chosen';
             importBtn.disabled = true;
+            previewBtn.disabled = true;
         }
     });
-    
-    // Show loading state when preview button is clicked
-    previewBtn.addEventListener('click', function(e) {
-        if (fileInput.files && fileInput.files[0] || <?php echo isset($_SESSION['csv_file_path']) ? 'true' : 'false'; ?>) {
-            this.classList.add('loading');
-            // Form submission will happen naturally
+
+    // Handle preview button click
+    previewBtn.addEventListener('click', function() {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        previewBtn.classList.add('loading');
+
+        reader.onload = function(e) {
+            const content = e.target.result;
+            const lines = content.split(/\r\n|\n/).filter(line => line.trim()); // Remove empty lines
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            // Validate required columns
+            const requiredColumns = ['question_text', 'question_type'];
+            const missingColumns = requiredColumns.filter(col => !headers.includes(col));
+            
+            if (missingColumns.length > 0) {
+                alert('Missing required columns: ' + missingColumns.join(', '));
+                previewBtn.classList.remove('loading');
+                return;
+            }
+
+            // Store all questions
+            allQuestions = lines.slice(1)
+                .map(line => {
+                    const values = line.split(',').map(v => v.trim());
+                    const rowData = {};
+                    headers.forEach((header, i) => {
+                        rowData[header] = values[i] || '';
+                    });
+                    return rowData;
+                })
+                .filter(question => question.question_text && question.question_type); // Only keep questions that have required fields
+
+            if (allQuestions.length === 0) {
+                alert('No valid questions found in the CSV file. Please check the file format.');
+                previewBtn.classList.remove('loading');
+                return;
+            }
+
+            // Show first page
+            showPreviewPage(1);
+            previewBtn.classList.remove('loading');
+        };
+
+        reader.onerror = function() {
+            alert('Error reading file');
+            previewBtn.classList.remove('loading');
+        };
+
+        reader.readAsText(file);
+    });
+
+    function showPreviewPage(page) {
+        currentPage = page;
+        const startIdx = (page - 1) * questionsPerPage;
+        const endIdx = startIdx + questionsPerPage;
+        const questionsToShow = allQuestions.slice(startIdx, endIdx);
+        const totalPages = Math.ceil(allQuestions.length / questionsPerPage);
+
+        let previewHTML = '<div class="preview-section">';
+        previewHTML += '<h2>Preview Questions</h2>';
+        previewHTML += '<div class="questions-preview">';
+
+        questionsToShow.forEach((rowData, index) => {
+            // Skip if question is empty
+            if (!rowData.question_text || !rowData.question_type) return;
+
+            const questionNumber = startIdx + index + 1;
+            previewHTML += `
+                <div class="question-preview-card">
+                    <div class="question-preview-header">
+                        <span class="question-number">Question ${questionNumber}</span>
+                        <div class="question-meta">
+                            <span class="question-type-badge ${rowData.question_type}">
+                                ${rowData.question_type.charAt(0).toUpperCase() + rowData.question_type.slice(1)}
+                            </span>
+                            ${rowData.category ? `
+                                <span class="category-badge">
+                                    <span class="material-symbols-rounded">folder</span>
+                                    ${rowData.category}
+                                </span>
+                            ` : ''}
+                            <span class="points-badge">
+                                <span class="material-symbols-rounded">stars</span>
+                                ${rowData.points || 1} point${(rowData.points || 1) !== 1 ? 's' : ''}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="question-preview-body">
+                        <div class="question-text">${rowData.question_text}</div>
+                        ${getAnswersPreviewHTML(rowData)}
+                    </div>
+                </div>
+            `;
+        });
+
+        previewHTML += '</div>';
+
+        // Only show pagination if there are multiple pages of valid questions
+        if (totalPages > 1) {
+            previewHTML += '<div class="preview-pagination" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">';
+            
+            // Previous button
+            if (currentPage > 1) {
+                previewHTML += `
+                    <button onclick="window.previewPage(${currentPage - 1})" class="pagination-btn" 
+                            style="padding: 8px 16px; border: none; border-radius: 4px; background: #f0f0f0; cursor: pointer;">
+                        <span class="material-symbols-rounded">chevron_left</span>
+                    </button>`;
+            }
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                previewHTML += `
+                    <button onclick="window.previewPage(${i})" 
+                            class="pagination-btn ${i === currentPage ? 'active' : ''}"
+                            style="padding: 8px 16px; border: none; border-radius: 4px; 
+                                   background: ${i === currentPage ? '#75343A' : '#f0f0f0'}; 
+                                   color: ${i === currentPage ? 'white' : 'black'}; 
+                                   cursor: pointer;">
+                        ${i}
+                    </button>`;
+            }
+
+            // Next button
+            if (currentPage < totalPages) {
+                previewHTML += `
+                    <button onclick="window.previewPage(${currentPage + 1})" class="pagination-btn"
+                            style="padding: 8px 16px; border: none; border-radius: 4px; background: #f0f0f0; cursor: pointer;">
+                        <span class="material-symbols-rounded">chevron_right</span>
+                    </button>`;
+            }
+            
+            previewHTML += '</div>';
+        }
+
+        // Update the preview note to be more accurate
+        previewHTML += '<div class="preview-actions">';
+        previewHTML += '<p class="preview-note">';
+        previewHTML += '<span class="material-symbols-rounded">info</span>';
+        if (allQuestions.length === 1) {
+            previewHTML += 'Showing 1 question. ';
         } else {
-            e.preventDefault();
-            alert('Please select a CSV file first.');
+            previewHTML += `Showing ${questionsToShow.length} of ${allQuestions.length} questions. `;
         }
-    });
-    
-    // Enable import button if a file is selected or if we have a file in session
-    if (<?php echo isset($_SESSION['csv_file_path']) ? 'true' : 'false'; ?>) {
-        importBtn.disabled = false;
+        previewHTML += 'Click "Import Questions" to process all questions.';
+        previewHTML += '</p>';
+        previewHTML += '</div>';
+        previewHTML += '</div>';
+
+        // Insert preview before the template section
+        const existingPreview = document.querySelector('.preview-section');
+        if (existingPreview) {
+            existingPreview.remove();
+        }
+        const templateSection = document.querySelector('.template-section');
+        templateSection.insertAdjacentHTML('beforebegin', previewHTML);
     }
-    
-    // Handle form submission for import
-    importBtn.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default button behavior
-        
-        if (!this.disabled) {
-            console.log("Import button clicked");
-            this.innerHTML = '<span class="material-symbols-rounded">hourglass_empty</span> Importing...';
-            this.disabled = true;
-            
-            // Create a hidden input to indicate this is an import action
-            const importInput = document.createElement('input');
-            importInput.type = 'hidden';
-            importInput.name = 'import';
-            importInput.value = '1';
-            uploadForm.appendChild(importInput);
-            
-            console.log("Submitting form for import");
-            uploadForm.submit();
+
+    // Make the previewPage function available globally
+    window.previewPage = showPreviewPage;
+
+    function getAnswersPreviewHTML(rowData) {
+        if (rowData.question_type === 'multiple-choice') {
+            let answersHTML = '<div class="answer-preview">';
+            for (let i = 1; i <= 4; i++) {
+                const answerKey = `answer_${i}`;
+                const correctKey = `correct_${i}`;
+                if (rowData[answerKey]) {
+                    const isCorrect = rowData[correctKey] === '1';
+                    answersHTML += `
+                        <div class="answer-choice ${isCorrect ? 'correct' : 'incorrect'}">
+                            <span class="material-symbols-rounded choice-icon">
+                                ${isCorrect ? 'check_circle' : 'radio_button_unchecked'}
+                            </span>
+                            ${rowData[answerKey]}
+                        </div>
+                    `;
+                }
+            }
+            answersHTML += '</div>';
+            return answersHTML;
+        } else if (rowData.question_type === 'true-false') {
+            const correctAnswer = rowData.correct_answer?.toLowerCase() || 'true';
+            return `
+                <div class="answer-preview">
+                    <div class="answer-choice ${correctAnswer === 'true' ? 'correct' : 'incorrect'}">
+                        <span class="material-symbols-rounded choice-icon">
+                            ${correctAnswer === 'true' ? 'check_circle' : 'radio_button_unchecked'}
+                        </span>
+                        True
+                    </div>
+                    <div class="answer-choice ${correctAnswer === 'false' ? 'correct' : 'incorrect'}">
+                        <span class="material-symbols-rounded choice-icon">
+                            ${correctAnswer === 'false' ? 'check_circle' : 'radio_button_unchecked'}
+                        </span>
+                        False
+                    </div>
+                </div>
+            `;
+        } else if (rowData.question_type === 'programming') {
+            return `
+                <div class="programming-preview">
+                    <div class="programming-language">
+                        <span class="material-symbols-rounded">code</span>
+                        Language: ${rowData.language || 'python'}
+                    </div>
+                    ${rowData.starter_code ? `
+                        <div class="code-preview">
+                            <span>
+                                <span class="material-symbols-rounded">terminal</span>
+                                Starter Code:
+                            </span>
+                            <pre class="code-block">${rowData.starter_code}</pre>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
         }
-    });
-    
+        return '';
+    }
+
     // Add template download functionality
     const downloadTemplateBtn = document.querySelector('.download-template-btn');
     if (downloadTemplateBtn) {

@@ -543,8 +543,8 @@ $activePage = 'results';
                 <div class="logo">
                     <img src="img/Logo.png" alt="PUP Logo">
                     <div class="logo-text">
-                        <h1>PUP Qualifying Exam Portal</h1>
-                        <p>Student Dashboard</p>
+                        <h1>STREAMS</h1>
+                        <p>Exam Results</p>
                     </div>
                 </div>
                 <div class="nav-links">

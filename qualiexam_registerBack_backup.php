@@ -3,6 +3,10 @@
 ob_start();
 session_start();
 
+// Disable error display for production
+error_reporting(0);
+ini_set('display_errors', 0);
+
 // Include necessary files and libraries
 include('config/config.php');
 require 'send_email.php';
@@ -13,6 +17,11 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 if (!isset($_SESSION['success'])) {
     $_SESSION['success'] = '';
+}
+
+// Add this near the top of the file after session_start()
+if (!isset($_SESSION['debug_output'])) {
+    $_SESSION['debug_output'] = '';
 }
 
 function debug_log($message) {
@@ -104,10 +113,10 @@ function logExtractionResults($methodName, $data = [], $extraInfo = [], $message
     return $logFile;
 }
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-$errors = [];
+// Add this near the top of the file after other includes
+if (!file_exists(__DIR__ . '/uploads')) {
+    mkdir(__DIR__ . '/uploads', 0777, true);
+}
 
 // Add this at the top of your file
 class TORFormat {
@@ -331,64 +340,106 @@ function cleanOCRText($text) {
     return $text;
 }
 
-function extractSubjects($text) {
-    if (!is_string($text)) {
-        error_log("Warning: extractSubjects received non-string input: " . print_r($text, true));
-        return [];
-    }
+// Add this near the top of the file after other includes
+class DocumentFormat {
+    const TOR = 'tor';
+    const GRADES = 'grades';
+}
 
-    $subjects = [];
+function detectDocumentFormat($text) {
+    // Keywords that typically appear in TOR
+    $torKeywords = ['TRANSCRIPT OF RECORDS', 'OFFICIAL TRANSCRIPT', 'ACADEMIC RECORD'];
     
-    // Remove code block markers if present
-    $text = preg_replace('/```json\s*|\s*```/', '', $text);
+    // Keywords that typically appear in Copy of Grades
+    $gradesKeywords = ['COPY OF GRADES', 'GRADE REPORT', 'SEMESTRAL GRADES'];
     
-    // Check if the text is JSON and contains subjects
-    $data = json_decode($text, true);
-    if (json_last_error() === JSON_ERROR_NONE && isset($data['subjects'])) {
-        logExtraction("Successfully parsed JSON subjects", [
-            'count' => count($data['subjects'])
-        ]);
-        
-        foreach ($data['subjects'] as $subject) {
-            $subjects[] = [
-                'subject_code' => $subject['subject_code'],
-                'subject_description' => $subject['subject_description'],
-                'units' => floatval($subject['units']),
-                'grade' => floatval($subject['grade'])
-            ];
+    $upperText = strtoupper($text);
+    
+    foreach ($torKeywords as $keyword) {
+        if (strpos($upperText, $keyword) !== false) {
+            return DocumentFormat::TOR;
         }
-        return $subjects;
     }
+    
+    foreach ($gradesKeywords as $keyword) {
+        if (strpos($upperText, $keyword) !== false) {
+            return DocumentFormat::GRADES;
+        }
+    }
+    
+    // Default to grades if format cannot be determined
+    return DocumentFormat::GRADES;
+}
 
-    logExtraction("Falling back to text parsing", [
-        'text_length' => strlen($text)
-    ]);
-
-    // If not JSON, try parsing as plain text
-    $lines = array_map('trim', explode("\n", $text));
+function extractGradesFromCopyOfGrades($text) {
+    $subjects = [];
+    $lines = explode("\n", $text);
+    
+    // Common patterns in Copy of Grades
+    $patterns = [
+        // Pattern 1: Code Description Units Grade
+        '/^([A-Z]{2,4}\s*\d{3,4}[A-Z]?)\s+(.+?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)/i',
+        
+        // Pattern 2: Code Units Grade Description
+        '/^([A-Z]{2,4}\s*\d{3,4}[A-Z]?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(.+)$/i',
+        
+        // Pattern 3: Simple table format
+        '/([A-Z]{2,4}\s*\d{3,4}[A-Z]?)[|\t](.+?)[|\t](\d+(?:\.\d+)?)[|\t](\d+(?:\.\d+)?)/i'
+    ];
     
     foreach ($lines as $line) {
+        $line = trim($line);
         if (empty($line)) continue;
         
-        // Skip header rows and footers
-        if (preg_match('/(SUBJECT|COURSE|CODE|TITLE|TERM|SEMESTER|NOTHING FOLLOWS)/i', $line)) {
-            continue;
-        }
-        
-        // Try to match subject pattern
-        if (preg_match('/([A-Z0-9]+[-]?[A-Z0-9]*)\s*[-]?\s*([^0-9]+?)\s+([\d.]+)\s+([\d.]+)/i', $line, $matches)) {
-            $subjects[] = [
-                'subject_code' => trim($matches[1]),
-                'subject_description' => trim($matches[2]),
-                'units' => floatval($matches[3]),
-                'grade' => floatval($matches[4])
-            ];
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $line, $matches)) {
+                $subject = [
+                    'subject_code' => trim($matches[1]),
+                    'subject_description' => trim($matches[2]),
+                    'units' => floatval($matches[3]),
+                    'grade' => floatval($matches[4])
+                ];
+                
+                // Validate the extracted data
+                if (validateSubjectData($subject)) {
+                    $subjects[] = $subject;
+                }
+                break;
+            }
         }
     }
     
-    logExtraction("Extraction complete", [
-        'subjects_found' => count($subjects)
-    ]);
+    return $subjects;
+}
+
+// Modify the existing extractSubjects function to handle both formats
+function extractSubjects($text, $documentType = null) {
+    // Clean and standardize the text
+    $text = cleanOCRText($text);
+    
+    // If document type wasn't provided, try to detect it
+    if ($documentType === null) {
+        $documentType = detectDocumentFormat($text);
+    }
+    
+    // Log the detected document type
+    logExtraction("Detected document type: " . $documentType);
+    
+    // Extract subjects based on document type
+    if ($documentType === DocumentFormat::GRADES) {
+        $subjects = extractGradesFromCopyOfGrades($text);
+    } else {
+        // Use existing TOR extraction methods
+        $subjects = extractSubjectsGeneric($text);
+        
+        // If generic method fails, try position-based method
+        if (empty($subjects)) {
+            $subjects = extractSubjectsByPosition($text);
+        }
+    }
+    
+    // Log extraction results
+    logExtraction("Extracted " . count($subjects) . " subjects", $subjects);
     
     return $subjects;
 }
@@ -396,18 +447,11 @@ function extractSubjects($text) {
 function standardizeText($text) {
     // Convert to lowercase
     $text = strtolower($text);
-    // Remove extra spaces and standardize spaces around common words
+    // Remove special characters except spaces and letters
+    $text = preg_replace('/[^a-z\s]/', '', $text);
+    // Standardize spaces
     $text = preg_replace('/\s+/', ' ', trim($text));
-    // Standardize common words (The, And, In, etc.)
-    $text = str_replace(' the ', ' ', $text);
-    $text = str_replace(' and ', ' ', $text);
-    $text = str_replace(' in ', ' ', $text);
-    $text = str_replace(' of ', ' ', $text);
-    $text = str_replace(' for ', ' ', $text);
-    // Remove special characters except spaces
-    $text = preg_replace('/[^\w\s]/', '', $text);
-    // Final trim and space standardization
-    return trim(preg_replace('/\s+/', ' ', $text));
+    return $text;
 }
 
 // Add these functions after the includes but before other functions
@@ -551,11 +595,6 @@ function matchCreditedSubjects($conn, $subjects, $student_id) {
     $conn = ensureValidConnection($conn);
     
     try {
-        logExtraction("Starting Subject Matching Process", [
-            'student_id' => $student_id,
-            'total_subjects' => count($subjects)
-        ]);
-        
         // Get the student's desired program
         $stmt = $conn->prepare("SELECT desired_program FROM register_studentsqe WHERE student_id = ?");
         if (!$stmt) {
@@ -569,94 +608,91 @@ function matchCreditedSubjects($conn, $subjects, $student_id) {
         $desired_program = $student['desired_program'];
         $stmt->close();
         
-        logExtraction("Student Program", [
-            'desired_program' => $desired_program
+        logExtraction("Starting Subject Matching Process", [
+            'student_id' => $student_id,
+            'desired_program' => $desired_program,
+            'total_subjects_from_tor' => count($subjects)
         ]);
+
+        // Get all subjects for the desired program
+        $sql = "SELECT * FROM coded_courses WHERE program = ?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement for fetching program subjects: " . $conn->error);
+        }
         
+        $stmt->bind_param("s", $desired_program);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $program_subjects = [];
+        while($row = $result->fetch_assoc()) {
+            $program_subjects[] = $row;
+        }
+        $stmt->close();
+
+        logExtraction("Retrieved Program Subjects", [
+            'program' => $desired_program,
+            'total_program_subjects' => count($program_subjects)
+        ]);
+
         $_SESSION['matches'] = [];
         
-        foreach ($subjects as $subject) {
+        // For each subject in student's TOR
+        foreach ($subjects as $tor_subject) {
             $conn = ensureValidConnection($conn);
             
-            // Ensure we have all required fields
-            if (!isset($subject['subject_code']) || !isset($subject['subject_description']) || 
-                !isset($subject['units']) || !isset($subject['grade'])) {
-                logExtraction("Skipping subject - missing required fields", [
-                    'subject' => $subject
-                ]);
+            if (!isset($tor_subject['subject_code']) || !isset($tor_subject['subject_description']) || 
+                !isset($tor_subject['units']) || !isset($tor_subject['grade'])) {
                 continue;
             }
             
-            // Clean and standardize the subject text
-            $originalText = $subject['subject_description'];
-            $subjectText = standardizeText($originalText);
-            $units = floatval($subject['units']);
-            $subjectCode = $subject['subject_code'];
-            $grade = $subject['grade'];
+            $tor_description = $tor_subject['subject_description'];
+            $tor_units = floatval($tor_subject['units']);
+            $tor_code = $tor_subject['subject_code'];
+            $tor_grade = $tor_subject['grade'];
             
-            logExtraction("Processing Subject", [
-                'subject_code' => $subjectCode,
-                'original_text' => $originalText,
-                'standardized_text' => $subjectText,
-                'units' => $units,
-                'grade' => $grade
+            logExtraction("Processing TOR Subject", [
+                'code' => $tor_code,
+                'description' => $tor_description,
+                'units' => $tor_units
             ]);
-            
-            // Get all potential matches with similar units
-            $sql = "SELECT * FROM coded_courses WHERE program = ? AND ABS(units - ?) <= 0.5";
-            
-            $stmt = $conn->prepare($sql);
-            if (!$stmt) {
-                logExtraction("Failed to prepare statement", [
-                    'error' => $conn->error
-                ]);
-                continue;
-            }
-            
-            $stmt->bind_param("sd", $desired_program, $units);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            
-            logExtraction("Initial Search Results", [
-                'found_matches' => $result->num_rows,
-                'sql' => $sql,
-                'program' => $desired_program,
-                'units' => $units
-            ]);
-            
-            // Get the best match based on description similarity
+
             $bestMatch = null;
             $highestSimilarity = 0;
-            
-            while ($row = $result->fetch_assoc()) {
-                // Calculate similarity based on description only
-                similar_text(
-                    strtolower($row['subject_description']), 
-                    strtolower($originalText), 
-                    $similarity
-                );
-                
-                logExtraction("Similarity Check", [
-                    'candidate' => $row['subject_description'],
-                    'original' => $originalText,
-                    'similarity' => $similarity
-                ]);
-                
-                if ($similarity > $highestSimilarity) {
-                    $highestSimilarity = $similarity;
-                    $bestMatch = $row;
+
+            foreach ($program_subjects as $program_subject) {
+                // Only consider subjects with matching units
+                if ($program_subject['units'] == $tor_units) {
+                    // Calculate similarity between descriptions
+                    similar_text(
+                        strtolower($program_subject['subject_description']),
+                        strtolower($tor_description),
+                        $similarity
+                    );
+
+                    logExtraction("Checking similarity", [
+                        'program_subject' => $program_subject['subject_description'],
+                        'tor_subject' => $tor_description,
+                        'similarity' => $similarity
+                    ]);
+
+                    // Only consider matches with high similarity (80% or more)
+                    if ($similarity > $highestSimilarity && $similarity >= 80) {
+                        $highestSimilarity = $similarity;
+                        $bestMatch = $program_subject;
+                    }
                 }
             }
-            
-            // Reduced similarity threshold to 25%
-            if ($bestMatch && $highestSimilarity > 25) {
+
+            // If we found a good match
+            if ($bestMatch) {
                 $conn = ensureValidConnection($conn);
                 
-                // Check if this exact match already exists
+                // Check for existing match
                 $checkSql = "SELECT COUNT(*) as count FROM matched_courses 
                             WHERE student_id = ? AND subject_code = ? AND original_code = ?";
                 $checkStmt = $conn->prepare($checkSql);
-                $checkStmt->bind_param("iss", $student_id, $bestMatch['subject_code'], $subjectCode);
+                $checkStmt->bind_param("iss", $student_id, $bestMatch['subject_code'], $tor_code);
                 $checkStmt->execute();
                 $checkResult = $checkStmt->get_result()->fetch_assoc();
                 
@@ -664,7 +700,7 @@ function matchCreditedSubjects($conn, $subjects, $student_id) {
                     $insert_sql = "INSERT INTO matched_courses 
                                  (subject_code, subject_description, units, student_id, matched_at, original_code, grade) 
                                  VALUES (?, ?, ?, ?, NOW(), ?, ?)";
-                                 
+                    
                     $insert_stmt = $conn->prepare($insert_sql);
                     if ($insert_stmt) {
                         $insert_stmt->bind_param(
@@ -673,41 +709,29 @@ function matchCreditedSubjects($conn, $subjects, $student_id) {
                             $bestMatch['subject_description'],
                             $bestMatch['units'],
                             $student_id,
-                            $subjectCode,
-                            $grade
+                            $tor_code,
+                            $tor_grade
                         );
                         
                         if ($insert_stmt->execute()) {
-                            logExtraction("Successfully inserted match", [
-                                'original' => $originalText,
-                                'matched' => $bestMatch['subject_description'],
+                            logExtraction("Successfully matched and inserted", [
+                                'tor_subject' => $tor_description,
+                                'program_subject' => $bestMatch['subject_description'],
                                 'similarity' => $highestSimilarity
                             ]);
                             
-                            $_SESSION['matches'][] = "✓ Matched: {$originalText} ({$units} units) with {$bestMatch['subject_description']}";
-                        } else {
-                            logExtraction("Failed to insert match", [
-                                'error' => $insert_stmt->error
-                            ]);
+                            $_SESSION['matches'][] = "✓ Matched: {$tor_description} ({$tor_units} units) with {$bestMatch['subject_description']} ({$bestMatch['subject_code']})";
                         }
                         $insert_stmt->close();
                     }
-                } else {
-                    logExtraction("Skipping duplicate match", [
-                        'original_description' => $originalText,
-                        'matched_description' => $bestMatch['subject_description']
-                    ]);
                 }
                 $checkStmt->close();
             } else {
                 logExtraction("No suitable match found", [
-                    'subject_description' => $originalText,
+                    'tor_subject' => $tor_description,
                     'best_similarity' => $highestSimilarity
                 ]);
-            }
-            
-            if (isset($stmt)) {
-                $stmt->close();
+                $_SESSION['matches'][] = "✗ No match found for: {$tor_description} ({$tor_units} units)";
             }
         }
         
@@ -728,14 +752,16 @@ function matchCreditedSubjects($conn, $subjects, $student_id) {
 
 function getGradingSystemRules($conn, $universityName) {
     try {
-        // Always start with a fresh connection for this operation
-        $conn = getNewConnection();
+        $conn = ensureValidConnection($conn);
         
         logExtraction("Getting grading system rules", [
             'university' => $universityName
         ]);
         
-        $query = "SELECT min_percentage, max_percentage, grade_value FROM university_grading_systems WHERE university_name = ?";
+        $query = "SELECT grading_name, min_percentage, max_percentage, grade_value, description, is_special_grade 
+                 FROM university_grading_systems 
+                 WHERE grading_name = ?";
+        
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             throw new Exception("Database error: " . $conn->error);
@@ -745,30 +771,12 @@ function getGradingSystemRules($conn, $universityName) {
         $stmt->execute();
         $result = $stmt->get_result();
         
-        if ($result->num_rows == 0) {
-            $stmt->close();
-            
-            // Get a fresh connection for the second query
-            $conn = getNewConnection();
-            
-            $universityName = "%$universityName%";
-            $query = "SELECT min_percentage, max_percentage, grade_value FROM university_grading_systems WHERE university_name LIKE ?";
-            $stmt = $conn->prepare($query);
-            if (!$stmt) {
-                throw new Exception("Database error: " . $conn->error);
-            }
-            $stmt->bind_param("s", $universityName);
-            $stmt->execute();
-            $result = $stmt->get_result();
-        }
-        
         $gradingRules = [];
         while ($row = $result->fetch_assoc()) {
             $gradingRules[] = $row;
         }
         
         $stmt->close();
-        closeConnection($conn);
         
         logExtraction("Successfully retrieved grading rules", [
             'rules_count' => count($gradingRules)
@@ -780,12 +788,6 @@ function getGradingSystemRules($conn, $universityName) {
         logExtraction("Error in getGradingSystemRules", [
             'error' => $e->getMessage()
         ]);
-        if (isset($stmt)) {
-            $stmt->close();
-        }
-        if (isset($conn)) {
-            closeConnection($conn);
-        }
         throw $e;
     }
 }
@@ -794,70 +796,78 @@ function registerStudent($conn, $studentData, $subjects) {
     $conn = ensureValidConnection($conn);
     
     try {
+        logExtraction("Starting student registration", [
+            'student_name' => $studentData['first_name'] . ' ' . $studentData['last_name']
+        ]);
+        
         // Start transaction
         $conn->begin_transaction();
-        
+    
         // Generate reference ID
         $year = date('Y');
         $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
-        $reference_id = "CCIS-{$year}-{$unique}";
-        
-        $conn = ensureValidConnection($conn); // Ensure connection before check
+    $reference_id = "CCIS-{$year}-{$unique}";
         
         // Check for existing reference ID
-        $check_stmt = $conn->prepare("SELECT reference_id FROM register_studentsqe WHERE reference_id = ?");
+    $check_stmt = $conn->prepare("SELECT reference_id FROM register_studentsqe WHERE reference_id = ?");
         if (!$check_stmt) {
             throw new Exception("Database error: " . $conn->error);
         }
         
-        $check_stmt->bind_param("s", $reference_id);
+    $check_stmt->bind_param("s", $reference_id);
         while (true) {
-            $check_stmt->execute();
+    $check_stmt->execute();
             if ($check_stmt->get_result()->num_rows == 0) {
                 break;
             }
-            $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
-            $reference_id = "CCIS-{$year}-{$unique}";
-        }
+        $unique = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+        $reference_id = "CCIS-{$year}-{$unique}";
+    }
         $check_stmt->close();
         
-        $studentData['reference_id'] = $reference_id;
-        
-        $conn = ensureValidConnection($conn); // Ensure connection before insert
+        // Add reference_id to studentData
+    $studentData['reference_id'] = $reference_id;
         
         // Insert student data
-        $stmt = $conn->prepare("INSERT INTO register_studentsqe (
-            last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
-            student_type, previous_school, year_level, previous_program, desired_program, 
-            tor, school_id, reference_id, is_tech, status, stud_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)");
+    $stmt = $conn->prepare("INSERT INTO register_studentsqe (
+        last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
+        student_type, previous_school, year_level, previous_program, desired_program, 
+        tor, school_id, reference_id, is_tech, status, stud_id
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)");
         
         if (!$stmt) {
             throw new Exception("Database error: " . $conn->error);
         }
-        
-        $stmt->bind_param(
-            "ssssssssssssssssii",
-            $studentData['last_name'],
-            $studentData['first_name'],
-            $studentData['middle_name'],
-            $studentData['gender'],
-            $studentData['dob'],
-            $studentData['email'],
-            $studentData['contact_number'],
-            $studentData['street'],
-            $studentData['student_type'],
-            $studentData['previous_school'],
-            $studentData['year_level'],
-            $studentData['previous_program'],
-            $studentData['desired_program'],
-            $studentData['tor_path'],
-            $studentData['school_id_path'],
-            $studentData['reference_id'],
-            $studentData['is_tech'],
-            $_SESSION['stud_id']
-        );
-        
+
+        $is_tech = $studentData['is_tech'] ? 1 : 0;
+        $stud_id = $_SESSION['stud_id'] ?? null;
+
+        if (!$stud_id) {
+            throw new Exception("No student ID found in session");
+        }
+
+    $stmt->bind_param(
+        "ssssssssssssssssii", 
+        $studentData['last_name'],
+        $studentData['first_name'],
+        $studentData['middle_name'],
+        $studentData['gender'],
+        $studentData['dob'],
+        $studentData['email'],
+        $studentData['contact_number'],
+        $studentData['street'],
+        $studentData['student_type'],
+        $studentData['previous_school'],
+        $studentData['year_level'],
+        $studentData['previous_program'],
+        $studentData['desired_program'],
+        $studentData['tor_path'],
+        $studentData['school_id_path'],
+            $reference_id,  // Use the generated reference_id
+            $is_tech,
+            $stud_id
+    );
+
         if (!$stmt->execute()) {
             throw new Exception("Error registering student: " . $stmt->error);
         }
@@ -868,51 +878,71 @@ function registerStudent($conn, $studentData, $subjects) {
         $_SESSION['student_id'] = $student_id;
         
         // Match credited subjects
+        if (!empty($subjects)) {
         matchCreditedSubjects($conn, $subjects, $student_id);
+        }
         
-        // If everything is successful, commit the transaction
+        // Commit the transaction
         $conn->commit();
         
         // Send email
-        sendRegistrationEmail($studentData['email'], $studentData['reference_id']);
+        sendRegistrationEmail($studentData['email'], $reference_id);
         
         $stmt->close();
-        return true;
+        
+        // Return true and include the reference_id
+        return [
+            'success' => true,
+            'reference_id' => $reference_id,
+            'student_id' => $student_id
+        ];
         
     } catch (Exception $e) {
         if (isset($stmt)) {
             $stmt->close();
         }
         $conn->rollback();
+        
+        logExtraction("Error in registerStudent", [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        
         throw $e;
     }
 }
 
-// 2. Function to determine eligibility based on grades and grading system rules
-function determineEligibility($subjects, $gradingRules) {
+// Update the determineEligibility function to use the selected grading system
+function determineEligibility($subjects, $gradingRules, $selectedGradingSystem) {
     $minPassingPercentage = 85.0; // Minimum required percentage
     
-   
+    logExtraction("Starting eligibility determination", [
+        'total_subjects' => count($subjects),
+        'grading_system' => $selectedGradingSystem
+    ]);
 
     foreach ($subjects as $subject) {
         $grade = $subject['grade'];
         $isSubjectEligible = false;
         
-       
+        logExtraction("Checking subject eligibility", [
+            'grade' => $grade,
+            'subject_code' => $subject['subject_code'] ?? 'N/A'
+        ]);
         
         // Find the matching grade rule for this grade
         $matchingRule = null;
         foreach ($gradingRules as $rule) {
-            $gradeValue = floatval($rule['grade_value']);
-            $minPercentage = floatval($rule['min_percentage']);
-            $maxPercentage = floatval($rule['max_percentage']);
-            
-           
-            
-            // Check if the grade falls within this rule's range
-            if ($grade == $gradeValue) {
-                $matchingRule = $rule;
-                break;
+            if ($rule['grading_name'] === $selectedGradingSystem) {
+                $gradeValue = floatval($rule['grade_value']);
+                $minPercentage = floatval($rule['min_percentage']);
+                $maxPercentage = floatval($rule['max_percentage']);
+                
+                // Check if the grade falls within this rule's range
+                if ($grade == $gradeValue) {
+                    $matchingRule = $rule;
+                    break;
+                }
             }
         }
         
@@ -921,51 +951,67 @@ function determineEligibility($subjects, $gradingRules) {
             $ruleMinPercentage = floatval($matchingRule['min_percentage']);
             if ($ruleMinPercentage >= $minPassingPercentage) {
                 $isSubjectEligible = true;
-               
+                logExtraction("Subject is eligible", [
+                    'grade' => $grade,
+                    'percentage' => $ruleMinPercentage
+                ]);
             } else {
-                $_SESSION['debug_output'] .= "Subject is not eligible: Grade $grade corresponds to percentage $ruleMinPercentage% (< $minPassingPercentage%)<br>";
+                logExtraction("Subject is not eligible", [
+                    'grade' => $grade,
+                    'percentage' => $ruleMinPercentage,
+                    'required' => $minPassingPercentage
+                ]);
+                return false;
             }
         } else {
-            $_SESSION['debug_output'] .= "No matching grade rule found for grade $grade<br>";
+            logExtraction("No matching grade rule found", [
+                'grade' => $grade,
+                'grading_system' => $selectedGradingSystem
+            ]);
+            return false;
         }
 
         if (!$isSubjectEligible) {
-            $_SESSION['debug_output'] .= "Subject with grade $grade does not meet eligibility criteria<br>";
-            $_SESSION['debug_output'] .= "</div>";
             return false;
         }
     }
 
-    $_SESSION['debug_output'] .= "All subjects meet eligibility criteria<br>";
-    $_SESSION['debug_output'] .= "</div>";
+    logExtraction("All subjects meet eligibility criteria");
     return true;
 }
 
-// 3. Function to check if the student is a tech student based on parsed subjects
-function isTechStudent($subjects) {
-    addDebugOutput("Starting Tech Student Check");
-    
-    $tech_subjects = [
-        'Computer Programming 1', 'Software Engineering', 'Database Systems', 'Operating Systems',
-        'Data Structures', 'Algorithms', 'Web Development', 'Computer Programming 2', 'Information Technology',
-        'Cybersecurity', 'System Analysis and Design'
+// Function to check if the student is a tech student based on their previous program
+function isTechStudent($previousProgram) {
+    // List of tech programs
+    $techPrograms = [
+        'BSIT',
+        'BSCS',
+        'BSIS',
+        'Bachelor of Science in Information Technology',
+        'Bachelor of Science in Computer Science',
+        'Bachelor of Science in Information Systems',
+        'BS Information Technology',
+        'BS Computer Science',
+        'BS Information Systems'
     ];
-
-    addDebugOutput("Tech Subject Keywords:", $tech_subjects);
-
-    foreach ($subjects as $subject) {
-        foreach ($tech_subjects as $tech_subject) {
-            if (stripos($subject['subject'], $tech_subject) !== false) {
-                addDebugOutput("Tech Subject Found:", [
-                    'subject' => $subject['subject'],
-                    'matched_keyword' => $tech_subject
+    
+    // Convert to uppercase for consistent comparison
+    $previousProgram = strtoupper($previousProgram);
+    
+    foreach ($techPrograms as $program) {
+        // Check if the previous program matches any tech program
+        if (stripos($previousProgram, strtoupper($program)) !== false) {
+            logExtraction("Tech student identified", [
+                'previous_program' => $previousProgram,
+                'matched_program' => $program
                 ]);
                 return true;
-            }
         }
     }
     
-    addDebugOutput("No Tech Subjects Found in Student's Records");
+    logExtraction("Non-tech student identified", [
+        'previous_program' => $previousProgram
+    ]);
     return false;
 }
 
@@ -995,103 +1041,148 @@ function addDebugOutput($message, $data = null) {
 // Add this near the top of your file after the includes
 define('UNSTRACT_API_KEY', 'dff56a8a-6d02-4089-bd87-996d7be8b1bb');
 
-// Update the performOCR function
+// Replace the existing performOCR function with this Azure Document Intelligence version
 function performOCR($filePath) {
     try {
-        logExtraction("Starting OCR process for file", ['path' => $filePath]);
+        logExtraction("Starting Azure Document Intelligence OCR process for file", ['path' => $filePath]);
+
+        // Azure Document Intelligence API credentials
+        $endpoint = "https://streamsocr.cognitiveservices.azure.com/";
+        $apiKey = "7YOiSya9zTZO2WkLje6TdmiSaoG0kKLvcWy2kdFuMXqzKcu9Jr0XJQQJ99BDACqBBLyXJ3w3AAALACOGbhSw";
+        $modelId = "transcript_extractor_v3";
+
+        // Read file content
+        $fileData = file_get_contents($filePath);
+
+        // Get operation location from Azure
+        $operationLocation = analyzeDocument($endpoint, $apiKey, $modelId, $fileData);
         
-        $curl = curl_init();
+        // Get analysis results
+        $results = getResults($operationLocation, $apiKey);
         
-        // Prepare the file
-        if (!file_exists($filePath)) {
-            throw new Exception("File not found: " . $filePath);
-        }
-        
-        logExtraction("File details", [
-            'size' => filesize($filePath),
-            'type' => mime_content_type($filePath)
+        // Log the raw result structure to debug
+        logExtraction("Raw result structure", [
+            'status' => $results['status'],
+            'has_documents' => isset($results['analyzeResult']['documents']),
+            'document_count' => isset($results['analyzeResult']['documents']) ? count($results['analyzeResult']['documents']) : 0,
+            'has_content' => isset($results['analyzeResult']['content']),
+            'keys' => array_keys($results['analyzeResult'])
         ]);
         
-        // Set up the API request
-        $postFields = [
-            'files' => new CURLFile($filePath),
-            'timeout' => '300',
-            'include_metadata' => 'false'
-        ];
+        // Extract structured data if available
+        if ($results['status'] === 'succeeded' && 
+            isset($results['analyzeResult']['documents']) && 
+            !empty($results['analyzeResult']['documents'])) {
+            
+            $document = $results['analyzeResult']['documents'][0];
+            
+            // Log document fields
+            if (isset($document['fields'])) {
+                logExtraction("Document fields available", [
+                    'field_names' => array_keys($document['fields'])
+                ]);
+                
+                // Check for our table field
+                if (isset($document['fields']['extractTable'])) {
+                    // Return the full results as JSON for structured processing
+                    $json = json_encode($results);
+                    logExtraction("Returning structured JSON data", [
+                        'length' => strlen($json)
+                    ]);
+                    return $json;
+                }
+            }
+        }
         
-        curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://us-central.unstract.com/deployment/api/org_SBbh31LYckHO5i28/tor-data-extractor/',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $postFields,
-            CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer ' . UNSTRACT_API_KEY
-            ],
-            // Add SSL verification options
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_CAINFO => __DIR__ . '/cacert.pem',
-            CURLOPT_VERBOSE => true,
-            CURLOPT_TIMEOUT => 300
+        // If we get here, fall back to content text
+        if (isset($results['analyzeResult']['content'])) {
+            $text = $results['analyzeResult']['content'];
+            logExtraction("Falling back to raw text content", [
+                'text_sample' => substr($text, 0, 100) . '...',
+                'text_length' => strlen($text)
+            ]);
+            return $text;
+        }
+        
+        // Last resort - return the whole response as JSON
+        $json = json_encode($results);
+        logExtraction("No structured data or content found, returning full response", [
+            'json_length' => strlen($json)
         ]);
-        
-        logExtraction("Sending request to Unstract API");
-        
-        // Capture CURL debug output
-        $verbose = fopen('php://temp', 'w+');
-        curl_setopt($curl, CURLOPT_STDERR, $verbose);
-        
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        
-        // Get debug information
-        rewind($verbose);
-        $verboseLog = stream_get_contents($verbose);
-        fclose($verbose);
-        
-        curl_close($curl);
-        
-        logExtraction("API Response received", [
-            'http_code' => $httpCode,
-            'error' => $err ?: 'None',
-            'response' => $response,
-            'verbose_log' => $verboseLog
-        ]);
-        
-        if ($err) {
-            throw new Exception("cURL Error: " . $err);
-        }
-        
-        if ($httpCode !== 200) {
-            throw new Exception("API returned non-200 status code: " . $httpCode . ". Response: " . $response);
-        }
-        
-        $result = json_decode($response, true);
-        
-        if (!$result) {
-            throw new Exception("Failed to decode API response: " . json_last_error_msg());
-        }
-        
-        // Extract the subjects JSON from the response
-        if (isset($result['message']['result'][0]['result']['output']['TOR_Extractor_'])) {
-            $subjectsJson = $result['message']['result'][0]['result']['output']['TOR_Extractor_'];
-            logExtraction("Successfully extracted subjects JSON", ['subjects_json' => $subjectsJson]);
-            return $subjectsJson;
-        }
-        
-        throw new Exception("Could not find subjects in API response");
-        
+        return $json;
     } catch (Exception $e) {
-        logExtraction("Error in OCR process", [
+        logExtraction("Error in Azure OCR process", [
             'error' => $e->getMessage(),
             'trace' => $e->getTraceAsString()
         ]);
         throw $e;
     }
+}
+
+// Add these functions from test_ocr.php
+function analyzeDocument($endpoint, $apiKey, $modelId, $fileData) {
+    // Create the URL for the analyze operation
+    $url = $endpoint . "documentintelligence/documentModels/" . $modelId . ":analyze?api-version=2024-11-30";
+    
+    // Set up the headers
+    $headers = [
+        "Content-Type: application/octet-stream",
+        "Ocp-Apim-Subscription-Key: " . $apiKey
+    ];
+
+    // Initialize cURL
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fileData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, true);
+
+    // Execute the request
+    $response = curl_exec($ch);
+    $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+    $headers_str = substr($response, 0, $header_size);
+    $body = substr($response, $header_size);
+    
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // Get the operation-location header
+    if (preg_match('/operation-location: (.*)/i', $headers_str, $matches)) {
+        return trim($matches[1]);
+    } else {
+        throw new Exception("Failed to get operation location. HTTP Status: " . $http_code . "\nResponse: " . $body);
+    }
+}
+
+function getResults($operationLocation, $apiKey, $maxAttempts = 30) {
+    $headers = [
+        "Ocp-Apim-Subscription-Key: " . $apiKey
+    ];
+    
+    for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+        $ch = curl_init($operationLocation);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        
+        $resultData = json_decode($result, true);
+        
+        if (isset($resultData['status'])) {
+            if ($resultData['status'] === 'succeeded') {
+                return $resultData;
+            } else if ($resultData['status'] === 'failed') {
+                throw new Exception("Analysis failed: " . json_encode($resultData));
+            }
+        }
+        
+        // Wait before next attempt
+        $waitTime = min($attempt, 4); // Cap the wait time at 4 seconds
+        sleep($waitTime);
+    }
+    
+    throw new Exception("Operation timed out after " . $maxAttempts . " attempts");
 }
 
 function preprocessImage($imagePath) {
@@ -1336,47 +1427,71 @@ function identifyDataType($value, $context = []) {
     return key($scores);
 }
 
-// Validate the uploaded file
+/**
+ * Validates an uploaded file
+ * @param array $file The uploaded file array from $_FILES
+ * @throws Exception if validation fails
+ */
 function validateUploadedFile($file) {
-    // Check if file was uploaded without errors
+    // Check for upload errors
     if ($file['error'] !== UPLOAD_ERR_OK) {
-        throw new Exception('File upload failed with error code: ' . $file['error']);
-    }
-
-    // Check if file exists and is valid
-    if (!isset($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
-        throw new Exception('No file was uploaded or invalid upload attempt.');
+        $uploadErrors = array(
+            UPLOAD_ERR_INI_SIZE => "The uploaded file exceeds the upload_max_filesize directive",
+            UPLOAD_ERR_FORM_SIZE => "The uploaded file exceeds the MAX_FILE_SIZE directive",
+            UPLOAD_ERR_PARTIAL => "The uploaded file was only partially uploaded",
+            UPLOAD_ERR_NO_FILE => "No file was uploaded",
+            UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder",
+            UPLOAD_ERR_CANT_WRITE => "Failed to write file to disk",
+            UPLOAD_ERR_EXTENSION => "A PHP extension stopped the file upload"
+        );
+        $errorMessage = isset($uploadErrors[$file['error']]) 
+            ? $uploadErrors[$file['error']] 
+            : "Unknown upload error";
+        throw new Exception("File upload failed: " . $errorMessage);
     }
 
     // Check file size (5MB limit)
-    $maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
-    if ($file['size'] > $maxFileSize) {
-        throw new Exception('File is too large. Maximum size is 5MB.');
+    $maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if ($file['size'] > $maxSize) {
+        throw new Exception("File size exceeds maximum limit of 5MB");
     }
 
     // Check file type
-    $allowedTypes = [
-        'image/jpeg',
-        'image/jpg',
-        'image/png',
-        'application/pdf'
-    ];
-
+    $allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mimeType = finfo_file($finfo, $file['tmp_name']);
     finfo_close($finfo);
 
     if (!in_array($mimeType, $allowedTypes)) {
-        throw new Exception('Invalid file type. Only JPG, PNG, and PDF files are allowed.');
+        throw new Exception("Invalid file type. Only PDF, JPG, and PNG files are allowed.");
     }
+    
+    // Additional security check for file extension
+    $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
+    $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    if (!in_array($extension, $allowedExtensions)) {
+        throw new Exception("Invalid file extension. Only PDF, JPG, and PNG files are allowed.");
+    }
+}
 
-    // Create upload directories if they don't exist
-    $uploadDirs = [
-        __DIR__ . '/uploads',
-        __DIR__ . '/uploads/tor',
-        __DIR__ . '/uploads/school_id'
-    ];
-
+// Main processing code
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        logExtraction("Starting POST request processing");
+        
+        // Initialize response array
+        $response = array();
+        
+        // Check if this is OCR processing request
+        if (isset($_POST['process_ocr']) && !isset($_POST['confirm_registration'])) {
+            logExtraction("Processing OCR request");
+            
+            try {
+                // Debug log the received files
+                logExtraction("Received files", $_FILES);
+                
+                // Create upload directories if they don't exist
+                $uploadDirs = ['uploads', 'uploads/tor', 'uploads/school_id'];
     foreach ($uploadDirs as $dir) {
         if (!file_exists($dir)) {
             if (!mkdir($dir, 0777, true)) {
@@ -1385,167 +1500,267 @@ function validateUploadedFile($file) {
         }
     }
 
-    return true;
-}
+                // Handle academic document upload
+                if (!isset($_FILES['academic_document'])) {
+                    throw new Exception('No academic document was uploaded');
+                }
 
-// Main processing code
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        logExtraction("Starting POST request processing");
-        
-        // Clear any existing output buffers
-        while (ob_get_level()) {
-            ob_end_clean();
-        }
-        ob_start();
+                $academicDoc = $_FILES['academic_document'];
+                validateUploadedFile($academicDoc);
 
-        if (isset($_FILES['tor']) && $_FILES['tor']['error'] == UPLOAD_ERR_OK &&
-            isset($_FILES['school_id']) && $_FILES['school_id']['error'] == UPLOAD_ERR_OK) {
-            
-            logExtraction("Files uploaded successfully", [
-                'tor_name' => $_FILES['tor']['name'],
-                'school_id_name' => $_FILES['school_id']['name']
-            ]);
-            
-            validateUploadedFile($_FILES['tor']);
-            $tor_path = __DIR__ . '/uploads/tor/' . basename($_FILES['tor']['name']);
-            move_uploaded_file($_FILES['tor']['tmp_name'], $tor_path);
-            
-            logExtraction("TOR file moved to destination", [
-                'path' => $tor_path,
-                'size' => filesize($tor_path)
-            ]);
+                // Generate unique filename for academic document
+                $academicDocExt = strtolower(pathinfo($academicDoc['name'], PATHINFO_EXTENSION));
+                $academicDocNewName = uniqid('tor_') . '.' . $academicDocExt;
+                $academicDocPath = 'uploads/tor/' . $academicDocNewName;
 
-            validateUploadedFile($_FILES['school_id']);
-            $school_id_path = __DIR__ . '/uploads/school_id/' . basename($_FILES['school_id']['name']);
-            move_uploaded_file($_FILES['school_id']['tmp_name'], $school_id_path);
+                if (!move_uploaded_file($academicDoc['tmp_name'], $academicDocPath)) {
+                    throw new Exception('Failed to move academic document to upload directory');
+                }
 
-            try {
-                logExtraction("Starting OCR process");
+                // Handle school ID upload
+                if (!isset($_FILES['school_id'])) {
+                    throw new Exception('No school ID was uploaded');
+                }
+
+                $schoolId = $_FILES['school_id'];
+                validateUploadedFile($schoolId);
+
+                // Generate unique filename for school ID
+                $schoolIdExt = strtolower(pathinfo($schoolId['name'], PATHINFO_EXTENSION));
+                $schoolIdNewName = uniqid('id_') . '.' . $schoolIdExt;
+                $schoolIdPath = 'uploads/school_id/' . $schoolIdNewName;
+
+                if (!move_uploaded_file($schoolId['tmp_name'], $schoolIdPath)) {
+                    throw new Exception('Failed to move school ID to upload directory');
+                }
+
+                // Store file paths in session for later use
+                $_SESSION['uploaded_files'] = [
+                    'academic_document' => $academicDocPath,
+                    'school_id' => $schoolIdPath
+                ];
                 
-                // Use Unstract API for OCR
-                $ocr_output = performOCR($tor_path);
+                // Perform OCR on the academic document
+                $ocrOutput = performOCR($academicDocPath);
                 
-                if (empty($ocr_output)) {
-                    throw new Exception("The system could not read any text from the uploaded document. Please ensure you have uploaded a clear, high-quality image.");
+                if (empty($ocrOutput)) {
+                    throw new Exception("OCR process failed to extract any text from the document");
                 }
                 
-                logExtraction("OCR completed successfully", [
-                    'output_length' => strlen($ocr_output)
-                ]);
+                // Clean OCR output
+                $cleanOutput = strip_tags($ocrOutput);
+                $cleanOutput = preg_replace('/[\x00-\x1F\x7F]/u', '', $cleanOutput);
                 
-                // Extract subjects from OCR output
-                $subjects = extractSubjects($ocr_output);
+                // Extract subjects
+                $subjects = extractSubjects($cleanOutput);
                 
                 if (empty($subjects)) {
-                    throw new Exception("No subjects could be extracted from the document. Please ensure you have uploaded a valid Transcript of Records containing grades and subject information.");
+                    throw new Exception("No subjects could be extracted from the document");
                 }
                 
-                logExtraction("Subjects extracted successfully", [
-                    'count' => count($subjects),
-                    'first_subject' => isset($subjects[0]) ? json_encode($subjects[0]) : 'none'
+                // Sanitize the subjects array
+                $sanitizedSubjects = array_map(function($subject) {
+                    return array(
+                        'subject_code' => strip_tags(trim($subject['subject_code'] ?? '')),
+                        'subject_description' => strip_tags(trim($subject['subject_description'] ?? '')),
+                        'units' => floatval($subject['units'] ?? 0),
+                        'grade' => floatval($subject['grade'] ?? 0)
+                    );
+                }, $subjects);
+                
+                // Return success response
+                $response = array(
+                    'success' => true,
+                    'subjects' => $sanitizedSubjects,
+                    'files' => [
+                        'academic_document' => $academicDocPath,
+                        'school_id' => $schoolIdPath
+                    ]
+                );
+                
+                logExtraction("Processing successful", [
+                    'subjects_count' => count($sanitizedSubjects),
+                    'files_saved' => [
+                        'academic_document' => $academicDocPath,
+                        'school_id' => $schoolIdPath
+                    ]
                 ]);
-
-                // Process eligibility
-                $isEligible = false;
-                $student_type = $_POST['student_type'] ?? '';
                 
-                logExtraction("Processing eligibility", [
-                    'student_type' => $student_type
+            } catch (Exception $e) {
+                logExtraction("Error in processing", [
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
                 ]);
-
-                if (strtolower($student_type) === 'ladderized') {
-                    $isEligible = true;
-                    logExtraction("Ladderized student - automatically eligible");
-                } else {
-                    $previous_school = $_POST['previous_school'] ?? '';
-                    
-                    if (empty($previous_school)) {
-                        throw new Exception("Previous school information is required.");
-                    }
-                    
-                    logExtraction("Checking grading rules", [
-                        'previous_school' => $previous_school
-                    ]);
-                    
-                    $gradingRules = getGradingSystemRules($conn, $previous_school);
-                    
-                    if (empty($gradingRules)) {
-                        throw new Exception("No grading system found for the specified school. Please contact support.");
-                    }
-                    
-                    logExtraction("Retrieved grading rules", [
-                        'rules_count' => count($gradingRules)
-                    ]);
-                    
-                    $isEligible = determineEligibility($subjects, $gradingRules);
+                
+                $response = array(
+                    'success' => false,
+                    'error' => $e->getMessage()
+                );
+            }
+            
+            // Ensure clean output buffer
+            while (ob_get_level()) {
+                ob_end_clean();
+            }
+            
+            // Send JSON response
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit();
+        }
+        // Check if this is final registration submission
+        elseif (isset($_POST['confirm_registration'])) {
+            logExtraction("Processing final registration");
+            
+            try {
+                // Parse the grades data
+                $gradesData = json_decode($_POST['grades'], true);
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Exception("Invalid grades data format: " . json_last_error_msg());
                 }
 
-                $_SESSION['is_eligible'] = $isEligible;
-                
-                if ($isEligible) {
-                    $studentData = [
-                        'first_name' => $_POST['first_name'] ?? '',
-                        'middle_name' => $_POST['middle_name'] ?? '',
-                        'last_name' => $_POST['last_name'] ?? '',
-                        'gender' => $_POST['gender'] ?? '',
-                        'dob' => $_POST['dob'] ?? '',
-                        'email' => $_POST['email'] ?? '',
-                        'contact_number' => $_POST['contact_number'] ?? '',
-                        'street' => $_POST['street'] ?? '',
-                        'student_type' => $_POST['student_type'] ?? '',
-                        'previous_school' => $_POST['previous_school'] ?? '',
-                        'year_level' => ($_POST['student_type'] === 'ladderized') ? null : ($_POST['year_level'] ?? ''),
-                        'previous_program' => ($_POST['student_type'] === 'ladderized') ? 
-                            'Diploma in Information and Communication Technology (DICT)' : 
-                            ($_POST['previous_program'] ?? ''),
-                        'desired_program' => $_POST['desired_program'] ?? '',
-                        'tor_path' => str_replace(__DIR__ . '/', '', $tor_path),
-                        'school_id_path' => str_replace(__DIR__ . '/', '', $school_id_path),
-                        'is_tech' => isTechStudent($subjects),
-                        'status' => 'pending'
-                    ];
-                    
-                    logExtraction("Prepared student data", [
-                        'data' => $studentData
-                    ]);
-                    
-                    registerStudent($conn, $studentData, $subjects);
-                    logExtraction("Student registration completed successfully");
-                } else {
-                    logExtraction("Student not eligible", [
-                        'reason' => 'Did not meet eligibility criteria'
-                    ]);
-                    $_SESSION['success'] = "Registration completed, but you are not eligible for credit transfer.";
-                    $_SESSION['eligibility_message'] = "Based on your grades and our criteria, you do not meet the eligibility requirements for credit transfer.";
+                // Get student data from form
+                $studentData = array(
+                    'first_name' => $_POST['first_name'],
+                    'middle_name' => $_POST['middle_name'] ?? '',
+                    'last_name' => $_POST['last_name'],
+                    'gender' => $_POST['gender'],
+                    'dob' => $_POST['dob'],
+                    'email' => $_POST['email'],
+                    'contact_number' => $_POST['contact_number'],
+                    'street' => $_POST['street'],
+                    'student_type' => $_POST['student_type'],
+                    'previous_school' => $_POST['previous_school'],
+                    'year_level' => $_POST['student_type'] === 'ladderized' ? null : ($_POST['year_level'] ?? ''),
+                    'previous_program' => $_POST['student_type'] === 'ladderized' ? 
+                        'Diploma in Information and Communication Technology (DICT)' : 
+                        $_POST['previous_program'],
+                    'desired_program' => $_POST['desired_program'],
+                    'is_tech' => isTechStudent($_POST['previous_program']),
+                    // Use the file paths from the session that were saved during OCR processing
+                    'tor_path' => $_SESSION['uploaded_files']['academic_document'] ?? null,
+                    'school_id_path' => $_SESSION['uploaded_files']['school_id'] ?? null
+                );
+
+                // Validate that we have the file paths
+                if (empty($studentData['tor_path']) || !file_exists($studentData['tor_path'])) {
+                    throw new Exception("Academic document not found. Please try uploading again.");
                 }
-                
-                header("Location: registration_success.php");
-                exit();
+                if (empty($studentData['school_id_path']) || !file_exists($studentData['school_id_path'])) {
+                    throw new Exception("School ID not found. Please try uploading again.");
+                }
+
+                // Register student and get result
+                $result = registerStudent($conn, $studentData, $gradesData);
+
+                // Send success response with all necessary data
+                sendJsonResponse([
+                    'success' => true,
+                    'message' => 'Registration successful',
+                    'reference_id' => $result['reference_id'],
+                    'student_name' => $studentData['first_name'] . ' ' . $studentData['last_name'],
+                    'email' => $studentData['email']
+                ]);
 
             } catch (Exception $e) {
-                logExtraction("Error in registration process", [
+                sendJsonResponse([
+                    'success' => false,
                     'error' => $e->getMessage()
                 ]);
-                $_SESSION['ocr_error'] = $e->getMessage();
-                header("Location: registration_success.php");
-                exit();
             }
-        } else {
-            throw new Exception("Please upload both TOR and School ID files.");
         }
+        
     } catch (Exception $e) {
-        logExtraction("Fatal error in main process", [
+        logExtraction("Error in main process", [
             'error' => $e->getMessage()
         ]);
-        $_SESSION['ocr_error'] = $e->getMessage();
-        header("Location: registration_success.php");
+        
+        $response = array(
+            'success' => false,
+            'error' => $e->getMessage()
+        );
+        
+        header('Content-Type: application/json');
+        echo json_encode($response);
         exit();
     }
 }
 
 // If we reach here, something went wrong
 $_SESSION['ocr_error'] = "An unexpected error occurred. Please try again.";
-header("Location: registration_success.php");
+header("Location: registration_error.php");
 exit();
+
+// Add this before the matchCreditedSubjects function
+function isGeneralEducation($subjectCode) {
+    // List of general education subject code prefixes
+    $geSubjects = ['GEED', 'GEC', 'GEE', 'NSTP', 'PE', 'PATH'];
+    
+    // Convert subject code to uppercase for consistent comparison
+    $subjectCode = strtoupper($subjectCode);
+    
+    foreach ($geSubjects as $prefix) {
+        if (stripos($subjectCode, $prefix) === 0) {
+            logExtraction("GE subject identified", [
+                'subject_code' => $subjectCode,
+                'matched_prefix' => $prefix
+            ]);
+            return true;
+        }
+    }
+    
+    // Also check for common GE course numbers
+    if (preg_match('/^(GE|GEN)\d/', $subjectCode)) {
+        logExtraction("GE subject identified by number pattern", [
+            'subject_code' => $subjectCode
+        ]);
+        return true;
+    }
+    
+    return false;
+}
+
+// Function to handle file upload
+function handleFileUpload($file, $targetDir) {
+    $fileName = basename($file["name"]);
+    $targetPath = $targetDir . $fileName;
+    $fileType = strtolower(pathinfo($targetPath, PATHINFO_EXTENSION));
+    
+    // Check if file is an actual image
+    if (!getimagesize($file["tmp_name"])) {
+        throw new Exception("File is not an image.");
+    }
+    
+    // Check file size (5MB max)
+    if ($file["size"] > 5000000) {
+        throw new Exception("File is too large. Maximum size is 5MB.");
+    }
+    
+    // Allow only specific file formats
+    if ($fileType != "jpg" && $fileType != "jpeg" && $fileType != "png") {
+        throw new Exception("Only JPG, JPEG & PNG files are allowed.");
+    }
+    
+    // Move file to target directory
+    if (!move_uploaded_file($file["tmp_name"], $targetPath)) {
+        throw new Exception("Failed to upload file.");
+    }
+    
+    return $targetPath;
+}
+
+// Function to send JSON response and exit
+function sendJsonResponse($data) {
+    // Clear any output buffers
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+    
+    // Set JSON header
+    header('Content-Type: application/json');
+    
+    // Send response
+    echo json_encode($data);
+    exit();
+}
 ?>

@@ -5627,3 +5627,37 @@ Array
 )
 
 --------------------
+2025-04-17 02:12:19
+POST data:
+Array
+(
+    [exam_id] => 23
+    [quiz-name] => Programming 
+    [quiz-description] => dddddd
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [scheduled_date] => 2025-04-17
+    [scheduled_time] => 08:22:00
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
