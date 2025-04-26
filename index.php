@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUP Student Qualifying Exam Portal</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>CCIS Student Portal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #75343A;
@@ -23,103 +25,62 @@
             --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--gray-light);
+            font-family:'Open Sans', sans-serif;
             line-height: 1.6;
+            background-color: #f4f4f4;
             overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        /* Header Styles */
+
         header {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 15px 0;
-            box-shadow: var(--shadow-md);
+            background-color: #75343a;
+            color: white;
+            padding: 10px;
+            display: flex;
             position: fixed;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: var(--transition);
         }
-        
-        header.scrolled {
-            padding: 10px 0;
-            background-color: rgba(117, 52, 58, 0.95);
-            backdrop-filter: blur(10px);
+
+        header .logo img {
+            width: 70px;
+            height: auto;
+            margin-left: 30px;
         }
-        
-        .header-content {
+
+        nav ul {
+            list-style: none;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+
+        nav ul li {
+            margin-right: 50px;
+            margin-top: 20px;
+            padding-left: 30px;
         }
-        
-        .logo img {
-            height: 60px;
-            width: auto;
-            transition: var(--transition);
-        }
-        
-        header.scrolled .logo img {
-            height: 50px;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-text h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-        }
-        
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
+
+        nav ul li a {
+            color: white;
             text-decoration: none;
-            font-weight: 500;
-            padding: 8px 16px;
+            font-size: 22px;
+            font-weight: 600;
+            padding: 8px 0px;
             border-radius: 6px;
-            transition: var(--transition);
+            transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
         }
-        
-        .nav-links a::after {
+
+        nav ul li a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -130,209 +91,597 @@
             background-color: var(--accent);
             transition: var(--transition);
         }
-        
-        .nav-links a:hover::after {
+
+        nav ul li a:hover::after {
             width: 80%;
         }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(117, 52, 58, 0.85), rgba(117, 52, 58, 0.9)), 
-                        url('https://www.pup.edu.ph/about/images/campus.jpg');
+
+        .banner {
+            background-image: url('assets/images/Homepage.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            color: var(--text-light);
-            padding: 180px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, var(--gray-light), transparent);
-        }
-        
-        .hero h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            animation: fadeInDown 1s ease;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.95;
-            line-height: 1.8;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-        
-        .cta-buttons {
+            height: 920px;
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-top: 40px;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-        
-        .cta-btn {
-            padding: 14px 35px;
-            border-radius: 30px;
-            font-weight: 500;
-            font-size: 16px;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .primary-btn {
-            background-color: var(--accent);
-            color: var(--primary-dark);
-            border: 2px solid var(--accent);
-        }
-        
-        .primary-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .secondary-btn {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--text-light);
-        }
-        
-        .secondary-btn:hover {
-            background-color: var(--text-light);
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background-color: var(--text-light);
-            position: relative;
-        }
-        
-        .section-title {
+            color: white;
             text-align: center;
-            margin-bottom: 80px;
+            padding: 50px 20px;
+            margin-top: 90px
         }
-        
-        .section-title h3 {
+
+        .banner-content {
+            padding: 200px;
+        }
+
+        .banner-content h2 {
+            color: #b8afa8;
             font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+            font-weight: 800;
+            padding-bottom: 20px; 
         }
-        
-        .section-title p {
-            font-size: 18px;
-            color: var(--text-dark);
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.8;
-            line-height: 1.8;
+
+        .banner-content h1 {
+            color: #f4f4f4;
+            font-size: 60px;
+            font-weight: 800;
+            padding-bottom: 20px; 
         }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            padding: 20px;
+
+        .banner-content p {
+            color: #f4f4f4;
+            font-size: 25px;
+            font-weight:700;
+            padding-bottom: 20px;
+            text-shadow: #333;
         }
-        
-        .feature-card {
-            background-color: var(--gray-light);
-            border-radius: 16px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .feature-icon {
-            background-color: var(--primary);
-            color: var(--text-light);
-            width: 80px;
+
+        .buttons {
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
             height: 80px;
+            gap: 20px; /* Space between the buttons */
+        }
+
+        .buttons button {
+            padding: 12px 35px;
+            font-size: 25px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .buttons .login {
+            background-color: #75343a;
+            border-style: solid;
+            border-color: #974950;
+            border-width: 7px;
+            color: white;
+            border-radius: 100px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .buttons .login:hover {
+            background-color:rgb(99, 41, 47);
+            transform: translateY(-3px);
+        }
+
+        .buttons .register {
+            background-color: #e1a55e;
+            border-style: solid;
+            border-color: #f1d06d;
+            border-width: 7px;
+            color: white;
+            border-radius: 100px;
+        }
+
+        .buttons .register:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+        }
+
+        button i {
+            font-size: 30px;
+        }
+
+        /* Admission Process Section */
+        .admission-process {
+            background-color: #e9e9e9; /* Light gray background for contrast */
+            color: #333;
+            text-align: center;
+            padding: 60px 20px;
+            align-items: center;
+        }
+
+        .admission-process h3 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .admission-process h4{
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            width: 22%;
+            text-align: center;
+            border-radius: 10px;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: rotateY(360deg);
+        }
+
+        .step-header {
+            display: flex;
+            flex-direction: column; /* Stack number and title vertically */
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .step-number1 {
+            background-color: #5f7882; /* Blue circle for the number */
+            color: #f4f4f4;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            transition: var(--transition);
+            font-size: 3.2rem;
+            margin-bottom: 20px; /* Space between number and title */
+            border-style: solid;
+            border-color: #385b6a;
+            border-width: 10px;
+            font-weight: 800;
+            transition: transform 0.3s ease;
+        }
+
+        .step-number1:hover {
+            transform: scale(1.1);
+        }
+
+        .step-title1 {
+            font-size: 1.7rem;
+            font-weight: bold;
+            background-color: #5f7882;
+            color: #f4f4f4;
+            height: 50px;
+            width: 315px;
+            border-radius: 5px;
+            padding-top: 5px;
+        }
+
+        .step-message1 {
+            font-size: 24px;
+            color: #f4f4f4;
+            margin-bottom: 20px;
+            background-color: #5f7882;
+            width: 350px;
+            align-items: center;
+            margin-left: 10px;
+            padding-top: 30px;
+            padding: 20px;
+            border-radius: 25px;
+            height: 440px;
+            box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .step-number2 {
+            background-color: #63874d; /* Blue circle for the number */
+            color: #f4f4f4;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            margin-bottom: 20px; /* Space between number and title */
+            border-style: solid;
+            border-color: #4b6c36;
+            border-width: 10px;
+            font-weight: 800;
+        }
+
+        .step-title2 {
+            font-size: 1.7rem;
+            font-weight: bold;
+            background-color: #63874d;
+            color: #f4f4f4;
+            height: 50px;
+            width: 315px;
+            padding-top: 5px;
+            border-radius: 5px;
+        }
+
+        .step-message2 {
+            font-size: 24px;
+            color: #f4f4f4;
+            margin-bottom: 20px;
+            background-color: #63874d;
+            width: 350px;
+            align-items: center;
+            margin-left: 10px;
+            padding-top: 30px;
+            padding: 20px;
+            border-radius: 25px;
+            height: 440px;
+            box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.4);
         }
         
-        .feature-icon span {
-            font-size: 35px;
-            transition: var(--transition);
+        .step-number3 {
+            background-color: #e1a55e; /* Blue circle for the number */
+            color: #f4f4f4;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            margin-bottom: 20px; /* Space between number and title */
+            border-style: solid;
+            border-color: #c07e31;
+            border-width: 10px;
+            font-weight: 800;
+        }
+
+        .step-title3 {
+            font-size: 1.7rem;
+            font-weight: bold;
+            background-color: #e1a55e;
+            color: #f4f4f4;
+            height: 50px;
+            width: 315px;
+            padding-top: 5px;
+            border-radius: 5px;
+        }
+
+        .step-message3 {
+            font-size: 24px;
+            color: #f4f4f4;
+            margin-bottom: 20px;
+            background-color: #e1a55e;
+            width: 350px;
+            align-items: center;
+            margin-left: 10px;
+            padding-top: 30px;
+            padding: 20px;
+            border-radius: 25px;
+            height: 440px;
+            box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .step-number4 {
+            background-color: #75343a; /* Blue circle for the number */
+            color: #f4f4f4;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            margin-bottom: 20px; /* Space between number and title */
+            border-style: solid;
+            border-color: #974950;
+            border-width: 10px;
+            font-weight: 800;
+        }
+
+        .step-title4 {
+            font-size: 1.7rem;
+            font-weight: bold;
+            background-color: #75343a;
+            color: #f4f4f4;
+            height: 50px;
+            width: 315px;
+            padding-top: 5px;
+            border-radius: 5px;
+        }
+
+        .step-message4 {
+            font-size: 24px;
+            color: #f4f4f4;
+            margin-bottom: 20px;
+            background-color: #75343a;
+            width: 350px;
+            align-items: center;
+            margin-left: 10px;
+            padding: 20px;
+            border-radius: 25px;
+            height: 440px;
+            box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .step-icon1 {
+            font-size: 7.5rem;
+            color:rgb(0, 0, 0); /* Match the circle's color */
+            margin-top: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .step-icon1:hover {
+            transform: scale(1.1);
+        }
+
+        .step-icon2 {
+            font-size: 7.5rem;
+            color:rgb(0, 0, 0); /* Match the circle's color */
+            margin-top: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .step-icon2:hover {
+            transform: scale(1.1);
+        }
+
+        .step-icon3 {
+            font-size: 7rem;
+            color:rgb(0, 0, 0); /* Match the circle's color */
+            margin-top: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .step-icon3:hover {
+            transform: scale(1.1);
+        }
+
+        .step-icon4 {
+            font-size: 7.5rem;
+            color:rgb(0, 0, 0); /* Match the circle's color */
+            margin-top: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .step-icon4:hover {
+            transform: scale(1.1);
+        }
+
+        /* Program Information Section */
+        .program-info {
+            background-color:#75343a; /* Dark red background */
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .program-info h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .program-info p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .program-image img {
+            width: 100%;
+            max-width: 400px; /* Adjust size as needed */
+            height: auto;
+            margin-top: 20px;
+        }
+
+        /* Program Details Section */
+        .program-details {
+            display: flex;
+            flex-direction: column; /* Stack the programs vertically */
+            gap: 30px;
+            padding-left: 70px;
+            background-color: #75343a;
+            padding-bottom: 50px;
+        }
+
+        .program1 {
+            background-color: #974950; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            width: 80%; /* Make the program boxes larger in width */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program2 {
+            background-color: #974950; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            width: 80%; /* Make the program boxes larger in width */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 100px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program3 {
+            background-color: #e1a55e; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            width: 80%; /* Make the program boxes larger in width */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 200px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .feature-card:hover .feature-icon {
-            background-color: var(--accent);
-            transform: rotateY(360deg);
+        .program4 {
+            background-color: #e1a55e; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            width: 80%; /* Make the program boxes larger in width */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 300px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .feature-card h4 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary);
+
+        .program1:hover, .program2:hover, .program3:hover, .program4:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Program Header */
+        .program-header {
+            display: flex; /* Align image and text side by side */
+            gap: 20px; /* Space between the image and the text container */
+            border-radius: 10px;
+            text-align: left;
+
+        }
+
+        .text-container {
+            display: flex;
+            flex-direction: column; /* Stack the title and paragraph vertically */
+            justify-content: center;
+        }
+
+        .text-container h4 {
+            font-size: 2.5rem;
             font-weight: 600;
+            margin-bottom: 10px;
         }
-        
-        .feature-card p {
-            font-size: 16px;
-            color: var(--text-dark);
-            opacity: 0.8;
-            line-height: 1.7;
+
+        .text-container p {
+            font-size: 1.5rem;
+            color: #fff;
+            line-height: 1.5rem;
         }
-        
+
+        .program-image1 {
+            background-color: #75343a;
+            border-radius: 100px;
+            width: 130px;
+            height: 120px;
+            text-align: center;
+            transition: transform 0.6s ease;
+        }
+
+        .program-image2 {
+            background-color: #c07e31;
+            border-radius: 100px;
+            width: 120px;
+            height: 120px;
+            text-align: center;
+            transition: transform 0.6s ease;
+        }
+
+        .program-image1 img, .program-image2 img {
+            height: 90px;
+            width: 90px;
+            margin-top: 15px;
+        }
+
+        .program-image1:hover, .program-image2:hover {
+            transform: rotate(360deg);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .faq-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            background-color:rgb(236, 236, 236);
+            width: 1000px;
+            align-items: center;
+            margin-left: 410px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(50px);
+            box-shadow: 10px 6px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            color: #333;
+            font-size: 1.2rem;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            text-align: left;
+            background-color:rgb(236, 236, 236);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #333;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-answer.show {
+            opacity: 1;
+        }
+
+        /* Expand icon */
+        .expand-icon {
+            font-size: 1.5rem;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary);
             color: var(--text-light);
-            padding: 80px 0 20px;
+            padding: 60px 0 20px;
             position: relative;
         }
         
@@ -350,7 +699,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 60px;
-            margin-bottom: 60px;
         }
         
         .footer-column h5 {
@@ -359,6 +707,7 @@
             position: relative;
             padding-bottom: 15px;
             color: var(--accent);
+            font-weight: 600;
         }
         
         .footer-column h5::after {
@@ -373,7 +722,7 @@
         
         .footer-column p {
             margin-bottom: 20px;
-            font-size: 15px;
+            font-size: 17px;
             opacity: 0.9;
             line-height: 1.8;
         }
@@ -389,7 +738,7 @@
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 15px;
+            font-size: 17px;
             opacity: 0.9;
             transition: var(--transition);
             display: inline-flex;
@@ -406,13 +755,13 @@
         .contact-info {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
+            gap: 17px;
             margin-bottom: 20px;
             font-size: 15px;
             opacity: 0.9;
         }
         
-        .contact-info span {
+        .contact-info i {
             font-size: 22px;
             color: var(--accent);
         }
@@ -450,385 +799,428 @@
             opacity: 0.8;
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
+        @media (max-width: 1200px) {
+            header {
+                width: 100%;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            nav ul li a {
+                font-size: 20px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .banner, .admission-process{
+                width: 100%;
+                height: 770px;
+            }
+            
+            .banner-content h2 {
+                font-size: 30px;
+            }
+
+            .banner-content h1 {
+                font-size: 45px;
+            }
+
+            .banner-content p {
+                font-size: 16px;
+            }
+
+            .buttons {
+                height: 60px;
+            }
+
+            .buttons button {
+                font-size: 17px;
+                padding: 0px 25px;
+            }
+
+            button i {
+                font-size: 20px;
+            }
+
+            .admission-process h3 {
+                font-size: 45px;
+            }
+
+            .admission-process h4 {
+                font-size: 20px;
+            }
+
+            .step {
+                padding: 30px 0px;
+            }
+
+            .step-title1, .step-title2, .step-title3, .step-title4{
+                width: 270px;
+                font-size: 22px;
+                padding-top: 8px;
+            }
+
+            .step-message1, .step-message2, .step-message3, .step-message4 {
+                width: 270px;
+                margin-left: 0px;
+                font-size: 20px;
+                height: 300px;
+                padding: 10px;
+            }
+
+            .step-icon1, .step-icon3 {
+                font-size: 5rem;
+                margin-top: 5px;
+            }
+
+            .step-icon2, .step-icon4 {
+                font-size: 5rem;
+                margin-top: 35px;
+            }
+
+            .program1, .program2, .program3, .program4 {
+                width: 70%;
+            }
+
+            .program-header img{
+                width: 70px;
+                height:70px;
+            }
+
+            .text-container h4 {
+                font-size: 2rem;
+            }
+
+            .text-container p {
+                font-size: 1.2rem;
+            }
+
+            .program-image1 {
+                width: 180px;
+                height: 100px;
+            } 
+            
+            .program-image2 {
+                width: 150px;
+                height: 100px;
+            }
+
+            .program-image1 img, .program-image2 img {
+                height: 80px;
+                width: 80px;
+                margin-top: 10px;
+            }
+
+            .faq-item {
+                margin-left: 80px;
             }
         }
         
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
+        @media (max-width: 1024px) {
+            .step {
+                padding: 30px 0px;
+            }
+
+            .step-title1, .step-title2, .step-title3, .step-title4{
+                width: 230px;
+                font-size: 20px;
+                padding-top: 9px;
+            }
+
+            .step-message1, .step-message2, .step-message3, .step-message4 {
+                width: 230px;
+                margin-left: 0px;
+                font-size: 18px;
+                height: 320px;
+                padding: 10px;
+            }
+
+            .step-icon1 {
+                font-size: 5rem;
+                margin-top: 15px;
+            }
+
+            .step-icon2 {
+                font-size: 5rem;
+                margin-top: 40px;
             }
             
-            .nav-links {
-                flex-direction: column;
-                gap: 15px;
+            .step-icon3 {
+                font-size: 5rem;
+                margin-top: 45px;
             }
-            
-            .hero {
-                padding: 150px 0 80px;
+
+            .step-icon4 {
+                font-size: 5rem;
+                margin-top: 70px;
             }
-            
-            .hero h2 {
-                font-size: 40px;
+
+            .program1, .program2, .program3, .program4 {
+                width: 65%;
             }
-            
-            .hero p {
-                font-size: 16px;
-                padding: 0 20px;
+
+            .text-container h4 {
+                font-size: 1.7rem;
             }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                padding: 0 20px;
+
+            .text-container p {
+                font-size: 1rem;
             }
+
+            .program-image1 {
+                width: 200px;
+                height: 100px;
+            } 
             
-            .feature-card {
-                padding: 30px 20px;
+            .program-image2 {
+                width: 170px;
+                height: 100px;
             }
-            
+
+            .program-image1 img, .program-image2 img {
+                height: 65px;
+                width: 65px;
+                margin-top: 20px;
+            }
+
+            .faq-item {
+                margin-left: 90px;
+                width: 800px;
+            }
+
             .footer-content {
-                gap: 40px;
-            }
-            
-            .footer-column {
-                text-align: center;
-            }
-            
-            .footer-column h5::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-            
-            .contact-info {
-                justify-content: center;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
         }
-
-        /* New styles for process section */
-        .process-section {
-            padding: 100px 0;
-            background-color: var(--gray-light);
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .process-step {
-            background: var(--text-light);
-            padding: 30px;
-            border-radius: 15px;
-            position: relative;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-        }
-
-        .process-step:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            color: var(--text-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .process-step h4 {
-            margin: 20px 0 15px;
-            color: var(--primary);
-            font-size: 20px;
-        }
-
-        .process-step p {
-            color: var(--text-dark);
-            opacity: 0.8;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Student Portal Button Styles */
-        .student-portal-section {
-            text-align: center;
-            padding: 60px 0;
-            background: var(--text-light);
-        }
-
-        .portal-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .portal-btn {
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .login-btn {
-            background: var(--primary);
-            color: var(--text-light);
-        }
-
-        .register-btn {
-            background: var(--accent);
-            color: var(--primary-dark);
-        }
-
-        .portal-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Admin Link Style */
-        .admin-link {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
-            padding: 8px 16px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 15px;
-        }
-
-        .admin-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .admin-link .material-symbols-rounded {
-            font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .admin-link {
-                margin: 10px 0;
-                justify-content: center;
-                background: var(--primary-dark);
-            }
-            
-            .admin-link:hover {
-                background: var(--primary);
-            }
-        }
-    </style>
+        
+    </style>    
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/Logo.png" alt="PUP Logo">
-                    <div class="logo-text">
-                        <h1>PUP Qualifying Exam Portal</h1>
-                        <p>Polytechnic University of the Philippines</p>
-                    </div>
-                </div>
-                <nav class="nav-links">
-                    <a href="#"><span class="material-symbols-rounded">home</span> Home</a>
-                    <a href="#"><span class="material-symbols-rounded">info</span> About</a>
-                    <a href="#"><span class="material-symbols-rounded">contact_support</span> Contact</a>
-                    <a href="#"><span class="material-symbols-rounded">help</span> FAQ</a>
-                    <a href="admin_login.php" class="admin-link">
-                        <span class="material-symbols-rounded">admin_panel_settings</span>
-                        Admin
-                    </a>
-                </nav>
-            </div>
+        <div class="logo">
+            <a href="#banner"><img src="assets/images/PUPLogo.png" alt="PUP Logo" /></a>
         </div>
+        <nav>
+            <ul>
+                <li><a href="#banner"><i class="bi bi-house"></i> Home</a></li>
+                <li><a href="#about"><i class="bi bi-question-circle"></i> About</a></li>
+                <li><a href="#faqs"><i class="bi bi-question-circle"></i> FAQ</a></li>
+                <li><a href="#contact"><i class="bi bi-person-lines-fill"></i> Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>CCIS Qualifying Examination Portal</h2>
-            <p>Welcome to the College of Computing and Information Sciences (CCIS) qualifying examination portal for transferees, shiftees, and ladderized program students. This examination is a mandatory requirement for admission to BSIT and BSCS programs at PUP.</p>
-        </div>
-    </section>
-
-    <!-- Student Portal Section -->
-    <section class="student-portal-section">
-        <div class="container">
-            <div class="section-title">
-                <h3>CCIS Admission Portal</h3>
-                <p>Take your qualifying examination to begin your journey in PUP's College of Computing and Information Sciences</p>
-            </div>
-            <div class="portal-buttons">
-                <a href="stud_register.php" class="portal-btn login-btn">
-                    <span class="material-symbols-rounded">login</span>
-                    Student Login
-                </a>
-                <a href="stud_register.php?register=true" class="portal-btn register-btn">
-                    <span class="material-symbols-rounded">person_add</span>
-                    New Student Registration
-                </a>
+    <section class="banner" id="banner">
+        <div class="banner-content">
+            <h2>COLLEGE OF COMPUTER AND INFORMATION SCIENCES</h2>
+            <h1>STUDENT REGISTRATION, EXAMINATION, <br>AND MANAGEMENT SYSTEM</h1>
+            <p>Welcome to the College of Computer and Information Sciences (CCIS) qualifying examination portal<br>
+            for transferees, shiftees, and ladderized program students. This examination is a mandatory<br>
+            requirement for admission to BSIT and BSCS programs at PUP.</p>
+            <div class="buttons">
+                <a href="stud_register.php"><button class="login"><i class="bi bi-box-arrow-in-right"></i> Student Portal</button></a>
+                <a href="admin_login.php"><button class="register"><i class="bi bi-person-add"></i> Administration Login</button></a>
             </div>
         </div>
+        
     </section>
 
-    <!-- Process Section -->
-    <section class="process-section">
-        <div class="container">
-            <div class="section-title">
-                <h3>Admission Process</h3>
-                <p>Understanding the steps to complete your CCIS qualifying examination</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h4>Eligibility Check</h4>
-                    <p>Verify that you qualify as either a transferee, shiftee, or ladderized program student seeking admission to BSIT or BSCS programs.</p>
+    <section class="admission-process" id="about">
+        <h3>ADMISSION PROCESS</h3>
+        <h4>Understanding the steps to complete your CCIS qualifying examination</h4>
+        <div class="steps">
+            <!-- Step 1: Eligibility Check -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number1">1</div>
+                    <div class="step-title1">ELIGIBILITY CHECK</div>
                 </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h4>Registration</h4>
-                    <p>Create your account and submit required documents including transcript records and transfer credentials.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h4>Examination</h4>
-                    <p>Complete the qualifying exam which covers programming fundamentals, logic, and computing concepts.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h4>Results & Admission</h4>
-                    <p>Receive your examination results and further instructions for CCIS program admission.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h3>Program Information</h3>
-                <p>Learn more about our CCIS programs and examination requirements</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">computer</span>
+                <div class="step-message1">
+                    Verify that you qualify as either a transferee, shiftee, or ladderized program student seeking admission to BSIT or BSCS programs.
+                    <div class="step-icon1">
+                        <i class="bi bi-check2-circle"></i>
                     </div>
-                    <h4>BSIT Program</h4>
+                </div>
+            </div>
+
+            <!-- Step 2: Registration -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number2">2</div>
+                    <div class="step-title2">REGISTRATION</div>
+                </div>
+                <div class="step-message2">
+                    Create your account and submit required documents including transcript records and transfer credentials.
+                    <div class="step-icon2">
+                        <i class="bi bi-file-earmark-check"></i> <!-- Registration Icon -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Examination -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number3">3</div>
+                    <div class="step-title3">EXAMINATION</div>
+                </div>
+                <div class="step-message3">
+                    Complete the qualifying exam which covers programming fundamentals, logic, and computing concepts.
+                    <div class="step-icon3">
+                        <i class="bi bi-pencil-square"></i> <!-- Exam Icon -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Result & Admission -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number4">4</div>
+                    <div class="step-title4">RESULT & ADMISSION</div>
+                </div>
+                <div class="step-message4">
+                    Receive your examination results and further instructions for CCIS program admission.
+                    <div class="step-icon4">
+                        <i class="bi bi-person-check"></i> <!-- Result Icon -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="program-info">
+        <h3>PROGRAM INFORMATION</h3>
+        <p>Learn more about our CCIS programs and examination requirements</p>
+
+    </section>
+
+    <section class="program-details">
+        <div class="program1">
+            <div class="program-header">
+                <div class="program-image1">
+                    <img src="assets/images/bsitprogramicon.png"/>
+                </div>
+                <div class="text-container">
+                    <h4>BSIT PROGRAM</h4>
                     <p>Bachelor of Science in Information Technology focusing on network administration, web technologies, and information systems.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">code</span>
-                    </div>
-                    <h4>BSCS Program</h4>
+            </div>
+        </div>
+        <div class="program2">
+            <div class="program-header">
+                <div class="program-image1">
+                    <img src="assets/images/bscsprogramicon.png"/>
+                </div>
+                <div class="text-container">
+                    <h4>BSCS PROGRAM</h4>
                     <p>Bachelor of Science in Computer Science specializing in software development, algorithms, and computing theory.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">school</span>
-                    </div>
-                    <h4>Admission Types</h4>
+            </div>
+        </div>
+        <div class="program3">
+            <div class="program-header">
+                <div class="program-image2">
+                    <img src="assets/images/admissiontypeicon.png"/>
+                </div>
+                <div class="text-container">
+                    <h4>ADMISSION TYPES</h4>
                     <p>Open to transferees from other schools, shiftees within PUP, and students from ladderized programs.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">quiz</span>
-                    </div>
-                    <h4>Exam Coverage</h4>
+            </div>
+        </div>
+        <div class="program4">
+            <div class="program-header">
+                <div class="program-image2">
+                    <img src="assets/images/examcoverageicon.png"/>
+                </div>
+                <div class="text-container">
+                    <h4>EXAM COVERAGE</h4>
                     <p>Assessment includes programming logic, mathematics, computing fundamentals, and analytical skills.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <section class="faq-section" id="faqs">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item">
+            <button class="faq-question">What is STREAMS? <span class="expand-icon">+</span></button>
+            <div class="faq-answer">
+                <p>STREAMS is the official online system used by the CCIS department to manage student applications from shiftees, transferees, and ladderized program applicants. It simplifies the registration, examination scheduling, and tracking process.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Who can use STREAMS? <span class="expand-icon">+</span></button>
+            <div class="faq-answer">
+                <p>Students who wish to shift from another program within the university, transfer from another institution, or apply through ladderized programs to enter the CCIS department.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">How do I apply as a shiftee/transferee/ladderized student? <span class="expand-icon">+</span></button>
+            <div class="faq-answer">
+                <p>Visit the STREAMS portal and create an account. Fill out the application form, upload your required documents, and wait for the confirmation and interview schedule.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">What are the requirements for application? <span class="expand-icon">+</span></button>
+            <div class="faq-answer">
+                <p>Common requirements include:
+                    <li>Transcript of Records or Copy of Grades</li>
+                    <li>Certificate of Good Moral Character</li>
+                    <li>Valid ID and 2x2 photo</li>
+                    <li>Letter of Intent (for some programs)</li>
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Is there an entrance exam? <span class="expand-icon">+</span></button>
+            <div class="faq-answer">
+                <p>Yes, transferees and ladderized applicants are usually required to take an entrance evaluation exam. Shiftees may be exempted depending on their academic standing.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">How will I know if I passed the evaluation? <span class="expand-icon">+</span></button>
+            <div class="faq-answer">
+                <p> You’ll receive an email notification and can also view your status directly on your STREAMS dashboard.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h5>About PUP</h5>
                     <p>The Polytechnic University of the Philippines is committed to providing quality education through our innovative online examination platform.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h5>Quick Links</h5>
                     <ul class="footer-links">
-                        <li><a href="#"><span class="material-symbols-rounded">chevron_right</span>Home</a></li>
-                        <li><a href="#"><span class="material-symbols-rounded">chevron_right</span>About the Exam</a></li>
-                        <li><a href="#"><span class="material-symbols-rounded">chevron_right</span>Study Resources</a></li>
-                        <li><a href="#"><span class="material-symbols-rounded">chevron_right</span>FAQ</a></li>
-                        <li><a href="#"><span class="material-symbols-rounded">chevron_right</span>Contact Support</a></li>
+                        <li><a href="#banner"><i class="bi bi-chevron-right"></i>Home</a></li>
+                        <li><a href="#about"><i class="bi bi-chevron-right"></i>About the Exam</a></li>
+                        <li><a href="#faqs"><i class="bi bi-chevron-right"></i>FAQ</a></li>
+                        <li><a href="#contact"><i class="bi bi-chevron-right"></i>Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h5>Contact Information</h5>
                     <div class="contact-info">
-                        <span class="material-symbols-rounded">location_on</span>
+                        <i class="bi bi-geo-alt"></i>
                         <p>A. Mabini Campus, Anonas St., Sta. Mesa, Manila, Philippines</p>
                     </div>
                     <div class="contact-info">
-                        <span class="material-symbols-rounded">phone</span>
+                        <i class="bi bi-telephone"></i>
                         <p>(+632) 5335-1787</p>
                     </div>
                     <div class="contact-info">
-                        <span class="material-symbols-rounded">email</span>
+                        <i class="bi bi-envelope"></i>
                         <p>inquire@pup.edu.ph</p>
                     </div>
                 </div>
@@ -840,14 +1232,24 @@
     </footer>
 
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach((faq) => {
+                faq.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('.expand-icon');
+
+                    // Toggle the display of the answer
+                    if (answer.style.display === "block") {
+                        answer.style.display = "none";
+                        icon.textContent = "+"; // Change icon to "+" when collapsed
+                    } else {
+                        answer.style.display = "block";
+                        icon.textContent = "-"; // Change icon to "-" when expanded
+                    }
+                });
+            });
         });
     </script>
 </body>
