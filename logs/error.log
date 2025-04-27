@@ -240,3 +240,7 @@
 2025-04-25 16:24:37 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
 2025-04-25 16:29:03 Error: [8192] mb_convert_encoding(): Handling HTML entities via mbstring is deprecated; use htmlspecialchars, htmlentities, or mb_encode_numericentity/mb_decode_numericentity instead in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1138
 2025-04-25 17:05:32 Error: [2] file_get_contents(C:\wamp64\www\Practice/tor_prompt.txt): Failed to open stream: No such file or directory in C:\wamp64\www\Practice\qualiexam_registerBack.php on line 1056
+2025-04-27 03:14:34 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 684
+2025-04-27 03:15:18 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 684
+2025-04-27 03:16:00 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 670
+2025-04-27 03:16:42 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 670

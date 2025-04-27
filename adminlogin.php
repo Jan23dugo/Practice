@@ -178,9 +178,9 @@ if (isset($_POST['verify'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration Portal</title>
+    <title>Admin Login - PUP Qualifying Exam</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
             --primary: #75343A;
@@ -193,274 +193,261 @@ if (isset($_POST['verify'])) {
             --gray-light: #f5f5f5;
             --gray: #e0e0e0;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--gray-light);
             line-height: 1.6;
-            height: 100vh;
-            background-color: #f7f7f7;
-        }
-
-        header {
-            background-color: #75343a;
-            color: white;
-            padding: 10px;
-            display: flex;
-            position: fixed;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header .logo img {
-            width: 70px;
-            height: auto;
-            margin-left: 30px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 50px;
-            padding-left: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: 600;
-            padding: 8px 0px;
-            border-radius: 6px;
-            transition: color 0.3s ease, transform 0.3s ease;
-            position: relative;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover::after {
-            width: 80%;
-        }
-
-        .container {
-            display: flex;
-            height: 100%;
-            padding-top: 93px;
-        }
-
-        .right {
-            width: 60%;
-            background-image: url('assets/images/Homepage.png'); /* Background Image */
-            background-size: cover;
-            color: white;
-            padding: 50px 30px;
-            text-align: center;
-            align-items: center;
-        }
-
-        .right h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-            color: #b8afa8;
-            margin-top: 200px;
-        }
-
-        .right h2 {
-            font-size: 2.7rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .right p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-        }
-
-        .footer img {
-            height: 100px;
-            width: 100px;
-        }
-
-        .left {
-            width: 40%;
-            background-color: #ac555c;
-            padding: 40px; /* Adjust padding here */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            display: flex;
             justify-content: center;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: flex-start;
             align-items: center;
-            max-height: 100vh;
-            overflow-y: auto;
-        }
-
-        .auth-header h2 {
-            font-size: 35px;
-            text-align: center;
-            color: #f4f4f4;
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .auth-header p {
-            color: #f4f4f4;
-            font-size: 16px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-    
-        .auth-body {
-            margin: 0px;
-            width: 100%; /* Ensure the form takes up the full width */
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
             width: 100%;
         }
-
-        .form-group {
-            width: 100%; /* Make sure each form group is 100% width */
-            margin-bottom: 15px;
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Auth Section */
+        .auth-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+            width: 100%;
+        }
+        
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 0 auto;
+            margin-bottom: 80px;
+        }
+        
+        .auth-header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .auth-header h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .auth-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .auth-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
         .form-group label {
             display: block;
             font-size: 14px;
-            color: #f4f4f4;
+            font-weight: 500;
             margin-bottom: 8px;
-            font-weight: bold;
+            color: var(--text-dark);
         }
-
-        .form-group input, .form-group select {
+        
+        .form-control {
             width: 100%;
-            padding: 12px;
+            padding: 12px 15px;
             font-size: 16px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--gray);
             border-radius: 6px;
-            background-color: #f9f9f9;
-            color: #333;
-            transition: border 0.3s ease;
+            transition: border-color 0.3s;
         }
-
-        .form-group input[type="file"] {
-            padding: 10px;
-            background-color: white;
-        }
-
-        .form-group .image-preview {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 10px auto;
-            background-color: var(--gray-light);
-            border: 2px dashed var(--gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .form-group .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .form-group small {
-            font-size: 0.85rem;
-            color: #f4f4f4;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: #75343a;
+        
+        .form-control:focus {
             outline: none;
+            border-color: var(--primary);
         }
-
-        .btn-primary {
+        
+        .btn {
+            display: block;
             width: 100%;
-            padding: 12px 20px;
-            font-size: 18px;
-            background-color: #75343a;
-            color: white;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
-
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--text-light);
+        }
+        
         .btn-primary:hover {
-            background-color: #a32f3b;
+            background-color: var(--primary-dark);
         }
-
-        .forgot-password {
-            text-align: right;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .forgot-password a {
-            color: #8e2f3b;
-            text-decoration: none;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .auth-footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .auth-footer a {
-            color: #8e2f3b;
-            text-decoration: none;
-        }
-
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-        /* Custom styling for alerts */
+        
         .alert {
+            padding: 12px 15px;
+            border-radius: 6px;
             margin-bottom: 20px;
-            padding: 15px;
-            color: #fff;
-            border-radius: 5px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
+        
         .alert-danger {
-            background-color: #e74c3c;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
-
-        .alert-success {
-            background-color: #2ecc71;
+        
+        /* Back Button */
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            font-weight: 500;
         }
-
+        
+        .back-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .back-button .material-symbols-rounded {
+            font-size: 20px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 20px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 900;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        footer p {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .auth-container {
+                max-width: 95%;
+                margin-bottom: 70px;
+            }
+            
+            .logo-text h1 {
+                font-size: 20px;
+            }
+            
+            footer {
+                height: 50px;
+            }
+        }
+        
         .verification-message {
             margin-bottom: 20px;
         }
@@ -479,13 +466,9 @@ if (isset($_POST['verify'])) {
             text-align: center;
             font-size: 14px;
         }
-
-        .resend-code p {
-            color: var(--text-light);
-        }
         
         .resend-code a {
-            color:rgb(0, 113, 233);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
         }
@@ -499,59 +482,41 @@ if (isset($_POST['verify'])) {
             font-size: 20px;
             text-align: center;
         }
-
-        .header-left {
-            position: absolute;
-            top: 120px;
-            left: 20px;
-            margin-left: 25px;
-        }
-
-        .back-button {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-        }
-
-        .back-button:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .back-button .material-symbols-rounded {
-            font-size: 20px;
+        
+        /* Add a specific container class for the header */
+        header .container {
+            justify-content: flex-start;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <div class="logo">
-            <a href="index.php#banner"><img src="assets/images/PUPLogo.png" alt="PUP Logo" /></a>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.php" class="back-button">
+                        <span class="material-symbols-rounded">arrow_back</span>
+                        Back to Home
+                    </a>
+                    <div class="logo">
+                        <img src="img/Logo.png" alt="PUP Logo">
+                        <div class="logo-text">
+                            <h1>PUP Qualifying Exam Portal</h1>
+                            <p>Admin Portal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.php#banner"><i class="bi bi-house"></i> Home</a></li>
-                <li><a href="index.php#about"><i class="bi bi-question-circle"></i> About</a></li>
-                <li><a href="index.php#faqs"><i class="bi bi-question-circle"></i> FAQ</a></li>
-                <li><a href="index.php#contact"><i class="bi bi-person-lines-fill"></i> Contact</a></li>
-            </ul>
-        </nav>
     </header>
     
-    <div class="container">
-        <div class="left">
-            <div class="header-left">
-                <a href="index.php" class="back-button">
-                <i class="bi bi-arrow-left"></i>Back to Home
-                </a>
-            </div>    
-            <div class="auth-header">
-                    <h2>ADMINISTRATOR LOGIN</h2>
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>Admin Login</h2>
                     <p>Access your administrative account</p>
                 </div>
                 <div class="auth-body">
@@ -566,7 +531,7 @@ if (isset($_POST['verify'])) {
                         <!-- Verification Code Form -->
                         <div class="verification-message">
                             <div class="alert alert-info">
-                            <i class="bi bi-envelope-check"></i>
+                                <span class="material-symbols-rounded">mail</span>
                                 A verification code has been sent to your email.
                             </div>
                         </div>
@@ -610,21 +575,15 @@ if (isset($_POST['verify'])) {
                         </form>
                     <?php endif; ?>
                 </div>
-        </div>
-        
-        <div class="right">
-        <div class="header">
-                <h1>COLLEGE OF COMPUTER AND INFORMATION SCIENCES</h1>
-                <h2>STUDENT REGISTRATION, EXAMINATION, AND MANAGEMENT SYSTEM PORTAL</h2>
-                <p>Welcome to the College of Computer and Information Sciences (CCIS)
-                    <br>qualifying examination portal for transferees, shiftees, and ladderized 
-                    <br>program students. This examination is a mandatory requirement for 
-                    <br>admission to BSIT and BSCS programs at PUP.</p>
-            </div>
-            <div class="footer">
-                <img src="assets/images/PUPLogo.png" alt="PUP Logo">
             </div>
         </div>
-    </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <?php echo date('Y'); ?> PUP Qualifying Exam Portal. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

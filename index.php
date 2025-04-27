@@ -1015,7 +1015,7 @@
             requirement for admission to BSIT and BSCS programs at PUP.</p>
             <div class="buttons">
                 <a href="stud_register.php"><button class="login"><i class="bi bi-box-arrow-in-right"></i> Student Portal</button></a>
-                <a href="admin_login.php"><button class="register"><i class="bi bi-person-add"></i> Administration Login</button></a>
+                <a href="admin_login.php"><button class="register"><i class="bi bi-person-add"></i> Administrator Login</button></a>
             </div>
         </div>
         

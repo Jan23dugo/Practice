@@ -301,7 +301,8 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
             height: 100vh;
             background-color: #f7f7f7;
         }
@@ -311,10 +312,10 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             color: white;
             padding: 10px;
             display: flex;
+            position: fixed;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            position: fixed;
             top: 0;
             z-index: 1000;
         }
@@ -332,7 +333,6 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 
         nav ul li {
             margin-right: 50px;
-            margin-top: 20px;
             padding-left: 30px;
         }
 
@@ -343,7 +343,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             font-weight: 600;
             padding: 8px 0px;
             border-radius: 6px;
-            transition: background-color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
         }
 
@@ -422,12 +422,13 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             margin-bottom: 20px;
             font-weight: 800;
             text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+            padding-top: 50px;
         }
 
         .auth-header p {
-            color: #777;
+            color: #333;
             font-size: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             text-align: center;
         }
     
@@ -439,13 +440,13 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
             width: 100%;
         }
 
         .form-group {
             width: 100%; /* Make sure each form group is 100% width */
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
 
         .form-group label {
@@ -458,42 +459,13 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 
         .form-group input, .form-group select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 6px;
             background-color: #f9f9f9;
             color: #333;
             transition: border 0.3s ease;
-        }
-
-        .form-group input[type="file"] {
-            padding: 10px;
-            background-color: white;
-        }
-
-        .form-group .image-preview {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 10px auto;
-            background-color: var(--gray-light);
-            border: 2px dashed var(--gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .form-group .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .form-group small {
-            font-size: 0.85rem;
-            color: #888;
         }
 
         .form-group input:focus, .form-group select:focus {
@@ -511,6 +483,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             border-radius: 6px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-top: 20px;
         }
 
         .btn-primary:hover {
@@ -624,6 +597,33 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             font-size: 12px;
             color: #666;
             margin-top: 5px;
+        }
+
+        .header-right {
+            position: absolute;
+            top: 120px;
+            left: 1180px;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+
+        .back-button .material-symbols-rounded {
+            font-size: 20px;
         }
     </style>
     <script>
@@ -781,6 +781,11 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
         </div>
         
         <div class="right">
+            <div class="header-right">
+                <a href="index.php" class="back-button">
+                <i class="bi bi-arrow-left"></i>Back to Home
+                </a>
+            </div>    
             <?php if ($show_registration): ?>
                 <!-- Registration Form -->
                 <div class="auth-header">
@@ -868,7 +873,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 
                 </div>
                 <div class="auth-footer">
-                    <p>Already have an account? <a href="studentregister.php">Login here</a></p>
+                    <p>Already have an account? <a href="stud_register.php">Login here</a></p>
                 </div>
             <?php else: ?>
                 <!-- Login Form -->
@@ -901,7 +906,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
                     </form>
                 </div>
                 <div class="auth-footer">
-                    <p>Don't have an account? <a href="studentregister.php?register=true">Register here</a></p>
+                    <p>Don't have an account? <a href="stud_register.php?register=true">Register here</a></p>
                 </div>
             <?php endif; ?>
         </div>
