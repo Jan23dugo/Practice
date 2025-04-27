@@ -116,7 +116,7 @@ tbody tr:hover {
     max-height: 85vh;
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    margin: 20px auto;
+    margin: 70px auto;
     animation: modalFade 0.3s ease-in-out;
 }
 
@@ -169,8 +169,6 @@ tbody tr:hover {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -15px;
-    padding: 10px 0;
     gap: 15px;
 }
 
@@ -183,13 +181,12 @@ tbody tr:hover {
 
 /* Information Text Styling */
 .modal-content p {
-    margin: 12px 0;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
     gap: 10px;
+    padding: 20px;
+    padding-left: 30px;
+    font-size: 15px;
 }
 
 .modal-content strong {
@@ -617,18 +614,18 @@ td, th {
         <h5 class="text-primary">Personal Information</h5>
         <div class="row">
             <div class="col-md-4">
-                <p><strong>Reference ID:</strong> <span id="ref_id"></span></p>
-                <p><strong>First Name:</strong> <span id="first_name"></span></p>
-                <p><strong>Middle Name:</strong> <span id="middle_name"></span></p>
                 <p><strong>Last Name:</strong> <span id="last_name"></span></p>
+                <p><strong>Reference ID:</strong> <span id="ref_id"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
             </div>
             <div class="col-md-4">
-                <p><strong>Gender:</strong> <span id="gender"></span></p>
+                <p><strong>First Name:</strong> <span id="first_name"></span></p>
                 <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
-                <p><strong>Email:</strong> <span id="email"></span></p>
                 <p><strong>Contact:</strong> <span id="contact"></span></p>
             </div>
             <div class="col-md-4">
+                <p><strong>Middle Name:</strong> <span id="middle_name"></span></p>
+                <p><strong>Gender:</strong> <span id="gender"></span></p>
                 <p><strong>Address:</strong> <span id="address"></span></p>
             </div>
         </div>
@@ -638,13 +635,15 @@ td, th {
         <div class="row">
             <div class="col-md-6">
                 <p><strong>Student Type:</strong> <span id="student_type"></span></p>
-                <p><strong>Previous School:</strong> <span id="prev_school"></span></p>
-                <p><strong>Year Level:</strong> <span id="year_level"></span></p>
+                <p><strong>Tech Student:</strong> <span id="is_tech"></span></p>
             </div>
             <div class="col-md-6">
                 <p><strong>Previous Program:</strong> <span id="prev_program"></span></p>
                 <p><strong>Desired Program:</strong> <span id="desired_program"></span></p>
-                <p><strong>Tech Student:</strong> <span id="is_tech"></span></p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Previous School:</strong> <span id="prev_school"></span></p>
+                <p><strong>Year Level:</strong> <span id="year_level"></span></p> 
             </div>
         </div>
 
@@ -829,7 +828,7 @@ function confirmStatusUpdate() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Status updated successfully!');
+            showModal('Status updated successfully!');
             location.reload();  // Refresh the page to reflect the updated status
         } else {
             alert(`Error: ${data.message}`);
@@ -851,6 +850,19 @@ window.onclick = function(event) {
         closeStatusModal();
     }
 };
+
+// Close modal when clicking outside
+window.onclick = function (event) {
+    const modal = document.getElementById("infoModal");
+    if (event.target === modal) {
+        closeModal();
+    }
+};
+
+// Close modal function
+function closeModal() {
+    document.getElementById("infoModal").classList.remove("show");
+}
 
 // Add event listener for the modal close button
 document.addEventListener('DOMContentLoaded', function() {
@@ -886,6 +898,10 @@ document.querySelectorAll('.status').forEach(select => {
     });
 });
 
+document.getElementById('viewDetailsButton').addEventListener('click', function() {
+    showDetails(); // Function to display the details
+});
+
 // Add loading state to View Details button
 function viewDetails(button, details) {
     button.innerHTML = '<span class="spinner"></span> Loading...';
@@ -898,6 +914,70 @@ function viewDetails(button, details) {
         button.disabled = false;
     }, 500);
 }
+
+// Function to show the success modal pop-up
+function showModal(message) {
+    // Create the modal structure dynamically
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    
+    const modalMessage = document.createElement('p');
+    modalMessage.textContent = message;
+    
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.classList.add('close-button');
+    closeButton.onclick = function() {
+        document.body.removeChild(modal); // Close the modal when the button is clicked
+    };
+
+    modalContent.appendChild(modalMessage);
+    modalContent.appendChild(closeButton);
+    modal.appendChild(modalContent);
+
+    document.body.appendChild(modal);
+}
+
+// Styling for the modal
+const style = document.createElement('style');
+style.textContent = `
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+    .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 80%;
+    }
+    .close-button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    .close-button:hover {
+        background-color: #0056b3;
+    }
+`;
 </script>
 
 </body>

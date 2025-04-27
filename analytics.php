@@ -13,16 +13,13 @@ include('config/config.php');
 
 // Current page handling
 $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$items_per_page = 20;
-$offset = ($current_page - 1) * $items_per_page;
-
-// Get selected exam ID from GET parameter
 $selected_exam_id = isset($_GET['exam_id']) ? (int)$_GET['exam_id'] : null;
-
-// Get filter parameters
 $filter_type = isset($_GET['filter_type']) ? $_GET['filter_type'] : '';
 $filter_difficulty = isset($_GET['filter_difficulty']) ? $_GET['filter_difficulty'] : '';
 $filter_status = isset($_GET['filter_status']) ? $_GET['filter_status'] : '';
+
+$items_per_page = 10;
+$offset = ($current_page - 1) * $items_per_page;
 
 // Fetch all exams for the dropdown
 $exams_list_query = "SELECT exam_id, title FROM exams ORDER BY title";
@@ -36,9 +33,9 @@ if ($exams_list_result && $exams_list_result->num_rows > 0) {
 
 // Modify the count query to include exam filter if selected
 $count_query = "
-SELECT COUNT(*) as total
-FROM questions q
-JOIN exams e ON q.exam_id = e.exam_id";
+    SELECT COUNT(*) as total
+    FROM questions q
+    JOIN exams e ON q.exam_id = e.exam_id";
 if ($selected_exam_id) {
     $count_query .= " AND e.exam_id = " . $selected_exam_id;
 }

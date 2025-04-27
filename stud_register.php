@@ -111,7 +111,7 @@ if (isset($_POST['register'])) {
     if (!empty($upload_error)) {
         $registration_error = $upload_error;
         $show_registration = true;
-    } else if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($contact_number) || empty($address) || empty($date_of_birth) || empty($gender)) {
+    } else if (empty($firstname)|| empty($middlename) || empty($lastname) || empty($email) || empty($password) || empty($contact_number) || empty($address) || empty($date_of_birth) || empty($gender)) {
         $registration_error = "All fields are required";
         $show_registration = true;
     } elseif ($password !== $confirm_password) {
@@ -237,6 +237,7 @@ if (isset($_POST['login'])) {
                     // Store minimal information in session
                     $_SESSION['stud_id'] = $student['stud_id'];
                     $_SESSION['firstname'] = $student['firstname'];
+                    $_SESSION['middlename'] = $student['middlename'];
                     $_SESSION['lastname'] = $student['lastname'];
                     $_SESSION['email'] = $student['email'];
                     $_SESSION['last_activity'] = time();
@@ -805,9 +806,23 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
                                 <input type="text" class="form-control" id="firstname" name="firstname" required>
                             </div>
                             <div class="form-group">
+                                <label for="middletname">Middle Name</label>
+                                <input type="text" class="form-control" id="middlename" name="middlename" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="lastname">Last Name</label>
                                 <input type="text" class="form-control" id="lastname" name="lastname" required>
                             </div>
+                            <div class="form-group">
+                                    <label for="student_type">Student Type</label>
+                                    <select class="form-control" id="student_type" name="student_type" required>
+                                        <option value="">Select Student Type</option>
+                                        <option value="Transferee">Transferee</option>
+                                        <option value="Shiftee">Shiftee</option>
+                                        <option value="Ladderized">Ladderized</option>
+                                    </select>
+                                </div>
+
 
                             <!-- Email - Contact Number -->
                             <div class="form-group">
@@ -858,15 +873,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                    <label for="student_type">Student Type</label>
-                                    <select class="form-control" id="student_type" name="student_type" required>
-                                        <option value="">Select Student Type</option>
-                                        <option value="Transferee">Transferee</option>
-                                        <option value="Shiftee">Shiftee</option>
-                                        <option value="Ladderized">Ladderized</option>
-                                    </select>
-                                </div>
+                            
                         </div>
                         <button type="submit" name="register" class="btn btn-primary">Register</button>
                     </form>

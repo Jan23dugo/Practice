@@ -437,3 +437,47 @@
 2025-04-27 18:53:37 Error: [2] Attempt to read property "num_rows" on null in C:\xampp\htdocs\Practice\Applicants.php on line 583
 2025-04-27 18:53:37 Error: [2] Undefined variable $records_per_page in C:\xampp\htdocs\Practice\Applicants.php on line 633
 2025-04-27 18:53:37 Error: [2] Undefined variable $total_records in C:\xampp\htdocs\Practice\Applicants.php on line 633
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:21 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:26 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:26 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:26 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-27 20:33:26 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227

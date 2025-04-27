@@ -29,3 +29,41 @@ Session data: Array
 )
 
 Database connection closed
+Request received: 2025-04-27 20:46:29
+POST data: Array
+(
+    [reference_id] => CCIS-2025-92181
+    [status] => accepted
+)
+
+Session data: Array
+(
+    [stud_id] => 13
+    [firstname] => Heaven
+    [lastname] => Wow
+    [email] => pupccisfaculty@gmail.com
+    [last_activity] => 1745776446
+    [admin_id] => 1
+    [is_admin] => 1
+)
+
+Database connection closed
+Request received: 2025-04-27 20:46:48
+POST data: Array
+(
+    [reference_id] => CCIS-2025-10384
+    [status] => accepted
+)
+
+Session data: Array
+(
+    [stud_id] => 13
+    [firstname] => Heaven
+    [lastname] => Wow
+    [email] => pupccisfaculty@gmail.com
+    [last_activity] => 1745776446
+    [admin_id] => 1
+    [is_admin] => 1
+)
+
+Database connection closed
