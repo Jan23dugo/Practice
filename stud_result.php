@@ -518,20 +518,25 @@ $activePage = 'results';
             min-width: 200px;
             z-index: 1000;
         }
+
+        .dropdown-menu a {
+            color: #75343A;
+        }
         
         .dropdown-item {
             padding: 10px 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--text-dark);
+            color: var(--primary-dark);
             text-decoration: none;
             transition: background-color 0.3s;
             font-size: 14px;
         }
-        
+
         .dropdown-item:hover {
-            background-color: var(--gray-light);
+            background-color: #75343A;
+            color: var(--text-light);
         }
     </style>
 </head>

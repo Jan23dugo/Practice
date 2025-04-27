@@ -443,7 +443,6 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         /* Profile Container */
         .profile-container {
             background: white;
-            border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             margin-bottom: 30px;
@@ -566,14 +565,14 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         .profile-tabs {
             display: flex;
             gap: 1rem;
-            padding: 1rem 2rem;
             background: var(--gray-light);
             border-bottom: 1px solid var(--gray);
+            margin-left: 20px;
+            height: 50px;
         }
         
         .tab-btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 6px;
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
@@ -581,6 +580,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             background: none;
             border: none;
             color: #666;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
         }
         
         .tab-btn:hover {
@@ -620,15 +621,15 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         }
         
         .info-label {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: #666;
             margin-bottom: 0.25rem;
         }
         
         .info-value {
-            font-size: 1rem;
+            font-size: 1.3rem;
             color: var(--text-dark);
-            font-weight: 500;
+            font-weight: 600;
         }
         
         /* Exam History */
@@ -906,6 +907,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             background: var(--gray-light);
             color: var(--text-dark);
             border: none;
+            font-size: 0.9rem;
         }
         
         .cancel-btn:hover {
@@ -1229,7 +1231,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         </label>
                     </div>
                     <div class="profile-info">
-                        <h2><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></h2>
+                        <h2><?php echo $student['firstname'] . ' ' . $student['middlename'] . ' ' . $student['lastname']; ?></h2>
                         <p><?php echo $student['email']; ?></p>
                         <div class="profile-stats">
                             <div class="stat-item">
@@ -1252,18 +1254,19 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         </button>
                     </div>
                 </div>
+            </div>
 
-                <div class="profile-tabs">
-                    <button class="tab-btn active" data-tab="personal">Personal Information</button>
-                    <button class="tab-btn" data-tab="exams">Exam History</button>
-                </div>
-
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="personal">Personal Information</button>
+                <button class="tab-btn" data-tab="exams">Exam History</button>
+            </div>
+            
+            <div class="profile-container">
                 <div class="tab-content active" id="personal-tab">
-                    <h2>Personal Information</h2>
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-label">Full Name</div>
-                            <div class="info-value"><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></div>
+                            <div class="info-value"><?php echo $student['firstname'] . ' ' . $student['middlename'] . ' ' . $student['lastname']; ?></div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Email</div>
@@ -1296,8 +1299,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     </div>
                 </div>
 
-                <div class="tab-content" id="exams-tab">
-                    <h2>Exam History</h2>
+                <div class="tab-content" id="exams-tab"> 
                     <?php if (!$registration): ?>
                     <div class="no-registration">
                         <span class="material-symbols-rounded" style="font-size: 48px; color: var(--primary); margin-bottom: 1rem;">app_registration</span>
@@ -1342,16 +1344,10 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     </table>
                     <?php endif; ?>
                 </div>
+                </div>
             </div>
         </main>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; <?php echo date('Y'); ?> PUP Qualifying Exam Portal. All rights reserved.</p>
-        </div>
-    </footer>
 
     <!-- Edit Profile Modal -->
     <div id="editProfileModal" class="modal">
@@ -1395,6 +1391,10 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" id="firstname" name="firstname" value="<?php echo $student['firstname']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="middlename">Middle Name</label>
+                        <input type="text" id="middlename" name="middlename" value="<?php echo $student['middlename']; ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name</label>
