@@ -319,7 +319,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             z-index: 1000;
         }
 
-        .logo img {
+        header .logo img {
             width: 70px;
             height: auto;
             margin-left: 30px;
@@ -331,21 +331,36 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
         }
 
         nav ul li {
-            margin-right: 20px;
+            margin-right: 50px;
+            margin-top: 20px;
+            padding-left: 30px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 600;
-            padding: 8px 12px;
+            padding: 8px 0px;
             border-radius: 6px;
             transition: background-color 0.3s ease;
+            position: relative;
         }
 
-        nav ul li a:hover {
-            background-color: #a32f3b;
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 80%;
         }
 
         .container {
