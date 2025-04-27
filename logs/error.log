@@ -244,3 +244,192 @@
 2025-04-27 03:15:18 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 684
 2025-04-27 03:16:00 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 670
 2025-04-27 03:16:42 Error: [2] Undefined variable $show_registration in C:\xampp\htdocs\Practice\adminlogin.php on line 670
+2025-04-27 13:06:52 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:09:40 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:17:19 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:17:20 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:17:20 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:17:21 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:17:21 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:17:21 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:22:55 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 13:55:28 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 869
+2025-04-27 14:03:43 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 871
+2025-04-27 14:15:40 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:15:41 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:15:43 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:17:23 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:18:56 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:20:11 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:23:11 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:23:13 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:23:13 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:23:13 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:30:22 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 14:50:46 Error: [2] Undefined variable $difficult_exams_result in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 900
+2025-04-27 17:03:20 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 785
+2025-04-27 17:03:21 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 785
+2025-04-27 17:05:53 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 786
+2025-04-27 17:13:46 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 848
+2025-04-27 17:14:45 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 848
+2025-04-27 17:14:45 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 848
+2025-04-27 17:14:45 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 848
+2025-04-27 17:14:46 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 848
+2025-04-27 17:17:45 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:17:45 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:17:45 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:17:45 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:17:45 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:17:45 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:17:45 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:17:45 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:17:45 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:17:45 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:17:45 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:07 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:07 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:08 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:08 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:08 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:08 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:08 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:08 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:08 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:08 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:08 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:08 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:08 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:10 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 984
+2025-04-27 17:18:10 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 990
+2025-04-27 17:18:44 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:18:44 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:18:44 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 991
+2025-04-27 17:18:44 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:18:44 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 991
+2025-04-27 17:18:44 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:18:44 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 991
+2025-04-27 17:18:44 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:18:44 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 991
+2025-04-27 17:18:44 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:18:44 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 991
+2025-04-27 17:19:13 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 848
+2025-04-27 17:20:55 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:29 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:29 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:29 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:33 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:34 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:34 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:54 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:54 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 982
+2025-04-27 17:21:54 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:21:54 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 982
+2025-04-27 17:21:54 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:21:54 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 982
+2025-04-27 17:21:54 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:21:54 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 982
+2025-04-27 17:21:54 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:21:54 Error: [2] Undefined array key "total_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 982
+2025-04-27 17:21:54 Error: [2] Undefined array key "difficult_questions" in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 985
+2025-04-27 17:21:59 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:21:59 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:23:44 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:23:44 Error: [2] Undefined variable $questions in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:44 Error: [2] foreach() argument must be of type array|object, null given in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:47 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:23:47 Error: [2] Undefined variable $questions in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:47 Error: [2] foreach() argument must be of type array|object, null given in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:48 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:23:48 Error: [2] Undefined variable $questions in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:48 Error: [2] foreach() argument must be of type array|object, null given in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:48 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:23:48 Error: [2] Undefined variable $questions in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:48 Error: [2] foreach() argument must be of type array|object, null given in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:48 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:23:48 Error: [2] Undefined variable $questions in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:23:48 Error: [2] foreach() argument must be of type array|object, null given in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 975
+2025-04-27 17:24:16 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:24:23 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:24:23 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 17:24:23 Error: [2] Undefined variable $upcoming_exams in C:\xampp\htdocs\Practice\tryadmindashboard.php on line 845
+2025-04-27 18:07:54 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:07:54 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:07:54 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:07:54 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901

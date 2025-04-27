@@ -165,17 +165,19 @@ try {
 
 // Remove mock data and add real query for difficult exams
 try {
-    $query = "SELECT 
-        e.title,
-        COUNT(q.question_id) as total_questions,
-        SUM(CASE WHEN q.difficulty_level = 'hard' THEN 1 ELSE 0 END) as difficult_questions,
-        (SUM(CASE WHEN q.difficulty_level = 'hard' THEN 1 ELSE 0 END) * 100.0 / COUNT(q.question_id)) as difficulty_percent
-    FROM exams e
-    LEFT JOIN exam_questions eq ON e.exam_id = eq.exam_id
-    LEFT JOIN question_bank q ON eq.question_id = q.question_id
-    GROUP BY e.exam_id, e.title
-    ORDER BY difficulty_percent DESC
-    LIMIT 5";
+    $query = "
+        SELECT 
+            e.title,
+            COUNT(qb.question_id) as total_questions,
+            SUM(CASE WHEN sa.is_correct = 0 THEN 1 ELSE 0 END) as difficult_questions, 
+            (SUM(CASE WHEN sa.is_correct = 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(qb.question_id)) as difficulty_percent
+        FROM exams e
+        LEFT JOIN questions q ON e.exam_id = q.exam_id
+        LEFT JOIN question_bank qb ON q.question_id = qb.question_id
+        LEFT JOIN student_answers sa ON qb.question_id = sa.question_id
+        GROUP BY e.exam_id, e.title
+        ORDER BY difficulty_percent DESC
+        LIMIT 5";
     
     $difficult_exams_result = $conn->query($query);
     if (!$difficult_exams_result) {
@@ -307,8 +309,9 @@ try {
         .dashboard-section {
             background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             overflow: hidden;
+            height: 400px;
         }
         
         .section-header {
@@ -320,6 +323,11 @@ try {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin: auto;
+            width: 70%;
+            height: 15%;
+            border-radius: 50px;
+            box-shadow: 2px 8px 10px rgba(206, 62, 62, 0.1);
         }
         
         .section-header a {
@@ -332,6 +340,50 @@ try {
         
         .section-header a:hover {
             opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .announcement-dashboard-section {
+            background: #75343A;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .announcement-section-header {
+            background: white; /* PUP maroon color */
+            color: #75343A;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            width: 70%;
+            height: 15%;
+            border-radius: 50px;
+            box-shadow: 2px 8px 10px rgba(206, 62, 62, 0.1);
+        }
+        
+        .announcement-section-header a {
+            color: #75343A;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: opacity 0.2s ease;
+        }
+        
+        .announcement-section-header a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .announcement-section-body {
+            padding: 20px;
+            max-height: 350px;
+            overflow-y: auto;
         }
         
         .section-body {
@@ -416,7 +468,130 @@ try {
             color: #888;
             font-style: italic;
         }
+
+        /* List Items */
+        .a-list-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
+        .a-list-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .a-list-item-content {
+            flex: 1;
+        }
+        
+        .a-list-item-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f0f0f0;
+            margin-bottom: 5px;
+        }
+        
+        .a-list-item-subtitle {
+            font-size: 14px;
+            color:rgb(245, 230, 230);
+        }
+
+        .exam-description {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .a-list-item-badge {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+            align-self: flex-start;
+            white-space: nowrap;
+        }
+        
+        /* Container for both analytics sections */
+        .analytics-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* Analytics Cards */
+        .eq-analytics-preview {
+            background: #75343A;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            flex: 1 1 48%; /* This allows each section to take up about 50% of the space */
+            min-width: 450px;
+        }
+        
+        .eq-analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom:e 1px solid #eee;
+        }
+        
+        .eq-analytics-title {
+            font-size: 20px;
+            color: #f0f0f0;
+            font-weight: 600;
+        }
+        
+        .eq-analytics-action {
+            background-color: #75343A;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .eq-analytics-action:hover {
+            background-color: #5a2930;
+        }
+        
+        .eq-analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .eq-metrics-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .eq-metrics-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .eq-metrics-label {
+            font-size: 14px;
+            color: #666;
+        }
+
         /* Analytics Cards */
         .analytics-preview {
             background: white;
@@ -424,6 +599,8 @@ try {
             padding: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             margin-bottom: 30px;
+            flex: 1 1 48%; /* This allows each section to take up about 50% of the space */
+            min-width: 450px;
         }
         
         .analytics-header {
@@ -676,89 +853,16 @@ try {
 
 <div class="main">
     <div class="dashboard-header">
-        <h1 class="dashboard-title">CCIS Qualifying Exam Dashboard</h1>
+        <h1 class="dashboard-title">STREAMS ADMIN DASHBOARD</h1>
         <div class="dashboard-date">
             <?php echo date('l, F j, Y'); ?>
         </div>
     </div>
     
-    <!-- Stats Overview -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-header">
-                <span class="stat-title">Total Students</span>
-                <div class="stat-icon icon-students">
-                    <span class="material-symbols-rounded">group</span>
-                </div>
-            </div>
-            <div class="stat-value"><?php echo $stats['total_students']; ?></div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-header">
-                <span class="stat-title">Qualified Students</span>
-                <div class="stat-icon icon-qualified">
-                    <span class="material-symbols-rounded">verified_user</span>
-                </div>
-            </div>
-            <div class="stat-value"><?php echo $stats['qualified_students']; ?></div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-header">
-                <span class="stat-title">Pending Students</span>
-                <div class="stat-icon icon-pending">
-                    <span class="material-symbols-rounded">pending</span>
-                </div>
-            </div>
-            <div class="stat-value"><?php echo $stats['pending_students']; ?></div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-header">
-                <span class="stat-title">Total Exams</span>
-                <div class="stat-icon icon-exams">
-                    <span class="material-symbols-rounded">quiz</span>
-                </div>
-            </div>
-            <div class="stat-value"><?php echo $stats['total_exams']; ?></div>
-        </div>
-    </div>
+   
     
     <!-- Dashboard Sections -->
     <div class="dashboard-sections">
-        <!-- Recent Student Registrations -->
-        <div class="dashboard-section">
-            <div class="section-header">
-                <span>Recent Student Registrations</span>
-                <a href="Applicants.php">View All</a>
-            </div>
-            <div class="section-body">
-                <?php if ($recent_registrations && $recent_registrations->num_rows > 0): ?>
-                    <?php while ($student = $recent_registrations->fetch_assoc()): ?>
-                        <div class="list-item">
-                            <div class="list-item-content">
-                                <div class="list-item-title">
-                                    <?php echo htmlspecialchars($student['first_name'] . ' ' . $student['last_name']); ?>
-                                </div>
-                                <div class="list-item-subtitle">
-                                    <?php echo htmlspecialchars($student['email']); ?> • 
-                                    <?php echo htmlspecialchars($student['desired_program']); ?> • 
-                                    <?php echo date('M d, Y', strtotime($student['registration_date'])); ?>
-                                </div>
-                            </div>
-                            <span class="list-item-badge <?php echo $student['status'] === 'accepted' ? 'badge-accepted' : 'badge-pending'; ?>">
-                                <?php echo ucfirst($student['status']); ?>
-                            </span>
-                        </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    
-                    <div class="empty-state">No recent registrations found</div>
-                <?php endif; ?>
-            </div>
-        </div>
-        
         <!-- Upcoming Exams -->
         <div class="dashboard-section">
             <div class="section-header">
@@ -797,20 +901,20 @@ try {
         </div>
         
         <!-- Recent Announcements -->
-        <div class="dashboard-section">
-            <div class="section-header">
+        <div class="announcement-dashboard-section">
+            <div class="announcement-section-header">
                 <span>Recent Announcements</span>
                 <a href="announcement.php">View All</a>
             </div>
-            <div class="section-body">
+            <div class="announcement-section-body">
                 <?php if ($recent_announcements && $recent_announcements->num_rows > 0): ?>
                     <?php while ($announcement = $recent_announcements->fetch_assoc()): ?>
-                        <div class="list-item">
-                            <div class="list-item-content">
-                                <div class="list-item-title">
+                        <div class="a-list-item">
+                            <div class="a-list-item-content">
+                                <div class="a-list-item-title">
                                     <?php echo htmlspecialchars($announcement['title']); ?>
                                 </div>
-                                <div class="list-item-subtitle">
+                                <div class="a-list-item-subtitle">
                                     <?php 
                                         $content = strip_tags($announcement['content']);
                                         echo strlen($content) > 100 ? substr($content, 0, 100) . '...' : $content;
@@ -819,7 +923,7 @@ try {
                                     <small>Posted: <?php echo date('M d, Y', strtotime($announcement['created_at'])); ?></small>
                                 </div>
                             </div>
-                            <span class="list-item-badge <?php echo $announcement['status'] === 'active' ? 'badge-accepted' : 'badge-pending'; ?>">
+                            <span class="a-list-item-badge <?php echo $announcement['status'] === 'active' ? 'badge-accepted' : 'badge-pending'; ?>">
                                 <?php echo ucfirst($announcement['status']); ?>
                             </span>
                         </div>
@@ -829,45 +933,49 @@ try {
                 <?php endif; ?>
             </div>
         </div>
+
+        <div class="dashboard-section">
+
+        </div>
     </div>
     
     <!-- Analytics Preview Section -->
     <h2 class="section-heading">Analytics Overview</h2>
-    
+    <div class="analytics-container">
     <!-- Exam Results Analytics Preview -->
-    <div class="analytics-preview">
-        <div class="analytics-header">
-            <h3 class="analytics-title">Exam Results</h3>
-            <a href="analytics.php" class="analytics-action">
+    <div class="eq-analytics-preview">
+        <div class="eq-analytics-header">
+            <h3 class="eq-analytics-title">Exam Results</h3>
+            <a href="analytics.php" class="eq-analytics-action">
                 Full Analysis <span class="material-symbols-rounded">analytics</span>
             </a>
         </div>
         
-        <div class="analytics-grid">
-            <div class="metrics-card">
-                <div class="metrics-value"><?php echo $stats['total_attempts']; ?></div>
-                <div class="metrics-label">Total Attempts</div>
+        <div class="eq-analytics-grid">
+            <div class="eq-metrics-card">
+                <div class="eq-metrics-value"><?php echo $stats['total_attempts']; ?></div>
+                <div class="eq-metrics-label">Total Attempts</div>
             </div>
             
-            <div class="metrics-card">
-                <div class="metrics-value"><?php echo $stats['passed_count']; ?></div>
-                <div class="metrics-label">Passed</div>
-                <div class="progress-bar">
-                    <div class="progress progress-pass" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['passed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+            <div class="eq-metrics-card">
+                <div class="eq-metrics-value"><?php echo $stats['passed_count']; ?></div>
+                <div class="eq-metrics-label">Passed</div>
+                <div class="eq-progress-bar">
+                    <div class="eq-progress progress-pass" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['passed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
                 </div>
             </div>
             
-            <div class="metrics-card">
-                <div class="metrics-value"><?php echo $stats['failed_count']; ?></div>
-                <div class="metrics-label">Failed</div>
-                <div class="progress-bar">
-                    <div class="progress progress-fail" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['failed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+            <div class="eq-metrics-card">
+                <div class="eq-metrics-value"><?php echo $stats['failed_count']; ?></div>
+                <div class="eq-metrics-label">Failed</div>
+                <div class="eq-progress-bar">
+                    <div class="eq-progress progress-fail" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['failed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
                 </div>
             </div>
             
-            <div class="metrics-card">
-                <div class="metrics-value"><?php echo $stats['pass_rate']; ?>%</div>
-                <div class="metrics-label">Pass Rate</div>
+            <div class="eq-metrics-card">
+                <div class="eq-metrics-value"><?php echo $stats['pass_rate']; ?>%</div>
+                <div class="eq-metrics-label">Pass Rate</div>
             </div>
         </div>
     </div>
@@ -896,7 +1004,7 @@ try {
             <?php if ($difficult_exams_result && $difficult_exams_result->num_rows > 0): ?>
                 <?php while ($exam = $difficult_exams_result->fetch_assoc()): 
                     $difficulty_class = '';
-                    $difficulty_percent = round($exam['difficulty_percent']);
+                    $difficulty_percent = round($exam['difficulty_percent'] ?? 0);
                     
                     if ($difficulty_percent < 30) {
                         $difficulty_class = 'difficulty-easy';
@@ -934,6 +1042,7 @@ try {
             <?php endif; ?>
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 </div>
