@@ -565,8 +565,9 @@ td, th {
                         <td><?php echo date('M d, Y h:i A', strtotime($row['registration_date'])); ?></td>
                         <td>
                             <select class="status status-<?php echo strtolower($row['status']); ?>" 
-                                    onchange="updateStatus(this.value, '<?php echo $row['reference_id']; ?>')">
-                                <option value="pending" <?php echo $row['status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
+                                    onchange="confirmStatusChange(this, '<?php echo $row['reference_id']; ?>')"
+                                    <?php echo ($row['status'] !== 'pending') ? 'disabled' : ''; ?>>
+                                <option value="pending" <?php echo $row['status'] == 'pending' ? 'selected' : ''; ?> disabled>Pending</option>
                                 <option value="accepted" <?php echo $row['status'] == 'accepted' ? 'selected' : ''; ?>>Accepted</option>
                                 <option value="rejected" <?php echo $row['status'] == 'rejected' ? 'selected' : ''; ?>>Rejected</option>
                             </select>
@@ -683,6 +684,7 @@ td, th {
         <h5 class="text-primary">Status Update</h5>
         <div class="row">
             <div class="col-md-12">
+                <p id="statusMessage"></p>
                 <div id="reasonField" style="display: none; margin-bottom: 20px;">
                     <label for="rejectionReason" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500;">Reason for Rejection:</label>
                     <textarea id="rejectionReason" 
@@ -691,7 +693,6 @@ td, th {
                              placeholder="Please provide a reason for rejecting this application..."></textarea>
                     <small style="color: #666; margin-top: 5px; display: block;">This reason will be visible to the student.</small>
                 </div>
-                <p id="statusMessage"></p>
             </div>
         </div>
         <div class="row">
@@ -702,6 +703,7 @@ td, th {
         </div>
     </div>
 </div>
+
 
 <script src="assets/js/side.js"></script>
 <script>
@@ -762,39 +764,64 @@ window.onclick = function (event) {
       }
   }
 
-function updateStatus(status, referenceId) {
+// Function to open the status update modal and display the appropriate message
+function confirmStatusChange(selectElement, referenceId) {
+    currentStatus = selectElement.value;
     currentReferenceId = referenceId;
-    currentStatus = status;
-    
-    const reasonField = document.getElementById('reasonField');
-    const statusMessage = document.getElementById('statusMessage');
-    
-    // Show/hide reason field based on status
-    reasonField.style.display = status === 'rejected' ? 'block' : 'none';
-    statusMessage.textContent = `Are you sure you want to mark this student as ${status}?`;
-    
+
+    // Show the confirmation message based on the status
+    let confirmationMessage = `Are you sure you want to mark this student as ${currentStatus.charAt(0).toUpperCase() + currentStatus.slice(1)}?`;
+    document.getElementById('statusMessage').textContent = confirmationMessage;
+
+    // Show the rejection reason field only if the status is "Rejected"
+    if (currentStatus === 'rejected') {
+        document.getElementById('reasonField').style.display = 'block';
+    } else {
+        document.getElementById('reasonField').style.display = 'none';
+    }
+
     // Show the modal
-    document.getElementById("statusModal").classList.add("show");
+    document.getElementById('statusModal').classList.add('show');
 }
 
+// Function to close the modal
+function closeStatusModal() {
+    document.getElementById('statusModal').classList.remove('show');
+    document.getElementById('rejectionReason').value = ''; // Clear rejection reason
+
+     // Reset status to "Pending" when canceling the modal
+     if (currentStatus !== 'confirmed') {
+        const selectElement = document.querySelector(`select[onchange*="${currentReferenceId}"]`);
+        if (selectElement) {
+            selectElement.value = 'pending'; // Reset the dropdown to "Pending"
+            selectElement.className = "status status-pending";
+        }
+    }
+}
+
+// Function to handle the status update when confirmed
 function confirmStatusUpdate() {
-    const reason = document.getElementById('rejectionReason').value;
-    
-    // Validate reason if status is rejected
-    if (currentStatus === 'rejected' && !reason.trim()) {
-        document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">Please provide a reason for rejection.</span>';
-        return;
-    }
-    
-    // Prepare the data
-    const formData = new FormData();
-    formData.append('status', currentStatus);
-    formData.append('reference_id', currentReferenceId);
+    let rejectionReason = '';
+
+    // If the status is "rejected", ensure a reason is provided
     if (currentStatus === 'rejected') {
-        formData.append('rejection_reason', reason);
+        rejectionReason = document.getElementById('rejectionReason').value;
+        if (!rejectionReason.trim()) {
+            alert('Please provide a reason for rejection.');
+            return;
+        }
     }
-    
-    // Send the update request
+
+    // Prepare the data to be sent to the backend
+    const formData = new FormData();
+    formData.append('reference_id', currentReferenceId);
+    formData.append('status', currentStatus);
+
+    if (currentStatus === 'rejected') {
+        formData.append('rejection_reason', rejectionReason);
+    }
+
+    // Send the update request via fetch
     fetch('update_status.php', {
         method: 'POST',
         body: formData
@@ -802,42 +829,34 @@ function confirmStatusUpdate() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Update the select element's class
-            const select = document.querySelector(`select[onchange*="${currentReferenceId}"]`);
-            select.className = `status status-${currentStatus}`;
-            select.value = currentStatus;
-            
-            // Show success message in the status message element
-            document.getElementById('statusMessage').innerHTML = '<span style="color: #28a745;">Status updated successfully!</span>';
-            setTimeout(() => {
-                closeStatusModal();
-                // Optionally refresh the page or update the UI
-                location.reload();
-            }, 1500);
+            alert('Status updated successfully!');
+            location.reload();  // Refresh the page to reflect the updated status
         } else {
-            document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">Failed to update status: ' + (data.message || 'Unknown error') + '</span>';
+            alert(`Error: ${data.message}`);
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">An error occurred while updating the status: ' + error.message + '</span>';
+        alert('An error occurred while updating the status.');
     });
+
+    // Close the modal after the update
+    closeStatusModal();
 }
 
-function closeStatusModal() {
-    document.getElementById("statusModal").classList.remove("show");
-    // Reset fields
-    document.getElementById('rejectionReason').value = '';
-    document.getElementById('statusMessage').textContent = '';
-    currentReferenceId = '';
-    currentStatus = '';
-}
+// Function to close the modal when clicking outside the modal
+window.onclick = function(event) {
+    const modal = document.getElementById("statusModal");
+    if (event.target === modal) {
+        closeStatusModal();
+    }
+};
 
-// Add event listener for the status modal close button
+// Add event listener for the modal close button
 document.addEventListener('DOMContentLoaded', function() {
-    const statusModalCloseBtn = document.querySelector('#statusModal .close');
-    if (statusModalCloseBtn) {
-        statusModalCloseBtn.addEventListener('click', closeStatusModal);
+    const closeModalBtn = document.querySelector('#statusModal .close');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeStatusModal);
     }
 });
 

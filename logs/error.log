@@ -433,3 +433,7 @@
 2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
 2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
 2025-04-27 18:09:24 Error: [8192] round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\Practice\dashboard.php on line 901
+2025-04-27 18:53:37 Error: [2] Undefined variable $result in C:\xampp\htdocs\Practice\Applicants.php on line 583
+2025-04-27 18:53:37 Error: [2] Attempt to read property "num_rows" on null in C:\xampp\htdocs\Practice\Applicants.php on line 583
+2025-04-27 18:53:37 Error: [2] Undefined variable $records_per_page in C:\xampp\htdocs\Practice\Applicants.php on line 633
+2025-04-27 18:53:37 Error: [2] Undefined variable $total_records in C:\xampp\htdocs\Practice\Applicants.php on line 633

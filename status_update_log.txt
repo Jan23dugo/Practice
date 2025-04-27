@@ -1,31 +1,31 @@
-Request received: 2025-04-16 23:50:50
+Request received: 2025-04-27 18:56:38
 POST data: Array
 (
-    [status] => accepted
-    [reference_id] => CCIS-2025-10384
+    [status] => 
+    [reference_id] => 
 )
 
 Session data: Array
 (
     [admin_id] => 1
-    [email] => jdugo23@gmail.com
+    [email] => pupccisfaculty@gmail.com
     [is_admin] => 1
-    [stud_id] => 11
-    [firstname] => fsadfsd
-    [lastname] => asfsadf
-    [debug_output] => All subjects meet eligibility criteria<br></div>
-    [student_id] => 113
-    [matches] => Array
-        (
-            [0] => ✓ Matched: Computer Programming 2 (3 units) with Computer Programming 2 (COMP 20033)
-            [1] => ✓ Matched: Discrete Structures 1 (3 units) with Discrete Structures 1 (COMP 20043)
-            [2] => ✓ Matched: Civic Welfare Training Service 2 (3 units) with Civic Welfare Training Service 2 (CWTS 10023)
-            [3] => ✓ Matched: Readings in Philippine History (3 units) with Readings in Philippine History (GEED 10033)
-            [4] => ✓ Matched: Pagsasalin sa Kontekstong Filipino (3 units) with Pagsasalin sa Kontekstong Filipino (GEED 10113)
-            [5] => ✓ Matched: Politics, Governance and Citizenship (3 units) with Politics, Governance and Citizenship (GEED 20023)
-            [6] => ✓ Matched: Rhythmic Activities (2 units) with Rhythmic Activities (PHED 10022)
-        )
+)
 
+Database connection closed
+Request received: 2025-04-27 19:08:37
+POST data: Array
+(
+    [reference_id] => CCIS-2025-95282
+    [status] => rejected
+    [rejection_reason] => oh no
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
 )
 
 Database connection closed

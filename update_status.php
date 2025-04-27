@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 0); // Don't display errors to the browser
 
 // Log the request for debugging
-$log_file = fopen("status_update_log.txt", "w");
+$log_file = fopen("status_update_log.txt", "a"); // Changed to 'a' to append to log
 fwrite($log_file, "Request received: " . date("Y-m-d H:i:s") . "\n");
 fwrite($log_file, "POST data: " . print_r($_POST, true) . "\n");
 fwrite($log_file, "Session data: " . print_r($_SESSION, true) . "\n");
@@ -38,6 +38,9 @@ try {
 
     // Update student status
     $stmt = $conn->prepare("UPDATE register_studentsqe SET status = ? WHERE reference_id = ?");
+    if (!$stmt) {
+        throw new Exception("Failed to prepare the status update query: " . $conn->error);
+    }
     $stmt->bind_param("ss", $status, $reference_id);
     $stmt->execute();
 
@@ -47,11 +50,17 @@ try {
         
         // First, delete any existing rejection reason for this reference_id
         $stmt = $conn->prepare("DELETE FROM rejection_reasons WHERE reference_id = ?");
+        if (!$stmt) {
+            throw new Exception("Failed to prepare the delete query: " . $conn->error);
+        }
         $stmt->bind_param("s", $reference_id);
         $stmt->execute();
         
         // Insert new rejection reason
         $stmt = $conn->prepare("INSERT INTO rejection_reasons (reference_id, reason) VALUES (?, ?)");
+        if (!$stmt) {
+            throw new Exception("Failed to prepare the insert query: " . $conn->error);
+        }
         $stmt->bind_param("ss", $reference_id, $reason);
         $stmt->execute();
     }

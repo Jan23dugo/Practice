@@ -384,6 +384,7 @@ try {
             padding: 20px;
             max-height: 350px;
             overflow-y: auto;
+            
         }
         
         .section-body {
@@ -476,11 +477,12 @@ try {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .a-list-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+            border-bottom: 1px solid rgb(194, 157, 157);
+            padding-bottom: 10px;
         }
         
         .a-list-item-content {
