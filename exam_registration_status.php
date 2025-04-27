@@ -192,7 +192,6 @@ $activePage = 'registration_status';
 
         .sidebar-menu {
             list-style: none;
-            padding: 0 10px;
         }
 
         .sidebar-menu li {
@@ -208,7 +207,6 @@ $activePage = 'registration_status';
             color: var(--text-dark);
             transition: all 0.3s;
             font-weight: 500;
-            border-radius: 8px;
         }
 
         .sidebar-menu a:hover {
@@ -219,6 +217,10 @@ $activePage = 'registration_status';
         .sidebar-menu a.active {
             background-color: var(--primary-light);
             color: var(--text-light);
+        }
+
+        .sidebar-menu .material-symbols-rounded {
+            font-size: 20px;
         }
 
         .nav-links {
@@ -754,7 +756,7 @@ $activePage = 'registration_status';
                 </li>
                
                 <li>
-                    <a href="exam_registration_status.php" class="<?php echo $activePage == 'registration' ? 'active' : ''; ?>">
+                    <a href="exam_registration_status.php" class="<?php echo $activePage == 'registration_status' ? 'active' : ''; ?>">
                         <span class="material-symbols-rounded">app_registration</span>
                         Exam Registration Status
                     </a>

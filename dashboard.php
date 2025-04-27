@@ -318,16 +318,16 @@ try {
             background: #75343A; /* PUP maroon color */
             color: white;
             padding: 15px 20px;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 24px;
+            font-weight: 800;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: auto;
-            width: 70%;
+            width: 90%;
             height: 15%;
             border-radius: 50px;
-            box-shadow: 2px 8px 10px rgba(206, 62, 62, 0.1);
+            box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.1);
         }
         
         .section-header a {
@@ -355,16 +355,16 @@ try {
             background: white; /* PUP maroon color */
             color: #75343A;
             padding: 15px 20px;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 24px;
+            font-weight: 800;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: auto;
-            width: 70%;
+            width: 90%;
             height: 15%;
             border-radius: 50px;
-            box-shadow: 2px 8px 10px rgba(206, 62, 62, 0.1);
+            box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.1);
         }
         
         .announcement-section-header a {
@@ -529,7 +529,7 @@ try {
             background: #75343A;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             flex: 1 1 48%; /* This allows each section to take up about 50% of the space */
             min-width: 450px;
@@ -545,9 +545,9 @@ try {
         }
         
         .eq-analytics-title {
-            font-size: 20px;
+            font-size: 24px;
             color: #f0f0f0;
-            font-weight: 600;
+            font-weight: 800;
         }
         
         .eq-analytics-action {
@@ -599,7 +599,7 @@ try {
             background: white;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             flex: 1 1 48%; /* This allows each section to take up about 50% of the space */
             min-width: 450px;
@@ -615,9 +615,9 @@ try {
         }
         
         .analytics-title {
-            font-size: 20px;
+            font-size: 24px;
             color: #75343A;
-            font-weight: 600;
+            font-weight: 800;
         }
         
         .analytics-action {
@@ -868,7 +868,7 @@ try {
         <!-- Upcoming Exams -->
         <div class="dashboard-section">
             <div class="section-header">
-                <span>Upcoming Exams</span>
+                <span>UPCOMING EXAMINATIONS</span>
                 <a href="exam.php">View All</a>
             </div>
             <div class="section-body">
@@ -905,7 +905,7 @@ try {
         <!-- Recent Announcements -->
         <div class="announcement-dashboard-section">
             <div class="announcement-section-header">
-                <span>Recent Announcements</span>
+                <span>RECENT ANNOUNCEMENTS</span>
                 <a href="announcement.php">View All</a>
             </div>
             <div class="announcement-section-body">
@@ -937,17 +937,17 @@ try {
         </div>
 
         <div class="dashboard-section">
-
+            <div class="section-header">
+                <span>NOTIFICATIONS</span>
+            </div>
         </div>
     </div>
     
-    <!-- Analytics Preview Section -->
-    <h2 class="section-heading">Analytics Overview</h2>
     <div class="analytics-container">
     <!-- Exam Results Analytics Preview -->
     <div class="eq-analytics-preview">
         <div class="eq-analytics-header">
-            <h3 class="eq-analytics-title">Exam Results</h3>
+            <h3 class="eq-analytics-title">EXAMINATION RESULTS</h3>
             <a href="analytics.php" class="eq-analytics-action">
                 Full Analysis <span class="material-symbols-rounded">analytics</span>
             </a>
@@ -985,7 +985,7 @@ try {
     <!-- Item Analysis Preview -->
     <div class="analytics-preview">
         <div class="analytics-header">
-            <h3 class="analytics-title">Item Analysis Preview</h3>
+            <h3 class="analytics-title">ITEM ANALYSIS PREVIEW</h3>
             <a href="analytics.php" class="analytics-action">
                 Full Item Analysis <span class="material-symbols-rounded">lab_profile</span>
             </a>

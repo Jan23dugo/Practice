@@ -1,7 +1,5 @@
 <?php
 
-include('config/config.php');
-
 // Function to get exam details
 function getExam($exam_id) {
     global $conn;
