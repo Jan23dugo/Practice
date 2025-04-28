@@ -457,6 +457,84 @@ tbody tr:hover {
     border-bottom: 2px solid #f0f0f0;
 }
 
+.pdf-btn {
+    background: #75343A;  /* Darker blue */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-left: 850px;
+    height: 35px;
+}
+
+.pdf-btn:hover {
+    background:rgb(255, 229, 231);
+    color: #75343A;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.csv-btn {
+    background: #006400;  /* Darker blue */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 35px;
+}
+
+.csv-btn:hover {
+    background:rgb(193, 228, 193);
+    color: #006400;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.sub-btn {
+    background: #75343A;  /* Darker blue */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-left: 770px;
+    height: 35px;
+}
+
+.sub-btn:hover {
+    background:rgb(255, 229, 231);
+    color: #75343A;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Checkbox Styling */
+.checkbox-label {
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.checkbox-label input {
+    margin-right: 8px;
+}
+
+.col-md-12 {
+    margin-left: 50px;
+}
+
     </style>
 </head>
 <body>
@@ -474,6 +552,9 @@ tbody tr:hover {
                id="searchInput" 
                placeholder="Search by name or reference ID"
                oninput="applyFilters()">
+               <!-- These buttons will now trigger the modal to select filters -->
+                <button class="pdf-btn" id="downloadPdfBtn" onclick="openDownloadModal('pdf')">Download PDF</button>
+                <button class="csv-btn" id="downloadCsvBtn" onclick="openDownloadModal('csv')">Download CSV</button>
     </div>
 
     <table>
@@ -621,8 +702,119 @@ tbody tr:hover {
     </div>
 </div>
 
+<!-- Modal for selecting student type before download -->
+<div id="downloadModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeDownloadModal()">&times;</span>
+        <h5 class="text-primary">Select Student Type for Download</h5>
+        
+        <form id="downloadForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="shiftee" name="student_type" value="shiftee"> Shiftees
+                    </label><br>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="transferee" name="student_type" value="transferee"> Transferees
+                    </label><br>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="ladderized" name="student_type" value="ladderized"> Ladderized
+                    </label><br>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="all" name="student_type" value="all" checked> All Student Types
+                    </label><br><br>
+                    <button type="button" class="sub-btn" id="downloadPdfBtnModal" onclick="submitDownload('pdf')">Download PDF</button>
+                    <button type="button" class="sub-btn" id="downloadCsvBtnModal" onclick="submitDownload('csv')">Download CSV</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <script src="assets/js/side.js"></script>
 <script>
+let downloadType = ''; // Tracks which type (PDF or CSV) user wants
+
+// Function to open the modal when user clicks download button
+function openDownloadModal(type) {
+    downloadType = type; // Store whether it's PDF or CSV
+
+    // Show the modal
+    document.getElementById('downloadModal').classList.add('show'); 
+    
+    // Hide both buttons initially
+    document.getElementById('downloadPdfBtnModal').style.display = 'none';
+    document.getElementById('downloadCsvBtnModal').style.display = 'none';
+
+    // Show the appropriate button based on user selection (PDF or CSV)
+    if (type === 'pdf') {
+        document.getElementById('downloadPdfBtnModal').style.display = 'inline-block'; // Show Download PDF
+    } else if (type === 'csv') {
+        document.getElementById('downloadCsvBtnModal').style.display = 'inline-block'; // Show Download CSV
+    }
+}
+
+// Function to close the download modal
+function closeDownloadModal() {
+    document.getElementById('downloadModal').classList.remove('show'); // Hide the modal
+}
+
+
+// Function to handle form submission and pass selected student types
+function submitDownload(type) {
+    const form = document.getElementById('downloadForm');
+    let selectedTypes = [];
+
+    // Get selected student types
+    if (document.getElementById('shiftee').checked) selectedTypes.push('shiftee');
+    if (document.getElementById('transferee').checked) selectedTypes.push('transferee');
+    if (document.getElementById('ladderized').checked) selectedTypes.push('ladderized');
+    if (document.getElementById('all').checked) selectedTypes.push('all');
+
+    let url = '';
+    if (type === 'pdf') {
+        url = `generate_pdf.php?types=${selectedTypes.join(',')}`; // Create URL for PDF generation
+    } else if (type === 'csv') {
+        url = `generate_csv.php?types=${selectedTypes.join(',')}`; // Create URL for CSV generation
+    }
+
+    // Redirect to the respective file generation page with the types as parameters
+    window.location.href = url; // Redirect to the URL, triggering the file generation
+
+    closeDownloadModal(); // Close the modal after redirection
+}
+
+// Listen for changes on the student type checkboxes
+document.getElementById('shiftee').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('all').checked = false; // Uncheck "All Student Types" if a specific type is checked
+    }
+});
+
+document.getElementById('transferee').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('all').checked = false; // Uncheck "All Student Types" if a specific type is checked
+    }
+});
+
+document.getElementById('ladderized').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('all').checked = false; // Uncheck "All Student Types" if a specific type is checked
+    }
+});
+
+// Listen for the "All Student Types" checkbox to be unchecked, which will allow any specific type to be checked again
+document.getElementById('all').addEventListener('change', function() {
+    if (this.checked) {
+        // If "All Student Types" is checked, ensure other specific checkboxes are unchecked
+        document.getElementById('shiftee').checked = false;
+        document.getElementById('transferee').checked = false;
+        document.getElementById('ladderized').checked = false;
+    }
+});
+
+
 function openModal(details) {
     const modal = document.getElementById("infoModal");
 

@@ -481,3 +481,11 @@
 2025-04-27 20:33:26 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
 2025-04-27 20:33:26 Error: [2] Undefined array key "difficulty_level" in C:\xampp\htdocs\Practice\analytics.php on line 227
 2025-04-27 20:33:26 Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\Practice\analytics.php on line 227
+2025-04-28 10:25:58 Error: [2] Undefined array key "reference_id" in C:\xampp\htdocs\Practice\generate_pdf.php on line 40
+2025-04-28 10:25:58 Error: [2] Undefined array key "first_name" in C:\xampp\htdocs\Practice\generate_pdf.php on line 41
+2025-04-28 10:25:58 Error: [2] Undefined array key "last_name" in C:\xampp\htdocs\Practice\generate_pdf.php on line 41
+2025-04-28 10:25:58 Error: [2] Undefined array key "student_type" in C:\xampp\htdocs\Practice\generate_pdf.php on line 42
+2025-04-28 10:25:58 Error: [2] Undefined array key "email" in C:\xampp\htdocs\Practice\generate_pdf.php on line 43
+2025-04-28 10:25:58 Error: [2] Undefined array key "registration_date" in C:\xampp\htdocs\Practice\generate_pdf.php on line 44
+2025-04-28 10:25:58 Error: [8192] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\xampp\htdocs\Practice\generate_pdf.php on line 44
+2025-04-28 12:01:35 Error: [2] Undefined variable $typeString in C:\xampp\htdocs\Practice\generate_pdf.php on line 28

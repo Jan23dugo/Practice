@@ -67,3 +67,18 @@ Session data: Array
 )
 
 Database connection closed
+Request received: 2025-04-28 10:24:26
+POST data: Array
+(
+    [reference_id] => CCIS-2025-10384
+    [status] => accepted
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
