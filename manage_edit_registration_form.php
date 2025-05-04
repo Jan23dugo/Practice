@@ -524,9 +524,6 @@ if ($type && isset($tableMap[$type])) {
         <div class="main">
             <div class="edit-header">
                 <h1 class="edit-title">Manage Exam Registration Form</h1>
-                <div class="edit-date">
-                    <?php echo date('l, F j, Y'); ?>
-                </div>
             </div>
 
             <?php if (!empty($error_message)): ?>

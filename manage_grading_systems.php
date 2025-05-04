@@ -141,35 +141,24 @@ foreach ($grading_systems as $system) {
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
-        .container {
-            display: flex;
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        .main {
-            flex: 1;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-
         .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
         }
 
         .page-title {
-            font-size: 24px;
+            font-size: 36px;
             color: #75343A;
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .page-title i {
-            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
         }
 
         .add-button {
@@ -1086,7 +1075,6 @@ foreach ($grading_systems as $system) {
     <div class="main">
         <div class="page-header">
             <h1 class="page-title">
-                <i class="material-symbols-rounded">grade</i>
                 Manage Grading Systems
             </h1>
             <button type="button" class="add-button" onclick="openModal('addModal')">

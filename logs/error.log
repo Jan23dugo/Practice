@@ -722,3 +722,5 @@
 2025-05-03 18:08:29 Error: [2] Undefined variable $editRow in C:\xampp\htdocs\Practice\manage_edit_registration_form.php on line 348
 2025-05-03 20:50:59 Error: [2] Undefined variable $codeLabel in C:\xampp\htdocs\Practice\manage_edit_registration_form.php on line 456
 2025-05-03 20:50:59 Error: [2] Undefined variable $nameLabel in C:\xampp\htdocs\Practice\manage_edit_registration_form.php on line 458
+2025-05-04 01:30:21 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\Practice\manage_edit_registration_form.php on line 10
+2025-05-04 01:30:21 Error: [8192] Constant FILTER_SANITIZE_STRING is deprecated in C:\xampp\htdocs\Practice\manage_edit_registration_form.php on line 11
