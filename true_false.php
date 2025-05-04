@@ -71,49 +71,6 @@
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
-.toolbar {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    gap: 8px;
-    padding-right: 16px;
-    border-right: 1px solid #e0e0e0;
-    margin-right: 16px;
-}
-
-.toolbar button {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 6px 12px;
-    color: #444;
-    transition: all 0.2s ease;
-    min-width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.toolbar button:hover {
-    background: #f5f0ff;
-    border-color: #75343A;
-    color: #75343A;
-}
-
-.toolbar button:active {
-    background: #75343A;
-    color: white;
-    border-color: #75343A;
-}
-
-.toolbar button.active {
-    background: #75343A;
-    color: white;
-    border-color: #75343A;
-}
-
 .save-btn {
     background: #75343A;
     color: white;
@@ -125,6 +82,7 @@
     font-weight: 500;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(142, 104, 204, 0.3);
+    margin-left: auto;
 }
 
 .save-btn:hover {
@@ -156,34 +114,36 @@
     padding-bottom: 12px;
 }
 
-/* Quill editor styles */
+/* Quill editor container styles */
 #editor-container {
     height: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
 }
 
-#editor-container .ql-editor {
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    background-color: white;
-    min-height: 100px;
-}
-
+/* Custom toolbar styles */
 .ql-toolbar.ql-snow {
-    border-radius: 8px 8px 0 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     border: 1px solid #e0e0e0;
     border-bottom: none;
+    background-color: #f9f9f9;
 }
 
 .ql-container.ql-snow {
-    border-radius: 0 0 8px 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     border: 1px solid #e0e0e0;
+    border-top: none;
     font-family: Arial, sans-serif;
+    font-size: 15px;
 }
 
-/* Hide Quill's own toolbar since we're using our custom one */
-.ql-toolbar.ql-snow {
-    display: none;
+/* Quill focus styles */
+.ql-container.ql-snow:focus-within {
+    border-color: #75343A;
+    box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
 /* Hidden question textarea (used for form submission) */
@@ -249,29 +209,19 @@ label {
     <div class="question-builder">
     <!-- Header with back button, question type, and save button -->
     <div class="question-header">
-    <a href="quiz_editor.php?exam_id=<?php echo isset($_GET['exam_id']) ? $_GET['exam_id'] : ''; ?>">
-        <button class="back-btn"><i class="material-symbols-rounded">arrow_back</i></button>
-    </a>
-    <select class="question-type" onchange="handleQuestionTypeChange(this.value)">
-        <option value="multiple-choice">Multiple Choice</option>
-        <option value="true-false" selected>True/False</option>
-        <option value="programming">Programming</option>
-    </select>
-    <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
-    
-    <div class="toolbar">
-        <button class="bold-btn" title="Bold"><b>B</b></button>
-        <button class="italic-btn" title="Italic"><i>I</i></button>
-        <button class="underline-btn" title="Underline"><u>U</u></button>
-        <button class="strikethrough-btn" title="Strikethrough"><s>S</s></button>
-        <button class="superscript-btn" title="Superscript">x¹</button>
-        <button class="subscript-btn" title="Subscript">x₂</button>
+        <a href="quiz_editor.php?exam_id=<?php echo isset($_GET['exam_id']) ? $_GET['exam_id'] : ''; ?>">
+            <button class="back-btn"><i class="material-symbols-rounded">arrow_back</i></button>
+        </a>
+        <select class="question-type" onchange="handleQuestionTypeChange(this.value)">
+            <option value="multiple-choice">Multiple Choice</option>
+            <option value="true-false" selected>True/False</option>
+            <option value="programming">Programming</option>
+        </select>
+        <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
+        <button type="button" class="save-btn" id="saveQuestionBtn">Save question</button>
     </div>
 
-    <button type="button" class="save-btn" id="saveQuestionBtn">Save question</button>
-</div>
-
-       <div class="question-container-wrapper">
+    <div class="question-container-wrapper">
         <h2>Add a New True/False Question</h2>
         <form id="questionForm" action="save_question.php" method="POST">
             <input type="hidden" name="question_type" value="true-false">
@@ -281,7 +231,9 @@ label {
             <input type="hidden" name="points" id="points_input" value="1">
             
             <label for="editor-container">Question Statement:</label>
+            <!-- Quill editor container -->
             <div id="editor-container"></div>
+            <!-- Hidden textarea to store Quill content -->
             <textarea id="question" name="question" required></textarea>
 
             <label>Correct Answer:</label>
@@ -303,13 +255,21 @@ label {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Initialize Quill
+    // Initialize Quill with full toolbar like in multiple_choice.php
     const quill = new Quill('#editor-container', {
-        theme: 'snow',
         modules: {
-            toolbar: false // We're using our custom toolbar
+            toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{ 'header': 1 }, { 'header': 2 }],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'script': 'sub' }, { 'script': 'super' }],
+                [{ 'indent': '-1' }, { 'indent': '+1' }],
+                ['clean']
+            ]
         },
-        placeholder: 'Type your question here...'
+        placeholder: 'Type your question here...',
+        theme: 'snow'
     });
     
     // Store quill instance for global access
@@ -381,62 +341,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = url;
     };
     
-    // Function to apply formatting using Quill
-    function applyQuillFormatting(format) {
-        const quill = window.questionEditor;
-        if (quill) {
-            const selection = quill.getSelection();
-            if (selection) {
-                // Apply formatting to selection
-                switch(format) {
-                    case 'bold':
-                        quill.format('bold', !quill.getFormat(selection).bold);
-                        break;
-                    case 'italic':
-                        quill.format('italic', !quill.getFormat(selection).italic);
-                        break;
-                    case 'underline':
-                        quill.format('underline', !quill.getFormat(selection).underline);
-                        break;
-                    case 'strike':
-                        quill.format('strike', !quill.getFormat(selection).strike);
-                        break;
-                    case 'script':
-                        // Toggle between superscript and subscript
-                        const currentScript = quill.getFormat(selection).script;
-                        if (currentScript === 'super') {
-                            quill.format('script', false);
-                        } else {
-                            quill.format('script', 'super');
-                        }
-                        break;
-                    case 'sub':
-                        // Toggle between superscript and subscript
-                        const currentSub = quill.getFormat(selection).script;
-                        if (currentSub === 'sub') {
-                            quill.format('script', false);
-                        } else {
-                            quill.format('script', 'sub');
-                        }
-                        break;
-                }
-            } else {
-                // Focus the editor if no selection
-                quill.focus();
-            }
-        } else {
-            alert("Editor is still initializing. Please try again in a moment.");
-        }
-    }
-    
-    // Add event listeners to toolbar buttons
-    document.querySelector(".bold-btn").addEventListener("click", () => applyQuillFormatting('bold'));
-    document.querySelector(".italic-btn").addEventListener("click", () => applyQuillFormatting('italic'));
-    document.querySelector(".underline-btn").addEventListener("click", () => applyQuillFormatting('underline'));
-    document.querySelector(".strikethrough-btn").addEventListener("click", () => applyQuillFormatting('strike'));
-    document.querySelector(".superscript-btn").addEventListener("click", () => applyQuillFormatting('script'));
-    document.querySelector(".subscript-btn").addEventListener("click", () => applyQuillFormatting('sub'));
-    
     // Function to load question data for editing
     function loadQuestionData(questionId) {
         fetch(`get_question.php?question_id=${questionId}`)
@@ -501,14 +405,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log('Edit mode detected, question ID:', questionId);
         loadQuestionData(questionId);
     }
-
-    // Toggle active class for toolbar buttons for visual feedback
-    document.querySelectorAll('.toolbar button').forEach(button => {
-        button.addEventListener('click', function() {
-            // Toggle active class
-            this.classList.toggle('active');
-        });
-    });
 });
 </script>
 </body>
