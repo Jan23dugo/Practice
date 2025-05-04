@@ -133,7 +133,7 @@ if ($type && isset($tableMap[$type])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Registration Form - CCIS Qualifying Exam System</title>
+    <title>Manage Exam Registration Form</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
@@ -685,9 +685,10 @@ if ($type && isset($tableMap[$type])) {
                     </table>
                 </div>
             </div>
-
-            <!-- Add/Edit Modal -->
-            <div id="formModal" class="modal">
+        </div>
+    </div>
+                <!-- Add/Edit Modal -->
+                <div id="formModal" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title" id="modalTitle">Add Item</h2>
@@ -724,8 +725,6 @@ if ($type && isset($tableMap[$type])) {
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
     <script>
         // Tab handling

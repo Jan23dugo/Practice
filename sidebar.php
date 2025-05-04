@@ -120,6 +120,24 @@
                     </a>
                     <span class="nav-tooltip">Announcement</span>
                 </li>
+                <li class="nav-item">
+                    <a href="manage_grading_systems.php" class="nav-link">
+                        <span class="nav-icon material-symbols-rounded">
+                            star
+                        </span>
+                        <span class="nav-label">Manage Grading System</span>
+                    </a>
+                    <span class="nav-tooltip">Manage Grading System</span>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_edit_registration_form.php" class="nav-link">
+                        <span class="nav-icon material-symbols-rounded">
+                            app_registration
+                        </span>
+                        <span class="nav-label">Manage Registration Form</span>
+                    </a>
+                    <span class="nav-tooltip">Manage Registration Form</span>
+                </li>
             </ul>
             <!-- Secondary-Nav -->
             <ul class="nav-list secondary-nav">

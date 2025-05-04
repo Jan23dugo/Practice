@@ -3,10 +3,10 @@ session_start();
 require 'config/config.php';
 
 // Check if user is logged in as admin
-//if (!isset($_SESSION['admin_id']) || !isset($_SESSION['is_admin'])) {
-//    header("Location: admin_login.php");
-//    exit();
-//}
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['is_admin'])) {
+    header("Location: admin_login.php");
+    exit();
+}
 
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
