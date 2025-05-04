@@ -6,8 +6,9 @@
     <title>Add Question</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Add Quill CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet">
     <style>
-/* Scoped styles for the question builder */
 /* Scoped styles for the question builder */
 .question-builder {
     padding: 24px;
@@ -70,49 +71,6 @@
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
 
-.toolbar {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    gap: 8px;
-    padding-right: 16px;
-    border-right: 1px solid #e0e0e0;
-    margin-right: 16px;
-}
-
-.toolbar button {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 6px 12px;
-    color: #444;
-    transition: all 0.2s ease;
-    min-width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.toolbar button:hover {
-    background: #f5f0ff;
-    border-color: #75343A;
-    color: #75343A;
-}
-
-.toolbar button:active {
-    background: #75343A;
-    color: white;
-    border-color: #75343A;
-}
-
-.toolbar button.active {
-    background: #75343A;
-    color: white;
-    border-color: #75343A;
-}
-
 .save-btn {
     background: #75343A;
     color: white;
@@ -124,6 +82,7 @@
     font-weight: 500;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(142, 104, 204, 0.3);
+    margin-left: auto;
 }
 
 .save-btn:hover {
@@ -155,21 +114,34 @@
     padding-bottom: 12px;
 }
 
-.question-textarea {
-    width: 100%;
-    height: 100px;
-    padding: 12px 16px;
+/* Quill editor container styles */
+#editor-container {
+    height: 200px;
+    margin-bottom: 24px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    resize: vertical;
-    margin-bottom: 20px;
 }
 
-.question-textarea:focus {
-    outline: none;
+/* Custom toolbar styles */
+.ql-toolbar.ql-snow {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+    background-color: #f9f9f9;
+}
+
+.ql-container.ql-snow {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+/* Quill focus styles */
+.ql-container.ql-snow:focus-within {
     border-color: #75343A;
     box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
 }
@@ -256,7 +228,6 @@ label {
     flex-direction: column;
     gap: 16px;
 }
-
     </style>
 </head>
 <body>
@@ -268,29 +239,19 @@ label {
     <div class="question-builder">
     <!-- Header with back button, question type, and save button -->
     <div class="question-header">
-    <a href="quiz_editor.php?exam_id=<?php echo isset($_GET['exam_id']) ? $_GET['exam_id'] : ''; ?>">
-    <button class="back-btn"><i class="material-symbols-rounded">arrow_back</i></button>
-    </a>
-    <select class="question-type" onchange="handleQuestionTypeChange(this.value)">
-        <option value="multiple-choice" selected>Multiple Choice</option>
-        <option value="true-false">True/False</option>
-        <option value="programming">Programming</option>
-    </select>
-    <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
-    
-    <div class="toolbar">
-        <button class="bold-btn"><b>B</b></button>
-        <button class="italic-btn"><i>I</i></button>
-        <button class="underline-btn"><u>U</u></button>
-        <button class="strikethrough-btn"><s>S</s></button>
-        <button class="superscript-btn">x¹</button>
-        <button class="subscript-btn">x₂</button>
+        <a href="quiz_editor.php?exam_id=<?php echo isset($_GET['exam_id']) ? $_GET['exam_id'] : ''; ?>">
+            <button class="back-btn"><i class="material-symbols-rounded">arrow_back</i></button>
+        </a>
+        <select class="question-type" onchange="handleQuestionTypeChange(this.value)">
+            <option value="multiple-choice" selected>Multiple Choice</option>
+            <option value="true-false">True/False</option>
+            <option value="programming">Programming</option>
+        </select>
+        <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
+        <button type="button" class="save-btn" id="saveQuestionBtn">Save question</button>
     </div>
 
-    <button type="button" class="save-btn" id="saveQuestionBtn">Save question</button>
-</div>
-
-       <div class="question-container-wrapper">
+    <div class="question-container-wrapper">
         <h2>Add a New Question</h2>
         <form id="questionForm" action="save_question.php" method="POST">
             <input type="hidden" name="question_type" value="multiple-choice">
@@ -299,8 +260,11 @@ label {
             <input type="hidden" name="points" id="points_input" value="1">
             <input type="hidden" name="mode" value="<?php echo isset($_GET['question_id']) ? 'edit' : 'new'; ?>">
             
-            <label for="question">Question:</label>
-            <textarea id="question" name="question" class="question-textarea" required></textarea>
+            <label for="editor-container">Question:</label>
+            <!-- Quill editor container -->
+            <div id="editor-container"></div>
+            <!-- Hidden textarea to store Quill content -->
+            <textarea id="question" name="question" style="display:none;"></textarea>
 
             <label>Answer Choices:</label>
             <div id="choices">
@@ -318,6 +282,8 @@ label {
     </div>
 </div>
 <script src="assets/js/side.js"></script>
+<!-- Add Quill JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 <script> 
 document.addEventListener("DOMContentLoaded", function () {
     const addChoiceBtn = document.getElementById("addChoice");
@@ -325,121 +291,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const saveQuestionBtn = document.getElementById("saveQuestionBtn");
     const questionForm = document.getElementById("questionForm");
     const pointsInput = document.getElementById("points_input");
-
-    // First, load TinyMCE script dynamically
-    const tinymceScript = document.createElement('script');
-    tinymceScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js';
-    tinymceScript.referrerPolicy = 'origin';
-    document.head.appendChild(tinymceScript);
     
-    // Initialize TinyMCE after script loads
-    tinymceScript.onload = function() {
-        // Initialize TinyMCE on question textarea only
-        tinymce.init({
-            selector: '#question',
-            inline: false,
-            menubar: false,
-            toolbar: false,
-            plugins: 'autoresize lists link image table code help wordcount',
-            autoresize_bottom_margin: 20,
-            height: 200,
-            forced_root_block: 'p',
-            remove_linebreaks: false,
-            convert_newlines_to_brs: true,
-            remove_trailing_brs: false,
-            content_style: `
-                body {
-                    font-family: Arial, sans-serif;
-                    font-size: 15px;
-                    padding: 12px 16px;
-                }
-            `,
-            setup: function(editor) {
-                window.questionEditor = editor;
-                
-                editor.on('init', function() {
-                    const editorContainer = editor.getContainer();
-                    editorContainer.style.borderRadius = '8px';
-                    editorContainer.style.overflow = 'hidden';
-                    editorContainer.style.border = '1px solid #e0e0e0';
-                    
-                    const statusbar = editorContainer.querySelector('.tox-statusbar');
-                    if (statusbar) {
-                        statusbar.style.display = 'none';
-                    }
-
-                    // Only load question data after TinyMCE is fully initialized
-                    const questionId = document.getElementById('question_id').value;
-                    if (questionId) {
-                        setTimeout(() => {
-                            loadQuestionData(questionId);
-                        }, 100); // Small delay to ensure editor is ready
-                    }
-                });
-            }
-        });
-    };
-    
-    // Connect our existing toolbar buttons to TinyMCE commands
-    const boldBtn = document.querySelector(".bold-btn");
-    const italicBtn = document.querySelector(".italic-btn");
-    const underlineBtn = document.querySelector(".underline-btn");
-    const strikethroughBtn = document.querySelector(".strikethrough-btn");
-    const superscriptBtn = document.querySelector(".superscript-btn");
-    const subscriptBtn = document.querySelector(".subscript-btn");
-    
-    // Function to apply formatting using TinyMCE
-    function applyTinyMCEFormatting(format) {
-        if (window.questionEditor) {
-            window.questionEditor.focus();
-            
-            switch(format) {
-                case 'bold':
-                    window.questionEditor.execCommand('Bold');
-                    break;
-                case 'italic':
-                    window.questionEditor.execCommand('Italic');
-                    break;
-                case 'underline':
-                    window.questionEditor.execCommand('Underline');
-                    break;
-                case 'strikethrough':
-                    window.questionEditor.execCommand('Strikethrough');
-                    break;
-                case 'superscript':
-                    window.questionEditor.execCommand('Superscript');
-                    break;
-                case 'subscript':
-                    window.questionEditor.execCommand('Subscript');
-                    break;
-            }
-        } else {
-            alert("Editor is still initializing. Please try again in a moment.");
-        }
-    }
-    
-    // Add event listeners to toolbar buttons
-    boldBtn.addEventListener("click", () => applyTinyMCEFormatting('bold'));
-    italicBtn.addEventListener("click", () => applyTinyMCEFormatting('italic'));
-    underlineBtn.addEventListener("click", () => applyTinyMCEFormatting('underline'));
-    strikethroughBtn.addEventListener("click", () => applyTinyMCEFormatting('strikethrough'));
-    superscriptBtn.addEventListener("click", () => applyTinyMCEFormatting('superscript'));
-    subscriptBtn.addEventListener("click", () => applyTinyMCEFormatting('subscript'));
-    
-    // Add tooltip to toolbar buttons
-    document.querySelectorAll('.toolbar button').forEach(btn => {
-        btn.title = "Click to format selected text in the question";
+    // Initialize Quill editor
+    const quill = new Quill('#editor-container', {
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{ 'header': 1 }, { 'header': 2 }],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'script': 'sub' }, { 'script': 'super' }],
+                [{ 'indent': '-1' }, { 'indent': '+1' }],
+                ['clean']
+            ]
+        },
+        placeholder: 'Enter your question text here...',
+        theme: 'snow'
     });
-
+    
+    // Make Quill editor globally available
+    window.questionEditor = quill;
+    
     // Add event listener for save button
     saveQuestionBtn.addEventListener("click", function() {
         // Update the points value from the input field
         pointsInput.value = document.getElementById('question_points').value;
         
-        // Make sure TinyMCE content is saved to the form
-        if (window.questionEditor) {
-            window.questionEditor.save(); // Save TinyMCE content to textarea
-        }
+        // Get Quill content and save it to the hidden textarea
+        const questionTextarea = document.getElementById('question');
+        questionTextarea.value = quill.root.innerHTML;
         
         // Validate the form
         if (!validateForm()) {
@@ -452,8 +332,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Form validation function
     function validateForm() {
-        // Get content from TinyMCE editor instead of directly from textarea
-        const questionText = window.questionEditor ? window.questionEditor.getContent().trim() : '';
+        // Get content from Quill editor
+        const questionText = quill.getText().trim();
         if (questionText === "") {
             alert("Please enter a question");
             return false;
@@ -540,8 +420,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 console.log('Question data:', data);
                 if (data.success && data.question) {
-                    // Set question text
-                    document.getElementById('question').value = data.question.question_text;
+                    // Set question text in Quill editor
+                    quill.clipboard.dangerouslyPasteHTML(data.question.question_text);
                     
                     // Set points
                     const pointsInput = document.getElementById('question_points');
@@ -598,16 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert('An error occurred while loading the question. Please try again.');
             });
     }
-
-    // Add active class toggle for toolbar buttons
-    document.querySelectorAll('.toolbar button').forEach(button => {
-        button.addEventListener('click', function() {
-            // Toggle active class
-            this.classList.toggle('active');
-        });
-    });
 });
-
 </script>
 </body>
 </html>

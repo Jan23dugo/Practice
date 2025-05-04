@@ -6,7 +6,6 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1380,6 +1379,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
                                     <option value="" selected disabled>Select exam type</option>
                                     <option value="tech">Tech</option>
                                     <option value="non-tech">Non-Tech</option>
+                                    <option value="ladderized">Ladderized</option>
                                 </select>
                             </div>
                             <div class="error-message" id="exam-type-error">

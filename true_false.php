@@ -6,6 +6,8 @@
     <title>Add Question</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Add Quill CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet">
     <style>
 /* Scoped styles for the question builder */
 .question-builder {
@@ -154,23 +156,39 @@
     padding-bottom: 12px;
 }
 
-.question-textarea {
-    width: 100%;
-    height: 100px;
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    resize: vertical;
+/* Quill editor styles */
+#editor-container {
+    height: 200px;
     margin-bottom: 20px;
 }
 
-.question-textarea:focus {
-    outline: none;
-    border-color: #75343A;
-    box-shadow: 0 0 0 2px rgba(142, 104, 204, 0.2);
+#editor-container .ql-editor {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    background-color: white;
+    min-height: 100px;
+}
+
+.ql-toolbar.ql-snow {
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+}
+
+.ql-container.ql-snow {
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #e0e0e0;
+    font-family: Arial, sans-serif;
+}
+
+/* Hide Quill's own toolbar since we're using our custom one */
+.ql-toolbar.ql-snow {
+    display: none;
+}
+
+/* Hidden question textarea (used for form submission) */
+#question {
+    display: none;
 }
 
 label {
@@ -242,12 +260,12 @@ label {
     <input type="number" class="question-points" id="question_points" value="1" min="1" max="100">
     
     <div class="toolbar">
-        <button class="bold-btn"><b>B</b></button>
-        <button class="italic-btn"><i>I</i></button>
-        <button class="underline-btn"><u>U</u></button>
-        <button class="strikethrough-btn"><s>S</s></button>
-        <button class="superscript-btn">x¹</button>
-        <button class="subscript-btn">x₂</button>
+        <button class="bold-btn" title="Bold"><b>B</b></button>
+        <button class="italic-btn" title="Italic"><i>I</i></button>
+        <button class="underline-btn" title="Underline"><u>U</u></button>
+        <button class="strikethrough-btn" title="Strikethrough"><s>S</s></button>
+        <button class="superscript-btn" title="Superscript">x¹</button>
+        <button class="subscript-btn" title="Subscript">x₂</button>
     </div>
 
     <button type="button" class="save-btn" id="saveQuestionBtn">Save question</button>
@@ -262,8 +280,9 @@ label {
             <input type="hidden" name="question_id" id="question_id" value="<?php echo isset($_GET['question_id']) ? $_GET['question_id'] : ''; ?>">
             <input type="hidden" name="points" id="points_input" value="1">
             
-            <label for="question">Question Statement:</label>
-            <textarea id="question" name="question" class="question-textarea" required></textarea>
+            <label for="editor-container">Question Statement:</label>
+            <div id="editor-container"></div>
+            <textarea id="question" name="question" required></textarea>
 
             <label>Correct Answer:</label>
             <div class="true-false-options">
@@ -280,17 +299,35 @@ label {
     </div>
 </div>
 <script src="assets/js/side.js"></script>
+<!-- Add Quill JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    // Initialize Quill
+    const quill = new Quill('#editor-container', {
+        theme: 'snow',
+        modules: {
+            toolbar: false // We're using our custom toolbar
+        },
+        placeholder: 'Type your question here...'
+    });
+    
+    // Store quill instance for global access
+    window.questionEditor = quill;
+    
     // Add save button functionality
     const saveQuestionBtn = document.getElementById("saveQuestionBtn");
     const questionForm = document.getElementById("questionForm");
     const pointsInput = document.getElementById("points_input");
+    const questionTextarea = document.getElementById("question");
 
     // Add event listener for save button
     saveQuestionBtn.addEventListener("click", function() {
         // Update the points value from the input field
         pointsInput.value = document.getElementById('question_points').value;
+        
+        // Update hidden textarea with Quill content
+        questionTextarea.value = quill.root.innerHTML;
         
         // Validate the form
         if (!validateForm()) {
@@ -303,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Form validation function
     function validateForm() {
-        const questionText = window.questionEditor ? window.questionEditor.getContent() : document.getElementById("question").value.trim();
+        const questionText = quill.getText().trim();
         if (questionText === "") {
             alert("Please enter a question statement");
             return false;
@@ -344,60 +381,61 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = url;
     };
     
-    // First, load TinyMCE script dynamically
-    const tinymceScript = document.createElement('script');
-    tinymceScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js';
-    tinymceScript.referrerPolicy = 'origin';
-    document.head.appendChild(tinymceScript);
-    
-    // Initialize TinyMCE after script loads
-    tinymceScript.onload = function() {
-        // Initialize TinyMCE on question textarea only
-        tinymce.init({
-            selector: '#question',
-            inline: false,
-            menubar: false,
-            toolbar: false,
-            plugins: 'autoresize lists link image table code help wordcount',
-            autoresize_bottom_margin: 20,
-            height: 200,
-            forced_root_block: false,
-            remove_linebreaks: false,
-            convert_newlines_to_brs: true,
-            remove_trailing_brs: false,
-            content_style: `
-                body {
-                    font-family: Arial, sans-serif;
-                    font-size: 15px;
-                    padding: 12px 16px;
+    // Function to apply formatting using Quill
+    function applyQuillFormatting(format) {
+        const quill = window.questionEditor;
+        if (quill) {
+            const selection = quill.getSelection();
+            if (selection) {
+                // Apply formatting to selection
+                switch(format) {
+                    case 'bold':
+                        quill.format('bold', !quill.getFormat(selection).bold);
+                        break;
+                    case 'italic':
+                        quill.format('italic', !quill.getFormat(selection).italic);
+                        break;
+                    case 'underline':
+                        quill.format('underline', !quill.getFormat(selection).underline);
+                        break;
+                    case 'strike':
+                        quill.format('strike', !quill.getFormat(selection).strike);
+                        break;
+                    case 'script':
+                        // Toggle between superscript and subscript
+                        const currentScript = quill.getFormat(selection).script;
+                        if (currentScript === 'super') {
+                            quill.format('script', false);
+                        } else {
+                            quill.format('script', 'super');
+                        }
+                        break;
+                    case 'sub':
+                        // Toggle between superscript and subscript
+                        const currentSub = quill.getFormat(selection).script;
+                        if (currentSub === 'sub') {
+                            quill.format('script', false);
+                        } else {
+                            quill.format('script', 'sub');
+                        }
+                        break;
                 }
-            `,
-            setup: function(editor) {
-                // Store the editor instance for later use with our toolbar
-                window.questionEditor = editor;
-                
-                // Style the editor to match our design
-                editor.on('init', function() {
-                    const editorContainer = editor.getContainer();
-                    editorContainer.style.borderRadius = '8px';
-                    editorContainer.style.overflow = 'hidden';
-                    editorContainer.style.border = '1px solid #e0e0e0';
-                    
-                    // Hide the statusbar
-                    const statusbar = editorContainer.querySelector('.tox-statusbar');
-                    if (statusbar) {
-                        statusbar.style.display = 'none';
-                    }
-                    
-                    // Check if we're in edit mode and load question data after editor is initialized
-                    const questionId = document.getElementById('question_id').value;
-                    if (questionId) {
-                        loadQuestionData(questionId);
-                    }
-                });
+            } else {
+                // Focus the editor if no selection
+                quill.focus();
             }
-        });
-    };
+        } else {
+            alert("Editor is still initializing. Please try again in a moment.");
+        }
+    }
+    
+    // Add event listeners to toolbar buttons
+    document.querySelector(".bold-btn").addEventListener("click", () => applyQuillFormatting('bold'));
+    document.querySelector(".italic-btn").addEventListener("click", () => applyQuillFormatting('italic'));
+    document.querySelector(".underline-btn").addEventListener("click", () => applyQuillFormatting('underline'));
+    document.querySelector(".strikethrough-btn").addEventListener("click", () => applyQuillFormatting('strike'));
+    document.querySelector(".superscript-btn").addEventListener("click", () => applyQuillFormatting('script'));
+    document.querySelector(".subscript-btn").addEventListener("click", () => applyQuillFormatting('sub'));
     
     // Function to load question data for editing
     function loadQuestionData(questionId) {
@@ -411,11 +449,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 console.log('Question data:', data);
                 if (data.success) {
-                    // Set question text
+                    // Set question text in Quill editor
                     if (window.questionEditor) {
-                        window.questionEditor.setContent(data.question.question_text);
-                    } else {
-                        document.getElementById('question').value = data.question.question_text;
+                        window.questionEditor.clipboard.dangerouslyPasteHTML(data.question.question_text);
                     }
                     
                     // Set points
@@ -425,23 +461,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                     // Set correct answer (true/false)
                     if (data.answers && data.answers.length > 0) {
-                        // Log all answers to debug
-                        console.log('Answers:', data.answers);
-                        
                         // Find the correct answer
                         const correctAnswer = data.answers.find(answer => answer.is_correct == 1);
-                        console.log('Correct answer:', correctAnswer);
                         
                         if (correctAnswer) {
                             // Check the exact answer text without converting case
                             if (correctAnswer.answer_text === 'True') {
                                 document.getElementById('true').checked = true;
-                                console.log('Setting TRUE as checked');
                             } else if (correctAnswer.answer_text === 'False') {
                                 document.getElementById('false').checked = true;
-                                console.log('Setting FALSE as checked');
-                            } else {
-                                console.log('Unknown answer value:', correctAnswer.answer_text);
                             }
                         }
                     }
@@ -466,65 +494,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert('An error occurred while loading the question: ' + error.message);
             });
     }
-    
-    // Connect our existing toolbar buttons to TinyMCE commands
-    const boldBtn = document.querySelector(".bold-btn");
-    const italicBtn = document.querySelector(".italic-btn");
-    const underlineBtn = document.querySelector(".underline-btn");
-    const strikethroughBtn = document.querySelector(".strikethrough-btn");
-    const superscriptBtn = document.querySelector(".superscript-btn");
-    const subscriptBtn = document.querySelector(".subscript-btn");
-    
-    // Function to apply formatting using TinyMCE
-    function applyTinyMCEFormatting(format) {
-        if (window.questionEditor) {
-            window.questionEditor.focus();
-            
-            switch(format) {
-                case 'bold':
-                    window.questionEditor.execCommand('Bold');
-                    break;
-                case 'italic':
-                    window.questionEditor.execCommand('Italic');
-                    break;
-                case 'underline':
-                    window.questionEditor.execCommand('Underline');
-                    break;
-                case 'strikethrough':
-                    window.questionEditor.execCommand('Strikethrough');
-                    break;
-                case 'superscript':
-                    window.questionEditor.execCommand('Superscript');
-                    break;
-                case 'subscript':
-                    window.questionEditor.execCommand('Subscript');
-                    break;
-            }
-        } else {
-            alert("Editor is still initializing. Please try again in a moment.");
-        }
-    }
-    
-    // Add event listeners to toolbar buttons
-    boldBtn.addEventListener("click", () => applyTinyMCEFormatting('bold'));
-    italicBtn.addEventListener("click", () => applyTinyMCEFormatting('italic'));
-    underlineBtn.addEventListener("click", () => applyTinyMCEFormatting('underline'));
-    strikethroughBtn.addEventListener("click", () => applyTinyMCEFormatting('strikethrough'));
-    superscriptBtn.addEventListener("click", () => applyTinyMCEFormatting('superscript'));
-    subscriptBtn.addEventListener("click", () => applyTinyMCEFormatting('subscript'));
-    
-    // Add tooltip to toolbar buttons
-    document.querySelectorAll('.toolbar button').forEach(btn => {
-        btn.title = "Click to format selected text in the question statement";
-    });
 
-    // Check if we're in edit mode but don't load data here - we'll do it after TinyMCE initializes
+    // Check if we're in edit mode
     const questionId = document.getElementById('question_id').value;
     if (questionId) {
         console.log('Edit mode detected, question ID:', questionId);
-        // We'll load the question data after TinyMCE is initialized
+        loadQuestionData(questionId);
     }
 
+    // Toggle active class for toolbar buttons for visual feedback
     document.querySelectorAll('.toolbar button').forEach(button => {
         button.addEventListener('click', function() {
             // Toggle active class
