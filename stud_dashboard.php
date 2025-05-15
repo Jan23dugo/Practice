@@ -2,6 +2,10 @@
 // Start the session
 session_start();
 
+// Turn off error display for production
+ini_set('display_errors', 0);
+error_reporting(0);
+
 // Add this near the top of the file, after session_start()
 include 'config/config.php'; // Include database connection
 // require_once 'config/ip_config.php';
@@ -103,291 +107,227 @@ $activePage = 'dashboard';
     <title>Student Dashboard - PUP Qualifying Exam Portal</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
     <style>
-        :root {
-            --primary: #75343A;
-            --primary-dark: #5a2930;
-            --primary-light: #9e4a52;
-            --secondary: #f8f0e3;
-            --accent: #d4af37;
-            --text-dark: #333333;
-            --text-light: #ffffff;
-            --gray-light: #f5f5f5;
-            --gray: #e0e0e0;
-            --success: #4CAF50;
-            --warning: #FF9800;
-            --danger: #F44336;
+        /* Updated sidebar styles */
+        .sidebar {
+            height: 100vh;
+            padding-bottom: 0;
+            position: fixed;
+            overflow-y: auto;
+            z-index: 99;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Updated main-content styles */
+        .main-content {
+            padding-bottom: 20px;
+            margin-left: 250px; /* Match sidebar width */
+            overflow-x: hidden;
         }
         
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--gray-light);
-            line-height: 1.6;
+        /* Updated footer styles */
+        footer {
+            position: relative;
+            margin-top: 0;
+            padding: 15px 0;
+        }
+        
+        /* Updated main-wrapper styles */
+        .main-wrapper {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        /* Dashboard grid spacing */
+        .dashboard-grid {
+            margin-bottom: 30px; /* Reduced from 90px */
         }
         
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-text h1 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .nav-links a:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .profile-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-            font-weight: bold;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .profile-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .profile-menu {
-            border-radius: 50%;
-        }
-        
-        /* Main Layout */
-        .main-wrapper {
-            display: flex;
-            margin-top: 80px;
-            flex: 1;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-            padding: 25px 0;
-            height: calc(100vh - 80px);
-            position: fixed;
-            overflow-y: auto;
-        }
-        
-        .sidebar-profile {
-            padding: 0 20px 20px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--gray);
-            text-align: center;
-        }
-        
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--primary-dark);
-            font-weight: bold;
-            overflow: hidden;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .sidebar-profile h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .sidebar-profile p {
-            font-size: 14px;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-        
-        .sidebar-menu {
-            list-style: none;
-        }
-        
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
-        
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: var(--text-dark);
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .sidebar-menu a:hover {
-            background-color: var(--gray-light);
-            color: var(--primary);
-        }
-        
-        .sidebar-menu a.active {
-            background-color: var(--primary-light);
-            color: var(--text-light);
-        }
-        
-        .sidebar-menu .material-symbols-rounded {
-            font-size: 20px;
-        }
-        
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 30px;
-        }
-        
-        .page-title {
-            margin-bottom: 30px;
-        }
-        
-        .page-title h2 {
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .page-title p {
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-        
+        /* Additional page-specific styles */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
-            margin-bottom: 30px;
         }
         
-        .dashboard-card {
+        /* Fix footer overlap issue */
+        .main-content {
+            padding-bottom: 80px !important; /* Ensure content doesn't get hidden behind footer */
+        }
+        
+        /* Fix sidebar height to extend to footer */
+        .sidebar {
+            height: auto !important; /* Changed from fixed height to auto */
+            min-height: calc(100vh - 80px) !important; /* Minimum height */
+            bottom: 0;
+            padding-bottom: 60px; /* Reduced padding to prevent overlap with footer */
+            z-index: 99; /* Ensure sidebar is above content but below overlay */
+            position: fixed; /* Keep it fixed on desktop */
+            overflow-y: auto; /* Allow scrolling if content is too tall */
+        }
+        
+        /* Footer positioning */
+        footer {
+            position: relative !important; /* Changed from fixed to relative */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 98; /* Below sidebar but above main content */
+            background-color: var(--primary); /* Changed from white to primary color */
+            color: white; /* Text color changed to white for contrast */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            margin-top: 20px;
+            clear: both;
+        }
+        
+        /* Footer text color */
+        footer p {
+            color: white;
+            margin: 0;
+            text-align: center;
+        }
+        
+        /* Improved sidebar overlay for mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Main wrapper adjustments for better footer positioning */
+        .main-wrapper {
+            display: flex;
+            min-height: calc(100vh - 140px); /* Account for header and footer */
+            position: relative;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        /* Main content adjustments */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            padding-bottom: 30px !important; /* Reduced padding */
+            margin-left: 250px; /* Match sidebar width */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        
+        /* Improved sidebar animation for mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 250px;
+                max-width: 80%;
+                height: calc(100vh - 80px) !important; /* Fixed height on mobile */
+                padding-bottom: 100px; /* Extra padding to ensure scrollability */
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            body.sidebar-open {
+                overflow: hidden;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 997;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+            }
+            
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 15px;
+                padding-bottom: 20px !important;
+            }
+            
+            footer {
+                margin-top: 0;
+            }
+            
+            /* Ensure sidebar doesn't overlap with footer on mobile */
+            .sidebar {
+                padding-bottom: 80px;
+            }
+        }
+        
+        /* Make footer non-fixed on larger screens */
+        @media (min-width: 769px) {
+            footer {
+                position: relative !important;
+                margin-top: 20px;
+            }
+            
+            .main-content {
+                padding-bottom: 30px !important;
+            }
+            
+            .dashboard-grid {
+                margin-bottom: 30px;
+            }
+            
+            /* Hide mobile menu toggle on desktop */
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Improved dropdown menu animation */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 25px;
-            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            min-width: 200px;
+            z-index: 1000;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         
-        .card-header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .card-header h3 {
-            font-size: 20px;
-            color: var(--primary);
-        }
-        
-        .view-all {
-            font-size: 14px;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .view-all:hover {
-            text-decoration: underline;
+        .dropdown-menu.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
         }
         
         /* Exam Schedule Styles */
@@ -481,71 +421,321 @@ $activePage = 'dashboard';
         /* Registration Section */
         .registration-section {
             margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
         
         .registration-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(117, 52, 58, 0.15);
+            padding: 35px;
             border-left: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .registration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(117, 52, 58, 0.25);
+        }
+        
+        .registration-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(117, 52, 58, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
         }
         
         .registration-info {
             display: flex;
             align-items: center;
-            gap: 25px;
-            margin-bottom: 25px;
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
         }
         
         .registration-icon {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            box-shadow: 0 4px 10px rgba(117, 52, 58, 0.2);
+            box-shadow: 0 8px 15px rgba(117, 52, 58, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .registration-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid rgba(117, 52, 58, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         
         .registration-icon .material-symbols-rounded {
-            font-size: 35px;
+            font-size: 40px;
         }
         
         .registration-text h3 {
-            font-size: 24px;
+            font-size: 28px;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
         
         .registration-text p {
             font-size: 16px;
             color: var(--text-dark);
             opacity: 0.8;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         
         .registration-action {
-            background-color: var(--primary);
-            color: var(--text-light);
-            border: none;
-            padding: 14px 28px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(117, 52, 58, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 6px 15px rgba(117, 52, 58, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .registration-action::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width 0.3s ease;
+            z-index: -1;
         }
         
         .registration-action:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(117, 52, 58, 0.3);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(117, 52, 58, 0.3);
+        }
+        
+        .registration-action:hover::before {
+            width: 100%;
+        }
+        
+        .registration-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #d4af37;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transform: rotate(5deg);
+            z-index: 2;
+        }
+        
+        @media (max-width: 768px) {
+            .registration-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .registration-text h3 {
+                font-size: 24px;
+            }
+            
+            .registration-action {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+            
+            .registration-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .registration-icon .material-symbols-rounded {
+                font-size: 35px;
+            }
+
+            /* Dashboard grid becomes single column on mobile */
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Adjust padding for mobile */
+            .registration-card {
+                padding: 25px 20px;
+            }
+
+            /* Make page title more compact */
+            .page-title h2 {
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+
+            .page-title p {
+                font-size: 14px;
+            }
+            
+            /* Make card headers more compact */
+            .card-header {
+                padding: 15px;
+            }
+            
+            .card-header h3 {
+                font-size: 18px;
+            }
+            
+            /* Adjust dashboard card padding */
+            .dashboard-card {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            /* Adjust notice banner */
+            .notice-banner {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Improved responsiveness for exam items */
+        @media (max-width: 576px) {
+            .exam-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            
+            .exam-info {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .exam-status {
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .exam-action {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 8px 0;
+            }
+
+            /* Make announcement header stack on very small screens */
+            .announcement-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .announcement-date {
+                margin-top: 5px;
+            }
+
+            /* Adjust notice banner for small screens */
+            .notice-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .notice-banner .material-symbols-rounded {
+                margin-bottom: 10px;
+            }
+            
+            /* Adjust header elements */
+            .logo-text h1 {
+                font-size: 20px;
+            }
+            
+            .logo-text p {
+                font-size: 12px;
+            }
+            
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Additional responsiveness for extra small screens */
+        @media (max-width: 400px) {
+            .registration-text h3 {
+                font-size: 20px;
+            }
+
+            .registration-text p {
+                font-size: 14px;
+            }
+
+            .registration-action {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+
+            .registration-badge {
+                font-size: 12px;
+                padding: 4px 10px;
+            }
+
+            .exam-info h4 {
+                font-size: 16px;
+            }
+
+            .exam-info p {
+                font-size: 13px;
+            }
         }
         
         /* Campus Notice */
@@ -561,152 +751,317 @@ $activePage = 'dashboard';
             font-size: 14px;
             font-weight: 500;
         }
-        
-        /* Footer Styles */
-        footer {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 20px 0;
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 900;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        footer .container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        footer p {
-            text-align: center;
-            font-size: 14px;
-            opacity: 0.9;
-            margin: 0;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+
+        /* Improve header responsiveness */
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                align-items: center;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 0;
-                padding: 0;
-                overflow: hidden;
-                transition: width 0.3s;
+
+            .logo {
+                margin-bottom: 15px;
             }
-            
-            .sidebar.active {
-                width: 250px;
-                padding: 25px 0;
-            }
-            
-            .main-content {
-                margin-left: 0;
-                padding: 20px;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-            
-            .logo-text h1 {
-                font-size: 18px;
-            }
-            
-            .logo-text p {
-                display: none;
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
             }
         }
 
-        /* Notice Banner */
+        /* Improve exam-action styling */
+        .exam-action {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .exam-action:hover {
+            color: var(--primary);
+        }
+
+        /* Make notice banner more responsive */
         .notice-banner {
-            background-color: var(--primary-light);
-            color: var(--text-light);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
             display: flex;
             align-items: center;
             gap: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 25px;
         }
 
         .notice-banner .material-symbols-rounded {
+            color: #856404;
             font-size: 24px;
         }
 
         .notice-content h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
+            margin: 0 0 5px 0;
+            color: #856404;
         }
 
         .notice-content p {
+            margin: 0;
             font-size: 14px;
-            opacity: 0.9;
+            color: #856404;
         }
-
-        /* Profile Menu Styles */
-        .profile-menu {
+        
+        /* Welcome Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            overflow-y: auto;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 5vh auto;
+            max-width: 700px;
+            width: 90%;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: modalSlideIn 0.4s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
             position: relative;
         }
         
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-            min-width: 200px;
-            z-index: 1000;
-        }
-
-        .dropdown-menu a{
-            color: var(--primary);
+        .modal-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
         }
         
-        .dropdown-item {
-            padding: 10px 20px;
+        .modal-header h2 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.2s;
+        }
+        
+        .close-modal:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .modal-body {
+            padding: 25px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .welcome-section {
+            margin-bottom: 25px;
+        }
+        
+        .welcome-section h3 {
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .welcome-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            height: 70%;
+            width: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .welcome-section p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .requirements-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            background-color: var(--gray-light);
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .requirements-list li:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .req-icon {
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-size: 14px;
-        }
-        
-        .dropdown-item:hover {
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             background-color: var(--primary);
-            color: var(--text-light);
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
         
-        #profile-menu {
+        .req-details {
+            flex: 1;
+        }
+        
+        .req-details strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+        
+        .req-details p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        .modal-footer {
+            background-color: var(--gray-light);
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--gray);
+        }
+        
+        .dont-show-again {
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
-            color: var(--text-light);
+            font-size: 14px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        
+        .modal-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(117, 52, 58, 0.25);
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(117, 52, 58, 0.35);
+        }
+        
+        body.modal-open {
+            overflow: hidden;
+        }
+        
+        /* Responsive modal styles */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10px auto;
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .modal-header h2 {
+                font-size: 20px;
+            }
+            
+            .modal-body {
+                padding: 15px;
+            }
+            
+            .welcome-section h3 {
+                font-size: 18px;
+            }
+            
+            .welcome-section p {
+                font-size: 14px;
+            }
+            
+            .modal-footer {
+                padding: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .modal-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -758,8 +1113,16 @@ $activePage = 'dashboard';
     
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-profile">
                 <div class="profile-image">
                     <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
@@ -824,16 +1187,20 @@ $activePage = 'dashboard';
             <!-- Exam Registration Section - Moved to top -->
             <div class="registration-section" style="margin-top: 0; margin-bottom: 30px;">
                 <div class="registration-card">
+                    <div class="registration-badge">Important!</div>
                     <div class="registration-info">
                         <div class="registration-icon">
                             <span class="material-symbols-rounded">app_registration</span>
                         </div>
                         <div class="registration-text">
                             <h3>CCIS Qualifying Exam Registration</h3>
-                            <p>Register for the upcoming CCIS Qualifying Exam to advance your academic journey.</p>
+                            <p>Register for the upcoming CCIS Qualifying Exam to advance your academic journey. This is a required step for all transferees, shiftees, and ladderized students.</p>
                         </div>
                     </div>
-                    <a href="qualiexam_register.php" class="registration-action">Register for Qualifying Exam</a>
+                    <a href="qualiexam_register.php" class="registration-action">
+                        <span class="material-symbols-rounded">how_to_reg</span>
+                        Register for Qualifying Exam
+                    </a>
                 </div>
             </div>
 
@@ -842,7 +1209,7 @@ $activePage = 'dashboard';
                 <span class="material-symbols-rounded">info</span>
                 <div class="notice-content">
                     <h4>Important Notice</h4>
-                    <p>All CCIS Qualifying Exams will be conducted on-campus only. Please make sure to register and check the venue details.</p>
+                    <p>All CCIS Qualifying Exams will be conducted on-campus only. Please make sure to register and check the Announcement for more details.</p>
                 </div>
             </div>
             
@@ -942,23 +1309,229 @@ $activePage = 'dashboard';
         </div>
     </footer>
 
+    <!-- Welcome Modal for First-Time Login -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="img/Logo.png" alt="PUP Logo" class="modal-logo">
+                <h2>Welcome to STREAMS</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="welcome-section">
+                    <h3>Welcome to the CCIS Qualifying Exam Portal!</h3>
+                    <p>This system is designed to help you register, prepare for, and take the College of Computer and Information Sciences (CCIS) Qualifying Examination.</p>
+                </div>
+                
+                <div class="welcome-section">
+                    <h3>About the Qualifying Exam</h3>
+                    <p>The CCIS Qualifying Exam is a required assessment for all transferees, shiftees, and ladderized students. Successfully passing this exam is a prerequisite for admission to CCIS programs.</p>
+                </div>
+                
+                <div class="welcome-section">
+                    <h3>Registration Requirements</h3>
+                    <ul class="requirements-list">
+                        <li>
+                            <span class="req-icon"><span class="material-symbols-rounded">description</span></span>
+                            <div class="req-details">
+                                <strong>Transcript of Records (TOR)</strong>
+                                <p>A scanned copy of your most recent Transcript of Records</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="req-icon"><span class="material-symbols-rounded">badge</span></span>
+                            <div class="req-details">
+                                <strong>School ID</strong>
+                                <p>A scanned copy of your valid School ID</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="req-icon"><span class="material-symbols-rounded">person</span></span>
+                            <div class="req-details">
+                                <strong>Personal Information</strong>
+                                <p>Complete personal and academic details</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="req-icon"><span class="material-symbols-rounded">school</span></span>
+                            <div class="req-details">
+                                <strong>Academic Background</strong>
+                                <p>Information about your previous/current academic program</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="welcome-section">
+                    <h3>How to Get Started</h3>
+                    <p>To register for the qualifying exam, click on the "Register for Qualifying Exam" button on your dashboard.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="dont-show-again">
+                    <input type="checkbox" id="dontShowAgain"> Don't show this again
+                </label>
+                <button id="welcomeModalClose" class="modal-btn">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    
     <script>
+        // Welcome Modal for First-Time Login
         document.addEventListener('DOMContentLoaded', function() {
-            // Profile Menu Toggle
-            const profileMenu = document.querySelector('.profile-menu');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            const profileMenuTrigger = document.querySelector('#profile-menu');
+            const welcomeModal = document.getElementById('welcomeModal');
+            const closeModal = document.querySelector('.close-modal');
+            const modalClose = document.getElementById('welcomeModalClose');
+            const dontShowAgain = document.getElementById('dontShowAgain');
             
-            document.addEventListener('click', function(event) {
-                if (!profileMenu.contains(event.target)) {
-                    dropdownMenu.style.display = 'none';
+            // Check if this is the first login (using localStorage)
+            const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
+            
+            if (!hasSeenWelcome) {
+                // Show the modal
+                welcomeModal.style.display = 'block';
+                document.body.classList.add('modal-open');
+            }
+            
+            // Close modal when clicking the X
+            closeModal.addEventListener('click', function() {
+                welcomeModal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+                
+                if (dontShowAgain.checked) {
+                    localStorage.setItem('hasSeenWelcome', 'true');
                 }
             });
             
-            profileMenuTrigger.addEventListener('click', function(event) {
-                event.preventDefault();
-                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            // Close modal when clicking the Get Started button
+            modalClose.addEventListener('click', function() {
+                welcomeModal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+                
+                if (dontShowAgain.checked) {
+                    localStorage.setItem('hasSeenWelcome', 'true');
+                }
             });
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', function(event) {
+                if (event.target == welcomeModal) {
+                    welcomeModal.style.display = 'none';
+                    document.body.classList.remove('modal-open');
+                    
+                    if (dontShowAgain.checked) {
+                        localStorage.setItem('hasSeenWelcome', 'true');
+                    }
+                }
+            });
+        });
+
+        // Adjust sidebar and content height
+        function adjustLayout() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const footer = document.querySelector('footer');
+            const headerHeight = 80; // Approximate header height
+
+            if (window.innerWidth >= 769) {
+                // For desktop: Adjust sidebar and content height
+                const availableHeight = window.innerHeight - headerHeight - footer.offsetHeight;
+                sidebar.style.height = availableHeight + 'px';
+                mainContent.style.minHeight = availableHeight + 'px';
+            } else {
+                // For mobile: Set fixed height
+                sidebar.style.height = 'calc(100vh - 80px)';
+            }
+        }
+
+        // Run on page load and resize
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+
+        // Enhanced responsive behaviors
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (menuToggle && sidebar && sidebarOverlay) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    sidebarOverlay.classList.toggle('active');
+                    document.body.classList.toggle('sidebar-open');
+                    
+                    // Adjust main content when sidebar is open
+                    if (sidebar.classList.contains('active') && window.innerWidth < 769) {
+                        mainContent.style.opacity = '0.7';
+                    } else {
+                        mainContent.style.opacity = '1';
+                    }
+                });
+                
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                    mainContent.style.opacity = '1';
+                });
+            }
+            
+            // Close sidebar when clicking a link on mobile
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            if (sidebarLinks.length > 0) {
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth < 769) {
+                            sidebar.classList.remove('active');
+                            sidebarOverlay.classList.remove('active');
+                            document.body.classList.remove('sidebar-open');
+                            mainContent.style.opacity = '1';
+                        }
+                    });
+                });
+            }
+            
+            // Handle profile dropdown menu
+            const profileMenu = document.getElementById('profile-menu');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileMenu && dropdownMenu) {
+                profileMenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileMenu.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Adjust UI elements on window resize
+            function handleResize() {
+                adjustLayout();
+                
+                // Reset main content opacity
+                mainContent.style.opacity = '1';
+                
+                // Close mobile menu if window is resized to desktop
+                if (window.innerWidth >= 769) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+            
+            // Initial adjustment
+            adjustLayout();
         });
     </script>
 </body>
