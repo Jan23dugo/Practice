@@ -293,6 +293,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             --text-light: #ffffff;
             --gray-light: #f5f5f5;
             --gray: #e0e0e0;
+            font-size: 16px;
         }
 
         * {
@@ -306,12 +307,16 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             line-height: 1.6;
             height: 100vh;
             background-color: #f7f7f7;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
         header {
             background-color: #75343a;
             color: white;
-            padding: 10px;
+            padding: 5px 2%;
             display: flex;
             position: fixed;
             justify-content: space-between;
@@ -319,12 +324,11 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             width: 100%;
             top: 0;
             z-index: 1000;
+            height: 70px;
         }
 
         header .logo img {
-            width: 70px;
-            height: auto;
-            margin-left: 30px;
+            height: 50px;
         }
 
         nav ul {
@@ -333,14 +337,14 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
         }
 
         nav ul li {
-            margin-right: 50px;
-            padding-left: 30px;
+            margin-right: 20px;
+            padding-left: 15px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 1rem;
             font-weight: 600;
             padding: 8px 0px;
             border-radius: 6px;
@@ -366,163 +370,217 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 
         .container {
             display: flex;
-            height: 100%;
-            padding-top: 93px;
+            height: calc(100vh - 70px);
+            margin-top: 70px;
+            overflow: hidden;
         }
 
         .left {
+            position: fixed;
+            top: 70px;
+            left: 0;
             width: 60%;
-            background-image: url('assets/images/Homepage.png'); /* Background Image */
+            height: calc(100vh - 70px);
+            padding: 2rem;
+            background-image: url('assets/images/Homepage.png');
             background-size: cover;
+            background-position: center;
             color: white;
-            padding: 50px 30px;
             text-align: center;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        .header {
+            margin-top: auto;
+            margin-bottom: 2rem;
         }
 
         .left h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            margin-top: 8rem;
+            margin-bottom: 15px;
+            font-size: clamp(1.5rem, 2vw, 2rem);
             font-weight: 800;
             color: #b8afa8;
-            margin-top: 200px;
         }
 
         .left h2 {
-            font-size: 2.7rem;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.2rem, 1.8vw, 1.8rem);
             font-weight: 800;
         }
 
         .left p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+        }
+
+        .footer {
+            margin-bottom: 2rem;
         }
 
         .footer img {
-            height: 100px;
-            width: 100px;
+            width: clamp(60px, 8vw, 80px);
+            margin-bottom: 1rem;
         }
 
         .right {
+            margin-left: 60%;
             width: 40%;
+            padding: 1.5rem 3rem;
+            height: calc(100vh - 70px);
             background-color: #ffffff;
-            padding: 40px; /* Adjust padding here */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            max-height: 100vh;
-            overflow-y: auto;
+        }
+
+        .auth-header {
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         .auth-header h2 {
-            font-size: 35px;
-            text-align: center;
-            color: #75343a;
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
-            padding-top: 50px;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
         }
 
         .auth-header p {
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 10px;
-            text-align: center;
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
         }
-    
+
         .auth-body {
-            margin: 0px;
-            width: 100%; /* Ensure the form takes up the full width */
+            margin-top: 1rem;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
         }
 
         .form-group {
-            width: 100%; /* Make sure each form group is 100% width */
-            margin-bottom: 5px;
+            margin-bottom: 0;
         }
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            font-size: 0.8rem;
             color: #333;
-            margin-bottom: 8px;
-            font-weight: bold;
+            margin-bottom: 2px;
+            font-weight: normal;
         }
 
-        .form-group input, .form-group select {
+        .form-group input,
+        .form-group select {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
+            padding: 6px 8px;
+            font-size: 0.825rem;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-            color: #333;
-            transition: border 0.3s ease;
+            border-radius: 4px;
+            background-color: #fff;
+            height: 28px;
         }
 
-        .form-group input:focus, .form-group select:focus {
-            border-color: #75343a;
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px rgba(117, 52, 58, 0.1);
+        }
+
+        select.form-control {
+            height: 28px;
+            padding: 2px 6px;
+            background-position: right 6px center;
+        }
+
+        input[type="date"] {
+            height: 28px;
+            padding: 2px 6px;
+        }
+
+        .form-group:last-child {
+            grid-column: 1 / -1;
+            margin-bottom: 0.5rem;
         }
 
         .btn-primary {
             width: 100%;
-            padding: 12px 20px;
-            font-size: 18px;
-            background-color: #75343a;
+            padding: 8px;
+            font-size: 0.875rem;
+            height: 34px;
+            margin-top: 0.5rem;
+            background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 20px;
         }
 
         .btn-primary:hover {
-            background-color: #a32f3b;
-        }
-
-        .forgot-password {
-            text-align: right;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .forgot-password a {
-            color: #8e2f3b;
-            text-decoration: none;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
+            background-color: var(--primary-dark);
         }
 
         .auth-footer {
+            margin-top: 0.75rem;
             text-align: center;
-            margin-top: 20px;
+            font-size: 0.8rem;
         }
 
         .auth-footer a {
-            color: #8e2f3b;
+            color: var(--primary);
             text-decoration: none;
         }
 
         .auth-footer a:hover {
             text-decoration: underline;
         }
+
+        .password-requirements {
+            display: none;
+            font-size: 0.7rem;
+            padding: 0.4rem;
+            margin-top: 0.2rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .password-requirements.show {
+            display: block;
+        }
+
+        .password-requirements ul {
+            margin: 0.2rem 0 0 0;
+            padding-left: 1rem;
+        }
+
+        .password-requirements li {
+            margin-bottom: 0.1rem;
+        }
+
+        .auth-body form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        ::placeholder {
+            font-size: 0.825rem;
+            color: #999;
+        }
+
         /* Custom styling for alerts */
         .alert {
-            margin-bottom: 20px;
-            padding: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
             color: #fff;
             border-radius: 5px;
         }
@@ -535,44 +593,267 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             background-color: #2ecc71;
         }
 
-        .password-requirements {
-            grid-column: 1 / -1;
-            background-color: var(--gray-light);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 5px 0;
-            display: none;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            position: relative;
-            z-index: 10;
+        @media (max-width: 900px) {
+            h1 {
+                font-size: clamp(1.3rem, 5vw, 2.2rem);
+            }
+            h2, .auth-header h2 {
+                font-size: clamp(1.1rem, 4vw, 1.7rem);
+            }
+            .left h1 {
+                font-size: clamp(1.1rem, 5vw, 1.7rem);
+            }
+            .left h2 {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+            }
+            p, label, input, button, select, .form-text, .forgot-password, .auth-footer {
+                font-size: clamp(0.95rem, 2vw, 1.05rem);
+            }
         }
-        
-        .password-requirements.show {
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: clamp(1rem, 6vw, 1.3rem);
+            }
+            h2, .auth-header h2 {
+                font-size: clamp(0.95rem, 5vw, 1.1rem);
+            }
+            .left h1 {
+                font-size: clamp(0.95rem, 6vw, 1.1rem);
+            }
+            .left h2 {
+                font-size: clamp(0.9rem, 5vw, 1rem);
+            }
+            p, label, input, button, select, .form-text, .forgot-password, .auth-footer {
+                font-size: clamp(0.85rem, 3vw, 0.95rem);
+            }
+            .btn-primary {
+                font-size: clamp(0.95rem, 2vw, 1rem);
+            }
+        }
+
+        @media screen and (min-width: 1440px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .auth-body {
+                max-width: 1000px;
+            }
+        }
+
+        @media screen and (min-width: 1920px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .left, .right {
+                padding: 3rem 6rem;
+            }
+            
+            .auth-body {
+                max-width: 1200px;
+            }
+        }
+
+        /* Add smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .form-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Back button styling */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+
+        .back-link i {
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* Login specific styles */
+        .login-form .auth-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .login-form .auth-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-form .auth-header p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .login-form .form-group label {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
         }
-        
-        .password-requirements ul {
+
+        .login-form .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: 40px;
+        }
+
+        .login-form .forgot-password {
+            text-align: right;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form .forgot-password a {
+            color: var(--primary);
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+
+        .login-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            height: 40px;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form .auth-footer {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Registration specific styles */
+        .registration-form .auth-header {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .registration-form .auth-header h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .registration-form .auth-header p {
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .registration-form .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 8px 0 0 0;
-            padding: 0;
-            list-style: none;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
         }
-        
-        .password-requirements li {
-            font-size: 13px;
-            color: #666;
+
+        .registration-form .form-group {
+            margin-bottom: 0;
+        }
+
+        .registration-form .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .registration-form .form-group input,
+        .registration-form .form-group select {
+            width: 100%;
+            padding: 6px 8px;
+            font-size: 0.825rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: 28px;
+        }
+
+        .registration-form .form-group:last-child {
+            grid-column: 1 / -1;
+            margin-bottom: 0.5rem;
+        }
+
+        .registration-form button[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 0.875rem;
+            height: 34px;
+            margin-top: 0.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .registration-form .auth-footer {
+            margin-top: 0.75rem;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Add these styles for password requirements */
+        .registration-form .password-requirements {
+            background-color: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-size: 0.8rem;
+            display: none;
+            transition: all 0.3s ease;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .registration-form .form-group {
+            position: relative;
+        }
+
+        .registration-form .requirement-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            color: #666;
+            font-size: 0.75rem;
+            margin-bottom: 4px;
         }
-        
-        .password-requirements li::before {
+
+        .requirement-item::before {
             content: "×";
             display: inline-block;
             width: 16px;
@@ -580,157 +861,70 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             line-height: 16px;
             text-align: center;
             border-radius: 50%;
-            background-color: #ff4444;
+            background-color: #dc3545;
             color: white;
             font-weight: bold;
         }
-        
-        .password-requirements li.valid {
-            color: #4CAF50;
-        }
-        
-        .password-requirements li.valid::before {
+
+        .requirement-item.valid::before {
             content: "✓";
-            background-color: #4CAF50;
-        }
-        
-        .form-text {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+            background-color: #198754;
         }
 
-        .header-right {
-            position: absolute;
-            top: 120px;
-            left: 1180px;
-        }
-
-        .back-button {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--primary-dark);
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-        }
-
-        .back-button:hover {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-        }
-
-        .back-button .material-symbols-rounded {
-            font-size: 20px;
+        .requirement-item.valid {
+            color: #198754;
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const passwordInput = document.getElementById('password');
-            const strengthIndicator = document.createElement('div');
-            const passwordRequirements = document.querySelector('.password-requirements');
-            
-            strengthIndicator.className = 'password-strength';
-            strengthIndicator.style.height = '5px';
-            strengthIndicator.style.marginTop = '5px';
-            strengthIndicator.style.borderRadius = '3px';
-            strengthIndicator.style.transition = 'all 0.3s ease';
-            
-            if (passwordInput) {
-                passwordInput.parentNode.insertBefore(strengthIndicator, passwordInput.nextSibling);
-                
-                // Show password requirements on focus
-                passwordInput.addEventListener('focus', function() {
-                    if (passwordRequirements) {
-                        passwordRequirements.classList.add('show');
-                    }
-                });
+            const lengthCheck = document.getElementById('length-check');
+            const uppercaseCheck = document.getElementById('uppercase-check');
+            const numberCheck = document.getElementById('number-check');
+            const specialCheck = document.getElementById('special-check');
+            const requirements = document.querySelector('.password-requirements');
+            const allFormInputs = document.querySelectorAll('.registration-form input, .registration-form select');
 
-                // Hide password requirements when focus is lost
-                passwordInput.addEventListener('blur', function() {
-                    if (passwordRequirements) {
-                        passwordRequirements.classList.remove('show');
-                    }
-                });
-                
-                // Function to check password requirements
-                function checkPasswordRequirements(password) {
-                    const requirements = {
-                        length: password.length >= 8,
-                        uppercase: /[A-Z]/.test(password),
-                        number: /[0-9]/.test(password),
-                        special: /[^A-Za-z0-9]/.test(password)
-                    };
+            function checkPasswordRequirements(password) {
+                // Check length
+                const isLengthValid = password.length >= 8;
+                lengthCheck.classList.toggle('valid', isLengthValid);
 
-                    // Update requirement list items
-                    const requirementsList = passwordRequirements.querySelectorAll('li');
-                    requirementsList[0].classList.toggle('valid', requirements.length);
-                    requirementsList[1].classList.toggle('valid', requirements.uppercase);
-                    requirementsList[2].classList.toggle('valid', requirements.number);
-                    requirementsList[3].classList.toggle('valid', requirements.special);
+                // Check uppercase
+                const hasUppercase = /[A-Z]/.test(password);
+                uppercaseCheck.classList.toggle('valid', hasUppercase);
 
-                    return Object.values(requirements).every(Boolean);
-                }
-                
-                passwordInput.addEventListener('input', function() {
-                    const password = this.value;
-                    let strength = 0;
-                    let feedback = '';
-                    
-                    // Check password requirements
-                    const allRequirementsMet = checkPasswordRequirements(password);
-                    
-                    // Update strength based on requirements
-                    if (password.length >= 8) strength += 25;
-                    if (/[A-Z]/.test(password)) strength += 25;
-                    if (/[0-9]/.test(password)) strength += 25;
-                    if (/[^A-Za-z0-9]/.test(password)) strength += 25;
-                    
-                    // Update the strength indicator
-                    strengthIndicator.style.width = '100%';
-                    
-                    if (strength === 0) {
-                        strengthIndicator.style.backgroundColor = '#e0e0e0';
-                    } else if (strength <= 25) {
-                        strengthIndicator.style.backgroundColor = '#f44336'; // Red
-                        feedback = 'Weak';
-                    } else if (strength <= 50) {
-                        strengthIndicator.style.backgroundColor = '#ff9800'; // Orange
-                        feedback = 'Moderate';
-                    } else if (strength <= 75) {
-                        strengthIndicator.style.backgroundColor = '#ffc107'; // Yellow
-                        feedback = 'Good';
-                    } else {
-                        strengthIndicator.style.backgroundColor = '#4caf50'; // Green
-                        feedback = 'Strong';
-                    }
-                    
-                    // Add feedback text
-                    const feedbackText = document.getElementById('password-strength-text');
-                    if (feedbackText) {
-                        feedbackText.textContent = password.length > 0 ? `Password strength: ${feedback}` : '';
-                    } else if (password.length > 0) {
-                        const feedbackElement = document.createElement('div');
-                        feedbackElement.id = 'password-strength-text';
-                        feedbackElement.style.fontSize = '12px';
-                        feedbackElement.style.marginTop = '5px';
-                        feedbackElement.textContent = `Password strength: ${feedback}`;
-                        strengthIndicator.parentNode.insertBefore(feedbackElement, strengthIndicator.nextSibling);
-                    }
+                // Check number
+                const hasNumber = /[0-9]/.test(password);
+                numberCheck.classList.toggle('valid', hasNumber);
 
-                    // Disable submit button if requirements are not met
-                    const submitButton = document.querySelector('button[type="submit"]');
-                    if (submitButton) {
-                        submitButton.disabled = !allRequirementsMet;
-                        submitButton.style.opacity = allRequirementsMet ? '1' : '0.5';
-                        submitButton.style.cursor = allRequirementsMet ? 'pointer' : 'not-allowed';
-                    }
-                });
+                // Check special character
+                const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                specialCheck.classList.toggle('valid', hasSpecial);
             }
-            
+
+            // Show password requirements only when password field is focused
+            passwordInput.addEventListener('focus', function() {
+                requirements.style.display = 'block';
+            });
+
+            // Hide requirements when focus moves to another input
+            allFormInputs.forEach(input => {
+                if (input.id !== 'password') {
+                    input.addEventListener('focus', function() {
+                        requirements.style.display = 'none';
+                    });
+                }
+            });
+
+            // Update requirements as user types
+            passwordInput.addEventListener('input', function() {
+                checkPasswordRequirements(this.value);
+            });
+
+            // Initial check of password requirements
+            checkPasswordRequirements(passwordInput.value);
+
             const profilePicInput = document.getElementById('profile_picture');
             const previewDiv = document.getElementById('image_preview');
             
@@ -782,38 +976,73 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
         </div>
         
         <div class="right">
-            <div class="header-right">
-                <a href="index.php" class="back-button">
-                <i class="bi bi-arrow-left"></i>Back to Home
-                </a>
-            </div>    
-            <?php if ($show_registration): ?>
-                <!-- Registration Form -->
-                <div class="auth-header">
-                    <h2>STUDENT REGISTRATION</h2>
-                    <p>Create your student account</p>
+            <?php if (!$show_registration): ?>
+                <div class="login-form">
+                    <a href="index.php" class="back-link">
+                        <i class="bi bi-arrow-left"></i>Back to Home
+                    </a>
+                    <div class="auth-header">
+                        <h2>Student Login</h2>
+                        <p>Access your student account</p>
+                    </div>
+                    <div class="auth-body">
+                        <?php if (!empty($login_error)): ?>
+                            <div class="alert alert-danger"><?php echo $login_error; ?></div>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($registration_success)): ?>
+                            <div class="alert alert-success"><?php echo $registration_success; ?></div>
+                        <?php endif; ?>
+                        
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login_password">Password</label>
+                                <input type="password" class="form-control" id="login_password" name="login_password" required>
+                                <div class="forgot-password">
+                                    <a href="forgot_password.php">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <button type="submit" name="login" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="stud_register.php?register=true">Register here</a></p>
+                    </div>
                 </div>
-                <div class="auth-body">
-                    <?php if (!empty($registration_error)): ?>
-                        <div class="alert alert-danger"><?php echo $registration_error; ?></div>
-                    <?php endif; ?>
-                    
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <div class="form-grid">
-                            <!-- First Name - Last Name -->
-                            <div class="form-group">
-                                <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" id="firstname" name="firstname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="middletname">Middle Name</label>
-                                <input type="text" class="form-control" id="middlename" name="middlename" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Last Name</label>
-                                <input type="text" class="form-control" id="lastname" name="lastname" required>
-                            </div>
-                            <div class="form-group">
+            <?php else: ?>
+                <div class="registration-form">
+                    <a href="index.php" class="back-link">
+                        <i class="bi bi-arrow-left"></i>Back to Home
+                    </a>
+                    <div class="auth-header">
+                        <h2>STUDENT REGISTRATION</h2>
+                        <p>Create your student account</p>
+                    </div>
+                    <div class="auth-body">
+                        <?php if (!empty($registration_error)): ?>
+                            <div class="alert alert-danger"><?php echo $registration_error; ?></div>
+                        <?php endif; ?>
+                        
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <div class="form-grid">
+                                <!-- First Name - Last Name -->
+                                <div class="form-group">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" class="form-control" id="firstname" name="firstname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middletname">Middle Name</label>
+                                    <input type="text" class="form-control" id="middlename" name="middlename" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname">Last Name</label>
+                                    <input type="text" class="form-control" id="lastname" name="lastname" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="student_type">Student Type</label>
                                     <select class="form-control" id="student_type" name="student_type" required>
                                         <option value="">Select Student Type</option>
@@ -823,97 +1052,60 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
                                     </select>
                                 </div>
 
+                                <!-- Email - Contact Number -->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_number">Contact Number</label>
+                                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
+                                </div>
 
-                            <!-- Email - Contact Number -->
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact_number">Contact Number</label>
-                                <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                            </div>
+                                <!-- Password - Confirm Password -->
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <div class="password-requirements">
+                                        <h6>Password requirements:</h6>
+                                        <div class="requirement-item" id="length-check">At least 8 characters long</div>
+                                        <div class="requirement-item" id="uppercase-check">At least one uppercase letter</div>
+                                        <div class="requirement-item" id="number-check">At least one number</div>
+                                        <div class="requirement-item" id="special-check">At least one special character</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                </div>
 
-                            <!-- Password - Confirm Password -->
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                                <div class="password-requirements">
-                                    <p>Password requirements:</p>
-                                    <ul>
-                                        <li>At least 8 characters long</li>
-                                        <li>At least one uppercase letter</li>
-                                        <li>At least one number</li>
-                                        <li>At least one special character</li>
-                                    </ul>
+                                <!-- Date of Birth - Address -->
+                                <div class="form-group">
+                                    <label for="date_of_birth">Date of Birth</label>
+                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" name="address" required>
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="confirm_password">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-                            </div>
-
-                            <!-- Date of Birth - Address -->
-                            <div class="form-group">
-                                <label for="date_of_birth">Date of Birth</label>
-                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" required>
-                            </div>
-
-                            <!-- Gender -->
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select class="form-control" id="gender" name="gender" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            
-                        </div>
-                        <button type="submit" name="register" class="btn btn-primary">Register</button>
-                    </form>
-
-                </div>
-                <div class="auth-footer">
-                    <p>Already have an account? <a href="stud_register.php">Login here</a></p>
-                </div>
-            <?php else: ?>
-                <!-- Login Form -->
-                <div class="auth-header">
-                    <h2>Student Login</h2>
-                    <p>Access your student account</p>
-                </div>
-                <div class="auth-body">
-                    <?php if (!empty($login_error)): ?>
-                        <div class="alert alert-danger"><?php echo $login_error; ?></div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($registration_success)): ?>
-                        <div class="alert alert-success"><?php echo $registration_success; ?></div>
-                    <?php endif; ?>
-                    
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="login_password">Password</label>
-                            <input type="password" class="form-control" id="login_password" name="login_password" required>
-                            <div class="forgot-password">
-                                <a href="forgot_password.php">Forgot Password?</a>
-                            </div>
-                        </div>
-                        <button type="submit" name="login" class="btn btn-primary">Login</button>
-                    </form>
-                </div>
-                <div class="auth-footer">
-                    <p>Don't have an account? <a href="stud_register.php?register=true">Register here</a></p>
+                            <button type="submit" name="register" class="btn btn-primary">Register</button>
+                        </form>
+                    </div>
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="stud_register.php">Login here</a></p>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
