@@ -164,10 +164,12 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Profile - PUP Qualifying Exam Portal</title>
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Custom styles for profile page */
         :root {
             --primary: #75343A;
             --primary-dark: #5a2930;
@@ -180,269 +182,215 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             --gray: #e0e0e0;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Updated sidebar styles */
+        .sidebar {
+            height: 100vh;
+            padding-bottom: 0;
+            position: fixed;
+            overflow-y: auto;
+            z-index: 99;
         }
         
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--gray-light);
-            line-height: 1.6;
+        /* Updated main-content styles */
+        .main-content {
+            padding-bottom: 20px;
+            margin-left: 250px; /* Match sidebar width */
+            overflow-x: hidden;
+        }
+        
+        /* Updated footer styles */
+        footer {
+            position: relative;
+            margin-top: 0;
+            padding: 15px 0;
+        }
+        
+        /* Updated main-wrapper styles */
+        .main-wrapper {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
         }
         
-        .logo {
+        /* Fix footer overlap issue */
+        .main-content {
+            padding-bottom: 80px !important; /* Ensure content doesn't get hidden behind footer */
+        }
+        
+        /* Fix sidebar height to extend to footer */
+        .sidebar {
+            height: auto !important; /* Changed from fixed height to auto */
+            min-height: calc(100vh - 80px) !important; /* Minimum height */
+            bottom: 0;
+            padding-bottom: 60px; /* Reduced padding to prevent overlap with footer */
+            z-index: 99; /* Ensure sidebar is above content but below overlay */
+            position: fixed; /* Keep it fixed on desktop */
+            overflow-y: auto; /* Allow scrolling if content is too tall */
+        }
+        
+        /* Footer positioning */
+        footer {
+            position: relative !important; /* Changed from fixed to relative */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 98; /* Below sidebar but above main content */
+            background-color: var(--primary); /* Changed from white to primary color */
+            color: white; /* Text color changed to white for contrast */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            margin-top: 20px;
+            clear: both;
+        }
+        
+        /* Footer text color */
+        footer p {
+            color: white;
+            margin: 0;
+            text-align: center;
+        }
+        
+        /* Improved sidebar overlay for mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Main wrapper adjustments for better footer positioning */
+        .main-wrapper {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            min-height: calc(100vh - 140px); /* Account for header and footer */
+            position: relative;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         
-        .logo img {
-            height: 50px;
-            width: auto;
+        /* Main content adjustments */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            padding-bottom: 30px !important; /* Reduced padding */
+            margin-left: 250px; /* Match sidebar width */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
-        .logo-text {
-            display: flex;
-            flex-direction: column;
+        /* Improved sidebar animation for mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 250px;
+                max-width: 80%;
+                height: calc(100vh - 80px) !important; /* Fixed height on mobile */
+                padding-bottom: 100px; /* Extra padding to ensure scrollability */
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            body.sidebar-open {
+                overflow: hidden;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 997;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+            }
+            
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 15px;
+                padding-bottom: 20px !important;
+            }
+            
+            footer {
+                margin-top: 0;
+            }
+            
+            /* Ensure sidebar doesn't overlap with footer on mobile */
+            .sidebar {
+                padding-bottom: 80px;
+            }
         }
         
-        .logo-text h1 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        /* Make footer non-fixed on larger screens */
+        @media (min-width: 769px) {
+            footer {
+                position: relative !important;
+                margin-top: 20px;
+            }
+            
+            .main-content {
+                padding-bottom: 30px !important;
+            }
+            
+            /* Hide mobile menu toggle on desktop */
+            .menu-toggle {
+                display: none;
+            }
         }
 
-        .nav-links a:hover {
-            background-color: var(--primary-dark);
-            color: var(--text-light);   
-        }
-
+        /* Improved dropdown menu animation */
         .dropdown-menu {
+            display: none;
             position: absolute;
             top: 100%;
             right: 0;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 10px 0;
             min-width: 200px;
-            display: none;
-            z-index: 100;
+            z-index: 1000;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .dropdown-menu.active {
             display: block;
-        }
-        
-        .dropdown-menu a{
-            color: var(--primary);
-        }
-        
-        .dropdown-item {
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-size: 14px;
-        }
-        
-        .dropdown-item:hover {
-            background-color: var(--gray-light);
-        }
-        
-        .profile-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-            font-weight: bold;
-            overflow: hidden;
-        }
-        
-        .profile-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        /* Main Layout */
-        .main-wrapper {
-            display: flex;
-            margin-top: 80px;
-            flex: 1;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-            padding: 25px 0;
-            height: calc(100vh - 80px);
-            position: fixed;
-            overflow-y: auto;
-        }
-        
-        .sidebar-profile {
-            padding: 0 20px 20px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--gray);
-            text-align: center;
-        }
-        
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--primary-dark);
-            font-weight: bold;
-            overflow: hidden;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .sidebar-profile h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .sidebar-profile p {
-            font-size: 14px;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-        
-        .sidebar-menu {
-            list-style: none;
-        }
-        
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
-        
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: var(--text-dark);
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .sidebar-menu a:hover {
-            background-color: var(--gray-light);
-            color: var(--primary);
-        }
-        
-        .sidebar-menu a.active {
-            background-color: var(--primary-light);
-            color: var(--text-light);
-        }
-        
-        .sidebar-menu .material-symbols-rounded {
-            font-size: 20px;
-        }
-        
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 30px;
-            margin-left: 250px;
-            padding-bottom: 80px;
-        }
-        
-        .page-title {
-            margin-bottom: 30px;
-        }
-        
-        .page-title h2 {
-            color: var(--primary);
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .page-title p {
-            color: var(--text-dark);
-            opacity: 0.7;
+            transform: translateY(0);
+            opacity: 1;
         }
         
         /* Profile Container */
         .profile-container {
             background: white;
+            border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             margin-bottom: 30px;
@@ -565,14 +513,14 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         .profile-tabs {
             display: flex;
             gap: 1rem;
+            padding: 1rem 2rem;
             background: var(--gray-light);
             border-bottom: 1px solid var(--gray);
-            margin-left: 20px;
-            height: 50px;
         }
         
         .tab-btn {
             padding: 0.75rem 1.5rem;
+            border-radius: 6px;
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
@@ -580,8 +528,6 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             background: none;
             border: none;
             color: #666;
-            border-top-right-radius: 15px;
-            border-top-left-radius: 15px;
         }
         
         .tab-btn:hover {
@@ -621,15 +567,15 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         }
         
         .info-label {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #666;
             margin-bottom: 0.25rem;
         }
         
         .info-value {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: var(--text-dark);
-            font-weight: 600;
+            font-weight: 500;
         }
         
         /* Exam History */
@@ -677,107 +623,6 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             color: #c62828;
         }
         
-    
-        /* Footer Styles */
-        footer {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 20px 0;
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 900;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        footer .container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        footer p {
-            text-align: center;
-            font-size: 14px;
-            opacity: 0.9;
-            margin: 0;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .profile-stats {
-                justify-content: center;
-            }
-            
-            .profile-actions {
-                justify-content: center;
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .profile-container {
-                border-radius: 0;
-            }
-            
-            .profile-header {
-                padding: 1.5rem;
-            }
-            
-            .profile-avatar {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .profile-name {
-                font-size: 1.5rem;
-            }
-            
-            .profile-stats {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-            
-            .exam-table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            .profile-tabs {
-                flex-wrap: wrap;
-                padding: 1rem;
-            }
-            
-            .tab-btn {
-                flex: 1;
-                text-align: center;
-            }
-            
-            footer {
-                height: 50px;
-            }
-            
-            .main-content {
-                padding-bottom: 70px;
-            }
-        }
-
         .no-registration,
         .no-exams {
             text-align: center;
@@ -907,7 +752,6 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             background: var(--gray-light);
             color: var(--text-dark);
             border: none;
-            font-size: 0.9rem;
         }
         
         .cancel-btn:hover {
@@ -1151,6 +995,14 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-profile">
@@ -1229,9 +1081,10 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         <label for="profile-picture-input" class="change-picture" title="Change Profile Picture">
                             <span class="material-symbols-rounded">photo_camera</span>
                         </label>
+                        <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*" class="hidden-input">
                     </div>
                     <div class="profile-info">
-                        <h2><?php echo $student['firstname'] . ' ' . $student['middlename'] . ' ' . $student['lastname']; ?></h2>
+                        <h2><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></h2>
                         <p><?php echo $student['email']; ?></p>
                         <div class="profile-stats">
                             <div class="stat-item">
@@ -1254,19 +1107,18 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         </button>
                     </div>
                 </div>
-            </div>
 
-            <div class="profile-tabs">
-                <button class="tab-btn active" data-tab="personal">Personal Information</button>
-                <button class="tab-btn" data-tab="exams">Exam History</button>
-            </div>
-            
-            <div class="profile-container">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="personal">Personal Information</button>
+                    <button class="tab-btn" data-tab="exams">Exam History</button>
+                </div>
+
                 <div class="tab-content active" id="personal-tab">
+                    <h2>Personal Information</h2>
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-label">Full Name</div>
-                            <div class="info-value"><?php echo $student['firstname'] . ' ' . $student['middlename'] . ' ' . $student['lastname']; ?></div>
+                            <div class="info-value"><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Email</div>
@@ -1299,7 +1151,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     </div>
                 </div>
 
-                <div class="tab-content" id="exams-tab"> 
+                <div class="tab-content" id="exams-tab">
+                    <h2>Exam History</h2>
                     <?php if (!$registration): ?>
                     <div class="no-registration">
                         <span class="material-symbols-rounded" style="font-size: 48px; color: var(--primary); margin-bottom: 1rem;">app_registration</span>
@@ -1344,10 +1197,16 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     </table>
                     <?php endif; ?>
                 </div>
-                </div>
             </div>
         </main>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <?php echo date('Y'); ?> PUP Qualifying Exam Portal. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!-- Edit Profile Modal -->
     <div id="editProfileModal" class="modal">
@@ -1393,10 +1252,6 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                         <input type="text" id="firstname" name="firstname" value="<?php echo $student['firstname']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="middlename">Middle Name</label>
-                        <input type="text" id="middlename" name="middlename" value="<?php echo $student['middlename']; ?>" required>
-                    </div>
-                    <div class="form-group">
                         <label for="lastname">Last Name</label>
                         <input type="text" id="lastname" name="lastname" value="<?php echo $student['lastname']; ?>" required>
                     </div>
@@ -1435,8 +1290,112 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         </div>
     </div>
 
+    <script src="js/main.js"></script>
     <script>
+        // Adjust sidebar and content height
+        function adjustLayout() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const footer = document.querySelector('footer');
+            const headerHeight = 80; // Approximate header height
+
+            if (window.innerWidth >= 769) {
+                // For desktop: Adjust sidebar and content height
+                const availableHeight = window.innerHeight - headerHeight - footer.offsetHeight;
+                sidebar.style.height = availableHeight + 'px';
+                mainContent.style.minHeight = availableHeight + 'px';
+            } else {
+                // For mobile: Set fixed height
+                sidebar.style.height = 'calc(100vh - 80px)';
+            }
+        }
+
+        // Run on page load and resize
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (menuToggle && sidebar && sidebarOverlay) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    sidebarOverlay.classList.toggle('active');
+                    document.body.classList.toggle('sidebar-open');
+                    
+                    // Adjust main content when sidebar is open
+                    if (sidebar.classList.contains('active') && window.innerWidth < 769) {
+                        mainContent.style.opacity = '0.7';
+                    } else {
+                        mainContent.style.opacity = '1';
+                    }
+                });
+                
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                    mainContent.style.opacity = '1';
+                });
+            }
+            
+            // Close sidebar when clicking a link on mobile
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            if (sidebarLinks.length > 0) {
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth < 769) {
+                            sidebar.classList.remove('active');
+                            sidebarOverlay.classList.remove('active');
+                            document.body.classList.remove('sidebar-open');
+                            mainContent.style.opacity = '1';
+                        }
+                    });
+                });
+            }
+            
+            // Handle profile dropdown menu
+            const profileMenu = document.getElementById('profile-menu');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileMenu && dropdownMenu) {
+                profileMenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileMenu.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Adjust UI elements on window resize
+            function handleResize() {
+                adjustLayout();
+                
+                // Reset main content opacity
+                mainContent.style.opacity = '1';
+                
+                // Close mobile menu if window is resized to desktop
+                if (window.innerWidth >= 769) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+            
+            // Initial adjustment
+            adjustLayout();
+
             // Tab switching functionality
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -1487,31 +1446,6 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     alert.style.display = 'none';
                 }, 5000);
             });
-
-            // Profile Menu Toggle
-            const profileMenu = document.querySelector('.profile-menu');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            const profileMenuTrigger = document.querySelector('#profile-menu');
-            
-            document.addEventListener('click', function(event) {
-                if (!profileMenu.contains(event.target)) {
-                    dropdownMenu.style.display = 'none';
-                }
-            });
-            
-            profileMenuTrigger.addEventListener('click', function(event) {
-                event.preventDefault();
-                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-            });
-
-            // Remove the hover style since we're using click
-            const style = document.createElement('style');
-            style.textContent = `
-                .profile-menu:hover .dropdown-menu {
-                    display: none;
-                }
-            `;
-            document.head.appendChild(style);
 
             // Profile Picture Upload
             const profilePictureInput = document.getElementById('profile-picture-input');
