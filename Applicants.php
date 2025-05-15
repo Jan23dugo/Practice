@@ -116,7 +116,7 @@ tbody tr:hover {
     max-height: 85vh;
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    margin: 70px auto;
+    margin: 20px auto;
     animation: modalFade 0.3s ease-in-out;
 }
 
@@ -169,6 +169,8 @@ tbody tr:hover {
 .row {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 -15px;
+    padding: 10px 0;
     gap: 15px;
 }
 
@@ -181,12 +183,13 @@ tbody tr:hover {
 
 /* Information Text Styling */
 .modal-content p {
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 10px;
-    padding: 20px;
-    padding-left: 30px;
-    font-size: 15px;
 }
 
 .modal-content strong {
@@ -508,6 +511,58 @@ td, th {
     
 }
 
+/* Add this to your existing styles */
+.status-needs_review {
+    background-color: #fef8e8;
+    color: #f6a803;
+    border-color: #feeeba;
+}
+
+/* Student name container */
+.student-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.student-name {
+    margin-bottom: 4px;
+}
+
+/* Tech Status Badges */
+.tech-status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.non-tech-badge {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.tech-badge {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.ladderized-badge {
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+.unknown-badge {
+    background-color: #e2e3e5;
+    color: #383d41;
+    border: 1px solid #d6d8db;
+}
+
 </style>
 </head>
 <body>
@@ -523,6 +578,7 @@ td, th {
     <div class="filter-section">
         <select name="status" id="statusFilter" onchange="applyFilters()">
             <option value="">All Status</option>
+            <option value="needs_review">Manual Review Required</option>
             <option value="pending">Pending</option>
             <option value="accepted">Accepted</option>
             <option value="rejected">Rejected</option>
@@ -541,6 +597,7 @@ td, th {
                 <th>Student Type</th>
                 <th>Email</th>
                 <th>Registration Date</th>
+                <th>Category</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -548,25 +605,50 @@ td, th {
         <tbody>
             <?php if ($result->num_rows == 0): ?>
                 <tr>
-                    <td colspan="7" style="text-align: center; padding: 20px; color: #666;">
+                    <td colspan="8" style="text-align: center; padding: 20px; color: #666;">
                         No registered students found.
                     </td>
                 </tr>
             <?php else: ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
+                    <?php 
+                        // Determine tech status badge class
+                        $techStatus = "Unknown";
+                        $techBadgeClass = "unknown-badge";
+                        
+                        switch((int)$row['is_tech']) {
+                            case 0:
+                                $techStatus = "Non-Tech";
+                                $techBadgeClass = "non-tech-badge";
+                                break;
+                            case 1:
+                                $techStatus = "Tech";
+                                $techBadgeClass = "tech-badge";
+                                break;
+                            case 2:
+                                $techStatus = "Ladderized";
+                                $techBadgeClass = "ladderized-badge";
+                                break;
+                        }
+                    ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['reference_id']); ?></td>
-                        <td><?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); ?></td>
+                        <td>
+                            <div class="student-name-container">
+                                <div class="student-name"><?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); ?></div>
+                            </div>
+                        </td>
                         <td><?php echo htmlspecialchars($row['student_type']); ?></td>
                         <td><?php echo htmlspecialchars($row['email']); ?></td>
                         <td><?php echo date('M d, Y h:i A', strtotime($row['registration_date'])); ?></td>
+                        <td><span class="tech-status-badge <?php echo $techBadgeClass; ?>"><?php echo $techStatus; ?></span></td>
                         <td>
-                            <select class="status status-<?php echo strtolower($row['status']); ?>" 
-                                    onchange="confirmStatusChange(this, '<?php echo $row['reference_id']; ?>')"
-                                    <?php echo ($row['status'] !== 'pending') ? 'disabled' : ''; ?>>
-                                <option value="pending" <?php echo $row['status'] == 'pending' ? 'selected' : ''; ?> disabled>Pending</option>
-                                <option value="accepted" <?php echo $row['status'] == 'accepted' ? 'selected' : ''; ?>>Accepted</option>
-                                <option value="rejected" <?php echo $row['status'] == 'rejected' ? 'selected' : ''; ?>>Rejected</option>
+                            <select class="status status-<?php echo (string)$row['status'] === '0' ? 'needs_review' : strtolower((string)$row['status']); ?>" 
+                                    onchange="updateStatus(this.value, '<?php echo $row['reference_id']; ?>')">
+                                <option value="pending" <?php echo (string)$row['status'] === 'pending' ? 'selected' : ''; ?>>Pending</option>
+                                <option value="needs_review" <?php echo (string)$row['status'] === '0' || (string)$row['status'] === 'needs_review' ? 'selected' : ''; ?>>Manual Review Required</option>
+                                <option value="accepted" <?php echo (string)$row['status'] === 'accepted' ? 'selected' : ''; ?>>Accepted</option>
+                                <option value="rejected" <?php echo (string)$row['status'] === 'rejected' ? 'selected' : ''; ?>>Rejected</option>
                             </select>
                         </td>
                         <td>
@@ -587,7 +669,8 @@ td, th {
                                 desired_program: '<?php echo $row['desired_program']; ?>',
                                 is_tech: '<?php echo $row['is_tech']; ?>',
                                 tor: '<?php echo $row['tor']; ?>',
-                                school_id: '<?php echo $row['school_id']; ?>'
+                                school_id: '<?php echo $row['school_id']; ?>',
+                                admin_notes: '<?php echo !empty($row['admin_notes']) ? addslashes($row['admin_notes']) : ""; ?>'
                             })">View Details</button>
                         </td>
                     </tr>
@@ -610,22 +693,34 @@ td, th {
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
 
+        <!-- Admin Notes (Only shown when present) -->
+        <div id="admin-notes-section" style="display:none;">
+            <h5 class="text-warning">Admin Notes</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="background-color: #fef8e8; border-left: 4px solid #f6a803; padding: 15px; margin-bottom: 20px;">
+                        <p id="admin_notes" style="margin: 0;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Personal Information -->
         <h5 class="text-primary">Personal Information</h5>
         <div class="row">
             <div class="col-md-4">
-                <p><strong>Last Name:</strong> <span id="last_name"></span></p>
                 <p><strong>Reference ID:</strong> <span id="ref_id"></span></p>
-                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>First Name:</strong> <span id="first_name"></span></p>
+                <p><strong>Middle Name:</strong> <span id="middle_name"></span></p>
+                <p><strong>Last Name:</strong> <span id="last_name"></span></p>
             </div>
             <div class="col-md-4">
-                <p><strong>First Name:</strong> <span id="first_name"></span></p>
+                <p><strong>Gender:</strong> <span id="gender"></span></p>
                 <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
                 <p><strong>Contact:</strong> <span id="contact"></span></p>
             </div>
             <div class="col-md-4">
-                <p><strong>Middle Name:</strong> <span id="middle_name"></span></p>
-                <p><strong>Gender:</strong> <span id="gender"></span></p>
                 <p><strong>Address:</strong> <span id="address"></span></p>
             </div>
         </div>
@@ -635,15 +730,13 @@ td, th {
         <div class="row">
             <div class="col-md-6">
                 <p><strong>Student Type:</strong> <span id="student_type"></span></p>
-                <p><strong>Tech Student:</strong> <span id="is_tech"></span></p>
+                <p><strong>Previous School:</strong> <span id="prev_school"></span></p>
+                <p id="year_level_row"><strong>Year Level:</strong> <span id="year_level"></span></p>
             </div>
             <div class="col-md-6">
                 <p><strong>Previous Program:</strong> <span id="prev_program"></span></p>
                 <p><strong>Desired Program:</strong> <span id="desired_program"></span></p>
-            </div>
-            <div class="col-md-6">
-                <p><strong>Previous School:</strong> <span id="prev_school"></span></p>
-                <p><strong>Year Level:</strong> <span id="year_level"></span></p> 
+                <p><strong>Student Category:</strong> <span id="is_tech"></span></p>
             </div>
         </div>
 
@@ -683,7 +776,6 @@ td, th {
         <h5 class="text-primary">Status Update</h5>
         <div class="row">
             <div class="col-md-12">
-                <p id="statusMessage"></p>
                 <div id="reasonField" style="display: none; margin-bottom: 20px;">
                     <label for="rejectionReason" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500;">Reason for Rejection:</label>
                     <textarea id="rejectionReason" 
@@ -692,6 +784,7 @@ td, th {
                              placeholder="Please provide a reason for rejecting this application..."></textarea>
                     <small style="color: #666; margin-top: 5px; display: block;">This reason will be visible to the student.</small>
                 </div>
+                <p id="statusMessage"></p>
             </div>
         </div>
         <div class="row">
@@ -702,7 +795,6 @@ td, th {
         </div>
     </div>
 </div>
-
 
 <script src="assets/js/side.js"></script>
 <script>
@@ -729,9 +821,33 @@ function openModal(details) {
     document.getElementById("desired_program").textContent = details.desired_program;
     document.getElementById("is_tech").textContent = details.is_tech;
 
+    // Hide Year Level if student is ladderized
+    const yearLevelRow = document.getElementById("year_level_row");
+    if (details.student_type && details.student_type.toLowerCase() === "ladderized") {
+        yearLevelRow.style.display = "none";
+    } else {
+        yearLevelRow.style.display = "";
+    }
+
     // Set document previews
     document.getElementById("tor_preview").src = details.tor;
     document.getElementById("school_id_preview").src = details.school_id;
+    
+    // Handle admin notes if present
+    const adminNotesSection = document.getElementById("admin-notes-section");
+    if (details.admin_notes && details.admin_notes.trim() !== '') {
+        // Clean up the admin notes to remove technical error details
+        let cleanedNotes = details.admin_notes;
+        
+        // Remove specific technical error messages
+        cleanedNotes = cleanedNotes.replace(/Error retrieving grading rules: Unknown column 'is_default' in 'where clause'/g, 
+                                          "Grading system configuration issue. Please add this university to the system.");
+        
+        document.getElementById("admin_notes").textContent = cleanedNotes;
+        adminNotesSection.style.display = "block";
+    } else {
+        adminNotesSection.style.display = "none";
+    }
 
     // Show modal with the "show" class
     modal.classList.add("show");
@@ -763,64 +879,39 @@ window.onclick = function (event) {
       }
   }
 
-// Function to open the status update modal and display the appropriate message
-function confirmStatusChange(selectElement, referenceId) {
-    currentStatus = selectElement.value;
+function updateStatus(status, referenceId) {
     currentReferenceId = referenceId;
-
-    // Show the confirmation message based on the status
-    let confirmationMessage = `Are you sure you want to mark this student as ${currentStatus.charAt(0).toUpperCase() + currentStatus.slice(1)}?`;
-    document.getElementById('statusMessage').textContent = confirmationMessage;
-
-    // Show the rejection reason field only if the status is "Rejected"
-    if (currentStatus === 'rejected') {
-        document.getElementById('reasonField').style.display = 'block';
-    } else {
-        document.getElementById('reasonField').style.display = 'none';
-    }
-
+    currentStatus = status;
+    
+    const reasonField = document.getElementById('reasonField');
+    const statusMessage = document.getElementById('statusMessage');
+    
+    // Show/hide reason field based on status
+    reasonField.style.display = status === 'rejected' ? 'block' : 'none';
+    statusMessage.textContent = `Are you sure you want to mark this student as ${status}?`;
+    
     // Show the modal
-    document.getElementById('statusModal').classList.add('show');
+    document.getElementById("statusModal").classList.add("show");
 }
 
-// Function to close the modal
-function closeStatusModal() {
-    document.getElementById('statusModal').classList.remove('show');
-    document.getElementById('rejectionReason').value = ''; // Clear rejection reason
-
-     // Reset status to "Pending" when canceling the modal
-     if (currentStatus !== 'confirmed') {
-        const selectElement = document.querySelector(`select[onchange*="${currentReferenceId}"]`);
-        if (selectElement) {
-            selectElement.value = 'pending'; // Reset the dropdown to "Pending"
-            selectElement.className = "status status-pending";
-        }
-    }
-}
-
-// Function to handle the status update when confirmed
 function confirmStatusUpdate() {
-    let rejectionReason = '';
-
-    // If the status is "rejected", ensure a reason is provided
-    if (currentStatus === 'rejected') {
-        rejectionReason = document.getElementById('rejectionReason').value;
-        if (!rejectionReason.trim()) {
-            alert('Please provide a reason for rejection.');
-            return;
-        }
+    const reason = document.getElementById('rejectionReason').value;
+    
+    // Validate reason if status is rejected
+    if (currentStatus === 'rejected' && !reason.trim()) {
+        document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">Please provide a reason for rejection.</span>';
+        return;
     }
-
-    // Prepare the data to be sent to the backend
+    
+    // Prepare the data
     const formData = new FormData();
-    formData.append('reference_id', currentReferenceId);
     formData.append('status', currentStatus);
-
+    formData.append('reference_id', currentReferenceId);
     if (currentStatus === 'rejected') {
-        formData.append('rejection_reason', rejectionReason);
+        formData.append('rejection_reason', reason);
     }
-
-    // Send the update request via fetch
+    
+    // Send the update request
     fetch('update_status.php', {
         method: 'POST',
         body: formData
@@ -828,47 +919,42 @@ function confirmStatusUpdate() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            showModal('Status updated successfully!');
-            location.reload();  // Refresh the page to reflect the updated status
+            // Update the select element's class
+            const select = document.querySelector(`select[onchange*="${currentReferenceId}"]`);
+            select.className = `status status-${currentStatus}`;
+            select.value = currentStatus;
+            
+            // Show success message in the status message element
+            document.getElementById('statusMessage').innerHTML = '<span style="color: #28a745;">Status updated successfully!</span>';
+            setTimeout(() => {
+                closeStatusModal();
+                // Optionally refresh the page or update the UI
+                location.reload();
+            }, 1500);
         } else {
-            alert(`Error: ${data.message}`);
+            document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">Failed to update status: ' + (data.message || 'Unknown error') + '</span>';
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred while updating the status.');
+        document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">An error occurred while updating the status: ' + error.message + '</span>';
     });
-
-    // Close the modal after the update
-    closeStatusModal();
 }
 
-// Function to close the modal when clicking outside the modal
-window.onclick = function(event) {
-    const modal = document.getElementById("statusModal");
-    if (event.target === modal) {
-        closeStatusModal();
-    }
-};
-
-// Close modal when clicking outside
-window.onclick = function (event) {
-    const modal = document.getElementById("infoModal");
-    if (event.target === modal) {
-        closeModal();
-    }
-};
-
-// Close modal function
-function closeModal() {
-    document.getElementById("infoModal").classList.remove("show");
+function closeStatusModal() {
+    document.getElementById("statusModal").classList.remove("show");
+    // Reset fields
+    document.getElementById('rejectionReason').value = '';
+    document.getElementById('statusMessage').textContent = '';
+    currentReferenceId = '';
+    currentStatus = '';
 }
 
-// Add event listener for the modal close button
+// Add event listener for the status modal close button
 document.addEventListener('DOMContentLoaded', function() {
-    const closeModalBtn = document.querySelector('#statusModal .close');
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeStatusModal);
+    const statusModalCloseBtn = document.querySelector('#statusModal .close');
+    if (statusModalCloseBtn) {
+        statusModalCloseBtn.addEventListener('click', closeStatusModal);
     }
 });
 
@@ -878,11 +964,19 @@ function applyFilters() {
     const rows = document.querySelectorAll('tbody tr');
 
     rows.forEach(row => {
-        const statusCell = row.querySelector('.status').value;
+        const statusSelect = row.querySelector('.status');
+        const statusCell = statusSelect ? statusSelect.value : '';
         const nameCell = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
         const refIdCell = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
 
-        const statusMatch = status === '' || statusCell === status;
+        // Special handling for needs_review which could be '0' in the database
+        let statusMatch = status === '';
+        if (status === 'needs_review') {
+            statusMatch = statusCell === 'needs_review' || statusSelect.className.includes('status-needs_review');
+        } else {
+            statusMatch = statusCell === status;
+        }
+
         const searchMatch = search === '' || 
                           nameCell.includes(search) || 
                           refIdCell.includes(search);
@@ -898,86 +992,87 @@ document.querySelectorAll('.status').forEach(select => {
     });
 });
 
-document.getElementById('viewDetailsButton').addEventListener('click', function() {
-    showDetails(); // Function to display the details
-});
-
 // Add loading state to View Details button
 function viewDetails(button, details) {
-    button.innerHTML = '<span class="spinner"></span> Loading...';
-    button.disabled = true;
+    const modal = document.getElementById("infoModal");
     
-    openModal(details);
+    // Populate fields
+    document.getElementById("ref_id").textContent = details.ref_id;
+    document.getElementById("first_name").textContent = details.first_name;
+    document.getElementById("middle_name").textContent = details.middle_name;
+    document.getElementById("last_name").textContent = details.last_name;
+    document.getElementById("gender").textContent = details.gender;
+    document.getElementById("dob").textContent = details.dob;
+    document.getElementById("email").textContent = details.email;
+    document.getElementById("contact").textContent = details.contact;
+    document.getElementById("address").textContent = details.address;
+    document.getElementById("student_type").textContent = details.student_type;
+    document.getElementById("prev_school").textContent = details.prev_school;
+    document.getElementById("year_level").textContent = details.year_level;
+    document.getElementById("prev_program").textContent = details.prev_program;
+    document.getElementById("desired_program").textContent = details.desired_program;
+    document.getElementById("is_tech").textContent = details.is_tech;
     
-    setTimeout(() => {
-        button.innerHTML = 'View Details';
-        button.disabled = false;
-    }, 500);
+    // Hide Year Level if student is ladderized
+    const yearLevelRow = document.getElementById("year_level_row");
+    if (details.student_type && details.student_type.toLowerCase() === "ladderized") {
+        yearLevelRow.style.display = "none";
+    } else {
+        yearLevelRow.style.display = "";
+    }
+    
+    // Convert is_tech numeric value to descriptive text
+    let techStatus = "Unknown";
+    let techStatusClass = "";
+    
+    switch(parseInt(details.is_tech)) {
+        case 0:
+            techStatus = "Non-Tech";
+            techStatusClass = "non-tech-badge";
+            break;
+        case 1:
+            techStatus = "Tech";
+            techStatusClass = "tech-badge";
+            break;
+        case 2:
+            techStatus = "Ladderized";
+            techStatusClass = "ladderized-badge";
+            break;
+        default:
+            techStatus = "Unknown";
+            techStatusClass = "unknown-badge";
+    }
+    
+    // Create a badge element for the tech status
+    const techElement = document.getElementById("is_tech");
+    techElement.innerHTML = `<span class="tech-status-badge ${techStatusClass}">${techStatus}</span>`;
+
+    // Set document previews
+    document.getElementById("tor_preview").src = details.tor;
+    document.getElementById("school_id_preview").src = details.school_id;
+    
+    // Handle admin notes if present
+    const adminNotesSection = document.getElementById("admin-notes-section");
+    if (details.admin_notes && details.admin_notes.trim() !== '') {
+        // Clean up the admin notes to remove technical error details
+        let cleanedNotes = details.admin_notes;
+        
+        // Remove specific technical error messages
+        cleanedNotes = cleanedNotes.replace(/Error retrieving grading rules: Unknown column 'is_default' in 'where clause'/g, 
+                                          "Grading system configuration issue. Please add this university to the system.");
+        
+        document.getElementById("admin_notes").textContent = cleanedNotes;
+        adminNotesSection.style.display = "block";
+    } else {
+        adminNotesSection.style.display = "none";
+    }
+
+    // Show modal with the "show" class
+    modal.classList.add("show");
+    
+    button.innerHTML = 'View Details';
+    button.disabled = false;
 }
-
-// Function to show the success modal pop-up
-function showModal(message) {
-    // Create the modal structure dynamically
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-    
-    const modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-    
-    const modalMessage = document.createElement('p');
-    modalMessage.textContent = message;
-    
-    const closeButton = document.createElement('button');
-    closeButton.textContent = 'Close';
-    closeButton.classList.add('close-button');
-    closeButton.onclick = function() {
-        document.body.removeChild(modal); // Close the modal when the button is clicked
-    };
-
-    modalContent.appendChild(modalMessage);
-    modalContent.appendChild(closeButton);
-    modal.appendChild(modalContent);
-
-    document.body.appendChild(modal);
-}
-
-// Styling for the modal
-const style = document.createElement('style');
-style.textContent = `
-    .modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-    }
-    .modal-content {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        max-width: 400px;
-        width: 80%;
-    }
-    .close-button {
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-top: 10px;
-    }
-    .close-button:hover {
-        background-color: #0056b3;
-    }
-`;
 </script>
 
 </body>
