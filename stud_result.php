@@ -73,439 +73,192 @@ $activePage = 'results';
     <title>Exam Results - PUP Qualifying Exam Portal</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
     <style>
-        :root {
-            --primary: #75343A;
-            --primary-dark: #5a2930;
-            --primary-light: #9e4a52;
-            --secondary: #f8f0e3;
-            --accent: #d4af37;
-            --text-dark: #333333;
-            --text-light: #ffffff;
-            --gray-light: #f5f5f5;
-            --gray: #e0e0e0;
-            --success: #4CAF50;
-            --warning: #FF9800;
-            --danger: #F44336;
+        /* Page-specific styles */
+        /* Updated sidebar styles */
+        .sidebar {
+            height: 100vh;
+            padding-bottom: 0;
+            position: fixed;
+            overflow-y: auto;
+            z-index: 99;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Updated main-content styles */
+        .main-content {
+            padding-bottom: 20px;
+            margin-left: 250px; /* Match sidebar width */
+            overflow-x: hidden;
         }
         
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--gray-light);
-            line-height: 1.6;
+        /* Updated footer styles */
+        footer {
+            position: relative;
+            margin-top: 0;
+            padding: 15px 0;
+        }
+        
+        /* Updated main-wrapper styles */
+        .main-wrapper {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-text h1 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .nav-links a:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .profile-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-            font-weight: bold;
-            overflow: hidden;
-        }
-        
-        .profile-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        /* Main Layout */
-        .main-wrapper {
-            display: flex;
-            margin-top: 80px;
-            flex: 1;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-            padding: 25px 0;
-            height: calc(100vh - 80px);
-            position: fixed;
-            overflow-y: auto;
-        }
-        
-        .sidebar-profile {
-            padding: 0 20px 20px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--gray);
-            text-align: center;
-        }
-        
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--primary-dark);
-            font-weight: bold;
-        }
-        
-        .sidebar-profile h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .sidebar-profile p {
-            font-size: 14px;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-        
-        .sidebar-menu {
-            list-style: none;
-        }
-        
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
-        
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: var(--text-dark);
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .sidebar-menu a:hover {
-            background-color: var(--gray-light);
-            color: var(--primary);
-        }
-        
-        .sidebar-menu a.active {
-            background-color: var(--primary-light);
-            color: var(--text-light);
-        }
-        
-        .sidebar-menu .material-symbols-rounded {
-            font-size: 20px;
-        }
-        
-        /* Main Content */
+        /* Fix footer overlap issue */
         .main-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 30px;
+            padding-bottom: 80px !important; /* Ensure content doesn't get hidden behind footer */
         }
         
-        /* Add your results page specific styles here */
-        .results-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        /* Fix sidebar height to extend to footer */
+        .sidebar {
+            height: auto !important; /* Changed from fixed height to auto */
+            min-height: calc(100vh - 80px) !important; /* Minimum height */
+            bottom: 0;
+            padding-bottom: 60px; /* Reduced padding to prevent overlap with footer */
+            z-index: 99; /* Ensure sidebar is above content but below overlay */
+            position: fixed; /* Keep it fixed on desktop */
+            overflow-y: auto; /* Allow scrolling if content is too tall */
         }
-
-        .results-table th,
-        .results-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 14px;
-            display: inline-block;
-        }
-
-        .status-passed {
-            background-color: var(--success);
-            color: white;
-        }
-
-        .status-failed {
-            background-color: var(--danger);
-            color: white;
-        }
-
-        .status-pending {
-            background-color: var(--warning);
-            color: var(--text-dark);
-        }
-
-        /* Dashboard Card Styles */
-        .dashboard-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 25px;
-            margin-bottom: 25px;
-        }
-
-        .card-header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .card-header h3 {
-            font-size: 20px;
-            color: var(--primary);
-        }
-
-        .notice-banner {
-            background-color: var(--primary-light);
-            color: var(--text-light);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .notice-banner .material-symbols-rounded {
-            font-size: 24px;
-        }
-
-        .notice-content h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .notice-content p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* Footer Styles */
+        
+        /* Footer positioning */
         footer {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 20px 0;
-            width: 100%;
-            position: fixed;
+            position: relative !important; /* Changed from fixed to relative */
             bottom: 0;
             left: 0;
-            z-index: 900;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            right: 0;
+            z-index: 98; /* Below sidebar but above main content */
+            background-color: var(--primary); /* Changed from white to primary color */
+            color: white; /* Text color changed to white for contrast */
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            margin-top: 20px;
+            clear: both;
         }
         
-        footer .container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
+        /* Footer text color */
         footer p {
-            text-align: center;
-            font-size: 14px;
-            opacity: 0.9;
+            color: white;
             margin: 0;
+            text-align: center;
         }
-
-        /* Responsive adjustments */
+        
+        /* Improved sidebar overlay for mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Main wrapper adjustments for better footer positioning */
+        .main-wrapper {
+            display: flex;
+            min-height: calc(100vh - 140px); /* Account for header and footer */
+            position: relative;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        /* Main content adjustments */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            padding-bottom: 30px !important; /* Reduced padding */
+            margin-left: 250px; /* Match sidebar width */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        
+        /* Improved sidebar animation for mobile */
         @media (max-width: 768px) {
             .sidebar {
-                width: 0;
-                padding: 0;
-                overflow: hidden;
-                transition: width 0.3s;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 250px;
+                max-width: 80%;
+                height: calc(100vh - 80px) !important; /* Fixed height on mobile */
+                padding-bottom: 100px; /* Extra padding to ensure scrollability */
             }
             
             .sidebar.active {
-                width: 250px;
-                padding: 25px 0;
+                transform: translateX(0);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            body.sidebar-open {
+                overflow: hidden;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 997;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
             }
             
             .main-content {
-                margin-left: 0;
-                padding: 20px;
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 15px;
+                padding-bottom: 20px !important;
+            }
+            
+            footer {
+                margin-top: 0;
+            }
+            
+            /* Ensure sidebar doesn't overlap with footer on mobile */
+            .sidebar {
+                padding-bottom: 80px;
+            }
+        }
+        
+        /* Make footer non-fixed on larger screens */
+        @media (min-width: 769px) {
+            footer {
+                position: relative !important;
+                margin-top: 20px;
+            }
+            
+            .main-content {
+                padding-bottom: 30px !important;
+            }
+            
+            /* Hide mobile menu toggle on desktop */
+            .menu-toggle {
+                display: none;
             }
         }
 
-        /* Add to your existing CSS */
-        .no-items {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .no-items .material-symbols-rounded {
-            font-size: 48px;
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .no-items h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .no-items p {
-            color: var(--text-dark);
-            opacity: 0.7;
-            margin-bottom: 20px;
-        }
-
-        .registration-action {
-            background-color: var(--primary);
-            color: var(--text-light);
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .registration-action:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .campus-notice {
-            background-color: var(--warning);
-            color: var(--text-dark);
-            padding: 15px;
-            border-radius: 4px;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .page-title {
-            margin-bottom: 30px;
-        }
-        
-        .page-title h2 {
-            font-size: 36px;
-            color: #75343A;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
-        }
-        
-        .page-title p {
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-
-        /* Profile Menu Styles */
-        .profile-menu {
-            position: relative;
-        }
-        
+        /* Improved dropdown menu animation */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -513,30 +266,246 @@ $activePage = 'results';
             right: 0;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 10px 0;
             min-width: 200px;
             z-index: 1000;
-        }
-
-        .dropdown-menu a {
-            color: #75343A;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         
-        .dropdown-item {
+        .dropdown-menu.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .result-header {
+            padding: 15px 20px;
+            background-color: var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .result-title {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .result-date {
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+        
+        .result-content {
+            padding: 20px;
+        }
+        
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .detail-item {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+        }
+        
+        .detail-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .detail-label {
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+        
+        .passed-badge, .failed-badge, .pending-badge {
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .passed-badge {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+        
+        .failed-badge {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+        
+        .pending-badge {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: var(--warning);
+        }
+        
+        .result-footer {
+            padding: 15px 20px;
+            background-color: var(--gray-light);
+            border-top: 1px solid var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tab-container {
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
             padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            margin: 0;
+        }
+        
+        .no-results .material-symbols-rounded {
+            font-size: 64px;
+            
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .no-results h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .no-results p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-notice {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--primary-dark);
-            text-decoration: none;
-            transition: background-color 0.3s;
+            background-color: #FFF8E1;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px;
+            border-left: 4px solid #FFC107;
+        }
+        
+        .info-notice .material-symbols-rounded {
+            color: #856404;
+            font-size: 24px;
+        }
+        
+        .info-notice p {
+            margin: 0;
+            color: #856404;
             font-size: 14px;
         }
-
-        .dropdown-item:hover {
-            background-color: #75343A;
-            color: var(--text-light);
+        
+        @media (max-width: 768px) {
+            .result-details {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .no-results {
+                padding: 30px 15px;
+            }
+            
+            .no-results .material-symbols-rounded {
+                font-size: 48px;
+            }
+            
+            .no-results h3 {
+                font-size: 20px;
+            }
+            
+            .info-notice {
+                margin: 15px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -548,7 +517,7 @@ $activePage = 'results';
                 <div class="logo">
                     <img src="img/Logo.png" alt="PUP Logo">
                     <div class="logo-text">
-                        <h1>STREAMS</h1>
+                        <h1>PUP Qualifying Exam Portal</h1>
                         <p>Exam Results</p>
                     </div>
                 </div>
@@ -560,7 +529,7 @@ $activePage = 'results';
                         <a href="#" id="profile-menu">
                             <div class="profile-icon">
                                 <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
-                                    <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                                    <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture">
                                 <?php else: ?>
                                     <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
                                 <?php endif; ?>
@@ -585,10 +554,18 @@ $activePage = 'results';
             </div>
         </div>
     </header>
-    
+
     <div class="main-wrapper">
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-profile">
                 <div class="profile-image">
                     <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
@@ -729,17 +706,17 @@ $activePage = 'results';
                     <div class="card-header">
                         <h3>Exam Results</h3>
                     </div>
-                    <div class="no-items">
+                    <div class="no-results">
                         <span class="material-symbols-rounded">assignment</span>
                         <h3>No Exam Results Available</h3>
                         <p>You haven't taken any qualifying exams yet.</p>
-                        <a href="stud_dashboard.php" class="registration-action">
+                        <a href="stud_dashboard.php" class="btn-primary">
                             <span class="material-symbols-rounded">dashboard</span>
                             Return to Dashboard
                         </a>
                     </div>
                     
-                    <div class="campus-notice">
+                    <div class="info-notice">
                         <span class="material-symbols-rounded">info</span>
                         <p>Check your dashboard for upcoming exam schedules and registration details.</p>
                     </div>
@@ -755,22 +732,128 @@ $activePage = 'results';
         </div>
     </footer>
 
+    <script src="js/main.js"></script>
     <script>
+        // Adjust sidebar and content height
+        function adjustLayout() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const footer = document.querySelector('footer');
+            const headerHeight = 80; // Approximate header height
+
+            if (window.innerWidth >= 769) {
+                // For desktop: Adjust sidebar and content height
+                const availableHeight = window.innerHeight - headerHeight - footer.offsetHeight;
+                sidebar.style.height = availableHeight + 'px';
+                mainContent.style.minHeight = availableHeight + 'px';
+            } else {
+                // For mobile: Set fixed height
+                sidebar.style.height = 'calc(100vh - 80px)';
+            }
+        }
+
+        // Run on page load and resize
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+
+        // Enhanced responsive behaviors
         document.addEventListener('DOMContentLoaded', function() {
-            // Profile Menu Toggle
-            const profileMenu = document.querySelector('.profile-menu');
+            // Handle mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (menuToggle && sidebar && sidebarOverlay) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    sidebarOverlay.classList.toggle('active');
+                    document.body.classList.toggle('sidebar-open');
+                    
+                    // Adjust main content when sidebar is open
+                    if (sidebar.classList.contains('active') && window.innerWidth < 769) {
+                        mainContent.style.opacity = '0.7';
+                    } else {
+                        mainContent.style.opacity = '1';
+                    }
+                });
+                
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                    mainContent.style.opacity = '1';
+                });
+            }
+            
+            // Close sidebar when clicking a link on mobile
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            if (sidebarLinks.length > 0) {
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth < 769) {
+                            sidebar.classList.remove('active');
+                            sidebarOverlay.classList.remove('active');
+                            document.body.classList.remove('sidebar-open');
+                            mainContent.style.opacity = '1';
+                        }
+                    });
+                });
+            }
+            
+            // Handle profile dropdown menu
+            const profileMenu = document.getElementById('profile-menu');
             const dropdownMenu = document.querySelector('.dropdown-menu');
-            const profileMenuTrigger = document.querySelector('#profile-menu');
             
-            document.addEventListener('click', function(event) {
-                if (!profileMenu.contains(event.target)) {
-                    dropdownMenu.style.display = 'none';
+            if (profileMenu && dropdownMenu) {
+                profileMenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileMenu.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Adjust UI elements on window resize
+            function handleResize() {
+                adjustLayout();
+                
+                // Reset main content opacity
+                mainContent.style.opacity = '1';
+                
+                // Close mobile menu if window is resized to desktop
+                if (window.innerWidth >= 769) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
                 }
-            });
+            }
             
-            profileMenuTrigger.addEventListener('click', function(event) {
-                event.preventDefault();
-                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            window.addEventListener('resize', handleResize);
+            
+            // Initial adjustment
+            adjustLayout();
+            
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const contentId = tab.getAttribute('data-tab');
+                    document.getElementById(contentId).classList.add('active');
+                });
             });
         });
     </script>
