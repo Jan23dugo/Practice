@@ -1,9 +1,21 @@
 <?php
+// Quick response for ping request
+if (isset($_GET['ping'])) {
+    header('Content-Type: application/json');
+    echo json_encode(['status' => 'ok', 'time' => time()]);
+    exit;
+}
+
 // Disable all error reporting and warnings for JSON responses
 error_reporting(0);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/logs/php_errors.log'); // Log to file instead of output
+
+// Handle field name mappings for backward compatibility
+if (isset($_POST['address']) && !isset($_POST['street'])) {
+    $_POST['street'] = $_POST['address'];
+}
 
 // Enable DEBUG_MODE for detailed error messages
 define('DEBUG_MODE', true);
@@ -1289,78 +1301,105 @@ function convertGradeToStandardScale($grade, $gradingRules) {
     return 0;
 }
 
-function getGradingSystemRules($conn, $universityName) {
+// Update getGradingSystemRules to use university_code
+function getGradingSystemRules($conn, $universityCodeOrName) {
     try {
-        // Always start with a fresh connection for this operation
         $conn = getNewConnection();
-        
-        logExtraction("Getting grading system rules", [
-            'grading_system' => $universityName
+        logExtraction("Getting grading system rules for university", [
+            'input' => $universityCodeOrName
         ]);
-        
-        // Query based on the grading_name field
-        $query = "SELECT id, grading_name, min_percentage, max_percentage, grade_value, description, is_special_grade 
+
+        // First, try to match by university_code
+        $query = "SELECT id, university_code, university_name, min_percentage, max_percentage, grade_value, description, is_special_grade 
                  FROM university_grading_systems 
-                 WHERE grading_name = ? 
+                 WHERE university_code = ? 
                  ORDER BY min_percentage DESC";
-                 
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             throw new Exception("Database error: " . $conn->error);
         }
-        
-        $stmt->bind_param("s", $universityName);
+        $stmt->bind_param("s", $universityCodeOrName);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($result->num_rows == 0) {
             $stmt->close();
-            
-            // Get a fresh connection for the second query with fuzzy matching
+            $statementClosed = true;
+            // Fallback: try by university_name (case-insensitive)
             $conn = getNewConnection();
-            
-            $likeTerm = "%$universityName%";
-            $query = "SELECT id, grading_name, min_percentage, max_percentage, grade_value, description, is_special_grade 
+            $query = "SELECT id, university_code, university_name, min_percentage, max_percentage, grade_value, description, is_special_grade 
                      FROM university_grading_systems 
-                     WHERE grading_name LIKE ? 
+                     WHERE LOWER(university_name) = LOWER(?) 
                      ORDER BY min_percentage DESC";
-                     
             $stmt = $conn->prepare($query);
             if (!$stmt) {
-                throw new Exception("Database error on fuzzy search: " . $conn->error);
+                throw new Exception("Database error on fallback name search: " . $conn->error);
             }
-            $stmt->bind_param("s", $likeTerm);
+            $stmt->bind_param("s", $universityCodeOrName);
             $stmt->execute();
             $result = $stmt->get_result();
+            if ($result->num_rows == 0) {
+                // Fallback: LIKE query for partial matches
+                $stmt->close();
+                $statementClosed = true;
+                $conn = getNewConnection();
+                $likeTerm = "%$universityCodeOrName%";
+                $query = "SELECT id, university_code, university_name, min_percentage, max_percentage, grade_value, description, is_special_grade 
+                         FROM university_grading_systems 
+                         WHERE university_name LIKE ? 
+                         ORDER BY min_percentage DESC";
+                $stmt = $conn->prepare($query);
+                if (!$stmt) {
+                    throw new Exception("Database error on fuzzy search: " . $conn->error);
+                }
+                $stmt->bind_param("s", $likeTerm);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($result->num_rows == 0) {
+                    logExtraction("No grading system found for university, marking for manual review", [
+                        'input' => $universityCodeOrName
+                    ]);
+                    $stmt->close();
+                    return [];
+                }
+            } else {
+                $statementClosed = false;
+            }
+        } else {
+            $statementClosed = false;
         }
-        
+
         $gradingRules = [];
         while ($row = $result->fetch_assoc()) {
             $gradingRules[] = $row;
         }
-        
-        $stmt->close();
+        if (!isset($statementClosed) || !$statementClosed) {
+            $stmt->close();
+        }
         closeConnection($conn);
-        
-        logExtraction("Successfully retrieved grading rules", [
-            'grading_system' => $universityName,
+        logExtraction("Retrieved grading rules for university", [
+            'input' => $universityCodeOrName,
             'rules_count' => count($gradingRules),
             'sample_rule' => count($gradingRules) > 0 ? $gradingRules[0] : null
         ]);
-        
         return $gradingRules;
-        
     } catch (Exception $e) {
         logExtraction("Error in getGradingSystemRules", [
             'error' => $e->getMessage()
         ]);
-        if (isset($stmt)) {
-            $stmt->close();
+        if (isset($stmt) && (!isset($statementClosed) || !$statementClosed)) {
+            try {
+                $stmt->close();
+            } catch (Exception $closeEx) {
+                logExtraction("Warning: Could not close statement", [
+                    'error' => $closeEx->getMessage()
+                ]);
+            }
         }
         if (isset($conn)) {
             closeConnection($conn);
         }
-        throw $e;
+        return [];
     }
 }
 
@@ -1460,42 +1499,100 @@ function registerStudent($conn, $studentData, $subjects) {
         $isTech = (int)$studentData['is_tech'];
         $studId = (int)$_SESSION['stud_id'];
         
+        // Add notes about why manual review is needed if applicable
+        $adminNotes = '';
+        if ($studentData['status'] === 'needs_review') {
+            $adminNotes = "Manual review required: ";
+            
+            // Check if grading rules were missing
+            if (isset($GLOBALS['needsManualReview']) && $GLOBALS['needsManualReview']) {
+                $adminNotes .= "No grading system rules found for university '{$studentData['previous_school']}'. ";
+            }
+            
+            // Add notes about any other issues
+            if (isset($GLOBALS['manualReviewReasons']) && !empty($GLOBALS['manualReviewReasons'])) {
+                $adminNotes .= implode(". ", $GLOBALS['manualReviewReasons']);
+            }
+        }
+        
         // Log the SQL INSERT statement preparation
         logExtraction("Preparing SQL INSERT statement");
         
-        // Insert student data with simple SQL statement - match the exact columns in the database
-        $sql = "INSERT INTO register_studentsqe (
-            last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
-            student_type, previous_school, year_level, previous_program, desired_program, 
-            tor, school_id, reference_id, is_tech, status, stud_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)";
+        // Check if admin_notes column exists
+        $hasAdminNotes = in_array('admin_notes', $columns);
         
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Database error preparing statement: " . $conn->error . " SQL: $sql");
-        }
+        // Insert student data with simple SQL statement - match the exact columns in the database
+        if ($hasAdminNotes) {
+            $sql = "INSERT INTO register_studentsqe (
+                last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
+                student_type, previous_school, year_level, previous_program, desired_program, 
+                tor, school_id, reference_id, is_tech, status, stud_id, admin_notes
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Database error preparing statement: " . $conn->error . " SQL: $sql");
+            }
 
-        $stmt->bind_param(
-            "ssssssssssssssssii", 
-            $studentData['last_name'],
-            $studentData['first_name'],
-            $studentData['middle_name'],
-            $studentData['gender'],
-            $studentData['dob'],
-            $studentData['email'],
-            $studentData['contact_number'],
-            $studentData['street'],
-            $studentData['student_type'],
-            $studentData['previous_school'],
-            $studentData['year_level'],
-            $studentData['previous_program'],
-            $studentData['desired_program'],
-            $studentData['tor_path'],
-            $studentData['school_id_path'],
-            $studentData['reference_id'],
-            $studentData['is_tech'],
+            $stmt->bind_param(
+                "ssssssssssssssssiiis", 
+                $studentData['last_name'],
+                $studentData['first_name'],
+                $studentData['middle_name'],
+                $studentData['gender'],
+                $studentData['dob'],
+                $studentData['email'],
+                $studentData['contact_number'],
+                $studentData['street'],
+                $studentData['student_type'],
+                $studentData['previous_school'],
+                $studentData['year_level'],
+                $studentData['previous_program'],
+                $studentData['desired_program'],
+                $studentData['tor_path'],
+                $studentData['school_id_path'],
+                $studentData['reference_id'],
+                $studentData['is_tech'],
+                $studentData['status'],
+                $_SESSION['stud_id'],
+                $adminNotes
+            );
+        } else {
+            // If admin_notes column doesn't exist, use the original query without it
+            $sql = "INSERT INTO register_studentsqe (
+                last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
+                student_type, previous_school, year_level, previous_program, desired_program, 
+                tor, school_id, reference_id, is_tech, status, stud_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Database error preparing statement: " . $conn->error . " SQL: $sql");
+            }
+
+            $stmt->bind_param(
+                "sssssssssssssssssii", 
+                $studentData['last_name'],
+                $studentData['first_name'],
+                $studentData['middle_name'],
+                $studentData['gender'],
+                $studentData['dob'],
+                $studentData['email'],
+                $studentData['contact_number'],
+                $studentData['street'],
+                $studentData['student_type'],
+                $studentData['previous_school'],
+                $studentData['year_level'],
+                $studentData['previous_program'],
+                $studentData['desired_program'],
+                $studentData['tor_path'],
+                $studentData['school_id_path'],
+                $studentData['reference_id'],
+                $studentData['is_tech'],
+                $studentData['status'],
                 $_SESSION['stud_id']
-        );
+            );
+        }
 
         // Log all parameter values for debugging
         logExtraction("Insert parameters", [
@@ -1530,6 +1627,15 @@ function registerStudent($conn, $studentData, $subjects) {
         $_SESSION['success'] = "Your reference ID is: " . $reference_id;
         $_SESSION['reference_id'] = $reference_id;
         $_SESSION['student_id'] = $student_id;
+        
+        // Store manual review flag for UI display if applicable
+        if ($studentData['status'] === 'needs_review') {
+            $_SESSION['registration_status'] = 'needs_review';
+            $_SESSION['message'] = "Your application has been submitted for manual review by an administrator. This is usually due to your institution's grading system not being registered in our database.";
+            $_SESSION['message_type'] = 'warning';
+        } else {
+            $_SESSION['registration_status'] = 'pending';
+        }
         
         // Remove the automatic subject registration to prevent storing unmatched courses
         // We'll rely on matchCreditedSubjects to properly match and store only the matched subjects
@@ -1568,6 +1674,12 @@ function registerStudent($conn, $studentData, $subjects) {
 
 // 2. Function to determine eligibility based on grades and grading system rules
 function determineEligibility($subjects, $gradingRules) {
+    // First check if the student is ladderized - they are automatically eligible
+    if (isset($_POST['student_type']) && $_POST['student_type'] === 'ladderized') {
+        logExtraction("Student is ladderized - automatically eligible");
+        return true;
+    }
+    
     logExtraction("Starting eligibility determination", [
         'subject_count' => count($subjects), 
         'rules_count' => count($gradingRules)
@@ -1673,22 +1785,46 @@ function determineEligibility($subjects, $gradingRules) {
 function isTechStudent($subjects) {
     logExtraction("Starting Tech Student Check");
     
+    // First check if the student is ladderized - this takes precedence
+    if (isset($_POST['student_type']) && $_POST['student_type'] === 'ladderized') {
+        logExtraction("Student identified as ladderized type", [
+            'student_type' => $_POST['student_type']
+        ]);
+        return 2; // Return 2 for ladderized students
+    }
+    
     // Check if the student's program name exists in the POST data
     if (isset($_POST['previous_program'])) {
         $programName = strtolower($_POST['previous_program']);
         
+        // Define tech programs - both full names and abbreviations
         $techPrograms = [
-            "Bachelor of Science in Computer Science (BSCS)",
-            "Bachelor of Science in Information Technology (BSIT)"
+            "bscs", // Abbreviation
+            "bsit", // Abbreviation
+            "bs cs", // Alternative format
+            "bs it", // Alternative format
+            "bachelor of science in computer science",
+            "bachelor of science in information technology",
+            "computer science",
+            "information technology",
+            "dict", // Added DICT as a tech program
+            "diploma in information communication technology"
         ];
         
+        // Log the exact program name we're checking
+        logExtraction("Checking program name for tech classification", [
+            'program' => $programName
+        ]);
+        
+        // Check for exact match first
         foreach ($techPrograms as $techProgram) {
-            if (strpos($programName, $techProgram) !== false) {
+            // Check if the program name exactly matches or contains the tech program
+            if ($programName === $techProgram || strpos($programName, $techProgram) !== false) {
                 logExtraction("Tech student identified by program name", [
                     'program' => $programName,
                     'matched_keyword' => $techProgram
                 ]);
-                return true;
+                return 1; // Return 1 for regular tech students
             }
         }
         
@@ -1699,7 +1835,7 @@ function isTechStudent($subjects) {
         logExtraction("No previous program data available to determine tech status");
     }
     
-    return false;
+    return 0; // Return 0 for non-tech students
 }
 
 // Add this function at the top of the file
@@ -2439,8 +2575,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
                 
             case 'final_submit':
-                // Handle final form submission with verified subjects
-                handleFinalSubmission();
+                // Handle the final form submission
+                $result = handleFinalSubmission();
+                
+                // Check if we should redirect (direct form submission) instead of returning JSON
+                if (isset($_POST['redirect_on_success']) && !empty($_POST['redirect_on_success'])) {
+                    $redirectUrl = $_POST['redirect_on_success'];
+                    
+                    if (isset($result['success']) && $result['success']) {
+                        // Set flag to show success modal instead of redirecting to success page
+                        $_SESSION['show_success_modal'] = true;
+                        // Also keep the message just in case
+                        $_SESSION['message'] = "Registration successful!";
+                        $_SESSION['message_type'] = "success";
+                        // Redirect back to registration page which will show the modal
+                        header("Location: qualiexam_register.php");
+                    } else {
+                        $_SESSION['message'] = isset($result['error']) ? $result['error'] : "Registration failed";
+                        $_SESSION['message_type'] = "error";
+                        $_SESSION['show_error_modal'] = true;
+                        header("Location: qualiexam_register.php");
+                    }
+                    exit();
+                } else {
+                    // For AJAX requests, include a flag in the JSON response
+                    if (isset($result['success']) && $result['success']) {
+                        // Set the session flag for showing modal
+                        $_SESSION['show_success_modal'] = true;
+                        
+                        // Add a redirect URL to the JSON response
+                        $result['redirect_url'] = 'qualiexam_register.php';
+                    }
+                    echo json_encode($result);
+                    exit();
+                }
                 break;
                 
             default:
@@ -2684,6 +2852,10 @@ function handleFinalSubmission() {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     
+    // Define a timestamp for this execution to track in logs
+    $execution_id = uniqid('submission_');
+    $start_time = microtime(true);
+    
     // Store original connection if it exists
     global $conn;
     $originalConn = $conn;
@@ -2691,17 +2863,25 @@ function handleFinalSubmission() {
     // Start output buffering to catch any unexpected output
     ob_start();
     
+    logExtraction("[DEBUG-$execution_id] STARTING final submission process at " . date('Y-m-d H:i:s'), [
+        'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown',
+        'request_method' => $_SERVER['REQUEST_METHOD'] ?? 'Unknown',
+        'remote_addr' => $_SERVER['REMOTE_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? 'Unknown'
+    ]);
+    
     try {
         // Log the start of the process with POST data debugging
-        logExtraction("Starting handleFinalSubmission - debugging inputs", [
+        logExtraction("[DEBUG-$execution_id] POST data received", [
             'post_data' => array_map(function($item) {
                 return is_string($item) && strlen($item) > 100 ? substr($item, 0, 100) . '...' : $item;
             }, $_POST),
             'session_data' => isset($_SESSION['upload_paths']) ? $_SESSION['upload_paths'] : 'No upload paths',
-            'files' => isset($_FILES) ? array_keys($_FILES) : 'No files'
+            'files' => isset($_FILES) ? array_keys($_FILES) : 'No files',
+            'stud_id' => $_SESSION['stud_id'] ?? 'Not set'
         ]);
         
         // Ensure we have a valid database connection before proceeding
+        logExtraction("[DEBUG-$execution_id] Fixing database connection");
         $conn = fixDatabaseConnection();
         if (!$conn) {
             throw new Exception("Could not establish database connection at the beginning of handleFinalSubmission");
@@ -2709,7 +2889,7 @@ function handleFinalSubmission() {
         
         // Check if database constants are defined
         global $servername, $username, $password, $dbname;
-        logExtraction("Database configuration in handleFinalSubmission", [
+        logExtraction("[DEBUG-$execution_id] Database configuration check", [
             'servername' => isset($servername) ? $servername : 'NOT SET',
             'username' => isset($username) ? $username : 'NOT SET',
             'dbname' => isset($dbname) ? $dbname : 'NOT SET',
@@ -2729,13 +2909,14 @@ function handleFinalSubmission() {
             throw new Exception("No subjects provided for registration");
         }
         
+        logExtraction("[DEBUG-$execution_id] Parsing subjects JSON data");
         // Test JSON parsing safely
         try {
             $subjects = json_decode($_POST['subjects'], true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new Exception("JSON parse error: " . json_last_error_msg());
             }
-            logExtraction("Successfully parsed subjects JSON", [
+            logExtraction("[DEBUG-$execution_id] Successfully parsed subjects JSON", [
                 'count' => count($subjects),
                 'sample' => !empty($subjects) ? $subjects[0] : 'No subjects'
             ]);
@@ -2744,8 +2925,9 @@ function handleFinalSubmission() {
         }
         
         // Verify database connection is still valid at this point
+        logExtraction("[DEBUG-$execution_id] Checking if database connection is still valid");
         if (!$conn || !@$conn->ping()) {
-            logExtraction("Database connection lost after JSON parsing, reconnecting");
+            logExtraction("[DEBUG-$execution_id] Database connection lost after JSON parsing, reconnecting");
             $conn = fixDatabaseConnection();
             
             if (!$conn) {
@@ -2754,16 +2936,17 @@ function handleFinalSubmission() {
         }
         
         // Test connection with a simple query
+        logExtraction("[DEBUG-$execution_id] Testing database connection with simple query");
         $testResult = $conn->query("SELECT 1");
         if (!$testResult) {
-            logExtraction("Connection test failed: " . $conn->error);
+            logExtraction("[DEBUG-$execution_id] Connection test failed: " . $conn->error);
             $conn = fixDatabaseConnection();
             if (!$conn || !$conn->query("SELECT 1")) {
                 throw new Exception("Could not establish a working database connection");
             }
         }
         
-        logExtraction("Database connection confirmed valid");
+        logExtraction("[DEBUG-$execution_id] Database connection confirmed valid");
 
         if (!isset($_SESSION['upload_paths'])) {
             throw new Exception("Upload session expired. Please try again.");
@@ -2780,15 +2963,20 @@ function handleFinalSubmission() {
         $tor_path = $_SESSION['upload_paths']['tor_path'] ?? null;
         $school_id_path = $_SESSION['upload_paths']['school_id_path'] ?? null;
         
+        logExtraction("[DEBUG-$execution_id] Document paths validation", [
+            'tor_path' => $tor_path ?? 'Not set',
+            'school_id_path' => $school_id_path ?? 'Not set'
+        ]);
+        
         // Check for existing files from previous registrations
         if (empty($tor_path) && isset($_POST['existing_tor']) && !empty($_POST['existing_tor'])) {
             $tor_path = $_POST['existing_tor'];
-            logExtraction("Using existing TOR file", ['path' => $tor_path]);
+            logExtraction("[DEBUG-$execution_id] Using existing TOR file", ['path' => $tor_path]);
         }
         
         if (empty($school_id_path) && isset($_POST['existing_school_id']) && !empty($_POST['existing_school_id'])) {
             $school_id_path = $_POST['existing_school_id'];
-            logExtraction("Using existing School ID file", ['path' => $school_id_path]);
+            logExtraction("[DEBUG-$execution_id] Using existing School ID file", ['path' => $school_id_path]);
         }
         
         if (!$tor_path || !$school_id_path) {
@@ -2796,10 +2984,11 @@ function handleFinalSubmission() {
         }
 
         // Validate form data
+        logExtraction("[DEBUG-$execution_id] Validating form data fields");
         $required_fields = [
             'first_name', 'last_name', 'gender', 'dob', 'email', 
-            'contact_number', 'street', 'student_type', 'previous_school',
-            'desired_program', 'grading_system'
+            'contact_number', 'address', 'student_type', 'previous_school',
+            'desired_program'
         ];
 
         // Add previous_program to required fields only if not ladderized
@@ -2807,81 +2996,149 @@ function handleFinalSubmission() {
             $required_fields[] = 'previous_program';
         }
         
+        $missing_fields = [];
         foreach ($required_fields as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
-                throw new Exception("Required field missing: " . $field);
+                $missing_fields[] = $field;
             }
         }
+        
+        if (!empty($missing_fields)) {
+            logExtraction("[DEBUG-$execution_id] Missing required fields", ['fields' => $missing_fields]);
+            throw new Exception("Required fields missing: " . implode(', ', $missing_fields));
+        }
+        
+        logExtraction("[DEBUG-$execution_id] All required form fields are present");
 
         // Set DICT as previous program for ladderized students
         if ($_POST['student_type'] === 'ladderized') {
             $_POST['previous_program'] = "Diploma in Information Communication Technology (DICT)";
-            logExtraction("Set DICT as previous program for ladderized student", [
+            logExtraction("[DEBUG-$execution_id] Set DICT as previous program for ladderized student", [
                 'student_type' => $_POST['student_type'],
                 'previous_program' => $_POST['previous_program']
             ]);
         }
 
         // Get grading system rules for the student's previous school
+        logExtraction("[DEBUG-$execution_id] Getting grading system rules");
         try {
-            $grading_system_name = $_POST['grading_system'];
-            $gradingRules = getGradingSystemRules($conn, $grading_system_name);
+            $previous_school = $_POST['previous_school'];
+            $needsManualReview = false;
+            $GLOBALS['needsManualReview'] = false;
+            $GLOBALS['manualReviewReasons'] = [];
+            
+            // If previous_school is a code, use it directly for grading system lookup
+            $university_code = $_POST['previous_school'];
+            $university_name = null;
+            // If it's not a code, try to look up the code by name
+            if (!preg_match('/^[A-Za-z0-9_\-]+$/', $university_code) || strlen($university_code) > 10) {
+                // It's probably a name, look up the code
+                $uniQuery = "SELECT university_code FROM universities WHERE LOWER(university_name) = LOWER(?) LIMIT 1";
+                $uniStmt = $conn->prepare($uniQuery);
+                if ($uniStmt) {
+                    $uniStmt->bind_param("s", $university_code);
+                    $uniStmt->execute();
+                    $uniResult = $uniStmt->get_result();
+                    if ($uniResult->num_rows > 0) {
+                        $uniData = $uniResult->fetch_assoc();
+                        $university_code = $uniData['university_code'];
+                    }
+                    $uniStmt->close();
+                }
+            }
+            // Now use university_code for grading system lookup
+            $gradingRules = getGradingSystemRules($conn, $university_code);
             
             if (empty($gradingRules)) {
-                throw new Exception("Could not retrieve grading system rules for: " . $grading_system_name);
+                // Instead of throwing an exception, mark for manual review
+                $needsManualReview = true;
+                $GLOBALS['needsManualReview'] = true;
+                $GLOBALS['manualReviewReasons'][] = "No grading system rules found for university '{$previous_school}'";
+                logExtraction("[DEBUG-$execution_id] No grading rules found - marking for manual review", [
+                    'university' => $previous_school
+                ]);
+            } else {
+                logExtraction("[DEBUG-$execution_id] Retrieved grading rules", [
+                    'university' => $previous_school,
+                    'rules_count' => count($gradingRules),
+                    'passing_grade_values' => array_map(function($rule) {
+                        return $rule['grade_value'] . ' (' . $rule['description'] . '): ' . $rule['min_percentage'] . '%';
+                    }, array_filter($gradingRules, function($rule) {
+                        return floatval($rule['min_percentage']) >= 85.0;
+                    }))
+                ]);
             }
-            
-            logExtraction("Retrieved grading rules", [
-                'system' => $grading_system_name,
-                'rules_count' => count($gradingRules),
-                'passing_grade_values' => array_map(function($rule) {
-                    return $rule['grade_value'] . ' (' . $rule['description'] . '): ' . $rule['min_percentage'] . '%';
-                }, array_filter($gradingRules, function($rule) {
-                    return floatval($rule['min_percentage']) >= 85.0;
-                }))
-            ]);
         } catch (Exception $gradingEx) {
-            throw new Exception("Error retrieving grading rules: " . $gradingEx->getMessage());
+            // Log the error but continue with manual review flag
+            $needsManualReview = true;
+            $GLOBALS['needsManualReview'] = true;
+            $GLOBALS['manualReviewReasons'][] = "Error retrieving grading rules: " . $gradingEx->getMessage();
+            logExtraction("[DEBUG-$execution_id] Error retrieving grading rules - marking for manual review", [
+                'error' => $gradingEx->getMessage()
+            ]);
         }
         
-        // Check if student is eligible based on grades
+        // Check if student is eligible based on grades, but only if we have grading rules
+        logExtraction("[DEBUG-$execution_id] Checking eligibility based on grades");
         try {
-            logExtraction("Starting eligibility check with " . count($subjects) . " subjects");
-            $isEligible = determineEligibility($subjects, $gradingRules);
+            $isEligible = true; // Default to eligible
             
-            if (!$isEligible) {
-                throw new Exception("Student does not meet the eligibility criteria based on grades. Minimum passing grade is 85% (2.0 or better).");
+            // Skip eligibility check for ladderized students
+            if (isset($_POST['student_type']) && $_POST['student_type'] === 'ladderized') {
+                logExtraction("[DEBUG-$execution_id] Student is ladderized - skipping grade eligibility check");
+                $isEligible = true; // Automatically eligible
             }
-            
-            logExtraction("Student meets eligibility criteria");
+            // For non-ladderized students, proceed with normal eligibility check
+            else if (!$needsManualReview && !empty($gradingRules)) {
+                logExtraction("[DEBUG-$execution_id] Starting eligibility check with " . count($subjects) . " subjects");
+                $isEligible = determineEligibility($subjects, $gradingRules);
+                
+                if (!$isEligible) {
+                    logExtraction("[DEBUG-$execution_id] Student does not meet eligibility criteria");
+                    throw new Exception("Student does not meet the eligibility criteria based on grades. Minimum passing grade is 85% (2.0 or better).");
+                }
+                
+                logExtraction("[DEBUG-$execution_id] Student meets eligibility criteria");
+            } else {
+                logExtraction("[DEBUG-$execution_id] Skipping automated eligibility check - will be reviewed manually");
+            }
         } catch (Exception $eligibilityEx) {
-            throw new Exception("Eligibility check error: " . $eligibilityEx->getMessage());
+            // If this is due to missing grading rules, mark for manual review
+            if ($needsManualReview) {
+                logExtraction("[DEBUG-$execution_id] Eligibility check skipped due to missing grading rules");
+            } else {
+                // Otherwise, this is a genuine eligibility failure
+                logExtraction("[DEBUG-$execution_id] Eligibility check failed: " . $eligibilityEx->getMessage());
+                throw new Exception("Eligibility check error: " . $eligibilityEx->getMessage());
+            }
         }
         
         // Check if the student is a tech student based on their subjects
+        logExtraction("[DEBUG-$execution_id] Checking if student is a tech student");
         try {
             $isTech = isTechStudent($subjects);
             
-            logExtraction("Tech student assessment", [
-                'is_tech' => $isTech ? 'Yes' : 'No'
+            logExtraction("[DEBUG-$execution_id] Tech student assessment", [
+                'is_tech' => $isTech === 2 ? 'Ladderized' : ($isTech === 1 ? 'Yes' : 'No')
             ]);
         } catch (Exception $techEx) {
             // If there's an error determining tech status, default to false but log the error
-            logExtraction("Error determining tech status: " . $techEx->getMessage());
-            $isTech = false;
+            logExtraction("[DEBUG-$execution_id] Error determining tech status: " . $techEx->getMessage());
+            $isTech = 0;
         }
 
         // Prepare student data for registration
+        logExtraction("[DEBUG-$execution_id] Preparing student data for registration");
         try {
             $studentData = [
                 'first_name' => $_POST['first_name'],
                 'middle_name' => $_POST['middle_name'] ?? '',
                 'last_name' => $_POST['last_name'],
                 'gender' => $_POST['gender'],
-                'dob' => $_POST['dob'],
+                'dob' => $_POST['dob'], // HTML date input sends in YYYY-MM-DD format, which matches our database
                 'email' => $_POST['email'],
                 'contact_number' => $_POST['contact_number'],
-                'street' => $_POST['street'],
+                'street' => $_POST['street'] ?? $_POST['address'] ?? '',
                 'student_type' => $_POST['student_type'],
                 'previous_school' => $_POST['previous_school'],
                 'year_level' => ($_POST['student_type'] === 'ladderized') ? 0 : ($_POST['year_level'] ?? 0),
@@ -2890,24 +3147,28 @@ function handleFinalSubmission() {
                 'tor_path' => str_replace(__DIR__ . '/', '', $tor_path),
                 'school_id_path' => str_replace(__DIR__ . '/', '', $school_id_path),
                 'is_tech' => $isTech,
-                'status' => 'pending'
+                'status' => $needsManualReview ? 'needs_review' : 'pending'
             ];
 
-            logExtraction("Prepared student data for registration", [
+            logExtraction("[DEBUG-$execution_id] Prepared student data for registration", [
                 'name' => $studentData['first_name'] . ' ' . $studentData['last_name'],
                 'email' => $studentData['email'],
                 'subject_count' => count($subjects),
                 'student_type' => $studentData['student_type'],
-                'is_tech' => $studentData['is_tech'] ? 'Yes' : 'No'
+                'is_tech' => $studentData['is_tech'] === 2 ? 'Ladderized' : ($studentData['is_tech'] === 1 ? 'Yes' : 'No'),
+                'status' => $studentData['status']
             ]);
         } catch (Exception $dataEx) {
+            logExtraction("[DEBUG-$execution_id] Error preparing student data: " . $dataEx->getMessage());
             throw new Exception("Error preparing student data: " . $dataEx->getMessage());
         }
 
         // Begin transaction for the registration process
+        logExtraction("[DEBUG-$execution_id] Starting database transaction");
         try {
             // Make sure we're using a valid connection
             if (!$conn || !$conn->ping()) {
+                logExtraction("[DEBUG-$execution_id] Database connection lost before starting transaction, reconnecting");
                 $conn = fixDatabaseConnection();
                 if (!$conn) {
                     throw new Exception("Database connection lost before starting transaction");
@@ -2915,17 +3176,19 @@ function handleFinalSubmission() {
             }
             
             $conn->begin_transaction();
-            logExtraction("Database transaction started");
+            logExtraction("[DEBUG-$execution_id] Database transaction started successfully");
         } catch (Exception $txEx) {
+            logExtraction("[DEBUG-$execution_id] Error starting database transaction: " . $txEx->getMessage());
             throw new Exception("Error starting database transaction: " . $txEx->getMessage());
         }
         
         try {
             // Register student in the database
-            logExtraction("Calling registerStudent function");
+            logExtraction("[DEBUG-$execution_id] Calling registerStudent function");
             $registrationResult = registerStudent($conn, $studentData, $subjects);
             
             if (!$registrationResult) {
+                logExtraction("[DEBUG-$execution_id] registerStudent function returned false");
                 throw new Exception("Failed to register student in the database.");
             }
             
@@ -2934,25 +3197,30 @@ function handleFinalSubmission() {
             $reference_id = $_SESSION['reference_id'] ?? null;
             
             if (!$student_id || !$reference_id) {
+                logExtraction("[DEBUG-$execution_id] Missing student_id or reference_id after registration", [
+                    'student_id' => $student_id ?? 'Not set',
+                    'reference_id' => $reference_id ?? 'Not set'
+                ]);
                 throw new Exception("Failed to generate student ID or reference ID.");
             }
             
-            logExtraction("Student registered successfully", [
+            logExtraction("[DEBUG-$execution_id] Student registered successfully", [
                 'student_id' => $student_id,
                 'reference_id' => $reference_id
             ]);
             
             // Match credited subjects from the uploaded documents
-            logExtraction("Calling matchCreditedSubjects function");
+            logExtraction("[DEBUG-$execution_id] Calling matchCreditedSubjects function");
             $matchedCount = matchCreditedSubjects($conn, $subjects, $student_id);
             
-            logExtraction("Matched credited subjects", [
+            logExtraction("[DEBUG-$execution_id] Matched credited subjects", [
                 'count' => $matchedCount
             ]);
             
             // Commit the transaction if everything is successful
+            logExtraction("[DEBUG-$execution_id] Committing database transaction");
             $conn->commit();
-            logExtraction("Database transaction committed successfully");
+            logExtraction("[DEBUG-$execution_id] Database transaction committed successfully");
             
             // Store data for the success page
             $_SESSION['last_registration'] = true;
@@ -2961,6 +3229,9 @@ function handleFinalSubmission() {
             $_SESSION['desired_program'] = $studentData['desired_program']; // Store desired program for fallback
             $_SESSION['is_eligible'] = $isEligible; // Flag to indicate if the student is eligible
             $_SESSION['success'] = "Your registration was successful! Your reference ID is: " . $reference_id;
+            
+            // Set flag to show success modal
+            $_SESSION['show_success_modal'] = true;
             
             // Clear the session upload paths after successful registration
             unset($_SESSION['upload_paths']);
@@ -2975,31 +3246,40 @@ function handleFinalSubmission() {
                 header('Content-Type: application/json');
             }
             
+            // Calculate total execution time
+            $execution_time = round(microtime(true) - $start_time, 2);
+            
             // Return success response
-            echo json_encode([
+            logExtraction("[DEBUG-$execution_id] Returning success response, total execution time: {$execution_time}s");
+            return [
                 'success' => true,
                 'message' => 'Registration completed successfully',
-                'reference_id' => $reference_id
-            ]);
-            exit;
+                'reference_id' => $reference_id,
+                'execution_time' => $execution_time
+            ];
             
         } catch (Exception $txnEx) {
             // Rollback on any error
             try {
                 if ($conn && $conn->ping()) {
+                    logExtraction("[DEBUG-$execution_id] Rolling back transaction due to error: " . $txnEx->getMessage());
                     $conn->rollback();
-                    logExtraction("Transaction rolled back due to error");
+                    logExtraction("[DEBUG-$execution_id] Transaction rolled back due to error");
                 }
             } catch (Exception $rollbackEx) {
-                logExtraction("Error during rollback: " . $rollbackEx->getMessage());
+                logExtraction("[DEBUG-$execution_id] Error during rollback: " . $rollbackEx->getMessage());
             }
             
+            logExtraction("[DEBUG-$execution_id] Registration failed: " . $txnEx->getMessage());
             throw new Exception("Registration failed: " . $txnEx->getMessage());
         }
 
     } catch (Exception $e) {
+        // Calculate total execution time
+        $execution_time = round(microtime(true) - $start_time, 2);
+        
         // Log the error with detailed information
-        logExtraction("Error in handleFinalSubmission", [
+        logExtraction("[DEBUG-$execution_id] ERROR in handleFinalSubmission (time: {$execution_time}s)", [
             'error' => $e->getMessage(),
             'trace' => $e->getTraceAsString(),
             'post_data' => isset($_POST) ? array_keys($_POST) : 'No POST data',
@@ -3014,11 +3294,11 @@ function handleFinalSubmission() {
                 $result = $conn->query("SELECT @@in_transaction");
                 if ($result && $row = $result->fetch_row() && $row[0] == 1) {
                     $conn->rollback();
-                    logExtraction("Transaction rolled back in error handler");
+                    logExtraction("[DEBUG-$execution_id] Transaction rolled back in error handler");
                 }
             }
         } catch (Exception $rollbackEx) {
-            logExtraction("Error during error-handler rollback: " . $rollbackEx->getMessage());
+            logExtraction("[DEBUG-$execution_id] Error during error-handler rollback: " . $rollbackEx->getMessage());
         }
         
         // Record error in session for debugging
@@ -3036,19 +3316,24 @@ function handleFinalSubmission() {
         }
         
         // Return detailed error message for debugging
-        echo json_encode([
+        logExtraction("[DEBUG-$execution_id] Returning error response to client");
+        return [
             'error' => $e->getMessage(),
             'file' => $e->getFile(),
             'line' => $e->getLine(),
-            'trace' => DEBUG_MODE ? explode("\n", $e->getTraceAsString()) : 'Trace hidden in production'
-        ]);
-        exit;
+            'trace' => DEBUG_MODE ? explode("\n", $e->getTraceAsString()) : 'Trace hidden in production',
+            'execution_time' => $execution_time,
+            'execution_id' => $execution_id
+        ];
     }
 }
 
 // If we reach here, something went wrong
 $_SESSION['ocr_error'] = "An unexpected error occurred. Please try again.";
-header("Location: registration_success.php");
+// Instead of redirecting, set a flag to show error modal
+$_SESSION['show_error_modal'] = true;
+// Redirect back to the registration page where the modal will be shown
+header("Location: qualiexam_register.php");
 exit();
 
 // Add this before the matchCreditedSubjects function
@@ -3115,7 +3400,39 @@ try {
                 
             case 'final_submit':
                 // Handle the final form submission
-                handleFinalSubmission();
+                $result = handleFinalSubmission();
+                
+                // Check if we should redirect (direct form submission) instead of returning JSON
+                if (isset($_POST['redirect_on_success']) && !empty($_POST['redirect_on_success'])) {
+                    $redirectUrl = $_POST['redirect_on_success'];
+                    
+                    if (isset($result['success']) && $result['success']) {
+                        // Set flag to show success modal instead of redirecting to success page
+                        $_SESSION['show_success_modal'] = true;
+                        // Also keep the message just in case
+                        $_SESSION['message'] = "Registration successful!";
+                        $_SESSION['message_type'] = "success";
+                        // Redirect back to registration page which will show the modal
+                        header("Location: qualiexam_register.php");
+                    } else {
+                        $_SESSION['message'] = isset($result['error']) ? $result['error'] : "Registration failed";
+                        $_SESSION['message_type'] = "error";
+                        $_SESSION['show_error_modal'] = true;
+                        header("Location: qualiexam_register.php");
+                    }
+                    exit();
+                } else {
+                    // For AJAX requests, include a flag in the JSON response
+                    if (isset($result['success']) && $result['success']) {
+                        // Set the session flag for showing modal
+                        $_SESSION['show_success_modal'] = true;
+                        
+                        // Add a redirect URL to the JSON response
+                        $result['redirect_url'] = 'qualiexam_register.php';
+                    }
+                    echo json_encode($result);
+                    exit();
+                }
                 break;
                 
             default:
@@ -3195,5 +3512,23 @@ function matchSubjectByCode($tor_code, $program_subjects) {
     }
     
     return null;
+}
+
+// Add this helper function at the top of the file
+function getPostField($field, $fallback = null) {
+    if (isset($_POST[$field])) {
+        return $_POST[$field];
+    }
+    
+    // Handle special cases for address/street field
+    if ($field === 'street' && isset($_POST['address'])) {
+        return $_POST['address'];
+    }
+    
+    if ($field === 'address' && isset($_POST['street'])) {
+        return $_POST['street'];
+    }
+    
+    return $fallback;
 }
 ?>
