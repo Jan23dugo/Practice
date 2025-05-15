@@ -29,189 +29,6 @@ $student = $result->fetch_assoc();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/registerForm.css">
-    <style>
-        /* Multi-step form specific styles */
-        .step {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-        
-        .step.active {
-            display: block !important;
-        }
-        
-        /* Progress indicator */
-        .progress-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            position: relative;
-            padding: 0 20px;
-        }
-        
-        .progress-indicator::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            right: 20px;
-            height: 2px;
-            background-color: var(--gray);
-            z-index: 1;
-        }
-        
-        .step-indicator {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: var(--gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--text-dark);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .step-indicator.active {
-            background-color: var(--primary);
-            color: white;
-            transform: scale(1.2);
-            transition: all 0.3s ease;
-        }
-        
-        .step-indicator.completed {
-            background-color: var(--success);
-            color: white;
-        }
-        
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 700px;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-        
-        /* OCR Preview specific styles */
-        #ocrPreviewModal .modal-content {
-            max-width: 900px;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            overflow: hidden;
-        }
-        
-        #ocrPreviewModal .modal-header {
-            padding: 20px;
-            background: white;
-            border-bottom: 1px solid var(--gray);
-            position: sticky;
-            top: 0;
-        }
-
-        #ocrPreviewModal .modal-footer {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid var(--gray);
-            position: sticky;
-            bottom: 0;
-        }
-        
-        #ocrResultsContent {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        /* Animation keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        /* Document upload fields */
-        .form-field input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border: 2px dashed var(--gray);
-            border-radius: 8px;
-            background-color: var(--gray-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .form-field input[type="file"]:hover {
-            border-color: var(--primary);
-            background-color: rgba(117, 52, 58, 0.05);
-        }
-        
-        .form-field small {
-            display: block;
-            margin-top: 5px;
-            color: var(--text-dark);
-            opacity: 0.7;
-            font-size: 0.85rem;
-        }
-
-        /* Checkbox container */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        
-        .checkbox-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
-        }
-        
-        .checkbox-container label {
-            margin: 0;
-            cursor: pointer;
-        }
-
-        /* Error and debug messages */
-        .error {
-            background-color: #ffebee;
-            color: #c62828;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #c62828;
-        }
-    </style>
 </head>
 
 <body>
@@ -238,34 +55,6 @@ $student = $result->fetch_assoc();
     
     <div class="main-content">
         <div class="content-wrapper">
-
-            <!-- Info Modal -->
-            <div id="infoModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>CCIS Qualifying Examination Information</h2>
-                        <button type="button" class="close-btn" onclick="closeModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Welcome to the CCIS Qualifying Examination registration. Please note the following requirements:</p>
-                        <strong><p>Exam Registration Requirements:</p></strong>
-                        <ul>
-                            <li>Must <strong>not</strong> have a <strong>failing grade or grade lower than 2.00 (or 85)</strong></li>
-                            <li>Must be an <strong>incoming Second Year if transferee or shiftee</strong> (must have completed at least 2 semester).
-                                <br>If ladderized, must be <strong>graduated on their 3-year diplomat program</strong>. </li>
-                            <li>Must have <strong>no failing grade, dropped, incomplete, and withdrawn mark</strong> in any subjects.</li>
-                        </ul>
-                        <strong><p>Required Documents:</p></strong>
-                        <ul>
-                            <li>Submit a copy of your <strong>Transcript of Records (TOR), or Informative or Certified Copy of Grades</strong> (initial requirement of the college only) </li>
-                            <li>Provide a <strong>valid School ID</strong></li>
-                            <li>Ensure all contact information is accurate</li>
-                            <li>Select the correct "Student Type" (Transferee, Shiftee, or Ladderized) as it affects the required information</li>
-                        </ul>
-                        <p>After completing the registration, you will receive an email with further instructions for the examination.</p>
-                    </div>
-                </div>
-            </div>
 
             <?php if (isset($_SESSION['message'])): ?>
                 <div class="alert <?php echo ($_SESSION['message_type'] === 'error') ? 'alert-danger' : 'alert-success'; ?>" role="alert">
@@ -319,15 +108,6 @@ $student = $result->fetch_assoc();
             <?php endif; ?>
 
             <section class="form-section">
-                <!-- Progress Indicator -->
-                <div class="progress-indicator">
-                    <div class="step-indicator active" data-step="1" data-title="Student Type">1</div>
-                    <div class="step-indicator" data-step="2" data-title="Personal Info">2</div>
-                    <div class="step-indicator" data-step="3" data-title="Contact">3</div>
-                    <div class="step-indicator" data-step="4" data-title="Academic">4</div>
-                    <div class="step-indicator" data-step="5" data-title="Documents">5</div>
-                </div>
-
                 <!-- Form -->
                 <form id="multi-step-form" action="qualiexam_registerBack.php" method="POST" enctype="multipart/form-data" onsubmit="return submitForm(event)">
                     <input type="hidden" name="action" value="final_submit">
@@ -348,8 +128,8 @@ $student = $result->fetch_assoc();
                                 $currentType = isset($student['student_type']) ? strtolower(trim($student['student_type'])) : '';
                                 echo "<!-- Current student type: '$currentType' -->";
                                 ?>
-                                <select id="student_type" name="student_type" required onchange="handleStudentTypeChange()">
-                                    <option value="" disabled <?php echo !isset($student['student_type']) ? 'selected' : ''; ?>>Select Student Type</option>
+                                <select id="student_type" name="student_type" required onchange="handleStudentTypeChange()" class="custom-select student-type-select">
+                                    <option value="" disabled <?php echo !isset($student['student_type']) ? 'selected' : ''; ?> class="select-placeholder">Select Student Type</option>
                                     <option value="transferee" <?php echo ($currentType === 'transferee') ? 'selected' : ''; ?>>Transferee</option>
                                     <option value="shiftee" <?php echo ($currentType === 'shiftee') ? 'selected' : ''; ?>>Shiftee</option>
                                     <option value="ladderized" <?php echo ($currentType === 'ladderized') ? 'selected' : ''; ?>>Ladderized</option>
@@ -362,7 +142,7 @@ $student = $result->fetch_assoc();
                                 </div>
                             </div>
                             <div class="buttons">
-                                <button type="button" class="btn btn-next">
+                                <button type="button" class="btn btn-next" onclick="validateStep()">
                                     Next <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -382,7 +162,7 @@ $student = $result->fetch_assoc();
                             <div class="personal-info-grid">
                                 <div class="form-group">
                                     <label for="last_name">Last Name</label>
-                                    <input type="text" id="last_name" name="last_name" required class="form-control" 
+                                    <input type="text" id="last_name" name="last_name" required class="form-control custom-input name-input" 
                                            value="<?php echo htmlspecialchars($student['lastname'] ?? ''); ?>"
                                            placeholder="Enter last name">
                                     <div class="field-note">As shown in school records</div>
@@ -390,7 +170,7 @@ $student = $result->fetch_assoc();
 
                                 <div class="form-group">
                                     <label for="first_name">Given Name</label>
-                                    <input type="text" id="first_name" name="first_name" required class="form-control"
+                                    <input type="text" id="first_name" name="first_name" required class="form-control custom-input name-input"
                                            value="<?php echo htmlspecialchars($student['firstname'] ?? ''); ?>"
                                            placeholder="Enter first name">
                                     <div class="field-note">As shown in school records</div>
@@ -398,7 +178,7 @@ $student = $result->fetch_assoc();
 
                                 <div class="form-group">
                                     <label for="middle_name">Middle Name (Optional)</label>
-                                    <input type="text" id="middle_name" name="middle_name" class="form-control"
+                                    <input type="text" id="middle_name" name="middle_name" class="form-control custom-input name-input"
                                            value="<?php echo htmlspecialchars($student['middlename'] ?? ''); ?>"
                                            placeholder="Enter middle name">
                                     <div class="field-note">Leave blank if none</div>
@@ -410,15 +190,16 @@ $student = $result->fetch_assoc();
                                            id="dob" 
                                            name="dob" 
                                            required 
-                                           max="<?php echo date('Y-m-d'); ?>"
-                                           value="<?php echo htmlspecialchars($student['date_of_birth'] ?? ''); ?>">
+                                           class="custom-date"
+                                           max="<?php echo date('Y-m-d'); ?>" 
+                                           value="<?php echo isset($student['date_of_birth']) ? htmlspecialchars($student['date_of_birth']) : ''; ?>">
                                     <div class="field-note">Select your date of birth from the calendar</div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
-                                    <select id="gender" name="gender" required>
-                                        <option value="" disabled <?php echo !isset($student['gender']) ? 'selected' : ''; ?>>Select Gender</option>
+                                    <select id="gender" name="gender" required class="custom-select gender-select">
+                                        <option value="" disabled <?php echo !isset($student['gender']) ? 'selected' : ''; ?> class="select-placeholder">Select Gender</option>
                                         <option value="Male" <?php echo (isset($student['gender']) && $student['gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
                                         <option value="Female" <?php echo (isset($student['gender']) && $student['gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
                                         <option value="Other" <?php echo (isset($student['gender']) && $student['gender'] === 'Other') ? 'selected' : ''; ?>>Other</option>
@@ -440,7 +221,7 @@ $student = $result->fetch_assoc();
 
                     <!-- Step 3: Contact Details -->
                     <div class="step">
-                        <div class="contact-section">
+                        <div class="section-container">
                             <div class="section-header">
                                 <h2>Contact Information</h2>
                                 <div class="section-note">
@@ -455,6 +236,7 @@ $student = $result->fetch_assoc();
                                            id="email" 
                                            name="email" 
                                            required 
+                                           class="custom-input email-input"
                                            placeholder="Enter your email address"
                                            value="<?php echo htmlspecialchars($student['email'] ?? ''); ?>">
                                     <div class="field-note">Use an active email address that you check regularly</div>
@@ -466,6 +248,7 @@ $student = $result->fetch_assoc();
                                            id="contact_number" 
                                            name="contact_number" 
                                            required 
+                                           class="custom-input tel-input"
                                            pattern="[0-9]{11}" 
                                            placeholder="09123456789"
                                            value="<?php echo htmlspecialchars($student['contact_number'] ?? ''); ?>">
@@ -478,6 +261,7 @@ $student = $result->fetch_assoc();
                                            id="address" 
                                            name="address" 
                                            required 
+                                           class="custom-input address-input"
                                            placeholder="Enter your complete residential address"
                                            value="<?php echo htmlspecialchars($student['address'] ?? ''); ?>">
                                     <div class="field-note">Provide your complete current residential address</div>
@@ -513,6 +297,7 @@ $student = $result->fetch_assoc();
                                            min="1" 
                                            max="5" 
                                            required 
+                                           class="custom-input number-input"
                                            placeholder="Enter number of years"
                                            value="<?php echo htmlspecialchars($student['year_level'] ?? ''); ?>">
                                     <div class="field-note">Years in previous program</div>
@@ -520,7 +305,7 @@ $student = $result->fetch_assoc();
 
                                 <div class="form-group">
                                     <label for="previous_school">Previous School</label>
-                                    <select id="previous_school" name="previous_school" required class="form-control editable-select" onchange="handleEditableSelect(this)">
+                                    <select id="previous_school" name="previous_school" required class="custom-select editable-select" onchange="handleEditableSelect(this)">
                                         <option value="" disabled selected>Select Previous University</option>
                                         <?php
                                         $query = "SELECT university_code, university_name FROM universities ORDER BY university_name";
@@ -537,7 +322,7 @@ $student = $result->fetch_assoc();
 
                                 <div class="form-group">
                                     <label for="previous_program">Previous Program</label>
-                                    <select id="previous_program" name="previous_program" required class="form-control">
+                                    <select id="previous_program" name="previous_program" required class="custom-select">
                                         <option value="" disabled selected>Select Previous Program</option>
                                         <?php
                                         // Fetch programs from the database
@@ -559,7 +344,7 @@ $student = $result->fetch_assoc();
 
                                 <div class="form-group">
                                     <label for="desired_program">Program Applying To</label>
-                                    <select id="desired_program" name="desired_program" required class="form-control">
+                                    <select id="desired_program" name="desired_program" required class="custom-select">
                                         <option value="" disabled selected>Select Desired Program</option>
                                         <?php
                                         $query = "SELECT program_code, program_name FROM programs WHERE is_accepting_transfer = 1 ORDER BY program_name";
@@ -595,6 +380,8 @@ $student = $result->fetch_assoc();
                                     Please upload clear, legible scanned copies or photos of your documents. All documents must be in PDF, JPG, or PNG format and must not exceed 5MB each.
                                 </div>
                             </div>
+                            <!-- Hidden field to store subjects data from OCR -->
+                            <input type="hidden" id="subjects_data" name="subjects_data" value="">
                             <div class="form-group">
                                 <div class="form-field" id="tor-field">
                                     <label for="tor">Upload Copy of Transcript of Records (TOR)</label>
@@ -622,7 +409,7 @@ $student = $result->fetch_assoc();
                                 <button type="button" class="btn btn-previous" onclick="prevStep()">
                                     <i class="fas fa-arrow-left"></i> Previous
                                 </button>
-                                <button type="submit" class="btn btn-next">
+                                <button type="submit" class="btn btn-submit">
                                     <i class="fas fa-check"></i> Submit Application
                                 </button>
                             </div>
@@ -632,7 +419,7 @@ $student = $result->fetch_assoc();
             </section>
 
             <div class="decorative-container">
-                <img src="assets/images/education-illustration.svg" alt="Education Illustration" class="decorative-image">
+                <img src="assets/images/decorative-img.png" alt="Education Illustration" class="decorative-image">
                 <div class="decorative-text">
                     <h2>Welcome to CCIS Qualifying Examination</h2>
                     <p>Take the next step in your academic journey. Complete your registration to proceed with the qualifying examination for the College of Computing and Information Sciences.</p>
@@ -645,655 +432,136 @@ $student = $result->fetch_assoc();
     <!-- Add this before the closing body tag -->
 
     <!-- Add this modal for OCR preview -->
-    <div id="ocrPreviewModal" class="modal">
-        <div class="modal-content">
+    <div id="ocrPreviewModal" class="ocr-modal">
+        <div class="modal-content ocr-preview-modal">
+            <span class="close-modal" onclick="closeOCRPreview()">&times;</span>
+            
             <div class="modal-header">
-                <span class="close-btn" onclick="closeOCRPreview()">&times;</span>
                 <h2>OCR Results Preview</h2>
+                <p>Review and edit the automatically extracted subjects from your transcript. You can add, edit, or delete subjects before submitting your application.</p>
             </div>
-            <div id="ocrResultsContent">
-                <div class="loading">Processing documents...</div>
+            
+            <div class="modal-body" id="ocrResultsContent">
+                <!-- OCR results will appear here -->
             </div>
+            
             <div class="modal-footer">
-                <button type="button" class="prev-btn" onclick="closeOCRPreview()">Cancel</button>
-                <button type="button" class="nxt-btn" onclick="confirmAndSubmit()">Confirm and Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="closeOCRPreview()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-primary" onclick="confirmAndSubmit()">
+                    <i class="fas fa-check"></i> Confirm and Submit
+                </button>
             </div>
         </div>
     </div>
     
-    <script>
-// Define these functions in the global scope
-function handleStudentTypeChange() {
-    const studentType = document.getElementById('student_type').value;
-    const previousProgramSelect = document.getElementById("previous_program");
-    const yearLevelField = document.getElementById("year_level");
-
-    // First, enable all options
-    Array.from(previousProgramSelect.options).forEach(option => {
-        option.style.display = '';
-    });
-
-    if (studentType === 'ladderized') {
-        // For ladderized, only show DICT program
-        Array.from(previousProgramSelect.options).forEach(option => {
-            if (!option.text.includes('DICT') && option.value !== '') {
-                option.style.display = 'none';
-            }
-        });
-        
-        // Set DICT as selected if available
-        const dictOption = Array.from(previousProgramSelect.options)
-            .find(option => option.text.includes('DICT'));
-        if (dictOption) {
-            dictOption.selected = true;
-        }
-
-        // Hide year level field if it exists
-        if (yearLevelField) {
-            yearLevelField.style.display = 'none';
-            yearLevelField.value = '1'; // Set default value
-        }
-    } else {
-        // For other types, show all programs except DICT
-        Array.from(previousProgramSelect.options).forEach(option => {
-            if (option.text.includes('DICT')) {
-                option.style.display = 'none';
-            }
-        });
-
-        // Reset selection
-        previousProgramSelect.value = '';
-
-        // Show year level field if it exists
-        if (yearLevelField) {
-            yearLevelField.style.display = 'block';
-        }
-    }
-}
-
-function validateStep() {
-    const activeStep = document.querySelector('.step.active');
-    const stepIndex = Array.from(document.querySelectorAll('.step')).indexOf(activeStep);
-    let isValid = true;
-
-    // Get all required inputs in the current step
-    const requiredInputs = activeStep.querySelectorAll('input[required], select[required]');
+    <!-- Loading Overlay -->
+    <div id="submission-loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing your registration...</p>
+        <small>Please wait while we submit your application</small>
+    </div>
     
-    // Clear any existing error messages
-    const existingErrors = activeStep.querySelectorAll('.error-message');
-    existingErrors.forEach(error => error.remove());
-
-    // Validate based on which step we're on
-    switch(stepIndex) {
-        case 0: // Student Type
-            const studentType = document.getElementById('student_type');
-            if (!studentType.value) {
-                isValid = false;
-                showError(studentType, 'Please select a student type');
-            }
-            break;
-
-        case 1: // Personal Information
-            requiredInputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    showError(input, `${input.previousElementSibling.textContent} is required`);
-                }
-            });
-            break;
-
-        case 2: // Contact Information
-            const email = document.getElementById('email');
-            const contact = document.getElementById('contact_number');
-            const address = document.getElementById('address');
-
-            if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                isValid = false;
-                showError(email, 'Please enter a valid email address');
-            }
-            if (!contact.value.match(/^[0-9]{11}$/)) {
-                isValid = false;
-                showError(contact, 'Please enter a valid 11-digit contact number');
-            }
-            if (!address.value.trim()) {
-                isValid = false;
-                showError(address, 'Address is required');
-            }
-            break;
-
-        case 3: // Academic Information
-            const previousSchool = document.getElementById('previous_school');
-            const previousProgram = document.getElementById('previous_program');
-            const desiredProgram = document.getElementById('desired_program');
-            const yearLevel = document.getElementById('year_level');
-
-            if (!previousSchool.value) {
-                isValid = false;
-                showError(previousSchool, 'Please select your previous school');
-            }
-            if (!previousProgram.value) {
-                isValid = false;
-                showError(previousProgram, 'Please select your previous program');
-            }
-            if (!desiredProgram.value) {
-                isValid = false;
-                showError(desiredProgram, 'Please select your desired program');
-            }
-            // Only validate year level if not ladderized
-            if (document.getElementById('student_type').value !== 'ladderized') {
-                if (!yearLevel.value || yearLevel.value < 1 || yearLevel.value > 5) {
-                    isValid = false;
-                    showError(yearLevel, 'Please enter a valid year level (1-5)');
-                }
-            }
-            break;
-
-        case 4: // Document Upload
-            const documentType = document.querySelector('input[name="document_type"]:checked');
-            const schoolId = document.getElementById('school_id');
-
-            if (!documentType) {
-                isValid = false;
-                showError(document.querySelector('.document-choice'), 'Please select a document type');
-            }
-
-            if (!schoolId.files.length) {
-                isValid = false;
-                showError(schoolId, 'Please upload your school ID');
-            }
-
-            // Check for TOR or Grades based on selection
-            if (documentType && documentType.value === 'tor') {
-                const tor = document.getElementById('tor');
-                if (!tor.files.length) {
-                    isValid = false;
-                    showError(tor, 'Please upload your Transcript of Records');
-                }
-            } else if (documentType && documentType.value === 'grades') {
-                const grades = document.getElementById('copy_grades');
-                if (!grades.files.length) {
-                    isValid = false;
-                    showError(grades, 'Please upload your Copy of Grades');
-                }
-            }
-            break;
-    }
-
-    if (isValid) {
-        nextStep();
-    }
-
-    return isValid;
-}
-
-function showError(element, message) {
-    // Create error message element
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.style.color = 'red';
-    errorDiv.style.fontSize = '0.8em';
-    errorDiv.style.marginTop = '5px';
-    errorDiv.textContent = message;
-
-    // Insert error message after the element
-    element.parentNode.insertBefore(errorDiv, element.nextSibling);
-
-    // Highlight the input
-    element.style.borderColor = 'red';
-    element.addEventListener('input', function() {
-        // Remove error styling when user starts typing
-        this.style.borderColor = '';
-        const errorMsg = this.parentNode.querySelector('.error-message');
-        if (errorMsg) {
-            errorMsg.remove();
-        }
-    });
-}
-
-function nextStep() {
-    const currentStep = document.querySelector('.step.active');
-    const nextStep = currentStep.nextElementSibling;
-    const stepIndicators = document.querySelectorAll('.step-indicator');
-    const currentIndex = Array.from(document.querySelectorAll('.step')).indexOf(currentStep);
-
-    if (nextStep) {
-        // Update step indicators
-        stepIndicators[currentIndex].classList.remove('active');
-        stepIndicators[currentIndex].classList.add('completed');
-        stepIndicators[currentIndex + 1].classList.add('active');
-
-        // Change visible step
-        currentStep.classList.remove('active');
-        nextStep.classList.add('active');
-
-        // Scroll to top of form
-        document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-function prevStep() {
-    const currentStep = document.querySelector('.step.active');
-    const prevStep = currentStep.previousElementSibling;
-    const stepIndicators = document.querySelectorAll('.step-indicator');
-    const currentIndex = Array.from(document.querySelectorAll('.step')).indexOf(currentStep);
-
-    if (prevStep) {
-        // Update step indicators
-        stepIndicators[currentIndex].classList.remove('active');
-        stepIndicators[currentIndex - 1].classList.remove('completed');
-        stepIndicators[currentIndex - 1].classList.add('active');
-
-        // Change visible step
-        currentStep.classList.remove('active');
-        prevStep.classList.add('active');
-
-        // Scroll to top of form
-        document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// Initialize when the document loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Add event listeners to all next buttons
-    document.querySelectorAll('.btn-next').forEach(button => {
-        button.addEventListener('click', validateStep);
-    });
-
-    // Add event listeners to all previous buttons
-    document.querySelectorAll('.btn-previous').forEach(button => {
-        button.addEventListener('click', prevStep);
-    });
-
-    // Initialize the first step
-    const firstStep = document.querySelector('.step');
-    const firstIndicator = document.querySelector('.step-indicator');
-    if (firstStep && firstIndicator) {
-        firstStep.classList.add('active');
-        firstIndicator.classList.add('active');
-    }
-
-    // Add event listener for student type changes
-    const studentTypeSelect = document.getElementById('student_type');
-    if (studentTypeSelect) {
-        studentTypeSelect.addEventListener('change', handleStudentTypeChange);
-        // Also handle initial state
-        handleStudentTypeChange();
-    }
-});
-
-// Function to open the modal
-function openModal() {
-    document.getElementById("infoModal").style.display = "block";
-}
-
-// Function to close the modal
-function closeModal() {
-    document.getElementById("infoModal").style.display = "none";
-}
-
-// Open the modal when the page loads
-window.onload = function() {
-    openModal();
-};
-
-// Function to handle grading system change
-function toggleCopyGradesUpload() {
-    const checkbox = document.getElementById('has_copy_grades');
-    const copyGradesField = document.getElementById('copy-grades-field');
-    const copyGradesInput = document.getElementById('copy_grades');
-    
-    if (checkbox.checked) {
-        copyGradesField.style.display = 'block';
-        copyGradesInput.required = true;
-    } else {
-        copyGradesField.style.display = 'none';
-        copyGradesInput.required = false;
-        copyGradesInput.value = ''; // Clear the file input
-    }
-}
-
-function submitForm(event) {
-    event.preventDefault();
-    
-    // Disable submit button to prevent multiple submissions
-    const submitButtons = document.querySelectorAll('button[type="submit"]');
-    submitButtons.forEach(button => {
-        button.disabled = true;
-        button.textContent = 'Processing...';
-    });
-    
-    console.log("Starting form submission process");
-    
-    // Clear any previous error messages
-    const existingErrors = document.querySelectorAll('.error');
-    existingErrors.forEach(error => error.remove());
-    
-    // Process the form
-    processOCR();
-}
-
-// Create a separate function for OCR processing
-async function processOCR() {
-    try {
-        // Show loading state
-        const ocrModal = document.getElementById('ocrPreviewModal');
-        const ocrContent = document.getElementById('ocrResultsContent');
-        ocrModal.style.display = 'block';
-        ocrContent.innerHTML = '<div class="loading">Processing documents...</div>';
-        
-        // Get the form data
-        const form = document.getElementById('multi-step-form');
-        const formData = new FormData(form);
-        formData.set('action', 'process_ocr');
-        
-        console.log("Sending OCR request");
-        
-        // Send the OCR request
-        const response = await fetch('qualiexam_registerBack.php', {
-            method: 'POST',
-            body: formData
-        });
-        
-        if (!response.ok) {
-            throw new Error(`Server returned status code ${response.status}`);
-        }
-        
-        const responseText = await response.text();
-        console.log("Raw OCR response:", responseText);
-        
-        if (!responseText || responseText.trim() === '') {
-            throw new Error("Server returned an empty response");
-        }
-        
-        // Parse the response
-        let result;
-        try {
-            result = JSON.parse(responseText);
-        } catch (parseError) {
-            console.error("JSON parse error:", parseError);
-            throw new Error("Invalid server response format");
-        }
-        
-        // Re-enable submit buttons
-        const submitButtons = document.querySelectorAll('button[type="submit"]');
-        submitButtons.forEach(button => {
-            button.disabled = false;
-            button.textContent = 'Submit Application';
-        });
-        
-        if (result.error) {
-            ocrContent.innerHTML = `<div class="error-message">${result.error}</div>`;
-            return;
-        }
-        
-        if (!result.subjects || result.subjects.length === 0) {
-            ocrContent.innerHTML = '<div class="error-message">No subjects could be extracted from the documents. Please check your uploads.</div>';
-            return;
-        }
-        
-        // Store the subjects data
-        document.getElementById('subjects_data').value = JSON.stringify(result.subjects);
-        
-        // Display the OCR results in a table
-        let tableHtml = `
-            <table class="grading-table">
-                <thead>
-                    <tr>
-                        <th>Subject Code</th>
-                        <th>Description</th>
-                        <th>Units</th>
-                        <th>Grades</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-        
-        result.subjects.forEach(subject => {
-            tableHtml += `
-                <tr>
-                    <td>${subject.subject_code || ''}</td>
-                    <td>${subject.subject_description || ''}</td>
-                    <td>${subject.units || ''}</td>
-                    <td>${subject.Grades || ''}</td>
-                </tr>
-            `;
-        });
-        
-        tableHtml += '</tbody></table>';
-        ocrContent.innerHTML = tableHtml;
-        
-    } catch (error) {
-        console.error('Error during OCR processing:', error);
-        
-        const ocrContent = document.getElementById('ocrResultsContent');
-        const errorMessage = error.message || 'An error occurred during processing';
-        
-        ocrContent.innerHTML = `
-            <div class="error-message">
-                <strong>Error during OCR processing:</strong><br>
-                ${errorMessage}<br>
-                <small>If this error persists, please try refreshing the page or contact support.</small>
+    <!-- OCR loading overlay -->
+    <div id="ocr-loading-overlay">
+        <div class="loading-indicator">
+            <h3>Processing Your Documents</h3>
+            <p>Extracting data from your transcript using OCR technology</p>
+            
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
             </div>
-        `;
-        
-        // Re-enable submit buttons
-        const submitButtons = document.querySelectorAll('button[type="submit"]');
-        submitButtons.forEach(button => {
-            button.disabled = false;
-            button.textContent = 'Submit Application';
-        });
-    }
-}
+            
+            <div class="spinner"></div>
+            <p>This may take a moment...</p>
+            <small>Please wait while we process your documents</small>
+        </div>
+    </div>
 
-function closeOCRPreview() {
-    document.getElementById('ocrPreviewModal').style.display = 'none';
-}
+    <!-- OCR Modal styles are now in registerForm.css -->
 
-async function confirmAndSubmit() {
-    try {
-        // Disable the confirm button to prevent double submissions
-        const confirmButton = document.querySelector('.modal-footer .nxt-btn');
-        const cancelButton = document.querySelector('.modal-footer .prev-btn');
-        
-        if (confirmButton) {
-            confirmButton.disabled = true;
-            confirmButton.textContent = 'Processing...';
+    <!-- Include the registration success modal -->
+    <?php 
+    // Define constant to protect against direct access
+    define('INCLUDE_MODAL', true);
+    
+    // Include the success modal file
+    include('registration_success_modal.php'); 
+    
+    // Include the error modal file
+    include('registration_error_modal.php');
+    ?>
+
+    <!-- Load JavaScript from external file -->
+    <script src="assets/js/qualiexam_register.js"></script>
+    
+    <!-- Initialize form functions -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize student type handler
+        if (typeof handleStudentTypeChange === 'function') {
+            handleStudentTypeChange();
         }
+    });
+    </script>
+    
+    <!-- Debugging script to verify modals -->
+    <script>
+    // Set flags for modal display based on PHP session data
+    window.shouldShowSuccessModal = <?php echo isset($_SESSION['show_success_modal']) && $_SESSION['show_success_modal'] ? 'true' : 'false'; ?>;
+    window.shouldShowErrorModal = <?php echo isset($_SESSION['show_error_modal']) && $_SESSION['show_error_modal'] ? 'true' : 'false'; ?>;
+    
+    // Clear session flags once they've been assigned to JavaScript variables
+    <?php
+    if (isset($_SESSION['show_success_modal'])) {
+        unset($_SESSION['show_success_modal']);
+    }
+    if (isset($_SESSION['show_error_modal'])) {
+        unset($_SESSION['show_error_modal']);
+    }
+    ?>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded');
         
-        if (cancelButton) {
-            cancelButton.disabled = true;
-        }
+        // Check if success modal exists
+        const successModal = document.getElementById('registrationSuccessModal');
+        console.log('Success modal exists:', !!successModal);
         
-        console.log("Starting final submission");
+        // Check if error modal exists
+        const errorModal = document.getElementById('registrationErrorModal');
+        console.log('Error modal exists:', !!errorModal);
         
-        // Get form data ready for submission
-        const form = document.getElementById('multi-step-form');
-        const formData = new FormData(form);
+        // Check if the showSuccessModal function is defined
+        console.log('showSuccessModal function exists:', typeof showSuccessModal === 'function');
         
-        // Get the subjects data from the hidden input
-        const subjectsData = document.getElementById('subjects_data').value;
+        // Check if the showErrorModal function is defined
+        console.log('showErrorModal function exists:', typeof showErrorModal === 'function');
         
-        if (!subjectsData) {
-            throw new Error("Subject data is missing. Please try again from the beginning.");
-        }
-        
-        // Make sure we're sending the correct action and data
-        formData.set('action', 'final_submit');
-        formData.set('subjects', subjectsData);
-        
-        console.log("Submitting form with action:", formData.get('action'));
-        console.log("Subject data length:", subjectsData.length);
-        
-        // Close the modal and show the loading indicator
-        document.getElementById('ocrPreviewModal').style.display = 'none';
-        
-        // Show loading indicator
-        const formSection = document.querySelector('.form-section');
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'loading';
-        loadingDiv.id = 'submission-loading';
-        loadingDiv.innerHTML = '<div class="loading">Processing your registration. Please wait...</div>';
-        formSection.appendChild(loadingDiv);
-        
-        // Send the request to the server
-        const response = await fetch('qualiexam_registerBack.php', {
-            method: 'POST',
-            body: formData
+        // Check session flags (now in JavaScript variables)
+        console.log('JavaScript flags:', {
+            shouldShowSuccessModal: window.shouldShowSuccessModal,
+            shouldShowErrorModal: window.shouldShowErrorModal
         });
         
-        // Get the response text for debugging
-        const responseText = await response.text();
-        console.log("Raw response:", responseText);
-        
-        // Try to parse as JSON
-        let result;
-        try {
-            // Try to extract only valid JSON from the response
-            // This helps if there are PHP notices or warnings before/after the JSON
-            const jsonMatch = responseText.match(/(\{.*\}|\[.*\])/s);
-            if (jsonMatch) {
-                result = JSON.parse(jsonMatch[0]);
-            } else {
-                result = JSON.parse(responseText);
-            }
-        } catch (parseError) {
-            console.error('Error parsing response as JSON:', parseError);
-            console.log('Response text:', responseText);
-            
-            // If we can't parse JSON but there's a success message anywhere in the response, 
-            // we'll assume success and redirect anyway
-            if (responseText.includes('success') && responseText.includes('reference_id')) {
-                console.log("Found success indicators in response, proceeding with redirect");
-                // Extract reference ID if possible
-                const refMatch = responseText.match(/reference_id["']?\s*:\s*["']?([^"',}]+)/);
-                const referenceId = refMatch ? refMatch[1] : 'Generated';
-                
-                // Save data in session storage for the success page
-                sessionStorage.setItem('registration_success', 'true');
-                sessionStorage.setItem('reference_id', referenceId);
-                
-                // Redirect to success page
-                window.location.href = 'registration_success.php';
-                return;
-            }
-            
-            throw new Error('Invalid server response. Please contact support.');
+        // Make sure OCR preview modal is hidden
+        const ocrPreviewModal = document.getElementById('ocrPreviewModal');
+        if (ocrPreviewModal) {
+            ocrPreviewModal.style.cssText = "display: none !important; visibility: hidden !important; opacity: 0 !important; z-index: -1 !important;";
         }
         
-        // Remove loading indicator
-        const loadingElement = document.getElementById('submission-loading');
-        if (loadingElement) {
-            loadingElement.remove();
+        // If the JavaScript flag is set but modal wasn't displayed yet, try showing it manually
+        if (window.shouldShowSuccessModal && typeof showSuccessModal === 'function' && successModal) {
+            console.log('Showing success modal from debugging script');
+            setTimeout(showSuccessModal, 500);
         }
         
-        if (result.error) {
-            // Display error message
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error';
-            errorDiv.textContent = result.error;
-            formSection.insertBefore(errorDiv, formSection.firstChild);
-            
-            console.error('Submission error:', result.error);
-            
-            // Re-enable buttons
-            if (confirmButton) {
-                confirmButton.disabled = false;
-                confirmButton.textContent = 'Confirm and Submit';
-            }
-            
-            if (cancelButton) {
-                cancelButton.disabled = false;
-            }
-            
-            return;
+        if (window.shouldShowErrorModal && typeof showErrorModal === 'function' && errorModal) {
+            console.log('Showing error modal from debugging script');
+            setTimeout(showErrorModal, 500);
         }
-        
-        if (result.success) {
-            // Store in sessionStorage for persistence across page loads
-            sessionStorage.setItem('registration_success', 'true');
-            sessionStorage.setItem('reference_id', result.reference_id || 'Generated');
-            sessionStorage.setItem('student_name', 
-                document.getElementById('first_name').value + ' ' + document.getElementById('last_name').value);
-            sessionStorage.setItem('email', document.getElementById('email').value);
-            
-            // Show success message before redirect
-            const successDiv = document.createElement('div');
-            successDiv.style.backgroundColor = '#d4edda';
-            successDiv.style.color = '#155724';
-            successDiv.style.padding = '15px';
-            successDiv.style.borderRadius = '4px';
-            successDiv.style.marginBottom = '15px';
-            successDiv.innerHTML = `
-                <strong>Registration Successful!</strong><br>
-                Your reference ID is: ${result.reference_id || 'Generated'}<br>
-                Redirecting to success page...
-            `;
-            formSection.insertBefore(successDiv, formSection.firstChild);
-            
-            // Scroll to the top to show the success message
-            window.scrollTo(0, 0);
-            
-            // Redirect immediately to success page
-            window.location.href = 'registration_success.php';
-        } else {
-            // If no explicit success/error but response received, assume success
-            console.log("No explicit success/error in response, assuming success");
-            sessionStorage.setItem('registration_success', 'true');
-            
-            // Try to extract a reference ID if available
-            if (result.reference_id) {
-                sessionStorage.setItem('reference_id', result.reference_id);
-            }
-            
-            // Store student info for the success page
-            sessionStorage.setItem('student_name', 
-                document.getElementById('first_name').value + ' ' + document.getElementById('last_name').value);
-            sessionStorage.setItem('email', document.getElementById('email').value);
-            
-            // Redirect to success page
-            window.location.href = 'registration_success.php';
-        }
-        
-    } catch (error) {
-        console.error('Error during final submission:', error);
-        
-        // Close the modal if it's open
-        document.getElementById('ocrPreviewModal').style.display = 'none';
-        
-        // Show a user-friendly error message
-        const formSection = document.querySelector('.form-section');
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error';
-        errorDiv.innerHTML = `
-            <strong>Submission Error</strong><br>
-            ${error.message || 'An error occurred during submission. Please try again.'}<br>
-            <small>If this error persists, please contact support.</small>
-        `;
-        formSection.insertBefore(errorDiv, formSection.firstChild);
-        
-        // Scroll to the top to show the error
-        window.scrollTo(0, 0);
-        
-        // Remove loading indicator if it exists
-        const loadingElement = document.getElementById('submission-loading');
-        if (loadingElement) {
-            loadingElement.remove();
-        }
-        
-        // Re-enable buttons in modal
-        const confirmButton = document.querySelector('.modal-footer .nxt-btn');
-        const cancelButton = document.querySelector('.modal-footer .prev-btn');
-        
-        if (confirmButton) {
-            confirmButton.disabled = false;
-            confirmButton.textContent = 'Confirm and Submit';
-        }
-        
-        if (cancelButton) {
-            cancelButton.disabled = false;
-        }
-    }
-}
-</script>
+    });
+    </script>
 </body>
 </html>
