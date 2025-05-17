@@ -252,14 +252,15 @@ foreach ($grading_systems as $system) {
             background: #75343A;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .add-button:hover {
@@ -1274,6 +1275,53 @@ foreach ($grading_systems as $system) {
         .add-new-row span {
             pointer-events: none; /* So clicking anywhere triggers the td's onclick */
         }
+
+        
+        .table-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+            gap: 20px;
+        }
+        /* Search Bar Styles */
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #75343A;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px 10px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .search-box input:focus {
+            border-color: #75343A;
+            box-shadow: 0 0 0 4px rgba(117, 52, 58, 0.1);
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
     </style>
 </head>
 <body>
@@ -1283,12 +1331,8 @@ foreach ($grading_systems as $system) {
     <div class="main">
         <div class="page-header">
             <h1 class="page-title">
-                MANAGE GRADING SYSTEM
+                Manage Grading System
             </h1>
-            <button class="add-button" onclick="openModal('addModal')">
-             <i class="material-symbols-rounded">add</i>
-             Add New Grading System
-         </button>
         </div>
 
         <?php if (isset($_SESSION['success'])): ?>
@@ -1310,6 +1354,18 @@ foreach ($grading_systems as $system) {
                 ?>
             </div>
         <?php endif; ?>
+    <div class="table-actions">
+        <div class="search-container">
+            <div class="search-box">
+                <i class="material-symbols-rounded">search</i>
+                <input type="text" id="searchInput" placeholder="Search by university name or code..." onkeyup="searchTable()">
+            </div>
+        </div>
+        <button class="add-button" onclick="openModal('addModal')">
+            <i class="material-symbols-rounded">add</i>
+            Add New Grading System
+        </button>
+    </div>
 
         <div class="table-responsive">
             <table class="grading-table" style="width:100%">
@@ -2090,6 +2146,26 @@ function viewGradingSystem(university_name) {
         .catch(err => {
             alert('Failed to fetch grading system data.');
         });
+}
+
+function searchTable() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.querySelector('.grading-table');
+    const rows = table.getElementsByTagName('tr');
+
+    // Start from index 1 to skip the header row
+    for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const universityName = row.cells[0].textContent.toLowerCase();
+        const universityCode = row.cells[1].textContent.toLowerCase();
+        
+        if (universityName.includes(filter) || universityCode.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
 }
 </script>
 </body>

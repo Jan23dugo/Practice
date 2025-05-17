@@ -227,33 +227,45 @@ if ($type && isset($tableMap[$type])) {
             justify-content: space-between;
             margin-bottom: 10px;
             align-items: center;
+            gap: 20px;
         }
 
         .search-container {
-            display: flex;
-            align-items: center;
-            width: 250px;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box {
             position: relative;
-        }
-
-        .search-input {
-            padding: 8px 30px 8px 12px;
             width: 100%;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            transition: all 0.3s ease;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #75343A;
-            box-shadow: 0 0 0 2px rgba(117, 52, 58, 0.2);
-        }
-
-        .search-icon {
+        .search-box i {
             position: absolute;
-            right: 10px;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             color: #75343A;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px 10px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .search-box input:focus {
+            border-color: #75343A;
+            box-shadow: 0 0 0 4px rgba(117, 52, 58, 0.1);
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
         }
 
         .add-btn {
@@ -362,7 +374,7 @@ if ($type && isset($tableMap[$type])) {
             font-style: italic;
         }
 
-        /* Modal Background Overlay */
+        /* Enhanced Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -370,31 +382,31 @@ if ($type && isset($tableMap[$type])) {
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .modal.show {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             opacity: 1;
         }
 
-        /* Modal Content Container */
         .modal-content {
-            position: relative;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
+            background: white;
+            border-radius: 20px;
             width: 90%;
             max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            margin: 70px auto;
+            position: relative;
             transform: translateY(-20px);
             transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .modal.show .modal-content {
@@ -402,91 +414,167 @@ if ($type && isset($tableMap[$type])) {
         }
 
         .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(135deg, #75343A 0%, #8B4448 100%);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
         }
 
         .modal-title {
-            font-size: 20px;
-            color: #75343A;
             margin: 0;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .close {
-            color: #75343A;
-            font-size: 28px;
-            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
+            font-size: 20px;
+            padding: 0;
         }
 
         .close:hover {
-            color: #622c31;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
 
-        /* Form Styling */
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            background: #f8f9fa;
+        }
+
+        .modal-footer {
+            padding: 15px 25px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: white;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        /* Enhanced Form Elements in Modal */
         .form-group {
             margin-bottom: 20px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
 
         .form-label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
             color: #333;
+            font-weight: 500;
+            font-size: 14px;
         }
 
         .form-control {
             width: 100%;
             padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 14px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            background: white;
         }
 
         .form-control:focus {
-            outline: none;
             border-color: #75343A;
-            box-shadow: 0 0 0 2px rgba(117, 52, 58, 0.2);
+            box-shadow: 0 0 0 3px rgba(117, 52, 58, 0.1);
+            outline: none;
         }
 
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
+        /* Modal Footer Buttons */
+        .modal-footer button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
         }
 
-        .btn-primary {
-            background-color: #75343A;
+        .modal-footer .btn-primary {
+            background: #75343A;
             color: white;
         }
 
-        .btn-primary:hover {
-            background-color: #622c31;
+        .modal-footer .btn-primary:hover {
+            background: #8B4448;
+            transform: translateY(-1px);
         }
 
-        .btn-secondary {
-            background-color: #e0e0e0;
+        .modal-footer .btn-secondary {
+            background: #f5f5f5;
             color: #333;
         }
 
-        .btn-secondary:hover {
-            background-color: #c0c0c0;
+        .modal-footer .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-1px);
+        }
+
+        /* Scrollbar Styling for Modal Body */
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #75343A;
+            border-radius: 3px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #8B4448;
+        }
+
+        /* Delete Modal Specific Styles */
+        #deleteModal .modal-body {
+            text-align: center;
+            padding: 30px 25px;
+        }
+
+        #deleteModal .modal-body p {
+            margin: 0;
+            color: #333;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        #deleteModal .btn-primary {
+            background: #dc3545;
+        }
+
+        #deleteModal .btn-primary:hover {
+            background: #c82333;
         }
 
         /* Responsive adjustments */
@@ -551,8 +639,10 @@ if ($type && isset($tableMap[$type])) {
                 <div id="tab1" class="tab-content active">
                     <div class="table-actions">
                         <div class="search-container">
-                            <input type="text" class="search-input" id="search-programs" placeholder="Search programs..." onkeyup="searchTable(this, 'programs-table')">
-                            <span class="material-symbols-rounded search-icon">search</span>
+                            <div class="search-box">
+                                <i class="material-symbols-rounded">search</i>
+                                <input type="text" id="search-programs" placeholder="Search programs..." onkeyup="searchTable(this, 'programs-table')">
+                            </div>
                         </div>
                         <a href="javascript:void(0);" onclick="openAddModal('university_programs')" class="add-btn">
                             <span class="material-symbols-rounded">add</span>Add Program
@@ -597,8 +687,10 @@ if ($type && isset($tableMap[$type])) {
                 <div id="tab2" class="tab-content">
                     <div class="table-actions">
                         <div class="search-container">
-                            <input type="text" class="search-input" id="search-universities" placeholder="Search universities..." onkeyup="searchTable(this, 'universities-table')">
-                            <span class="material-symbols-rounded search-icon">search</span>
+                            <div class="search-box">
+                                <i class="material-symbols-rounded">search</i>
+                                <input type="text" id="search-universities" placeholder="Search universities..." onkeyup="searchTable(this, 'universities-table')">
+                            </div>
                         </div>
                         <a href="javascript:void(0);" onclick="openAddModal('universities')" class="add-btn">
                             <span class="material-symbols-rounded">add</span>Add University
@@ -643,8 +735,10 @@ if ($type && isset($tableMap[$type])) {
                 <div id="tab3" class="tab-content">
                     <div class="table-actions">
                         <div class="search-container">
-                            <input type="text" class="search-input" id="search-applied" placeholder="Search applied programs..." onkeyup="searchTable(this, 'applied-table')">
-                            <span class="material-symbols-rounded search-icon">search</span>
+                            <div class="search-box">
+                                <i class="material-symbols-rounded">search</i>
+                                <input type="text" id="search-applied" placeholder="Search applied programs..." onkeyup="searchTable(this, 'applied-table')">
+                            </div>
                         </div>
                         <a href="javascript:void(0);" onclick="openAddModal('programs')" class="add-btn">
                             <span class="material-symbols-rounded">add</span>Add Program
@@ -692,22 +786,24 @@ if ($type && isset($tableMap[$type])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title" id="modalTitle">Add Item</h2>
-                        <span class="close" onclick="closeModal('formModal')">&times;</span>
+                        <button type="button" class="close" onclick="closeModal('formModal')">&times;</button>
                     </div>
-                    <form id="itemForm" method="POST" action="">
-                        <div class="form-group">
-                            <label for="codeInput" class="form-label" id="codeLabel">Code:</label>
-                            <input type="text" id="codeInput" name="code" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nameInput" class="form-label" id="nameLabel">Name:</label>
-                            <input type="text" id="nameInput" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="button btn-secondary" onclick="closeModal('formModal')">Cancel</button>
-                            <button type="submit" class="button btn-primary" id="submitBtn">Save</button>
-                        </div>
-                    </form>
+                    <div class="modal-body">
+                        <form id="itemForm" method="POST" action="">
+                            <div class="form-group">
+                                <label for="codeInput" class="form-label" id="codeLabel">Code:</label>
+                                <input type="text" id="codeInput" name="code" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nameInput" class="form-label" id="nameLabel">Name:</label>
+                                <input type="text" id="nameInput" name="name" class="form-control" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('formModal')">Cancel</button>
+                        <button type="submit" form="itemForm" class="btn-primary" id="submitBtn">Save</button>
+                    </div>
                 </div>
             </div>
 
@@ -716,12 +812,14 @@ if ($type && isset($tableMap[$type])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title">Confirm Deletion</h2>
-                        <span class="close" onclick="closeModal('deleteModal')">&times;</span>
+                        <button type="button" class="close" onclick="closeModal('deleteModal')">&times;</button>
                     </div>
-                    <p>Are you sure you want to delete this item? This action cannot be undone.</p>
-                    <div class="form-actions">
-                        <button class="button btn-secondary" onclick="closeModal('deleteModal')">Cancel</button>
-                        <button class="button btn-primary" id="confirmDeleteBtn">Delete</button>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('deleteModal')">Cancel</button>
+                        <button type="button" class="btn-primary" id="confirmDeleteBtn">Delete</button>
                     </div>
                 </div>
             </div>
@@ -767,13 +865,79 @@ if ($type && isset($tableMap[$type])) {
             }
         }
 
-        // Modal functions
+        // Enhanced Modal functions
         function openModal(modalId) {
-            document.getElementById(modalId).classList.add('show');
+            const modal = document.getElementById(modalId);
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add keyboard event listener for Escape key
+            document.addEventListener('keydown', handleEscapeKey);
+            
+            // Add click outside listener
+            modal.addEventListener('click', handleOutsideClick);
         }
 
         function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('show');
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Remove event listeners
+            document.removeEventListener('keydown', handleEscapeKey);
+            modal.removeEventListener('click', handleOutsideClick);
+            
+            // Reset form if exists
+            const form = modal.querySelector('form');
+            if (form) {
+                form.reset();
+                clearFormErrors(form);
+            }
+        }
+
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') {
+                const openModal = document.querySelector('.modal.show');
+                if (openModal) {
+                    closeModal(openModal.id);
+                }
+            }
+        }
+
+        function handleOutsideClick(e) {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
+            }
+        }
+
+        function clearFormErrors(form) {
+            const inputs = form.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+            const errorMessages = form.querySelectorAll('.error-message');
+            errorMessages.forEach(message => {
+                message.style.display = 'none';
+            });
+        }
+
+        function showFormError(input, message) {
+            input.classList.add('error');
+            const errorDiv = input.nextElementSibling;
+            if (errorDiv && errorDiv.classList.contains('error-message')) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function setLoading(button, isLoading) {
+            if (isLoading) {
+                button.classList.add('loading');
+                button.disabled = true;
+            } else {
+                button.classList.remove('loading');
+                button.disabled = false;
+            }
         }
 
         function openAddModal(type) {
@@ -862,6 +1026,35 @@ if ($type && isset($tableMap[$type])) {
             // Show modal
             openModal('deleteModal');
         }
+
+        // Form validation
+        document.getElementById('itemForm').addEventListener('submit', function(e) {
+            const codeInput = document.getElementById('codeInput');
+            const nameInput = document.getElementById('nameInput');
+            const submitBtn = document.getElementById('submitBtn');
+            let isValid = true;
+
+            // Clear previous errors
+            clearFormErrors(this);
+
+            // Validate code
+            if (!codeInput.value.trim()) {
+                showFormError(codeInput, 'This field is required');
+                isValid = false;
+            }
+
+            // Validate name
+            if (!nameInput.value.trim()) {
+                showFormError(nameInput, 'This field is required');
+                isValid = false;
+            }
+
+            if (isValid) {
+                setLoading(submitBtn, true);
+            } else {
+                e.preventDefault();
+            }
+        });
     </script>
     </body>
     </html>
