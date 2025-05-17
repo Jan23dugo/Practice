@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'add_bulk':
-                $grading_name = $_POST['grading_name'];
+                $university_name = $_POST['university_name'];
+                $university_code = $_POST['university_code'];
                 $success = true;
                 $conn->begin_transaction();
 
@@ -31,15 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             }
 
                             $stmt = $conn->prepare("INSERT INTO university_grading_systems 
-                                (grading_name, grade_value, description, min_percentage, max_percentage, is_special_grade) 
-                                VALUES (?, ?, ?, ?, ?, 0)");
+                                (university_name, university_code, grade_value, description, min_percentage, max_percentage, is_special_grade) 
+                                VALUES (?, ?, ?, ?, ?, ?, 0)");
                             
                             if (!$stmt) {
                                 throw new Exception("Prepare failed: " . $conn->error);
                             }
 
-                            $stmt->bind_param("sssdd", 
-                                $grading_name, 
+                            $stmt->bind_param("ssssdd", 
+                                $university_name, 
+                                $university_code,
                                 $grade['value'], 
                                 $grade['description'], 
                                 $grade['min'], 
@@ -68,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         foreach ($_POST['special_grades'] as $code => $value) {
                             if (isset($specialGradesMap[$code])) {
                                 $stmt = $conn->prepare("INSERT INTO university_grading_systems 
-                                    (grading_name, grade_value, description, is_special_grade) 
-                                    VALUES (?, ?, ?, 1)");
+                                    (university_name, university_code, grade_value, description, is_special_grade) 
+                                    VALUES (?, ?, ?, ?, 1)");
                                 
                                 if (!$stmt) {
                                     throw new Exception("Prepare failed: " . $conn->error);
@@ -78,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 $gradeValue = $specialGradesMap[$code]['value'];
                                 $description = $specialGradesMap[$code]['desc'];
                                 
-                                $stmt->bind_param("sss", $grading_name, $gradeValue, $description);
+                                $stmt->bind_param("ssss", $university_name, $university_code, $gradeValue, $description);
                                 
                                 if (!$stmt->execute()) {
                                     throw new Exception("Error adding special grade: " . $stmt->error);
@@ -98,20 +100,105 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 break;
 
+            case 'edit_bulk':
+                $university_name = $_POST['university_name'];
+                $original_university_name = $_POST['edit_original_university_name'];
+                $success = true;
+                $conn->begin_transaction();
+
+                try {
+                    // Delete existing grades for this university
+                    $stmt = $conn->prepare("DELETE FROM university_grading_systems WHERE university_name = ?");
+                    $stmt->bind_param("s", $original_university_name);
+                    
+                    if (!$stmt->execute()) {
+                        throw new Exception("Error deleting existing grades: " . $stmt->error);
+                    }
+
+                    // Add regular grades
+                    if (isset($_POST['edit_grades']) && is_array($_POST['edit_grades'])) {
+                        foreach ($_POST['edit_grades'] as $grade) {
+                            if (!isset($grade['value'], $grade['description'], $grade['min'], $grade['max'])) {
+                                throw new Exception("Invalid grade data provided");
+                            }
+
+                            $stmt = $conn->prepare("INSERT INTO university_grading_systems 
+                                (university_name, university_code, grade_value, description, min_percentage, max_percentage, is_special_grade) 
+                                VALUES (?, ?, ?, ?, ?, ?, 0)");
+                            
+                            if (!$stmt) {
+                                throw new Exception("Prepare failed: " . $conn->error);
+                            }
+
+                            $stmt->bind_param("ssssdd", 
+                                $university_name,
+                                $grade['code'],
+                                $grade['value'],
+                                $grade['description'],
+                                $grade['min'],
+                                $grade['max']
+                            );
+                            
+                            if (!$stmt->execute()) {
+                                throw new Exception("Error adding grade: " . $stmt->error);
+                            }
+                        }
+                    }
+
+                    // Add special grades
+                    if (isset($_POST['special_grades']) && is_array($_POST['special_grades'])) {
+                        $specialGradesMap = [
+                            'DRP' => ['value' => 'DRP', 'desc' => 'Dropped'],
+                            'OD' => ['value' => 'OD', 'desc' => 'Officially Dropped'],
+                            'UD' => ['value' => 'UD', 'desc' => 'Unofficially Dropped'],
+                            'NA' => ['value' => '*', 'desc' => 'No Attendance']
+                        ];
+
+                        foreach ($_POST['special_grades'] as $code => $value) {
+                            if (isset($specialGradesMap[$code])) {
+                                $stmt = $conn->prepare("INSERT INTO university_grading_systems 
+                                    (university_name, university_code, grade_value, description, is_special_grade) 
+                                    VALUES (?, ?, ?, ?, 1)");
+                                
+                                if (!$stmt) {
+                                    throw new Exception("Prepare failed: " . $conn->error);
+                                }
+
+                                $gradeValue = $specialGradesMap[$code]['value'];
+                                $description = $specialGradesMap[$code]['desc'];
+                                
+                                $stmt->bind_param("ssss", $university_name, $grade['code'], $gradeValue, $description);
+                                
+                                if (!$stmt->execute()) {
+                                    throw new Exception("Error adding special grade: " . $stmt->error);
+                                }
+                            }
+                        }
+                    }
+
+                    $conn->commit();
+                    $_SESSION['success'] = "Grading system updated successfully.";
+                } catch (Exception $e) {
+                    $conn->rollback();
+                    error_log("Error in transaction: " . $e->getMessage());
+                    $_SESSION['error'] = $e->getMessage();
+                }
+                break;
+
             case 'delete':
-                if (!isset($_POST['id'])) {
-                    $_SESSION['error'] = "No grade ID provided for deletion.";
+                if (!isset($_POST['university_name'])) {
+                    $_SESSION['error'] = "No university name provided for deletion.";
                     break;
                 }
 
-                $id = $_POST['id'];
-                $stmt = $conn->prepare("DELETE FROM university_grading_systems WHERE id = ?");
-                $stmt->bind_param("i", $id);
+                $university_name = $_POST['university_name'];
+                $stmt = $conn->prepare("DELETE FROM university_grading_systems WHERE university_name = ?");
+                $stmt->bind_param("s", $university_name);
                 
                 if ($stmt->execute()) {
-                    $_SESSION['success'] = "Grade deleted successfully.";
+                    $_SESSION['success'] = "Grading system deleted successfully.";
                 } else {
-                    $_SESSION['error'] = "Error deleting grade: " . $conn->error;
+                    $_SESSION['error'] = "Error deleting grading system: " . $conn->error;
                 }
                 break;
         }
@@ -122,13 +209,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Get all grading systems
-$result = $conn->query("SELECT * FROM university_grading_systems ORDER BY grading_name, is_special_grade, grade_value DESC");
+$result = $conn->query("SELECT * FROM university_grading_systems ORDER BY university_name, is_special_grade, grade_value DESC");
 $grading_systems = $result->fetch_all(MYSQLI_ASSOC);
 
-// Group grading systems by grading name
+// Group grading systems by university name
 $systems = [];
 foreach ($grading_systems as $system) {
-    $systems[$system['grading_name']][] = $system;
+    $systems[$system['university_name']][] = $system;
 }
 ?>
 
@@ -328,7 +415,7 @@ foreach ($grading_systems as $system) {
             border: 1px solid #f5c6cb;
         }
 
-        /* Modal Styles */
+        /* Enhanced Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -338,174 +425,286 @@ foreach ($grading_systems as $system) {
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .modal.show {
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 1;
         }
 
         .modal-content {
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             width: 90%;
             max-width: 800px;
             position: relative;
-            animation: modalSlide 0.3s ease;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
-            max-height: 90vh;
         }
 
-        @keyframes modalSlide {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .modal.show .modal-content {
+            transform: translateY(0);
         }
 
         .modal-header {
-            padding: 20px;
-            border-bottom: 1px solid #eef0f3;
+            padding: 25px 30px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(135deg, #75343A 0%, #8B4448 100%);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .modal-title {
             margin: 0;
-            color: #75343A;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
             font-size: 20px;
+        }
+
+        .btn-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
 
         .modal-body {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 30px;
+            background: #f8f9fa;
         }
 
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            background: white;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        /* Enhanced Form Elements in Modal */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #333;
             font-weight: 500;
+            font-size: 15px;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             font-size: 14px;
-            transition: border-color 0.2s ease;
+            transition: all 0.2s ease;
+            background: white;
         }
 
         .form-control:focus {
             border-color: #75343A;
+            box-shadow: 0 0 0 4px rgba(117, 52, 58, 0.1);
             outline: none;
         }
 
-        .modal-footer {
-            padding: 20px;
-            border-top: 1px solid #eef0f3;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
+        /* Enhanced Grade Input Container in Modal */
+        .grades-container {
             background: white;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            position: sticky;
-            bottom: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
         }
 
-        .grade-input-container {
+        .grades-header {
+            padding: 20px;
             background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .grade-input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .grade-input-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .grade-input-group {
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .sub-label {
-            font-size: 13px;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .special-grades-container {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-        }
-
-        .special-grade-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .special-grade-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .form-check {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
         }
 
-        .form-check-input {
-            width: 16px;
-            height: 16px;
+        .grades-header h6 {
             margin: 0;
-        }
-
-        .form-check-label {
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: 600;
             color: #333;
         }
 
-        .special-grade {
-            background: #f8f9fa;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 13px;
-            color: #666;
+        .btn-add-grade {
+            background: #75343A;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
         }
 
-        @media (max-width: 768px) {
-            .grading-systems-grid {
-                grid-template-columns: 1fr;
-            }
+        .btn-add-grade:hover {
+            background: #8B4448;
+            transform: translateY(-2px);
+        }
 
-            .page-header {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
+        /* Enhanced Special Grades Section in Modal */
+        .special-grades-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .special-grades-section h6 {
+            margin: 0 0 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .special-grades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .special-grade-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+        }
+
+        .special-grade-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .special-grade-check {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            accent-color: #75343A;
+        }
+
+        .special-grade-label {
+            font-weight: 600;
+            color: #75343A;
+            margin-right: 8px;
+        }
+
+        .special-grade-desc {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Modal Footer Buttons */
+        .modal-footer button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-footer .btn-edit {
+            background: #75343A;
+            color: white;
+            border: none;
+        }
+
+        .modal-footer .btn-edit:hover {
+            background: #8B4448;
+            transform: translateY(-2px);
+        }
+
+        .modal-footer .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .modal-footer .btn-delete:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Empty State in Modal */
+        .empty-grades-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #e0e0e0;
+        }
+
+        .empty-grades-message i {
+            font-size: 48px;
+            color: #75343A;
+            opacity: 0.5;
+            margin-bottom: 15px;
+        }
+
+        /* Scrollbar Styling for Modal Body */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #75343A;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #8B4448;
         }
 
         /* Update modal size and grades table styles */
@@ -1066,6 +1265,15 @@ foreach ($grading_systems as $system) {
                 min-width: 150px;
             }
         }
+
+        .add-new-row:hover {
+            background: #ececec !important;
+            color: #75343A;
+            transition: background 0.2s;
+        }
+        .add-new-row span {
+            pointer-events: none; /* So clicking anywhere triggers the td's onclick */
+        }
     </style>
 </head>
 <body>
@@ -1075,12 +1283,12 @@ foreach ($grading_systems as $system) {
     <div class="main">
         <div class="page-header">
             <h1 class="page-title">
-                Manage Grading Systems
+                MANAGE GRADING SYSTEM
             </h1>
-            <button type="button" class="add-button" onclick="openModal('addModal')">
-                <i class="material-symbols-rounded">add</i>
-                Add New Grading System
-            </button>
+            <button class="add-button" onclick="openModal('addModal')">
+             <i class="material-symbols-rounded">add</i>
+             Add New Grading System
+         </button>
         </div>
 
         <?php if (isset($_SESSION['success'])): ?>
@@ -1103,83 +1311,60 @@ foreach ($grading_systems as $system) {
             </div>
         <?php endif; ?>
 
-        <?php if (empty($systems)): ?>
-            <div class="empty-state">
-                <i class="material-symbols-rounded">grade</i>
-                <h3>No Grading Systems Found</h3>
-                <p>Start by adding a new grading system.</p>
-            </div>
-        <?php else: ?>
-            <div class="table-responsive">
-                <table class="grading-table">
-                    <thead>
-                        <tr>
-                            <th>Grading System</th>
-                            <th>Grade Value</th>
-                            <th>Description</th>
-                            <th>Percentage Range</th>
-                            <th class="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        foreach ($systems as $grading_name => $grades):
-                            // Sort grades: regular grades first (by value), then special grades
-                            usort($grades, function($a, $b) {
-                                if ($a['is_special_grade'] !== $b['is_special_grade']) {
-                                    return $a['is_special_grade'] - $b['is_special_grade'];
-                                }
-                                return strcmp($a['grade_value'], $b['grade_value']);
-                            });
-
-                            foreach ($grades as $grade):
-                        ?>
-                            <tr class="<?php echo $grade['is_special_grade'] ? 'special-grade' : ''; ?>">
-                                <td class="grading-system-cell">
-                                    <div class="grading-system-name">
-                                        <i class="material-symbols-rounded">grade</i>
-                                        <?php echo htmlspecialchars($grading_name); ?>
-                                    </div>
-                                </td>
-                                <td class="grade-value-cell">
-                                    <?php if ($grade['is_special_grade']): ?>
-                                        <span class="special-grade-badge">
-                                            <?php echo htmlspecialchars($grade['grade_value']); ?>
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="regular-grade-value">
-                                            <?php echo htmlspecialchars($grade['grade_value']); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?php echo htmlspecialchars($grade['description']); ?></td>
-                                <td>
-                                    <?php if (!$grade['is_special_grade']): ?>
-                                        <?php echo number_format($grade['min_percentage'], 2); ?>% - 
-                                        <?php echo number_format($grade['max_percentage'], 2); ?>%
-                                    <?php else: ?>
-                                        <span class="text-muted">N/A</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="text-center">
-                                    <div class="action-buttons">
-                                        <button class="btn-edit" onclick="editGrade(<?php echo $grade['id']; ?>)">
-                                            <i class="material-symbols-rounded">edit</i>
-                                        </button>
-                                        <button class="btn-delete" onclick="deleteGrade(<?php echo $grade['id']; ?>)">
-                                            <i class="material-symbols-rounded">delete</i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php 
-                            endforeach;
-                        endforeach; 
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
+        <div class="table-responsive">
+            <table class="grading-table" style="width:100%">
+                <thead>
+                    <tr style="background:#8B4448;color:#fff;">
+                        <th>University Name</th>
+                        <th>University Code</th>
+                        <th>Type</th>
+                        <th>Number of Ranges</th>
+                        <th>Last Modified</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                // Group by university name
+                foreach ($systems as $university_name => $grades):
+                    $num_ranges = count(array_filter($grades, function($g){ return !$g['is_special_grade']; }));
+                    $last_modified = '';
+                    $type = '';
+                    $updated_ats = array_column($grades, 'updated_at');
+                    if (!empty($updated_ats)) {
+                        $last_modified = max($updated_ats);
+                    }
+                    // Optionally, infer type from university name
+                    $type = (stripos($university_name, 'gpa') !== false) ? '4.0 Scale' : '1.0–5.0';
+                    // Get university code from the first grade entry
+                    $university_code = $grades[0]['university_code'] ?? '';
+                ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($university_name); ?></td>
+                        <td><?php echo htmlspecialchars($university_code); ?></td>
+                        <td><?php echo htmlspecialchars($type); ?></td>
+                        <td><?php echo $num_ranges; ?></td>
+                        <td><?php echo $last_modified ? date('y/m/d', strtotime($last_modified)) : '-'; ?></td>
+                        <td class="text-center">
+                            <div class="action-buttons">
+                                <button class="btn-edit" onclick="viewGradingSystem('<?php echo htmlspecialchars($university_name); ?>')">
+                                    <i class="material-symbols-rounded">visibility</i>
+                                </button>
+                                <button class="btn-edit" onclick="openEditModal('<?php echo htmlspecialchars($university_name); ?>')">
+                                    <i class="material-symbols-rounded">edit</i>
+                                </button>
+                                <button class="btn-delete" onclick="deleteGradingSystem('<?php echo htmlspecialchars($university_name); ?>')">
+                                    <i class="material-symbols-rounded">delete</i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                
+                </tbody>
+            </table>
+        </div>
+        <!-- Modals will be updated next -->
     </div>
 </div>
 
@@ -1194,8 +1379,17 @@ foreach ($grading_systems as $system) {
             <input type="hidden" name="action" value="add_bulk">
             <div class="modal-body">
                 <div class="form-group mb-4">
-                    <label class="form-label" for="grading_name">Grading System Name</label>
-                    <input type="text" class="form-control" id="grading_name" name="grading_name" required>
+                    <label class="form-label" for="university_name">University Name</label>
+                    <input type="text" class="form-control" id="university_name" name="university_name" required
+                           placeholder="Enter university name (e.g., University of the Philippines)">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="form-label" for="university_code">University Code</label>
+                    <input type="text" class="form-control" id="university_code" name="university_code" required
+                           placeholder="Enter university code (e.g., UP, DLSU, ADMU)"
+                           pattern="[A-Za-z0-9]+" title="Please enter only letters and numbers">
+                    <small class="form-text text-muted">Enter a unique code for the university (letters and numbers only)</small>
                 </div>
 
                 <div class="grades-container">
@@ -1264,30 +1458,81 @@ foreach ($grading_systems as $system) {
 
 <!-- Edit Modal -->
 <div class="modal" id="editModal">
-    <div class="modal-content">
+    <div class="modal-content modal-lg">
         <div class="modal-header">
             <h5 class="modal-title">Edit Grading System</h5>
             <button type="button" class="btn-close" onclick="closeModal('editModal')">&times;</button>
         </div>
-        <form action="" method="POST">
+        <form action="" method="POST" id="editGradingForm">
+            <input type="hidden" name="action" value="edit_bulk">
+            <input type="hidden" name="edit_original_university_name" id="edit_original_university_name">
             <div class="modal-body">
-                <input type="hidden" name="action" value="edit">
-                <input type="hidden" name="id" id="edit_id">
-                <div class="form-group">
-                    <label class="form-label" for="edit_grading_name">Grading System Name</label>
-                    <input type="text" class="form-control" id="edit_grading_name" name="grading_name" required>
+                <div class="form-group mb-4">
+                    <label class="form-label" for="edit_university_name">University Name</label>
+                    <input type="text" class="form-control" id="edit_university_name" name="university_name" required
+                           placeholder="Enter university name (e.g., University of the Philippines)">
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="edit_grade_value">Grade Value</label>
-                    <input type="number" step="0.01" class="form-control" id="edit_grade_value" name="grade_value" required>
+
+                <div class="form-group mb-4">
+                    <label class="form-label" for="edit_university_code">University Code</label>
+                    <input type="text" class="form-control" id="edit_university_code" name="university_code" required
+                           placeholder="Enter university code (e.g., UP, DLSU, ADMU)"
+                           pattern="[A-Za-z0-9]+" title="Please enter only letters and numbers">
+                    <small class="form-text text-muted">Enter a unique code for the university (letters and numbers only)</small>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="edit_min_percentage">Minimum Percentage</label>
-                    <input type="number" step="0.01" class="form-control" id="edit_min_percentage" name="min_percentage" required>
+
+                <div class="grades-container">
+                    <div class="grades-header">
+                        <h6>Regular Grades</h6>
+                        <button type="button" class="btn-add-grade" onclick="addEditGradeRow()">
+                            <i class="material-symbols-rounded">add</i>
+                            Add Grade
+                        </button>
+                    </div>
+                    <div class="grades-table">
+                        <div class="grades-table-header">
+                            <div class="col-grade">Grade Value</div>
+                            <div class="col-desc">Description</div>
+                            <div class="col-range">Percentage Range</div>
+                            <div class="col-action">Action</div>
+                        </div>
+                        <div class="grades-rows-container" id="editGradesRows">
+                            <!-- Grade rows will be populated here -->
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="edit_max_percentage">Maximum Percentage</label>
-                    <input type="number" step="0.01" class="form-control" id="edit_max_percentage" name="max_percentage" required>
+                <div class="special-grades-section mt-4">
+                    <h6>Special Grades</h6>
+                    <div class="special-grades-grid">
+                        <div class="special-grade-item">
+                            <input type="checkbox" id="edit_grade_drp" name="special_grades[DRP]" class="special-grade-check">
+                            <label for="edit_grade_drp">
+                                <span class="special-grade-label">DRP</span>
+                                <span class="special-grade-desc">Dropped</span>
+                            </label>
+                        </div>
+                        <div class="special-grade-item">
+                            <input type="checkbox" id="edit_grade_od" name="special_grades[OD]" class="special-grade-check">
+                            <label for="edit_grade_od">
+                                <span class="special-grade-label">OD</span>
+                                <span class="special-grade-desc">Officially Dropped</span>
+                            </label>
+                        </div>
+                        <div class="special-grade-item">
+                            <input type="checkbox" id="edit_grade_ud" name="special_grades[UD]" class="special-grade-check">
+                            <label for="edit_grade_ud">
+                                <span class="special-grade-label">UD</span>
+                                <span class="special-grade-desc">Unofficially Dropped</span>
+                            </label>
+                        </div>
+                        <div class="special-grade-item">
+                            <input type="checkbox" id="edit_grade_na" name="special_grades[NA]" class="special-grade-check">
+                            <label for="edit_grade_na">
+                                <span class="special-grade-label">*</span>
+                                <span class="special-grade-desc">No Attendance</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -1308,10 +1553,10 @@ foreach ($grading_systems as $system) {
         <form action="" method="POST">
             <div class="modal-body">
                 <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="id" id="delete_id">
+                <input type="hidden" name="university_name" id="delete_university_name">
                 <p>Are you sure you want to delete this grading system?</p>
-                <p><strong>Grading System:</strong> <span id="delete_grading_name"></span></p>
-                <p><strong>Grade Value:</strong> <span id="delete_grade"></span></p>
+                <p><strong>University Name:</strong> <span id="delete_university_name_display"></span></p>
+                <p><strong>University Code:</strong> <span id="delete_university_code_display"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-edit" onclick="closeModal('deleteModal')">Cancel</button>
@@ -1321,21 +1566,76 @@ foreach ($grading_systems as $system) {
     </div>
 </div>
 
+<!-- View Modal -->
+<div class="modal" id="viewModal">
+    <div class="modal-content modal-lg">
+        <div class="modal-header">
+            <h5 class="modal-title">View Grading System</h5>
+            <button type="button" class="btn-close" onclick="closeModal('viewModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group mb-3">
+                <label class="form-label">University Name:</label>
+                <div id="view_university_name" style="font-weight:bold;font-size:18px;"></div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">University Code:</label>
+                <div id="view_university_code" style="font-weight:bold;font-size:18px;"></div>
+            </div>
+            <div class="form-group mb-3" style="display:flex;gap:30px;flex-wrap:wrap;">
+                <div><span class="form-label">Type:</span> <span id="view_type"></span></div>
+                <div><span class="form-label">Number of Ranges:</span> <span id="view_num_ranges"></span></div>
+                <div><span class="form-label">Last Modified:</span> <span id="view_last_modified"></span></div>
+            </div>
+            <div class="grades-container mb-4">
+                <h6>Regular Grades</h6>
+                <div class="grades-table">
+                    <div class="grades-table-header">
+                        <div class="col-grade">Grade Value</div>
+                        <div class="col-desc">Description</div>
+                        <div class="col-range">Percentage Range</div>
+                    </div>
+                    <div class="grades-rows-container" id="viewGradesRows">
+                        <!-- Grade rows will be populated here -->
+                    </div>
+                </div>
+            </div>
+            <div class="special-grades-section">
+                <h6>Special Grades</h6>
+                <div class="special-grades-grid" id="viewSpecialGrades">
+                    <!-- Special grades will be populated here -->
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-edit" onclick="closeModal('viewModal')">Close</button>
+        </div>
+    </div>
+</div>
+
 <script src="assets/js/side.js"></script>
 <script>
+// Build a JS object of all grading systems and their grades for modal use
+const gradingSystemsData = <?php echo json_encode($systems); ?>;
+
 function editGradingSystem(system) {
     document.getElementById('edit_id').value = system.id;
-    document.getElementById('edit_grading_name').value = system.grading_name;
+    document.getElementById('edit_university_name').value = system.university_name;
     document.getElementById('edit_grade_value').value = system.grade_value;
     document.getElementById('edit_min_percentage').value = system.min_percentage;
     document.getElementById('edit_max_percentage').value = system.max_percentage;
     openModal('editModal');
 }
 
-function deleteGradingSystem(id, grading_name, grade) {
-    document.getElementById('delete_id').value = id;
-    document.getElementById('delete_grading_name').textContent = grading_name;
-    document.getElementById('delete_grade').textContent = grade;
+function deleteGradingSystem(university_name) {
+    document.getElementById('delete_university_name').value = university_name;
+    document.getElementById('delete_university_name_display').textContent = university_name;
+    
+    // Get university code from the data
+    const grades = gradingSystemsData[university_name] || [];
+    const university_code = grades[0]?.university_code || '-';
+    document.getElementById('delete_university_code_display').textContent = university_code;
+    
     openModal('deleteModal');
 }
 
@@ -1374,9 +1674,10 @@ function addGradeRow() {
     const template = `
         <div class="grade-row" data-index="${gradeRowCount}">
             <div class="col-grade">
-                <input type="number" step="0.25" class="form-control" 
-                       name="grades[${gradeRowCount}][value]" placeholder="e.g., 1.00" required
-                       min="1" max="5" onchange="validateGradeValue(this)">
+                <input type="text" class="form-control" 
+                       name="grades[${gradeRowCount}][value]" placeholder="e.g., 1.00 or A" required
+                       pattern="^([1-5](\\.00|\\.25|\\.50|\\.75)?|[A-Ea-e])$"
+                       oninput="validateGradeValue(this)">
             </div>
             <div class="col-desc">
                 <input type="text" class="form-control" 
@@ -1418,25 +1719,26 @@ function addGradeRow() {
 }
 
 function validateGradeValue(input) {
-    const value = parseFloat(input.value);
-    if (value < 1 || value > 5) {
-        alert('Grade value must be between 1.00 and 5.00');
-        input.value = '';
+    const value = input.value.trim();
+    const numberPattern = /^(1(\.00|\.25|\.50|\.75)?|2(\.00|\.25|\.50|\.75)?|3(\.00|\.25|\.50|\.75)?|4(\.00|\.25|\.50|\.75)?|5(\.00|\.25|\.50|\.75)?)$/;
+    const letterPattern = /^[A-Ea-e]$/;
+    if (!numberPattern.test(value) && !letterPattern.test(value)) {
+        input.setCustomValidity('Grade value must be 1.00-5.00 or A-E');
+        input.reportValidity();
         return false;
+    } else {
+        input.setCustomValidity('');
     }
-    
     // If it's a 5.0 (failing grade), auto-fill the description and range
-    if (value === 5.0) {
+    if (value === '5' || value === '5.00') {
         const row = input.closest('.grade-row');
         const descInput = row.querySelector('input[name*="[description]"]');
         const minInput = row.querySelector('input[name*="[min]"]');
         const maxInput = row.querySelector('input[name*="[max]"]');
-        
         descInput.value = 'Failure';
         minInput.value = '0';
         maxInput.value = '74';
     }
-    
     return true;
 }
 
@@ -1473,17 +1775,17 @@ document.getElementById('addGradingForm').addEventListener('submit', function(e)
     rows.forEach(row => {
         const min = parseFloat(row.querySelector('input[name*="[min]"]').value);
         const max = parseFloat(row.querySelector('input[name*="[max]"]').value);
-        const value = parseFloat(row.querySelector('input[name*="[value]"]').value);
+        const value = row.querySelector('input[name*="[value]"]').value;
         const desc = row.querySelector('input[name*="[description]"]').value;
         
-        if (isNaN(min) || isNaN(max) || isNaN(value)) {
-            alert('Please enter valid numbers for all grade values and percentages.');
+        if (isNaN(min) || isNaN(max)) {
+            alert('Please enter valid numbers for all grade percentages.');
             isValid = false;
             return;
         }
         
         // Special handling for failing grade (5.0)
-        if (value === 5.0) {
+        if (value === '5' || value === '5.00') {
             if (max !== 74 || min !== 0) {
                 alert('For grade 5.0 (Failure), the range should be 0-74');
                 isValid = false;
@@ -1509,7 +1811,7 @@ document.getElementById('addGradingForm').addEventListener('submit', function(e)
         const next = grades[i + 1];
         
         // Skip overlap check if next grade is 5.0 (failing grade)
-        if (next.value === 5.0) continue;
+        if (next.value === '5' || next.value === '5.00') continue;
         
         // Check for overlap
         if (current.min <= next.max) {
@@ -1519,7 +1821,7 @@ document.getElementById('addGradingForm').addEventListener('submit', function(e)
         
         // Check for significant gaps (more than 1%)
         const gap = current.min - next.max;
-        if (next.value !== 5.0 && gap > 1) {
+        if (gap > 1) {
             const proceed = confirm(
                 `There is a gap of ${gap.toFixed(2)}% between grades:\n\n` +
                 `${next.desc}: ${next.max}%\n` +
@@ -1582,15 +1884,15 @@ function toggleAccordion(header) {
     }
 }
 
-function editUniversity(grading_name) {
+function editUniversity(university_name) {
     // Implement university edit functionality
-    console.log('Edit university:', grading_name);
+    console.log('Edit university:', university_name);
 }
 
-function deleteUniversity(grading_name) {
-    if (confirm(`Are you sure you want to delete all grading systems for ${grading_name}?`)) {
+function deleteUniversity(university_name) {
+    if (confirm(`Are you sure you want to delete all grading systems for ${university_name}?`)) {
         // Implement university deletion functionality
-        console.log('Delete university:', grading_name);
+        console.log('Delete university:', university_name);
     }
 }
 
@@ -1610,6 +1912,184 @@ function deleteGrade(gradeId) {
         document.body.appendChild(form);
         form.submit();
     }
+}
+
+function openEditModal(university_name) {
+    // Get all grades for this system
+    const grades = gradingSystemsData[university_name] || [];
+    // Separate regular and special grades
+    const regularGrades = grades.filter(g => g.is_special_grade == 0);
+    const specialGrades = grades.filter(g => g.is_special_grade == 1);
+
+    // Set grading system name and code
+    document.getElementById('edit_university_name').value = university_name;
+    document.getElementById('edit_university_code').value = grades[0]?.university_code || '';
+    document.getElementById('edit_original_university_name').value = university_name;
+
+    // Clear and repopulate grade rows
+    const editGradesRows = document.getElementById('editGradesRows');
+    editGradesRows.innerHTML = '';
+    let editGradeRowCount = 0;
+    regularGrades.forEach(grade => {
+        const template = `
+            <div class="grade-row" data-index="${editGradeRowCount}">
+                <div class="col-grade">
+                    <input type="text" class="form-control" 
+                        name="edit_grades[${editGradeRowCount}][value]" value="${grade.grade_value}" required
+                        pattern="^([1-5](\\.00|\\.25|\\.50|\\.75)?|[A-Ea-e])$"
+                        oninput="validateGradeValue(this)">
+                </div>
+                <div class="col-desc">
+                    <input type="text" class="form-control" 
+                        name="edit_grades[${editGradeRowCount}][description]" value="${grade.description}" required>
+                </div>
+                <div class="col-range">
+                    <div class="range-inputs" style="display: flex; gap: 5px; align-items: center;">
+                        <input type="number" step="0.01" class="form-control" 
+                            name="edit_grades[${editGradeRowCount}][min]" value="${grade.min_percentage}" required
+                            min="0" max="100" style="width: 45%">
+                        <span>-</span>
+                        <input type="number" step="0.01" class="form-control" 
+                            name="edit_grades[${editGradeRowCount}][max]" value="${grade.max_percentage}" required
+                            min="0" max="100" style="width: 45%">
+                    </div>
+                </div>
+                <div class="col-action">
+                    <button type="button" class="btn-delete" onclick="removeEditGradeRow(this)">
+                        <i class="material-symbols-rounded">delete</i>
+                    </button>
+                </div>
+            </div>
+        `;
+        editGradesRows.insertAdjacentHTML('beforeend', template);
+        editGradeRowCount++;
+    });
+    // If no grades, show empty state
+    if (editGradeRowCount === 0) {
+        editGradesRows.innerHTML = `<div class='empty-grades-message'><p>No grades added yet. Click "Add Grade" to begin.</p></div>`;
+    }
+    window.editGradeRowCount = editGradeRowCount;
+
+    // Set special grades checkboxes
+    document.getElementById('edit_grade_drp').checked = specialGrades.some(g => g.grade_value === 'DRP');
+    document.getElementById('edit_grade_od').checked = specialGrades.some(g => g.grade_value === 'OD');
+    document.getElementById('edit_grade_ud').checked = specialGrades.some(g => g.grade_value === 'UD');
+    document.getElementById('edit_grade_na').checked = specialGrades.some(g => g.grade_value === '*');
+
+    // Show modal
+    openModal('editModal');
+}
+
+function addEditGradeRow() {
+    let editGradeRowCount = window.editGradeRowCount || 0;
+    const template = `
+        <div class="grade-row" data-index="${editGradeRowCount}">
+            <div class="col-grade">
+                <input type="text" class="form-control" 
+                    name="edit_grades[${editGradeRowCount}][value]" placeholder="e.g., 1.00 or A" required
+                    pattern="^([1-5](\\.00|\\.25|\\.50|\\.75)?|[A-Ea-e])$"
+                    oninput="validateGradeValue(this)">
+            </div>
+            <div class="col-desc">
+                <input type="text" class="form-control" 
+                    name="edit_grades[${editGradeRowCount}][description]" 
+                    placeholder="e.g., Excellent, Satisfactory, etc." required>
+            </div>
+            <div class="col-range">
+                <div class="range-inputs" style="display: flex; gap: 5px; align-items: center;">
+                    <input type="number" step="0.01" class="form-control" 
+                        name="edit_grades[${editGradeRowCount}][min]" placeholder="e.g., 75" required
+                        min="0" max="100" style="width: 45%">
+                    <span>-</span>
+                    <input type="number" step="0.01" class="form-control" 
+                        name="edit_grades[${editGradeRowCount}][max]" placeholder="e.g., 100" required
+                        min="0" max="100" style="width: 45%">
+                </div>
+            </div>
+            <div class="col-action">
+                <button type="button" class="btn-delete" onclick="removeEditGradeRow(this)">
+                    <i class="material-symbols-rounded">delete</i>
+                </button>
+            </div>
+        </div>
+    `;
+    const editGradesRows = document.getElementById('editGradesRows');
+    // Remove empty state if present
+    const emptyMessage = editGradesRows.querySelector('.empty-grades-message');
+    if (emptyMessage) emptyMessage.remove();
+    editGradesRows.insertAdjacentHTML('beforeend', template);
+    window.editGradeRowCount = editGradeRowCount + 1;
+}
+
+function removeEditGradeRow(button) {
+    const row = button.closest('.grade-row');
+    row.remove();
+    // Show empty state message if no rows left
+    const rows = document.querySelectorAll('#editGradesRows .grade-row');
+    if (rows.length === 0) {
+        document.getElementById('editGradesRows').innerHTML = `<div class='empty-grades-message'><p>No grades added yet. Click \"Add Grade\" to begin.</p></div>`;
+    }
+}
+
+function viewGradingSystem(university_name) {
+    fetch('get_grading_system.php?name=' + encodeURIComponent(university_name))
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+            // Separate regular and special grades
+            const regularGrades = data.filter(g => !g.is_special_grade);
+            const specialGrades = data.filter(g => g.is_special_grade);
+
+            // Set main info
+            document.getElementById('view_university_name').textContent = university_name;
+            document.getElementById('view_university_code').textContent = data[0]?.university_code || '-';
+            document.getElementById('view_type').textContent = (university_name.toLowerCase().includes('gpa')) ? '4.0 Scale' : '1.0–5.0';
+            document.getElementById('view_num_ranges').textContent = regularGrades.length;
+            document.getElementById('view_last_modified').textContent = data[0]?.updated_at
+                ? new Date(data[0].updated_at).toLocaleDateString('en-GB', {year: '2-digit', month: '2-digit', day: '2-digit'}).replace(/\//g, '/')
+                : '-';
+
+            // Populate regular grades
+            const viewGradesRows = document.getElementById('viewGradesRows');
+            viewGradesRows.innerHTML = '';
+            if (regularGrades.length === 0) {
+                viewGradesRows.innerHTML = `<div class='empty-grades-message'><p>No regular grades.</p></div>`;
+            } else {
+                regularGrades.forEach(grade => {
+                    const row = document.createElement('div');
+                    row.className = 'grade-row';
+                    row.innerHTML = `
+                        <div class='col-grade'>${grade.grade_value}</div>
+                        <div class='col-desc'>${grade.description}</div>
+                        <div class='col-range'>${Number(grade.min_percentage).toFixed(2)}% - ${Number(grade.max_percentage).toFixed(2)}%</div>
+                    `;
+                    viewGradesRows.appendChild(row);
+                });
+            }
+            // Populate special grades
+            const viewSpecialGrades = document.getElementById('viewSpecialGrades');
+            viewSpecialGrades.innerHTML = '';
+            if (specialGrades.length === 0) {
+                viewSpecialGrades.innerHTML = `<div class='empty-grades-message'><p>No special grades.</p></div>`;
+            } else {
+                specialGrades.forEach(grade => {
+                    const item = document.createElement('div');
+                    item.className = 'special-grade-item';
+                    item.innerHTML = `
+                        <span class='special-grade-label'>${grade.grade_value}</span>
+                        <span class='special-grade-desc'>${grade.description}</span>
+                    `;
+                    viewSpecialGrades.appendChild(item);
+                });
+            }
+            openModal('viewModal');
+        })
+        .catch(err => {
+            alert('Failed to fetch grading system data.');
+        });
 }
 </script>
 </body>

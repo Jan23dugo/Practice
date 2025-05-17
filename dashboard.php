@@ -201,12 +201,136 @@ try {
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
+        body {
+            background:rgb(255, 255, 255);
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .dashboard-greeting {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #75343A;
+            margin-bottom: 1.2rem;
+            margin-top: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .announcement-card-container, .dashboard-section, .announcement-dashboard-section {
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .announcement-card-container:hover .announcement-dashboard-section,
+        .announcement-card-container:hover .announcement-dashboard-section.maroon,
+        .dashboard-section:hover,
+        .announcement-dashboard-section:hover {
+            box-shadow: 0 8px 24px rgba(117,52,58,0.18), 0 2px 8px rgba(0,0,0,0.08);
+            transform: scale(1.025);
+        }
+        .a-list-item {
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .a-list-item:hover {
+            background: rgba(117,52,58,0.07);
+        }
+        .announcement-dashboard-section, .announcement-dashboard-section.maroon {
+            /* already has max-height, overflow-y, etc. */
+        }
+        .dashboard-card-header {
+            background: #75343A;
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-radius: 2.5rem;
+            padding: 0.7rem 2.5rem;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            letter-spacing: 1px;
+            margin-bottom: -2rem;
+        }
+
+        .announcement-dashboard-card-header {
+            background:rgb(247, 247, 247);
+            color: #75343A;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-radius: 2.5rem;
+            padding: 0.7rem 2.5rem;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            letter-spacing: 1px;
+            margin-bottom: -2rem;
+        }
+
+        .announcement-dashboard-section {
+            background: #fff ;
+            border-radius: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+            border: 1.5px solid #bbb;
+            width: 420px;
+            padding: 0 0 1.5rem 0;
+            margin: 0 auto;
+            position: relative;
+            height: 400px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .announcement-section-body {
+            padding: 30px 28px 10px 28px;
+        }
+        .a-list-item {
+            padding: 12px 0 10px 0;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .a-list-item:last-child {
+            border-bottom: none;
+        }
+        .a-list-item-content {
+            flex: 1;
+        }
+        .a-list-item-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #222;
+            margin-bottom: 0.25rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .a-list-item-subtitle {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 0.2rem;
+        }
+        .a-list-item-badge {
+            background: #A6E6A6;
+            color: #256029;
+            font-weight: 700;
+            border-radius: 2rem;
+            padding: 0.4rem 1.2rem;
+            font-size: 1.1rem;
+            margin-left: 1rem;
+            margin-top: 0.2rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        small {
+            color: #444;
+            font-size: 0.95rem;
+        }
         /* Dashboard Stats Containers */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 2px solid #f0f0f0;
         }
@@ -344,11 +468,39 @@ try {
         }
 
         .announcement-dashboard-section {
-            background: #75343A;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            overflow: hidden;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+            border: 1.5px solid #bbb;
+            width: 420px;
+            padding: 0 0 1.5rem 0;
+            margin: 0 auto;
+            position: relative;
             height: 400px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .announcement-dashboard-section.maroon {
+            background: #75343A;
+            color: #fff;
+            height: 400px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .announcement-dashboard-section.maroon .a-list-item-title,
+        .announcement-dashboard-section.maroon .a-list-item-subtitle,
+        .announcement-dashboard-section.maroon small {
+            color: #fff;
+        }
+        .announcement-dashboard-section.maroon .a-list-item-badge {
+            background: #B7F5B7;
+            color: #2B4D2B;
+        }
+        .announcement-dashboard-section.maroon .a-list-item {
+            border-bottom: 2px solid #b88d99;
+        }
+        .announcement-dashboard-section.maroon .empty-state {
+            color: #f0eaea;
         }
 
         .announcement-section-header {
@@ -860,85 +1012,82 @@ try {
             <?php echo date('l, F j, Y'); ?>
         </div>
     </div>
-    
-   
-    
-    <!-- Dashboard Sections -->
+
     <div class="dashboard-sections">
-        <!-- Upcoming Exams -->
-        <div class="dashboard-section">
-            <div class="section-header">
-                <span>UPCOMING EXAMINATIONS</span>
-                <a href="exam.php">View All</a>
-            </div>
-            <div class="section-body">
-                <?php if ($upcoming_exams && $upcoming_exams->num_rows > 0): ?>
-                    <?php while ($exam = $upcoming_exams->fetch_assoc()): 
-                        $exam_date = date('M d, Y', strtotime($exam['scheduled_date']));
-                        $exam_time = date('h:i A', strtotime($exam['scheduled_time']));
-                    ?>
-                        <div class="list-item">
-                            <div class="list-item-content">
-                                <div class="list-item-title"><?php echo htmlspecialchars($exam['title']); ?></div>
-                                <div class="list-item-subtitle">
-                                    <?php if (!empty($exam['description'])): ?>
-                                        <div class="exam-description">
-                                            <?php echo htmlspecialchars($exam['description']); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <strong>Date:</strong> <?php echo $exam_date; ?> •
-                                    <strong>Time:</strong> <?php echo $exam_time; ?> •
-                                    <strong>Duration:</strong> <?php echo $exam['duration']; ?> minutes
+        <!-- Upcoming Exams (new design) -->
+        <div class="announcement-card-container">
+            <div class="dashboard-card-header"><span class="material-symbols-rounded" style="vertical-align:middle;">event</span> Upcoming Exams</div>
+            <div class="announcement-dashboard-section">
+                <div class="announcement-section-body">
+                    <?php if ($upcoming_exams && $upcoming_exams->num_rows > 0): ?>
+                        <?php while ($exam = $upcoming_exams->fetch_assoc()): 
+                            $exam_date = date('M d, Y', strtotime($exam['scheduled_date']));
+                            $exam_time = date('h:i A', strtotime($exam['scheduled_time']));
+                        ?>
+                            <a href="exam.php?id=<?php echo urlencode($exam['exam_id']); ?>" style="text-decoration:none; color:inherit;">
+                            <div class="a-list-item">
+                                <div class="a-list-item-content">
+                                    <div class="a-list-item-title"><?php echo htmlspecialchars($exam['title']); ?></div>
+                                    <div class="a-list-item-subtitle">
+                                        <?php if (!empty($exam['description'])): ?>
+                                            <div class="exam-description">
+                                                <?php echo htmlspecialchars($exam['description']); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <strong>Date:</strong> <?php echo $exam_date; ?> •
+                                        <strong>Time:</strong> <?php echo $exam_time; ?> •
+                                        <strong>Duration:</strong> <?php echo $exam['duration']; ?> minutes
+                                    </div>
                                 </div>
+                                <span class="a-list-item-badge"><?php echo ucfirst($exam['exam_type']); ?></span>
                             </div>
-                            <span class="list-item-badge <?php echo $exam['exam_type'] === 'tech' ? 'badge-tech' : 'badge-non-tech'; ?>">
-                                <?php echo ucfirst($exam['exam_type']); ?>
-                            </span>
-                        </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <div class="empty-state">No upcoming exams scheduled</div>
-                <?php endif; ?>
+                            </a>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <div class="empty-state">No upcoming exams scheduled</div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         
-        <!-- Recent Announcements -->
-        <div class="announcement-dashboard-section">
-            <div class="announcement-section-header">
-                <span>RECENT ANNOUNCEMENTS</span>
-                <a href="announcement.php">View All</a>
-            </div>
-            <div class="announcement-section-body">
-                <?php if ($recent_announcements && $recent_announcements->num_rows > 0): ?>
-                    <?php while ($announcement = $recent_announcements->fetch_assoc()): ?>
-                        <div class="a-list-item">
-                            <div class="a-list-item-content">
-                                <div class="a-list-item-title">
-                                    <?php echo htmlspecialchars($announcement['title']); ?>
+        <!-- Recent Announcements (already updated) -->
+        <div class="announcement-card-container">
+            <div class="announcement-dashboard-card-header"><span class="material-symbols-rounded" style="vertical-align:middle;">campaign</span> Recent announcements</div>
+            <div class="announcement-dashboard-section maroon">
+                <div class="announcement-section-body">
+                    <?php if ($recent_announcements && $recent_announcements->num_rows > 0): ?>
+                        <?php while ($announcement = $recent_announcements->fetch_assoc()): ?>
+                            <a href="announcement.php?id=<?php echo urlencode($announcement['id']); ?>" style="text-decoration:none; color:inherit;">
+                            <div class="a-list-item">
+                                <div class="a-list-item-content">
+                                    <div class="a-list-item-title"><?php echo htmlspecialchars($announcement['title']); ?></div>
+                                    <div class="a-list-item-subtitle">
+                                        <?php 
+                                            $content = strip_tags($announcement['content']);
+                                            echo strlen($content) > 100 ? substr($content, 0, 100) . '...' : $content;
+                                        ?>
+                                        <br>
+                                        <small>Posted: <?php echo date('M d, Y', strtotime($announcement['created_at'])); ?></small>
+                                    </div>
                                 </div>
-                                <div class="a-list-item-subtitle">
-                                    <?php 
-                                        $content = strip_tags($announcement['content']);
-                                        echo strlen($content) > 100 ? substr($content, 0, 100) . '...' : $content;
-                                    ?>
-                                    <br>
-                                    <small>Posted: <?php echo date('M d, Y', strtotime($announcement['created_at'])); ?></small>
-                                </div>
+                                <span class="a-list-item-badge">Active</span>
                             </div>
-                            <span class="a-list-item-badge <?php echo $announcement['status'] === 'active' ? 'badge-accepted' : 'badge-pending'; ?>">
-                                <?php echo ucfirst($announcement['status']); ?>
-                            </span>
-                        </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <div class="empty-state">No recent announcements found</div>
-                <?php endif; ?>
+                            </a>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <div class="empty-state">No recent announcements found</div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
 
-        <div class="dashboard-section">
-            <div class="section-header">
-                <span>NOTIFICATIONS</span>
+        <!-- Notifications (new design) -->
+        <div class="announcement-card-container">
+            <div class="dashboard-card-header"><span class="material-symbols-rounded" style="vertical-align:middle;">notifications</span> Notifications</div>
+            <div class="announcement-dashboard-section">
+                <div class="announcement-section-body">
+                    <div class="empty-state">No notifications at this time</div>
+                </div>
             </div>
         </div>
     </div>

@@ -725,7 +725,7 @@ if ($type && isset($tableMap[$type])) {
                     </div>
                 </div>
             </div>
-
+    <script src="assets/js/side.js"></script>
     <script>
         // Tab handling
         const tabButtons = document.querySelectorAll('.tab-btn');

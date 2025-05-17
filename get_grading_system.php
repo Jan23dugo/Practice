@@ -15,9 +15,9 @@ if (!isset($_GET['name'])) {
 
 try {
     // Prepare and execute query to get grading system details
-    $stmt = $conn->prepare("SELECT * FROM university_grading_systems WHERE grading_name = ? ORDER BY is_special_grade, grade_value");
-    $grading_name = $_GET['name'];
-    $stmt->bind_param("s", $grading_name);
+    $stmt = $conn->prepare("SELECT * FROM university_grading_systems WHERE university_name = ? ORDER BY is_special_grade, grade_value");
+    $university_name = $_GET['name'];
+    $stmt->bind_param("s", $university_name);
     
     if (!$stmt->execute()) {
         throw new Exception("Failed to execute query: " . $stmt->error);
@@ -32,7 +32,9 @@ try {
             'description' => $row['description'],
             'min_percentage' => $row['min_percentage'],
             'max_percentage' => $row['max_percentage'],
-            'is_special_grade' => (bool)$row['is_special_grade']
+            'is_special_grade' => (bool)$row['is_special_grade'],
+            'university_code' => $row['university_code'],
+            'updated_at' => $row['updated_at']
         ];
     }
     
