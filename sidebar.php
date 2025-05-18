@@ -4,7 +4,7 @@
         <!-- Sidebar Header -->
         <header class="sidebar-header">
             <a href="#" class="header-logo">
-                <img src="img/Logo.png" alt="CodingGujarat">
+                <img src="img/streams-logo.png" alt="CodingGujarat">
             </a>
             <button class="toggler sidebar-toggler">
                 <span class="nav-icon material-symbols-rounded">
