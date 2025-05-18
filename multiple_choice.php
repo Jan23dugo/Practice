@@ -229,8 +229,101 @@ label {
     gap: 16px;
 }
     </style>
+    <!-- Add Modal Styles -->
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            margin: 0;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .close-modal {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .modal-footer {
+            text-align: right;
+        }
+
+        .modal-btn {
+            background: #75343A;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .modal-btn:hover {
+            background: #7d5bb9;
+        }
+    </style>
 </head>
 <body>
+<!-- Add Modal HTML -->
+<div id="validationModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Validation Error</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p id="modalMessage"></p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn" id="modalCloseBtn">OK</button>
+        </div>
+    </div>
+</div>
+
 <div class="question-container">
     <?php include 'sidebar.php'; ?>
 
@@ -330,12 +423,36 @@ document.addEventListener("DOMContentLoaded", function () {
         questionForm.submit();
     });
 
-    // Form validation function
+    // Modal functionality
+    const modal = document.getElementById('validationModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const closeModal = document.querySelector('.close-modal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    function showModal(message) {
+        modalMessage.textContent = message;
+        modal.style.display = 'block';
+    }
+
+    function hideModal() {
+        modal.style.display = 'none';
+    }
+
+    closeModal.onclick = hideModal;
+    modalCloseBtn.onclick = hideModal;
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            hideModal();
+        }
+    }
+
+    // Update validation function to use modal
     function validateForm() {
         // Get content from Quill editor
         const questionText = quill.getText().trim();
         if (questionText === "") {
-            alert("Please enter a question");
+            showModal("Please enter a question");
             return false;
         }
         
@@ -351,14 +468,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         if (!hasChoice) {
-            alert("Please enter at least one answer choice");
+            showModal("Please enter at least one answer choice");
             return false;
         }
         
         // Check if a correct answer is selected
         const correctRadio = document.querySelector('input[name="correct"]:checked');
         if (!correctRadio) {
-            alert("Please select a correct answer");
+            showModal("Please select a correct answer");
             return false;
         }
         

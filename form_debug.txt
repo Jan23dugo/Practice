@@ -5661,3 +5661,37 @@ Array
 )
 
 --------------------
+2025-05-18 11:47:19
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------
+2025-05-18 17:29:08
+POST data:
+Array
+(
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-type] => tech
+    [duration] => 60
+)
+
+
+FILES data:
+Array
+(
+)
+
+--------------------

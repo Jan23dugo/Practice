@@ -191,6 +191,22 @@ try {
         public function fetch_assoc() { return null; }
     };
 }
+
+// Pending Applicants
+try {
+    $query = "SELECT * FROM register_studentsqe WHERE status = 'pending' ORDER BY registration_date DESC LIMIT 5";
+    $pending_applicants = $conn->query($query);
+    if (!$pending_applicants) {
+        throw new Exception("Failed to fetch pending applicants");
+    }
+} catch (Exception $e) {
+    error_log("Error fetching pending applicants: " . $e->getMessage());
+    // Create empty result set if query fails
+    $pending_applicants = new class {
+        public $num_rows = 0;
+        public function fetch_assoc() { return null; }
+    };
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -228,20 +244,22 @@ try {
             transition: background 0.15s;
         }
         .a-list-item:hover {
-            background: rgba(117,52,58,0.07);
+            font-weight: 600;
         }
         .announcement-dashboard-section, .announcement-dashboard-section.maroon {
             /* already has max-height, overflow-y, etc. */
         }
         .dashboard-card-header {
             background: #75343A;
-            color: #fff;
+            color: rgb(247, 247, 247);
             font-family: 'Montserrat', Arial, sans-serif;
             font-weight: 600;
             font-size: 1.2rem;
             border-radius: 2.5rem;
             padding: 0.7rem 2.5rem;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             position: relative;
             left: 50%;
             transform: translateX(-50%);
@@ -250,23 +268,77 @@ try {
             letter-spacing: 1px;
             margin-bottom: -2rem;
         }
-
+        
         .announcement-dashboard-card-header {
-            background:rgb(247, 247, 247);
+            background:rgb(255, 244, 244);
             color: #75343A;
             font-family: 'Montserrat', Arial, sans-serif;
             font-weight: 600;
             font-size: 1.2rem;
             border-radius: 2.5rem;
             padding: 0.7rem 2.5rem;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             position: relative;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
             letter-spacing: 1px;
-            margin-bottom: -2rem;
+            margin-bottom: -3rem;
+        }
+
+        .shortcut-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #75343A;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .shortcut-button:hover {
+            background: #5a2930;
+            transform: scale(1.1);
+        }
+
+        .shortcut-button .material-symbols-rounded {
+            font-size: 20px;
+        }
+
+        .quiz-shortcut-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .quiz-shortcut-button:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .quiz-shortcut-button .material-symbols-rounded {
+            font-size: 28px;
         }
 
         .announcement-dashboard-section {
@@ -284,6 +356,7 @@ try {
         }
         .announcement-section-body {
             padding: 30px 28px 10px 28px;
+            margin-top: 1.2rem;
         }
         .a-list-item {
             padding: 12px 0 10px 0;
@@ -301,13 +374,13 @@ try {
         .a-list-item-title {
             font-size: 1.45rem;
             font-weight: 800;
-            color: #222;
+            color: #75343A;
             margin-bottom: 0.25rem;
             font-family: 'Montserrat', Arial, sans-serif;
         }
         .a-list-item-subtitle {
             font-size: 1.05rem;
-            color: #444;
+            color: #75343A;
             margin-bottom: 0.2rem;
         }
         .a-list-item-badge {
@@ -322,8 +395,10 @@ try {
             font-family: 'Montserrat', Arial, sans-serif;
         }
         small {
-            color: #444;
-            font-size: 0.95rem;
+            color:rgb(0, 0, 0);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 0.2rem;
         }
         /* Dashboard Stats Containers */
         .dashboard-header {
@@ -479,28 +554,7 @@ try {
             height: 400px;
             max-height: 400px;
             overflow-y: auto;
-        }
-        .announcement-dashboard-section.maroon {
-            background: #75343A;
-            color: #fff;
-            height: 400px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        .announcement-dashboard-section.maroon .a-list-item-title,
-        .announcement-dashboard-section.maroon .a-list-item-subtitle,
-        .announcement-dashboard-section.maroon small {
-            color: #fff;
-        }
-        .announcement-dashboard-section.maroon .a-list-item-badge {
-            background: #B7F5B7;
-            color: #2B4D2B;
-        }
-        .announcement-dashboard-section.maroon .a-list-item {
-            border-bottom: 2px solid #b88d99;
-        }
-        .announcement-dashboard-section.maroon .empty-state {
-            color: #f0eaea;
+            margin-top: -1.2rem;
         }
 
         .announcement-section-header {
@@ -624,7 +678,7 @@ try {
 
         /* List Items */
         .a-list-item {
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
@@ -644,18 +698,18 @@ try {
         .a-list-item-title {
             font-size: 18px;
             font-weight: 700;
-            color: #f0f0f0;
+            color: #75343A;
             margin-bottom: 5px;
         }
         
         .a-list-item-subtitle {
             font-size: 14px;
-            color:rgb(245, 230, 230);
+            color:rgb(0, 0, 0);
         }
 
         .exam-description {
             font-size: 14px;
-            color: #777;
+            color: #75343A;
             margin-bottom: 5px;
         }
         
@@ -997,6 +1051,278 @@ try {
                 font-size: 0.9rem;
             }
         }
+
+        /* Add/Update CSS for new layout */
+        .custom-dashboard-row {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-start;
+            margin-bottom: 30px;
+        }
+        .announcement-card-container {
+            width: 420px;
+            min-width: 320px;
+            flex-shrink: 0;
+        }
+        .examination-results-card {
+            background: #fff;
+            border-radius: 20px;
+            width: 700px;
+            min-width: 480px;
+            padding: 0 0 1.5rem 0;
+            position: relative;
+            height: 460px;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Exam Result Card Styles */
+        .exam-result-card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(117,52,58,0.13), 0 2px 8px rgba(0,0,0,0.08);
+            border: 1.5px solid #e3dede;
+            padding: 0 0 2rem 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s;
+        }
+        .exam-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2.5rem 1rem 2.5rem;
+            border-bottom: 2px solid #ececec;
+        }
+        .exam-result-title {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: #75343A;
+            letter-spacing: 1.5px;
+        }
+        .exam-result-action {
+            background: #8B4A50;
+            color: #fff;
+            border: none;
+            border-radius: .2rem;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(117,52,58,0.08);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .exam-result-action:hover {
+            background: #75343A;
+            box-shadow: 0 4px 16px rgba(117,52,58,0.13);
+        }
+        .exam-result-metrics {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            padding: 2.5rem 2.5rem 0 2.5rem;
+            gap: 2.5rem;
+        }
+        .exam-result-metric {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .passing-rate, .total-attempts {
+            background: linear-gradient(135deg, #f3f4f2 80%, #e9ece6 100%);
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(107,138,90,0.07);
+            flex: 1.2;
+            min-width: 150px;
+            max-width: 200px;
+            margin-right: 0.5rem;
+            padding: 1.7rem 0.7rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .passing-rate:hover,
+        .total-attempts:hover {
+            box-shadow: 0 8px 32px rgba(107,138,90,0.18), 0 2px 8px rgba(0,0,0,0.10);
+            transform: translateY(-4px) scale(1.04);
+            background: linear-gradient(135deg, #e9ece6 80%, #f3f4f2 100%);
+            z-index: 2;
+        }
+        .big-pass-rate {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #6b8a5a;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(107,138,90,0.08);
+        }
+        .pass-label {
+            font-size: 1.15rem;
+            color: #6b8a5a;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .pass-fail {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+        .fail-box, .pass-box {
+            background: linear-gradient(135deg, #f3f4f2 80%, #e9ece6 100%);
+            border-radius: 14px;
+            width: 180px;
+            padding: 1.1rem 0.7rem 0.7rem 0.7rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(139,74,80,0.07);
+        }
+        .fail-box:hover,
+        .pass-box:hover {
+            box-shadow: 0 8px 32px rgba(107,138,90,0.18), 0 2px 8px rgba(0,0,0,0.10);
+            transform: translateY(-4px) scale(1.04);
+            background: linear-gradient(135deg, #e9ece6 80%, #f3f4f2 100%);
+            z-index: 2;
+        }
+        .fail-count {
+            color: #8B4A50;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.1rem;
+            letter-spacing: 1px;
+        }
+        .fail-label {
+            color: #8B4A50;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+        }
+        .pass-count {
+            color: #6b8a5a;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.1rem;
+            letter-spacing: 1px;
+        }
+        .pass-label {
+            color: #6b8a5a;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+        }
+        .progress-bar {
+            width: 95%;
+            height: 16px;
+            background: #e5e5e5;
+            border-radius: 10px;
+            margin-top: 0.2rem;
+            overflow: hidden;
+            margin-bottom: 0.2rem;
+        }
+        .progress {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(.4,2,.6,1);
+        }
+        .fail-progress {
+            background: linear-gradient(90deg, #8B4A50 70%, #b88d99 100%);
+        }
+        .pass-progress {
+            background: linear-gradient(90deg, #6b8a5a 70%, #A6E6A6 100%);
+        }
+        .total-count {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #222;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(34,34,34,0.08);
+        }
+        .total-label {
+            font-size: 1.15rem;
+            color: #222;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        @media (max-width: 1100px) {
+            .exam-result-metrics {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1.5rem;
+            }
+            .passing-rate, .total-attempts, .fail-box, .pass-box {
+                margin-right: 0;
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+        .exam-filter-container {
+            display: flex;
+            align-items: center;
+        }
+        .exam-type-filter {
+            padding: 8px 15px;
+            border: 2px solid #75343A;
+            border-radius: 8px;
+            background-color: white;
+            color: #75343A;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+        .exam-type-filter:hover {
+            border-color: #5a2930;
+            background-color: #fff5f5;
+        }
+        .exam-type-filter:focus {
+            border-color: #5a2930;
+            box-shadow: 0 0 0 2px rgba(117, 52, 58, 0.2);
+        }
+        .exam-type-filter option {
+            background-color: white;
+            color: #333;
+            font-weight: normal;
+        }
+        .view-more-link {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: #75343A;
+            opacity: 0.7;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .view-more-link:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .view-more-link .material-symbols-rounded {
+            font-size: 24px;
+        }
+        .clickable-row { cursor: pointer; }
     </style>
 </head>
 <body>
@@ -1013,10 +1339,15 @@ try {
         </div>
     </div>
 
-    <div class="dashboard-sections">
-        <!-- Upcoming Exams (new design) -->
+    <div class="dashboard-sections custom-dashboard-row">
+        <!-- Upcoming Exams -->
         <div class="announcement-card-container">
-            <div class="dashboard-card-header"><span class="material-symbols-rounded" style="vertical-align:middle;">event</span> Upcoming Exams</div>
+            <div class="dashboard-card-header">
+                <span class="material-symbols-rounded" style="vertical-align:middle;">event</span> Upcoming Exams
+                <a href="quiz_editor.php" class="quiz-shortcut-button" title="Create New Exam">
+                    <span class="material-symbols-rounded">add_box</span>
+                </a>
+            </div>
             <div class="announcement-dashboard-section">
                 <div class="announcement-section-body">
                     <?php if ($upcoming_exams && $upcoming_exams->num_rows > 0): ?>
@@ -1049,11 +1380,71 @@ try {
                 </div>
             </div>
         </div>
-        
-        <!-- Recent Announcements (already updated) -->
+
+        <!-- Applicants Section -->
+        <div class="examination-results-card">
+            <div class="exam-result-card">
+                <div class="exam-result-header">
+                    <span class="exam-result-title">PENDING APPLICANTS</span>
+                </div>
+                <div class="announcement-section-body" style="margin-top: 0.2rem;">
+                    <?php
+                    // Fetch pending applicants with pagination
+                    $query = "SELECT * FROM register_studentsqe 
+                             WHERE status = 'pending' OR status = 'needs_review'
+                             ORDER BY registration_date DESC 
+                             LIMIT 5";
+                    $pending_applicants = $conn->query($query);
+                    
+                    if (!$pending_applicants) {
+                        echo "Query Error: " . $conn->error;
+                    }
+                    ?>
+                    <table class="analysis-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Desired Program</th>
+                                <th>Status</th>
+                                <th>Applied Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if ($pending_applicants && $pending_applicants->num_rows > 0): ?>
+                            <?php while ($applicant = $pending_applicants->fetch_assoc()): ?>
+                                <tr class="clickable-row" data-href="Applicants.php?id=<?php echo urlencode($applicant['student_id']); ?>">
+                                    <td><?php echo htmlspecialchars($applicant['first_name'] . ' ' . $applicant['last_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($applicant['desired_program']); ?></td>
+                                    <td>
+                                        <span class="list-item-badge <?php echo $applicant['status'] === 'needs_review' ? 'badge-revision' : 'badge-pending'; ?>">
+                                            <?php echo $applicant['status'] === 'needs_review' ? 'Manual Review' : 'Pending'; ?>
+                                        </span>
+                                    </td>
+                                    <td><?php echo date('M d, Y', strtotime($applicant['registration_date'])); ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="empty-state">No pending applicants found</div>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Announcements -->
         <div class="announcement-card-container">
-            <div class="announcement-dashboard-card-header"><span class="material-symbols-rounded" style="vertical-align:middle;">campaign</span> Recent announcements</div>
-            <div class="announcement-dashboard-section maroon">
+            <div class="dashboard-card-header">
+                <span class="material-symbols-rounded" style="vertical-align:middle;">campaign</span> Recent announcements
+                <a href="announcement.php" class="quiz-shortcut-button" title="Create New Announcement">
+                    <span class="material-symbols-rounded">add_box</span>
+                </a>
+            </div>
+            <div class="announcement-dashboard-section">
                 <div class="announcement-section-body">
                     <?php if ($recent_announcements && $recent_announcements->num_rows > 0): ?>
                         <?php while ($announcement = $recent_announcements->fetch_assoc()): ?>
@@ -1080,124 +1471,164 @@ try {
                 </div>
             </div>
         </div>
-
-        <!-- Notifications (new design) -->
-        <div class="announcement-card-container">
-            <div class="dashboard-card-header"><span class="material-symbols-rounded" style="vertical-align:middle;">notifications</span> Notifications</div>
-            <div class="announcement-dashboard-section">
-                <div class="announcement-section-body">
-                    <div class="empty-state">No notifications at this time</div>
-                </div>
-            </div>
-        </div>
     </div>
     
     <div class="analytics-container">
-    <!-- Exam Results Analytics Preview -->
-    <div class="eq-analytics-preview">
-        <div class="eq-analytics-header">
-            <h3 class="eq-analytics-title">EXAMINATION RESULTS</h3>
-            <a href="analytics.php" class="eq-analytics-action">
-                Full Analysis <span class="material-symbols-rounded">analytics</span>
-            </a>
-        </div>
-        
-        <div class="eq-analytics-grid">
-            <div class="eq-metrics-card">
-                <div class="eq-metrics-value"><?php echo $stats['total_attempts']; ?></div>
-                <div class="eq-metrics-label">Total Attempts</div>
-            </div>
-            
-            <div class="eq-metrics-card">
-                <div class="eq-metrics-value"><?php echo $stats['passed_count']; ?></div>
-                <div class="eq-metrics-label">Passed</div>
-                <div class="eq-progress-bar">
-                    <div class="eq-progress progress-pass" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['passed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+        <!-- Recent Exam Results -->
+        <div class="analytics-preview">
+            <div class="analytics-header">
+                <h3 class="analytics-title">RECENT EXAM RESULTS</h3>
+                <div class="exam-filter-container">
+                    <select id="examTypeFilter" class="exam-type-filter">
+                        <option value="all">All Exams</option>
+                        <option value="tech">Technical</option>
+                        <option value="non-tech">Non-Technical</option>
+                        <option value="ladderized">Ladderized</option>
+                    </select>
                 </div>
             </div>
-            
-            <div class="eq-metrics-card">
-                <div class="eq-metrics-value"><?php echo $stats['failed_count']; ?></div>
-                <div class="eq-metrics-label">Failed</div>
-                <div class="eq-progress-bar">
-                    <div class="eq-progress progress-fail" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['failed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+            <div class="exam-result-metrics">
+                <!-- Passing Rate -->
+                <div class="exam-result-metric passing-rate">
+                    <div class="big-pass-rate"><?php echo $stats['pass_rate']; ?>%</div>
+                    <div class="pass-label">PASSING RATE</div>
+                    <a href="analytics.php" class="view-more-link" title="View Full Exam Results">
+                        <span class="material-symbols-rounded">open_in_new</span>
+                    </a>
+                </div>
+                <!-- Failed/Passed -->
+                <div class="exam-result-metric pass-fail">
+                    <div class="fail-box">
+                        <div class="fail-count"><?php echo $stats['failed_count']; ?></div>
+                        <div class="fail-label">FAILED</div>
+                        <div class="progress-bar">
+                            <div class="progress fail-progress" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['failed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+                        </div>
+                    </div>
+                    <div class="pass-box">
+                        <div class="pass-count"><?php echo $stats['passed_count']; ?></div>
+                        <div class="pass-label">PASSED</div>
+                        <div class="progress-bar">
+                            <div class="progress pass-progress" style="width: <?php echo ($stats['total_attempts'] > 0) ? ($stats['passed_count'] / $stats['total_attempts'] * 100) : 0; ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Total Attempts -->
+                <div class="exam-result-metric total-attempts">
+                    <div class="total-count"><?php echo $stats['total_attempts']; ?></div>
+                    <div class="total-label">TOTAL ATTEMPTS</div>
                 </div>
             </div>
-            
-            <div class="eq-metrics-card">
-                <div class="eq-metrics-value"><?php echo $stats['pass_rate']; ?>%</div>
-                <div class="eq-metrics-label">Pass Rate</div>
+        </div>
+
+        <!-- Item Analysis Preview -->
+        <div class="analytics-preview">
+            <div class="analytics-header">
+                <h3 class="analytics-title">ITEM ANALYSIS PREVIEW</h3>
             </div>
-        </div>
-    </div>
-    
-    <!-- Item Analysis Preview -->
-    <div class="analytics-preview">
-        <div class="analytics-header">
-            <h3 class="analytics-title">ITEM ANALYSIS PREVIEW</h3>
-            <a href="analytics.php" class="analytics-action">
-                Full Item Analysis <span class="material-symbols-rounded">lab_profile</span>
-            </a>
-        </div>
-        
-        <p style="margin-bottom: 15px;">Items flagged for revision based on student performance difficulty analysis:</p>
-        
-        <table class="analysis-table">
-            <thead>
-                <tr>
-                    <th>Exam Title</th>
-                    <th>Total Questions</th>
-                    <th>Questions for Revision</th>
-                    <th>Difficulty Level</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php if ($difficult_exams_result && $difficult_exams_result->num_rows > 0): ?>
-                <?php while ($exam = $difficult_exams_result->fetch_assoc()): 
-                    $difficulty_class = '';
-                    $difficulty_percent = round($exam['difficulty_percent'] ?? 0);
-                    
-                    if ($difficulty_percent < 30) {
-                        $difficulty_class = 'difficulty-easy';
-                    } else if ($difficulty_percent < 70) {
-                        $difficulty_class = 'difficulty-medium';
-                    } else {
-                        $difficulty_class = 'difficulty-hard';
-                    }
-                ?>
+            
+            <p style="margin-bottom: 15px;">Items flagged for revision based on student performance difficulty analysis:</p>
+            
+            <table class="analysis-table">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($exam['title']); ?></td>
-                        <td><?php echo (int)$exam['total_questions']; ?></td>
-                        <td>
-                            <?php if ((int)$exam['difficult_questions'] > 0): ?>
-                                <span class="list-item-badge badge-revision">
-                                    <?php echo (int)$exam['difficult_questions']; ?> for revision
-                                </span>
-                            <?php else: ?>
-                                <span class="list-item-badge badge-accepted">No revision needed</span>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <div class="difficulty-indicator">
-                                <div class="difficulty-level <?php echo $difficulty_class; ?>" style="width: <?php echo $difficulty_percent; ?>%"></div>
-                            </div>
+                        <th>Exam Title</th>
+                        <th>Total Questions</th>
+                        <th>Questions for Revision</th>
+                        <th>Difficulty Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php if ($difficult_exams_result && $difficult_exams_result->num_rows > 0): ?>
+                    <?php while ($exam = $difficult_exams_result->fetch_assoc()): 
+                        $difficulty_class = '';
+                        $difficulty_percent = round($exam['difficulty_percent'] ?? 0);
+                        
+                        if ($difficulty_percent < 30) {
+                            $difficulty_class = 'difficulty-easy';
+                        } else if ($difficulty_percent < 70) {
+                            $difficulty_class = 'difficulty-medium';
+                        } else {
+                            $difficulty_class = 'difficulty-hard';
+                        }
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($exam['title']); ?></td>
+                            <td><?php echo (int)$exam['total_questions']; ?></td>
+                            <td>
+                                <?php if ((int)$exam['difficult_questions'] > 0): ?>
+                                    <span class="list-item-badge badge-revision">
+                                        <?php echo (int)$exam['difficult_questions']; ?> for revision
+                                    </span>
+                                <?php else: ?>
+                                    <span class="list-item-badge badge-accepted">No revision needed</span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <div class="difficulty-indicator">
+                                    <div class="difficulty-level <?php echo $difficulty_class; ?>" style="width: <?php echo $difficulty_percent; ?>%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4">
+                            <div class="empty-state">No exam difficulty analysis available</div>
                         </td>
                     </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="4">
-                        <div class="empty-state">No exam difficulty analysis available</div>
-                    </td>
-                </tr>
-            <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+                <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </div>
 
 <script src="assets/js/side.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const examTypeFilter = document.getElementById('examTypeFilter');
+    
+    examTypeFilter.addEventListener('change', function() {
+        const selectedType = this.value;
+        
+        // Make an AJAX request to fetch filtered results
+        fetch('get_filtered_results.php?type=' + selectedType)
+            .then(response => response.json())
+            .then(data => {
+                // Update the metrics with new data
+                document.querySelector('.big-pass-rate').textContent = data.pass_rate + '%';
+                document.querySelector('.failed-count').textContent = data.failed_count;
+                document.querySelector('.passed-count').textContent = data.passed_count;
+                document.querySelector('.total-count').textContent = data.total_attempts;
+                
+                // Update progress bars
+                const failProgress = document.querySelector('.fail-progress');
+                const passProgress = document.querySelector('.pass-progress');
+                
+                if (data.total_attempts > 0) {
+                    const failPercentage = (data.failed_count / data.total_attempts * 100);
+                    const passPercentage = (data.passed_count / data.total_attempts * 100);
+                    
+                    failProgress.style.width = failPercentage + '%';
+                    passProgress.style.width = passPercentage + '%';
+                } else {
+                    failProgress.style.width = '0%';
+                    passProgress.style.width = '0%';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching filtered results:', error);
+            });
+    });
+
+    document.querySelectorAll('.clickable-row').forEach(function(row) {
+        row.addEventListener('click', function() {
+            window.location = this.getAttribute('data-href');
+        });
+    });
+});
+</script>
 </body>
 </html>

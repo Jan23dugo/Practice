@@ -347,6 +347,95 @@ function getImageUrl($imagePath) {
             border-bottom: 2px solid #f0f0f0;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.25rem;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-btn.cancel {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .modal-btn.cancel:hover {
+            background-color: #d0d0d0;
+        }
+
+        .modal-btn.delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .modal-btn.delete:hover {
+            background-color: #c82333;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
     </style>
 </head>
 <body>
@@ -471,12 +560,51 @@ function getImageUrl($imagePath) {
     <input type="hidden" name="exam_id" id="delete_exam_id">
 </form>
 
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div class="modal-header">
+            <h3>Delete Exam</h3>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete this exam? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+            <button class="modal-btn delete" onclick="confirmDelete()">Delete</button>
+        </div>
+    </div>
+</div>
+
 <script src="assets/js/side.js"></script>
 <script>
+let examIdToDelete = null;
+
 function deleteExam(examId) {
-    if (confirm('Are you sure you want to delete this exam? This action cannot be undone.')) {
-        document.getElementById('delete_exam_id').value = examId;
+    examIdToDelete = examId;
+    const modal = document.getElementById('deleteModal');
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    const modal = document.getElementById('deleteModal');
+    modal.style.display = 'none';
+    examIdToDelete = null;
+}
+
+function confirmDelete() {
+    if (examIdToDelete) {
+        document.getElementById('delete_exam_id').value = examIdToDelete;
         document.getElementById('deleteExamForm').submit();
+    }
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('deleteModal');
+    if (event.target === modal) {
+        closeModal();
     }
 }
 

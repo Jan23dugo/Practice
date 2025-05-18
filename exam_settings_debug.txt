@@ -3762,3 +3762,164 @@ Full Exam Data: Array
 )
 
 --------------------
+Exam ID: 26
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 26
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 17:47:19
+    [updated_at] => 2025-05-18 17:47:19
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------
+Exam ID: 26
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 26
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 17:47:19
+    [updated_at] => 2025-05-18 17:47:19
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------
+Exam ID: 27
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 27
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 23:29:08
+    [updated_at] => 2025-05-18 23:29:08
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------
+Exam ID: 27
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 27
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 23:29:08
+    [updated_at] => 2025-05-18 23:29:08
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------
+Exam ID: 27
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 27
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 23:29:08
+    [updated_at] => 2025-05-18 23:29:08
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------
+Exam ID: 27
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 27
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 23:29:08
+    [updated_at] => 2025-05-18 23:29:08
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------
+Exam ID: 27
+Passing Score Type: NULL
+Passing Score: NULL
+Full Exam Data: Array
+(
+    [exam_id] => 27
+    [title] => Untitled Quiz
+    [description] => 
+    [exam_type] => tech
+    [is_scheduled] => 0
+    [scheduled_date] => 
+    [scheduled_time] => 
+    [duration] => 60
+    [cover_image] => 0
+    [created_at] => 2025-05-18 23:29:08
+    [updated_at] => 2025-05-18 23:29:08
+    [randomize_questions] => 0
+    [randomize_choices] => 0
+    [passing_score_type] => 
+    [passing_score] => 
+)
+
+--------------------

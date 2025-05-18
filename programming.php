@@ -368,84 +368,78 @@ select#programming_language:hover {
 }
 
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     position: relative;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 1000px;
-    max-height: 85vh;
-    overflow-y: auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    margin: 20px auto;
-    animation: modalFade 0.3s ease-in-out;
 }
 
-.modal-content h5 {
-    color: #800000;
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin: 25px 0 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #800000;
-}
-
-.modal-content p {
-    font-size: 1.2rem;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
-    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-@keyframes modalFade {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.modal-title {
+    margin: 0;
+    color: #333;
+    font-size: 1.2em;
 }
 
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+.close-modal {
+    color: #aaa;
     font-size: 28px;
     font-weight: bold;
-    color: #800000;
     cursor: pointer;
-    transition: all 0.2s ease;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
-.close-button:hover,
-.close-button:focus {
-    background-color: #f8d7da;
-    color: #721c24;
+.close-modal:hover {
+    color: #333;
 }
 
-.toolbar button.active {
+.modal-body {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+.modal-btn {
     background: #75343A;
     color: white;
-    border-color: #75343A;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modal-btn:hover {
+    background: #7d5bb9;
 }
     </style>
 </head>
@@ -536,11 +530,35 @@ select#programming_language:hover {
 </div>
 <div id="modal" class="modal">
     <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h5>Remove Test Case</h5>
-        <p>You need at least one test case.</p>
+        <div class="modal-header">
+            <h3 class="modal-title">Remove Test Case</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>You need at least one test case.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn" id="modalCloseBtn">OK</button>
+        </div>
     </div>
 </div>
+
+<!-- Add Validation Modal -->
+<div id="validationModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Validation Error</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p id="validationMessage"></p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn" id="validationCloseBtn">OK</button>
+        </div>
+    </div>
+</div>
+
 <script src="assets/js/side.js"></script>
 <script> 
 document.addEventListener("DOMContentLoaded", function () {
@@ -714,7 +732,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function setupRemoveButtons() {
         const removeButtons = document.querySelectorAll(".remove-test-case");
         const modal = document.getElementById("modal");
-        const closeButton = document.querySelector(".close-button");
+        const closeButton = document.querySelector(".close-modal");
 
         removeButtons.forEach(button => {
             button.addEventListener("click", function() {
@@ -800,7 +818,88 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionForm = document.getElementById("questionForm");
     const pointsInput = document.getElementById("points_input");
 
-    // Add event listener for save button
+    // Modal functionality
+    const validationModal = document.getElementById("validationModal");
+    const validationMessage = document.getElementById("validationMessage");
+    const closeButtons = document.querySelectorAll(".close-modal");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+    const validationCloseBtn = document.getElementById("validationCloseBtn");
+
+    function showValidationModal(message) {
+        validationMessage.textContent = message;
+        validationModal.style.display = "block";
+    }
+
+    function hideValidationModal() {
+        validationModal.style.display = "none";
+    }
+
+    // Add click event listeners to close buttons
+    closeButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const modal = this.closest(".modal");
+            modal.style.display = "none";
+        });
+    });
+
+    // Add click event listeners to OK buttons
+    modalCloseBtn.addEventListener("click", function() {
+        document.getElementById("modal").style.display = "none";
+    });
+
+    validationCloseBtn.addEventListener("click", function() {
+        validationModal.style.display = "none";
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener("click", function(event) {
+        if (event.target.classList.contains("modal")) {
+            event.target.style.display = "none";
+        }
+    });
+
+    // Update validation function to use modal
+    function validateForm() {
+        // Check if question is empty
+        const questionText = window.questionEditor ? 
+            window.questionEditor.getContent().trim() : 
+            document.getElementById("question").value.trim();
+            
+        if (questionText === "") {
+            showValidationModal("Please enter a question description");
+            return false;
+        }
+        
+        // Check if there's at least one test case
+        const testCases = document.querySelectorAll(".test-case");
+        if (testCases.length === 0) {
+            showValidationModal("Please add at least one test case");
+            return false;
+        }
+        
+        // Validate each test case
+        for (let i = 0; i < testCases.length; i++) {
+            const testCase = testCases[i];
+            const input = testCase.querySelector(`[name="test_input[]"]`).value.trim();
+            const output = testCase.querySelector(`[name="test_output[]"]`).value.trim();
+            
+            if (input === "" || output === "") {
+                showValidationModal(`Please fill in both input and output for test case ${i + 1}`);
+                return false;
+            }
+        }
+        
+        // Check if exam_id is present
+        const examId = document.querySelector('input[name="exam_id"]').value;
+        if (!examId) {
+            showValidationModal("Missing exam ID");
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Update save button event listener
     saveQuestionBtn.addEventListener("click", function() {
         // Update points value
         pointsInput.value = document.getElementById('question_points').value;
@@ -814,7 +913,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (window.questionEditor) {
             const questionContent = window.questionEditor.getContent();
             if (!questionContent) {
-                alert("Please enter a question description");
+                showValidationModal("Please enter a question description");
                 return;
             }
             // Update the hidden textarea with TinyMCE content
@@ -825,48 +924,7 @@ document.addEventListener("DOMContentLoaded", function () {
         questionForm.submit();
     });
 
-    // Form validation function
-    function validateForm() {
-        // Check if question is empty
-        const questionText = window.questionEditor ? 
-            window.questionEditor.getContent().trim() : 
-            document.getElementById("question").value.trim();
-            
-        if (questionText === "") {
-            alert("Please enter a question description");
-            return false;
-        }
-        
-        // Check if there's at least one test case
-        const testCases = document.querySelectorAll(".test-case");
-        if (testCases.length === 0) {
-            alert("Please add at least one test case");
-            return false;
-        }
-        
-        // Validate each test case
-        for (let i = 0; i < testCases.length; i++) {
-            const testCase = testCases[i];
-            const input = testCase.querySelector(`[name="test_input[]"]`).value.trim();
-            const output = testCase.querySelector(`[name="test_output[]"]`).value.trim();
-            
-            if (input === "" || output === "") {
-                alert(`Please fill in both input and output for test case ${i + 1}`);
-                return false;
-            }
-        }
-        
-        // Check if exam_id is present
-        const examId = document.querySelector('input[name="exam_id"]').value;
-        if (!examId) {
-            alert("Missing exam ID");
-            return false;
-        }
-        
-        return true;
-    }
-
-    // Add this function to load question data
+    // Update error handling in loadQuestionData
     function loadQuestionData(questionId) {
         console.log('Loading question data for ID:', questionId);
         
@@ -983,7 +1041,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => {
                 console.error('Error loading question:', error);
-                alert('Error loading question: ' + error.message);
+                showValidationModal('Error loading question: ' + error.message);
             });
     }
 

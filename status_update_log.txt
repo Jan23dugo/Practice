@@ -157,3 +157,93 @@ Session data: Array
 )
 
 Database connection closed
+Request received: 2025-05-18 17:07:34
+POST data: Array
+(
+    [status] => pending
+    [reference_id] => CCIS-2025-10384
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
+Request received: 2025-05-18 17:07:35
+POST data: Array
+(
+    [status] => pending
+    [reference_id] => CCIS-2025-10384
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
+Request received: 2025-05-18 17:10:38
+POST data: Array
+(
+    [status] => pending
+    [reference_id] => CCIS-2025-49657
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
+Request received: 2025-05-18 17:10:39
+POST data: Array
+(
+    [status] => pending
+    [reference_id] => CCIS-2025-49657
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
+Request received: 2025-05-18 17:10:42
+POST data: Array
+(
+    [status] => needs_review
+    [reference_id] => CCIS-2025-49657
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
+Request received: 2025-05-18 17:10:42
+POST data: Array
+(
+    [status] => needs_review
+    [reference_id] => CCIS-2025-49657
+)
+
+Session data: Array
+(
+    [admin_id] => 1
+    [email] => pupccisfaculty@gmail.com
+    [is_admin] => 1
+)
+
+Database connection closed
