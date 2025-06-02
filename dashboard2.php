@@ -333,22 +333,9 @@ try {
             font-size: 28px;
         }
 
-        .announcement-dashboard-section {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-            border: 1.5px solid #bbb;
-            width: 380px;
-            padding: 0 0 1.5rem 0;
-            margin: 0 auto;
-            position: relative;
-            height: 350px;
-            max-height: 350px;
-            overflow-y: auto;
-        }
         .announcement-section-body {
-            padding: 25px 20px 10px 20px;
-            margin-top: 1rem;
+            overflow-y: auto;
+            overflow-x: auto;
         }
         .a-list-item {
             padding: 10px 0;
@@ -578,8 +565,10 @@ try {
         }
 
         .announcement-section-body {
-            padding: 25px 20px 10px 20px;
-            margin-top: 1rem;
+            padding: 0px 15px;
+            margin-top: 10px;
+            overflow-y: auto;
+            overflow-x: auto;
         }
         
         .section-body {
@@ -944,9 +933,7 @@ try {
                 height: 300px;
             }
 
-            .main {
-                margin-left: 0px;
-            }
+            
         }
         
         @media (max-width: 768px) {
@@ -1041,58 +1028,23 @@ try {
             }
         }
 
-        /* Sidebar-aware main content */
-        @media (min-width: 1200px) {
-            .main {
-                margin-left: 280px; /* Sidebar width */
-                width: calc(100% - 280px);
-                transition: margin-left 0.3s, width 0.3s;
-            }
-        }
-        @media (min-width: 1400px) {
-            .main {
-                margin-left: 280px;
-                width: calc(100% - 280px);
-            }
-        }
-        @media (min-width: 1600px) {
-            .main {
-                margin-left: 280px;
-                width: calc(100% - 280px);
-            }
-        }
-        @media (max-width: 1199px) {
-            .main {
-                margin-left: 0;
-                width: 100%;
-            }
-        }
-
         /* Flexible dashboard row and cards */
         .custom-dashboard-row {
             display: flex;
+            flex-direction: row;
             gap: 20px;
-            justify-content: flex-start;
             margin-bottom: 20px;
-            padding: 0 20px;
-            flex-wrap: wrap;
+            justify-content: space-between;
         }
-        .announcement-card-container,
-        .examination-results-card {
-            flex: 1 1 320px;
-            max-width: 100%;
-            min-width: 280px;
-            box-sizing: border-box;
-            width: auto;
-        }
-        /* Remove fixed widths from cards */
         .announcement-card-container {
-            width: auto;
-            min-width: 280px;
+            flex: 1;
+            min-width: 0;
+            max-width: calc(33.333% - 14px);
         }
-        .examination-results-card {
-            width: auto;
-            min-width: 280px;
+        .announcement-dashboard-section {
+            width: 100%;
+            height: 350px;
+            max-height: 350px;
         }
         /* Exam Result Card Styles */
         .exam-result-card {
@@ -1113,10 +1065,12 @@ try {
             align-items: center;
             padding: 1.5rem 2.5rem 1rem 2.5rem;
             border-bottom: 2px solid #ececec;
+            text-align: center;
+            align-items: center;
         }
         .exam-result-title {
-            font-size: 1.7rem;
-            font-weight: 900;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: #75343A;
             letter-spacing: 1.5px;
         }
@@ -1140,8 +1094,7 @@ try {
             display: flex;
             justify-content: space-between;
             align-items: stretch;
-            padding: 2.5rem 2.5rem 0 2.5rem;
-            gap: 2.5rem;
+            gap: 1rem;
         }
         .exam-result-metric {
             display: flex;
@@ -1156,7 +1109,6 @@ try {
             flex: 1.2;
             min-width: 150px;
             max-width: 200px;
-            margin-right: 0.5rem;
             padding: 1.7rem 0.7rem;
             display: flex;
             flex-direction: column;
@@ -1343,40 +1295,10 @@ try {
         }
         .clickable-row { cursor: pointer; }
 
-        @media (min-width: 992px) {
-            .main {
-                margin-left: 280px;
-                width: calc(100% - 280px);
-            }
-        }
-        @media (min-width: 768px) {
-            .main {
-                margin-left: 280px;
-                width: calc(100% - 280px);
-            }
-        }
-
         /* Responsive objects inside containers */
         @media (max-width: 991px) {
             .custom-dashboard-row {
-                flex-direction: column;
-                gap: 16px;
-                padding: 0 8px;
-            }
-            .announcement-card-container,
-            .examination-results-card {
-                min-width: 0;
-                width: 100%;
-                max-width: 100%;
-            }
-            .analytics-container {
-                flex-direction: column;
-                gap: 16px;
-            }
-            .analytics-preview {
-                min-width: 0;
-                width: 100%;
-                max-width: 100%;
+                flex-wrap: wrap;
             }
             .exam-result-metrics {
                 flex-direction: column;
@@ -1422,6 +1344,34 @@ try {
             .analysis-table th, .analysis-table td {
                 padding: 6px;
                 font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 2000px) {
+            .announcement-dashboard-section {
+                background: #fff;
+                border-radius: 20px;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+                border: 1.5px solid #bbb;
+                width: 400px;
+                padding: 0 0 1.5rem 0;
+                position: relative;
+                height: 350px;
+                max-height: 350px;
+                overflow-y: auto;
+            }
+
+            .exam-result-card {
+                background: #fff;
+                border-radius: 22px;
+                box-shadow: 0 8px 32px rgba(117,52,58,0.13), 0 2px 8px rgba(0,0,0,0.08);
+                border: 1.5px solid #e3dede;
+                padding: 0 0 2rem 0;
+                width: 700px;
+                height: 350px;
+                display: flex;
+                flex-direction: column;
+                transition: box-shadow 0.2s;
             }
         }
     </style>
@@ -1483,12 +1433,12 @@ try {
         </div>
 
         <!-- Applicants Section -->
-        <div class="examination-results-card">
-            <div class="exam-result-card">
-                <div class="exam-result-header">
-                    <span class="exam-result-title">PENDING APPLICANTS</span>
-                </div>
-                <div class="announcement-section-body" style="margin-top: 0.2rem;">
+        <div class="announcement-card-container">
+            <div class="dashboard-card-header">
+                <span class="material-symbols-rounded" style="vertical-align:middle;">person</span> Pending Applicants
+            </div>
+            <div class="announcement-dashboard-section">
+                <div class="announcement-section-body">
                     <?php
                     // Fetch pending applicants with pagination
                     $query = "SELECT * FROM register_studentsqe 
@@ -1501,6 +1451,7 @@ try {
                         echo "Query Error: " . $conn->error;
                     }
                     ?>
+                    <p style="margin-bottom: 10px;">Click on the student name to view their application details.</p>
                     <table class="analysis-table">
                         <thead>
                             <tr>

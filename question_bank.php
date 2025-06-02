@@ -265,37 +265,41 @@ $questions_result = $stmt->get_result();
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
         }
 
         .container {
             display: flex;
+            min-height: 100vh;
         }
 
         .main {
             flex: 1;
-            padding: 20px;
+            margin-left: 300px;
+            transition: 0.4s ease;
         }
 
-        /* Question Bank Styles */
-        .question-bank-container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+        .sidebar.collapsed ~ .main {
+            margin-left: 85px;
         }
+
+
 
         .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
         }
 
         .page-header h1 {
+            font-size: 36px;
+            color: #75343A;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
             margin: 0;
-            font-size: 24px;
-            font-weight: 500;
         }
 
         .header-actions {
@@ -303,36 +307,31 @@ $questions_result = $stmt->get_result();
             gap: 10px;
         }
 
-        .import-question-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 16px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .add-question-btn {
+        .import-question-btn, .add-question-btn {
             display: flex;
             align-items: center;
             gap: 8px;
             background-color: #75343A;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             padding: 10px 16px;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .import-question-btn:hover, .add-question-btn:hover {
+            background-color: #5a2930;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .filters-container {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             padding: 20px;
             margin-bottom: 20px;
         }
@@ -340,7 +339,7 @@ $questions_result = $stmt->get_result();
         .filter-form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 20px;
         }
 
         .filter-group {
@@ -359,8 +358,14 @@ $questions_result = $stmt->get_result();
             width: 100%;
             padding: 10px 12px;
             border: 1px solid #e0e0e0;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-input:focus, .filter-select:focus {
+            border-color: #75343A;
+            outline: none;
         }
 
         .filter-actions {
@@ -371,14 +376,15 @@ $questions_result = $stmt->get_result();
 
         .filter-btn {
             padding: 10px 16px;
-            border-radius: 4px;
+            border-radius: 6px;
             border: none;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
-            height: 40px;
+            transition: all 0.3s ease;
         }
 
         .filter-btn-primary {
@@ -386,24 +392,42 @@ $questions_result = $stmt->get_result();
             color: white;
         }
 
+        .filter-btn-primary:hover {
+            background-color: #5a2930;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
         .filter-btn-secondary {
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
             color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .filter-btn-secondary:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
         }
 
         .questions-list {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             padding: 20px;
             min-height: 300px;
         }
 
         .question-item {
             border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 16px;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .question-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .question-header {
@@ -417,11 +441,10 @@ $questions_result = $stmt->get_result();
 
         .question-type-badge {
             display: inline-block;
-            padding: 4px 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
             font-size: 12px;
-            color: #333;
+            font-weight: 500;
         }
 
         .question-type-badge.multiple-choice {
@@ -448,12 +471,14 @@ $questions_result = $stmt->get_result();
         }
 
         .question-body {
-            padding: 16px;
+            padding: 20px;
         }
 
         .question-text {
             margin-bottom: 16px;
             font-size: 16px;
+            line-height: 1.6;
+            color: #333;
         }
 
         .question-actions {
@@ -462,6 +487,7 @@ $questions_result = $stmt->get_result();
             gap: 8px;
             padding: 12px 16px;
             border-top: 1px solid #e0e0e0;
+            background-color: #f8f9fa;
         }
 
         .action-btn {
@@ -473,12 +499,14 @@ $questions_result = $stmt->get_result();
             align-items: center;
             gap: 4px;
             font-size: 14px;
-            padding: 6px 10px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .action-btn:hover {
             background-color: #f0f0f0;
+            transform: translateY(-1px);
         }
 
         .action-btn.edit {
@@ -555,6 +583,8 @@ $questions_result = $stmt->get_result();
             margin: 0;
             font-size: 20px;
             font-weight: 500;
+            color: #75343A;
+            font-weight: 700;
         }
         
         .modal-close {
@@ -580,25 +610,32 @@ $questions_result = $stmt->get_result();
             background-color: #fff;
             z-index: 1;
         }
-        
+
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: #333;
         }
-        
+
         .form-control {
             width: 100%;
-            padding: 8px;
+            padding: 10px 12px;
             border: 1px solid #e0e0e0;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 14px;
+            transition: border-color 0.3s ease;
         }
-        
+
+        .form-control:focus {
+            border-color: #75343A;
+            outline: none;
+        }
+
         textarea.form-control {
             min-height: 100px;
             resize: vertical;

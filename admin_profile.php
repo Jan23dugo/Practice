@@ -77,347 +77,494 @@ if ($login_logs->num_rows > 0) {
     <title>Admin Profile - CCIS Qualifying Exam System</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <!-- Linking Google Fonts For Icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Profile Page Styles */
+        :root {
+            --primary-color: #75343A;
+            --primary-light: #8a3d44;
+            --primary-dark: #5a2930;
+            --secondary-color: #f8f0e3;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --success-color: #48bb78;
+            --error-color: #f56565;
+            --warning-color: #ed8936;
+            --border-color: #e2e8f0;
+            --bg-light: #f7fafc;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Profile Header */
         .profile-header {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
         }
-        
+
         .profile-title {
-            font-size: 36px;
-            color: #75343A;
+            font-size: 2rem;
+            color: var(--primary-color);
             font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            letter-spacing: -0.5px;
         }
-        
+
         .profile-date {
-            font-size: 18px;
-            color: #555;
+            font-size: 1rem;
+            color: var(--text-light);
             font-weight: 500;
         }
-        
-        /* Two-column layout */
+
+        /* Profile Container */
         .profile-container {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
         }
-        
-        @media (max-width: 992px) {
+
+        @media (max-width: 1024px) {
             .profile-container {
                 grid-template-columns: 1fr;
             }
         }
-        
-        /* Profile Card Styles */
+
+        /* Profile Sidebar */
         .profile-sidebar {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
             overflow: hidden;
+            height: fit-content;
         }
-        
+
         .profile-info {
-            padding: 30px 20px;
+            padding: 2rem;
             text-align: center;
-            background: linear-gradient(135deg, #75343A, #5a2930);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
         }
-        
+
         .profile-avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background-color: #f8f0e3;
-            color: #75343A;
-            font-size: 48px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            font-size: 3rem;
             font-weight: 700;
-            margin: 0 auto 15px;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-lg);
         }
-        
+
         .profile-name {
-            font-size: 22px;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
         }
-        
+
         .profile-role {
-            font-size: 16px;
+            font-size: 1rem;
             opacity: 0.9;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
-        
+
         .profile-email {
-            font-size: 15px;
+            font-size: 0.875rem;
             opacity: 0.8;
-            margin-bottom: 20px;
             word-break: break-all;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
         }
-        
+
+        /* Sidebar Menu */
         .sidebar-menu {
             list-style: none;
-            padding: 0;
-            margin: 0;
+            padding: 1rem 0;
         }
-        
+
         .sidebar-menu li {
-            border-bottom: 1px solid #f0f0f0;
+            margin: 0.25rem 0;
         }
-        
-        .sidebar-menu li:last-child {
-            border-bottom: none;
-        }
-        
+
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 20px;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
             text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
             font-weight: 500;
+            border-left: 3px solid transparent;
         }
-        
+
         .sidebar-menu a:hover {
-            background-color: #f8f9fa;
-            color: #75343A;
+            background-color: var(--bg-light);
+            color: var(--primary-color);
         }
-        
+
         .sidebar-menu a.active {
-            background-color: #f8f9fa;
-            color: #75343A;
-            border-left: 4px solid #75343A;
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
         }
-        
-        /* Main Content Area */
+
+        .sidebar-menu .material-symbols-rounded {
+            font-size: 1.25rem;
+        }
+
+        /* Main Content */
         .profile-main {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 30px;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
         }
-        
+
         .profile-section {
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
         }
-        
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
-        
+
         .section-title {
-            font-size: 20px;
-            color: #333;
+            font-size: 1.5rem;
+            color: var(--text-primary);
             font-weight: 600;
         }
-        
+
+        /* Profile Data Grid */
         .profile-data {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 1.5rem;
         }
-        
+
         .data-item {
-            margin-bottom: 20px;
+            background: var(--bg-light);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease;
         }
-        
+
+        .data-item:hover {
+            transform: translateY(-2px);
+        }
+
         .data-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
             display: block;
         }
-        
+
         .data-value {
-            font-size: 16px;
-            color: #333;
+            font-size: 1.125rem;
+            color: var(--text-primary);
             font-weight: 500;
         }
-        
+
         /* Security Section */
         .security-item {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: var(--bg-light);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
         }
-        
+
+        .security-item:hover {
+            transform: translateY(-2px);
+        }
+
         .security-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
         }
-        
+
         .security-title {
-            font-size: 16px;
-            color: #333;
+            font-size: 1.125rem;
+            color: var(--text-primary);
             font-weight: 600;
         }
-        
+
         .security-text {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
         }
-        
+
         /* Login History */
         .login-item {
+            background: var(--bg-light);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            margin-bottom: 10px;
+            transition: transform 0.3s ease;
         }
-        
+
+        .login-item:hover {
+            transform: translateY(-2px);
+        }
+
         .login-details {
             display: flex;
             flex-direction: column;
+            gap: 0.25rem;
         }
-        
+
         .login-date {
-            font-size: 15px;
-            color: #333;
+            font-size: 1rem;
+            color: var(--text-primary);
             font-weight: 500;
-            margin-bottom: 5px;
         }
-        
+
         .login-ip {
-            font-size: 13px;
-            color: #666;
+            font-size: 0.875rem;
+            color: var(--text-light);
         }
-        
+
         .login-status {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            background-color: #d4edda;
-            color: #155724;
+            background-color: var(--success-color);
+            color: white;
         }
-        
+
         /* Form Styles */
         .profile-form {
             display: none;
-            margin-top: 20px;
+            margin-top: 1.5rem;
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
         }
-        
+
         .profile-form.active {
             display: block;
+            animation: slideDown 0.3s ease-out;
         }
-        
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
-        
+
         .form-label {
             display: block;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
-        
+
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            transition: border-color 0.3s;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
         }
-        
+
         .form-control:focus {
-            border-color: #75343A;
+            border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 3px rgba(117, 52, 58, 0.1);
         }
-        
+
+        /* Buttons */
         .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             border: none;
-            font-size: 15px;
+            font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
         }
-        
+
         .btn-primary {
-            background-color: #75343A;
+            background-color: var(--primary-color);
             color: white;
         }
-        
+
         .btn-primary:hover {
-            background-color: #5a2930;
+            background-color: var(--primary-light);
+            transform: translateY(-1px);
         }
-        
+
         .btn-secondary {
-            background-color: #f8f9fa;
-            color: #333;
-            border: 1px solid #ddd;
+            background-color: white;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
         }
-        
+
         .btn-secondary:hover {
-            background-color: #e9ecef;
+            background-color: var(--bg-light);
+            transform: translateY(-1px);
         }
-        
-        .btn-danger {
-            background-color: #F44336;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background-color: #d32f2f;
-        }
-        
+
         .form-buttons {
             display: flex;
-            gap: 10px;
+            gap: 1rem;
             justify-content: flex-end;
-            margin-top: 25px;
+            margin-top: 2rem;
         }
-        
+
         /* Alert Messages */
         .alert {
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease-out;
         }
-        
+
         .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
         }
-        
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+
+        .alert-error {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+        }
+
+        .toast {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease-out;
+            min-width: 300px;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast-success {
+            border-left: 4px solid var(--success-color);
+        }
+
+        .toast-error {
+            border-left: 4px solid var(--error-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .profile-title {
+                font-size: 1.5rem;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -514,10 +661,15 @@ if ($login_logs->num_rows > 0) {
                 
                 <!-- Edit Profile Form (Hidden by default) -->
                 <div class="profile-form" id="edit-profile-form">
-                    <form action="update_profile.php" method="POST">
+                    <form action="update_profile.php" method="POST" id="profile-form" novalidate>
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-control" value="<?php echo htmlspecialchars($admin_email); ?>" required>
+                            <input type="email" id="email" name="email" class="form-control" 
+                                   value="<?php echo htmlspecialchars($admin_email); ?>" 
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                   required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
                         </div>
                         
                         <div class="form-buttons">
@@ -525,9 +677,10 @@ if ($login_logs->num_rows > 0) {
                                 <span class="material-symbols-rounded">close</span>
                                 Cancel
                             </button>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="save-profile-btn">
                                 <span class="material-symbols-rounded">save</span>
                                 Save Changes
+                                <div class="loading-spinner"></div>
                             </button>
                         </div>
                     </form>
@@ -555,20 +708,30 @@ if ($login_logs->num_rows > 0) {
                 
                 <!-- Change Password Form (Hidden by default) -->
                 <div class="profile-form" id="change-password-form">
-                    <form action="update_password.php" method="POST">
+                    <form action="update_password.php" method="POST" id="password-form" novalidate>
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="form-group">
                             <label for="current_password" class="form-label">Current Password</label>
                             <input type="password" id="current_password" name="current_password" class="form-control" required>
+                            <div class="invalid-feedback">Please enter your current password.</div>
                         </div>
                         
                         <div class="form-group">
                             <label for="new_password" class="form-label">New Password</label>
-                            <input type="password" id="new_password" name="new_password" class="form-control" required>
+                            <input type="password" id="new_password" name="new_password" class="form-control" 
+                                   minlength="<?php echo $password_requirements['min_length']; ?>"
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                                   required>
+                            <div class="password-strength"></div>
+                            <div class="invalid-feedback">
+                                Password must be at least 8 characters long and contain uppercase, lowercase, number, and special character.
+                            </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="confirm_password" class="form-label">Confirm New Password</label>
                             <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                            <div class="invalid-feedback">Passwords do not match.</div>
                         </div>
                         
                         <div class="form-buttons">
@@ -576,9 +739,10 @@ if ($login_logs->num_rows > 0) {
                                 <span class="material-symbols-rounded">close</span>
                                 Cancel
                             </button>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="save-password-btn">
                                 <span class="material-symbols-rounded">save</span>
                                 Update Password
+                                <div class="loading-spinner"></div>
                             </button>
                         </div>
                     </form>
@@ -615,6 +779,9 @@ if ($login_logs->num_rows > 0) {
     </div>
 </div>
 </div>
+
+<!-- Add Toast Container -->
+<div class="toast-container"></div>
 
 <script src="assets/js/side.js"></script>
 <script>
@@ -696,6 +863,224 @@ if ($login_logs->num_rows > 0) {
         cancelPasswordBtn.addEventListener('click', function() {
             changePasswordForm.classList.remove('active');
             changePasswordBtn.style.display = 'inline-flex';
+        });
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <span class="material-symbols-rounded">${type === 'success' ? 'check_circle' : 'error'}</span>
+                ${message}
+            `;
+            document.querySelector('.toast-container').appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        // Profile form submission
+        const profileForm = document.getElementById('profile-form');
+        profileForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const spinner = submitBtn.querySelector('.loading-spinner');
+            
+            submitBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            
+            try {
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showToast('Profile updated successfully');
+                    setTimeout(() => window.location.reload(), 1500);
+                } else {
+                    showToast(result.message || 'Failed to update profile', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('An error occurred. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+            }
+        });
+
+        // Password form submission
+        const passwordForm = document.getElementById('password-form');
+        const newPasswordInput = document.getElementById('new_password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const currentPasswordInput = document.getElementById('current_password');
+
+        // Password validation function
+        function validatePassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            return {
+                isValid: password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar,
+                errors: {
+                    length: password.length < minLength,
+                    upperCase: !hasUpperCase,
+                    lowerCase: !hasLowerCase,
+                    numbers: !hasNumbers,
+                    specialChar: !hasSpecialChar
+                }
+            };
+        }
+
+        // Real-time password validation
+        newPasswordInput.addEventListener('input', function() {
+            const password = this.value;
+            const validation = validatePassword(password);
+            const feedback = this.nextElementSibling.nextElementSibling;
+            
+            if (password) {
+                if (!validation.isValid) {
+                    this.classList.add('is-invalid');
+                    let errorMessage = 'Password must contain:';
+                    if (validation.errors.length) errorMessage += ' at least 8 characters,';
+                    if (validation.errors.upperCase) errorMessage += ' uppercase letter,';
+                    if (validation.errors.lowerCase) errorMessage += ' lowercase letter,';
+                    if (validation.errors.numbers) errorMessage += ' number,';
+                    if (validation.errors.specialChar) errorMessage += ' special character';
+                    feedback.textContent = errorMessage;
+                } else {
+                    this.classList.remove('is-invalid');
+                    feedback.textContent = '';
+                }
+            } else {
+                this.classList.remove('is-invalid');
+                feedback.textContent = '';
+            }
+        });
+
+        // Confirm password validation
+        confirmPasswordInput.addEventListener('input', function() {
+            const feedback = this.nextElementSibling;
+            if (this.value !== newPasswordInput.value) {
+                this.classList.add('is-invalid');
+                feedback.textContent = 'Passwords do not match';
+            } else {
+                this.classList.remove('is-invalid');
+                feedback.textContent = '';
+            }
+        });
+
+        // Password form submission
+        passwordForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Reset previous validation states
+            const inputs = this.querySelectorAll('input');
+            inputs.forEach(input => input.classList.remove('is-invalid'));
+            
+            // Validate current password
+            if (!currentPasswordInput.value) {
+                currentPasswordInput.classList.add('is-invalid');
+                currentPasswordInput.nextElementSibling.textContent = 'Please enter your current password';
+                return;
+            }
+
+            // Validate new password
+            const passwordValidation = validatePassword(newPasswordInput.value);
+            if (!passwordValidation.isValid) {
+                newPasswordInput.classList.add('is-invalid');
+                let errorMessage = 'Password must contain:';
+                if (passwordValidation.errors.length) errorMessage += ' at least 8 characters,';
+                if (passwordValidation.errors.upperCase) errorMessage += ' uppercase letter,';
+                if (passwordValidation.errors.lowerCase) errorMessage += ' lowercase letter,';
+                if (passwordValidation.errors.numbers) errorMessage += ' number,';
+                if (passwordValidation.errors.specialChar) errorMessage += ' special character';
+                newPasswordInput.nextElementSibling.nextElementSibling.textContent = errorMessage;
+                return;
+            }
+
+            // Validate password confirmation
+            if (newPasswordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.classList.add('is-invalid');
+                confirmPasswordInput.nextElementSibling.textContent = 'Passwords do not match';
+                return;
+            }
+
+            // If all validations pass, submit the form
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const spinner = submitBtn.querySelector('.loading-spinner');
+            
+            submitBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+
+            try {
+                const formData = new FormData(this);
+                
+                // Log form data for debugging
+                console.log('Submitting password update with data:', {
+                    current_password: formData.get('current_password'),
+                    new_password: formData.get('new_password'),
+                    confirm_password: formData.get('confirm_password')
+                });
+
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                // Log response for debugging
+                console.log('Response status:', response.status);
+                
+                let result;
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    result = await response.json();
+                } else {
+                    const text = await response.text();
+                    console.error('Non-JSON response:', text);
+                    throw new Error('Server returned non-JSON response');
+                }
+
+                console.log('Response data:', result);
+
+                if (result.success) {
+                    showToast('Password updated successfully');
+                    this.reset();
+                    setTimeout(() => {
+                        changePasswordForm.classList.remove('active');
+                        changePasswordBtn.style.display = 'inline-flex';
+                    }, 1500);
+                } else {
+                    let errorMessage = 'Failed to update password. ';
+                    if (result.message) {
+                        errorMessage += result.message;
+                    } else if (result.error) {
+                        errorMessage += result.error;
+                    } else {
+                        errorMessage += 'Please check your current password.';
+                    }
+                    showToast(errorMessage, 'error');
+                }
+            } catch (error) {
+                console.error('Error details:', error);
+                let errorMessage = 'An error occurred while updating your password. ';
+                if (error.message) {
+                    errorMessage += error.message;
+                }
+                showToast(errorMessage, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+            }
         });
     });
 </script>
