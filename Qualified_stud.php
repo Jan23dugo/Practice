@@ -467,7 +467,7 @@ tbody tr:hover {
     transition: all 0.3s ease;
     font-weight: 600;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-left: 850px;
+    margin-left: 650px;
     height: 35px;
 }
 

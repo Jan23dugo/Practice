@@ -1465,7 +1465,7 @@ try {
                         echo "Query Error: " . $conn->error;
                     }
                     ?>
-                    <p style="margin-bottom: 10px;">Click on the student name to view their application details.</p>
+                    <p style="margin-bottom: 10px; font-style: italic;">Click on the student name to view their application details.</p>
                     <table class="analysis-table">
                         <thead>
                             <tr>
@@ -1593,7 +1593,7 @@ try {
                 <h3 class="analytics-title">ITEM ANALYSIS PREVIEW</h3>
             </div>
             
-            <p style="margin-bottom: 15px;">Items flagged for revision based on student performance difficulty analysis:</p>
+            <p style="margin-bottom: 15px; font-style: italic; color:rgb(97, 97, 97);">Items flagged for revision based on student performance difficulty analysis:</p>
             
             <table class="analysis-table">
                 <thead>
