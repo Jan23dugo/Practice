@@ -40,6 +40,11 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+   
+>>>>>>> Stashed changes
 =======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
    
@@ -90,6 +95,7 @@ $student = $result->fetch_assoc();
     <!-- Loading Spinner -->
     <div id="loading-spinner"></div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -217,6 +223,10 @@ $student = $result->fetch_assoc();
     <div class="main-content">
         <div class="content-wrapper">
 >>>>>>> Stashed changes
+=======
+    <div class="main-content">
+        <div class="content-wrapper">
+>>>>>>> Stashed changes
             <section class="form-section">
                 <!-- Form -->
                 <form id="multi-step-form" action="qualiexam_registerBack.php" method="POST" enctype="multipart/form-data" onsubmit="return submitForm(event)">
@@ -237,6 +247,12 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                                <a href="stud_dashboard.php" class="back-btn" aria-label="Back to Dashboard">
+                                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                                </a>
+>>>>>>> Stashed changes
 =======
                                 <a href="stud_dashboard.php" class="back-btn" aria-label="Back to Dashboard">
                                     <i class="fas fa-arrow-left"></i> Back to Dashboard
@@ -296,6 +312,7 @@ $student = $result->fetch_assoc();
                                     <i class="fas fa-info-circle"></i>
                                     Please select your student type carefully. This will determine the required information and documents needed for your application.
                                 </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -420,6 +437,8 @@ $student = $result->fetch_assoc();
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                             </div>
                             <div class="form-field">
                                 <label for="student_type">Student Type</label>
@@ -452,6 +471,9 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -480,6 +502,7 @@ $student = $result->fetch_assoc();
                         </div>
                     </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1210,6 +1233,67 @@ $student = $result->fetch_assoc();
                             </div>
 
 >>>>>>> Stashed changes
+=======
+                    <div class="step">
+                        <div class="section-container">
+                            <div class="section-header">
+                                <h2>Personal Information</h2>
+                                <div class="section-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Please provide your personal information exactly as it appears on your official documents.</span>
+                                </div>
+                            </div>
+
+                            <div class="personal-info-grid">
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name" required class="form-control custom-input name-input" 
+                                           value="<?php echo htmlspecialchars($student['lastname'] ?? ''); ?>"
+                                           placeholder="Enter last name">
+                                    <div class="field-note">As shown in school records</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="first_name">Given Name</label>
+                                    <input type="text" id="first_name" name="first_name" required class="form-control custom-input name-input"
+                                           value="<?php echo htmlspecialchars($student['firstname'] ?? ''); ?>"
+                                           placeholder="Enter first name">
+                                    <div class="field-note">As shown in school records</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="middle_name">Middle Name (Optional)</label>
+                                    <input type="text" id="middle_name" name="middle_name" class="form-control custom-input name-input"
+                                           value="<?php echo htmlspecialchars($student['middlename'] ?? ''); ?>"
+                                           placeholder="Enter middle name">
+                                    <div class="field-note">Leave blank if none</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth</label>
+                                    <input type="date" 
+                                           id="dob" 
+                                           name="dob" 
+                                           required 
+                                           class="custom-date"
+                                           max="<?php echo date('Y-m-d'); ?>" 
+                                           value="<?php echo isset($student['date_of_birth']) ? htmlspecialchars($student['date_of_birth']) : ''; ?>">
+                                    <div class="field-note">Select your date of birth from the calendar</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select id="gender" name="gender" required class="custom-select gender-select">
+                                        <option value="" disabled <?php echo !isset($student['gender']) ? 'selected' : ''; ?> class="select-placeholder">Select Gender</option>
+                                        <option value="Male" <?php echo (isset($student['gender']) && $student['gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
+                                        <option value="Female" <?php echo (isset($student['gender']) && $student['gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
+                                        <option value="Other" <?php echo (isset($student['gender']) && $student['gender'] === 'Other') ? 'selected' : ''; ?>>Other</option>
+                                    </select>
+                                    <div class="field-note">Select your gender identity</div>
+                                </div>
+                            </div>
+
+>>>>>>> Stashed changes
                             <div class="navigation-buttons">
                                 <button type="button" class="btn btn-previous" onclick="prevStep()">
                                     <i class="fas fa-arrow-left"></i> Previous
@@ -1221,6 +1305,7 @@ $student = $result->fetch_assoc();
                         </div>
                     </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1836,6 +1921,56 @@ $student = $result->fetch_assoc();
                                 </div>
                             </div>
 >>>>>>> Stashed changes
+=======
+                    <!-- Step 3: Contact Details -->
+                    <div class="step">
+                        <div class="section-container">
+                            <div class="section-header">
+                                <h2>Contact Information</h2>
+                                <div class="section-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    Please provide accurate contact information. Important updates about your application will be sent to these contact details.
+                                </div>
+                            </div>
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" 
+                                           id="email" 
+                                           name="email" 
+                                           required 
+                                           class="custom-input email-input"
+                                           placeholder="Enter your email address"
+                                           value="<?php echo htmlspecialchars($student['email'] ?? ''); ?>">
+                                    <div class="field-note">Use an active email address that you check regularly</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact_number">Contact Number</label>
+                                    <input type="tel" 
+                                           id="contact_number" 
+                                           name="contact_number" 
+                                           required 
+                                           class="custom-input tel-input"
+                                           pattern="[0-9]{11}" 
+                                           placeholder="09123456789"
+                                           value="<?php echo htmlspecialchars($student['contact_number'] ?? ''); ?>">
+                                    <div class="field-note">Enter your 11-digit mobile number</div>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="address">Complete Address</label>
+                                    <input type="text" 
+                                           id="address" 
+                                           name="address" 
+                                           required 
+                                           class="custom-input address-input"
+                                           placeholder="Enter your complete residential address"
+                                           value="<?php echo htmlspecialchars($student['address'] ?? ''); ?>">
+                                    <div class="field-note">Provide your complete current residential address</div>
+                                </div>
+                            </div>
+>>>>>>> Stashed changes
                             <div class="navigation-buttons">
                                 <button type="button" class="btn btn-previous" onclick="prevStep()">
                                     <i class="fas fa-arrow-left"></i> Previous
@@ -1847,6 +1982,7 @@ $student = $result->fetch_assoc();
                         </div>
                     </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1985,6 +2121,12 @@ $student = $result->fetch_assoc();
                         <div class="section-container">
                             <div class="section-header">
 >>>>>>> Stashed changes
+=======
+                    <!-- Step 4: Academic Details -->
+                    <div class="step">
+                        <div class="section-container">
+                            <div class="section-header">
+>>>>>>> Stashed changes
                                 <h2>Academic Information</h2>
                                 <div class="section-note">
                                     <i class="fas fa-info-circle"></i>
@@ -2050,6 +2192,9 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2080,6 +2225,7 @@ $student = $result->fetch_assoc();
                         </div>
                     </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2171,6 +2317,18 @@ $student = $result->fetch_assoc();
                                     Please upload clear, legible scanned copies or photos of your documents. All documents must be in PDF, JPG, or PNG format and must not exceed 5MB each.
                                 </div>
                             </div>
+=======
+                    <!-- Step 5: Document Upload -->
+                    <div class="step">
+                        <div class="section-container">
+                            <div class="section-header">
+                                <h2>Document Submission</h2>
+                                <div class="section-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    Please upload clear, legible scanned copies or photos of your documents. All documents must be in PDF, JPG, or PNG format and must not exceed 5MB each.
+                                </div>
+                            </div>
+>>>>>>> Stashed changes
 =======
                     <!-- Step 5: Document Upload -->
                     <div class="step">
@@ -2337,6 +2495,9 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2407,6 +2568,9 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2432,6 +2596,7 @@ $student = $result->fetch_assoc();
         </div>
     </div>
     
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2757,6 +2922,30 @@ $student = $result->fetch_assoc();
         </div>
     </div>
 >>>>>>> Stashed changes
+=======
+    <!-- Loading Overlay -->
+    <div id="submission-loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing your registration...</p>
+        <small>Please wait while we submit your application</small>
+    </div>
+    
+    <!-- OCR loading overlay -->
+    <div id="ocr-loading-overlay">
+        <div class="loading-indicator">
+            <h3>Processing Your Documents</h3>
+            <p>Extracting data from your transcript using OCR technology</p>
+            
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            
+            <div class="spinner"></div>
+            <p>This may take a moment...</p>
+            <small>Please wait while we process your documents</small>
+        </div>
+    </div>
+>>>>>>> Stashed changes
 
     <!-- OCR Modal styles are now in registerForm.css -->
 
@@ -2783,7 +2972,12 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <!-- Load JavaScript from external file -->
+=======
+    <!-- Load Awesomplete JS before custom JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+>>>>>>> Stashed changes
 =======
     <!-- Load Awesomplete JS before custom JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
@@ -2908,7 +3102,10 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2980,6 +3177,9 @@ $student = $result->fetch_assoc();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

@@ -1415,6 +1415,7 @@ function registerStudent($conn, $studentData, $subjects) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     try {
         // Ensure connection is valid before starting transaction
         if (!$conn || !method_exists($conn, 'ping') || !@$conn->ping()) {
@@ -1540,11 +1541,21 @@ function registerStudent($conn, $studentData, $subjects) {
         // Get columns from the table
         $result = $conn->query("SHOW COLUMNS FROM register_studentsqe");
 >>>>>>> Stashed changes
+=======
+    // Ensure stud_id is set
+    if (empty($studentData['stud_id'])) {
+        throw new Exception('Student ID not found in session. Please log in again.');
+    }
+    try {
+        // Get columns from the table
+        $result = $conn->query("SHOW COLUMNS FROM register_studentsqe");
+>>>>>>> Stashed changes
         $columns = [];
         while ($row = $result->fetch_assoc()) {
             $columns[] = $row['Field'];
         }
         
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1580,11 +1591,14 @@ function registerStudent($conn, $studentData, $subjects) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         // Required columns for our insert
         $requiredColumns = [
             'last_name', 'first_name', 'middle_name', 'gender', 'dob', 'email', 
             'contact_number', 'street', 'student_type', 'previous_school', 
             'year_level', 'previous_program', 'desired_program', 'tor', 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1630,6 +1644,9 @@ function registerStudent($conn, $studentData, $subjects) {
 =======
             'school_id', 'is_tech', 'status', 'stud_id'
 >>>>>>> Stashed changes
+=======
+            'school_id', 'is_tech', 'status', 'stud_id'
+>>>>>>> Stashed changes
         ];
         
         $missingColumns = array_diff($requiredColumns, $columns);
@@ -1639,6 +1656,7 @@ function registerStudent($conn, $studentData, $subjects) {
         
         // Start transaction
         $conn->begin_transaction();
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2319,6 +2337,52 @@ function registerStudent($conn, $studentData, $subjects) {
         $hasAdminNotes = in_array('admin_notes', $columns);
 
 >>>>>>> Stashed changes
+=======
+        
+        // Set default status as pending
+       
+        
+        // Add notes about why manual review is needed if applicable
+        $adminNotes = '';
+        if ($studentData['status'] === 'needs_review') {
+            $adminNotes = "Manual review required: ";
+            $reasonMsg = "No grading system rules found for university '{$studentData['previous_school']}'.";
+            $reasons = isset($GLOBALS['manualReviewReasons']) ? $GLOBALS['manualReviewReasons'] : [];
+            // Normalize all reasons for comparison
+            $normalizedReasons = array_map(function($r) {
+                return strtolower(trim($r, ". "));
+            }, $reasons);
+            $normalizedReasonMsg = strtolower(trim($reasonMsg, ". "));
+            $includeReasonMsg = false;
+            if (isset($GLOBALS['needsManualReview']) && $GLOBALS['needsManualReview'] && !in_array($normalizedReasonMsg, $normalizedReasons, true)) {
+                $includeReasonMsg = true;
+            }
+            // Remove duplicates from reasons
+            $uniqueReasons = [];
+            foreach ($reasons as $r) {
+                $norm = strtolower(trim($r, ". "));
+                if ($norm !== $normalizedReasonMsg && !in_array($norm, $uniqueReasons, true)) {
+                    $uniqueReasons[] = $norm;
+                }
+            }
+            $notesParts = [];
+            if ($includeReasonMsg) {
+                $notesParts[] = $reasonMsg;
+            }
+            if (!empty($uniqueReasons)) {
+                $notesParts[] = implode(". ", array_map('ucfirst', $uniqueReasons)) . '.';
+            }
+            // If nothing is left, always show the main reasonMsg
+            if (empty($notesParts)) {
+                $notesParts[] = $reasonMsg;
+            }
+            $adminNotes .= implode(' ', $notesParts);
+        }
+
+        // Check if admin_notes column exists
+        $hasAdminNotes = in_array('admin_notes', $columns);
+
+>>>>>>> Stashed changes
         // Insert student data with correct columns
         if ($hasAdminNotes) {
             $sql = "INSERT INTO register_studentsqe (
@@ -2403,9 +2467,13 @@ function registerStudent($conn, $studentData, $subjects) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // Store reference ID in session
         $_SESSION['success'] = "Your reference ID is: " . $reference_id;
         $_SESSION['reference_id'] = $reference_id;
+=======
+        // Store student ID in session
+>>>>>>> Stashed changes
 =======
         // Store student ID in session
 >>>>>>> Stashed changes
@@ -2461,6 +2529,7 @@ function registerStudent($conn, $studentData, $subjects) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // Remove the automatic subject registration to prevent storing unmatched courses
         // We'll rely on matchCreditedSubjects to properly match and store only the matched subjects
         
@@ -2477,6 +2546,11 @@ function registerStudent($conn, $studentData, $subjects) {
             error_log("Email send error: " . $emailEx->getMessage());
         }
         
+=======
+        // Commit transaction
+        $conn->commit();
+        
+>>>>>>> Stashed changes
 =======
         // Commit transaction
         $conn->commit();
@@ -2687,6 +2761,7 @@ function isTechStudent($subjects) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // Define tech programs - both full names and abbreviations
         $techPrograms = [
             "bscs", // Abbreviation
@@ -2719,6 +2794,8 @@ function isTechStudent($subjects) {
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2778,6 +2855,9 @@ function isTechStudent($subjects) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2882,8 +2962,13 @@ function performOCR($filePath) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         $endpoint = "https://group8ocr.cognitiveservices.azure.com/";
         $apiKey = "8DzDS3AgnWPQcA2gfPyqkUdna2ncf0ac0pvxeNmTZ8rRCQXImevlJQQJ99BDACqBBLyXJ3w3AAALACOGvEIc";
+=======
+        $endpoint = "https://ocrstreams23.cognitiveservices.azure.com/";
+        $apiKey = "6vzUhLMEFi9E6bVVpkG16zEc9p0TlPPLYZQDQvlmI3PDv2rRRCT3JQQJ99BEAC3pKaRXJ3w3AAALACOGTZUj";
+>>>>>>> Stashed changes
 =======
         $endpoint = "https://ocrstreams23.cognitiveservices.azure.com/";
         $apiKey = "6vzUhLMEFi9E6bVVpkG16zEc9p0TlPPLYZQDQvlmI3PDv2rRRCT3JQQJ99BEAC3pKaRXJ3w3AAALACOGTZUj";
@@ -3665,6 +3750,7 @@ function processOCRPreview() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (!isset($_FILES['tor']) || $_FILES['tor']['error'] !== UPLOAD_ERR_OK) {
             throw new Exception("Please upload a valid Transcript of Records (TOR)");
         }
@@ -3675,6 +3761,8 @@ function processOCRPreview() {
 
         // Process school ID
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -3743,6 +3831,9 @@ function processOCRPreview() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -3772,6 +3863,7 @@ function processOCRPreview() {
         $school_id_path = __DIR__ . '/uploads/school_id/' . basename($_FILES['school_id']['name']);
         move_uploaded_file($_FILES['school_id']['tmp_name'], $school_id_path);
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -3822,6 +3914,8 @@ function processOCRPreview() {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         // Clean any output that might have been generated so far
         ob_clean();
         
@@ -3840,6 +3934,9 @@ function processOCRPreview() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -3876,6 +3973,10 @@ function processOCRPreview() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                'document_type' => $document_type,
+>>>>>>> Stashed changes
 =======
                 'document_type' => $document_type,
 >>>>>>> Stashed changes
@@ -3916,6 +4017,7 @@ function processOCRPreview() {
 
         // Clean the buffer again before continuing
         ob_clean();
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -3979,6 +4081,8 @@ function processOCRPreview() {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
         // Clean the buffer again before subject extraction
         ob_clean();
@@ -4013,8 +4117,14 @@ function processOCRPreview() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             'tor_path' => $tor_path,
             'school_id_path' => $school_id_path
+=======
+            'tor_path' => $academic_document_path, // This will be either TOR or Copy of Grades
+            'school_id_path' => $school_id_path,
+            'document_type' => $document_type // Store which type was uploaded
+>>>>>>> Stashed changes
 =======
             'tor_path' => $academic_document_path, // This will be either TOR or Copy of Grades
             'school_id_path' => $school_id_path,
@@ -4200,6 +4310,10 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    $needsManualReview = false; // Ensure this is declared at the top and only once
+>>>>>>> Stashed changes
 =======
     $needsManualReview = false; // Ensure this is declared at the top and only once
 >>>>>>> Stashed changes
@@ -4543,8 +4657,11 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 'status' => $needsManualReview ? 'needs_review' : 'pending'
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -4579,6 +4696,9 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -4657,6 +4777,7 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             $reference_id = $_SESSION['reference_id'] ?? null;
             
             if (!$student_id || !$reference_id) {
@@ -4671,6 +4792,8 @@ function handleFinalSubmission() {
                 'student_id' => $student_id,
                 'reference_id' => $reference_id
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -4712,6 +4835,9 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -4765,7 +4891,11 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             $_SESSION['success'] = "Your registration was successful! Your reference ID is: " . $reference_id;
+=======
+            $_SESSION['success'] = "Your registration was successful and is now pending review. You will receive your reference ID via email once your application is accepted.";
+>>>>>>> Stashed changes
 =======
             $_SESSION['success'] = "Your registration was successful and is now pending review. You will receive your reference ID via email once your application is accepted.";
 >>>>>>> Stashed changes
@@ -4834,8 +4964,12 @@ function handleFinalSubmission() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 'message' => 'Registration completed successfully',
                 'reference_id' => $reference_id,
+=======
+                'message' => 'Registration completed successfully. Your application is pending review. You will receive your reference ID via email if accepted.',
+>>>>>>> Stashed changes
 =======
                 'message' => 'Registration completed successfully. Your application is pending review. You will receive your reference ID via email if accepted.',
 >>>>>>> Stashed changes
@@ -5156,7 +5290,13 @@ function getPostField($field, $fallback = null) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ?>
+=======
+
+
+?>
+>>>>>>> Stashed changes
 =======
 
 

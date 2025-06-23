@@ -523,7 +523,10 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -769,6 +772,9 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -796,6 +802,7 @@ $activePage = 'results';
 <body>
     <!-- Header -->
     <header>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -970,6 +977,15 @@ $activePage = 'results';
             </div>
         </div>
 >>>>>>> Stashed changes
+=======
+        <div class="logo">
+            <img src="img/Logo.png" alt="PUP Logo">
+            <div class="logo-text">
+                <h1>PUP Qualifying Exam Portal</h1>
+                <p>Exam Results</p>
+            </div>
+        </div>
+>>>>>>> Stashed changes
         <nav class="nav-links">
             <a href="stud_dashboard.php" class="<?php echo $activePage == 'dashboard' ? 'active' : ''; ?>">
                 <span class="material-symbols-rounded">dashboard</span>
@@ -999,6 +1015,9 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1197,7 +1216,10 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1245,6 +1267,9 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1308,6 +1333,9 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1380,6 +1408,7 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
             
             if (menuToggle && sidebar && sidebarOverlay) {
@@ -1423,6 +1452,8 @@ $activePage = 'results';
             const profileMenu = document.getElementById('profile-menu');
             const dropdownMenu = document.querySelector('.dropdown-menu');
             
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1481,6 +1512,7 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 }
             }
             
@@ -1506,6 +1538,8 @@ $activePage = 'results';
                 });
             });
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1642,6 +1676,9 @@ $activePage = 'results';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
