@@ -126,6 +126,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             app_registration
                         </span>
                         <span class="nav-label">Manage Registration Form</span>
@@ -133,6 +134,8 @@
                     <span class="nav-tooltip">Manage Registration Form</span>
                 </li>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======

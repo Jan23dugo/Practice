@@ -1,6 +1,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Request received: 2025-04-27 18:56:38
 POST data: Array
 (
@@ -158,14 +159,18 @@ Session data: Array
 
 Database connection closed
 Request received: 2025-05-17 17:31:29
+=======
+Request received: 2025-06-23 12:38:59
+>>>>>>> Stashed changes
 POST data: Array
 (
     [status] => accepted
-    [reference_id] => CCIS-2025-10384
+    [student_id] => 137
 )
 
 Session data: Array
 (
+<<<<<<< Updated upstream
     [admin_id] => 1
     [email] => pupccisfaculty@gmail.com
     [is_admin] => 1
@@ -264,6 +269,8 @@ Session data: Array
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     [stud_id] => 47
     [firstname] => Shion
     [middlename] => aa
@@ -326,6 +333,9 @@ Session data: Array
     [session_regenerated] => 1750675103
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
