@@ -124,10 +124,377 @@ Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-12 09:57:31
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-12T13:48
+    [window_end] => 2025-06-12T20:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-12 11:04:45
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-12T13:48
+    [window_end] => 2025-06-12T20:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 00:34:38
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T10:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 00:36:54
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T10:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 00:44:29
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T10:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 01:39:02
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T10:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 03:34:35
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T16:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 04:17:54
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => testgsdasdf
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T16:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 04:19:26
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => testgsdasdf
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T16:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+
+FILES data:
+Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+--------------------
+2025-06-13 04:20:23
+POST data:
+Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => testgsdasdf
+dfgsdfg
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-13T08:00
+    [window_end] => 2025-06-13T16:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+>>>>>>> Stashed changes
     [passing_score_type] => percentage
     [passing_score] => 70
     [remove-cover-image] => 0
