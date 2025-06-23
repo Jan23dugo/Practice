@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [2025-04-24 11:32:59] Student ID: 12 - Registration process started
 --------------------------------------------------------------------------------
 [2025-04-24 11:32:59] Student ID: 12 - Database connection successful
@@ -3831,6 +3832,8 @@ Data: Array
 )
 
 --------------------------------------------------------------------------------
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======

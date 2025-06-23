@@ -384,6 +384,7 @@ select#programming_language:hover {
 .modal-footer {
     text-align: right;
 }
+<<<<<<< Updated upstream
 
 .modal-btn {
     background: #75343A;
@@ -398,6 +399,8 @@ select#programming_language:hover {
 .modal-btn:hover {
     background: #7d5bb9;
 }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -732,6 +735,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         
+<<<<<<< Updated upstream
         // Submit the form
         questionForm.submit();
 >>>>>>> Stashed changes
@@ -817,6 +821,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("question").value = questionContent;
         }
         
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         // Submit the form

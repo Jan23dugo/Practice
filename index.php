@@ -28,7 +28,10 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         html {
@@ -38,6 +41,9 @@
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -59,7 +65,11 @@
             color: white;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             padding: 10px;
+=======
+            padding: 10px 20px;
+>>>>>>> Stashed changes
 =======
             padding: 10px 20px;
 >>>>>>> Stashed changes
@@ -73,6 +83,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         }
@@ -103,6 +114,17 @@
         }
 
 >>>>>>> Stashed changes
+=======
+            height: 80px; /* Slightly increased for better visibility */
+        }
+
+        header .logo img {
+            width: 60px;
+            height: auto;
+            margin-left: 20px;
+        }
+
+>>>>>>> Stashed changes
         nav ul {
             list-style: none;
             display: flex;
@@ -111,9 +133,15 @@
         nav ul li {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             margin-right: 50px;
             margin-top: 20px;
             padding-left: 30px;
+=======
+            margin-right: 30px;
+            margin-top: 10px;
+            padding-left: 20px;
+>>>>>>> Stashed changes
 =======
             margin-right: 30px;
             margin-top: 10px;
@@ -131,7 +159,11 @@
             text-decoration: none;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             font-size: 22px;
+=======
+            font-size: 18px; /* Reduced from 22px for better proportion */
+>>>>>>> Stashed changes
 =======
             font-size: 18px; /* Reduced from 22px for better proportion */
 >>>>>>> Stashed changes
@@ -167,7 +199,11 @@
             background-position: center;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             height: 920px;
+=======
+            height: calc(100vh - 80px); /* Full viewport height minus header */
+>>>>>>> Stashed changes
 =======
             height: calc(100vh - 80px); /* Full viewport height minus header */
 >>>>>>> Stashed changes
@@ -180,6 +216,7 @@
             color: white;
             text-align: center;
             padding: 50px 20px;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
             margin-top: 90px
@@ -233,6 +270,12 @@
 
         .banner-content {
 >>>>>>> Stashed changes
+=======
+            margin-top: 80px;
+        }
+
+        .banner-content {
+>>>>>>> Stashed changes
             padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
@@ -274,6 +317,9 @@
             padding: 12px 30px;
             font-size: 20px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -283,6 +329,10 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            border-width: 5px;
+>>>>>>> Stashed changes
 =======
             border-width: 5px;
 >>>>>>> Stashed changes
@@ -324,7 +374,11 @@
         button i {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             font-size: 30px;
+=======
+            font-size: 24px;
+>>>>>>> Stashed changes
 =======
             font-size: 24px;
 >>>>>>> Stashed changes
@@ -337,7 +391,11 @@
         .admission-process {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             background-color: #e9e9e9; /* Light gray background for contrast */
+=======
+            background-color: #e9e9e9;
+>>>>>>> Stashed changes
 =======
             background-color: #e9e9e9;
 >>>>>>> Stashed changes
@@ -350,6 +408,7 @@
             align-items: center;
         }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         .admission-process h3 {
@@ -366,6 +425,8 @@
             line-height: 1.6;
             text-align: center;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         .admission-process h3, .program-info h3, .faq-section h3 {
@@ -396,6 +457,9 @@
             margin: 0 auto 40px;
             line-height: 1.6;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -408,11 +472,14 @@
             flex-wrap: wrap;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         }
 
         .step {
             width: 22%;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             max-width: 1400px;
@@ -423,6 +490,9 @@
         .step {
             width: 280px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -433,6 +503,12 @@
             transition: transform 0.5s ease, box-shadow 0.3s ease;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+>>>>>>> Stashed changes
 =======
             display: flex;
             flex-direction: column;
@@ -453,7 +529,11 @@
             display: flex;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             flex-direction: column; /* Stack number and title vertically */
+=======
+            flex-direction: column;
+>>>>>>> Stashed changes
 =======
             flex-direction: column;
 >>>>>>> Stashed changes
@@ -465,6 +545,7 @@
             margin-bottom: 20px;
         }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         .step-number1 {
@@ -482,10 +563,16 @@
             width: 70px;
             height: 70px;
 >>>>>>> Stashed changes
+=======
+        .step-number1, .step-number2, .step-number3, .step-number4 {
+            width: 70px;
+            height: 70px;
+>>>>>>> Stashed changes
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
             font-size: 3.2rem;
@@ -1068,12 +1155,178 @@
         }
 
         .program3 {
+=======
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #f4f4f4;
+            border-width: 7px;
+            border-style: solid;
+            transition: transform 0.3s ease;
+        }
+
+        .step-number1 {
+            background-color: #5f7882;
+            border-color: #385b6a;
+        }
+
+        .step-number2 {
+            background-color: #63874d;
+            border-color: #4b6c36;
+        }
+
+        .step-number3 {
+            background-color: #e1a55e;
+            border-color: #c07e31;
+        }
+
+        .step-number4 {
+            background-color: #75343a;
+            border-color: #974950;
+        }
+
+        .step-title1, .step-title2, .step-title3, .step-title4 {
+            width: 250px;
+            font-size: 20px;
+            height: 45px;
+            padding-top: 8px;
+            font-weight: bold;
+            color: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        .step-title1 { background-color: #5f7882; }
+        .step-title2 { background-color: #63874d; }
+        .step-title3 { background-color: #e1a55e; }
+        .step-title4 { background-color: #75343a; }
+
+        .step-message1, .step-message2, .step-message3, .step-message4 {
+            width: 280px;
+            font-size: 18px;
+            min-height: 350px;
+            padding: 25px;
+            border-radius: 25px;
+            color: #f4f4f4;
+            box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-message1 p, .step-message2 p, .step-message3 p, .step-message4 p {
+            margin-bottom: 100px;
+        }
+
+        .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5.5rem;
+            color: #000000;
+            transition: transform 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+            margin-top: 0;
+        }
+
+        .step-icon1:hover, .step-icon2:hover, .step-icon3:hover, .step-icon4:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .step-message1 { background-color: #5f7882; }
+        .step-message2 { background-color: #63874d; }
+        .step-message3 { background-color: #e1a55e; }
+        .step-message4 { background-color: #75343a; }
+
+        /* Program Information Section */
+        .program-info {
+            background-color:#75343a; /* Dark red background */
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .program-info p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .program-image img {
+            width: 100%;
+            max-width: 400px; /* Adjust size as needed */
+            height: auto;
+            margin-top: 20px;
+        }
+
+        /* Program Details Section */
+        .program-details {
+            display: flex;
+            flex-direction: column; /* Stack the programs vertically */
+            gap: 30px;
+            padding-left: 70px;
+            background-color: #75343a;
+            padding-bottom: 50px;
+        }
+
+        .program1, .program2, .program3, .program4 {
+            width: 75%;
+            height: 130px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .program1 {
+            background-color: #974950; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program2 {
+            background-color: #974950; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 100px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program3 {
             background-color: #e1a55e; /* Lighter red for the program boxes */
             color: white;
             padding: 20px 30px;
             border-radius: 100px; /* Rounded corners */
             text-align: left;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 200px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .program4 {
+>>>>>>> Stashed changes
+            background-color: #e1a55e; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+<<<<<<< Updated upstream
             margin-left: 200px;
             height: 150px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1129,6 +1382,18 @@
 =======
             text-align: left;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 300px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program1:hover, .program2:hover, .program3:hover, .program4:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+>>>>>>> Stashed changes
+=======
             margin-left: 300px;
             height: 150px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1168,6 +1433,7 @@
         }
 
         .text-container h4 {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
             font-size: 2.5rem;
@@ -1285,6 +1551,15 @@
 
         .text-container p {
 >>>>>>> Stashed changes
+=======
+            font-size: clamp(20px, 2.5vw, 24px);
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .text-container p {
+>>>>>>> Stashed changes
             font-size: clamp(14px, 1.5vw, 16px);
             line-height: 1.6;
             opacity: 0.9;
@@ -1373,6 +1648,9 @@
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1382,7 +1660,10 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         .faq-answer p {
@@ -1400,6 +1681,9 @@
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1458,7 +1742,11 @@
             margin-bottom: 20px;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             font-size: 17px;
+=======
+            font-size: 16px;
+>>>>>>> Stashed changes
 =======
             font-size: 16px;
 >>>>>>> Stashed changes
@@ -1482,8 +1770,11 @@
             text-decoration: none;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             font-size: 17px;
             opacity: 0.9;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1608,6 +1899,7 @@
                 width: 270px;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 margin-left: 0px;
                 font-size: 20px;
                 height: 300px;
@@ -1625,6 +1917,8 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                 padding: 20px;
                 min-height: 320px;
             }
@@ -1633,6 +1927,9 @@
                 font-size: 4.5rem;
                 bottom: 15px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1689,6 +1986,7 @@
 
             .step-message1, .step-message2, .step-message3, .step-message4 {
                 width: 230px;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 margin-left: 0px;
@@ -1756,6 +2054,8 @@
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 padding: 15px;
@@ -2114,6 +2414,9 @@
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2268,7 +2571,11 @@
     <section class="faq-section" id="faqs">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <h3>Frequently Asked Questions</h3>
+=======
+        <h3>FREQUENTLY ASKED QUESTIONS</h3>
+>>>>>>> Stashed changes
 =======
         <h3>FREQUENTLY ASKED QUESTIONS</h3>
 >>>>>>> Stashed changes
@@ -2320,7 +2627,11 @@
             <div class="faq-answer">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <p> You’ll receive an email notification and can also view your status directly on your STREAMS dashboard.</p>
+=======
+                <p> You'll receive an email notification and can also view your status directly on your STREAMS dashboard.</p>
+>>>>>>> Stashed changes
 =======
                 <p> You'll receive an email notification and can also view your status directly on your STREAMS dashboard.</p>
 >>>>>>> Stashed changes
