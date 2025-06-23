@@ -8,6 +8,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Request received: 2025-04-27 18:56:38
 =======
 Request received: 2025-06-23 12:38:59
@@ -21,11 +22,14 @@ POST data: Array
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 Request received: 2025-06-23 12:38:59
 POST data: Array
 (
     [status] => accepted
     [student_id] => 137
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
@@ -260,10 +264,13 @@ POST data: Array
 (
     [status] => pending
     [reference_id] => CCIS-2025-49657
+=======
+>>>>>>> Stashed changes
 )
 
 Session data: Array
 (
+<<<<<<< Updated upstream
     [admin_id] => 1
     [email] => pupccisfaculty@gmail.com
     [is_admin] => 1
@@ -313,6 +320,8 @@ Session data: Array
     [email] => pupccisfaculty@gmail.com
     [is_admin] => 1
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -400,6 +409,9 @@ Session data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

@@ -9,6 +9,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 session_start();
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header("Location: admin_login.php");
@@ -20,6 +21,8 @@ $editRow = null;
 $type = isset($_GET['type']) ? filter_var($_GET['type'], FILTER_SANITIZE_STRING) : null;
 $action = isset($_GET['action']) ? filter_var($_GET['action'], FILTER_SANITIZE_STRING) : null;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -157,6 +160,9 @@ $action = isset($_GET['action']) ? htmlspecialchars($_GET['action'], ENT_QUOTES,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -262,6 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 $success_message = "Grading system added successfully.";
             } catch (Exception $e) {
                 $conn->rollback();
@@ -269,6 +276,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $error_message = $e->getMessage();
             }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -304,6 +313,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -412,6 +424,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 $success_message = "Grading system updated successfully.";
             } catch (Exception $e) {
                 $conn->rollback();
@@ -419,6 +432,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $error_message = $e->getMessage();
             }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -454,6 +469,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -487,8 +505,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 $error_message = "No university name provided for deletion.";
                 break;
+=======
+                $_SESSION['error_message'] = "No university name provided for deletion.";
+                header("Location: manage_edit_registration_form.php#tab4");
+                exit();
+>>>>>>> Stashed changes
 =======
                 $_SESSION['error_message'] = "No university name provided for deletion.";
                 header("Location: manage_edit_registration_form.php#tab4");
@@ -556,11 +580,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 $success_message = "Grading system deleted successfully.";
             } else {
                 $error_message = "Error deleting grading system: " . $conn->error;
             }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -594,6 +621,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -651,6 +681,7 @@ if ($type && isset($tableMap[$type])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         $code = filter_var($_POST['code'], FILTER_SANITIZE_STRING);
         $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 
@@ -677,6 +708,8 @@ if ($type && isset($tableMap[$type])) {
                 } else {
                     // Check if code already exists
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -724,6 +757,9 @@ if ($type && isset($tableMap[$type])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -747,6 +783,7 @@ if ($type && isset($tableMap[$type])) {
                     $check_stmt->bind_param("s", $code);
                     $check_stmt->execute();
                     $result = $check_stmt->get_result();
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -800,6 +837,8 @@ if ($type && isset($tableMap[$type])) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                     if ($result->num_rows > 0) {
                         $_SESSION['error_message'] = "Code already exists. Please use a different code.";
                         header("Location: manage_edit_registration_form.php#tab1");
@@ -830,6 +869,9 @@ if ($type && isset($tableMap[$type])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -855,6 +897,7 @@ if ($type && isset($tableMap[$type])) {
 
     if ($action === 'delete' && $id) {
         try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -903,6 +946,8 @@ if ($type && isset($tableMap[$type])) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             $stmt = $conn->prepare("DELETE FROM `$table` WHERE $idKey = ?");
             $stmt->bind_param("i", $id);
             if ($stmt->execute()) {
@@ -926,6 +971,9 @@ if ($type && isset($tableMap[$type])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -967,6 +1015,7 @@ if ($type && isset($tableMap[$type])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 $error_message = "Record not found.";
             }
         } catch (Exception $e) {
@@ -977,6 +1026,8 @@ if ($type && isset($tableMap[$type])) {
     }
 }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1024,6 +1075,9 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1341,7 +1395,11 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             max-height: 90vh !important;
+=======
+            max-height: 100vh !important;
+>>>>>>> Stashed changes
 =======
             max-height: 100vh !important;
 >>>>>>> Stashed changes
@@ -1798,6 +1856,11 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                    <button class="tab-btn" data-tab="tab5">Tech Programs</button>
+                    <button class="tab-btn" data-tab="tab6">Coded Courses</button>
+>>>>>>> Stashed changes
 =======
                     <button class="tab-btn" data-tab="tab5">Tech Programs</button>
                     <button class="tab-btn" data-tab="tab6">Coded Courses</button>
@@ -1842,6 +1905,7 @@ if (isset($_SESSION['success_message'])) {
 
                 <!-- Tab 1: University Programs -->
                 <div id="tab1" class="tab-content active">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1929,10 +1993,14 @@ if (isset($_SESSION['success_message'])) {
 =======
                     <?php include 'tabs/university_programs.php'; ?>
 >>>>>>> Stashed changes
+=======
+                    <?php include 'tabs/university_programs.php'; ?>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 2: Universities -->
                 <div id="tab2" class="tab-content">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2020,10 +2088,14 @@ if (isset($_SESSION['success_message'])) {
 =======
                     <?php include 'tabs/universities.php'; ?>
 >>>>>>> Stashed changes
+=======
+                    <?php include 'tabs/universities.php'; ?>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 3: Applied Programs -->
                 <div id="tab3" class="tab-content">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2111,10 +2183,14 @@ if (isset($_SESSION['success_message'])) {
 =======
                     <?php include 'tabs/applied_programs.php'; ?>
 >>>>>>> Stashed changes
+=======
+                    <?php include 'tabs/applied_programs.php'; ?>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 4: Grading Systems -->
                 <div id="tab4" class="tab-content">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2500,6 +2576,8 @@ if (isset($_SESSION['success_message'])) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                     <?php include 'tabs/grading_systems.php'; ?>
                 </div>
 
@@ -2530,6 +2608,9 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2585,10 +2666,13 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             });
         });
 
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2636,6 +2720,9 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -3123,10 +3210,13 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     </script>
     </body>
     </html>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -3194,6 +3284,10 @@ if (isset($_SESSION['success_message'])) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+</html>
+>>>>>>> Stashed changes
+=======
 </html>
 >>>>>>> Stashed changes
 =======
