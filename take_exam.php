@@ -41,7 +41,7 @@ if ($result->num_rows === 0) {
 file_put_contents('exam_debug.log', "Accessing exam_id: $exam_id\n", FILE_APPEND);
 
 // Get exam information
-$exam_query = "SELECT e.*, ea.assigned_date, rs.student_id as registered_student_id 
+$exam_query = "SELECT e.*, ea.window_start, ea.window_end, rs.student_id as registered_student_id 
                FROM exams e
                JOIN exam_assignments ea ON e.exam_id = ea.exam_id
                JOIN register_studentsqe rs ON ea.student_id = rs.student_id
@@ -51,6 +51,32 @@ $stmt = $conn->prepare($exam_query);
 $stmt->bind_param("ii", $exam_id, $stud_id);
 $stmt->execute();
 $exam = $stmt->get_result()->fetch_assoc();
+
+// Check if exam is scheduled and validate schedule
+if ($exam['is_scheduled'] == 1) {
+    $current_datetime = new DateTime();
+    $window_start = new DateTime($exam['window_start']);
+    $window_end = new DateTime($exam['window_end']);
+    
+    // If current time is before window start, redirect with error
+    if ($current_datetime < $window_start) {
+        $time_until = $current_datetime->diff($window_start);
+        $hours = $time_until->h + ($time_until->days * 24);
+        $minutes = $time_until->i;
+        
+        $error_message = "This exam window starts at " . $window_start->format('F j, Y g:i A') . 
+                        ". Please come back in " . $hours . " hours and " . $minutes . " minutes.";
+        header("Location: stud_dashboard.php?error=scheduled&message=" . urlencode($error_message));
+        exit();
+    }
+    
+    // If current time is after window end, redirect with error
+    if ($current_datetime > $window_end) {
+        $error_message = "This exam window has ended at " . $window_end->format('F j, Y g:i A') . ".";
+        header("Location: stud_dashboard.php?error=expired&message=" . urlencode($error_message));
+        exit();
+    }
+}
 
 // Debug exam info
 if ($exam) {
@@ -91,6 +117,11 @@ while ($row = $questions_result->fetch_assoc()) {
     $questions[] = $row;
     // Debug each question found
     file_put_contents('exam_debug.log', "Found question: {$row['question_id']} - {$row['question_text']}\n", FILE_APPEND);
+}
+
+// Randomize question order if enabled
+if ($randomize) {
+    shuffle($questions);
 }
 
 $total_questions = count($questions);

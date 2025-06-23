@@ -1,0 +1,74 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 🧠 Full-Stack Web Development Rules – Expert-Level
+
+## 🖥️ GENERAL RULES
+- **Modular, maintainable, and reusable code**.
+- **Naming conventions**: 
+  - `camelCase` for variables/functions.
+  - `snake_case` for database tables.
+  - `PascalCase` for classes.
+- Use **centralized error logging** (e.g., **Monolog** for PHP).
+- **Environment variables** (`.env`) for sensitive configurations.
+- **Version control (Git)** and **CI/CD pipelines**.
+
+---
+
+## ⚙️ BACKEND RULES
+
+### **PHP**
+- **PSR-4 autoloading** and **PSR-12 coding style**.
+- Apply **SOLID principles** for OOP architecture.
+- **Exception handling** with try-catch and centralized error handling.
+- **Unit testing** with PHPUnit, integration tests, and mocking dependencies.
+- **Role-based access control (RBAC)** and **OAuth** for third-party integrations.
+- **JWT expiration & refresh tokens** for secure authentication.
+
+### **API Development**
+- Follow **RESTful** principles, consistent **HTTP status codes** (200, 201, 400, etc.).
+- Implement **rate-limiting** and **request throttling**.
+- **Input sanitization**, **validation**, and **CSRF protection**.
+- Secure sensitive data using **bcrypt/argon2** password hashing.
+
+### **Database Management**
+- Use **snake_case** for table and field names.
+- Implement **indexes**, **soft deletes**, and **foreign key constraints**.
+- Optimize queries using **MySQL indexing** and **query optimization** techniques.
+- **Database backups**, **restore strategies**, and **security** with **phpMyAdmin**.
+
+---
+
+## 🎨 FRONTEND RULES
+
+### **HTML / CSS**
+- Use **semantic HTML** and **BEM** for scalable CSS.
+- **Mobile-first** design and responsive layouts with **Flexbox** or **CSS Grid**.
+- Follow **WCAG** accessibility guidelines for all interactive elements.
+- **Modular SCSS** architecture for component-based styling.
+- Use **CSS variables** for reusable design tokens (e.g., colors, spacing).
+
+### **JavaScript**
+- Follow **ES6+ standards**: `let`, `const`, **async/await**.
+- Enforce **modular JS** using ES6 modules.
+- Add **global error handling** for promises and async functions.
+- Use **Jest**/ **Mocha** for frontend unit tests.
+- **Debounce** and **throttle** UI interactions like search bars.
+
+---
+
+## 🚀 PERFORMANCE & SCALABILITY
+- **Code optimization** and **lazy loading**.
+- Use **caching** strategies (Redis, Memcached) for API responses and database queries.
+- **Image optimization** (WebP, lazy loading).
+- **Asset minification** and **tree shaking** for JS/CSS.
+
+---
+
+## 🔐 SECURITY BEST PRACTICES
+- **SQL injection** prevention, **XSS**, **CSRF** protection.
+- Use **JWT** for token-based authentication and **OAuth** for external APIs.
+- Implement **CSP** headers, **Subresource Integrity** for JS assets.
+

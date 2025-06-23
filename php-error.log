@@ -1,1128 +1,197 @@
-[29-Mar-2025 01:46:32 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 01:46:32 UTC] PHP Stack trace:
-[29-Mar-2025 01:46:32 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:46:32 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 01:46:32 UTC] PHP Stack trace:
-[29-Mar-2025 01:46:32 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:46:32 UTC] Received 'execute' action for programming_id: 4, language: python
-[29-Mar-2025 01:46:32 UTC] Processing test case ID: 7 for programming_id: 4
-[29-Mar-2025 01:46:35 UTC] Judge0 API Response (HTTP 200) for test case 7: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4YjEnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"2a31a4d2-8a19-4e87-b502-cf5d911e582f","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 01:46:35 UTC] Database connection closed.
-[29-Mar-2025 01:50:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 01:50:17 UTC] PHP Stack trace:
-[29-Mar-2025 01:50:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:50:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 01:50:17 UTC] PHP Stack trace:
-[29-Mar-2025 01:50:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:50:17 UTC] Received 'execute' action for programming_id: 4, language: python
-[29-Mar-2025 01:50:17 UTC] Processing test case ID: 7 for programming_id: 4
-[29-Mar-2025 01:50:19 UTC] Judge0 API Response (HTTP 200) for test case 7: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4YjEnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"d1c83d30-9960-4203-aba7-dcc4558b91ab","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 01:50:19 UTC] Database connection closed.
-[29-Mar-2025 01:50:40 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 01:50:40 UTC] PHP Stack trace:
-[29-Mar-2025 01:50:40 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:50:40 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 01:50:40 UTC] PHP Stack trace:
-[29-Mar-2025 01:50:40 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:50:40 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 01:50:40 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 01:50:41 UTC] Judge0 API Response (HTTP 200) for test case 8: {"stdout":null,"time":"0.008","memory":3228,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4YjEnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"65f423ff-d3ef-4405-8803-4d45e94eb37f","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 01:50:41 UTC] Database connection closed.
-[29-Mar-2025 01:52:50 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 01:52:50 UTC] PHP Stack trace:
-[29-Mar-2025 01:52:50 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:52:50 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 01:52:50 UTC] PHP Stack trace:
-[29-Mar-2025 01:52:50 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:52:50 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 01:52:50 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 01:52:50 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 01:52:50 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 01:52:50 UTC] Source Code (First 10 bytes HEX): 73646673616466646166
-[29-Mar-2025 01:52:50 UTC] Source Code (First 50 chars): sdfsadfdafadf
-[29-Mar-2025 01:52:50 UTC] Full Submission Data (JSON): {"source_code":"sdfsadfdafadf","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 01:52:50 UTC] ----- END DEBUG -----
-[29-Mar-2025 01:52:52 UTC] Judge0 API Response (HTTP 200) for test case 8: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4YjEnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"35967e53-3401-4014-8710-65f85d183c34","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 01:52:52 UTC] Database connection closed.
-[29-Mar-2025 01:55:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 01:55:16 UTC] PHP Stack trace:
-[29-Mar-2025 01:55:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:55:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 01:55:16 UTC] PHP Stack trace:
-[29-Mar-2025 01:55:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 01:55:16 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 01:55:16 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 01:55:16 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 01:55:16 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 01:55:16 UTC] Source Code (First 10 bytes HEX): 73646673616466646166
-[29-Mar-2025 01:55:16 UTC] Source Code (First 50 chars): sdfsadfdafadf
-[29-Mar-2025 01:55:16 UTC] Full Submission Data (JSON): {"source_code":"sdfsadfdafadf","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 01:55:16 UTC] ----- END DEBUG -----
-[29-Mar-2025 01:55:17 UTC] Judge0 API Response (HTTP 200) for test case 8: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4YjEnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"9c2deb61-2dc7-45c8-ab64-f84feeda6cc9","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 01:55:17 UTC] Database connection closed.
-[29-Mar-2025 02:12:46 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 02:12:46 UTC] PHP Stack trace:
-[29-Mar-2025 02:12:46 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:12:46 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 02:12:46 UTC] PHP Stack trace:
-[29-Mar-2025 02:12:46 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:12:46 UTC] Received 'execute' action for programming_id: 6, language: python
-[29-Mar-2025 02:12:46 UTC] Processing test case ID: 9 for programming_id: 6
-[29-Mar-2025 02:12:46 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 02:12:46 UTC] Programming ID: 6, Test Case ID: 9
-[29-Mar-2025 02:12:46 UTC] Source Code (First 10 bytes HEX): 6465662061646428612c
-[29-Mar-2025 02:12:46 UTC] Source Code (First 50 chars): def add(a, b):
-    pass
-[29-Mar-2025 02:12:46 UTC] Full Submission Data (JSON): {"source_code":"def add(a, b):\r\n    pass","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 02:12:46 UTC] ----- END DEBUG -----
-[29-Mar-2025 02:12:47 UTC] Judge0 API Response (HTTP 200) for test case 9: {"stdout":null,"time":"0.009","memory":3552,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"df24a558-84d1-4a49-aeaa-b8cfc6d01966","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 02:12:47 UTC] Processing test case ID: 10 for programming_id: 6
-[29-Mar-2025 02:12:47 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 02:12:47 UTC] Programming ID: 6, Test Case ID: 10
-[29-Mar-2025 02:12:47 UTC] Source Code (First 10 bytes HEX): 6465662061646428612c
-[29-Mar-2025 02:12:47 UTC] Source Code (First 50 chars): def add(a, b):
-    pass
-[29-Mar-2025 02:12:47 UTC] Full Submission Data (JSON): {"source_code":"def add(a, b):\r\n    pass","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 02:12:47 UTC] ----- END DEBUG -----
-[29-Mar-2025 02:12:49 UTC] Judge0 API Response (HTTP 200) for test case 10: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"e017e4b2-8c01-4c2c-807b-d5783c16e2d8","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 02:12:49 UTC] Database connection closed.
-[29-Mar-2025 02:13:19 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 02:13:19 UTC] PHP Stack trace:
-[29-Mar-2025 02:13:19 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:13:19 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 02:13:19 UTC] PHP Stack trace:
-[29-Mar-2025 02:13:19 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:13:19 UTC] Received 'execute' action for programming_id: 4, language: python
-[29-Mar-2025 02:13:19 UTC] Processing test case ID: 7 for programming_id: 4
-[29-Mar-2025 02:13:19 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 02:13:19 UTC] Programming ID: 4, Test Case ID: 7
-[29-Mar-2025 02:13:19 UTC] Source Code (First 10 bytes HEX): 73646673616466646166
-[29-Mar-2025 02:13:19 UTC] Source Code (First 50 chars): sdfsadfdafadf
-[29-Mar-2025 02:13:19 UTC] Full Submission Data (JSON): {"source_code":"sdfsadfdafadf","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 02:13:19 UTC] ----- END DEBUG -----
-[29-Mar-2025 02:13:20 UTC] Judge0 API Response (HTTP 200) for test case 7: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4YjEnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"55060db4-dc65-4834-816c-3cdd7965a28a","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 02:13:20 UTC] Database connection closed.
-[29-Mar-2025 02:19:51 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 02:19:51 UTC] PHP Stack trace:
-[29-Mar-2025 02:19:51 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:19:51 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 02:19:51 UTC] PHP Stack trace:
-[29-Mar-2025 02:19:51 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:19:51 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 02:19:51 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 02:19:51 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 02:19:51 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 02:19:51 UTC] Source Code (First 10 bytes HEX): 
-[29-Mar-2025 02:19:51 UTC] Source Code (First 50 chars): 
-[29-Mar-2025 02:19:51 UTC] Full Submission Data (JSON): {"source_code":"","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 02:19:51 UTC] ----- END DEBUG -----
-[29-Mar-2025 02:19:52 UTC] Judge0 API Response (HTTP 422) for test case 8: {"source_code":["can't be blank"]}
-[29-Mar-2025 02:19:52 UTC] Judge0 API error (HTTP 422) for test case 8. Message: Unknown API error
-[29-Mar-2025 02:19:52 UTC] Error in test_exam.php: Code execution service returned error (HTTP 422): Unknown API error
-Trace: #0 C:\wamp64\www\Practice\test_exam.php(51): executeCodeAgainstTestCases(Object(mysqli), '', 'python', 5)
-#1 {main}
-[29-Mar-2025 02:19:52 UTC] Database connection closed.
-[29-Mar-2025 02:20:11 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 02:20:11 UTC] PHP Stack trace:
-[29-Mar-2025 02:20:11 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:20:11 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 02:20:11 UTC] PHP Stack trace:
-[29-Mar-2025 02:20:11 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:20:11 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 02:20:11 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 02:20:11 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 02:20:11 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 02:20:11 UTC] Source Code (First 10 bytes HEX): 
-[29-Mar-2025 02:20:11 UTC] Source Code (First 50 chars): 
-[29-Mar-2025 02:20:11 UTC] Full Submission Data (JSON): {"source_code":"","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 02:20:11 UTC] ----- END DEBUG -----
-[29-Mar-2025 02:20:12 UTC] Judge0 API Response (HTTP 422) for test case 8: {"source_code":["can't be blank"]}
-[29-Mar-2025 02:20:12 UTC] Judge0 API error (HTTP 422) for test case 8. Message: Unknown API error
-[29-Mar-2025 02:20:12 UTC] Error in test_exam.php: Code execution service returned error (HTTP 422): Unknown API error
-Trace: #0 C:\wamp64\www\Practice\test_exam.php(51): executeCodeAgainstTestCases(Object(mysqli), '', 'python', 5)
-#1 {main}
-[29-Mar-2025 02:20:12 UTC] Database connection closed.
-[29-Mar-2025 02:20:19 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 02:20:19 UTC] PHP Stack trace:
-[29-Mar-2025 02:20:19 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:20:19 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 02:20:19 UTC] PHP Stack trace:
-[29-Mar-2025 02:20:19 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 02:20:19 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 02:20:19 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 02:20:19 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 02:20:19 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 02:20:19 UTC] Source Code (First 10 bytes HEX): 
-[29-Mar-2025 02:20:19 UTC] Source Code (First 50 chars): 
-[29-Mar-2025 02:20:19 UTC] Full Submission Data (JSON): {"source_code":"","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 02:20:19 UTC] ----- END DEBUG -----
-[29-Mar-2025 02:20:20 UTC] Judge0 API Response (HTTP 422) for test case 8: {"source_code":["can't be blank"]}
-[29-Mar-2025 02:20:20 UTC] Judge0 API error (HTTP 422) for test case 8. Message: Unknown API error
-[29-Mar-2025 02:20:20 UTC] Error in test_exam.php: Code execution service returned error (HTTP 422): Unknown API error
-Trace: #0 C:\wamp64\www\Practice\test_exam.php(51): executeCodeAgainstTestCases(Object(mysqli), '', 'python', 5)
-#1 {main}
-[29-Mar-2025 02:20:20 UTC] Database connection closed.
-[29-Mar-2025 06:35:06 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 06:35:06 UTC] PHP Stack trace:
-[29-Mar-2025 06:35:06 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:35:06 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 06:35:06 UTC] PHP Stack trace:
-[29-Mar-2025 06:35:06 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:35:06 UTC] Received 'execute' action for programming_id: 6, language: python
-[29-Mar-2025 06:35:06 UTC] Processing test case ID: 9 for programming_id: 6
-[29-Mar-2025 06:35:06 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:35:06 UTC] Programming ID: 6, Test Case ID: 9
-[29-Mar-2025 06:35:06 UTC] Source Code (First 10 bytes HEX): 6465662061646428612c
-[29-Mar-2025 06:35:06 UTC] Source Code (First 50 chars): def add(a, b):
-    pass
-[29-Mar-2025 06:35:06 UTC] Full Submission Data (JSON): {"source_code":"def add(a, b):\r\n    pass","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:35:06 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:35:07 UTC] Judge0 API Response (HTTP 200) for test case 9: {"stdout":null,"time":"0.008","memory":3208,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"9b20c30c-3c37-4ac5-ad7a-3a5890d28adc","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:35:07 UTC] Processing test case ID: 10 for programming_id: 6
-[29-Mar-2025 06:35:07 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:35:07 UTC] Programming ID: 6, Test Case ID: 10
-[29-Mar-2025 06:35:07 UTC] Source Code (First 10 bytes HEX): 6465662061646428612c
-[29-Mar-2025 06:35:07 UTC] Source Code (First 50 chars): def add(a, b):
-    pass
-[29-Mar-2025 06:35:07 UTC] Full Submission Data (JSON): {"source_code":"def add(a, b):\r\n    pass","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:35:07 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:35:08 UTC] Judge0 API Response (HTTP 200) for test case 10: {"stdout":null,"time":"0.007","memory":3548,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"4f546295-8fb4-4639-9c89-99917e0d25c7","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:35:08 UTC] Database connection closed.
-[29-Mar-2025 06:37:53 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 06:37:53 UTC] PHP Stack trace:
-[29-Mar-2025 06:37:53 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:37:53 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 06:37:53 UTC] PHP Stack trace:
-[29-Mar-2025 06:37:53 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:37:53 UTC] Received 'execute' action for programming_id: 6, language: python
-[29-Mar-2025 06:37:53 UTC] Processing test case ID: 9 for programming_id: 6
-[29-Mar-2025 06:37:53 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:37:53 UTC] Programming ID: 6, Test Case ID: 9
-[29-Mar-2025 06:37:53 UTC] Source Code (First 10 bytes HEX): 6465662061646428612c
-[29-Mar-2025 06:37:53 UTC] Source Code (First 50 chars): def add(a, b):
-    pass
-[29-Mar-2025 06:37:53 UTC] Full Submission Data (JSON): {"source_code":"def add(a, b):\r\n    pass","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:37:53 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:37:55 UTC] Judge0 API Response (HTTP 200) for test case 9: {"stdout":null,"time":"0.008","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"4e7bcff5-8f4b-4fea-a845-d8d401e474b9","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:37:55 UTC] Processing test case ID: 10 for programming_id: 6
-[29-Mar-2025 06:37:55 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:37:55 UTC] Programming ID: 6, Test Case ID: 10
-[29-Mar-2025 06:37:55 UTC] Source Code (First 10 bytes HEX): 6465662061646428612c
-[29-Mar-2025 06:37:55 UTC] Source Code (First 50 chars): def add(a, b):
-    pass
-[29-Mar-2025 06:37:55 UTC] Full Submission Data (JSON): {"source_code":"def add(a, b):\r\n    pass","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:37:55 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:37:56 UTC] Judge0 API Response (HTTP 200) for test case 10: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"19f1f77a-bf17-46bd-a0e5-a7cda829b7aa","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:37:56 UTC] Database connection closed.
-[29-Mar-2025 06:38:21 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 06:38:21 UTC] PHP Stack trace:
-[29-Mar-2025 06:38:21 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:38:21 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 33
-[29-Mar-2025 06:38:21 UTC] PHP Stack trace:
-[29-Mar-2025 06:38:21 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:38:21 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 06:38:21 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 06:38:21 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:38:21 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 06:38:21 UTC] Source Code (First 10 bytes HEX): 6465662073756d5f6e75
-[29-Mar-2025 06:38:21 UTC] Source Code (First 50 chars): def sum_numbers(a, b):
-    return a + b
-
-# Exam
-[29-Mar-2025 06:38:21 UTC] Full Submission Data (JSON): {"source_code":"def sum_numbers(a, b):\r\n    return a + b\r\n\r\n# Example usage\r\nresult = sum_numbers(5, 10)\r\nprint(\"The sum is:\", result)\r\n","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:38:21 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:38:22 UTC] Judge0 API Response (HTTP 200) for test case 8: {"stdout":null,"time":"0.007","memory":3272,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ZTcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"1214c5b7-fb5f-4779-84ff-d5b4f7aa456e","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:38:22 UTC] Database connection closed.
-[29-Mar-2025 06:44:14 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 06:44:14 UTC] PHP Stack trace:
-[29-Mar-2025 06:44:14 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:44:14 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 39
-[29-Mar-2025 06:44:14 UTC] PHP Stack trace:
-[29-Mar-2025 06:44:14 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:44:14 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 06:44:14 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 06:44:14 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:44:14 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 06:44:14 UTC] Source Code (First 10 bytes HEX): 23202d2a2d20636f6469
-[29-Mar-2025 06:44:14 UTC] Source Code (First 50 chars): # -*- coding: utf-8 -*-
-def sum_numbers(a, b):
-   
-[29-Mar-2025 06:44:14 UTC] Full Submission Data (JSON): {"source_code":"# -*- coding: utf-8 -*-\ndef sum_numbers(a, b):\n    return a + b","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:44:14 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:44:15 UTC] Judge0 API Response (HTTP 200) for test case 8: {"stdout":null,"time":"0.007","memory":3320,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ODcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"385994e7-63b9-4cb6-b562-9c50613a91a8","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:44:15 UTC] Database connection closed.
-[29-Mar-2025 06:44:25 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 06:44:25 UTC] PHP Stack trace:
-[29-Mar-2025 06:44:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:44:25 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 39
-[29-Mar-2025 06:44:25 UTC] PHP Stack trace:
-[29-Mar-2025 06:44:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:44:25 UTC] Received 'execute' action for programming_id: 5, language: python
-[29-Mar-2025 06:44:25 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 06:44:25 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:44:25 UTC] Programming ID: 5, Test Case ID: 8
-[29-Mar-2025 06:44:25 UTC] Source Code (First 10 bytes HEX): 23202d2a2d20636f6469
-[29-Mar-2025 06:44:25 UTC] Source Code (First 50 chars): # -*- coding: utf-8 -*-
-def sum_numbers(a, b):
-   
-[29-Mar-2025 06:44:25 UTC] Full Submission Data (JSON): {"source_code":"# -*- coding: utf-8 -*-\ndef sum_numbers(a, b):\n    return a + b","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:44:25 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:44:26 UTC] Judge0 API Response (HTTP 200) for test case 8: {"stdout":null,"time":"0.007","memory":3296,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ODcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"94b2aa5b-a994-47fd-8636-75acf0c5a6ba","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:44:26 UTC] Database connection closed.
-[29-Mar-2025 06:47:56 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 30
-[29-Mar-2025 06:47:56 UTC] PHP Stack trace:
-[29-Mar-2025 06:47:56 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:47:56 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 39
-[29-Mar-2025 06:47:56 UTC] PHP Stack trace:
-[29-Mar-2025 06:47:56 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 06:47:56 UTC] Received 'execute' action for programming_id: 4, language: python
-[29-Mar-2025 06:47:56 UTC] Processing test case ID: 7 for programming_id: 4
-[29-Mar-2025 06:47:56 UTC] ----- DEBUG: Preparing to send to Judge0 -----
-[29-Mar-2025 06:47:56 UTC] Programming ID: 4, Test Case ID: 7
-[29-Mar-2025 06:47:56 UTC] Source Code (First 10 bytes HEX): 23202d2a2d20636f6469
-[29-Mar-2025 06:47:56 UTC] Source Code (First 50 chars): # -*- coding: utf-8 -*-
-def sum_numbers(a, b):
-   
-[29-Mar-2025 06:47:56 UTC] Full Submission Data (JSON): {"source_code":"# -*- coding: utf-8 -*-\ndef sum_numbers(a, b):\n    return a + b\n\n# Test the function\nresult = sum_numbers(1, 2)\nprint(result)","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":2,"memory_limit":128000}
-[29-Mar-2025 06:47:56 UTC] ----- END DEBUG -----
-[29-Mar-2025 06:47:58 UTC] Judge0 API Response (HTTP 200) for test case 7: {"stdout":null,"time":"0.01","memory":3228,"stderr":"ICBGaWxlICJzY3JpcHQucHkiLCBsaW5lIDEKU3ludGF4RXJyb3I6IE5vbi1VVEYtOCBjb2RlIHN0YXJ0aW5nIHdpdGggJ1x4ODcnIGluIGZpbGUgc2NyaXB0LnB5IG9uIGxpbmUgMSwgYnV0IG5vIGVuY29kaW5nIGRlY2xhcmVkOyBzZWUgaHR0cDovL3B5dGhvbi5vcmcvZGV2L3BlcHMvcGVwLTAyNjMvIGZvciBkZXRhaWxzCg==","token":"bb648132-123a-49ba-81e0-9bf2bcb5a929","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[29-Mar-2025 06:47:58 UTC] Database connection closed.
-[29-Mar-2025 06:53:46 UTC] Error in test_exam.php: Missing required parameters (action, code, programming_id, language).
-Trace: #0 {main}
-[29-Mar-2025 06:53:46 UTC] Database connection closed.
-[29-Mar-2025 06:53:50 UTC] Error in test_exam.php: Missing required parameters (action, code, programming_id, language).
-Trace: #0 {main}
-[29-Mar-2025 06:53:50 UTC] Database connection closed.
-[29-Mar-2025 07:02:12 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 44
-[29-Mar-2025 07:02:12 UTC] PHP Stack trace:
-[29-Mar-2025 07:02:12 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:02:12 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 53
-[29-Mar-2025 07:02:12 UTC] PHP Stack trace:
-[29-Mar-2025 07:02:12 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:02:13 UTC] Error in test_exam.php: Failed to connect to Judge0 API: Could not resolve host: YOUR_JUDGE0_API_ENDPOINT
-Trace: #0 {main}
-[29-Mar-2025 07:02:13 UTC] Database connection closed.
-[29-Mar-2025 07:10:02 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 47
-[29-Mar-2025 07:10:02 UTC] PHP Stack trace:
-[29-Mar-2025 07:10:02 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:10:02 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 56
-[29-Mar-2025 07:10:02 UTC] PHP Stack trace:
-[29-Mar-2025 07:10:02 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:10:03 UTC] Database connection closed.
-[29-Mar-2025 07:21:59 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 47
-[29-Mar-2025 07:21:59 UTC] PHP Stack trace:
-[29-Mar-2025 07:21:59 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:21:59 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 56
-[29-Mar-2025 07:21:59 UTC] PHP Stack trace:
-[29-Mar-2025 07:21:59 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:22:00 UTC] Database connection closed.
-[29-Mar-2025 07:22:35 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 47
-[29-Mar-2025 07:22:35 UTC] PHP Stack trace:
-[29-Mar-2025 07:22:35 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:22:35 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 56
-[29-Mar-2025 07:22:35 UTC] PHP Stack trace:
-[29-Mar-2025 07:22:35 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:22:37 UTC] Database connection closed.
-[29-Mar-2025 07:32:07 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 47
-[29-Mar-2025 07:32:07 UTC] PHP Stack trace:
-[29-Mar-2025 07:32:07 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:32:07 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 07:32:07 UTC] Database connection closed.
-[29-Mar-2025 07:46:59 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 07:46:59 UTC] PHP Stack trace:
-[29-Mar-2025 07:46:59 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:46:59 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 07:46:59 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 07:46:59 UTC] PHP Stack trace:
-[29-Mar-2025 07:46:59 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:46:59 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 07:46:59 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 44
-[29-Mar-2025 07:46:59 UTC] PHP Stack trace:
-[29-Mar-2025 07:46:59 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 07:46:59 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 07:46:59 UTC] Database connection closed.
-[29-Mar-2025 10:57:25 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 10:57:25 UTC] PHP Stack trace:
-[29-Mar-2025 10:57:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 10:57:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 10:57:25 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 10:57:25 UTC] PHP Stack trace:
-[29-Mar-2025 10:57:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 10:57:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 10:57:25 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 44
-[29-Mar-2025 10:57:25 UTC] PHP Stack trace:
-[29-Mar-2025 10:57:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 10:57:25 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 10:57:25 UTC] Database connection closed.
-[29-Mar-2025 11:08:01 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 11:08:01 UTC] PHP Stack trace:
-[29-Mar-2025 11:08:01 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:08:01 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:08:01 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 11:08:01 UTC] PHP Stack trace:
-[29-Mar-2025 11:08:01 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:08:01 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:08:01 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 44
-[29-Mar-2025 11:08:01 UTC] PHP Stack trace:
-[29-Mar-2025 11:08:01 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:08:01 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 11:08:01 UTC] Database connection closed.
-[29-Mar-2025 11:12:25 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 11:12:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:12:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:12:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:12:25 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 11:12:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:12:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:12:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:12:25 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 44
-[29-Mar-2025 11:12:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:12:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:12:25 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 11:12:25 UTC] Database connection closed.
-[29-Mar-2025 11:12:39 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 11:12:39 UTC] PHP Stack trace:
-[29-Mar-2025 11:12:39 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:12:39 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:12:39 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 11:12:39 UTC] PHP Stack trace:
-[29-Mar-2025 11:12:39 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:12:39 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:12:39 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 44
-[29-Mar-2025 11:12:39 UTC] PHP Stack trace:
-[29-Mar-2025 11:12:39 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:12:39 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 11:12:39 UTC] Database connection closed.
-[29-Mar-2025 11:42:25 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\api_keys.php on line 3
-[29-Mar-2025 11:42:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:42:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:42:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:42:25 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 11:42:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:42:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:42:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:42:25 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 11:42:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:42:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:42:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:42:25 UTC] PHP Warning:  Constant JUDGE0_HOST already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 4
-[29-Mar-2025 11:42:25 UTC] PHP Stack trace:
-[29-Mar-2025 11:42:25 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:42:25 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:42:25 UTC] Error in test_exam.php: Missing required parameters (action, code, programming_id, question_id).
-Trace: #0 {main}
-[29-Mar-2025 11:42:25 UTC] Database connection closed.
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\api_keys.php on line 3
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_HOST already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 4
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:55:44 UTC] Error in test_exam.php: Missing required parameters (action, code, programming_id, question_id).
-Trace: #0 {main}
-[29-Mar-2025 11:55:44 UTC] Database connection closed.
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\api_keys.php on line 3
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:55:44 UTC] PHP Warning:  Constant JUDGE0_HOST already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 4
-[29-Mar-2025 11:55:44 UTC] PHP Stack trace:
-[29-Mar-2025 11:55:44 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 11:55:44 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 11:55:44 UTC] Error in test_exam.php: Missing required parameters (action, code, programming_id, question_id).
-Trace: #0 {main}
-[29-Mar-2025 11:55:44 UTC] Database connection closed.
-[29-Mar-2025 12:10:38 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\api_keys.php on line 3
-[29-Mar-2025 12:10:38 UTC] PHP Stack trace:
-[29-Mar-2025 12:10:38 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:10:38 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 12:10:38 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 12:10:38 UTC] PHP Stack trace:
-[29-Mar-2025 12:10:38 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:10:38 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 12:10:38 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 12:10:38 UTC] PHP Stack trace:
-[29-Mar-2025 12:10:38 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:10:38 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 12:10:38 UTC] PHP Warning:  Constant JUDGE0_HOST already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 4
-[29-Mar-2025 12:10:38 UTC] PHP Stack trace:
-[29-Mar-2025 12:10:38 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:10:38 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 12:10:38 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 138
-[29-Mar-2025 12:10:38 UTC] PHP Stack trace:
-[29-Mar-2025 12:10:38 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:10:38 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 12:10:38 UTC] Database connection closed.
-[29-Mar-2025 12:42:41 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\api_keys.php on line 3
-[29-Mar-2025 12:42:41 UTC] PHP Stack trace:
-[29-Mar-2025 12:42:41 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:42:41 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:18
-[29-Mar-2025 12:42:41 UTC] PHP Warning:  Constant JUDGE0_API_URL already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 2
-[29-Mar-2025 12:42:41 UTC] PHP Stack trace:
-[29-Mar-2025 12:42:41 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:42:41 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 12:42:41 UTC] PHP Warning:  Constant JUDGE0_API_KEY already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 3
-[29-Mar-2025 12:42:41 UTC] PHP Stack trace:
-[29-Mar-2025 12:42:41 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:42:41 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 12:42:41 UTC] PHP Warning:  Constant JUDGE0_HOST already defined in C:\wamp64\www\Practice\config\judge0_config.php on line 4
-[29-Mar-2025 12:42:41 UTC] PHP Stack trace:
-[29-Mar-2025 12:42:41 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:42:41 UTC] PHP   2. require_once() C:\wamp64\www\Practice\test_exam.php:20
-[29-Mar-2025 12:42:41 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 138
-[29-Mar-2025 12:42:41 UTC] PHP Stack trace:
-[29-Mar-2025 12:42:41 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:42:41 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 12:42:41 UTC] Database connection closed.
-[29-Mar-2025 12:57:41 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 12:57:41 UTC] PHP Stack trace:
-[29-Mar-2025 12:57:41 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 12:57:41 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 12:57:41 UTC] Database connection closed.
-[29-Mar-2025 13:12:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:12:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:12:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:12:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:12:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:12 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:12 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:12 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:12 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:12 UTC] Database connection closed.
-[29-Mar-2025 13:21:14 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:14 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:14 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:14 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:14 UTC] Database connection closed.
-[29-Mar-2025 13:21:15 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:15 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:15 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:15 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:15 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:16 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:16 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:16 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:16 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:16 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:17 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:17 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:17 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:17 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:17 UTC] Database connection closed.
-[29-Mar-2025 13:21:18 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:18 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:18 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:18 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:18 UTC] Database connection closed.
-[29-Mar-2025 13:21:18 UTC] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in C:\wamp64\www\Practice\test_exam.php on line 131
-[29-Mar-2025 13:21:18 UTC] PHP Stack trace:
-[29-Mar-2025 13:21:18 UTC] PHP   1. {main}() C:\wamp64\www\Practice\test_exam.php:0
-[29-Mar-2025 13:21:18 UTC] Error in test_exam.php: Invalid or unsupported question ID specified.
-Trace: #0 {main}
-[29-Mar-2025 13:21:18 UTC] Database connection closed.
-[29-Mar-2025 13:31:39 UTC] Executing code with language: python (ID: 71)
-[29-Mar-2025 13:31:39 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[29-Mar-2025 13:31:39 UTC] Processing test case ID: 7 for programming_id: 4
-[29-Mar-2025 13:31:39 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[29-Mar-2025 13:31:41 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"6feb3bac-729b-4523-bb0d-a81cf08bfcfe","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[29-Mar-2025 14:04:44 UTC] Executing code with language: python (ID: 71)
-[29-Mar-2025 14:04:44 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[29-Mar-2025 14:04:44 UTC] Processing test case ID: 7 for programming_id: 4
-[29-Mar-2025 14:04:44 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[29-Mar-2025 14:04:47 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"534713c6-0af3-400a-bc7f-f04c1b688e1c","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[29-Mar-2025 14:09:18 UTC] Executing code with language: python (ID: 71)
-[29-Mar-2025 14:09:18 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[29-Mar-2025 14:09:18 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 14:09:18 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[29-Mar-2025 14:09:20 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3136,"stderr":null,"token":"14152f33-1155-4af8-af56-4eb6208c8f2f","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[29-Mar-2025 14:19:59 UTC] Executing code with language: python (ID: 71)
-[29-Mar-2025 14:19:59 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[29-Mar-2025 14:19:59 UTC] Processing test case ID: 8 for programming_id: 5
-[29-Mar-2025 14:19:59 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[29-Mar-2025 14:20:01 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3296,"stderr":null,"token":"637e6d39-38aa-4bd9-bdda-65eb9d97e796","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 00:11:41 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 00:11:41 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[31-Mar-2025 00:11:41 UTC] Processing test case ID: 11 for programming_id: 7
-[31-Mar-2025 00:11:41 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 00:11:43 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"8521fd62-f909-4557-968b-b24de688e59a","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 00:11:43 UTC] Processing test case ID: 12 for programming_id: 7
-[31-Mar-2025 00:11:43 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MyA0","expected_output":"Nw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 00:11:44 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3296,"stderr":null,"token":"352f0df2-899b-40e5-b179-a2e2ab82d242","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 00:55:02 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 00:55:02 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b...
-[31-Mar-2025 00:55:02 UTC] Processing test case ID: 11 for programming_id: 7
-[31-Mar-2025 00:55:02 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 00:55:04 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3296,"stderr":null,"token":"9772779f-02ef-4df3-8e61-d7a55f95b743","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 00:55:04 UTC] Processing test case ID: 12 for programming_id: 7
-[31-Mar-2025 00:55:04 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg==","language_id":71,"stdin":"MyA0","expected_output":"Nw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 00:55:05 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3300,"stderr":null,"token":"ec15a968-744c-4a32-a846-25b7fc523ce1","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 00:59:55 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 00:59:55 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(3, 4)
-print(r...
-[31-Mar-2025 00:59:55 UTC] Processing test case ID: 11 for programming_id: 7
-[31-Mar-2025 00:59:55 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygzLCA0KQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 00:59:56 UTC] Judge0 Response (HTTP 200): {"stdout":"Nwo=","time":"0.007","memory":3296,"stderr":null,"token":"d2c9ac5f-0ea7-4b1b-b040-d4bb07ab832d","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 00:59:56 UTC] Processing test case ID: 12 for programming_id: 7
-[31-Mar-2025 00:59:56 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygzLCA0KQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MyA0","expected_output":"Nw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 00:59:58 UTC] Judge0 Response (HTTP 200): {"stdout":"Nwo=","time":"0.007","memory":3296,"stderr":null,"token":"a6c67ecb-1b7c-4913-9d77-74b0290805c1","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 01:15:08 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 01:15:08 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[31-Mar-2025 01:15:08 UTC] Processing test case ID: 11 for programming_id: 7
-[31-Mar-2025 01:15:08 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 01:15:09 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"6e7469f7-d8d8-46a7-bd10-2e532b8f295d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 01:15:09 UTC] Processing test case ID: 12 for programming_id: 7
-[31-Mar-2025 01:15:09 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MyA0","expected_output":"Nw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 01:15:11 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"b30455fe-164e-42f5-ae70-517ca7b47858","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 01:21:00 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 01:21:00 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[31-Mar-2025 01:21:00 UTC] Processing test case ID: 11 for programming_id: 7
-[31-Mar-2025 01:21:00 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 01:21:02 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"8748a773-d1cf-4269-935f-71bde65a0691","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 01:21:02 UTC] Processing test case ID: 12 for programming_id: 7
-[31-Mar-2025 01:21:02 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MyA0","expected_output":"Nw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 01:21:03 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3552,"stderr":null,"token":"d981710f-5753-43dc-a2a8-a37bf25c3487","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 01:32:12 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 01:32:12 UTC] Code to execute: def sum_numbers(a, b):
-    return a + b
-
-# Test the function
-result = sum_numbers(1, 2)
-print(r...
-[31-Mar-2025 01:32:12 UTC] Processing test case ID: 11 for programming_id: 7
-[31-Mar-2025 01:32:12 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 01:32:14 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3272,"stderr":null,"token":"d22606c6-f90a-4646-b7e1-8d7717e7730d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 01:32:14 UTC] Processing test case ID: 12 for programming_id: 7
-[31-Mar-2025 01:32:14 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIHN1bV9udW1iZXJzKGEsIGIpOg0KICAgIHJldHVybiBhICsgYg0KDQojIFRlc3QgdGhlIGZ1bmN0aW9uDQpyZXN1bHQgPSBzdW1fbnVtYmVycygxLCAyKQ0KcHJpbnQocmVzdWx0KQ==","language_id":71,"stdin":"MyA0","expected_output":"Nw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 01:32:15 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"e6860291-97ab-4fda-ba93-68ff61de7c92","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[31-Mar-2025 10:37:36 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 10:37:36 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[31-Mar-2025 10:37:36 UTC] Processing test case ID: 13 for programming_id: 8
-[31-Mar-2025 10:37:36 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAzIA==","expected_output":"NA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:37:38 UTC] Judge0 Response (HTTP 200): {"stdout":"NAo=","time":"0.008","memory":3296,"stderr":null,"token":"e6e16f5b-9afb-46fa-8414-2e7719c756d4","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:37:38 UTC] Processing test case ID: 14 for programming_id: 8
-[31-Mar-2025 10:37:38 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSA4","expected_output":"OQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:37:39 UTC] Judge0 Response (HTTP 200): {"stdout":"OQo=","time":"0.008","memory":3392,"stderr":null,"token":"05dbafe3-3438-4946-a454-733273ddac03","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:44:04 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 10:44:04 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[31-Mar-2025 10:44:04 UTC] Processing test case ID: 13 for programming_id: 8
-[31-Mar-2025 10:44:04 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAzIA==","expected_output":"NA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:44:06 UTC] Judge0 Response (HTTP 200): {"stdout":"NAo=","time":"0.007","memory":3304,"stderr":null,"token":"3f4fec7d-43e8-4408-9273-37e74086a1a9","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:44:06 UTC] Processing test case ID: 14 for programming_id: 8
-[31-Mar-2025 10:44:06 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSA4","expected_output":"OQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:44:07 UTC] Judge0 Response (HTTP 200): {"stdout":"OQo=","time":"0.008","memory":3240,"stderr":null,"token":"607fc711-c91b-417c-bd9a-0b9afcc56d4b","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:48:42 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 10:48:42 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[31-Mar-2025 10:48:42 UTC] Processing test case ID: 13 for programming_id: 8
-[31-Mar-2025 10:48:42 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAzIA==","expected_output":"NA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:48:43 UTC] Judge0 Response (HTTP 200): {"stdout":"NAo=","time":"0.007","memory":3228,"stderr":null,"token":"d5bcd943-b448-4ee2-b7f5-9d4b3c84c203","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:48:43 UTC] Processing test case ID: 14 for programming_id: 8
-[31-Mar-2025 10:48:43 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSA4","expected_output":"OQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:48:45 UTC] Judge0 Response (HTTP 200): {"stdout":"OQo=","time":"0.008","memory":3228,"stderr":null,"token":"6addbde8-cd70-4bf5-9428-d9e4ca963e78","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:56:02 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 10:56:02 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[31-Mar-2025 10:56:02 UTC] Processing test case ID: 13 for programming_id: 8
-[31-Mar-2025 10:56:02 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAzIA==","expected_output":"NA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:56:03 UTC] Judge0 Response (HTTP 200): {"stdout":"NAo=","time":"0.008","memory":3416,"stderr":null,"token":"f27c9d97-ea1c-4c1a-a9c0-3846abe74ac8","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:56:03 UTC] Processing test case ID: 14 for programming_id: 8
-[31-Mar-2025 10:56:03 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSA4","expected_output":"OQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:56:05 UTC] Judge0 Response (HTTP 200): {"stdout":"OQo=","time":"0.008","memory":3296,"stderr":null,"token":"56c467b0-eae3-458a-b447-60f3aa020236","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:56:57 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 10:56:57 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[31-Mar-2025 10:56:57 UTC] Processing test case ID: 13 for programming_id: 8
-[31-Mar-2025 10:56:57 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAzIA==","expected_output":"NA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:56:58 UTC] Judge0 Response (HTTP 200): {"stdout":"NAo=","time":"0.008","memory":3552,"stderr":null,"token":"266cc8a9-5122-4a07-83ed-dacce3b23f86","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 10:56:58 UTC] Processing test case ID: 14 for programming_id: 8
-[31-Mar-2025 10:56:58 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSA4","expected_output":"OQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 10:56:59 UTC] Judge0 Response (HTTP 200): {"stdout":"OQo=","time":"0.008","memory":3232,"stderr":null,"token":"583fa14b-1bd0-46e1-b8c3-da4477d03b84","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 11:04:46 UTC] Executing code with language: python (ID: 71)
-[31-Mar-2025 11:04:46 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[31-Mar-2025 11:04:46 UTC] Processing test case ID: 13 for programming_id: 8
-[31-Mar-2025 11:04:46 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAzIA==","expected_output":"NA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 11:04:47 UTC] Judge0 Response (HTTP 200): {"stdout":"NAo=","time":"0.007","memory":3296,"stderr":null,"token":"324a7285-a983-4dda-b63d-8a5e77a410e6","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[31-Mar-2025 11:04:47 UTC] Processing test case ID: 14 for programming_id: 8
-[31-Mar-2025 11:04:47 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSA4","expected_output":"OQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[31-Mar-2025 11:04:48 UTC] Judge0 Response (HTTP 200): {"stdout":"OQo=","time":"0.008","memory":3304,"stderr":null,"token":"a80ebf66-4b0c-41c2-b3aa-3315ffe52e40","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[02-Apr-2025 13:48:58 UTC] Executing code with language: python (ID: 71)
-[02-Apr-2025 13:48:58 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[02-Apr-2025 13:48:58 UTC] Processing test case ID: 31 for programming_id: 14
-[02-Apr-2025 13:48:58 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[02-Apr-2025 13:49:01 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3228,"stderr":null,"token":"720e16df-dd67-4dd8-bd6d-3bd47b366b46","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[02-Apr-2025 13:49:01 UTC] Processing test case ID: 32 for programming_id: 14
-[02-Apr-2025 13:49:01 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[02-Apr-2025 13:49:02 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3296,"stderr":null,"token":"7e4fba1a-3451-44a9-be11-13e22b3e04d3","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[02-Apr-2025 19:11:35 UTC] Executing code with language: python (ID: 71)
-[02-Apr-2025 19:11:35 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[02-Apr-2025 19:11:35 UTC] Processing test case ID: 31 for programming_id: 14
-[02-Apr-2025 19:11:35 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[02-Apr-2025 19:11:36 UTC] Judge0 Response (HTTP 429): {"message":"You have exceeded the DAILY quota for Submissions on your current plan, BASIC. Upgrade your plan at https:\/\/rapidapi.com\/judge0-official\/api\/judge0-ce"}
-[02-Apr-2025 19:11:36 UTC] Judge0 API Error: HTTP 429 - {"message":"You have exceeded the DAILY quota for Submissions on your current plan, BASIC. Upgrade your plan at https:\/\/rapidapi.com\/judge0-official\/api\/judge0-ce"}
-[02-Apr-2025 19:11:36 UTC] Error in test_exam.php: Judge0 API Error: {"message":"You have exceeded the DAILY quota for Submissions on your current plan, BASIC. Upgrade your plan at https:\/\/rapidapi.com\/judge0-official\/api\/judge0-ce"}
-[03-Apr-2025 00:33:24 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 00:33:24 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 00:33:24 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 00:33:24 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:33:27 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3228,"stderr":null,"token":"93647154-62bf-487a-b6bb-e734d17fff46","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:33:27 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 00:33:27 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:33:28 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3332,"stderr":null,"token":"17f205c8-95cb-46fe-b785-53fbfedff0fd","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:44:13 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 00:44:13 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 00:44:13 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 00:44:13 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:44:16 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3480,"stderr":null,"token":"8d21b741-5dc3-42bb-a4c6-b71e617f8a9d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:44:16 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 00:44:16 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:44:17 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3296,"stderr":null,"token":"2b3b814d-00af-424a-8a7c-e1ffd4ff254b","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:45:07 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 00:45:07 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 00:45:07 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 00:45:07 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:45:08 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.009","memory":3296,"stderr":null,"token":"8de1e306-d1aa-49a0-a189-a347341e64bb","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:45:08 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 00:45:08 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:45:09 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.008","memory":3296,"stderr":null,"token":"f7e51444-c923-481e-b224-b06209a91e30","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:56:31 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 00:56:31 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 00:56:31 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 00:56:31 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:56:32 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"f60eca50-4513-4b79-b0d4-f764dfaba98f","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:56:32 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 00:56:32 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:56:34 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.008","memory":3224,"stderr":null,"token":"af03cff8-56d1-4cc3-8b6b-d8148d8490ee","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 00:57:41 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 00:57:41 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 00:57:41 UTC] Processing test case ID: 33 for programming_id: 15
-[03-Apr-2025 00:57:41 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:57:43 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.011","memory":3372,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnNSwnCg==","token":"480f234b-9fb6-45ed-9fee-3f5863a12d27","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 00:57:43 UTC] Processing test case ID: 34 for programming_id: 15
-[03-Apr-2025 00:57:43 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:57:44 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3296,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnMTAsJwo=","token":"e19810a5-c295-45d9-acd6-df45b63db71f","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 00:58:00 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 00:58:00 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 00:58:00 UTC] Processing test case ID: 36 for programming_id: 16
-[03-Apr-2025 00:58:00 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:58:02 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.008","memory":3296,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnNSwnCg==","token":"3e5d5d5d-b2d3-4c82-b29b-aff58cbf0a1c","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 00:58:02 UTC] Processing test case ID: 37 for programming_id: 16
-[03-Apr-2025 00:58:02 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 00:58:03 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.009","memory":3556,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnMTAsJwo=","token":"6e45166b-65ee-4550-b25a-0ead59763297","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:11:09 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:11:09 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:11:09 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 01:11:09 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:11:11 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3228,"stderr":null,"token":"0326c654-04a1-4acd-85a8-239154a76d79","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:11:11 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 01:11:11 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:11:12 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3396,"stderr":null,"token":"05e2f7dd-4cca-4097-b9d1-486d7ab7cd41","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:11:24 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:11:24 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:11:24 UTC] Processing test case ID: 33 for programming_id: 15
-[03-Apr-2025 01:11:24 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:11:26 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3300,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnNSwnCg==","token":"277fc3ba-f378-4eb5-86c4-082d1ccb7f82","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:11:26 UTC] Processing test case ID: 34 for programming_id: 15
-[03-Apr-2025 01:11:26 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:11:27 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.008","memory":3552,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnMTAsJwo=","token":"96236aab-f264-448e-8787-5435276f00ef","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:11:39 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:11:39 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:11:39 UTC] Processing test case ID: 36 for programming_id: 16
-[03-Apr-2025 01:11:39 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:11:40 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3296,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnNSwnCg==","token":"d67f92f5-031b-48c0-913c-5db32e376eb3","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:11:40 UTC] Processing test case ID: 37 for programming_id: 16
-[03-Apr-2025 01:11:40 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:11:42 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.009","memory":3552,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgOSwgaW4gPG1vZHVsZT4KICAgIGEsIGIgPSBtYXAoaW50LCBsaW5lLnNwbGl0KCkpClZhbHVlRXJyb3I6IGludmFsaWQgbGl0ZXJhbCBmb3IgaW50KCkgd2l0aCBiYXNlIDEwOiAnMTAsJwo=","token":"3f1f56fa-5a4e-42b4-8bea-0f16c943968f","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:18:10 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:18:10 UTC] Code to execute: ffsdfasdff...
-[03-Apr-2025 01:18:10 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 01:18:10 UTC] Submitting to Judge0 with data: {"source_code":"ZmZzZGZhc2RmZg==","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:18:12 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.01","memory":3236,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgMSwgaW4gPG1vZHVsZT4KICAgIGZmc2RmYXNkZmYKTmFtZUVycm9yOiBuYW1lICdmZnNkZmFzZGZmJyBpcyBub3QgZGVmaW5lZAo=","token":"d5ca05d6-5702-4a55-8c40-fe30a26ddf78","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:18:12 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 01:18:12 UTC] Submitting to Judge0 with data: {"source_code":"ZmZzZGZhc2RmZg==","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:18:13 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3296,"stderr":"VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgInNjcmlwdC5weSIsIGxpbmUgMSwgaW4gPG1vZHVsZT4KICAgIGZmc2RmYXNkZmYKTmFtZUVycm9yOiBuYW1lICdmZnNkZmFzZGZmJyBpcyBub3QgZGVmaW5lZAo=","token":"baabf45a-1d62-4a09-a1e2-547592dd8743","compile_output":null,"message":"RXhpdGVkIHdpdGggZXJyb3Igc3RhdHVzIDE=","status":{"id":11,"description":"Runtime Error (NZEC)"}}
-[03-Apr-2025 01:25:18 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:25:18 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:25:18 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 01:25:18 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:25:19 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.008","memory":3236,"stderr":null,"token":"71334cdc-923a-40de-a49e-bfc0f16d3e63","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:25:19 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 01:25:19 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:25:21 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3296,"stderr":null,"token":"59216c08-e5f7-4b5a-ad2b-8604ea9f4fd1","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:25:40 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:25:40 UTC] Code to execute: def add(a, b):
-    pass...
-[03-Apr-2025 01:25:40 UTC] Processing test case ID: 33 for programming_id: 15
-[03-Apr-2025 01:25:40 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGFkZChhLCBiKToNCiAgICBwYXNz","language_id":71,"stdin":"IDUsIDM=","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:25:41 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3560,"stderr":null,"token":"5bf14f6a-fc81-4361-b650-09daa72316bf","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 01:25:41 UTC] Processing test case ID: 34 for programming_id: 15
-[03-Apr-2025 01:25:41 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGFkZChhLCBiKToNCiAgICBwYXNz","language_id":71,"stdin":"MTAsIDIw","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:25:42 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3296,"stderr":null,"token":"f773ce44-f1ca-405b-b9c5-c73a40a03a8f","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 01:27:57 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:27:57 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:27:57 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 01:27:57 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:27:58 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.01","memory":3296,"stderr":null,"token":"2b1e0379-60b1-4cd4-b8e1-a3b54caebf7f","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:27:58 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 01:27:58 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:27:59 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3228,"stderr":null,"token":"8e975b77-02be-4aa0-a12f-d70a0480e6a4","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:28:17 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:28:17 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:28:17 UTC] Processing test case ID: 40 for programming_id: 15
-[03-Apr-2025 01:28:17 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"IDUgMw==","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:28:18 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3296,"stderr":null,"token":"e7df58af-67a8-43e8-98ac-6ed902c65cbe","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:28:18 UTC] Processing test case ID: 41 for programming_id: 15
-[03-Apr-2025 01:28:18 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MTAgMjA=","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:28:19 UTC] Judge0 Response (HTTP 200): {"stdout":"MzAK","time":"0.008","memory":3296,"stderr":null,"token":"759a79ae-11ce-4256-99b1-189258ab34f5","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:28:28 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:28:28 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:28:28 UTC] Processing test case ID: 38 for programming_id: 16
-[03-Apr-2025 01:28:28 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"IDUgMw==","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:28:30 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3296,"stderr":null,"token":"38b4efe8-38bf-487d-9462-40e8c08b1c0a","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:28:30 UTC] Processing test case ID: 39 for programming_id: 16
-[03-Apr-2025 01:28:30 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MTAgMjA=","expected_output":"MzA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:28:31 UTC] Judge0 Response (HTTP 200): {"stdout":"MzAK","time":"0.008","memory":3556,"stderr":null,"token":"1feb42df-8361-402d-bcf2-5ee8e29ac7e0","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:33:31 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:33:31 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:33:31 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 01:33:31 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:33:33 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3296,"stderr":null,"token":"6c6170fc-a1bd-4f20-aea8-106f3d21f847","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:33:33 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 01:33:33 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:33:34 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.007","memory":3300,"stderr":null,"token":"722dcb5a-2785-400e-8d1e-ad8cfd2cc35f","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:41:09 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 01:41:09 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 01:41:09 UTC] Processing test case ID: 31 for programming_id: 14
-[03-Apr-2025 01:41:09 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:41:10 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.007","memory":3224,"stderr":null,"token":"48534b74-e88e-4817-8882-d467b9183b64","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 01:41:10 UTC] Processing test case ID: 32 for programming_id: 14
-[03-Apr-2025 01:41:10 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MyA1","expected_output":"OA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 01:41:12 UTC] Judge0 Response (HTTP 200): {"stdout":"OAo=","time":"0.009","memory":3176,"stderr":null,"token":"14250e01-f42a-4c35-b844-fe072fa8e7af","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 11:41:04 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 11:41:04 UTC] Code to execute: import sys
-
-# Read all input lines (including hidden test cases)
-lines = sys.stdin.readlines()
-...
-[03-Apr-2025 11:41:04 UTC] Processing test case ID: 42 for programming_id: 17
-[03-Apr-2025 11:41:04 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MSAy","expected_output":"Mw==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 11:41:06 UTC] Judge0 Response (HTTP 200): {"stdout":"Mwo=","time":"0.011","memory":3296,"stderr":null,"token":"f845d404-b096-4a5f-b9ae-c39b1d9f4bf1","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 11:41:06 UTC] Processing test case ID: 43 for programming_id: 17
-[03-Apr-2025 11:41:06 UTC] Submitting to Judge0 with data: {"source_code":"aW1wb3J0IHN5cw0KDQojIFJlYWQgYWxsIGlucHV0IGxpbmVzIChpbmNsdWRpbmcgaGlkZGVuIHRlc3QgY2FzZXMpDQpsaW5lcyA9IHN5cy5zdGRpbi5yZWFkbGluZXMoKQ0KDQojIEl0ZXJhdGUgb3ZlciB0aGUgdGVzdCBjYXNlcw0KZm9yIGksIGxpbmUgaW4gZW51bWVyYXRlKGxpbmVzLCBzdGFydD0xKToNCiAgICAjIFNwbGl0IGFuZCBjb252ZXJ0IHRoZSBpbnB1dCBudW1iZXJzIHRvIGludGVnZXJzDQogICAgYSwgYiA9IG1hcChpbnQsIGxpbmUuc3BsaXQoKSkNCiAgICANCiAgICAjIFByaW50IHRoZSByZXN1bHQNCiAgICBwcmludChhICsgYik=","language_id":71,"stdin":"MiAz","expected_output":"NQ==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 11:41:07 UTC] Judge0 Response (HTTP 200): {"stdout":"NQo=","time":"0.008","memory":3296,"stderr":null,"token":"9c204970-14c1-46d1-95d5-681338ec1854","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[03-Apr-2025 23:49:55 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 23:49:55 UTC] Code to execute: def is_prime(n: int) -> str:
-    if n <= 1:
-        return "Not Prime"
-    for i in range(2, int(...
-[03-Apr-2025 23:49:55 UTC] Processing test case ID: 44 for programming_id: 18
-[03-Apr-2025 23:49:55 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSI=","language_id":71,"stdin":"NQ==","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:49:56 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3488,"stderr":null,"token":"c78ef9bf-cb28-4d26-9975-1de0ab8be350","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:49:56 UTC] Processing test case ID: 45 for programming_id: 18
-[03-Apr-2025 23:49:56 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSI=","language_id":71,"stdin":"NA==","expected_output":"Ik5vdCBQcmltZSIg","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:49:58 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3552,"stderr":null,"token":"fa97e645-ffa5-4ec2-8313-b0e8d9ab61e5","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:49:58 UTC] Processing test case ID: 46 for programming_id: 18
-[03-Apr-2025 23:49:58 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSI=","language_id":71,"stdin":"NyA=","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:49:59 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.008","memory":3296,"stderr":null,"token":"f95d4e39-ee7a-48e7-b184-a487e3b4fc91","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:53:10 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 23:53:10 UTC] Code to execute: def is_prime(n: int) -> str:
-    if n <= 1:
-        return "Not Prime"
-    for i in range(2, int(...
-[03-Apr-2025 23:53:10 UTC] Processing test case ID: 44 for programming_id: 18
-[03-Apr-2025 23:53:10 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBUZXN0IENhc2VzIChNYWtlIHN1cmUgeW91IHRlc3QgdGhpcyBieSBjYWxsaW5nIHRoZSBmdW5jdGlvbikNCnByaW50KGlzX3ByaW1lKDUpKSAgIyBFeHBlY3RlZDogIlByaW1lIg0KcHJpbnQoaXNfcHJpbWUoNCkpICAjIEV4cGVjdGVkOiAiTm90IFByaW1lIg0KcHJpbnQoaXNfcHJpbWUoNykpICAjIEV4cGVjdGVkOiAiUHJpbWUi","language_id":71,"stdin":"NQ==","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:53:12 UTC] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUKTm90IFByaW1lClByaW1lCg==","time":"0.008","memory":3228,"stderr":null,"token":"8be491bd-f38e-452a-a6f2-dd5a47c470f4","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:53:12 UTC] Processing test case ID: 45 for programming_id: 18
-[03-Apr-2025 23:53:12 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBUZXN0IENhc2VzIChNYWtlIHN1cmUgeW91IHRlc3QgdGhpcyBieSBjYWxsaW5nIHRoZSBmdW5jdGlvbikNCnByaW50KGlzX3ByaW1lKDUpKSAgIyBFeHBlY3RlZDogIlByaW1lIg0KcHJpbnQoaXNfcHJpbWUoNCkpICAjIEV4cGVjdGVkOiAiTm90IFByaW1lIg0KcHJpbnQoaXNfcHJpbWUoNykpICAjIEV4cGVjdGVkOiAiUHJpbWUi","language_id":71,"stdin":"NA==","expected_output":"Ik5vdCBQcmltZSIg","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:53:13 UTC] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUKTm90IFByaW1lClByaW1lCg==","time":"0.008","memory":3552,"stderr":null,"token":"cd975c82-699e-49ed-9f6c-3df294488c59","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:53:13 UTC] Processing test case ID: 46 for programming_id: 18
-[03-Apr-2025 23:53:13 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBUZXN0IENhc2VzIChNYWtlIHN1cmUgeW91IHRlc3QgdGhpcyBieSBjYWxsaW5nIHRoZSBmdW5jdGlvbikNCnByaW50KGlzX3ByaW1lKDUpKSAgIyBFeHBlY3RlZDogIlByaW1lIg0KcHJpbnQoaXNfcHJpbWUoNCkpICAjIEV4cGVjdGVkOiAiTm90IFByaW1lIg0KcHJpbnQoaXNfcHJpbWUoNykpICAjIEV4cGVjdGVkOiAiUHJpbWUi","language_id":71,"stdin":"NyA=","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:53:15 UTC] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUKTm90IFByaW1lClByaW1lCg==","time":"0.01","memory":3296,"stderr":null,"token":"dc4a95e7-89bb-4dc0-9ad0-24fabe1b4cf4","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:53:43 UTC] Executing code with language: python (ID: 71)
-[03-Apr-2025 23:53:43 UTC] Code to execute: def is_prime(n: int) -> str:
-    if n <= 1:
-        return "Not Prime"
-    for i in range(2, int(...
-[03-Apr-2025 23:53:43 UTC] Processing test case ID: 44 for programming_id: 18
-[03-Apr-2025 23:53:43 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSI=","language_id":71,"stdin":"NQ==","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:53:44 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.009","memory":3240,"stderr":null,"token":"fcfc2a4b-8d5f-4c54-ab2e-85fbf323b04e","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:53:44 UTC] Processing test case ID: 45 for programming_id: 18
-[03-Apr-2025 23:53:44 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSI=","language_id":71,"stdin":"NA==","expected_output":"Ik5vdCBQcmltZSIg","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:53:45 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.01","memory":3312,"stderr":null,"token":"ff12a443-4055-4035-9b67-e0a17542a6cc","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[03-Apr-2025 23:53:45 UTC] Processing test case ID: 46 for programming_id: 18
-[03-Apr-2025 23:53:45 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSI=","language_id":71,"stdin":"NyA=","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[03-Apr-2025 23:53:46 UTC] Judge0 Response (HTTP 200): {"stdout":null,"time":"0.007","memory":3296,"stderr":null,"token":"432415ae-b427-4349-89af-d2db7b72b8fe","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[04-Apr-2025 00:00:00 UTC] Executing code with language: python (ID: 71)
-[04-Apr-2025 00:00:00 UTC] Code to execute: def is_prime(n: int) -> str:
-    if n <= 1:
-        return "Not Prime"
-    for i in range(2, int(...
-[04-Apr-2025 00:00:00 UTC] Processing test case ID: 44 for programming_id: 18
-[04-Apr-2025 00:00:00 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[04-Apr-2025 00:00:01 UTC] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3296,"stderr":null,"token":"b96bf2e2-8946-4b1f-9e69-fe81cd628e34","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[04-Apr-2025 00:00:01 UTC] Processing test case ID: 45 for programming_id: 18
-[04-Apr-2025 00:00:01 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Ik5vdCBQcmltZSIg","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[04-Apr-2025 00:00:02 UTC] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.009","memory":3228,"stderr":null,"token":"cdd501d4-aa2d-4436-9b0d-cc3e0af9511a","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[04-Apr-2025 00:00:02 UTC] Processing test case ID: 46 for programming_id: 18
-[04-Apr-2025 00:00:02 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[04-Apr-2025 00:00:03 UTC] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3396,"stderr":null,"token":"8edbc30d-99cb-4719-bed9-88004f88f786","compile_output":null,"message":null,"status":{"id":4,"description":"Wrong Answer"}}
-[04-Apr-2025 00:02:19 UTC] Executing code with language: python (ID: 71)
-[04-Apr-2025 00:02:19 UTC] Code to execute: def is_prime(n: int) -> str:
-    if n <= 1:
-        return '"Not Prime"'
-    for i in range(2, in...
-[04-Apr-2025 00:02:19 UTC] Processing test case ID: 44 for programming_id: 18
-[04-Apr-2025 00:02:19 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICciTm90IFByaW1lIicNCiAgICBmb3IgaSBpbiByYW5nZSgyLCBpbnQobiAqKiAwLjUpICsgMSk6DQogICAgICAgIGlmIG4gJSBpID09IDA6DQogICAgICAgICAgICByZXR1cm4gJyJOb3QgUHJpbWUiJw0KICAgIHJldHVybiAnIlByaW1lIicNCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[04-Apr-2025 00:02:20 UTC] Judge0 Response (HTTP 200): {"stdout":"IlByaW1lIgo=","time":"0.007","memory":3296,"stderr":null,"token":"282c0d0e-04c8-4aa5-86f4-dc84f23954ca","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[04-Apr-2025 00:02:20 UTC] Processing test case ID: 45 for programming_id: 18
-[04-Apr-2025 00:02:20 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICciTm90IFByaW1lIicNCiAgICBmb3IgaSBpbiByYW5nZSgyLCBpbnQobiAqKiAwLjUpICsgMSk6DQogICAgICAgIGlmIG4gJSBpID09IDA6DQogICAgICAgICAgICByZXR1cm4gJyJOb3QgUHJpbWUiJw0KICAgIHJldHVybiAnIlByaW1lIicNCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Ik5vdCBQcmltZSIg","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[04-Apr-2025 00:02:21 UTC] Judge0 Response (HTTP 200): {"stdout":"Ik5vdCBQcmltZSIK","time":"0.007","memory":3296,"stderr":null,"token":"d8ff328e-9604-41e1-b4dd-28b042c03261","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[04-Apr-2025 00:02:21 UTC] Processing test case ID: 46 for programming_id: 18
-[04-Apr-2025 00:02:21 UTC] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICciTm90IFByaW1lIicNCiAgICBmb3IgaSBpbiByYW5nZSgyLCBpbnQobiAqKiAwLjUpICsgMSk6DQogICAgICAgIGlmIG4gJSBpID09IDA6DQogICAgICAgICAgICByZXR1cm4gJyJOb3QgUHJpbWUiJw0KICAgIHJldHVybiAnIlByaW1lIicNCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"IlByaW1lIiA=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
-[04-Apr-2025 00:02:23 UTC] Judge0 Response (HTTP 200): {"stdout":"IlByaW1lIgo=","time":"0.008","memory":3224,"stderr":null,"token":"1fb18d06-bb6f-477b-bced-b32780a17e6d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
-[11-Apr-2025 12:32:10 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'exam' in C:\xampp\htdocs\Practice\config\config.php:9
+[23-Jun-2025 13:29:52 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"8a3284ab-565f-422f-9a41-df28ea7ccb31"}
+[23-Jun-2025 13:29:52 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"60b6d9a8-3c1a-4e59-8dec-e7ecb18c77ae"}
+[23-Jun-2025 13:29:53 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"f88b2af8-0f7c-40c7-882d-90288afc1154"}
+[23-Jun-2025 13:30:30 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"a72fc387-6398-412f-b3fb-dd5f62717547"}
+[23-Jun-2025 13:30:31 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"220fcb15-9af0-41dd-aadb-a025c8d475ef"}
+[23-Jun-2025 13:30:31 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"138e6085-4c4a-47d3-8cac-dccf158be66c"}
+[23-Jun-2025 13:30:42 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"51093e2e-1f6a-4775-9f31-e00f2742f238"}
+[23-Jun-2025 13:30:42 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"fb0fd0d1-b52a-40f7-808e-1078ecdaf3bc"}
+[23-Jun-2025 13:30:43 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"bf31acb1-aeb6-44f1-a731-c8f4bd13dabb"}
+[23-Jun-2025 13:30:48 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"a95eb3f9-62fb-48c9-a76e-64f3ac8e4520"}
+[23-Jun-2025 13:30:49 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"46b06c7f-d0eb-4c6f-a6fd-45cbf0336283"}
+[23-Jun-2025 13:30:49 Asia/Manila] Error in executeSingleTestCase: API Error: HTTP 201 - {"token":"e828f0d2-dd58-494a-9447-64da3eaf5994"}
+[23-Jun-2025 13:33:32 Asia/Manila] PHP Warning:  require_once(includes/judge0_service.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Practice\test_exam.php on line 13
+[23-Jun-2025 13:33:32 Asia/Manila] PHP Fatal error:  Uncaught Error: Failed opening required 'includes/judge0_service.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Practice\test_exam.php:13
 Stack trace:
-#0 C:\xampp\htdocs\Practice\config\config.php(9): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'exam')
-#1 C:\xampp\htdocs\Practice\test_exam.php(11): require_once('C:\\xampp\\htdocs...')
-#2 {main}
-  thrown in C:\xampp\htdocs\Practice\config\config.php on line 9
+#0 {main}
+  thrown in C:\xampp\htdocs\Practice\test_exam.php on line 13
+[23-Jun-2025 13:33:34 Asia/Manila] PHP Warning:  require_once(includes/judge0_service.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Practice\test_exam.php on line 13
+[23-Jun-2025 13:33:34 Asia/Manila] PHP Fatal error:  Uncaught Error: Failed opening required 'includes/judge0_service.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Practice\test_exam.php:13
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Practice\test_exam.php on line 13
+[23-Jun-2025 13:33:34 Asia/Manila] PHP Warning:  require_once(includes/judge0_service.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Practice\test_exam.php on line 13
+[23-Jun-2025 13:33:34 Asia/Manila] PHP Fatal error:  Uncaught Error: Failed opening required 'includes/judge0_service.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Practice\test_exam.php:13
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Practice\test_exam.php on line 13
+[23-Jun-2025 13:43:01 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 13:43:01 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 13:43:01 Asia/Manila] Processing test case ID: 68 for programming_id: 28
+[23-Jun-2025 13:43:01 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 13:43:02 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.007","memory":3228,"stderr":null,"token":"ded028cd-11d8-4140-826e-7f91f26862c1","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 13:43:02 Asia/Manila] Processing test case ID: 69 for programming_id: 28
+[23-Jun-2025 13:43:02 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1l","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 13:43:03 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3552,"stderr":null,"token":"33022d4a-ecaf-4294-93f5-876c8b5ac7a3","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 13:43:03 Asia/Manila] Processing test case ID: 70 for programming_id: 28
+[23-Jun-2025 13:43:03 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"Nw==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 13:43:04 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.007","memory":3296,"stderr":null,"token":"b2927a6e-34a7-4676-a4ad-67454efabac2","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 13:46:38 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 13:46:38 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 13:46:38 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 13:46:38 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 13:46:39 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3296,"stderr":null,"token":"679eb5e5-3f4e-49d2-91de-fe994e9be44b","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 13:46:39 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 13:46:39 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 13:46:40 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"b7d54908-5f47-4a08-bd70-cf673551350a","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 13:46:40 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 13:46:40 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 13:46:41 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3296,"stderr":null,"token":"7953ec59-364c-4ddb-91dc-45ac544b942e","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:56:57 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 14:56:57 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 14:56:57 Asia/Manila] Processing test case ID: 68 for programming_id: 28
+[23-Jun-2025 14:56:57 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:56:58 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.009","memory":3308,"stderr":null,"token":"90e70ebe-93d2-4719-989f-5a340920841e","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:56:58 Asia/Manila] Processing test case ID: 69 for programming_id: 28
+[23-Jun-2025 14:56:58 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1l","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:56:59 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"58e36eb9-30db-44cf-b4ea-ea712aaf0a5b","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:56:59 Asia/Manila] Processing test case ID: 70 for programming_id: 28
+[23-Jun-2025 14:56:59 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"Nw==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:57:00 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3380,"stderr":null,"token":"ea2db8cb-35cf-4ef6-bf5b-c34fa5e0a489","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:58:17 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 14:58:17 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 14:58:17 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 14:58:17 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:58:18 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.007","memory":3296,"stderr":null,"token":"0eaed3bd-4836-47ff-adb9-5e8dd2259d0d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:58:18 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 14:58:18 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:58:19 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"d007a15b-931f-4ef5-bf32-8b66f21b6e9c","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:58:19 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 14:58:19 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:58:19 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3480,"stderr":null,"token":"87dd0ccf-2035-4e27-aed4-8efef58e1ffe","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:58:38 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 14:58:38 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 14:58:38 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 14:58:38 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:58:39 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3296,"stderr":null,"token":"61117939-8764-414f-89ff-5f76c5570e02","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:58:39 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 14:58:39 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:58:40 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.007","memory":3296,"stderr":null,"token":"c059d751-ed80-40a2-945b-009a02001dd4","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:58:40 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 14:58:40 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:58:41 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3296,"stderr":null,"token":"79c538fc-65b7-4ed3-8eea-af9bfa670c89","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:59:00 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 14:59:00 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 14:59:00 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 14:59:00 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:59:01 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3512,"stderr":null,"token":"f1188022-4e9e-4c3a-99a5-11c1f512cf74","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:59:01 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 14:59:01 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:59:02 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3388,"stderr":null,"token":"127065e8-a84a-44fe-b2d2-80a763de0123","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:59:02 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 14:59:02 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:59:03 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.007","memory":3296,"stderr":null,"token":"ccf1689d-2c79-446d-87d5-249c6267d387","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:59:07 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 14:59:07 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 14:59:07 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 14:59:07 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:59:08 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.009","memory":3224,"stderr":null,"token":"1b33881b-0023-4842-8170-75ef9553298d","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:59:08 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 14:59:08 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:59:08 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"539b53c7-a4d6-4b57-b0ae-fe24662ffa65","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 14:59:08 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 14:59:08 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 14:59:09 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.007","memory":3296,"stderr":null,"token":"586a04f4-0740-49fe-abed-6e56812faf81","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 15:30:32 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 15:30:32 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 15:30:32 Asia/Manila] Processing test case ID: 68 for programming_id: 28
+[23-Jun-2025 15:30:32 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 15:30:33 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3296,"stderr":null,"token":"6a986fde-a5b1-4b22-ab6d-1d2b9b87efff","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 15:30:33 Asia/Manila] Processing test case ID: 69 for programming_id: 28
+[23-Jun-2025 15:30:33 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1l","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 15:30:34 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"8a2d93fe-33b2-4f2a-926c-b0e7875fed41","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 15:30:34 Asia/Manila] Processing test case ID: 70 for programming_id: 28
+[23-Jun-2025 15:30:34 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"Nw==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 15:30:35 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3552,"stderr":null,"token":"f9132382-7a8e-40fa-8428-e83558e48b44","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 15:40:01 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 15:40:01 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 15:40:01 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 15:40:01 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 15:40:02 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.007","memory":3248,"stderr":null,"token":"0c1efe25-988f-4c2c-b784-354b3a0c0f73","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 15:40:02 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 15:40:02 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 15:40:03 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"19820800-9503-4df2-85c5-3d407148b021","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 15:40:03 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 15:40:03 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 15:40:04 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3552,"stderr":null,"token":"2ca45e3a-564e-4d6c-a74c-ead49f284b81","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 18:39:40 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 18:39:40 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 18:39:40 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 18:39:40 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 18:39:41 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.009","memory":3472,"stderr":null,"token":"5f2f02c7-fb44-41fe-835c-9925423aaf09","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 18:39:41 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 18:39:41 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 18:39:42 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3296,"stderr":null,"token":"d3fd372e-2d00-484d-9be9-0b4148316492","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 18:39:42 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 18:39:42 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 18:39:43 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.009","memory":3132,"stderr":null,"token":"d80b3012-a912-4dbf-b33b-ac25cbd04873","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 18:41:47 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 18:41:47 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 18:41:47 Asia/Manila] Processing test case ID: 58 for programming_id: 18
+[23-Jun-2025 18:41:47 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 18:41:48 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3460,"stderr":null,"token":"950b55ed-b1e1-4dc3-8e93-1691b09985fa","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 18:41:48 Asia/Manila] Processing test case ID: 59 for programming_id: 18
+[23-Jun-2025 18:41:48 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1lIA==","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 18:41:49 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3228,"stderr":null,"token":"0b473ba3-0d8f-42f8-ade2-55ba23921113","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 18:41:49 Asia/Manila] Processing test case ID: 60 for programming_id: 18
+[23-Jun-2025 18:41:49 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NyA=","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 18:41:50 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.01","memory":3296,"stderr":null,"token":"3d88e286-95bd-4b85-bab0-c0a46e495476","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 19:10:28 Asia/Manila] Executing code with language: python (ID: 71)
+[23-Jun-2025 19:10:28 Asia/Manila] Code to execute: def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(...
+[23-Jun-2025 19:10:28 Asia/Manila] Processing test case ID: 83 for programming_id: 18
+[23-Jun-2025 19:10:28 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NQ==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 19:10:29 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"UHJpbWUK","time":"0.008","memory":3300,"stderr":null,"token":"9cad106d-f560-4ade-a53f-a2e6eab859d4","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 19:10:29 Asia/Manila] Processing test case ID: 84 for programming_id: 18
+[23-Jun-2025 19:10:29 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"NA==","expected_output":"Tm90IFByaW1l","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 19:10:31 Asia/Manila] Judge0 Response (HTTP 200): {"stdout":"Tm90IFByaW1lCg==","time":"0.008","memory":3552,"stderr":null,"token":"c7f15c0d-26d3-4590-a496-b579355db712","compile_output":null,"message":null,"status":{"id":3,"description":"Accepted"}}
+[23-Jun-2025 19:10:31 Asia/Manila] Processing test case ID: 85 for programming_id: 18
+[23-Jun-2025 19:10:31 Asia/Manila] Submitting to Judge0 with data: {"source_code":"ZGVmIGlzX3ByaW1lKG46IGludCkgLT4gc3RyOg0KICAgIGlmIG4gPD0gMToNCiAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgZm9yIGkgaW4gcmFuZ2UoMiwgaW50KG4gKiogMC41KSArIDEpOg0KICAgICAgICBpZiBuICUgaSA9PSAwOg0KICAgICAgICAgICAgcmV0dXJuICJOb3QgUHJpbWUiDQogICAgcmV0dXJuICJQcmltZSINCg0KIyBSZWFkIGlucHV0IGFuZCBwcmludCBvdXRwdXQNCm4gPSBpbnQoaW5wdXQoKS5zdHJpcCgpKQ0KcHJpbnQoaXNfcHJpbWUobikp","language_id":71,"stdin":"Nw==","expected_output":"UHJpbWU=","cpu_time_limit":5,"memory_limit":128000,"base64_encoded":true}
+[23-Jun-2025 19:10:31 Asia/Manila] Judge0 Response (HTTP 429): {"message":"You have exceeded the DAILY quota for Submissions on your current plan, BASIC. Upgrade your plan at https:\/\/rapidapi.com\/judge0-official\/api\/judge0-ce"}
+[23-Jun-2025 19:10:31 Asia/Manila] Judge0 API Error: HTTP 429 - {"message":"You have exceeded the DAILY quota for Submissions on your current plan, BASIC. Upgrade your plan at https:\/\/rapidapi.com\/judge0-official\/api\/judge0-ce"}
+[23-Jun-2025 19:10:31 Asia/Manila] Error in test_exam.php: Judge0 API Error: {"message":"You have exceeded the DAILY quota for Submissions on your current plan, BASIC. Upgrade your plan at https:\/\/rapidapi.com\/judge0-official\/api\/judge0-ce"}

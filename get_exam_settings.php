@@ -36,16 +36,6 @@ try {
     // Fetch the exam data
     $exam = $result->fetch_assoc();
     
-    // Log the data retrieved for debugging
-    file_put_contents('exam_settings_debug.txt', 
-        "Exam ID: " . $exam_id . "\n" .
-        "Passing Score Type: " . ($exam['passing_score_type'] ?? 'NULL') . "\n" .
-        "Passing Score: " . ($exam['passing_score'] ?? 'NULL') . "\n" .
-        "Full Exam Data: " . print_r($exam, true) . "\n" .
-        "--------------------\n",
-        FILE_APPEND
-    );
-    
     // Return the exam settings
     echo json_encode([
         'success' => true,

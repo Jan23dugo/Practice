@@ -123,12 +123,44 @@
                 <li class="nav-item">
                     <a href="manage_edit_registration_form.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
+<<<<<<< Updated upstream
                             app_registration
                         </span>
                         <span class="nav-label">Manage Registration Form</span>
                     </a>
                     <span class="nav-tooltip">Manage Registration Form</span>
                 </li>
+=======
+                            grade
+                        </span>
+                        <span class="nav-label">Manage Grading Systems</span>
+                    </a>
+                    <span class="nav-tooltip">Manage Grading Systems</span>
+                </li>
+                <li class="nav-item">
+                    <a href="admin_tech_programs.php" class="nav-link">
+                        <span class="nav-icon material-symbols-rounded">
+                            school
+                        </span>
+                        <span class="nav-label">Tech Programs</span>
+                    </a>
+                    <span class="nav-tooltip">Tech Programs</span>
+                </li>
+            </ul>
+            <ul class="nav-list primary-nav">
+                <li class="nav-item">
+                    <a href="manage_ips.php" class="nav-link">
+                        <span class="nav-icon material-symbols-rounded">
+                            security
+                        </span>
+                        <span class="nav-label">Manage IPs</span>
+                    </a>
+                    <span class="nav-tooltip">Manage IPs</span>
+                </li>
+            </ul>
+            <!-- Secondary-Nav -->
+            <ul class="nav-list secondary-nav">
+>>>>>>> Stashed changes
                 <li class="nav-item">
                     <a href="admin_profile.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">

@@ -41,4 +41,53 @@ function verifyExamAccess() {
     // 4. Check for proper exam registration
     
     return true;
-} 
+}
+
+// IP Address Configuration
+function getClientIP() {
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        return $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+}
+
+function isIPVerified($conn, $ip_address) {
+    try {
+        $query = "SELECT 1 FROM verified_ips WHERE ip_address = ? AND status = 'active'";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $ip_address);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    } catch (Exception $e) {
+        error_log("Error checking IP verification: " . $e->getMessage());
+        return false;
+    }
+}
+
+// Function to check if current user's IP is verified
+function isCurrentIPVerified($conn) {
+    try {
+        // First, check if there are any IP restrictions configured
+        $count_query = "SELECT COUNT(*) as total FROM verified_ips WHERE status = 'active'";
+        $count_result = $conn->query($count_query);
+        $count_row = $count_result->fetch_assoc();
+        
+        // If no IP restrictions are configured, allow access from anywhere
+        if ($count_row['total'] == 0) {
+            return true;
+        }
+        
+        // If IP restrictions are configured, check if current IP is in the list
+        $client_ip = getClientIP();
+        return isIPVerified($conn, $client_ip);
+    } catch (Exception $e) {
+        error_log("Error checking IP verification: " . $e->getMessage());
+        // If there's an error and we can't determine restrictions, deny access for security
+        return false;
+    }
+}
+?> 

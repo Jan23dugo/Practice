@@ -1,12 +1,10 @@
 <?php
-session_start();
+// Include admin session management
+require_once 'config/admin_session.php';
 include 'config/config.php';
 
-// Check if admin is logged in
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    header("Location: admin_login.php");
-    exit();
-}
+// Check admin session and handle timeout
+checkAdminSession();
 
 // Handle marking notifications as read
 if (isset($_POST['mark_read']) && isset($_POST['notification_id'])) {

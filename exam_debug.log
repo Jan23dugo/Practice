@@ -1,21 +1,325 @@
-Exam ID: 23
-Total Questions: 1
+Exam ID: 24
+Total Questions: 21
 Questions found:
 Array
 (
     [0] => Array
         (
-            [question_id] => 66
-            [exam_id] => 23
-            [question_text] => <p>dfsfasfdadf</p>
-            [question_type] => programming
+            [question_id] => 74
+            [exam_id] => 24
+            [question_text] => <p>In programming, what does "loop" refer to?</p>
+            [question_type] => multiple-choice
             [points] => 1
-            [position] => 0
-            [created_at] => 2025-04-03 19:38:53
-            [updated_at] => 2025-04-03 19:38:53
-            [programming_id] => 17
-            [starter_code] => sdafsdf
+            [position] => 8
+            [created_at] => 2025-04-04 08:35:51
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [1] => Array
+        (
+            [question_id] => 69
+            [exam_id] => 24
+            [question_text] => <p>Which of the following is a type of volatile memory?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 3
+            [created_at] => 2025-04-04 08:31:38
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [2] => Array
+        (
+            [question_id] => 68
+            [exam_id] => 24
+            [question_text] => <p>What does CPU stand for?</p>
+            [question_type] => multiple-choice
+            [points] => 2
+            [position] => 2
+            [created_at] => 2025-04-04 08:30:42
+            [updated_at] => 2025-06-23 15:39:10
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [3] => Array
+        (
+            [question_id] => 85
+            [exam_id] => 24
+            [question_text] => <p>JavaScript can only be used for front-end development.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 19
+            [created_at] => 2025-04-04 08:40:07
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [4] => Array
+        (
+            [question_id] => 84
+            [exam_id] => 24
+            [question_text] => <p>SQL is used to manage and query databases.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 18
+            [created_at] => 2025-04-04 08:39:51
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [5] => Array
+        (
+            [question_id] => 82
+            [exam_id] => 24
+            [question_text] => <p>Machine learning is a subset of artificial intelligence.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 16
+            [created_at] => 2025-04-04 08:39:23
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [6] => Array
+        (
+            [question_id] => 70
+            [exam_id] => 24
+            [question_text] => <p>What is the main function of an operating system?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 4
+            [created_at] => 2025-04-04 08:32:44
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [7] => Array
+        (
+            [question_id] => 73
+            [exam_id] => 24
+            [question_text] => <p>What is the primary purpose of a firewall in a network?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 7
+            [created_at] => 2025-04-04 08:35:10
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [8] => Array
+        (
+            [question_id] => 67
+            [exam_id] => 24
+            [question_text] => <p>Write a function to check whether a number is prime or not.</p><p><br></p><p>A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. Write a function is_prime(n: int) -&gt; str that checks if a number n is prime and returns "Prime" if it is, and "Not Prime" if it isn't.</p>
+            [question_type] => programming
+            [points] => 2
+            [position] => 1
+            [created_at] => 2025-04-04 07:46:25
+            [updated_at] => 2025-06-23 19:05:57
+            [programming_id] => 18
+            [starter_code] => def is_prime(n: int) -> str:
+    # Complete the code below
+    # The function should return "Prime" if the number is prime, 
+    # and "Not Prime" if the number is not prime.
+    pass
             [language] => python
+        )
+
+    [9] => Array
+        (
+            [question_id] => 86
+            [exam_id] => 24
+            [question_text] => <p>A Trojan horse is a type of malware that disguises itself as a legitimate program.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 20
+            [created_at] => 2025-04-04 08:40:22
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [10] => Array
+        (
+            [question_id] => 77
+            [exam_id] => 24
+            [question_text] => <p>Which of these programming languages is primarily used for web development?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 11
+            [created_at] => 2025-04-04 08:38:03
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [11] => Array
+        (
+            [question_id] => 79
+            [exam_id] => 24
+            [question_text] => <p>Cloud computing eliminates the need for all physical storage devices.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 13
+            [created_at] => 2025-04-04 08:38:34
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [12] => Array
+        (
+            [question_id] => 78
+            [exam_id] => 24
+            [question_text] => <p>The BIOS is responsible for loading the operating system when a computer starts.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 12
+            [created_at] => 2025-04-04 08:38:20
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [13] => Array
+        (
+            [question_id] => 81
+            [exam_id] => 24
+            [question_text] => <p>IPv6 addresses are shorter than IPv4 addresses.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 15
+            [created_at] => 2025-04-04 08:39:07
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [14] => Array
+        (
+            [question_id] => 76
+            [exam_id] => 24
+            [question_text] => <p>What does IP in "IP Address" stand for?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 10
+            [created_at] => 2025-04-04 08:37:14
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [15] => Array
+        (
+            [question_id] => 80
+            [exam_id] => 24
+            [question_text] => <p>A VPN (Virtual Private Network) encrypts internet traffic to provide security and privacy.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 14
+            [created_at] => 2025-04-04 08:38:48
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [16] => Array
+        (
+            [question_id] => 87
+            [exam_id] => 24
+            [question_text] => <p>Binary code is composed of only two digits: 0 and 1.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 21
+            [created_at] => 2025-04-04 08:40:35
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [17] => Array
+        (
+            [question_id] => 83
+            [exam_id] => 24
+            [question_text] => <p>The Internet and the World Wide Web (WWW) are the same thing.</p>
+            [question_type] => true-false
+            [points] => 1
+            [position] => 17
+            [created_at] => 2025-04-04 08:39:33
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [18] => Array
+        (
+            [question_id] => 72
+            [exam_id] => 24
+            [question_text] => <p>Which of the following is an example of an open-source operating system?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 6
+            [created_at] => 2025-04-04 08:34:23
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [19] => Array
+        (
+            [question_id] => 71
+            [exam_id] => 24
+            [question_text] => <p>What does HTTP stand for?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 5
+            [created_at] => 2025-04-04 08:33:33
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
+        )
+
+    [20] => Array
+        (
+            [question_id] => 75
+            [exam_id] => 24
+            [question_text] => <p>Which of the following is a relational database management system?</p>
+            [question_type] => multiple-choice
+            [points] => 1
+            [position] => 9
+            [created_at] => 2025-04-04 08:36:38
+            [updated_at] => 2025-06-23 08:29:39
+            [programming_id] => 
+            [starter_code] => 
+            [language] => 
         )
 
 )

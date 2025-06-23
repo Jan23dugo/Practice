@@ -1,0 +1,31 @@
+=== RESULT RELEASE STARTED ===
+Timestamp: 2025-06-22 10:28:47
+Exam ID: 24
+Passed Message Length: 6
+Passed Next Steps Length: 9
+Failed Message Length: 7
+Failed Next Steps Length: 0
+
+=== UPDATING PASSED STUDENTS ===
+Query: UPDATE exam_assignments 
+                     SET is_released = 1, 
+                         result_message = ?, 
+                         next_steps = ?
+                     WHERE exam_id = ? AND passed = 1 AND completion_status = 'completed'
+Parameters: [message_length=6, next_steps_length=9, exam_id=24]
+SUCCESS: Updated 1 passed students
+
+=== CHECKING FOR FAILED STUDENTS ===
+Check Query: SELECT COUNT(*) as count FROM exam_assignments WHERE exam_id = ? AND passed = 0 AND completion_status = 'completed'
+Parameters: [exam_id=24]
+Failed students found: 0
+No failed students to update
+
+=== RESULT RELEASE COMPLETED SUCCESSFULLY ===
+Final Status: SUCCESS
+Passed Students Updated: 1
+Failed Students Updated: 0
+
+=== END LOG ===
+=== POST-RELEASE DATABASE STATE ===
+Assignment ID: 85, Student ID: 113, Passed: 1, Released: 1, Message Length: 6, Next Steps Length: 9

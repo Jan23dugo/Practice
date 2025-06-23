@@ -1,14 +1,11 @@
 <?php
-session_start(); 
+// Include admin session management
+require_once 'config/admin_session.php';
 // Include database connection
 include('config/config.php');
 
-// Check if user is logged in as admin
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    // Not logged in as admin, redirect to admin login page
-    header("Location: admin_login.php");
-    exit();
-}
+// Check admin session and handle timeout
+checkAdminSession();
 
 // Handle form submissions for adding/editing questions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -2077,6 +2074,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script src="assets/js/admin-session.js"></script>
 
 </body>
 </html>

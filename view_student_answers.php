@@ -67,21 +67,33 @@ if (isset($_GET['student_id'])) {
         $stmt->execute();
         $answers = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         
+        // Debug: Log what we found
+        error_log("DEBUG: Found " . count($answers) . " answers for student_id: $student_id, exam_id: $exam_id");
+        
         // Organize answers by question
         foreach ($answers as $answer) {
             $student_answers[$answer['question_id']] = $answer;
             
-            // For multiple choice, also get the answer text
-            if ($answer['question_type'] !== 'programming' && isset($answer['answer_id'])) {
+            // Debug: Log each answer
+            error_log("DEBUG: Question ID " . $answer['question_id'] . ", Type: " . $answer['question_type'] . ", Answer ID Selected: " . ($answer['answer_id_selected'] ?? 'NULL'));
+            
+            // For multiple choice, also get the answer text using answer_id_selected
+            if ($answer['question_type'] !== 'programming' && isset($answer['answer_id_selected']) && !empty($answer['answer_id_selected'])) {
                 $query = "SELECT answer_text FROM answers WHERE answer_id = ?";
                 $stmt = $conn->prepare($query);
-                $stmt->bind_param("i", $answer['answer_id']);
+                $stmt->bind_param("i", $answer['answer_id_selected']);
                 $stmt->execute();
                 $answer_result = $stmt->get_result()->fetch_assoc();
                 
                 if ($answer_result) {
                     $student_answers[$answer['question_id']]['answer_text'] = $answer_result['answer_text'];
+                    error_log("DEBUG: Found answer text: " . $answer_result['answer_text']);
+                } else {
+                    error_log("DEBUG: No answer text found for answer_id: " . $answer['answer_id_selected']);
                 }
+            } else if ($answer['question_type'] === 'programming') {
+                // For programming questions, the answer should be in programming_answer field
+                error_log("DEBUG: Programming answer: " . ($answer['programming_answer'] ?? 'NULL'));
             }
         }
         
@@ -397,22 +409,36 @@ if (isset($_GET['student_id'])) {
                 <div class="question-section">
                     <h3>Exam Questions and Answers</h3>
                     
-                    <?php foreach ($questions as $question): ?>
+                    <!-- Debug Information -->
+                    <?php if (isset($_GET['debug'])): ?>
+                        <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; font-family: monospace; font-size: 12px;">
+                            <strong>Debug Info:</strong><br>
+                            Student ID: <?php echo $student_id; ?><br>
+                            Exam ID: <?php echo $exam_id; ?><br>
+                            Total Student Answers Found: <?php echo count($student_answers); ?><br>
+                            Total Questions: <?php echo count($questions); ?><br>
+                            <br>
+                            <strong>Student Answers Array:</strong><br>
+                            <pre><?php print_r($student_answers); ?></pre>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php foreach ($questions as $idx => $question): ?>
                         <div class="question-card">
                             <div class="question-header">
-                                <div>Question <?php echo $question['position'] ? $question['position'] : 'N/A'; ?> (<?php echo $question['points']; ?> points)</div>
+                                <div>Question <?php echo ($idx + 1); ?> (<?php echo $question['points']; ?> points)</div>
                                 <div>
                                     <?php if ($question['has_answer']): ?>
                                         <?php 
                                             $answer = $student_answers[$question['question_id']];
                                             if ($question['question_type'] !== 'programming') {
-                                                if ($answer['is_correct']) {
+                                                if (isset($answer['is_correct']) && $answer['is_correct']) {
                                                     echo '<span class="answer-correct">Correct</span>';
                                                 } else {
                                                     echo '<span class="answer-incorrect">Incorrect</span>';
                                                 }
                                             } else {
-                                                echo '<span>Score: ' . $answer['score'] . '</span>';
+                                                echo '<span>Score: ' . (isset($answer['score']) ? $answer['score'] : '0') . '</span>';
                                             }
                                         ?>
                                     <?php else: ?>
@@ -430,7 +456,7 @@ if (isset($_GET['student_id'])) {
                                         <div class="answer-label">Student's Answer:</div>
                                         
                                         <?php if ($question['question_type'] === 'programming'): ?>
-                                            <div class="answer-content"><?php echo htmlspecialchars($student_answers[$question['question_id']]['programming_answer']); ?></div>
+                                            <div class="answer-content"><?php echo htmlspecialchars($student_answers[$question['question_id']]['programming_answer'] ?? 'No answer provided'); ?></div>
                                         <?php else: ?>
                                             <div class="answer-content">
                                                 <?php echo htmlspecialchars($student_answers[$question['question_id']]['answer_text'] ?? 'N/A'); ?>

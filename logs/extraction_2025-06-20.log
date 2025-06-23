@@ -1,0 +1,480 @@
+[2025-06-20 00:41:51] Error in processOCRPreview
+Data: Array
+(
+    [error] => Please upload a valid Transcript of Records (TOR)
+    [trace] => #0 C:\wamp64\www\Practice\qualiexam_registerBack.php(2482): processOCRPreview()
+#1 {main}
+)
+
+----------------------------------------
+[2025-06-20 00:42:21] Error in processOCRPreview
+Data: Array
+(
+    [error] => Please upload a valid Transcript of Records (TOR)
+    [trace] => #0 C:\wamp64\www\Practice\qualiexam_registerBack.php(2482): processOCRPreview()
+#1 {main}
+)
+
+----------------------------------------
+[2025-06-20 00:46:25] Error in processOCRPreview
+Data: Array
+(
+    [error] => Please upload a valid Transcript of Records (TOR)
+    [trace] => #0 C:\wamp64\www\Practice\qualiexam_registerBack.php(2482): processOCRPreview()
+#1 {main}
+)
+
+----------------------------------------
+[2025-06-20 00:47:26] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-06-20 00:47:26] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-06-20 00:47:26] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://ocrstreams23.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-06-20 00:47:26] Starting document analysis
+Data: Array
+(
+    [endpoint] => https://ocrstreams23.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+    [data_size] => 239574
+)
+
+----------------------------------------
+[2025-06-20 00:47:26] Executing cURL request to Azure
+----------------------------------------
+[2025-06-20 00:47:28] Received response from Azure
+Data: Array
+(
+    [http_code] => 202
+    [response_size] => 497
+    [header_size] => 497
+)
+
+----------------------------------------
+[2025-06-20 00:47:28] Successfully extracted operation location
+Data: Array
+(
+    [location] => https://ocrstreams23.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/02473cfd-4ab2-486a-8da2-80b2ff05b57c?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-06-20 00:47:28] Got operation location
+Data: Array
+(
+    [location] => https://ocrstreams23.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/02473cfd-4ab2-486a-8da2-80b2ff05b57c?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-06-20 00:47:28] Starting to poll for results
+Data: Array
+(
+    [operation_location] => https://ocrstreams23.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/02473cfd-4ab2-486a-8da2-80b2ff05b57c?api-version=2024-11-30
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:47:28] Polling attempt
+Data: Array
+(
+    [attempt] => 1
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:47:28] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 1
+)
+
+----------------------------------------
+[2025-06-20 00:47:29] Polling attempt
+Data: Array
+(
+    [attempt] => 2
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:47:30] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 2
+)
+
+----------------------------------------
+[2025-06-20 00:47:32] Polling attempt
+Data: Array
+(
+    [attempt] => 3
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:47:33] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 3
+)
+
+----------------------------------------
+[2025-06-20 00:47:36] Polling attempt
+Data: Array
+(
+    [attempt] => 4
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Polling status update
+Data: Array
+(
+    [status] => succeeded
+    [attempt] => 4
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Polling succeeded
+Data: Array
+(
+    [attempts_needed] => 4
+    [has_documents] => 1
+    [document_count] => 1
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Saved full Azure response to debug file
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/logs/debug/azure_response_20250620_004737.json
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Detailed Azure response structure
+Data: Array
+(
+    [status] => succeeded
+    [has_analyzeResult] => yes
+    [document_count] => 1
+    [document_fields] => Array
+        (
+            [0] => TorTable
+        )
+
+    [has_table] => yes
+    [content_length] => 2553
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Table field structure
+Data: Array
+(
+    [type] => array
+    [has_valueArray] => yes
+    [row_count] => 22
+    [row0_fields] => Array
+        (
+            [0] => Subject Code
+            [1] => Description
+            [2] => Grades
+            [3] => Units
+        )
+
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Received results from Azure
+Data: Array
+(
+    [status] => succeeded
+    [has_content] => yes
+    [has_documents] => yes
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Returning structured JSON data
+Data: Array
+(
+    [length] => 153481
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] OCR completed successfully
+Data: Array
+(
+    [output_length] => 153481
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Input appears to be JSON, checking structure
+----------------------------------------
+[2025-06-20 00:47:37] Found Azure Document Intelligence structure
+----------------------------------------
+[2025-06-20 00:47:37] Found table data in Azure results
+----------------------------------------
+[2025-06-20 00:47:37] Successfully extracted subjects from Azure format
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-06-20 00:47:37] Subjects extracted
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-06-20 00:53:08] Processing Copy of Grades
+Data: Array
+(
+    [file_name] => Technological University of the Philippines.jpg
+    [file_size] => 239574
+)
+
+----------------------------------------
+[2025-06-20 00:53:08] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-06-20 00:53:08] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-06-20 00:53:08] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://ocrstreams23.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-06-20 00:53:08] Starting document analysis
+Data: Array
+(
+    [endpoint] => https://ocrstreams23.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+    [data_size] => 239574
+)
+
+----------------------------------------
+[2025-06-20 00:53:08] Executing cURL request to Azure
+----------------------------------------
+[2025-06-20 00:53:09] Received response from Azure
+Data: Array
+(
+    [http_code] => 202
+    [response_size] => 497
+    [header_size] => 497
+)
+
+----------------------------------------
+[2025-06-20 00:53:09] Successfully extracted operation location
+Data: Array
+(
+    [location] => https://ocrstreams23.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/b1d650c7-90ce-49fa-9752-48083d8e41e2?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-06-20 00:53:09] Got operation location
+Data: Array
+(
+    [location] => https://ocrstreams23.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/b1d650c7-90ce-49fa-9752-48083d8e41e2?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-06-20 00:53:09] Starting to poll for results
+Data: Array
+(
+    [operation_location] => https://ocrstreams23.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/b1d650c7-90ce-49fa-9752-48083d8e41e2?api-version=2024-11-30
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:53:09] Polling attempt
+Data: Array
+(
+    [attempt] => 1
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:53:09] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 1
+)
+
+----------------------------------------
+[2025-06-20 00:53:10] Polling attempt
+Data: Array
+(
+    [attempt] => 2
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:53:11] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 2
+)
+
+----------------------------------------
+[2025-06-20 00:53:13] Polling attempt
+Data: Array
+(
+    [attempt] => 3
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:53:14] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 3
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Polling attempt
+Data: Array
+(
+    [attempt] => 4
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Polling status update
+Data: Array
+(
+    [status] => succeeded
+    [attempt] => 4
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Polling succeeded
+Data: Array
+(
+    [attempts_needed] => 4
+    [has_documents] => 1
+    [document_count] => 1
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Saved full Azure response to debug file
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/logs/debug/azure_response_20250620_005317.json
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Detailed Azure response structure
+Data: Array
+(
+    [status] => succeeded
+    [has_analyzeResult] => yes
+    [document_count] => 1
+    [document_fields] => Array
+        (
+            [0] => TorTable
+        )
+
+    [has_table] => yes
+    [content_length] => 2553
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Table field structure
+Data: Array
+(
+    [type] => array
+    [has_valueArray] => yes
+    [row_count] => 22
+    [row0_fields] => Array
+        (
+            [0] => Subject Code
+            [1] => Description
+            [2] => Grades
+            [3] => Units
+        )
+
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Received results from Azure
+Data: Array
+(
+    [status] => succeeded
+    [has_content] => yes
+    [has_documents] => yes
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Returning structured JSON data
+Data: Array
+(
+    [length] => 153481
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] OCR completed successfully
+Data: Array
+(
+    [document_type] => Copy of Grades
+    [output_length] => 153481
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Input appears to be JSON, checking structure
+----------------------------------------
+[2025-06-20 00:53:17] Found Azure Document Intelligence structure
+----------------------------------------
+[2025-06-20 00:53:17] Found table data in Azure results
+----------------------------------------
+[2025-06-20 00:53:17] Successfully extracted subjects from Azure format
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-06-20 00:53:17] Subjects extracted
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------

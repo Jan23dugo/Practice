@@ -6,8 +6,52 @@ function assignExamToStudents($exam_id, $exam_type) {
     
     try {
         // Log the start of the assignment process
-        $log_file = 'exam_assignment.log';
-        file_put_contents($log_file, "Starting exam assignment for exam_id: $exam_id (Type: $exam_type)\n", FILE_APPEND);
+        $log_file = 'logs/exam_assignment_' . date('Y-m-d') . '.log';
+        file_put_contents($log_file, "\n" . str_repeat("=", 80) . "\n", FILE_APPEND);
+        file_put_contents($log_file, "[" . date('Y-m-d H:i:s') . "] Starting exam assignment for exam_id: $exam_id (Type: $exam_type)\n", FILE_APPEND);
+
+        // Validate exam scheduling first
+        $validation = validateExamScheduling($exam_id);
+        if (!$validation['valid']) {
+            file_put_contents($log_file, "❌ VALIDATION FAILED: " . $validation['error'] . "\n", FILE_APPEND);
+            return false;
+        }
+
+        if ($validation['scheduled']) {
+            file_put_contents($log_file, "✅ Exam is scheduled with valid datetime values\n", FILE_APPEND);
+        } else {
+            file_put_contents($log_file, "✅ Exam is not scheduled (immediate assignment)\n", FILE_APPEND);
+        }
+
+        // Fetch window_start and window_end from the exams table
+        $window_query = "SELECT window_start, window_end FROM exams WHERE exam_id = ?";
+        $window_stmt = $conn->prepare($window_query);
+        $window_stmt->bind_param("i", $exam_id);
+        $window_stmt->execute();
+        $window_result = $window_stmt->get_result();
+        $window_data = $window_result->fetch_assoc();
+        $window_start = $window_data['window_start'];
+        $window_end = $window_data['window_end'];
+
+        // Log the datetime values fetched from exams table
+        file_put_contents($log_file, "Fetched datetime values from exams table:\n", FILE_APPEND);
+        file_put_contents($log_file, "  window_start: '$window_start'\n", FILE_APPEND);
+        file_put_contents($log_file, "  window_end: '$window_end'\n", FILE_APPEND);
+
+        // Validate datetime values - check for MySQL zero dates
+        if ($window_start === '0000-00-00 00:00:00' || $window_start === null || empty($window_start)) {
+            file_put_contents($log_file, "ERROR: Invalid window_start value detected: '$window_start'\n", FILE_APPEND);
+            file_put_contents($log_file, "Skipping exam assignment due to invalid datetime values\n", FILE_APPEND);
+            return false;
+        }
+
+        if ($window_end === '0000-00-00 00:00:00' || $window_end === null || empty($window_end)) {
+            file_put_contents($log_file, "ERROR: Invalid window_end value detected: '$window_end'\n", FILE_APPEND);
+            file_put_contents($log_file, "Skipping exam assignment due to invalid datetime values\n", FILE_APPEND);
+            return false;
+        }
+
+        file_put_contents($log_file, "✅ Datetime values are valid, proceeding with assignment\n", FILE_APPEND);
 
         // Get all eligible students based on exam type from register_studentsqe
         // Only select students who don't already have this exam assigned
@@ -49,23 +93,26 @@ function assignExamToStudents($exam_id, $exam_type) {
             return false;
         }
 
-        // Prepare the assignment insert statement
+        // Prepare the assignment insert statement with window_start and window_end
         $assign_query = "INSERT INTO exam_assignments 
-                        (exam_id, student_id, assigned_date, completion_status) 
-                        VALUES (?, ?, NOW(), 'pending')";
+                        (exam_id, student_id, window_start, window_end, completion_status) 
+                        VALUES (?, ?, ?, ?, 'pending')";
         
         $assign_stmt = $conn->prepare($assign_query);
         $students_assigned = 0;
 
         // Insert assignments for each eligible student
         while ($student = $result->fetch_assoc()) {
-            $assign_stmt->bind_param("ii", $exam_id, $student['student_id']);
+            $assign_stmt->bind_param("iiss", $exam_id, $student['student_id'], $window_start, $window_end);
             
             if ($assign_stmt->execute()) {
                 $students_assigned++;
-                file_put_contents($log_file, "Assigned exam to student: {$student['first_name']} {$student['last_name']} (ID: {$student['student_id']})\n", FILE_APPEND);
+                file_put_contents($log_file, "✅ Assigned exam to student: {$student['first_name']} {$student['last_name']} (ID: {$student['student_id']})\n", FILE_APPEND);
+                file_put_contents($log_file, "   Assigned window_start: '$window_start'\n", FILE_APPEND);
+                file_put_contents($log_file, "   Assigned window_end: '$window_end'\n", FILE_APPEND);
             } else {
-                file_put_contents($log_file, "Failed to assign exam to student ID: {$student['student_id']}\n", FILE_APPEND);
+                file_put_contents($log_file, "❌ Failed to assign exam to student ID: {$student['student_id']}\n", FILE_APPEND);
+                file_put_contents($log_file, "   Database error: " . $assign_stmt->error . "\n", FILE_APPEND);
             }
         }
 
@@ -77,6 +124,40 @@ function assignExamToStudents($exam_id, $exam_type) {
         file_put_contents($log_file, "Error in exam assignment: " . $e->getMessage() . "\n", FILE_APPEND);
         throw $e;
     }
+}
+
+// Function to check if exam has valid scheduling data
+function validateExamScheduling($exam_id) {
+    global $conn;
+    
+    $check_query = "SELECT window_start, window_end, is_scheduled FROM exams WHERE exam_id = ?";
+    $stmt = $conn->prepare($check_query);
+    $stmt->bind_param("i", $exam_id);
+    $stmt->execute();
+    $result = $stmt->get_result()->fetch_assoc();
+    
+    if (!$result) {
+        return ['valid' => false, 'error' => 'Exam not found'];
+    }
+    
+    // If exam is not scheduled, return valid (no datetime validation needed)
+    if ($result['is_scheduled'] != 1) {
+        return ['valid' => true, 'scheduled' => false];
+    }
+    
+    // If exam is scheduled, validate datetime values
+    $window_start = $result['window_start'];
+    $window_end = $result['window_end'];
+    
+    if ($window_start === '0000-00-00 00:00:00' || $window_start === null || empty($window_start)) {
+        return ['valid' => false, 'error' => 'Invalid window_start datetime'];
+    }
+    
+    if ($window_end === '0000-00-00 00:00:00' || $window_end === null || empty($window_end)) {
+        return ['valid' => false, 'error' => 'Invalid window_end datetime'];
+    }
+    
+    return ['valid' => true, 'scheduled' => true, 'window_start' => $window_start, 'window_end' => $window_end];
 }
 
 // Function to get assignment statistics

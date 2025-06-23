@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
     session_start(); // Start session if needed
 // Include database connection
 include('config/config.php');
@@ -9,6 +10,15 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header("Location: admin_login.php");
     exit();
 }
+=======
+    // Include admin session management
+    require_once 'config/admin_session.php';
+    // Include database connection
+    include('config/config.php');
+
+    // Check admin session and handle timeout
+    checkAdminSession();
+>>>>>>> Stashed changes
 
 // Initialize stats array
 $stats = array();
@@ -1398,7 +1408,11 @@ try {
 
 <div class="main">
     <div class="dashboard-header">
+<<<<<<< Updated upstream
         <h1 class="dashboard-title">STREAMS ADMIN DASHBOARD</h1>
+=======
+        <h1 class="dashboard-title">STREAMS Admin Dashboard</h1>
+>>>>>>> Stashed changes
         <div class="dashboard-date">
             <?php echo date('l, F j, Y'); ?>
         </div>
@@ -1465,7 +1479,11 @@ try {
                         echo "Query Error: " . $conn->error;
                     }
                     ?>
+<<<<<<< Updated upstream
                     <p style="margin-bottom: 10px; font-style: italic;">Click on the student name to view their application details.</p>
+=======
+                    <p style="margin-bottom: 10px; font-style: italic; color:rgb(97, 97, 97);">Click on the student name to view their application details.</p>
+>>>>>>> Stashed changes
                     <table class="analysis-table">
                         <thead>
                             <tr>
@@ -1652,6 +1670,10 @@ try {
 </div>
 
 <script src="assets/js/side.js"></script>
+<<<<<<< Updated upstream
+=======
+<script src="assets/js/admin-session.js"></script>
+>>>>>>> Stashed changes
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const examTypeFilter = document.getElementById('examTypeFilter');

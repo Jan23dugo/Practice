@@ -1372,6 +1372,13 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
                             <textarea id="quiz-description" name="quiz-description" class="settings-textarea" placeholder="Enter a description for your quiz"></textarea>
                         </div>
                         
+                        <!-- Exam Instructions Field -->
+                        <div class="form-group">
+                            <label for="exam-instructions">Exam Instructions/Guidelines (optional)</label>
+                            <textarea id="exam-instructions" name="exam-instructions" class="settings-textarea" placeholder="Enter instructions for students (e.g., rules, allowed materials, etc.)"></textarea>
+                            <small style="color: #666; font-size: 12px;">These instructions will be shown to students before they start the exam.</small>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="exam-type">Exam Type</label>
                             <div class="select-wrapper">
@@ -1414,15 +1421,15 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
                             </div>
                             <div id="schedule-container" style="display: none;">
                                 <div class="date-picker-wrapper">
-                                    <label for="scheduled_date">Exam Date</label>
-                                    <input type="date" id="scheduled_date" name="scheduled_date" class="settings-input">
+                                    <label for="window_start">Exam Start</label>
+                                    <input type="datetime-local" id="window_start" name="window_start" class="settings-input">
                                 </div>
-                                <div class="time-picker-wrapper">
-                                    <label for="scheduled_time">Exam Time</label>
-                                    <input type="time" id="scheduled_time" name="scheduled_time" class="settings-input">
+                                <div class="date-picker-wrapper">
+                                    <label for="window_end">Exam End</label>
+                                    <input type="datetime-local" id="window_end" name="window_end" class="settings-input">
                                 </div>
                                 <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">
-                                    <strong>Note:</strong> Scheduling is required for the exam to be automatically assigned to eligible students
+                                    <strong>Note:</strong> Exam will be available to students only between the start and end date/time.
                                 </p>
                             </div>
                         </div>
@@ -1784,13 +1791,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (exam.is_scheduled == 1) {
                         scheduleCheckbox.checked = true;
                         scheduleContainer.style.display = 'block';
-                        
-                        if (exam.scheduled_date) {
-                            document.getElementById('scheduled_date').value = exam.scheduled_date;
+                        if (exam.window_start && exam.window_start !== '0000-00-00 00:00:00' && exam.window_start !== null) {
+                            document.getElementById('window_start').value = exam.window_start.replace(' ', 'T');
                         }
-                        
-                        if (exam.scheduled_time) {
-                            document.getElementById('scheduled_time').value = exam.scheduled_time;
+                        if (exam.window_end && exam.window_end !== '0000-00-00 00:00:00' && exam.window_end !== null) {
+                            document.getElementById('window_end').value = exam.window_end.replace(' ', 'T');
                         }
                     }
                     

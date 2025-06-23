@@ -1,0 +1,202 @@
+[2025-06-23 13:29:51] Executing code
+Data: Array
+(
+    [code] => def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return "Not Prime"
+    return "Prime"
+
+# Read input and print output
+n = int(input().strip())
+print(is_prime(n))
+    [language] => python
+    [programming_id] => 28
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:29:53] Execution results
+Data: Array
+(
+    [0] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"8a3284ab-565f-422f-9a41-df28ea7ccb31"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [1] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"60b6d9a8-3c1a-4e59-8dec-e7ecb18c77ae"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [2] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"f88b2af8-0f7c-40c7-882d-90288afc1154"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:30:30] Executing code
+Data: Array
+(
+    [code] => def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return "Not Prime"
+    return "Prime"
+
+# Read input and print output
+n = int(input().strip())
+print(is_prime(n))
+    [language] => python
+    [programming_id] => 28
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:30:31] Execution results
+Data: Array
+(
+    [0] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"a72fc387-6398-412f-b3fb-dd5f62717547"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [1] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"220fcb15-9af0-41dd-aadb-a025c8d475ef"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [2] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"138e6085-4c4a-47d3-8cac-dccf158be66c"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:30:41] Executing code
+Data: Array
+(
+    [code] => def is_prime(n: int) -&gt; str:
+    # Complete the code below
+    # The function should return &quot;Prime&quot; if the number is prime, 
+    # and &quot;Not Prime&quot; if the number is not prime.
+    pass
+    [language] => python
+    [programming_id] => 28
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:30:43] Execution results
+Data: Array
+(
+    [0] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"51093e2e-1f6a-4775-9f31-e00f2742f238"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [1] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"fb0fd0d1-b52a-40f7-808e-1078ecdaf3bc"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [2] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"bf31acb1-aeb6-44f1-a731-c8f4bd13dabb"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:30:48] Executing code
+Data: Array
+(
+    [code] => def is_prime(n: int) -> str:
+    if n <= 1:
+        return "Not Prime"
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return "Not Prime"
+    return "Prime"
+
+# Read input and print output
+n = int(input().strip())
+print(is_prime(n))
+    [language] => python
+    [programming_id] => 28
+)
+
+--------------------------------------------------------------------------------
+[2025-06-23 13:30:49] Execution results
+Data: Array
+(
+    [0] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"a95eb3f9-62fb-48c9-a76e-64f3ac8e4520"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [1] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"46b06c7f-d0eb-4c6f-a6fd-45cbf0336283"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+    [2] => Array
+        (
+            [passed] => 
+            [error] => API Error: HTTP 201 - {"token":"e828f0d2-dd58-494a-9447-64da3eaf5994"}
+            [actual] => 
+            [expected] => 
+            [name] => Test Case
+        )
+
+)
+
+--------------------------------------------------------------------------------

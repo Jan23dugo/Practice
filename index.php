@@ -26,6 +26,15 @@
             --transition: all 0.3s ease;
         }
 
+<<<<<<< Updated upstream
+=======
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Adjust depending on your navbar height */
+        }
+
+
+>>>>>>> Stashed changes
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +51,11 @@
         header {
             background-color: #75343a;
             color: white;
+<<<<<<< Updated upstream
             padding: 10px;
+=======
+            padding: 10px 20px;
+>>>>>>> Stashed changes
             display: flex;
             position: fixed;
             justify-content: space-between;
@@ -50,12 +63,22 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+<<<<<<< Updated upstream
         }
 
         header .logo img {
             width: 70px;
             height: auto;
             margin-left: 30px;
+=======
+            height: 80px; /* Slightly increased for better visibility */
+        }
+
+        header .logo img {
+            width: 60px;
+            height: auto;
+            margin-left: 20px;
+>>>>>>> Stashed changes
         }
 
         nav ul {
@@ -64,15 +87,25 @@
         }
 
         nav ul li {
+<<<<<<< Updated upstream
             margin-right: 50px;
             margin-top: 20px;
             padding-left: 30px;
+=======
+            margin-right: 30px;
+            margin-top: 10px;
+            padding-left: 20px;
+>>>>>>> Stashed changes
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
+<<<<<<< Updated upstream
             font-size: 22px;
+=======
+            font-size: 18px; /* Reduced from 22px for better proportion */
+>>>>>>> Stashed changes
             font-weight: 600;
             padding: 8px 0px;
             border-radius: 6px;
@@ -100,13 +133,18 @@
             background-image: url('assets/images/Homepage.png');
             background-size: cover;
             background-position: center;
+<<<<<<< Updated upstream
             height: 920px;
+=======
+            height: calc(100vh - 80px); /* Full viewport height minus header */
+>>>>>>> Stashed changes
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
             padding: 50px 20px;
+<<<<<<< Updated upstream
             margin-top: 90px
         }
 
@@ -147,10 +185,60 @@
         .buttons button {
             padding: 12px 35px;
             font-size: 25px;
+=======
+            margin-top: 80px;
+        }
+
+        .banner-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .banner-content h2 {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .banner-content h1 {
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: 1.2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .banner-content p {
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            font-weight: 400;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .buttons {
+            margin-top: 40px;
+            height: auto;
+            gap: 30px;
+        }
+
+        .buttons button {
+            padding: 12px 30px;
+            font-size: 20px;
+>>>>>>> Stashed changes
             font-weight: bold;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+<<<<<<< Updated upstream
+=======
+            border-width: 5px;
+>>>>>>> Stashed changes
         }
 
         .buttons .login {
@@ -184,18 +272,27 @@
         }
 
         button i {
+<<<<<<< Updated upstream
             font-size: 30px;
+=======
+            font-size: 24px;
+>>>>>>> Stashed changes
         }
 
         /* Admission Process Section */
         .admission-process {
+<<<<<<< Updated upstream
             background-color: #e9e9e9; /* Light gray background for contrast */
+=======
+            background-color: #e9e9e9;
+>>>>>>> Stashed changes
             color: #333;
             text-align: center;
             padding: 60px 20px;
             align-items: center;
         }
 
+<<<<<<< Updated upstream
         .admission-process h3 {
             font-size: 4rem;
             font-weight: 800;
@@ -209,6 +306,35 @@
             font-weight: 600;
             line-height: 1.6;
             text-align: center;
+=======
+        .admission-process h3, .program-info h3, .faq-section h3 {
+            font-size: clamp(28px, 3.5vw, 36px);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .admission-process h3::after, .program-info h3::after, .faq-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .admission-process h4 {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 500;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+>>>>>>> Stashed changes
         }
 
         .steps {
@@ -216,15 +342,31 @@
             justify-content: space-around;
             align-items: flex-start;
             flex-wrap: wrap;
+<<<<<<< Updated upstream
         }
 
         .step {
             width: 22%;
+=======
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .step {
+            width: 280px;
+>>>>>>> Stashed changes
             text-align: center;
             border-radius: 10px;
             padding: 30px 20px;
             margin-bottom: 30px;
             transition: transform 0.5s ease, box-shadow 0.3s ease;
+<<<<<<< Updated upstream
+=======
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+>>>>>>> Stashed changes
         }
 
         .step:hover {
@@ -233,21 +375,32 @@
 
         .step-header {
             display: flex;
+<<<<<<< Updated upstream
             flex-direction: column; /* Stack number and title vertically */
+=======
+            flex-direction: column;
+>>>>>>> Stashed changes
             align-items: center;
             text-align: center;
             margin-bottom: 20px;
         }
 
+<<<<<<< Updated upstream
         .step-number1 {
             background-color: #5f7882; /* Blue circle for the number */
             color: #f4f4f4;
             width: 90px;
             height: 90px;
+=======
+        .step-number1, .step-number2, .step-number3, .step-number4 {
+            width: 70px;
+            height: 70px;
+>>>>>>> Stashed changes
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+<<<<<<< Updated upstream
             font-size: 3.2rem;
             margin-bottom: 20px; /* Space between number and title */
             border-style: solid;
@@ -524,10 +677,176 @@
         }
 
         .program3 {
+=======
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #f4f4f4;
+            border-width: 7px;
+            border-style: solid;
+            transition: transform 0.3s ease;
+        }
+
+        .step-number1 {
+            background-color: #5f7882;
+            border-color: #385b6a;
+        }
+
+        .step-number2 {
+            background-color: #63874d;
+            border-color: #4b6c36;
+        }
+
+        .step-number3 {
+            background-color: #e1a55e;
+            border-color: #c07e31;
+        }
+
+        .step-number4 {
+            background-color: #75343a;
+            border-color: #974950;
+        }
+
+        .step-title1, .step-title2, .step-title3, .step-title4 {
+            width: 250px;
+            font-size: 20px;
+            height: 45px;
+            padding-top: 8px;
+            font-weight: bold;
+            color: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        .step-title1 { background-color: #5f7882; }
+        .step-title2 { background-color: #63874d; }
+        .step-title3 { background-color: #e1a55e; }
+        .step-title4 { background-color: #75343a; }
+
+        .step-message1, .step-message2, .step-message3, .step-message4 {
+            width: 280px;
+            font-size: 18px;
+            min-height: 350px;
+            padding: 25px;
+            border-radius: 25px;
+            color: #f4f4f4;
+            box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-message1 p, .step-message2 p, .step-message3 p, .step-message4 p {
+            margin-bottom: 100px;
+        }
+
+        .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5.5rem;
+            color: #000000;
+            transition: transform 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+            margin-top: 0;
+        }
+
+        .step-icon1:hover, .step-icon2:hover, .step-icon3:hover, .step-icon4:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .step-message1 { background-color: #5f7882; }
+        .step-message2 { background-color: #63874d; }
+        .step-message3 { background-color: #e1a55e; }
+        .step-message4 { background-color: #75343a; }
+
+        /* Program Information Section */
+        .program-info {
+            background-color:#75343a; /* Dark red background */
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .program-info p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .program-image img {
+            width: 100%;
+            max-width: 400px; /* Adjust size as needed */
+            height: auto;
+            margin-top: 20px;
+        }
+
+        /* Program Details Section */
+        .program-details {
+            display: flex;
+            flex-direction: column; /* Stack the programs vertically */
+            gap: 30px;
+            padding-left: 70px;
+            background-color: #75343a;
+            padding-bottom: 50px;
+        }
+
+        .program1, .program2, .program3, .program4 {
+            width: 75%;
+            height: 130px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .program1 {
+            background-color: #974950; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program2 {
+            background-color: #974950; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 100px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program3 {
             background-color: #e1a55e; /* Lighter red for the program boxes */
             color: white;
             padding: 20px 30px;
             border-radius: 100px; /* Rounded corners */
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 200px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .program4 {
+>>>>>>> Stashed changes
+            background-color: #e1a55e; /* Lighter red for the program boxes */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 100px; /* Rounded corners */
+<<<<<<< Updated upstream
             width: 80%; /* Make the program boxes larger in width */
             text-align: left;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -554,6 +873,20 @@
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
+=======
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 300px;
+            height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program1:hover, .program2:hover, .program3:hover, .program4:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+>>>>>>> Stashed changes
         /* Program Header */
         .program-header {
             display: flex; /* Align image and text side by side */
@@ -570,6 +903,7 @@
         }
 
         .text-container h4 {
+<<<<<<< Updated upstream
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 10px;
@@ -668,10 +1002,123 @@
             transition: opacity 0.3s ease;
         }
 
+=======
+            font-size: clamp(20px, 2.5vw, 24px);
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .text-container p {
+            font-size: clamp(14px, 1.5vw, 16px);
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .program-image1 {
+            background-color: #75343a;
+            border-radius: 100px;
+            width: 130px;
+            height: 120px;
+            text-align: center;
+            transition: transform 0.6s ease;
+        }
+
+        .program-image2 {
+            background-color: #c07e31;
+            border-radius: 100px;
+            width: 120px;
+            height: 120px;
+            text-align: center;
+            transition: transform 0.6s ease;
+        }
+
+        .program-image1 img, .program-image2 img {
+            height: 90px;
+            width: 90px;
+            margin-top: 15px;
+        }
+
+        .program-image1:hover, .program-image2:hover {
+            transform: rotate(360deg);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .faq-item {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            background-color:rgb(236, 236, 236);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(50px);
+            box-shadow: 10px 6px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            color: #333;
+            font-size: clamp(16px, 2vw, 18px);
+            padding: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            text-align: left;
+            background-color:rgb(236, 236, 236);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: clamp(14px, 1.8vw, 16px);
+            color: #444;
+            transition: opacity 0.3s ease;
+            line-height: 1.7;
+        }
+
+>>>>>>> Stashed changes
         .faq-answer.show {
             opacity: 1;
         }
 
+<<<<<<< Updated upstream
+=======
+        .faq-answer p {
+            font-size: clamp(14px, 1.8vw, 16px);
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .faq-answer li {
+            font-size: clamp(14px, 1.8vw, 16px);
+            line-height: 1.7;
+            margin-bottom: 8px;
+            color: #444;
+            padding-left: 10px;
+        }
+
+>>>>>>> Stashed changes
         /* Expand icon */
         .expand-icon {
             font-size: 1.5rem;
@@ -696,13 +1143,16 @@
         }
         
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 60px;
         }
         
         .footer-column h5 {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 15px;
@@ -720,9 +1170,13 @@
             background-color: var(--accent);
         }
         
-        .footer-column p {
+        .footer-column p, .footer-links a {
             margin-bottom: 20px;
+<<<<<<< Updated upstream
             font-size: 17px;
+=======
+            font-size: 16px;
+>>>>>>> Stashed changes
             opacity: 0.9;
             line-height: 1.8;
         }
@@ -738,8 +1192,11 @@
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
+<<<<<<< Updated upstream
             font-size: 17px;
             opacity: 0.9;
+=======
+>>>>>>> Stashed changes
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
@@ -858,6 +1315,7 @@
 
             .step-message1, .step-message2, .step-message3, .step-message4 {
                 width: 270px;
+<<<<<<< Updated upstream
                 margin-left: 0px;
                 font-size: 20px;
                 height: 300px;
@@ -872,6 +1330,15 @@
             .step-icon2, .step-icon4 {
                 font-size: 5rem;
                 margin-top: 35px;
+=======
+                padding: 20px;
+                min-height: 320px;
+            }
+
+            .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+                font-size: 4.5rem;
+                bottom: 15px;
+>>>>>>> Stashed changes
             }
 
             .program1, .program2, .program3, .program4 {
@@ -925,6 +1392,7 @@
 
             .step-message1, .step-message2, .step-message3, .step-message4 {
                 width: 230px;
+<<<<<<< Updated upstream
                 margin-left: 0px;
                 font-size: 18px;
                 height: 320px;
@@ -989,6 +1457,363 @@
             }
         }
         
+=======
+                padding: 15px;
+                min-height: 320px;
+            }
+
+            .step-icon1 {
+                font-size: 4.5rem;
+                bottom: 15px;
+            }
+
+            .step-icon2 {
+                font-size: 4.5rem;
+                bottom: 15px;
+            }
+            
+            .step-icon3 {
+                font-size: 4.5rem;
+                bottom: 15px;
+            }
+
+            .step-icon4 {
+                font-size: 4.5rem;
+                bottom: 15px;
+            }
+
+            .program-info {
+                padding: 30px;
+            }
+
+            .program1, .program2, .program3, .program4 {
+                width: 65%;
+            }
+
+            .text-container h4 {
+                font-size: 1.7rem;
+            }
+
+            .text-container p {
+                font-size: 1rem;
+            }
+
+            .program-image1 {
+                width: 200px;
+                height: 100px;
+            } 
+            
+            .program-image2 {
+                width: 170px;
+                height: 100px;
+            }
+
+            .program-image1 img, .program-image2 img {
+                height: 65px;
+                width: 65px;
+                margin-top: 20px;
+            }
+
+            .faq-item {
+                margin-left: 90px;
+                width: 800px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner, .admission-process, .program-details, .faq-section {
+                width: 100%;
+                height: auto;
+            }
+
+            .banner-content {
+                padding-top: 300px;
+                padding: 0px;
+            }
+
+            .banner-content h2 {
+                font-size: 25px;
+            }
+
+            .banner-content h1 {
+                font-size: 35px;
+            }
+
+            .banner-content p {
+                font-size: 14px;
+            }
+
+            .admission-process h3 {
+                font-size: 35px;
+            }
+
+            .admission-process h4 {
+                font-size: 14px;
+            }
+
+            .step {
+                padding: 20px 0px;
+            }
+
+            .step-number1, .step-number2, .step-number3, .step-number4 {
+                width: 70px;
+                height: 70px;
+            }
+
+            .step-title1, .step-title2, .step-title3, .step-title4{
+                width: 250px;
+                font-size: 18px;
+                padding-top: 9px;
+            }
+
+            .step-message1, .step-message2, .step-message3, .step-message4 {
+                width: 250px;
+                padding: 15px;
+                min-height: 300px;
+            }
+
+            .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+                font-size: 4rem;
+                bottom: 10px;
+            }
+
+            .program-info {
+                width: 100%;
+            }
+
+            .program-info h3 {
+                font-size: 35px;
+            }
+
+            .program-info p {
+                font-size: 14px;
+            }
+            
+            .program-details {
+                padding-left: 40px;
+            }
+
+            .program1, .program2, .program3, .program4 {
+                width: 60%;
+                height: 20%;
+            }
+
+            .text-container h4 {
+                font-size: 1.5rem;
+            }
+
+            .text-container p {
+                font-size: 14px;
+            }
+
+            .program-image1 {
+                width: 190px;
+                height: 90px;
+            } 
+            
+            .program-image2 {
+                width: 160px;
+                height: 90px;
+            }
+
+            .program-image1 img, .program-image2 img {
+                height: 50px;
+                width: 50px;
+                margin-top: 25px;
+            }
+
+            .faq-section h3 {
+                font-size: 35px;
+                font-weight: bold;
+            }
+
+            .faq-item {
+                margin-left: 70px;
+                width: 730px;
+            }
+             
+            .faq-question {
+                padding: 10px;
+            }
+
+            footer {
+                width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .footer-content h5 {
+                font-size: 18px;
+            }
+
+            .footer-content p {
+                font-size: 14px;
+            }
+
+            .footer-links a {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .banner, .admission-process, .program-details, .faq-section {
+                width: 100%;
+                height: auto;
+            }
+
+            .banner-content {
+                padding-top: 200px;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            .banner-content h2 {
+                font-size: 20px;
+            }
+
+            .banner-content h1 {
+                font-size: 28px;
+            }
+
+            .banner-content p {
+                font-size: 12px;
+            }
+
+            .admission-process h3 {
+                font-size: 28px;
+            }
+
+            .admission-process h4 {
+                font-size: 12px;
+            }
+
+            .step {
+                padding: 10px 0px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-number1, .step-number2, .step-number3, .step-number4 {
+                width: 60px;
+                height: 60px;
+            }
+
+            .step-title1, .step-title2, .step-title3, .step-title4 {
+                width: 100%;
+                font-size: 16px;
+                padding-top: 5px;
+                text-align: center;
+            }
+
+            .step-message1, .step-message2, .step-message3, .step-message4 {
+                width: 90%;
+                margin: 10px 0;
+                font-size: 14px;
+                height: auto;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .step-icon1, .step-icon2, .step-icon3, .step-icon4 {
+                font-size: 4rem;
+                margin-top: 10px;
+            }
+
+            .program-info {
+                width: 100%;
+                padding: 20px 20px;
+            }
+
+            .program-info h3 {
+                font-size: 28px;
+            }
+
+            .program-info p {
+                font-size: 12px;
+            }
+
+            .program-details {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .program1, .program2, .program3, .program4 {
+                width: 100%;
+                margin-left: 0px;
+            }
+
+            .text-container h4 {
+                font-size: 18px;
+            }
+
+            .text-container p {
+                font-size: 14px;
+            }
+
+            .program-image1, .program-image2 {
+                width: 250px;
+                height: 100px;
+                margin: 0 auto;
+            }
+            
+            .program-image2 {
+                width: 200px;
+                height: 100px;
+                margin: 0 auto;
+            }
+
+            .program-image1 img, .program-image2 img {
+                width: 70px;
+                height: 70px;
+                margin-top: 15px;
+            }
+
+            .faq-section h3 {
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .faq-item {
+                margin: 0 auto;
+                width: 90%;
+            }
+
+            .faq-question {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            footer {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-content h5 {
+                font-size: 16px;
+            }
+
+            .footer-content p {
+                font-size: 12px;
+            }
+
+            .footer-links a {
+                font-size: 12px;
+            }
+        }
+
+>>>>>>> Stashed changes
     </style>    
 </head>
 <body>
@@ -1138,7 +1963,11 @@
     </section>
 
     <section class="faq-section" id="faqs">
+<<<<<<< Updated upstream
         <h3>Frequently Asked Questions</h3>
+=======
+        <h3>FREQUENTLY ASKED QUESTIONS</h3>
+>>>>>>> Stashed changes
         <div class="faq-item">
             <button class="faq-question">What is STREAMS? <span class="expand-icon">+</span></button>
             <div class="faq-answer">
@@ -1182,7 +2011,11 @@
         <div class="faq-item">
             <button class="faq-question">How will I know if I passed the evaluation? <span class="expand-icon">+</span></button>
             <div class="faq-answer">
+<<<<<<< Updated upstream
                 <p> You’ll receive an email notification and can also view your status directly on your STREAMS dashboard.</p>
+=======
+                <p> You'll receive an email notification and can also view your status directly on your STREAMS dashboard.</p>
+>>>>>>> Stashed changes
             </div>
         </div>
     </section>

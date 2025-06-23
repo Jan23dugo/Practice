@@ -49,24 +49,42 @@ if ($results_result && $results_result->num_rows > 0) {
         ];
     }
 }
-
-// If no real data found, use a sample for display
-if (empty($exam_results)) {
-    $exam_results = [
-        [
-            'exam_id' => 1,
-            'exam_title' => 'Sample Exam (no real data found)',
-            'total_students' => 0,
-            'pass_count' => 0,
-            'fail_count' => 0,
-            'pass_rate' => 0,
-            'average_score' => 0,
-            'highest_score' => 0,
-            'lowest_score' => 0
-        ]
-    ];
-}
 ?>
+
+<style>
+.no-results-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.no-results-message .message-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.no-results-message .material-symbols-rounded {
+    font-size: 48px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.no-results-message h3 {
+    color: #343a40;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.no-results-message p {
+    color: #6c757d;
+    margin: 0;
+    font-size: 1.1rem;
+}
+</style>
 
 <!-- Exam Results Tab Content -->
 <div id="exam-results" class="tab-content">
@@ -83,6 +101,15 @@ if (empty($exam_results)) {
             </div>
         </div>
         
+        <?php if (empty($exam_results)): ?>
+            <div class="no-results-message">
+                <div class="message-content">
+                    <span class="material-symbols-rounded">info</span>
+                    <h3>No Exam Results Available</h3>
+                    <p>There are no exam results to display at this time.</p>
+                </div>
+            </div>
+        <?php else: ?>
         <table class="analytics-table">
             <thead>
                 <tr>
@@ -120,6 +147,7 @@ if (empty($exam_results)) {
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php endif; ?>
         
         <!-- Detailed Results Panel (hidden by default) -->
         <div id="exam-detail-panel" class="detail-panel">

@@ -1,0 +1,58 @@
+/* Hamburger & Mobile Sidebar Styles for sidebar.php (Admin) */
+
+/* Hamburger button - hidden on desktop, visible on mobile */
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: flex;
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 1300;
+        background: #75343A;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        cursor: pointer;
+    }
+    .sidebar {
+        width: 80vw;
+        max-width: 320px;
+        min-width: 180px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        background: #fff;
+        z-index: 1201;
+        box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.3);
+        z-index: 1200;
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+    .sidebar-overlay:not(.active) {
+        display: none;
+    }
+} 

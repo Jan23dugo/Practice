@@ -4,6 +4,10 @@ session_start();
 
 // Include database connection
 include 'config/config.php';
+require_once 'config/ip_config.php'; // Include IP configurations
+
+// Check if current IP is verified
+$is_ip_verified = isCurrentIPVerified($conn);
 
 // Check if student is logged in
 if (!isset($_SESSION['stud_id'])) {
@@ -456,12 +460,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             margin-bottom: 1rem;
         }
         
-        .profile-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        
+      
         .stat-item {
             text-align: center;
         }
@@ -945,56 +944,151 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             font-size: 12px;
             color: #666;
         }
+
+        /* --- HEADER FLEX LAYOUT LIKE STUD_DASHBOARD.PHP --- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--primary);
+            color: #fff;
+            width: 100%;
+            min-height: 80px;
+            padding: 0 32px;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo-text h1, .logo-text p {
+            color: #fff;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-left: auto;
+        }
+        .profile-menu {
+            position: relative;
+        }
+        .profile-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid #fff;
+            overflow: hidden;
+        }
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .nav-links .material-symbols-rounded {
+            font-size: 22px;
+            color: #fff;
+        }
+        #notifications {
+            margin-left: 8px;
+            color: #fff;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        /* --- MAIN CONTENT LAYOUT FIX AFTER SIDEBAR REMOVAL --- */
+        .main-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+        }
+        .main-content {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box;
+            max-width: 1200px;
+            margin: 0 auto !important;
+        }
+        @media (max-width: 1240px) {
+            .main-content {
+                max-width: 98vw;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/Logo.png" alt="PUP Logo">
-                    <div class="logo-text">
-                        <h1>STREAMS</h1>
-                        <p>Student Profile</p>
-                    </div>
-                </div>
-                <div class="nav-links">
-                    <a href="#" id="notifications">
-                        <span class="material-symbols-rounded">notifications</span>
-                    </a>
-                    <div class="profile-menu">
-                        <a href="#" id="profile-menu">
-                            <div class="profile-icon">
-                                <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
-                                    <img src="<?php echo htmlspecialchars($student['profile_picture']); ?>" alt="Profile Picture">
-                                <?php else: ?>
-                                    <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
-                                <?php endif; ?>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a href="stud_dashboard.php" class="dropdown-item">
-                                <span class="material-symbols-rounded">dashboard</span>
-                                Dashboard
-                            </a>
-                            <a href="stud_profile.php" class="dropdown-item">
-                                <span class="material-symbols-rounded">person</span>
-                                Profile
-                            </a>
-                            <a href="stud_logout.php" class="dropdown-item">
-                                <span class="material-symbols-rounded">logout</span>
-                                Logout
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="logo">
+            <img src="img/Logo.png" alt="PUP Logo">
+            <div class="logo-text">
+                <h1>STREAMS</h1>
+                <p>Student Profile</p>
             </div>
         </div>
+        <nav class="nav-links">
+            <a href="stud_dashboard.php" class="<?php echo $activePage == 'dashboard' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">dashboard</span>
+                Dashboard
+            </a>
+            <?php if ($is_ip_verified): ?>
+            <a href="exam_instructions.php" class="<?php echo $activePage == 'take_exam' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">quiz</span>
+                Take Exam
+            </a>
+            <?php endif; ?>
+            <a href="exam_registration_status.php" class="<?php echo $activePage == 'registration' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">app_registration</span>
+                Registration Status
+            </a>
+            <a href="stud_result.php" class="<?php echo $activePage == 'results' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">grade</span>
+                Results
+            </a>
+            
+            <div class="profile-menu">
+                <a href="#" id="profile-menu">
+                    <div class="profile-icon">
+                        <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                            <img src="<?php echo htmlspecialchars($student['profile_picture']); ?>" alt="Profile Picture">
+                        <?php else: ?>
+                            <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
+                        <?php endif; ?>
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    
+                    <a href="stud_profile.php" class="dropdown-item">
+                        <span class="material-symbols-rounded">person</span>
+                        Profile
+                    </a>
+                    <a href="stud_logout.php" class="dropdown-item">
+                        <span class="material-symbols-rounded">logout</span>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
+<<<<<<< Updated upstream
         <!-- Mobile Menu Toggle -->
         <button class="menu-toggle" id="menuToggle">
             <span class="material-symbols-rounded">menu</span>
@@ -1059,6 +1153,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             </ul>
         </aside>
         
+=======
+>>>>>>> Stashed changes
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-title">
@@ -1086,20 +1182,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     <div class="profile-info">
                         <h2><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></h2>
                         <p><?php echo $student['email']; ?></p>
-                        <div class="profile-stats">
-                            <div class="stat-item">
-                                <div class="stat-value"><?php echo $total_exams; ?></div>
-                                <div class="stat-label">Total Exams</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value"><?php echo $completed_exams; ?></div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value"><?php echo $average_score; ?>%</div>
-                                <div class="stat-label">Average Score</div>
-                            </div>
-                        </div>
+                
                     </div>
                     <div class="profile-actions">
                         <button class="action-btn edit-btn">
@@ -1292,6 +1375,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 
     <script src="js/main.js"></script>
     <script>
+<<<<<<< Updated upstream
         // Adjust sidebar and content height
         function adjustLayout() {
             const sidebar = document.getElementById('sidebar');
@@ -1476,8 +1560,92 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
                     }
                     reader.readAsDataURL(this.files[0]);
                 }
+=======
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+>>>>>>> Stashed changes
             });
         });
+        // Edit Profile Modal
+        const modal = document.getElementById('editProfileModal');
+        const editBtn = document.querySelector('.edit-btn');
+        const closeBtns = document.querySelectorAll('.close-modal');
+        editBtn.addEventListener('click', function() {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        // Auto-hide alerts after 5 seconds
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        });
+        // Profile Picture Upload
+        const profilePictureInput = document.getElementById('profile-picture-input');
+        profilePictureInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const form = this.closest('form');
+                form.submit();
+            }
+        });
+        // Profile Picture Preview in Modal
+        const modalProfilePictureInput = document.getElementById('modal-profile-picture-input');
+        const profilePicturePreview = document.querySelector('.profile-picture-preview');
+        modalProfilePictureInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (profilePicturePreview.querySelector('img')) {
+                        profilePicturePreview.querySelector('img').src = e.target.result;
+                    } else {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        profilePicturePreview.innerHTML = '';
+                        profilePicturePreview.appendChild(img);
+                    }
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        // Profile dropdown menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileMenu = document.getElementById('profile-menu');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            if (profileMenu && dropdownMenu) {
+                profileMenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!profileMenu.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        
     </script>
 </body>
 </html>

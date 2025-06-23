@@ -114,17 +114,17 @@ function loadExamSettings(examId) {
                     scheduleCheckbox.checked = true;
                     scheduleContainer.style.display = 'block';
                     
-                    // Set the date and time fields if they exist
-                    if (settings.scheduled_date) {
-                        document.getElementById('scheduled_date').value = settings.scheduled_date;
-                    }
-                    
-                    if (settings.scheduled_time) {
-                        document.getElementById('scheduled_time').value = settings.scheduled_time;
-                    }
-                    
-                    console.log('Scheduled date loaded:', settings.scheduled_date);
-                    console.log('Scheduled time loaded:', settings.scheduled_time);
+                                    // Set the date and time fields if they exist and are valid
+                if (settings.window_start && settings.window_start !== '0000-00-00 00:00:00' && settings.window_start !== null) {
+                    document.getElementById('window_start').value = settings.window_start.replace(' ', 'T');
+                }
+                
+                if (settings.window_end && settings.window_end !== '0000-00-00 00:00:00' && settings.window_end !== null) {
+                    document.getElementById('window_end').value = settings.window_end.replace(' ', 'T');
+                }
+                
+                console.log('Window start loaded:', settings.window_start);
+                console.log('Window end loaded:', settings.window_end);
                 } else {
                     scheduleCheckbox.checked = false;
                     scheduleContainer.style.display = 'none';
@@ -609,7 +609,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                // Check if response is ok
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                // Check if content type is JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Response is not JSON');
+                }
+                
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     // Show success message
@@ -636,8 +649,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                showAlert('An error occurred while saving the exam.', 'error');
+                console.error('Detailed Error:', error);
+                showAlert(`An error occurred while saving the exam: ${error.message}`, 'error');
             });
             
             return false;
@@ -696,7 +709,20 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            // Check if response is ok
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            // Check if content type is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Response is not JSON');
+            }
+            
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 // Update URL with new exam ID without refreshing the page
@@ -732,8 +758,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('There was a problem creating the exam. Please try again.');
+            console.error('Detailed Error:', error);
+            alert(`There was a problem creating the exam: ${error.message}. Please try again.`);
         })
         .finally(() => {
             // Restore button state

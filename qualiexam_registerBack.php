@@ -1404,6 +1404,7 @@ function getGradingSystemRules($conn, $universityCodeOrName) {
 }
 
 function registerStudent($conn, $studentData, $subjects) {
+<<<<<<< Updated upstream
     try {
         // Ensure connection is valid before starting transaction
         if (!$conn || !method_exists($conn, 'ping') || !@$conn->ping()) {
@@ -1430,19 +1431,35 @@ function registerStudent($conn, $studentData, $subjects) {
             throw new Exception("Failed to get table structure: " . $conn->error);
         }
         
+=======
+    // Ensure stud_id is set
+    if (empty($studentData['stud_id'])) {
+        throw new Exception('Student ID not found in session. Please log in again.');
+    }
+    try {
+        // Get columns from the table
+        $result = $conn->query("SHOW COLUMNS FROM register_studentsqe");
+>>>>>>> Stashed changes
         $columns = [];
         while ($row = $result->fetch_assoc()) {
             $columns[] = $row['Field'];
         }
         
+<<<<<<< Updated upstream
         logExtraction("Table columns", ['columns' => $columns]);
         
+=======
+>>>>>>> Stashed changes
         // Required columns for our insert
         $requiredColumns = [
             'last_name', 'first_name', 'middle_name', 'gender', 'dob', 'email', 
             'contact_number', 'street', 'student_type', 'previous_school', 
             'year_level', 'previous_program', 'desired_program', 'tor', 
+<<<<<<< Updated upstream
             'school_id', 'reference_id', 'is_tech', 'status', 'stud_id'
+=======
+            'school_id', 'is_tech', 'status', 'stud_id'
+>>>>>>> Stashed changes
         ];
         
         $missingColumns = array_diff($requiredColumns, $columns);
@@ -1452,6 +1469,7 @@ function registerStudent($conn, $studentData, $subjects) {
         
         // Start transaction
         $conn->begin_transaction();
+<<<<<<< Updated upstream
     
         // Generate reference ID
         $year = date('Y');
@@ -1615,7 +1633,118 @@ function registerStudent($conn, $studentData, $subjects) {
             'is_tech' => $isTech,
             'stud_id' => $studId
         ]);
+=======
+        
+        // Set default status as pending
+       
+        
+        // Add notes about why manual review is needed if applicable
+        $adminNotes = '';
+        if ($studentData['status'] === 'needs_review') {
+            $adminNotes = "Manual review required: ";
+            $reasonMsg = "No grading system rules found for university '{$studentData['previous_school']}'.";
+            $reasons = isset($GLOBALS['manualReviewReasons']) ? $GLOBALS['manualReviewReasons'] : [];
+            // Normalize all reasons for comparison
+            $normalizedReasons = array_map(function($r) {
+                return strtolower(trim($r, ". "));
+            }, $reasons);
+            $normalizedReasonMsg = strtolower(trim($reasonMsg, ". "));
+            $includeReasonMsg = false;
+            if (isset($GLOBALS['needsManualReview']) && $GLOBALS['needsManualReview'] && !in_array($normalizedReasonMsg, $normalizedReasons, true)) {
+                $includeReasonMsg = true;
+            }
+            // Remove duplicates from reasons
+            $uniqueReasons = [];
+            foreach ($reasons as $r) {
+                $norm = strtolower(trim($r, ". "));
+                if ($norm !== $normalizedReasonMsg && !in_array($norm, $uniqueReasons, true)) {
+                    $uniqueReasons[] = $norm;
+                }
+            }
+            $notesParts = [];
+            if ($includeReasonMsg) {
+                $notesParts[] = $reasonMsg;
+            }
+            if (!empty($uniqueReasons)) {
+                $notesParts[] = implode(". ", array_map('ucfirst', $uniqueReasons)) . '.';
+            }
+            // If nothing is left, always show the main reasonMsg
+            if (empty($notesParts)) {
+                $notesParts[] = $reasonMsg;
+            }
+            $adminNotes .= implode(' ', $notesParts);
+        }
 
+        // Check if admin_notes column exists
+        $hasAdminNotes = in_array('admin_notes', $columns);
+>>>>>>> Stashed changes
+
+        // Insert student data with correct columns
+        if ($hasAdminNotes) {
+            $sql = "INSERT INTO register_studentsqe (
+                last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
+                student_type, previous_school, year_level, previous_program, desired_program, 
+                tor, school_id, is_tech, status, stud_id, admin_notes
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Database error preparing statement: " . $conn->error . " SQL: $sql");
+            }
+            $stmt->bind_param(
+                "ssssssssssissssisss",
+                $studentData['last_name'],
+                $studentData['first_name'],
+                $studentData['middle_name'],
+                $studentData['gender'],
+                $studentData['dob'],
+                $studentData['email'],
+                $studentData['contact_number'],
+                $studentData['street'],
+                $studentData['student_type'],
+                $studentData['previous_school'],
+                $studentData['year_level'],
+                $studentData['previous_program'],
+                $studentData['desired_program'],
+                $studentData['tor_path'],
+                $studentData['school_id_path'],
+                $studentData['is_tech'],
+                $studentData['status'],
+                $studentData['stud_id'],
+                $adminNotes
+            );
+        } else {
+            $sql = "INSERT INTO register_studentsqe (
+                last_name, first_name, middle_name, gender, dob, email, contact_number, street, 
+                student_type, previous_school, year_level, previous_program, desired_program, 
+                tor, school_id, is_tech, status, stud_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Database error preparing statement: " . $conn->error . " SQL: $sql");
+            }
+            $stmt->bind_param(
+                "ssssssssssissssissi",
+                $studentData['last_name'],
+                $studentData['first_name'],
+                $studentData['middle_name'],
+                $studentData['gender'],
+                $studentData['dob'],
+                $studentData['email'],
+                $studentData['contact_number'],
+                $studentData['street'],
+                $studentData['student_type'],
+                $studentData['previous_school'],
+                $studentData['year_level'],
+                $studentData['previous_program'],
+                $studentData['desired_program'],
+                $studentData['tor_path'],
+                $studentData['school_id_path'],
+                $studentData['is_tech'],
+                $studentData['status'],
+                $studentData['stud_id']
+            );
+        }
+        
         if (!$stmt->execute()) {
             throw new Exception("Error inserting student: " . $stmt->error);
         }
@@ -1623,9 +1752,13 @@ function registerStudent($conn, $studentData, $subjects) {
         $student_id = $stmt->insert_id;
         $stmt->close();
         
+<<<<<<< Updated upstream
         // Store reference ID in session
         $_SESSION['success'] = "Your reference ID is: " . $reference_id;
         $_SESSION['reference_id'] = $reference_id;
+=======
+        // Store student ID in session
+>>>>>>> Stashed changes
         $_SESSION['student_id'] = $student_id;
         
         // Store manual review flag for UI display if applicable
@@ -1637,6 +1770,7 @@ function registerStudent($conn, $studentData, $subjects) {
             $_SESSION['registration_status'] = 'pending';
         }
         
+<<<<<<< Updated upstream
         // Remove the automatic subject registration to prevent storing unmatched courses
         // We'll rely on matchCreditedSubjects to properly match and store only the matched subjects
         
@@ -1653,6 +1787,11 @@ function registerStudent($conn, $studentData, $subjects) {
             error_log("Email send error: " . $emailEx->getMessage());
         }
         
+=======
+        // Commit transaction
+        $conn->commit();
+        
+>>>>>>> Stashed changes
         return true;
         
     } catch (Exception $e) {
@@ -1797,6 +1936,7 @@ function isTechStudent($subjects) {
     if (isset($_POST['previous_program'])) {
         $programName = strtolower($_POST['previous_program']);
         
+<<<<<<< Updated upstream
         // Define tech programs - both full names and abbreviations
         $techPrograms = [
             "bscs", // Abbreviation
@@ -1828,6 +1968,37 @@ function isTechStudent($subjects) {
             }
         }
         
+=======
+        // Get database connection
+        $conn = getNewConnection();
+        
+        // Fetch tech programs from database
+        $query = "SELECT program_name, program_code FROM tech_programs WHERE is_active = 1";
+        $result = $conn->query($query);
+        
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $techProgram = strtolower($row['program_name']);
+                $techCode = strtolower($row['program_code']);
+                
+                // Check for exact match or if program name contains the tech program
+                if ($programName === $techProgram || 
+                    strpos($programName, $techProgram) !== false ||
+                    strpos($programName, $techCode) !== false) {
+                    
+                    logExtraction("Tech student identified by program name", [
+                        'program' => $programName,
+                        'matched_keyword' => $techProgram
+                    ]);
+                    
+                    closeConnection($conn);
+                    return 1; // Return 1 for regular tech students
+                }
+            }
+        }
+        
+        closeConnection($conn);
+>>>>>>> Stashed changes
         logExtraction("Student not classified as tech student - program doesn't match tech criteria", [
             'program' => $programName
         ]);
@@ -1900,8 +2071,13 @@ function performOCR($filePath) {
         ]);
 
         // Azure Document Intelligence API credentials
+<<<<<<< Updated upstream
         $endpoint = "https://group8ocr.cognitiveservices.azure.com/";
         $apiKey = "8DzDS3AgnWPQcA2gfPyqkUdna2ncf0ac0pvxeNmTZ8rRCQXImevlJQQJ99BDACqBBLyXJ3w3AAALACOGvEIc";
+=======
+        $endpoint = "https://ocrstreams23.cognitiveservices.azure.com/";
+        $apiKey = "6vzUhLMEFi9E6bVVpkG16zEc9p0TlPPLYZQDQvlmI3PDv2rRRCT3JQQJ99BEAC3pKaRXJ3w3AAALACOGTZUj";
+>>>>>>> Stashed changes
         $modelId = "transcript_extractor_v4";
 
         // Read file content
@@ -2628,6 +2804,7 @@ function processOCRPreview() {
         // Set proper content type for JSON response
         header('Content-Type: application/json');
         
+<<<<<<< Updated upstream
         if (!isset($_FILES['tor']) || $_FILES['tor']['error'] !== UPLOAD_ERR_OK) {
             throw new Exception("Please upload a valid Transcript of Records (TOR)");
         }
@@ -2637,6 +2814,46 @@ function processOCRPreview() {
         move_uploaded_file($_FILES['tor']['tmp_name'], $tor_path);
 
         // Process school ID
+=======
+        // Check if user selected Copy of Grades instead of TOR
+        $has_copy_grades = isset($_POST['has_copy_grades']) && $_POST['has_copy_grades'];
+        $academic_document_path = null;
+        $document_type = 'TOR'; // Default
+        
+        if ($has_copy_grades) {
+            // User selected Copy of Grades
+            if (!isset($_FILES['copy_grades']) || $_FILES['copy_grades']['error'] !== UPLOAD_ERR_OK) {
+                throw new Exception("Please upload a valid Copy of Grades");
+            }
+            
+            validateUploadedFile($_FILES['copy_grades']);
+            $academic_document_path = __DIR__ . '/uploads/tor/' . basename($_FILES['copy_grades']['name']);
+            move_uploaded_file($_FILES['copy_grades']['tmp_name'], $academic_document_path);
+            $document_type = 'Copy of Grades';
+            
+            logExtraction("Processing Copy of Grades", [
+                'file_name' => basename($_FILES['copy_grades']['name']),
+                'file_size' => $_FILES['copy_grades']['size']
+            ]);
+        } else {
+            // User selected TOR (default)
+            if (!isset($_FILES['tor']) || $_FILES['tor']['error'] !== UPLOAD_ERR_OK) {
+                throw new Exception("Please upload a valid Transcript of Records (TOR)");
+            }
+            
+            validateUploadedFile($_FILES['tor']);
+            $academic_document_path = __DIR__ . '/uploads/tor/' . basename($_FILES['tor']['name']);
+            move_uploaded_file($_FILES['tor']['tmp_name'], $academic_document_path);
+            $document_type = 'TOR';
+            
+            logExtraction("Processing TOR", [
+                'file_name' => basename($_FILES['tor']['name']),
+                'file_size' => $_FILES['tor']['size']
+            ]);
+        }
+
+        // Process school ID (always required)
+>>>>>>> Stashed changes
         if (!isset($_FILES['school_id']) || $_FILES['school_id']['error'] !== UPLOAD_ERR_OK) {
             throw new Exception("Please upload a valid School ID");
         }
@@ -2645,6 +2862,7 @@ function processOCRPreview() {
         $school_id_path = __DIR__ . '/uploads/school_id/' . basename($_FILES['school_id']['name']);
         move_uploaded_file($_FILES['school_id']['tmp_name'], $school_id_path);
 
+<<<<<<< Updated upstream
         // Process Copy of Grades if provided (for OCR purposes only)
         $copy_grades_path = null;
         if (isset($_POST['has_copy_grades']) && 
@@ -2663,10 +2881,24 @@ function processOCRPreview() {
         try {
             $ocr_output = performOCR($tor_path);
             logExtraction("OCR completed successfully", [
+=======
+        // Clean any output that might have been generated so far
+        ob_clean();
+        
+        // Perform OCR on the academic document (TOR or Copy of Grades)
+        try {
+            $ocr_output = performOCR($academic_document_path);
+            logExtraction("OCR completed successfully", [
+                'document_type' => $document_type,
+>>>>>>> Stashed changes
                 'output_length' => strlen($ocr_output)
             ]);
         } catch (Exception $ocrEx) {
             logExtraction("OCR process failed", [
+<<<<<<< Updated upstream
+=======
+                'document_type' => $document_type,
+>>>>>>> Stashed changes
                 'error' => $ocrEx->getMessage()
             ]);
             throw new Exception("OCR processing failed: " . $ocrEx->getMessage());
@@ -2674,6 +2906,7 @@ function processOCRPreview() {
 
         // Clean the buffer again before continuing
         ob_clean();
+<<<<<<< Updated upstream
         
         // If Copy of Grades exists, perform OCR and combine results
         if ($copy_grades_path) {
@@ -2704,6 +2937,8 @@ function processOCRPreview() {
                 // Continue with just the TOR OCR results
             }
         }
+=======
+>>>>>>> Stashed changes
 
         // Clean the buffer again before subject extraction
         ob_clean();
@@ -2727,8 +2962,14 @@ function processOCRPreview() {
 
         // Store only the necessary paths in session for final submission
         $_SESSION['upload_paths'] = [
+<<<<<<< Updated upstream
             'tor_path' => $tor_path,
             'school_id_path' => $school_id_path
+=======
+            'tor_path' => $academic_document_path, // This will be either TOR or Copy of Grades
+            'school_id_path' => $school_id_path,
+            'document_type' => $document_type // Store which type was uploaded
+>>>>>>> Stashed changes
         ];
 
         // Clean any buffered output completely before sending JSON
@@ -2848,6 +3089,10 @@ function fixDatabaseConnection() {
 
 // Update the handleFinalSubmission function to use our new connection fixing method
 function handleFinalSubmission() {
+<<<<<<< Updated upstream
+=======
+    $needsManualReview = false; // Ensure this is declared at the top and only once
+>>>>>>> Stashed changes
     // Enable error reporting during debug
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -3147,7 +3392,14 @@ function handleFinalSubmission() {
                 'tor_path' => str_replace(__DIR__ . '/', '', $tor_path),
                 'school_id_path' => str_replace(__DIR__ . '/', '', $school_id_path),
                 'is_tech' => $isTech,
+<<<<<<< Updated upstream
                 'status' => $needsManualReview ? 'needs_review' : 'pending'
+=======
+                'status' => $needsManualReview ? 'needs_review' : 'pending',
+                'stud_id' => $_SESSION['stud_id'] ?? null,
+                // Add admin_notes if manual review is needed
+                'admin_notes' => $needsManualReview ? (implode('; ', $GLOBALS['manualReviewReasons'] ?? [])) : ''
+>>>>>>> Stashed changes
             ];
 
             logExtraction("[DEBUG-$execution_id] Prepared student data for registration", [
@@ -3194,6 +3446,7 @@ function handleFinalSubmission() {
             
             // Get the student_id from the registration result
             $student_id = $_SESSION['student_id'] ?? null;
+<<<<<<< Updated upstream
             $reference_id = $_SESSION['reference_id'] ?? null;
             
             if (!$student_id || !$reference_id) {
@@ -3207,6 +3460,19 @@ function handleFinalSubmission() {
             logExtraction("[DEBUG-$execution_id] Student registered successfully", [
                 'student_id' => $student_id,
                 'reference_id' => $reference_id
+=======
+            // $reference_id = $_SESSION['reference_id'] ?? null; // No longer needed here
+            
+            if (!$student_id) {
+                logExtraction("[DEBUG-$execution_id] Missing student_id after registration", [
+                    'student_id' => $student_id ?? 'Not set'
+                ]);
+                throw new Exception("Failed to generate student ID.");
+            }
+            
+            logExtraction("[DEBUG-$execution_id] Student registered successfully", [
+                'student_id' => $student_id
+>>>>>>> Stashed changes
             ]);
             
             // Match credited subjects from the uploaded documents
@@ -3228,7 +3494,11 @@ function handleFinalSubmission() {
             $_SESSION['email'] = $studentData['email'];
             $_SESSION['desired_program'] = $studentData['desired_program']; // Store desired program for fallback
             $_SESSION['is_eligible'] = $isEligible; // Flag to indicate if the student is eligible
+<<<<<<< Updated upstream
             $_SESSION['success'] = "Your registration was successful! Your reference ID is: " . $reference_id;
+=======
+            $_SESSION['success'] = "Your registration was successful and is now pending review. You will receive your reference ID via email once your application is accepted.";
+>>>>>>> Stashed changes
             
             // Set flag to show success modal
             $_SESSION['show_success_modal'] = true;
@@ -3253,8 +3523,12 @@ function handleFinalSubmission() {
             logExtraction("[DEBUG-$execution_id] Returning success response, total execution time: {$execution_time}s");
             return [
                 'success' => true,
+<<<<<<< Updated upstream
                 'message' => 'Registration completed successfully',
                 'reference_id' => $reference_id,
+=======
+                'message' => 'Registration completed successfully. Your application is pending review. You will receive your reference ID via email if accepted.',
+>>>>>>> Stashed changes
                 'execution_time' => $execution_time
             ];
             
@@ -3531,4 +3805,10 @@ function getPostField($field, $fallback = null) {
     
     return $fallback;
 }
+<<<<<<< Updated upstream
 ?>
+=======
+
+
+?>
+>>>>>>> Stashed changes

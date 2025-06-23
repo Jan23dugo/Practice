@@ -1,22 +1,23 @@
 <?php
-session_start();
+// Include admin session management
+require_once 'config/admin_session.php';
 include('config/config.php');
 
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    header("Location: admin_login.php");
-    exit();
-}
+// Check admin session and handle timeout
+checkAdminSession();
 
 // Fetch scheduled exams from database
 function getScheduledExams($month, $year) {
     global $conn;
-    $query = "SELECT e.exam_id, e.title, e.exam_type, e.scheduled_date, e.cover_image, 
+    $query = "SELECT e.exam_id, e.title, e.exam_type, e.window_start, e.window_end, e.cover_image, e.duration,
                      (SELECT COUNT(*) FROM questions WHERE exam_id = e.exam_id) as question_count 
               FROM exams e 
               WHERE e.is_scheduled = 1 
-              AND MONTH(e.scheduled_date) = ? 
-              AND YEAR(e.scheduled_date) = ?
-              ORDER BY e.scheduled_date ASC";
+              AND e.window_start IS NOT NULL
+              AND e.window_end IS NOT NULL
+              AND MONTH(e.window_start) = ? 
+              AND YEAR(e.window_start) = ?
+              ORDER BY e.window_start ASC";
               
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $month, $year);
@@ -25,7 +26,7 @@ function getScheduledExams($month, $year) {
     
     $events = array();
     while($row = $result->fetch_assoc()) {
-        $date = date('Y-m-d', strtotime($row['scheduled_date']));
+        $date = date('Y-m-d', strtotime($row['window_start']));
         if(!isset($events[$date])) {
             $events[$date] = array();
         }
@@ -343,9 +344,9 @@ $scheduledExams = getScheduledExams($month, $year);
                             echo "<div class='event-title'>" . htmlspecialchars($exam['title']) . "</div>";
                             echo "<div class='event-time'>";
                             echo "<span class='material-symbols-rounded'>schedule</span>";
-                            echo date('g:i A', strtotime($exam['scheduled_date']));
+                            echo date('g:i A', strtotime($exam['window_start'])) . " - " . date('g:i A', strtotime($exam['window_end']));
                             echo "</div>";
-                            echo "<div class='event-type'>" . ucfirst($exam['exam_type']) . "</div>";
+                            echo "<div class='event-type'>" . ucfirst($exam['exam_type']) . " (" . $exam['duration'] . " min)</div>";
                             echo "</div>";
                         }
                     }
@@ -401,7 +402,15 @@ function showEventDetails(exam) {
         <div style="margin-bottom: 20px;">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                 <span class="material-symbols-rounded">schedule</span>
-                <span>${new Date(exam.scheduled_date).toLocaleString()}</span>
+                <span>Start: ${new Date(exam.window_start).toLocaleString()}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <span class="material-symbols-rounded">schedule</span>
+                <span>End: ${new Date(exam.window_end).toLocaleString()}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <span class="material-symbols-rounded">timer</span>
+                <span>Duration: ${exam.duration} minutes</span>
             </div>
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                 <span class="material-symbols-rounded">quiz</span>

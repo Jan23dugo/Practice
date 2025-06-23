@@ -1,5 +1,9 @@
 <?php
-    session_start(); // Start session if needed
+    // Include admin session management
+    require_once 'config/admin_session.php';
+    
+    // Check admin session and handle timeout
+    checkAdminSession();
 ?>
 <!DOCTYPE html>
 <html lang="en">

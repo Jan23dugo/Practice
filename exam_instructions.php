@@ -43,9 +43,9 @@ if (!$registration) {
 
 // Now get their assigned exam
 $exam_query = "SELECT ea.*, e.title, e.description, e.duration, e.passing_score, 
-                      e.exam_type, e.scheduled_date, e.scheduled_time,
+                      e.exam_type, e.window_start, e.window_end,
                       e.is_scheduled, e.passing_score_type, e.randomize_questions, 
-                      e.randomize_choices, rs.student_id as registered_student_id
+                      e.randomize_choices, e.instructions, rs.student_id as registered_student_id
                FROM exam_assignments ea
                JOIN exams e ON ea.exam_id = e.exam_id
                JOIN register_studentsqe rs ON ea.student_id = rs.student_id
@@ -72,9 +72,9 @@ $_SESSION['registered_student_id'] = $registration['student_id'];
 // Define current_datetime
 $current_datetime = date('Y-m-d H:i:s');
 
-// Create exam_datetime from scheduled date and time
-if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_time'])) {
-    $exam_datetime = $assigned_exam['scheduled_date'] . ' ' . $assigned_exam['scheduled_time'];
+// Create exam_datetime from window_start
+if (isset($assigned_exam['window_start'])) {
+    $exam_datetime = $assigned_exam['window_start'];
 } else {
     $exam_datetime = null;
 }
@@ -255,45 +255,37 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
         }
 
         .scheduled-info {
-            background-color: #fff8e1;
-            border: 1px solid #ffe082;
+            background-color:rgb(255, 255, 255);
+            border: 1px solidrgb(255, 255, 255);
             color: #856404;
             padding: 1.2rem;
             border-radius: 8px;
             margin: 1.5rem auto;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            max-width: 600px;
-        }
-
-        .scheduled-info .material-symbols-rounded {
-            font-size: 24px;
-            color: #f57c00;
+            justify-content: center;
+            max-width: 400px;
+            min-height: 60px;
         }
 
         .exam-status {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-left: 0.5rem;
+            padding: 0.4em 1.2em;
+            border-radius: 1em;
+            font-size: 1.1em;
+            font-weight: 600;
+            background: #e8f5e9;
+            color: #1b5e20;
+            vertical-align: middle;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
         }
-
         .status-scheduled {
-            background-color: #e3f2fd;
+            background: #e3f2fd;
             color: #0d47a1;
         }
-
         .status-ongoing {
-            background-color: #e8f5e9;
+            background: #e8f5e9;
             color: #1b5e20;
-        }
-
-        .time-remaining {
-            color: var(--maroon-color);
-            font-weight: 500;
         }
 
         /* Responsive adjustments */
@@ -397,17 +389,9 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
                 
                 <?php if (isset($assigned_exam['is_scheduled']) && $assigned_exam['is_scheduled'] == 1): ?>
                 <div class="scheduled-info">
-                    <span class="material-symbols-rounded">event</span>
-                    <div>
-                        <strong>Scheduled for:</strong> 
-                        <?php 
-                            $scheduled_datetime = new DateTime($assigned_exam['scheduled_date'] . ' ' . $assigned_exam['scheduled_time']);
-                            echo $scheduled_datetime->format('F j, Y g:i A'); 
-                        ?>
-                        <span class="exam-status <?php echo $current_datetime >= $exam_datetime ? 'status-ongoing' : 'status-scheduled'; ?>">
-                            <?php echo $current_datetime >= $exam_datetime ? 'Ongoing' : 'Scheduled'; ?>
-                        </span>
-                    </div>
+                    <span class="exam-status <?php echo $current_datetime >= $exam_datetime ? 'status-ongoing' : 'status-scheduled'; ?>">
+                        <?php echo $current_datetime >= $exam_datetime ? 'Ongoing' : 'Scheduled'; ?>
+                    </span>
                 </div>
                 <?php endif; ?>
             </div>
@@ -425,10 +409,6 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
                     </span>
                 </div>
                 <?php endif; ?>
-                <div class="detail-item">
-                    <span class="material-symbols-rounded">quiz</span>
-                    <span>Exam Type: <?php echo ucfirst($assigned_exam['exam_type']); ?></span>
-                </div>
                 <?php if (isset($assigned_exam['randomize_questions']) && $assigned_exam['randomize_questions']): ?>
                 <div class="detail-item">
                     <span class="material-symbols-rounded">shuffle</span>
@@ -438,10 +418,17 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
             </div>
 
             <div class="rules-section">
-                <h2>Exam Rules and Guidelines</h2>
-                <ul class="rules-list">
+                <h2>Exam Instructions</h2>
+                <?php
+                $hasInstructions = isset($assigned_exam['instructions']) && trim($assigned_exam['instructions']) !== '';
+                if ($hasInstructions) {
+                    // Show only the custom instructions here
+                    echo '<div style="margin-bottom: 1.5rem; color: #444; font-size: 1.08rem;">' . nl2br(htmlspecialchars($assigned_exam['instructions'])) . '</div>';
+                } else {
+                    // Show the rules list as the main instructions
+                    echo '<ul class="rules-list">';
+                ?>
                     <li>Once you start the exam, the timer will begin and cannot be paused.</li>
-                    <li>Ensure you have a stable internet connection before starting the exam.</li>
                     <li>Do not refresh the page or close the browser window during the exam.</li>
                     <li>You must complete all questions within the allocated time of <?php echo $assigned_exam['duration']; ?> minutes.</li>
                     <?php if (isset($assigned_exam['randomize_questions']) && $assigned_exam['randomize_questions']): ?>
@@ -450,10 +437,12 @@ if (isset($assigned_exam['scheduled_date']) && isset($assigned_exam['scheduled_t
                     <?php if (isset($assigned_exam['randomize_choices']) && $assigned_exam['randomize_choices']): ?>
                     <li>For multiple choice questions, answer choices will be randomized.</li>
                     <?php endif; ?>
-                    <li>You can flag questions for review and return to them later.</li>
                     <li>Once you submit the exam, you cannot return to modify your answers.</li>
                     <li>Any form of cheating or malpractice will result in disqualification.</li>
-                </ul>
+                <?php
+                    echo '</ul>';
+                }
+                ?>
             </div>
 
             <div class="action-buttons">

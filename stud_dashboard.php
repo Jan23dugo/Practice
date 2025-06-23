@@ -8,7 +8,7 @@ error_reporting(0);
 
 // Add this near the top of the file, after session_start()
 include 'config/config.php'; // Include database connection
-// require_once 'config/ip_config.php';
+require_once 'config/ip_config.php'; // Include IP configurations
 
 // Check if student is logged in
 if (!isset($_SESSION['stud_id'])) {
@@ -17,11 +17,69 @@ if (!isset($_SESSION['stud_id'])) {
     exit();
 }
 
+// Check if current IP is verified
+$is_ip_verified = isCurrentIPVerified($conn);
+
+// Handle exam schedule validation AJAX request
+if (isset($_GET['action']) && $_GET['action'] === 'validate_exam') {
+    header('Content-Type: application/json');
+    
+    $stud_id = $_SESSION['stud_id'];
+    
+    if (isset($_GET['exam_id'])) {
+        $exam_id = intval($_GET['exam_id']);
+        // Simplified check for a specific exam assignment
+        $query = "SELECT 1 FROM exam_assignments ea 
+                 JOIN register_studentsqe rs ON ea.student_id = rs.student_id 
+                 WHERE rs.stud_id = ? AND ea.exam_id = ? AND ea.completion_status = 'pending'";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ii", $stud_id, $exam_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 0) {
+            echo json_encode(['error' => true, 'message' => 'This exam is not assigned to you.']);
+            exit();
+        }
+        echo json_encode(['success' => true]);
+        exit();
+    } else {
+        // Simplified check for ANY assigned pending exam
+        $query = "SELECT 1 FROM exam_assignments ea 
+                 JOIN register_studentsqe rs ON ea.student_id = rs.student_id 
+                 WHERE rs.stud_id = ? AND ea.completion_status = 'pending' 
+                 LIMIT 1";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $stud_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 0) {
+            echo json_encode(['error' => true, 'message' => 'No pending exams have been assigned to you.']);
+            exit();
+        }
+        echo json_encode(['success' => true]);
+        exit();
+    }
+}
+
 // Get student information from session
 $stud_id = $_SESSION['stud_id']; // This is now the database ID
 $firstname = $_SESSION['firstname'];
 $lastname = $_SESSION['lastname'];
 $email = $_SESSION['email'];
+
+// Exam error alert logic
+$exam_error_message = '';
+if (isset($_GET['error'])) {
+    if ($_GET['error'] === 'no_exam_assigned') {
+        $exam_error_message = 'No qualifying exam has been assigned to you at this time.';
+    } else if ($_GET['error'] === 'exam_window_closed') {
+        $exam_error_message = 'The exam window is currently closed.';
+    } else if ($_GET['error'] === 'already_taken') {
+        $exam_error_message = 'You have already completed this exam.';
+    } else {
+        $exam_error_message = 'An unknown error occurred.';
+    }
+}
 
 // Fetch student profile picture
 $query = "SELECT profile_picture FROM students WHERE stud_id = ?";
@@ -40,14 +98,15 @@ function getScheduledExams($stud_id) {
     }
     
     try {
-        $query = "SELECT e.exam_id, e.title, e.scheduled_date, e.venue, e.exam_type, ea.completion_status 
+        $query = "SELECT e.exam_id, e.title, e.venue, e.exam_type, ea.window_start, ea.window_end, ea.completion_status 
                   FROM exams e
                   INNER JOIN exam_assignments ea ON e.exam_id = ea.exam_id
                   WHERE ea.student_id = ? 
                   AND e.is_scheduled = 1 
-                  AND e.scheduled_date >= CURRENT_DATE()
                   AND ea.completion_status = 'pending'
-                  ORDER BY e.scheduled_date ASC";
+                  AND ea.window_start <= NOW()
+                  AND ea.window_end >= NOW()
+                  ORDER BY ea.window_start ASC";
                   
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $stud_id);
@@ -98,6 +157,17 @@ $announcements = getActiveAnnouncements(2); // Get only 2 most recent announceme
 
 // Active page for sidebar highlighting
 $activePage = 'dashboard';
+
+// Check if student already registered for the qualifying exam
+$already_registered = false;
+$reg_stmt = $conn->prepare("SELECT student_id, status FROM register_studentsqe WHERE stud_id = ? ORDER BY registration_date DESC LIMIT 1");
+$reg_stmt->bind_param("i", $stud_id);
+$reg_stmt->execute();
+$reg_result = $reg_stmt->get_result();
+if ($reg_result && $reg_result->num_rows > 0) {
+    $already_registered = true;
+    $registration_status = $reg_result->fetch_assoc()['status'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -138,6 +208,11 @@ $activePage = 'dashboard';
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+<<<<<<< Updated upstream
+=======
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+>>>>>>> Stashed changes
         }
         
         /* Dashboard grid spacing */
@@ -220,11 +295,20 @@ $activePage = 'dashboard';
         
         /* Main content adjustments */
         .main-content {
+<<<<<<< Updated upstream
             flex: 1;
             padding: 20px;
             padding-bottom: 30px !important; /* Reduced padding */
             margin-left: 250px; /* Match sidebar width */
             overflow-x: hidden; /* Prevent horizontal scroll */
+=======
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box;
+            max-width: 1200px;
+            margin: 0 auto !important;
+>>>>>>> Stashed changes
         }
         
         /* Improved sidebar animation for mobile */
@@ -565,8 +649,13 @@ $activePage = 'dashboard';
         
         .registration-badge {
             position: absolute;
+<<<<<<< Updated upstream
             top: -10px;
             right: -10px;
+=======
+            top: 1px;
+            right: -2px;
+>>>>>>> Stashed changes
             background: #d4af37;
             color: white;
             padding: 5px 15px;
@@ -822,12 +911,34 @@ $activePage = 'dashboard';
             z-index: 2000;
             overflow-y: auto;
             opacity: 0;
+<<<<<<< Updated upstream
             animation: fadeIn 0.3s ease forwards;
         }
         
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+=======
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal.active {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                visibility: hidden;
+            }
+            to { 
+                opacity: 1;
+                visibility: visible;
+            }
+>>>>>>> Stashed changes
         }
         
         .modal-content {
@@ -1062,57 +1173,217 @@ $activePage = 'dashboard';
             .modal-btn {
                 width: 100%;
             }
+<<<<<<< Updated upstream
+=======
+        }
+
+        /* Updated header styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--primary);
+            color: #fff;
+            width: 100%;
+            min-height: 80px;
+            padding: 0 32px;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo-text h1, .logo-text p {
+            color: #fff;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-left: auto;
+        }
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+           
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links a.active, .nav-links a:hover {
+            background-color: rgba(118, 51, 56, 1);
+            color: #fff;
+        }
+        .nav-links .material-symbols-rounded {
+            font-size: 22px;
+            color: #fff;
+        }
+        #notifications {
+            margin-left: 8px;
+            color: #fff;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        .profile-menu {
+            margin-left: 10px;
+            position: relative;
+        }
+        .profile-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid #fff;
+            overflow: hidden;
+        }
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        @media (max-width: 900px) {
+            .header-content {
+                gap: 18px;
+                padding: 0 8px;
+            }
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 10px 8px;
+                min-height: 60px;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .logo img {
+                width: 32px;
+                height: 32px;
+            }
+            .profile-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 1240px) {
+            .main-content {
+                max-width: 98vw;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+
+        /* Alert Message Styles */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+        }
+        
+        .alert .material-symbols-rounded {
+            font-size: 24px;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+>>>>>>> Stashed changes
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/Logo.png" alt="PUP Logo">
-                    <div class="logo-text">
-                        <h1>STREAMS</h1>
-                        <p>Student Dashboard</p>
-                    </div>
-                </div>
-                <div class="nav-links">
-                    <a href="#" id="notifications">
-                        <span class="material-symbols-rounded">notifications</span>
-                    </a>
-                    <div class="profile-menu">
-                        <a href="#" id="profile-menu">
-                            <div class="profile-icon">
-                                <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
-                                    <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
-                                <?php else: ?>
-                                    <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
-                                <?php endif; ?>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a href="stud_dashboard.php" class="dropdown-item">
-                                <span class="material-symbols-rounded">dashboard</span>
-                                Dashboard
-                            </a>
-                            <a href="stud_profile.php" class="dropdown-item">
-                                <span class="material-symbols-rounded">person</span>
-                                Profile
-                            </a>
-                            <a href="stud_logout.php" class="dropdown-item">
-                                <span class="material-symbols-rounded">logout</span>
-                                Logout
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="logo">
+            <img src="img/Logo.png" alt="PUP Logo">
+            <div class="logo-text">
+                <h1>STREAMS</h1>
+                <p>Student Dashboard</p>
             </div>
         </div>
+        <nav class="nav-links">
+            <a href="stud_dashboard.php" class="<?php echo $activePage == 'dashboard' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">dashboard</span>
+                Dashboard
+            </a>
+            <?php if ($is_ip_verified): ?>
+            <a href="exam_instructions.php" class="<?php echo $activePage == 'take_exam' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">quiz</span>
+                Take Exam
+            </a>
+            <?php endif; ?>
+            <a href="exam_registration_status.php" class="<?php echo $activePage == 'registration' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">app_registration</span>
+                Registration Status
+            </a>
+            <a href="stud_result.php" class="<?php echo $activePage == 'results' ? 'active' : ''; ?>">
+                <span class="material-symbols-rounded">grade</span>
+                Results
+            </a>
+         
+            <div class="profile-menu">
+                <a href="#" id="profile-menu">
+                    <div class="profile-icon">
+                        <?php if (!empty($student['profile_picture']) && file_exists($student['profile_picture'])): ?>
+                            <img src="<?php echo $student['profile_picture']; ?>" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                        <?php else: ?>
+                            <?php echo strtoupper(substr($_SESSION['firstname'], 0, 1)); ?>
+                        <?php endif; ?>
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    
+                    <a href="stud_profile.php" class="dropdown-item">
+                        <span class="material-symbols-rounded">person</span>
+                        Profile
+                    </a>
+                    <a href="stud_logout.php" class="dropdown-item">
+                        <span class="material-symbols-rounded">logout</span>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
     </header>
     
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
+<<<<<<< Updated upstream
         <!-- Mobile Menu Toggle -->
         <button class="menu-toggle" id="menuToggle">
             <span class="material-symbols-rounded">menu</span>
@@ -1177,6 +1448,8 @@ $activePage = 'dashboard';
             </ul>
         </aside>
         
+=======
+>>>>>>> Stashed changes
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-title">
@@ -1197,10 +1470,33 @@ $activePage = 'dashboard';
                             <p>Register for the upcoming CCIS Qualifying Exam to advance your academic journey. This is a required step for all transferees, shiftees, and ladderized students.</p>
                         </div>
                     </div>
+<<<<<<< Updated upstream
                     <a href="qualiexam_register.php" class="registration-action">
                         <span class="material-symbols-rounded">how_to_reg</span>
                         Register for Qualifying Exam
                     </a>
+=======
+                    <?php if (!$already_registered): ?>
+                        <a href="qualiexam_register.php" class="registration-action">
+                            <span class="material-symbols-rounded">how_to_reg</span>
+                            Register for Qualifying Exam
+                        </a>
+                    <?php else: ?>
+                        <div class="registration-action" style="background: #e2e3e5; color: #888; cursor: not-allowed; pointer-events: none;">
+                            <span class="material-symbols-rounded">check_circle</span>
+                            You have already registered for the Qualifying Exam<?php 
+                            if (!empty($registration_status)) {
+                                $display_status = strtolower($registration_status);
+                                if ($display_status === 'needs_review' || $display_status === 'pending') {
+                                    echo " (Pending)";
+                                } else {
+                                    echo " (" . ucfirst($registration_status) . ")";
+                                }
+                            }
+                            ?>
+                        </div>
+                    <?php endif; ?>
+>>>>>>> Stashed changes
                 </div>
             </div>
 
@@ -1232,8 +1528,8 @@ $activePage = 'dashboard';
                                     <div class="exam-info">
                                         <h4><?php echo htmlspecialchars($exam['title']); ?></h4>
                                         <p>
-                                            Date: <?php echo date('F d, Y', strtotime($exam['scheduled_date'])); ?> | 
-                                            Time: <?php echo date('h:i A', strtotime($exam['scheduled_date'])); ?>
+                                            Date: <?php echo date('F d, Y', strtotime($exam['window_start'])); ?> | 
+                                            Time: <?php echo date('h:i A', strtotime($exam['window_start'])); ?>
                                         </p>
                                         <p>Venue: <?php echo htmlspecialchars($exam['venue']); ?></p>
                                         <p>Type: <?php echo htmlspecialchars(ucfirst($exam['exam_type'])); ?></p>
@@ -1253,11 +1549,19 @@ $activePage = 'dashboard';
                                         
                                         <div class="exam-status">
                                             <?php if ($is_assigned): ?>
-                                                <a href="exam_instructions.php" class="exam-action">
-                                                    Take Exam
-                                                </a>
+                                                <?php if ($is_ip_verified): ?>
+                                                    <a href="javascript:void(0)" onclick="validateExamSchedule(<?php echo $exam['exam_id']; ?>)" class="exam-action">
+                                                        Take Exam
+                                                    </a>
+                                                <?php else: ?>
+                                                    <div class="exam-status" style="color: #dc3545;">
+                                                        IP Not Verified
+                                                    </div>
+                                                <?php endif; ?>
                                             <?php else: ?>
-                                                Not Assigned
+                                                <div class="exam-status">
+                                                    Not Assigned
+                                                </div>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -1299,6 +1603,13 @@ $activePage = 'dashboard';
                     </div>
                 </div>
             </div>
+
+            <?php if (!empty($error_message)): ?>
+                <div class="alert alert-warning">
+                    <span class="material-symbols-rounded">warning</span>
+                    <?php echo htmlspecialchars($error_message); ?>
+                </div>
+            <?php endif; ?>
         </main>
     </div>
     
@@ -1376,6 +1687,26 @@ $activePage = 'dashboard';
         </div>
     </div>
 
+<<<<<<< Updated upstream
+=======
+    <!-- Alert Modal -->
+    <div id="alertModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header" style="background: #fff3cd; color: #856404;">
+                <span class="material-symbols-rounded" style="font-size: 24px; margin-right: 10px;">warning</span>
+                <h2 style="margin: 0; font-size: 20px;">Notice</h2>
+                <span class="close-modal" onclick="closeAlertModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="alertMessage" style="margin: 0; font-size: 16px; line-height: 1.5;"></p>
+            </div>
+            <div class="modal-footer" style="text-align: right;">
+                <button class="modal-btn" onclick="closeAlertModal()" style="background: #856404;">OK</button>
+            </div>
+        </div>
+    </div>
+
+>>>>>>> Stashed changes
     <script src="js/main.js"></script>
     
     <script>
@@ -1386,6 +1717,7 @@ $activePage = 'dashboard';
             const modalClose = document.getElementById('welcomeModalClose');
             const dontShowAgain = document.getElementById('dontShowAgain');
             
+<<<<<<< Updated upstream
             // Check if this is the first login (using localStorage)
             const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
             
@@ -1393,11 +1725,40 @@ $activePage = 'dashboard';
                 // Show the modal
                 welcomeModal.style.display = 'block';
                 document.body.classList.add('modal-open');
+=======
+            // Check if this is the first login (using both localStorage and session)
+            const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
+            const isFirstLogin = <?php echo isset($_SESSION['first_login']) ? 'true' : 'false'; ?>;
+            
+            // Show modal if it's first login or hasn't been seen before
+            if (isFirstLogin || !hasSeenWelcome) {
+                console.log('First login detected, showing welcome modal');
+                // Show the modal with proper styling
+                welcomeModal.classList.add('active');
+                document.body.classList.add('modal-open');
+                
+                // Log for debugging
+                console.log('Welcome modal should be visible');
+                
+                // Clear the first_login flag by making an AJAX call
+                fetch('clear_first_login.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('First login flag cleared:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error clearing first login flag:', error);
+                    });
+>>>>>>> Stashed changes
             }
             
             // Close modal when clicking the X
             closeModal.addEventListener('click', function() {
+<<<<<<< Updated upstream
                 welcomeModal.style.display = 'none';
+=======
+                welcomeModal.classList.remove('active');
+>>>>>>> Stashed changes
                 document.body.classList.remove('modal-open');
                 
                 if (dontShowAgain.checked) {
@@ -1407,12 +1768,31 @@ $activePage = 'dashboard';
             
             // Close modal when clicking the Get Started button
             modalClose.addEventListener('click', function() {
+<<<<<<< Updated upstream
                 welcomeModal.style.display = 'none';
+=======
+                welcomeModal.classList.remove('active');
+>>>>>>> Stashed changes
                 document.body.classList.remove('modal-open');
                 
                 if (dontShowAgain.checked) {
                     localStorage.setItem('hasSeenWelcome', 'true');
                 }
+<<<<<<< Updated upstream
+=======
+            });
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', function(event) {
+                if (event.target == welcomeModal) {
+                    welcomeModal.classList.remove('active');
+                    document.body.classList.remove('modal-open');
+                    
+                    if (dontShowAgain.checked) {
+                        localStorage.setItem('hasSeenWelcome', 'true');
+                    }
+                }
+>>>>>>> Stashed changes
             });
             
             // Close modal when clicking outside of it
@@ -1533,7 +1913,111 @@ $activePage = 'dashboard';
             // Initial adjustment
             adjustLayout();
         });
+
+        // Handle profile dropdown menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileMenu = document.getElementById('profile-menu');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            if (profileMenu && dropdownMenu) {
+                profileMenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileMenu.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        function showAlertModal(message) {
+            const modal = document.getElementById('alertModal');
+            const messageElement = document.getElementById('alertMessage');
+            messageElement.innerHTML = message;
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeAlertModal() {
+            const modal = document.getElementById('alertModal');
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function validateExamSchedule(examId) {
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Checking...';
+            button.style.pointerEvents = 'none';
+
+            fetch('stud_dashboard.php?action=validate_exam&exam_id=' + examId)
+                .then(response => response.json())
+                .then(data => {
+                    // Reset button state
+                    button.innerHTML = originalText;
+                    button.style.pointerEvents = 'auto';
+
+                    if (data.error) {
+                        // Show error message in modal
+                        const errorMessage = data.message || 'This exam is not yet available.';
+                        showAlertModal(errorMessage);
+                    } else if (data.success) {
+                        // Only proceed if we get a success response
+                        window.location.href = 'exam_instructions.php?exam_id=' + examId;
+                    }
+                })
+                .catch(error => {
+                    // Reset button state
+                    button.innerHTML = originalText;
+                    button.style.pointerEvents = 'auto';
+                    
+                    console.error('Error:', error);
+                    // Show error message in modal
+                    showAlertModal('An error occurred while checking the exam schedule. Please try again.');
+                });
+        }
+
+        // Intercept Take Exam nav link
+        document.addEventListener('DOMContentLoaded', function() {
+            const takeExamLink = document.querySelector('a[href="exam_instructions.php"]');
+            if (takeExamLink) {
+                takeExamLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Validate if student has an assigned exam
+                    fetch('stud_dashboard.php?action=validate_exam')
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                window.location.href = 'exam_instructions.php';
+                            } else {
+                                showAlertModal(data.message || 'No qualifying exam has been assigned to you at this time.');
+                            }
+                        })
+                        .catch(() => {
+                            showAlertModal('An error occurred while checking your exam assignment. Please try again.');
+                        });
+                });
+            }
+        });
     </script>
+    <?php if (!empty($exam_error_message)): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showAlertModal(<?php echo json_encode($exam_error_message); ?>);
+            // Remove error param from URL
+            if (window.history.replaceState) {
+                const url = new URL(window.location.href);
+                url.searchParams.delete('error');
+                window.history.replaceState({}, document.title, url.pathname + url.search);
+            }
+        });
+    </script>
+    <?php endif; ?>
 </body>
 </html>
 

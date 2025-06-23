@@ -1,12 +1,9 @@
 <?php
-    session_start(); // Start session if needed
+    // Include admin session management
+    require_once 'config/admin_session.php';
 
-// Check if user is logged in as admin
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    // Not logged in as admin, redirect to admin login page
-    header("Location: admin_login.php");
-    exit();
-}
+    // Check admin session and handle timeout
+    checkAdminSession();
 
 // Include database connection
 include('config/config.php');

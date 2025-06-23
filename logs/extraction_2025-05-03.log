@@ -1,0 +1,1715 @@
+[2025-05-03 16:39:19] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/temp/ocr_681646b77bc98_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 16:39:19] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-05-03 16:39:19] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-05-03 16:39:20] Got operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/3ae387b4-a4af-43cc-83ca-625babf4cdbb?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-05-03 16:39:29] Processing OCR results
+Data: Array
+(
+    [status] => succeeded
+)
+
+----------------------------------------
+[2025-05-03 16:39:29] No subjects found with strict pattern, trying lenient approach
+----------------------------------------
+[2025-05-03 16:39:29] Extracted subjects from content
+Data: Array
+(
+    [count] => 38
+    [sample] => Array
+        (
+            [0] => Array
+                (
+                    [subject_code] => OFFICIAL
+                    [subject_description] => TRANSCRIPT OF RECORDS
+                )
+
+            [1] => Array
+                (
+                    [subject_code] => JANNAH
+                    [subject_description] => LESLY YAMOYAM DUGO
+                )
+
+        )
+
+)
+
+----------------------------------------
+[2025-05-03 16:39:29] Successfully extracted subjects
+Data: Array
+(
+    [count] => 38
+    [sample] => Array
+        (
+            [0] => Array
+                (
+                    [subject_code] => OFFICIAL
+                    [subject_description] => TRANSCRIPT OF RECORDS
+                )
+
+            [1] => Array
+                (
+                    [subject_code] => JANNAH
+                    [subject_description] => LESLY YAMOYAM DUGO
+                )
+
+        )
+
+)
+
+----------------------------------------
+[2025-05-03 16:47:37] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/temp/ocr_681648a934032_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 16:47:37] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-05-03 16:47:37] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-05-03 16:47:38] Got operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/a480248f-ffc5-4cdc-a08a-25062903d44b?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-05-03 16:47:46] Processing OCR results
+Data: Array
+(
+    [status] => succeeded
+)
+
+----------------------------------------
+[2025-05-03 16:47:46] Error processing OCR results
+Data: Array
+(
+    [error] => No subjects could be extracted from the document
+    [trace] => #0 C:\wamp64\www\Practice\includes\ocr\OCRProcessor.php(57): OCRProcessor->processResults(Array)
+#1 C:\wamp64\www\Practice\process_ocr.php(67): OCRProcessor->performOCR('C:\\wamp64\\www\\P...')
+#2 {main}
+)
+
+----------------------------------------
+[2025-05-03 16:47:46] Error in Azure OCR process
+Data: Array
+(
+    [error] => No subjects could be extracted from the document
+    [trace] => #0 C:\wamp64\www\Practice\includes\ocr\OCRProcessor.php(57): OCRProcessor->processResults(Array)
+#1 C:\wamp64\www\Practice\process_ocr.php(67): OCRProcessor->performOCR('C:\\wamp64\\www\\P...')
+#2 {main}
+)
+
+----------------------------------------
+[2025-05-03 16:54:57] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/temp/ocr_68164a61a340a_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 16:54:57] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-05-03 16:54:57] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-05-03 16:54:58] Got operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/0791b888-51fd-485e-8c54-c3c4ff8592a2?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-05-03 16:55:07] Processing OCR results
+Data: Array
+(
+    [status] => succeeded
+    [has_analyze_result] => 1
+    [has_documents] => 1
+    [document_count] => 1
+    [raw_content_sample] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Registrar MANILA
+OFFICIAL TRANSCRIPT OF RECORDS
+Name:
+JANNAH LESLY YAMOYAM DUGO
+Sex:
+Female
+Date of Birth: 08/16/2004
+Nationality: FILIPINO
+Address:
+Q619 Sorrento Oasis, G. Rosario, Pasig City
+-
+JANNAH LESLY Y. DUGO ID No: TUPM-22-0914
+Entrance Credits From:
+LEPANTO NATIONAL HIGH SCHOOL
+Date Graduated/ Last Attended. July 2022
+Address:
+Paco, Mankayan, Benguet
+Degree/Title/Course:
+BACHELOR OF SCIENCE 
+)
+
+----------------------------------------
+[2025-05-03 16:55:07] Document fields
+Data: Array
+(
+    [available_fields] => Array
+        (
+            [0] => TorTable
+        )
+
+    [has_tor_table] => 1
+    [tor_table_type] => array
+)
+
+----------------------------------------
+[2025-05-03 16:55:07] Falling back to content extraction
+Data: Array
+(
+    [content_length] => 2553
+    [content_sample] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Registrar MANILA
+OFFICIAL TRANSCRIPT OF RECORDS
+Name:
+JANNAH LESLY YAMOYAM DUGO
+Sex:
+Female
+Date of Bir
+)
+
+----------------------------------------
+[2025-05-03 16:55:07] No subjects extracted
+Data: Array
+(
+    [has_table_data] => 1
+    [has_content] => 1
+    [content_sample] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Registrar MANILA
+OFFICIAL TRANSCRIPT OF RECORDS
+Name:
+JANNAH LESLY YAMOYAM DUGO
+Sex:
+Female
+Date of Bir
+)
+
+----------------------------------------
+[2025-05-03 16:55:07] Error processing OCR results
+Data: Array
+(
+    [error] => No subjects could be extracted from the document
+    [trace] => #0 C:\wamp64\www\Practice\includes\ocr\OCRProcessor.php(57): OCRProcessor->processResults(Array)
+#1 C:\wamp64\www\Practice\process_ocr.php(67): OCRProcessor->performOCR('C:\\wamp64\\www\\P...')
+#2 {main}
+)
+
+----------------------------------------
+[2025-05-03 16:55:07] Error in Azure OCR process
+Data: Array
+(
+    [error] => No subjects could be extracted from the document
+    [trace] => #0 C:\wamp64\www\Practice\includes\ocr\OCRProcessor.php(57): OCRProcessor->processResults(Array)
+#1 C:\wamp64\www\Practice\process_ocr.php(67): OCRProcessor->performOCR('C:\\wamp64\\www\\P...')
+#2 {main}
+)
+
+----------------------------------------
+[2025-05-03 16:59:11] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/temp/ocr_68164b5fbcc9c_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 16:59:11] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-05-03 16:59:11] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-05-03 16:59:12] Got operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/38f79661-7a11-4801-a3eb-2c8abaee3bcc?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing OCR results
+Data: Array
+(
+    [status] => succeeded
+    [has_analyze_result] => 1
+    [has_documents] => 1
+    [document_count] => 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Document fields
+Data: Array
+(
+    [available_fields] => Array
+        (
+            [0] => TorTable
+        )
+
+    [has_tor_table] => 1
+    [tor_table_type] => array
+    [tor_table_structure] => {"type":"array","valueArray":[{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"CHEMGEN1-M","content":"CHEMGEN1-M","boundingRegions":[{"pageNumber":1,"polygon":[251,660,380,660,380,680,251,680]}],"confidence":0.737,"spans":[{"offset":736,"length":10}]},"Description":{"type":"string","valueString":"General Chemistry","content":"General Chemistry","boundingRegions":[{"pageNumber":1,"polygon":[413,660,568,660,568,681,413,681]}],"confidence":0.732,"spans":[{"offset":747,"length":17}]},"Grades":{"type":"string","valueString":"1.75","content":"1.75","boundingRegions":[{"pageNumber":1,"polygon":[881,656,919,656,919,674,881,674]}],"confidence":0.734,"spans":[{"offset":765,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1118,653,1133,652,1134,670,1119,671]}],"confidence":0.901,"spans":[{"offset":770,"length":1}]}},"confidence":0.734},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"CHEMGEN1L-M","content":"CHEMGEN1L-M","boundingRegions":[{"pageNumber":1,"polygon":[252,686,391,686,391,707,252,707]}],"confidence":0.737,"spans":[{"offset":782,"length":11}]},"Description":{"type":"string","valueString":"General Chemistry, Laboratory","content":"General Chemistry, Laboratory","boundingRegions":[{"pageNumber":1,"polygon":[413,686,668,686,668,709,413,709]}],"confidence":0.433,"spans":[{"offset":794,"length":29}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[881,684,920,683,920,702,881,703]}],"confidence":0.735,"spans":[{"offset":824,"length":4}]},"Units":{"type":"string","valueString":"1","content":"1","boundingRegions":[{"pageNumber":1,"polygon":[1119,680,1131,680,1131,698,1119,698]}],"confidence":0.983,"spans":[{"offset":829,"length":1}]}},"confidence":0.44},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"GEC2-M","content":"GEC2-M","boundingRegions":[{"pageNumber":1,"polygon":[252,713,326,713,326,733,252,733]}],"confidence":0.737,"spans":[{"offset":831,"length":6}]},"Description":{"type":"string","valueString":"Readings in Philippine History","content":"Readings in Philippine History","boundingRegions":[{"pageNumber":1,"polygon":[413,712,661,712,661,735,413,735]}],"confidence":0.734,"spans":[{"offset":838,"length":30}]},"Grades":{"type":"string","valueString":"1.25","content":"1.25","boundingRegions":[{"pageNumber":1,"polygon":[880,710,919,710,919,729,880,729]}],"confidence":0.735,"spans":[{"offset":869,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1118,707,1132,707,1132,725,1118,725]}],"confidence":0.933,"spans":[{"offset":874,"length":1}]}},"confidence":0.734},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"GEC4-M","content":"GEC4-M","boundingRegions":[{"pageNumber":1,"polygon":[252,739,326,740,326,760,252,759]}],"confidence":0.739,"spans":[{"offset":876,"length":6}]},"Description":{"type":"string","valueString":"Mathematics in the Modern World","content":"Mathematics in the Modern World","boundingRegions":[{"pageNumber":1,"polygon":[412,738,693,738,693,761,412,761]}],"confidence":0.718,"spans":[{"offset":883,"length":31}]},"Grades":{"type":"string","valueString":"1.00","content":"1.00","boundingRegions":[{"pageNumber":1,"polygon":[881,737,918,737,918,756,881,756]}],"confidence":0.734,"spans":[{"offset":915,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1117,734,1131,734,1131,752,1117,752]}],"confidence":0.985,"spans":[{"offset":920,"length":1}]}},"confidence":0.718},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"GEC7-M","content":"GEC7-M","boundingRegions":[{"pageNumber":1,"polygon":[252,765,327,766,327,786,252,785]}],"confidence":0.737,"spans":[{"offset":922,"length":6}]},"Description":{"type":"string","valueString":"Science, Technology and Society","content":"Science, Technology and Society","boundingRegions":[{"pageNumber":1,"polygon":[413,765,688,765,688,788,413,788]}],"confidence":0.7,"spans":[{"offset":929,"length":31}]},"Grades":{"type":"string","valueString":"1.25","content":"1.25","boundingRegions":[{"pageNumber":1,"polygon":[881,764,918,764,918,783,881,783]}],"confidence":0.737,"spans":[{"offset":961,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1117,761,1130,761,1130,779,1117,779]}],"confidence":0.984,"spans":[{"offset":966,"length":1}]}},"confidence":0.7},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM111-M","content":"HRM111-M","boundingRegions":[{"pageNumber":1,"polygon":[251,792,350,792,350,813,251,812]}],"confidence":0.737,"spans":[{"offset":968,"length":8}]},"Description":{"type":"string","valueString":"Risk Management as Applied to Safety, Security","content":"Risk Management as Applied to Safety, Security","boundingRegions":[{"pageNumber":1,"polygon":[414,790,811,790,811,815,414,815]}],"confidence":0.54,"spans":[{"offset":977,"length":46}]},"Grades":{"type":"string","valueString":"1.75","content":"1.75","boundingRegions":[{"pageNumber":1,"polygon":[880,791,918,791,918,809,880,810]}],"confidence":0.737,"spans":[{"offset":1024,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1113,788,1130,788,1131,806,1114,807]}],"confidence":0.898,"spans":[{"offset":1029,"length":1}]}},"confidence":0.54},{"type":"object","valueObject":{"Description":{"type":"string","valueString":"and Sanitation","content":"and Sanitation","boundingRegions":[{"pageNumber":1,"polygon":[414,819,535,819,535,840,414,840]}],"confidence":0.726,"spans":[{"offset":1031,"length":14}]},"Subject Code":{"type":"string","confidence":0.77},"Grades":{"type":"string","confidence":0.616},"Units":{"type":"string","confidence":0.651}},"confidence":0.726},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM112-M","content":"HRM112-M","boundingRegions":[{"pageNumber":1,"polygon":[252,845,350,845,350,865,252,865]}],"confidence":0.737,"spans":[{"offset":1046,"length":8}]},"Description":{"type":"string","valueString":"Macro Perspective of Tourism and Hospitality","content":"Macro Perspective of Tourism and Hospitality","boundingRegions":[{"pageNumber":1,"polygon":[415,844,786,844,786,867,415,867]}],"confidence":0.732,"spans":[{"offset":1055,"length":44}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[879,845,917,844,917,863,879,863]}],"confidence":0.734,"spans":[{"offset":1100,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1113,843,1128,842,1129,861,1114,861]}],"confidence":0.901,"spans":[{"offset":1105,"length":1}]}},"confidence":0.732},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM113LAB-M","content":"HRM113LAB-M","boundingRegions":[{"pageNumber":1,"polygon":[254,871,386,871,386,892,254,891]}],"confidence":0.737,"spans":[{"offset":1107,"length":11}]},"Description":{"type":"string","valueString":"Kitchen Essentials & Basic Food Preparation","content":"Kitchen Essentials & Basic Food Preparation","boundingRegions":[{"pageNumber":1,"polygon":[415,870,782,870,782,893,415,893]}],"confidence":0.725,"spans":[{"offset":1119,"length":43}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[879,871,916,871,916,889,879,889]}],"confidence":0.734,"spans":[{"offset":1163,"length":4}]},"Units":{"type":"string","valueString":"1","content":"1","boundingRegions":[{"pageNumber":1,"polygon":[1113,870,1126,870,1127,886,1114,887]}],"confidence":0.913,"spans":[{"offset":1168,"length":1}]}},"confidence":0.725},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM113LEC-M","content":"HRM113LEC-M","boundingRegions":[{"pageNumber":1,"polygon":[254,897,387,897,387,917,254,917]}],"confidence":0.734,"spans":[{"offset":1170,"length":11}]},"Description":{"type":"string","valueString":"Kitchen Essentials & Basic Food Preparation","content":"Kitchen Essentials & Basic Food Preparation","boundingRegions":[{"pageNumber":1,"polygon":[416,896,782,896,782,918,416,918]}],"confidence":0.459,"spans":[{"offset":1182,"length":43}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[880,897,916,896,916,915,880,915]}],"confidence":0.731,"spans":[{"offset":1226,"length":4}]},"Units":{"type":"string","valueString":"2","content":"2","boundingRegions":[{"pageNumber":1,"polygon":[1112,895,1126,895,1126,913,1112,913]}],"confidence":0.892,"spans":[{"offset":1231,"length":1}]}},"confidence":0.459},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"NSTP1-M","content":"NSTP1-M","boundingRegions":[{"pageNumber":1,"polygon":[253,922,338,923,338,944,253,943]}],"confidence":0.737,"spans":[{"offset":1233,"length":7}]},"Description":{"type":"string","valueString":"National Service Training Program 1","content":"National Service Training Program 1","boundingRegions":[{"pageNumber":1,"polygon":[414,921,713,921,713,945,414,945]}],"confidence":0.734,"spans":[{"offset":1241,"length":35}]},"Grades":{"type":"string","valueString":"1.25","content":"1.25","boundingRegions":[{"pageNumber":1,"polygon":[879,922,916,922,916,940,879,940]}],"confidence":0.725,"spans":[{"offset":1277,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1111,921,1127,920,1128,938,1112,938]}],"confidence":0.9,"spans":[{"offset":1282,"length":1}]}},"confidence":0.... [truncated]
+----------------------------------------
+[2025-05-03 16:59:21] TorTable structure
+Data: Array
+(
+    [type] => array
+    [has_value] => 
+    [value_type] => not set
+    [raw_table] => {"type":"array","valueArray":[{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"CHEMGEN1-M","content":"CHEMGEN1-M","boundingRegions":[{"pageNumber":1,"polygon":[251,660,380,660,380,680,251,680]}],"confidence":0.737,"spans":[{"offset":736,"length":10}]},"Description":{"type":"string","valueString":"General Chemistry","content":"General Chemistry","boundingRegions":[{"pageNumber":1,"polygon":[413,660,568,660,568,681,413,681]}],"confidence":0.732,"spans":[{"offset":747,"length":17}]},"Grades":{"type":"string","valueString":"1.75","content":"1.75","boundingRegions":[{"pageNumber":1,"polygon":[881,656,919,656,919,674,881,674]}],"confidence":0.734,"spans":[{"offset":765,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1118,653,1133,652,1134,670,1119,671]}],"confidence":0.901,"spans":[{"offset":770,"length":1}]}},"confidence":0.734},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"CHEMGEN1L-M","content":"CHEMGEN1L-M","boundingRegions":[{"pageNumber":1,"polygon":[252,686,391,686,391,707,252,707]}],"confidence":0.737,"spans":[{"offset":782,"length":11}]},"Description":{"type":"string","valueString":"General Chemistry, Laboratory","content":"General Chemistry, Laboratory","boundingRegions":[{"pageNumber":1,"polygon":[413,686,668,686,668,709,413,709]}],"confidence":0.433,"spans":[{"offset":794,"length":29}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[881,684,920,683,920,702,881,703]}],"confidence":0.735,"spans":[{"offset":824,"length":4}]},"Units":{"type":"string","valueString":"1","content":"1","boundingRegions":[{"pageNumber":1,"polygon":[1119,680,1131,680,1131,698,1119,698]}],"confidence":0.983,"spans":[{"offset":829,"length":1}]}},"confidence":0.44},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"GEC2-M","content":"GEC2-M","boundingRegions":[{"pageNumber":1,"polygon":[252,713,326,713,326,733,252,733]}],"confidence":0.737,"spans":[{"offset":831,"length":6}]},"Description":{"type":"string","valueString":"Readings in Philippine History","content":"Readings in Philippine History","boundingRegions":[{"pageNumber":1,"polygon":[413,712,661,712,661,735,413,735]}],"confidence":0.734,"spans":[{"offset":838,"length":30}]},"Grades":{"type":"string","valueString":"1.25","content":"1.25","boundingRegions":[{"pageNumber":1,"polygon":[880,710,919,710,919,729,880,729]}],"confidence":0.735,"spans":[{"offset":869,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1118,707,1132,707,1132,725,1118,725]}],"confidence":0.933,"spans":[{"offset":874,"length":1}]}},"confidence":0.734},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"GEC4-M","content":"GEC4-M","boundingRegions":[{"pageNumber":1,"polygon":[252,739,326,740,326,760,252,759]}],"confidence":0.739,"spans":[{"offset":876,"length":6}]},"Description":{"type":"string","valueString":"Mathematics in the Modern World","content":"Mathematics in the Modern World","boundingRegions":[{"pageNumber":1,"polygon":[412,738,693,738,693,761,412,761]}],"confidence":0.718,"spans":[{"offset":883,"length":31}]},"Grades":{"type":"string","valueString":"1.00","content":"1.00","boundingRegions":[{"pageNumber":1,"polygon":[881,737,918,737,918,756,881,756]}],"confidence":0.734,"spans":[{"offset":915,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1117,734,1131,734,1131,752,1117,752]}],"confidence":0.985,"spans":[{"offset":920,"length":1}]}},"confidence":0.718},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"GEC7-M","content":"GEC7-M","boundingRegions":[{"pageNumber":1,"polygon":[252,765,327,766,327,786,252,785]}],"confidence":0.737,"spans":[{"offset":922,"length":6}]},"Description":{"type":"string","valueString":"Science, Technology and Society","content":"Science, Technology and Society","boundingRegions":[{"pageNumber":1,"polygon":[413,765,688,765,688,788,413,788]}],"confidence":0.7,"spans":[{"offset":929,"length":31}]},"Grades":{"type":"string","valueString":"1.25","content":"1.25","boundingRegions":[{"pageNumber":1,"polygon":[881,764,918,764,918,783,881,783]}],"confidence":0.737,"spans":[{"offset":961,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1117,761,1130,761,1130,779,1117,779]}],"confidence":0.984,"spans":[{"offset":966,"length":1}]}},"confidence":0.7},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM111-M","content":"HRM111-M","boundingRegions":[{"pageNumber":1,"polygon":[251,792,350,792,350,813,251,812]}],"confidence":0.737,"spans":[{"offset":968,"length":8}]},"Description":{"type":"string","valueString":"Risk Management as Applied to Safety, Security","content":"Risk Management as Applied to Safety, Security","boundingRegions":[{"pageNumber":1,"polygon":[414,790,811,790,811,815,414,815]}],"confidence":0.54,"spans":[{"offset":977,"length":46}]},"Grades":{"type":"string","valueString":"1.75","content":"1.75","boundingRegions":[{"pageNumber":1,"polygon":[880,791,918,791,918,809,880,810]}],"confidence":0.737,"spans":[{"offset":1024,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1113,788,1130,788,1131,806,1114,807]}],"confidence":0.898,"spans":[{"offset":1029,"length":1}]}},"confidence":0.54},{"type":"object","valueObject":{"Description":{"type":"string","valueString":"and Sanitation","content":"and Sanitation","boundingRegions":[{"pageNumber":1,"polygon":[414,819,535,819,535,840,414,840]}],"confidence":0.726,"spans":[{"offset":1031,"length":14}]},"Subject Code":{"type":"string","confidence":0.77},"Grades":{"type":"string","confidence":0.616},"Units":{"type":"string","confidence":0.651}},"confidence":0.726},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM112-M","content":"HRM112-M","boundingRegions":[{"pageNumber":1,"polygon":[252,845,350,845,350,865,252,865]}],"confidence":0.737,"spans":[{"offset":1046,"length":8}]},"Description":{"type":"string","valueString":"Macro Perspective of Tourism and Hospitality","content":"Macro Perspective of Tourism and Hospitality","boundingRegions":[{"pageNumber":1,"polygon":[415,844,786,844,786,867,415,867]}],"confidence":0.732,"spans":[{"offset":1055,"length":44}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[879,845,917,844,917,863,879,863]}],"confidence":0.734,"spans":[{"offset":1100,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1113,843,1128,842,1129,861,1114,861]}],"confidence":0.901,"spans":[{"offset":1105,"length":1}]}},"confidence":0.732},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM113LAB-M","content":"HRM113LAB-M","boundingRegions":[{"pageNumber":1,"polygon":[254,871,386,871,386,892,254,891]}],"confidence":0.737,"spans":[{"offset":1107,"length":11}]},"Description":{"type":"string","valueString":"Kitchen Essentials & Basic Food Preparation","content":"Kitchen Essentials & Basic Food Preparation","boundingRegions":[{"pageNumber":1,"polygon":[415,870,782,870,782,893,415,893]}],"confidence":0.725,"spans":[{"offset":1119,"length":43}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[879,871,916,871,916,889,879,889]}],"confidence":0.734,"spans":[{"offset":1163,"length":4}]},"Units":{"type":"string","valueString":"1","content":"1","boundingRegions":[{"pageNumber":1,"polygon":[1113,870,1126,870,1127,886,1114,887]}],"confidence":0.913,"spans":[{"offset":1168,"length":1}]}},"confidence":0.725},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"HRM113LEC-M","content":"HRM113LEC-M","boundingRegions":[{"pageNumber":1,"polygon":[254,897,387,897,387,917,254,917]}],"confidence":0.734,"spans":[{"offset":1170,"length":11}]},"Description":{"type":"string","valueString":"Kitchen Essentials & Basic Food Preparation","content":"Kitchen Essentials & Basic Food Preparation","boundingRegions":[{"pageNumber":1,"polygon":[416,896,782,896,782,918,416,918]}],"confidence":0.459,"spans":[{"offset":1182,"length":43}]},"Grades":{"type":"string","valueString":"1.50","content":"1.50","boundingRegions":[{"pageNumber":1,"polygon":[880,897,916,896,916,915,880,915]}],"confidence":0.731,"spans":[{"offset":1226,"length":4}]},"Units":{"type":"string","valueString":"2","content":"2","boundingRegions":[{"pageNumber":1,"polygon":[1112,895,1126,895,1126,913,1112,913]}],"confidence":0.892,"spans":[{"offset":1231,"length":1}]}},"confidence":0.459},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueString":"NSTP1-M","content":"NSTP1-M","boundingRegions":[{"pageNumber":1,"polygon":[253,922,338,923,338,944,253,943]}],"confidence":0.737,"spans":[{"offset":1233,"length":7}]},"Description":{"type":"string","valueString":"National Service Training Program 1","content":"National Service Training Program 1","boundingRegions":[{"pageNumber":1,"polygon":[414,921,713,921,713,945,414,945]}],"confidence":0.734,"spans":[{"offset":1241,"length":35}]},"Grades":{"type":"string","valueString":"1.25","content":"1.25","boundingRegions":[{"pageNumber":1,"polygon":[879,922,916,922,916,940,879,940]}],"confidence":0.725,"spans":[{"offset":1277,"length":4}]},"Units":{"type":"string","valueString":"3","content":"3","boundingRegions":[{"pageNumber":1,"polygon":[1111,921,1127,920,1128,938,1112,938]}],"confidence":0.9,"spans":[{"offset":1282,"length":1}]}},"confidence":0.725},{"type":"object","valueObject":{"Subject Code":{"type":"string","valueStr... [truncated]
+----------------------------------------
+[2025-05-03 16:59:21] Falling back to content extraction
+Data: Array
+(
+    [content_length] => 2553
+    [content_sample] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Registrar MANILA
+OFFICIAL TRANSCRIPT OF RECORDS
+Name:
+JANNAH LESLY YAMOYAM DUGO
+Sex:
+Female
+Date of Birth: 08/16/2004
+Nationality: FILIPINO
+Address:
+Q619 Sorrento Oasis, G. Rosario, Pasig City
+-
+JANNAH LESLY Y. DUGO ID No: TUPM-22-0914
+Entrance Credits From:
+LEPANTO NATIONAL HIGH SCHOOL
+Date Graduated/ Last Attended. July 2022
+Address:
+Paco, Mankayan, Benguet
+Degree/Title/Course:
+BACHELOR OF SCIENCE 
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Starting content extraction
+Data: Array
+(
+    [total_lines] => 167
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 1
+    [content] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Registrar MANILA
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 2
+    [content] => OFFICIAL TRANSCRIPT OF RECORDS
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 3
+    [content] => Name:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 4
+    [content] => JANNAH LESLY YAMOYAM DUGO
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 5
+    [content] => Sex:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 6
+    [content] => Female
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 7
+    [content] => Date of Birth: 08/16/2004
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 8
+    [content] => Nationality: FILIPINO
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 9
+    [content] => Address:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 10
+    [content] => Q619 Sorrento Oasis, G. Rosario, Pasig City
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 11
+    [content] => -
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 12
+    [content] => JANNAH LESLY Y. DUGO ID No: TUPM-22-0914
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 13
+    [content] => Entrance Credits From:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 14
+    [content] => LEPANTO NATIONAL HIGH SCHOOL
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 15
+    [content] => Date Graduated/ Last Attended. July 2022
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 16
+    [content] => Address:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 17
+    [content] => Paco, Mankayan, Benguet
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 18
+    [content] => Degree/Title/Course:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 19
+    [content] => BACHELOR OF SCIENCE IN HOTEL AND RESTAURANT MANAGEMENT
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 20
+    [content] => Major:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 21
+    [content] => ---
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 22
+    [content] => Date Admitted: September 2022
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 23
+    [content] => Date of Graduation:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 24
+    [content] => Not Applicable
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 25
+    [content] => Honors/Distinction:
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 26
+    [content] => NSTP Serial No.
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 27
+    [content] => -
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 28
+    [content] => TERM
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 29
+    [content] => SUBJECT CODE AND DESCRIPTIVE TITLE
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Entered subjects section
+Data: Array
+(
+    [trigger] => SUBJECT CODE AND DESCRIPTIVE TITLE
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 30
+    [content] => GRADES
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 31
+    [content] => CREDITS
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 32
+    [content] => Final
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 33
+    [content] => Completion
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 34
+    [content] => First Semester
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Entered subjects section
+Data: Array
+(
+    [trigger] => First Semester
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 35
+    [content] => CHEMGEN1-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => CHEMGEN1
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 36
+    [content] => General Chemistry
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 37
+    [content] => 1.75
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 38
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 39
+    [content] => 2022-2023
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 40
+    [content] => CHEMGEN1L-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => CHEMGEN1L
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 41
+    [content] => General Chemistry, Laboratory
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 42
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 43
+    [content] => 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 44
+    [content] => GEC2-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => GEC2
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 45
+    [content] => Readings in Philippine History
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 46
+    [content] => 1.25
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 47
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 48
+    [content] => GEC4-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => GEC4
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 49
+    [content] => Mathematics in the Modern World
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 50
+    [content] => 1.00
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 51
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 52
+    [content] => GEC7-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => GEC7
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 53
+    [content] => Science, Technology and Society
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 54
+    [content] => 1.25
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 55
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 56
+    [content] => HRM111-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM111
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 57
+    [content] => Risk Management as Applied to Safety, Security
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 58
+    [content] => 1.75
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 59
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 60
+    [content] => and Sanitation
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 61
+    [content] => HRM112-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM112
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 62
+    [content] => Macro Perspective of Tourism and Hospitality
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 63
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 64
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 65
+    [content] => HRM113LAB-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM113LAB
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 66
+    [content] => Kitchen Essentials & Basic Food Preparation
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 67
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 68
+    [content] => 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 69
+    [content] => HRM113LEC-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM113LEC
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 70
+    [content] => Kitchen Essentials & Basic Food Preparation
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 71
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 72
+    [content] => 2
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 73
+    [content] => NSTP1-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => NSTP1
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 74
+    [content] => National Service Training Program 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 75
+    [content] => 1.25
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 76
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 77
+    [content] => Second Semester
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Entered subjects section
+Data: Array
+(
+    [trigger] => Second Semester
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 78
+    [content] => CLT125LAB-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => CLT125LAB
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 79
+    [content] => Food Chemistry, Laboratory
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 80
+    [content] => 1.00
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 81
+    [content] => 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 82
+    [content] => 2022-2023
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 83
+    [content] => CLT125LEC-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => CLT125LEC
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 84
+    [content] => Food Chemistry
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 85
+    [content] => 1.25
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 86
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 87
+    [content] => GEC1-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => GEC1
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 88
+    [content] => Understanding the Self
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 89
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 90
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 91
+    [content] => GEC3-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => GEC3
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 92
+    [content] => The Contemporary World
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 93
+    [content] => 1.25
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 94
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 95
+    [content] => GEE12A-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => GEE12A
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 96
+    [content] => Religions, Religious Experiences and Sprituality
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 97
+    [content] => 1.25
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 98
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 99
+    [content] => HRM121LEC-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM121LEC
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 100
+    [content] => Micro Perspective of Tourism and Hospitality
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 101
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 102
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 103
+    [content] => HRM122LAB-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM122LAB
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 104
+    [content] => Asian Cuisine, Laboratory
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 105
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 106
+    [content] => 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 107
+    [content] => HRM122LEC-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM122LEC
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 108
+    [content] => Asian Cuisine
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 109
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 110
+    [content] => 2
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 111
+    [content] => HRM123LEC-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => HRM123LEC
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 112
+    [content] => Professional Development and Applied Ethics
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 113
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 114
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 115
+    [content] => MGT110-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => MGT110
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 116
+    [content] => Operation Management
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 117
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 118
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 119
+    [content] => NSTP2-M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Found partial subject
+Data: Array
+(
+    [subject_code] => NSTP2
+    [subject_description] => M
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 120
+    [content] => National Service Training Program 2
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 121
+    [content] => 1.50
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 122
+    [content] => 3
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Processing line
+Data: Array
+(
+    [line_number] => 123
+    [content] => x-x-x-x-x-x-x-x-x-x-x-NOTHING FOLLOWS-x-x-x-x-x-x-x-x-x-x-x
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Exited subjects section
+Data: Array
+(
+    [trigger] => x-x-x-x-x-x-x-x-x-x-x-NOTHING FOLLOWS-x-x-x-x-x-x-x-x-x-x-x
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Content extraction completed
+Data: Array
+(
+    [subjects_found] => 0
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] No subjects extracted
+Data: Array
+(
+    [has_table_data] => 1
+    [has_content] => 1
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Error processing OCR results
+Data: Array
+(
+    [error] => No subjects could be extracted from the document
+    [trace] => #0 C:\wamp64\www\Practice\includes\ocr\OCRProcessor.php(57): OCRProcessor->processResults(Array)
+#1 C:\wamp64\www\Practice\process_ocr.php(67): OCRProcessor->performOCR('C:\\wamp64\\www\\P...')
+#2 {main}
+)
+
+----------------------------------------
+[2025-05-03 16:59:21] Error in Azure OCR process
+Data: Array
+(
+    [error] => No subjects could be extracted from the document
+    [trace] => #0 C:\wamp64\www\Practice\includes\ocr\OCRProcessor.php(57): OCRProcessor->processResults(Array)
+#1 C:\wamp64\www\Practice\process_ocr.php(67): OCRProcessor->performOCR('C:\\wamp64\\www\\P...')
+#2 {main}
+)
+
+----------------------------------------
+[2025-05-03 17:43:05] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/temp/ocr_681655a94cbbf_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 17:43:15] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 17:51:03] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/temp/ocr_6816578776a29_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 17:51:13] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 17:52:00] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/temp/ocr_681657c042bdf_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 17:52:10] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 17:57:11] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/temp/ocr_681658f72713b_Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 17:57:20] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 18:01:59] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 18:02:08] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 18:23:34] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 18:23:43] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 18:37:07] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 18:37:16] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 18:42:17] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 18:42:26] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 18:42:57] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 18:43:06] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------
+[2025-05-03 18:53:45] Starting document processing
+Data: Array
+(
+    [file] => C:\wamp64\www\Practice/uploads/tor/Technological University of the Philippines.jpg
+)
+
+----------------------------------------
+[2025-05-03 18:53:54] Successfully extracted subjects
+Data: Array
+(
+    [count] => 20
+)
+
+----------------------------------------

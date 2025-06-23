@@ -1,0 +1,59 @@
+{
+    "status": "succeeded",
+    "createdDateTime": "2025-05-10T03:35:42Z",
+    "lastUpdatedDateTime": "2025-05-10T03:35:42Z",
+    "analyzeResult": {
+        "apiVersion": "2024-11-30",
+        "modelId": "transcript_extractor_v4",
+        "stringIndexType": "textElements",
+        "content": "",
+        "pages": [
+            {
+                "pageNumber": 1,
+                "angle": 0,
+                "width": 1080,
+                "height": 1080,
+                "unit": "pixel",
+                "words": [],
+                "lines": [],
+                "spans": [
+                    {
+                        "offset": 0,
+                        "length": 0
+                    }
+                ]
+            }
+        ],
+        "tables": [],
+        "styles": [],
+        "documents": [
+            {
+                "docType": "transcript_extractor_v4",
+                "boundingRegions": [
+                    {
+                        "pageNumber": 1,
+                        "polygon": [
+                            0,
+                            0,
+                            1080,
+                            0,
+                            1080,
+                            1080,
+                            0,
+                            1080
+                        ]
+                    }
+                ],
+                "fields": [],
+                "confidence": 0,
+                "spans": [
+                    {
+                        "offset": 0,
+                        "length": 0
+                    }
+                ]
+            }
+        ],
+        "contentFormat": "text"
+    }
+}

@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "C:\wamp64\www\Practice\process_document.py", line 2, in <module>
-    from google.cloud import documentai_v1 as documentai
-ModuleNotFoundError: No module named 'google'

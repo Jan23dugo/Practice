@@ -55,4 +55,106 @@ The system works by:
 
 ## License
 
-This project is licensed under the MIT License. 
+This project is licensed under the MIT License.
+
+# PUP Qualifying Exam Portal
+
+## Frontend Architecture
+
+The portal follows a consistent design system with centralized styles and JavaScript functionality.
+
+### CSS Organization
+
+The CSS is organized in two levels:
+
+1. **Global Styles** (`styles/main.css`):
+   - Contains all common styles used across the application
+   - Defines color variables, typography, and layout components
+   - Includes header, footer, sidebar, and responsive adjustments
+   - Standardizes component styles (cards, buttons, notifications)
+
+2. **Page-specific Styles** (inline in each page):
+   - Only contains styles unique to that specific page
+   - Keeps file size minimal by leveraging the global styles
+
+### JavaScript Organization
+
+JavaScript is also modularized:
+
+1. **Global Scripts** (`js/main.js`):
+   - Handles universal interactive elements
+   - Manages sidebar toggling on mobile
+   - Controls dropdowns and profile menus
+   - Provides responsive behavior
+
+### Design System Variables
+
+The design system uses CSS variables for consistent styling:
+
+```css
+:root {
+    --primary: #75343A;
+    --primary-dark: #5a2930;
+    --primary-light: #9e4a52;
+    --secondary: #f8f0e3;
+    --accent: #d4af37;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --gray-light: #f5f5f5;
+    --gray: #e0e0e0;
+    --success: #4CAF50;
+    --warning: #FF9800;
+    --danger: #F44336;
+}
+```
+
+### Responsive Design
+
+The portal is responsive across all devices with these breakpoints:
+- Desktop: 1024px and above
+- Tablet: 768px to 1023px
+- Mobile: Below 768px
+
+### Adding New Pages
+
+When adding new pages to the system:
+
+1. Include the global stylesheet:
+   ```html
+   <link rel="stylesheet" href="styles/main.css">
+   ```
+
+2. Include the global JavaScript:
+   ```html
+   <script src="js/main.js"></script>
+   ```
+
+3. Add page-specific styles using inline `<style>` tags
+   ```html
+   <style>
+     /* Page-specific styles here */
+   </style>
+   ```
+
+4. Use the standard page structure:
+   ```html
+   <div class="main-wrapper">
+     <!-- Mobile Menu Toggle -->
+     <button class="menu-toggle" id="menuToggle">
+       <span class="material-symbols-rounded">menu</span>
+     </button>
+
+     <!-- Sidebar Overlay -->
+     <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+     <!-- Sidebar -->
+     <aside class="sidebar" id="sidebar">
+       <!-- Sidebar content -->
+     </aside>
+
+     <!-- Main Content -->
+     <main class="main-content">
+       <!-- Page content -->
+     </main>
+   </div>
+   ``` 

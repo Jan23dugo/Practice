@@ -326,6 +326,18 @@ $exam_duration = isset($exam['duration']) ? intval($exam['duration']) : 60;
         .option-item:hover {
             background-color: #f8f9fa;
         }
+
+        .code-preview {
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 10px 0;
+        }
     </style>
 </body>
 </html> 

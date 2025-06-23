@@ -14,12 +14,20 @@ document.addEventListener('DOMContentLoaded', function() {
         tab.addEventListener('click', () => {
             // Remove active class from all tabs and contents
             tabs.forEach(t => t.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                // Hide all content when switching tabs
+                content.style.display = 'none';
+            });
             
             // Add active class to clicked tab and corresponding content
             tab.classList.add('active');
             const tabId = tab.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) {
+                activeContent.classList.add('active');
+                activeContent.style.display = 'block';
+            }
 
             // Destroy all existing charts
             Object.keys(charts).forEach(key => {
@@ -43,6 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Set initial tab content visibility
+    const activeTab = document.querySelector('.analytics-tab.active');
+    if (activeTab) {
+        const tabId = activeTab.getAttribute('data-tab');
+        const activeContent = document.getElementById(tabId);
+        if (activeContent) {
+            activeContent.style.display = 'block';
+        }
+    }
 
     // Initialize Demographics Chart
     function initDemographicsChart() {
@@ -157,23 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.exportData = function() {
         window.location.href = 'analytics.php?export=csv';
     };
-
-    // Initialize charts for the active tab on page load
-    const activeTab = document.querySelector('.analytics-tab.active');
-    if (activeTab) {
-        const tabId = activeTab.getAttribute('data-tab');
-        switch(tabId) {
-            case 'demographics':
-                initDemographicsChart();
-                break;
-            case 'exam-overview':
-                initExamOverviewChart();
-                break;
-            case 'exam-results':
-                initExamResultsChart();
-                break;
-        }
-    }
 
     // Change exam function
     window.changeExam = function(examId) {

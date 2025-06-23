@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Request received: 2025-04-27 18:56:38
 POST data: Array
 (
@@ -98,14 +99,18 @@ Session data: Array
 
 Database connection closed
 Request received: 2025-05-17 17:30:28
+=======
+Request received: 2025-06-23 12:38:59
+>>>>>>> Stashed changes
 POST data: Array
 (
     [status] => accepted
-    [reference_id] => CCIS-2025-10384
+    [student_id] => 137
 )
 
 Session data: Array
 (
+<<<<<<< Updated upstream
     [admin_id] => 1
     [email] => pupccisfaculty@gmail.com
     [is_admin] => 1
@@ -244,6 +249,68 @@ Session data: Array
     [admin_id] => 1
     [email] => pupccisfaculty@gmail.com
     [is_admin] => 1
+=======
+    [stud_id] => 47
+    [firstname] => Shion
+    [middlename] => aa
+    [lastname] => Reeve
+    [email] => pupccisfaculty@gmail.com
+    [last_activity] => 1750675136
+    [debug_output] => 
+    [student_id] => 137
+    [registration_status] => needs_review
+    [message] => Your application has been submitted for manual review by an administrator. This is usually due to your institution's grading system not being registered in our database.
+    [message_type] => warning
+    [matches] => Array
+        (
+            [0] => ✓ Matched: Komunikasyon sa Akademikong Filipino (3 units) with Filipinolohiya at Pambansang Kaunlaran (GEED 10103)
+            [1] => ✗ No match found for: Understanding the Self (3 units)
+            [2] => ✓ Matched: Purposive Communication (3 units) with Purposive Communication (GEED 10063)
+            [3] => ✓ Matched: Mathematics in the Modem world (3 units) with Mathematics in the Modern World (GEED 10053)
+            [4] => ✓ Matched: National Service Training Program 1 (3 units) with Civic Welfare Training Service 1 (CWTS 10013)
+            [5] => ✓ Matched: Foundations of Physical Education (2 units) with Physical Fitness and Self-Testing Activities (PHED 10012)
+            [6] => ✓ Matched: Introduction to Psychology (3 units) with Introduction to Computing (COMP 20013)
+            [7] => ✗ No match found for: The Contemporary World (3 units)
+            [8] => ✗ No match found for: Science, Technology, and Society (1 units)
+            [9] => ✗ No match found for: Living in the IT Era - Lec (2 units)
+            [10] => ✗ No match found for: Living in the IT Era - Lab (1 units)
+            [11] => ✗ No match found for: National Service Training Progrm 2 (3 units)
+            [12] => ✓ Matched: Rhythmic Activities (2 units) with Rhythmic Activities (PHED 10022)
+            [13] => ✗ No match found for: Psychological Statistics - Lec (3 units)
+            [14] => ✗ No match found for: Psychological Statistics - Lab (2 units)
+            [15] => ✗ No match found for: English for the Profession (3 units)
+            [16] => ✗ No match found for: Masining na Pagpapahayag (3 units)
+            [17] => ✗ No match found for: Ethics (3 units)
+            [18] => ✗ No match found for: The Entrepreneurial Mind (3 units)
+            [19] => ✗ No match found for: Individual/Dual Sports (2 units)
+            [20] => ✗ No match found for: Physiology/Biological Psychology (3 units)
+            [21] => ✗ No match found for: Developmental Psychology (3 units)
+            [22] => ✗ No match found for: Theories of Personality (3 units)
+            [23] => ✗ No match found for: Arts Appreciation (3 units)
+            [24] => ✓ Matched: Readings in Philippine History (3 units) with Readings in Philippine History (GEED 10033)
+            [25] => ✗ No match found for: Team Sports (2 units)
+            [26] => ✗ No match found for: Experimental Psychology - Loc (3 units)
+            [27] => ✗ No match found for: The Life and Works of Rizal (3 units)
+            [28] => ✗ No match found for: Cognitive Psychology (3 units)
+            [29] => ✗ No match found for: Field Methods in Psychology - Lec (3 units)
+            [30] => ✗ No match found for: Field Methods in Psychology - Lab (2 units)
+            [31] => ✗ No match found for: Social Psychology (3 units)
+            [32] => ✗ No match found for: Industrial/Organizational Psychology (3 units)
+            [33] => ✗ No match found for: Group Dynamics (3 units)
+            [34] => ✗ No match found for: Psychological Assessment - Lec (1 units)
+        )
+
+    [matched_count] => 8
+    [unmatched_count] => 27
+    [last_registration] => 1
+    [student_name] => Shion Reeve
+    [desired_program] => BSIT
+    [is_eligible] => 1
+    [show_success_modal] => 1
+    [admin_id] => 1
+    [is_admin] => 1
+    [session_regenerated] => 1750675103
+>>>>>>> Stashed changes
 )
 
 Database connection closed

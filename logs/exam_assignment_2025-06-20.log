@@ -1,0 +1,26 @@
+
+================================================================================
+[2025-06-20 13:45:28] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-20 21:42:00'
+  window_end: '2025-06-20 23:00:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 2 new eligible students for assignment
+✅ Assigned exam to student: fsadfsd asfsadf (ID: 113)
+   Assigned window_start: '2025-06-20 21:42:00'
+   Assigned window_end: '2025-06-20 23:00:00'
+✅ Assigned exam to student: Angelicas fdsaf (ID: 183)
+   Assigned window_start: '2025-06-20 21:42:00'
+   Assigned window_end: '2025-06-20 23:00:00'
+Completed exam assignment. Total new students assigned: 2
+
+================================================================================
+[2025-06-20 13:45:28] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-20 21:42:00'
+  window_end: '2025-06-20 23:00:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 2 existing assignments

@@ -1,12 +1,10 @@
 <?php
-    session_start(); // Start session if needed
+    // Include admin session management
+    require_once 'config/admin_session.php';
     include('config/config.php');
 
-    // Check if user is logged in as admin
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-    header("Location: admin_login.php");
-   exit();
-}
+    // Check admin session and handle timeout
+    checkAdminSession();
     // Fetch all qualified students (with accepted status)
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $records_per_page = 10;

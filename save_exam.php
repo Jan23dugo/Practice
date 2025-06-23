@@ -2,22 +2,15 @@
 // Capture output instead of sending directly to browser
 ob_start();
 
-// Temporary debugging code - in a conditional block
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    file_put_contents('form_debug.txt', 
-        date('Y-m-d H:i:s') . "\n" .
-        "POST data:\n" . 
-        print_r($_POST, true) . 
-        "\n\n" . 
-        "FILES data:\n" . 
-        print_r($_FILES, true) . 
-        "\n--------------------\n"
-    , FILE_APPEND);
-}
-
 session_start();
+
+// Include database connection first
 include('config/config.php');
-include('assign_exam.php'); // Include the assignment functionality
+
+// Check if assign_exam.php exists before including it
+if (file_exists('assign_exam.php')) {
+    include('assign_exam.php'); // Include the assignment functionality
+}
 
 // Enable error reporting but suppress display
 ini_set('display_errors', 0);
@@ -25,6 +18,21 @@ error_reporting(E_ALL);
 
 // Set header to return JSON - moved after includes
 header('Content-Type: application/json');
+
+// Create logs directory if it doesn't exist
+$log_dir = __DIR__ . '/logs';
+if (!file_exists($log_dir)) {
+    mkdir($log_dir, 0755, true);
+}
+
+// Debug logging function
+function debugLog($message) {
+    global $log_dir;
+    $timestamp = date('Y-m-d H:i:s');
+    $log_file = $log_dir . '/exam_save_debug_' . date('Y-m-d') . '.log';
+    $log_message = "[{$timestamp}] {$message}\n";
+    file_put_contents($log_file, $log_message, FILE_APPEND | LOCK_EX);
+}
 
 // Initialize response array
 $response = [
@@ -40,12 +48,24 @@ $default_image_path = 'assets/images/default-exam-cover.jpg';
 try {
     // Check if form was submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        debugLog("=== EXAM SAVE PROCESS STARTED ===");
+        debugLog("REQUEST_METHOD: " . $_SERVER['REQUEST_METHOD']);
+        debugLog("Raw POST data: " . print_r($_POST, true));
+        debugLog("Raw FILES data: " . print_r($_FILES, true));
+        
         // Get form data
         $exam_id = isset($_POST['exam_id']) ? (int)$_POST['exam_id'] : 0;
         $quiz_name = isset($_POST['quiz-name']) ? $_POST['quiz-name'] : 'Untitled Quiz';
         $quiz_description = isset($_POST['quiz-description']) ? $_POST['quiz-description'] : '';
         $exam_type = isset($_POST['exam-type']) ? $_POST['exam-type'] : 'tech'; // Default to tech
         $duration = isset($_POST['duration']) ? (int)$_POST['duration'] : 60; // Default 60 minutes
+        $exam_instructions = isset($_POST['exam-instructions']) ? trim($_POST['exam-instructions']) : null;
+        
+        debugLog("Parsed basic fields:");
+        debugLog("  exam_id: " . $exam_id);
+        debugLog("  quiz_name: " . $quiz_name);
+        debugLog("  exam_type: " . $exam_type);
+        debugLog("  duration: " . $duration);
         
         // Check if this is a temporary exam creation (minimal data)
         $is_temporary = !isset($_POST['is_scheduled']) && !isset($_POST['randomize-questions']) && 
@@ -58,24 +78,48 @@ try {
         
         // Process scheduling data
         $is_scheduled = isset($_POST['is_scheduled']) ? 1 : 0;
-        $scheduled_date = null;
-        $scheduled_time = null;
+        $window_start = null;
+        $window_end = null;
+
+        debugLog("=== SCHEDULING DATA PROCESSING ===");
+        debugLog("is_scheduled checkbox: " . (isset($_POST['is_scheduled']) ? 'CHECKED' : 'NOT CHECKED'));
+        debugLog("is_scheduled value: " . $is_scheduled);
+        debugLog("POST window_start: " . (isset($_POST['window_start']) ? "'{$_POST['window_start']}'" : 'NOT SET'));
+        debugLog("POST window_end: " . (isset($_POST['window_end']) ? "'{$_POST['window_end']}'" : 'NOT SET'));
+        debugLog("window_start empty?: " . (empty($_POST['window_start']) ? 'YES' : 'NO'));
+        debugLog("window_end empty?: " . (empty($_POST['window_end']) ? 'YES' : 'NO'));
 
         if ($is_scheduled) {
-            if (isset($_POST['scheduled_date']) && !empty($_POST['scheduled_date'])) {
-                $scheduled_date = $_POST['scheduled_date'];
+            debugLog("Processing scheduled exam...");
+            if (isset($_POST['window_start']) && !empty($_POST['window_start'])) {
+                $raw_start = $_POST['window_start'];
+                // Convert HTML5 datetime-local format to MySQL datetime format
+                $window_start = date('Y-m-d H:i:s', strtotime($raw_start));
+                debugLog("✓ window_start raw: '{$raw_start}' -> converted: '{$window_start}'");
+            } else {
+                debugLog("✗ window_start is empty or not set");
             }
-            
-            if (isset($_POST['scheduled_time']) && !empty($_POST['scheduled_time'])) {
-                $scheduled_time = $_POST['scheduled_time'];
+            if (isset($_POST['window_end']) && !empty($_POST['window_end'])) {
+                $raw_end = $_POST['window_end'];
+                // Convert HTML5 datetime-local format to MySQL datetime format
+                $window_end = date('Y-m-d H:i:s', strtotime($raw_end));
+                debugLog("✓ window_end raw: '{$raw_end}' -> converted: '{$window_end}'");
+            } else {
+                debugLog("✗ window_end is empty or not set");
             }
-            
-            // If either date or time is missing, set is_scheduled to 0
-            if (empty($scheduled_date) || empty($scheduled_time)) {
+            // If either start or end is missing, set is_scheduled to 0
+            if (empty($window_start) || empty($window_end)) {
+                debugLog("❌ One or both datetime fields empty, disabling scheduling");
+                debugLog("  window_start empty: " . (empty($window_start) ? 'YES' : 'NO'));
+                debugLog("  window_end empty: " . (empty($window_end) ? 'YES' : 'NO'));
                 $is_scheduled = 0;
-                $scheduled_date = null;
-                $scheduled_time = null;
+                $window_start = null;
+                $window_end = null;
+            } else {
+                debugLog("✅ Both datetime fields have values, scheduling enabled");
             }
+        } else {
+            debugLog("Exam not scheduled, skipping datetime processing");
         }
 
         // Process other settings
@@ -142,17 +186,6 @@ try {
             }
         }
 
-        // Log temporary exam creation for debugging
-        if ($is_temporary) {
-            file_put_contents('temp_exam_debug.txt', 
-                date('Y-m-d H:i:s') . " - Creating temporary exam with minimal data\n" .
-                "quiz_name: " . $quiz_name . "\n" .
-                "exam_type: " . $exam_type . "\n" .
-                "duration: " . $duration . "\n",
-                FILE_APPEND
-            );
-        }
-
         // Start a transaction
         $conn->begin_transaction();
         
@@ -162,11 +195,12 @@ try {
                 $query = "UPDATE exams SET 
                           title = ?, 
                           description = ?, 
+                          instructions = ?,
                           exam_type = ?,
                           duration = ?,
                           is_scheduled = ?,
-                          scheduled_date = ?,
-                          scheduled_time = ?,
+                          window_start = ?,
+                          window_end = ?,
                           randomize_questions = ?,
                           randomize_choices = ?,
                           updated_at = NOW()";
@@ -192,10 +226,25 @@ try {
                 $query .= " WHERE exam_id = ?";
                 
                 // Create parameters array based on conditional fields
-                $params = array($quiz_name, $quiz_description, $exam_type, $duration, 
-                               $is_scheduled, $scheduled_date, $scheduled_time,
+                $params = array($quiz_name, $quiz_description, $exam_instructions, $exam_type, $duration, 
+                               $is_scheduled, $window_start, $window_end,
                                $randomize_questions, $randomize_choices);
-                $types = "sssiissii";
+                $types = "ssssiissii";
+                
+                debugLog("=== DATABASE UPDATE PREPARATION ===");
+                debugLog("SQL Query: " . $query);
+                debugLog("Parameter types: " . $types);
+                debugLog("Parameters being saved:");
+                debugLog("  quiz_name: '{$quiz_name}'");
+                debugLog("  quiz_description: '{$quiz_description}'");
+                debugLog("  exam_instructions: " . ($exam_instructions === null ? 'NULL' : "'{$exam_instructions}'"));
+                debugLog("  exam_type: '{$exam_type}'");
+                debugLog("  duration: {$duration}");
+                debugLog("  is_scheduled: {$is_scheduled}");
+                debugLog("  window_start: " . ($window_start === null ? 'NULL' : "'{$window_start}'"));
+                debugLog("  window_end: " . ($window_end === null ? 'NULL' : "'{$window_end}'"));
+                debugLog("  randomize_questions: {$randomize_questions}");
+                debugLog("  randomize_choices: {$randomize_choices}");
                 
                 // Add passing score parameters if applicable
                 if ($passing_score_type !== null) {
@@ -230,18 +279,36 @@ try {
                 call_user_func_array(array($stmt, 'bind_param'), $bind_params);
                 
                 // Execute query
+                debugLog("=== EXECUTING DATABASE UPDATE ===");
                 $result = $stmt->execute();
                 
                 if ($result) {
+                    debugLog("✅ Database update successful");
                     $response['success'] = true;
                     $response['message'] = "Exam updated successfully!";
                     $response['exam_id'] = $exam_id;
+                    
+                    // Verify what was actually saved
+                    $verify_query = "SELECT exam_id, title, is_scheduled, window_start, window_end FROM exams WHERE exam_id = ?";
+                    $verify_stmt = $conn->prepare($verify_query);
+                    $verify_stmt->bind_param("i", $exam_id);
+                    $verify_stmt->execute();
+                    $verify_result = $verify_stmt->get_result();
+                    
+                    if ($verify_row = $verify_result->fetch_assoc()) {
+                        debugLog("=== VERIFICATION - WHAT WAS ACTUALLY SAVED ===");
+                        debugLog("  exam_id: " . $verify_row['exam_id']);
+                        debugLog("  title: " . $verify_row['title']);
+                        debugLog("  is_scheduled: " . $verify_row['is_scheduled']);
+                        debugLog("  window_start: " . $verify_row['window_start']);
+                        debugLog("  window_end: " . $verify_row['window_end']);
+                    }
 
                     // Check if exam is now scheduled and assign to students
-                    if ($is_scheduled) {
+                    if ($is_scheduled && function_exists('assignExamToStudents')) {
                         $assignment_result = assignExamToStudents($exam_id, $exam_type);
                         
-                        if ($assignment_result) {
+                        if ($assignment_result && function_exists('getAssignmentStats')) {
                             // Get assignment statistics
                             $stats = getAssignmentStats($exam_id);
                             $response['assignment_stats'] = $stats;
@@ -249,35 +316,41 @@ try {
                         }
                     }
                 } else {
+                    debugLog("❌ Database update failed: " . $conn->error);
+                    debugLog("❌ Statement error: " . $stmt->error);
                     throw new Exception("Error updating exam: " . $conn->error);
                 }
             } else {
                 // Handle temporary exam creation with minimal fields
                 if ($is_temporary) {
                     $query = "INSERT INTO exams (
-                        title, description, exam_type, duration, 
+                        title, description, instructions, exam_type, duration, 
                         randomize_questions, randomize_choices, 
                         cover_image, is_scheduled, 
+                        window_start, window_end,
                         created_at, updated_at) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
                     
                     $stmt = $conn->prepare($query);
-                    $stmt->bind_param("sssiisis",
+                    $stmt->bind_param("sssiiiisiss",
                         $quiz_name, 
                         $quiz_description, 
+                        $exam_instructions,
                         $exam_type,
                         $duration,
                         $randomize_questions, 
                         $randomize_choices, 
                         $cover_image_path, 
-                        $is_scheduled
+                        $is_scheduled,
+                        $window_start, 
+                        $window_end
                     );
                 } else {
                     // Create new exam with all fields
                     $query = "INSERT INTO exams (
-                        title, description, exam_type, duration,
+                        title, description, instructions, exam_type, duration,
                         randomize_questions, randomize_choices, 
-                        cover_image, is_scheduled, scheduled_date, scheduled_time,
+                        cover_image, is_scheduled, window_start, window_end,
                         created_at, updated_at";
                     
                     // Add optional fields if they have values
@@ -289,7 +362,7 @@ try {
                         $query .= ", passing_score";
                     }
                     
-                    $query .= ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW()";
+                    $query .= ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW()";
                     
                     // Add optional placeholders
                     if ($passing_score_type !== null) {
@@ -303,10 +376,10 @@ try {
                     $query .= ")";
                     
                     // Create parameters array
-                    $params = array($quiz_name, $quiz_description, $exam_type, $duration,
+                    $params = array($quiz_name, $quiz_description, $exam_instructions, $exam_type, $duration,
                                    $randomize_questions, $randomize_choices, 
-                                   $cover_image_path, $is_scheduled, $scheduled_date, $scheduled_time);
-                    $types = "sssiississs";
+                                   $cover_image_path, $is_scheduled, $window_start, $window_end);
+                    $types = "sssisiisisss";
                     
                     // Add optional parameters
                     if ($passing_score_type !== null) {
@@ -339,25 +412,17 @@ try {
                     $response['success'] = true;
                     $response['message'] = $is_temporary ? "Temporary exam created successfully" : "Exam created successfully!";
                     $response['exam_id'] = $exam_id;
-                    
-                    // Log successful temporary exam creation
-                    if ($is_temporary) {
-                        file_put_contents('temp_exam_debug.txt',
-                            "Successfully created temporary exam with ID: " . $exam_id . "\n",
-                            FILE_APPEND
-                        );
-                    }
                 } else {
                     throw new Exception("Error creating exam: " . $conn->error);
                 }
             }
 
             // Only assign exam to students if it's scheduled and not a temporary exam
-            if ($is_scheduled && !$is_temporary) {
+            if ($is_scheduled && !$is_temporary && function_exists('assignExamToStudents')) {
                 // Assign exam to appropriate students
                 $assignment_result = assignExamToStudents($exam_id, $exam_type);
                 
-                if ($assignment_result) {
+                if ($assignment_result && function_exists('getAssignmentStats')) {
                     // Get assignment statistics
                     $stats = getAssignmentStats($exam_id);
                     $response['assignment_stats'] = $stats;
@@ -382,26 +447,21 @@ try {
         throw new Exception("Invalid request method. Only POST is supported.");
     }
 } catch (Exception $e) {
+    debugLog("❌ MAIN EXCEPTION CAUGHT: " . $e->getMessage());
+    debugLog("❌ Stack trace: " . $e->getTraceAsString());
+    debugLog("=== EXAM SAVE PROCESS FAILED ===");
+    
     // Clean any output buffered
     ob_end_clean();
     
     // Set the proper content type
     header('Content-Type: application/json');
     
-    // Log the error
-    file_put_contents('error_log.txt', 
-        date('Y-m-d H:i:s') . " - Error: " . $e->getMessage() . "\n" . 
-        "Trace: " . $e->getTraceAsString() . "\n" .
-        "--------------------\n",
-        FILE_APPEND
-    );
-    
     // Return error JSON response
-    echo json_encode([
+    $response = [
         'success' => false,
         'message' => $e->getMessage()
-    ]);
-    exit;
+    ];
 }
 
 // Clear any unwanted output that might have been captured
@@ -409,6 +469,11 @@ ob_end_clean();
 
 // Set content type
 header('Content-Type: application/json');
+
+// Final debug log
+debugLog("=== EXAM SAVE PROCESS COMPLETED ===");
+debugLog("Final response: " . json_encode($response));
+debugLog("========================================================================================");
 
 // Return the response
 echo json_encode($response);

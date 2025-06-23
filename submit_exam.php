@@ -210,16 +210,17 @@ try {
                 // Store the programming answer in the database
                 $stmt = $conn->prepare("INSERT INTO student_answers 
                         (student_id, exam_id, question_id, programming_answer, 
-                         question_type, programming_id, is_correct) 
-                    VALUES (?, ?, ?, ?, 'programming', ?, ?)");
-                    
-                $stmt->bind_param("iiisis", 
+                         question_type, programming_id, is_correct, points_earned) 
+                    VALUES (?, ?, ?, ?, 'programming', ?, ?, ?)");
+                
+                $stmt->bind_param("iiisiid", 
                         $student_id, 
                         $exam_id, 
                         $question_id, 
                         $code,
                         $answer['programming_id'],
-                        $is_correct
+                        $is_correct,
+                        $points
                 );
                 
                 $stmt->execute();
@@ -257,16 +258,17 @@ try {
                 // Insert the multiple choice answer
                 $stmt = $conn->prepare("INSERT INTO student_answers 
                     (student_id, exam_id, question_id, answer_id_selected, 
-                     question_type, is_correct) 
-                    VALUES (?, ?, ?, ?, ?, ?)");
-                    
-                $stmt->bind_param("iiiisi", 
+                     question_type, is_correct, points_earned) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+                
+                $stmt->bind_param("iiiisid", 
                     $student_id, 
                     $exam_id, 
                     $question_id, 
                     $answer['answer_id'],
                     $answer['question_type'],
-                    $is_correct
+                    $is_correct,
+                    $score
                 );
                 
                 $stmt->execute();

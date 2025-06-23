@@ -4,7 +4,7 @@
 function getExam($exam_id) {
     global $conn;
     
-    $query = "SELECT * FROM exams WHERE exam_id = ?";
+    $query = "SELECT *, instructions FROM exams WHERE exam_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $exam_id);
     $stmt->execute();
@@ -106,7 +106,7 @@ function getTestCases($programming_id) {
 function getAllExams() {
     global $conn;
     
-    $query = "SELECT * FROM exams ORDER BY created_at DESC";
+    $query = "SELECT *, instructions FROM exams ORDER BY created_at DESC";
     $result = $conn->query($query);
     
     $exams = [];

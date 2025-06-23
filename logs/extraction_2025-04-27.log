@@ -1,0 +1,386 @@
+[2025-04-27 18:51:47] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/490986386_680358037813973_2460500144398118949_n.jpg
+)
+
+----------------------------------------
+[2025-04-27 18:51:47] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-04-27 18:51:47] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-04-27 18:51:47] Starting document analysis
+Data: Array
+(
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+    [data_size] => 239574
+)
+
+----------------------------------------
+[2025-04-27 18:51:47] Executing cURL request to Azure
+----------------------------------------
+[2025-04-27 18:51:48] Received response from Azure
+Data: Array
+(
+    [http_code] => 202
+    [response_size] => 499
+    [header_size] => 499
+)
+
+----------------------------------------
+[2025-04-27 18:51:48] Successfully extracted operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/551da696-d373-4b53-9253-55810f361cc0?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-04-27 18:51:48] Got operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/551da696-d373-4b53-9253-55810f361cc0?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-04-27 18:51:48] Starting to poll for results
+Data: Array
+(
+    [operation_location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/551da696-d373-4b53-9253-55810f361cc0?api-version=2024-11-30
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:51:48] Polling attempt
+Data: Array
+(
+    [attempt] => 1
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:51:49] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 1
+)
+
+----------------------------------------
+[2025-04-27 18:51:50] Polling attempt
+Data: Array
+(
+    [attempt] => 2
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:51:51] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 2
+)
+
+----------------------------------------
+[2025-04-27 18:51:53] Polling attempt
+Data: Array
+(
+    [attempt] => 3
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:51:53] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 3
+)
+
+----------------------------------------
+[2025-04-27 18:51:56] Polling attempt
+Data: Array
+(
+    [attempt] => 4
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Polling status update
+Data: Array
+(
+    [status] => succeeded
+    [attempt] => 4
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Polling succeeded
+Data: Array
+(
+    [attempts_needed] => 4
+    [has_documents] => 1
+    [document_count] => 1
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Received results from Azure
+Data: Array
+(
+    [status] => succeeded
+    [has_content] => yes
+    [has_documents] => yes
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Falling back to raw text content
+Data: Array
+(
+    [text_sample] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Reg...
+    [text_length] => 2553
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] OCR completed successfully
+Data: Array
+(
+    [output_length] => 2553
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Falling back to text parsing
+Data: Array
+(
+    [text_length] => 2553
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Extraction complete
+Data: Array
+(
+    [subjects_found] => 0
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Subjects extracted
+Data: Array
+(
+    [count] => 0
+)
+
+----------------------------------------
+[2025-04-27 18:51:57] Error in processOCRPreview
+Data: Array
+(
+    [error] => No subjects could be extracted from the documents. Please ensure you have uploaded valid academic records.
+    [trace] => #0 C:\wamp64\www\Practice\qualiexam_registerBack.php(2156): processOCRPreview()
+#1 {main}
+)
+
+----------------------------------------
+[2025-04-27 18:58:22] Starting Azure Document Intelligence OCR process for file
+Data: Array
+(
+    [path] => C:\wamp64\www\Practice/uploads/tor/490986386_680358037813973_2460500144398118949_n.jpg
+)
+
+----------------------------------------
+[2025-04-27 18:58:22] File validation passed
+Data: Array
+(
+    [size] => 239574
+    [type] => image/jpeg
+)
+
+----------------------------------------
+[2025-04-27 18:58:22] Sending request to Azure Document Intelligence
+Data: Array
+(
+    [fileSize] => 239574
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+)
+
+----------------------------------------
+[2025-04-27 18:58:22] Starting document analysis
+Data: Array
+(
+    [endpoint] => https://group8ocr.cognitiveservices.azure.com/
+    [modelId] => transcript_extractor_v4
+    [data_size] => 239574
+)
+
+----------------------------------------
+[2025-04-27 18:58:23] Executing cURL request to Azure
+----------------------------------------
+[2025-04-27 18:58:23] Received response from Azure
+Data: Array
+(
+    [http_code] => 202
+    [response_size] => 498
+    [header_size] => 498
+)
+
+----------------------------------------
+[2025-04-27 18:58:23] Successfully extracted operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/aca3d2de-bfee-4f41-97ce-8eb7cb640e7c?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-04-27 18:58:23] Got operation location
+Data: Array
+(
+    [location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/aca3d2de-bfee-4f41-97ce-8eb7cb640e7c?api-version=2024-11-30
+)
+
+----------------------------------------
+[2025-04-27 18:58:23] Starting to poll for results
+Data: Array
+(
+    [operation_location] => https://group8ocr.cognitiveservices.azure.com/documentintelligence/documentModels/transcript_extractor_v4/analyzeResults/aca3d2de-bfee-4f41-97ce-8eb7cb640e7c?api-version=2024-11-30
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:58:23] Polling attempt
+Data: Array
+(
+    [attempt] => 1
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:58:24] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 1
+)
+
+----------------------------------------
+[2025-04-27 18:58:25] Polling attempt
+Data: Array
+(
+    [attempt] => 2
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:58:26] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 2
+)
+
+----------------------------------------
+[2025-04-27 18:58:28] Polling attempt
+Data: Array
+(
+    [attempt] => 3
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:58:28] Polling status update
+Data: Array
+(
+    [status] => running
+    [attempt] => 3
+)
+
+----------------------------------------
+[2025-04-27 18:58:31] Polling attempt
+Data: Array
+(
+    [attempt] => 4
+    [max_attempts] => 30
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Polling status update
+Data: Array
+(
+    [status] => succeeded
+    [attempt] => 4
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Polling succeeded
+Data: Array
+(
+    [attempts_needed] => 4
+    [has_documents] => 1
+    [document_count] => 1
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Received results from Azure
+Data: Array
+(
+    [status] => succeeded
+    [has_content] => yes
+    [has_documents] => yes
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Falling back to raw text content
+Data: Array
+(
+    [text_sample] => Republic of the Philippines TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES Office of the University Reg...
+    [text_length] => 2553
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] OCR completed successfully
+Data: Array
+(
+    [output_length] => 2553
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Falling back to text parsing
+Data: Array
+(
+    [text_length] => 2553
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Extraction complete
+Data: Array
+(
+    [subjects_found] => 0
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Subjects extracted
+Data: Array
+(
+    [count] => 0
+)
+
+----------------------------------------
+[2025-04-27 18:58:32] Error in processOCRPreview
+Data: Array
+(
+    [error] => No subjects could be extracted from the documents. Please ensure you have uploaded valid academic records.
+    [trace] => #0 C:\wamp64\www\Practice\qualiexam_registerBack.php(2156): processOCRPreview()
+#1 {main}
+)
+
+----------------------------------------

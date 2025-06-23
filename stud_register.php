@@ -241,6 +241,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['lastname'] = $student['lastname'];
                     $_SESSION['email'] = $student['email'];
                     $_SESSION['last_activity'] = time();
+                    $_SESSION['first_login'] = true; // Set first_login flag
                     
                     // Log successful login
                     error_log("Successful login: " . $email . " at " . date('Y-m-d H:i:s'));

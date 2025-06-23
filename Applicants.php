@@ -1,12 +1,10 @@
 <?php
-    session_start(); // Start session if needed
+    // Include admin session management
+    require_once 'config/admin_session.php';
     include('config/config.php');
 
-    // Check if admin is logged in
-    if (!isset($_SESSION['admin_id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-        header("Location: admin_login.php");
-        exit();
-    }
+    // Check admin session and handle timeout
+    checkAdminSession();
 
     // Fetch all applicants with pagination
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -20,9 +18,16 @@
     $total_pages = ceil($total_records / $records_per_page);
 
     // Fetch applicants with pagination
-    $query = "SELECT * FROM register_studentsqe 
-              ORDER BY registration_date DESC 
-              LIMIT ? OFFSET ?";
+    $query = "SELECT rsq.*, 
+    u.university_name AS previous_school_name, 
+    dp.program_name AS desired_program_name, 
+    pp.program_name AS previous_program_name
+FROM register_studentsqe rsq
+LEFT JOIN universities u ON rsq.previous_school = u.university_code COLLATE utf8mb4_unicode_ci
+LEFT JOIN programs dp ON rsq.desired_program = dp.program_code COLLATE utf8mb4_unicode_ci
+LEFT JOIN programs pp ON rsq.previous_program = pp.program_code COLLATE utf8mb4_unicode_ci
+ORDER BY registration_date DESC 
+LIMIT ? OFFSET ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $records_per_page, $offset);
     $stmt->execute();
@@ -351,7 +356,7 @@ tbody tr:hover {
     padding: 8px 12px;
     border-radius: 6px;
     font-weight: 500;
-    width: 140px;
+    width: 320px;
     border: 2px solid transparent;
     background-color: #f8f9fa;
     cursor: pointer;
@@ -381,6 +386,12 @@ tbody tr:hover {
 td, th {
     padding: 16px 20px;  /* Increased padding */
     line-height: 1.5;
+}
+
+/* Make status column wider */
+th:nth-child(4), td:nth-child(4) {
+    width: 35%;
+    min-width: 350px;
 }
 
 /* Improved Pagination */
@@ -563,6 +574,30 @@ td, th {
     border: 1px solid #d6d8db;
 }
 
+<<<<<<< Updated upstream
+=======
+.review-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 12px;
+    padding: 3px 10px 3px 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(246,168,3,0.08);
+}
+
+.review-badge:hover {
+    box-shadow: 0 2px 8px rgba(246,168,3,0.18);
+}
+
+.manual-review-row {
+    background-color: #fff8e1 !important;
+}
+
+>>>>>>> Stashed changes
 </style>
 </head>
 <body>
@@ -592,11 +627,13 @@ td, th {
     <table>
         <thead>
             <tr>
-                <th>Reference ID</th>
                 <th>Name</th>
                 <th>Student Type</th>
+<<<<<<< Updated upstream
                 <th>Email</th>
                 <th>Registration Date</th>
+=======
+>>>>>>> Stashed changes
                 <th>Category</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -605,7 +642,11 @@ td, th {
         <tbody>
             <?php if ($result->num_rows == 0): ?>
                 <tr>
+<<<<<<< Updated upstream
                     <td colspan="8" style="text-align: center; padding: 20px; color: #666;">
+=======
+                    <td colspan="6" style="text-align: center; padding: 20px; color: #666;">
+>>>>>>> Stashed changes
                         No registered students found.
                     </td>
                 </tr>
@@ -631,6 +672,7 @@ td, th {
                                 break;
                         }
                     ?>
+<<<<<<< Updated upstream
                     <tr>
                         <td><?php echo htmlspecialchars($row['reference_id']); ?></td>
                         <td>
@@ -650,6 +692,36 @@ td, th {
                                 <option value="accepted" <?php echo (string)$row['status'] === 'accepted' ? 'selected' : ''; ?>>Accepted</option>
                                 <option value="rejected" <?php echo (string)$row['status'] === 'rejected' ? 'selected' : ''; ?>>Rejected</option>
                             </select>
+=======
+                    <tr<?php if (!empty($row['admin_notes'])) echo ' class="manual-review-row"'; ?>>
+                        <td>
+                            <div class="student-name-container">
+                                <div class="student-name"><?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name'] ?? ''); ?></div>
+                            </div>
+                        </td>
+                        <td><?php echo htmlspecialchars($row['student_type'] ?? ''); ?></td>
+                        <td><span class="tech-status-badge <?php echo $techBadgeClass; ?>"><?php echo $techStatus; ?></span></td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <select class="status status-<?php echo strtolower((string)$row['status']); ?>" 
+                                        onchange="updateStatus(this.value, '<?php echo $row['student_id']; ?>')"
+                                        <?php if (in_array(strtolower((string)$row['status']), ['accepted','rejected'])) echo 'disabled'; ?>>
+                                    <?php if (strtolower((string)$row['status']) === 'pending'): ?>
+                                        <option value="pending" selected><?php echo !empty($row['admin_notes']) ? 'Recommended to take the Qualifying Exam (Manual Review Required)' : 'Recommended to take the Qualifying Exam'; ?></option>
+                                        <option value="accepted">Accepted</option>
+                                        <option value="rejected">Rejected</option>
+                                    <?php elseif (strtolower((string)$row['status']) === 'needs_review'): ?>
+                                        <option value="needs_review" selected>Needs Manual Review</option>
+                                        <option value="accepted">Accepted</option>
+                                        <option value="rejected">Rejected</option>
+                                    <?php elseif (strtolower((string)$row['status']) === 'accepted'): ?>
+                                        <option value="accepted" selected>Accepted</option>
+                                    <?php elseif (strtolower((string)$row['status']) === 'rejected'): ?>
+                                        <option value="rejected" selected>Rejected</option>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+>>>>>>> Stashed changes
                         </td>
                         <td>
                             <button class="view-btn" onclick="viewDetails(this, {
@@ -670,7 +742,14 @@ td, th {
                                 is_tech: '<?php echo $row['is_tech']; ?>',
                                 tor: '<?php echo $row['tor']; ?>',
                                 school_id: '<?php echo $row['school_id']; ?>',
+<<<<<<< Updated upstream
                                 admin_notes: '<?php echo !empty($row['admin_notes']) ? addslashes($row['admin_notes']) : ""; ?>'
+=======
+                                admin_notes: '<?php echo !empty($row['admin_notes']) ? addslashes($row['admin_notes']) : ""; ?>',
+                                previous_school_name: '<?php echo htmlspecialchars($row['previous_school_name'] ?? ''); ?>',
+                                desired_program_name: '<?php echo htmlspecialchars($row['desired_program_name'] ?? ''); ?>',
+                                previous_program_name: '<?php echo htmlspecialchars($row['previous_program_name'] ?? ''); ?>'
+>>>>>>> Stashed changes
                             })">View Details</button>
                         </td>
                     </tr>
@@ -785,6 +864,11 @@ td, th {
                     <small style="color: #666; margin-top: 5px; display: block;">This reason will be visible to the student.</small>
                 </div>
                 <p id="statusMessage"></p>
+                <!-- Inline status spinner -->
+                <div id="status-inline-spinner" style="display:none; justify-content:center; align-items:center; margin-top:16px;">
+                  <div class="spinner" style="width:32px; height:32px; border:4px solid #f3e6e8; border-top:4px solid #75343A; border-radius:50%; animation:spin 1s linear infinite;"></div>
+                  <span style="margin-left:12px; color:#75343A; font-weight:500; font-size:1rem;">Updating status...</span>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -798,7 +882,7 @@ td, th {
 
 <script src="assets/js/side.js"></script>
 <script>
-let currentReferenceId = '';
+let currentStudentId = '';
 let currentStatus = '';
 
 function openModal(details) {
@@ -815,10 +899,10 @@ function openModal(details) {
     document.getElementById("contact").textContent = details.contact;
     document.getElementById("address").textContent = details.address;
     document.getElementById("student_type").textContent = details.student_type;
-    document.getElementById("prev_school").textContent = details.prev_school;
+    document.getElementById("prev_school").textContent = details.previous_school_name || details.prev_school;
     document.getElementById("year_level").textContent = details.year_level;
-    document.getElementById("prev_program").textContent = details.prev_program;
-    document.getElementById("desired_program").textContent = details.desired_program;
+    document.getElementById("prev_program").textContent = details.previous_program_name || details.prev_program;
+    document.getElementById("desired_program").textContent = details.desired_program_name || details.desired_program;
     document.getElementById("is_tech").textContent = details.is_tech;
 
     // Hide Year Level if student is ladderized
@@ -834,6 +918,7 @@ function openModal(details) {
     document.getElementById("school_id_preview").src = details.school_id;
     
     // Handle admin notes if present
+<<<<<<< Updated upstream
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         // Clean up the admin notes to remove technical error details
@@ -844,6 +929,12 @@ function openModal(details) {
                                           "Grading system configuration issue. Please add this university to the system.");
         
         document.getElementById("admin_notes").textContent = cleanedNotes;
+=======
+    document.getElementById("admin_notes").textContent = "";
+    const adminNotesSection = document.getElementById("admin-notes-section");
+    if (details.admin_notes && details.admin_notes.trim() !== '') {
+        document.getElementById("admin_notes").textContent = details.admin_notes;
+>>>>>>> Stashed changes
         adminNotesSection.style.display = "block";
     } else {
         adminNotesSection.style.display = "none";
@@ -879,8 +970,8 @@ window.onclick = function (event) {
       }
   }
 
-function updateStatus(status, referenceId) {
-    currentReferenceId = referenceId;
+function updateStatus(status, studentId) {
+    currentStudentId = studentId;
     currentStatus = status;
     
     const reasonField = document.getElementById('reasonField');
@@ -906,21 +997,24 @@ function confirmStatusUpdate() {
     // Prepare the data
     const formData = new FormData();
     formData.append('status', currentStatus);
-    formData.append('reference_id', currentReferenceId);
+    formData.append('student_id', currentStudentId);
     if (currentStatus === 'rejected') {
         formData.append('rejection_reason', reason);
     }
     
-    // Send the update request
+    // Show inline spinner
+    document.getElementById('status-inline-spinner').style.display = 'flex';
     fetch('update_status.php', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())
     .then(data => {
+        // Hide inline spinner
+        document.getElementById('status-inline-spinner').style.display = 'none';
         if (data.success) {
             // Update the select element's class
-            const select = document.querySelector(`select[onchange*="${currentReferenceId}"]`);
+            const select = document.querySelector(`select[onchange*="${currentStudentId}"]`);
             select.className = `status status-${currentStatus}`;
             select.value = currentStatus;
             
@@ -936,6 +1030,7 @@ function confirmStatusUpdate() {
         }
     })
     .catch(error => {
+        document.getElementById('status-inline-spinner').style.display = 'none';
         console.error('Error:', error);
         document.getElementById('statusMessage').innerHTML = '<span style="color: #dc3545;">An error occurred while updating the status: ' + error.message + '</span>';
     });
@@ -946,7 +1041,7 @@ function closeStatusModal() {
     // Reset fields
     document.getElementById('rejectionReason').value = '';
     document.getElementById('statusMessage').textContent = '';
-    currentReferenceId = '';
+    currentStudentId = '';
     currentStatus = '';
 }
 
@@ -1007,10 +1102,17 @@ function viewDetails(button, details) {
     document.getElementById("contact").textContent = details.contact;
     document.getElementById("address").textContent = details.address;
     document.getElementById("student_type").textContent = details.student_type;
+<<<<<<< Updated upstream
     document.getElementById("prev_school").textContent = details.prev_school;
     document.getElementById("year_level").textContent = details.year_level;
     document.getElementById("prev_program").textContent = details.prev_program;
     document.getElementById("desired_program").textContent = details.desired_program;
+=======
+    document.getElementById("prev_school").textContent = details.previous_school_name || details.prev_school;
+    document.getElementById("year_level").textContent = details.year_level;
+    document.getElementById("prev_program").textContent = details.previous_program_name || details.prev_program;
+    document.getElementById("desired_program").textContent = details.desired_program_name || details.desired_program;
+>>>>>>> Stashed changes
     document.getElementById("is_tech").textContent = details.is_tech;
     
     // Hide Year Level if student is ladderized
@@ -1052,6 +1154,7 @@ function viewDetails(button, details) {
     document.getElementById("school_id_preview").src = details.school_id;
     
     // Handle admin notes if present
+<<<<<<< Updated upstream
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         // Clean up the admin notes to remove technical error details
@@ -1062,6 +1165,12 @@ function viewDetails(button, details) {
                                           "Grading system configuration issue. Please add this university to the system.");
         
         document.getElementById("admin_notes").textContent = cleanedNotes;
+=======
+    document.getElementById("admin_notes").textContent = "";
+    const adminNotesSection = document.getElementById("admin-notes-section");
+    if (details.admin_notes && details.admin_notes.trim() !== '') {
+        document.getElementById("admin_notes").textContent = details.admin_notes;
+>>>>>>> Stashed changes
         adminNotesSection.style.display = "block";
     } else {
         adminNotesSection.style.display = "none";
@@ -1072,8 +1181,21 @@ function viewDetails(button, details) {
     
     button.innerHTML = 'View Details';
     button.disabled = false;
+<<<<<<< Updated upstream
+=======
+
+    // Hide Reference ID if status is pending or needs_review
+    const status = details.status ? details.status.toLowerCase() : '';
+    const refIdRow = document.getElementById("ref_id").parentElement;
+    if (status === 'pending' || status === 'needs_review' || !details.ref_id) {
+        refIdRow.style.display = "none";
+    } else {
+        refIdRow.style.display = "";
+    }
+>>>>>>> Stashed changes
 }
 </script>
+<script src="assets/js/admin-session.js"></script>
 
 </body>
 </html>

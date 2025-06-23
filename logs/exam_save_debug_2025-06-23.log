@@ -1,0 +1,3083 @@
+[2025-06-23 12:20:25] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:20:25] REQUEST_METHOD: POST
+[2025-06-23 12:20:25] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T08:00
+    [window_end] => 2025-06-23T09:00
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:20:25] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:20:25] Parsed basic fields:
+[2025-06-23 12:20:25]   exam_id: 24
+[2025-06-23 12:20:25]   quiz_name: Tech Exam 2
+[2025-06-23 12:20:25]   exam_type: tech
+[2025-06-23 12:20:25]   duration: 60
+[2025-06-23 12:20:25] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:20:25] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 12:20:25] is_scheduled value: 0
+[2025-06-23 12:20:25] POST window_start: '2025-06-23T08:00'
+[2025-06-23 12:20:25] POST window_end: '2025-06-23T09:00'
+[2025-06-23 12:20:25] window_start empty?: NO
+[2025-06-23 12:20:25] window_end empty?: NO
+[2025-06-23 12:20:25] Exam not scheduled, skipping datetime processing
+[2025-06-23 12:20:25] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:20:25] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:20:25] Parameter types: ssssiissii
+[2025-06-23 12:20:25] Parameters being saved:
+[2025-06-23 12:20:25]   quiz_name: 'Tech Exam 2'
+[2025-06-23 12:20:25]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 12:20:25]   exam_instructions: ''
+[2025-06-23 12:20:25]   exam_type: 'tech'
+[2025-06-23 12:20:25]   duration: 60
+[2025-06-23 12:20:25]   is_scheduled: 0
+[2025-06-23 12:20:25]   window_start: NULL
+[2025-06-23 12:20:25]   window_end: NULL
+[2025-06-23 12:20:25]   randomize_questions: 1
+[2025-06-23 12:20:25]   randomize_choices: 1
+[2025-06-23 12:20:25] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:20:25] ✅ Database update successful
+[2025-06-23 12:20:25] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:20:25]   exam_id: 24
+[2025-06-23 12:20:25]   title: Tech Exam 2
+[2025-06-23 12:20:25]   is_scheduled: 0
+[2025-06-23 12:20:25]   window_start: 
+[2025-06-23 12:20:25]   window_end: 
+[2025-06-23 12:20:25] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:20:25] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 12:20:25] ========================================================================================
+[2025-06-23 12:20:48] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:20:48] REQUEST_METHOD: POST
+[2025-06-23 12:20:48] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T12:20
+    [window_end] => 2025-06-23T01:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:20:48] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:20:48] Parsed basic fields:
+[2025-06-23 12:20:48]   exam_id: 24
+[2025-06-23 12:20:48]   quiz_name: Tech Exam 2
+[2025-06-23 12:20:48]   exam_type: tech
+[2025-06-23 12:20:48]   duration: 60
+[2025-06-23 12:20:48] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:20:48] is_scheduled checkbox: CHECKED
+[2025-06-23 12:20:48] is_scheduled value: 1
+[2025-06-23 12:20:48] POST window_start: '2025-06-23T12:20'
+[2025-06-23 12:20:48] POST window_end: '2025-06-23T01:20'
+[2025-06-23 12:20:48] window_start empty?: NO
+[2025-06-23 12:20:48] window_end empty?: NO
+[2025-06-23 12:20:48] Processing scheduled exam...
+[2025-06-23 12:20:48] ✓ window_start raw: '2025-06-23T12:20' -> converted: '2025-06-23 12:20:00'
+[2025-06-23 12:20:48] ✓ window_end raw: '2025-06-23T01:20' -> converted: '2025-06-23 01:20:00'
+[2025-06-23 12:20:48] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 12:20:48] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:20:48] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:20:48] Parameter types: ssssiissii
+[2025-06-23 12:20:48] Parameters being saved:
+[2025-06-23 12:20:48]   quiz_name: 'Tech Exam 2'
+[2025-06-23 12:20:48]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 12:20:48]   exam_instructions: ''
+[2025-06-23 12:20:48]   exam_type: 'tech'
+[2025-06-23 12:20:48]   duration: 60
+[2025-06-23 12:20:48]   is_scheduled: 1
+[2025-06-23 12:20:48]   window_start: '2025-06-23 12:20:00'
+[2025-06-23 12:20:48]   window_end: '2025-06-23 01:20:00'
+[2025-06-23 12:20:48]   randomize_questions: 1
+[2025-06-23 12:20:48]   randomize_choices: 1
+[2025-06-23 12:20:48] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:20:48] ✅ Database update successful
+[2025-06-23 12:20:48] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:20:48]   exam_id: 24
+[2025-06-23 12:20:48]   title: Tech Exam 2
+[2025-06-23 12:20:48]   is_scheduled: 1
+[2025-06-23 12:20:48]   window_start: 2025-06-23 12:20:00
+[2025-06-23 12:20:48]   window_end: 2025-06-23 01:20:00
+[2025-06-23 12:20:48] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:20:48] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 12:20:48] ========================================================================================
+[2025-06-23 12:20:51] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:20:51] REQUEST_METHOD: POST
+[2025-06-23 12:20:51] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T12:20
+    [window_end] => 2025-06-23T01:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:20:51] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:20:51] Parsed basic fields:
+[2025-06-23 12:20:51]   exam_id: 24
+[2025-06-23 12:20:51]   quiz_name: Tech Exam 2
+[2025-06-23 12:20:51]   exam_type: tech
+[2025-06-23 12:20:51]   duration: 60
+[2025-06-23 12:20:51] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:20:51] is_scheduled checkbox: CHECKED
+[2025-06-23 12:20:51] is_scheduled value: 1
+[2025-06-23 12:20:51] POST window_start: '2025-06-23T12:20'
+[2025-06-23 12:20:51] POST window_end: '2025-06-23T01:20'
+[2025-06-23 12:20:51] window_start empty?: NO
+[2025-06-23 12:20:51] window_end empty?: NO
+[2025-06-23 12:20:51] Processing scheduled exam...
+[2025-06-23 12:20:51] ✓ window_start raw: '2025-06-23T12:20' -> converted: '2025-06-23 12:20:00'
+[2025-06-23 12:20:51] ✓ window_end raw: '2025-06-23T01:20' -> converted: '2025-06-23 01:20:00'
+[2025-06-23 12:20:51] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 12:20:51] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:20:51] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:20:51] Parameter types: ssssiissii
+[2025-06-23 12:20:51] Parameters being saved:
+[2025-06-23 12:20:51]   quiz_name: 'Tech Exam 2'
+[2025-06-23 12:20:51]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 12:20:51]   exam_instructions: ''
+[2025-06-23 12:20:51]   exam_type: 'tech'
+[2025-06-23 12:20:51]   duration: 60
+[2025-06-23 12:20:51]   is_scheduled: 1
+[2025-06-23 12:20:51]   window_start: '2025-06-23 12:20:00'
+[2025-06-23 12:20:51]   window_end: '2025-06-23 01:20:00'
+[2025-06-23 12:20:51]   randomize_questions: 1
+[2025-06-23 12:20:51]   randomize_choices: 1
+[2025-06-23 12:20:51] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:20:51] ✅ Database update successful
+[2025-06-23 12:20:51] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:20:51]   exam_id: 24
+[2025-06-23 12:20:51]   title: Tech Exam 2
+[2025-06-23 12:20:51]   is_scheduled: 1
+[2025-06-23 12:20:51]   window_start: 2025-06-23 12:20:00
+[2025-06-23 12:20:51]   window_end: 2025-06-23 01:20:00
+[2025-06-23 12:20:51] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:20:51] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 12:20:51] ========================================================================================
+[2025-06-23 12:21:10] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:21:10] REQUEST_METHOD: POST
+[2025-06-23 12:21:10] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T12:20
+    [window_end] => 2025-06-23T13:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:21:10] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:21:10] Parsed basic fields:
+[2025-06-23 12:21:10]   exam_id: 24
+[2025-06-23 12:21:10]   quiz_name: Tech Exam 2
+[2025-06-23 12:21:10]   exam_type: tech
+[2025-06-23 12:21:10]   duration: 60
+[2025-06-23 12:21:10] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:21:10] is_scheduled checkbox: CHECKED
+[2025-06-23 12:21:10] is_scheduled value: 1
+[2025-06-23 12:21:10] POST window_start: '2025-06-23T12:20'
+[2025-06-23 12:21:10] POST window_end: '2025-06-23T13:20'
+[2025-06-23 12:21:10] window_start empty?: NO
+[2025-06-23 12:21:10] window_end empty?: NO
+[2025-06-23 12:21:10] Processing scheduled exam...
+[2025-06-23 12:21:10] ✓ window_start raw: '2025-06-23T12:20' -> converted: '2025-06-23 12:20:00'
+[2025-06-23 12:21:10] ✓ window_end raw: '2025-06-23T13:20' -> converted: '2025-06-23 13:20:00'
+[2025-06-23 12:21:10] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 12:21:10] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:21:10] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:21:10] Parameter types: ssssiissii
+[2025-06-23 12:21:10] Parameters being saved:
+[2025-06-23 12:21:10]   quiz_name: 'Tech Exam 2'
+[2025-06-23 12:21:10]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 12:21:10]   exam_instructions: ''
+[2025-06-23 12:21:10]   exam_type: 'tech'
+[2025-06-23 12:21:10]   duration: 60
+[2025-06-23 12:21:10]   is_scheduled: 1
+[2025-06-23 12:21:10]   window_start: '2025-06-23 12:20:00'
+[2025-06-23 12:21:10]   window_end: '2025-06-23 13:20:00'
+[2025-06-23 12:21:10]   randomize_questions: 1
+[2025-06-23 12:21:10]   randomize_choices: 1
+[2025-06-23 12:21:10] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:21:10] ✅ Database update successful
+[2025-06-23 12:21:10] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:21:10]   exam_id: 24
+[2025-06-23 12:21:10]   title: Tech Exam 2
+[2025-06-23 12:21:10]   is_scheduled: 1
+[2025-06-23 12:21:10]   window_start: 2025-06-23 12:20:00
+[2025-06-23 12:21:10]   window_end: 2025-06-23 13:20:00
+[2025-06-23 12:21:10] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:21:10] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 12:21:10] ========================================================================================
+[2025-06-23 12:21:32] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:21:32] REQUEST_METHOD: POST
+[2025-06-23 12:21:32] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T12:20
+    [window_end] => 2025-06-23T13:20
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:21:32] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:21:32] Parsed basic fields:
+[2025-06-23 12:21:32]   exam_id: 24
+[2025-06-23 12:21:32]   quiz_name: Tech Exam 2
+[2025-06-23 12:21:32]   exam_type: tech
+[2025-06-23 12:21:32]   duration: 60
+[2025-06-23 12:21:32] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:21:32] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 12:21:32] is_scheduled value: 0
+[2025-06-23 12:21:32] POST window_start: '2025-06-23T12:20'
+[2025-06-23 12:21:32] POST window_end: '2025-06-23T13:20'
+[2025-06-23 12:21:32] window_start empty?: NO
+[2025-06-23 12:21:32] window_end empty?: NO
+[2025-06-23 12:21:32] Exam not scheduled, skipping datetime processing
+[2025-06-23 12:21:32] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:21:32] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:21:32] Parameter types: ssssiissii
+[2025-06-23 12:21:32] Parameters being saved:
+[2025-06-23 12:21:32]   quiz_name: 'Tech Exam 2'
+[2025-06-23 12:21:32]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 12:21:32]   exam_instructions: ''
+[2025-06-23 12:21:32]   exam_type: 'tech'
+[2025-06-23 12:21:32]   duration: 60
+[2025-06-23 12:21:32]   is_scheduled: 0
+[2025-06-23 12:21:32]   window_start: NULL
+[2025-06-23 12:21:32]   window_end: NULL
+[2025-06-23 12:21:32]   randomize_questions: 1
+[2025-06-23 12:21:32]   randomize_choices: 1
+[2025-06-23 12:21:32] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:21:32] ✅ Database update successful
+[2025-06-23 12:21:32] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:21:32]   exam_id: 24
+[2025-06-23 12:21:32]   title: Tech Exam 2
+[2025-06-23 12:21:32]   is_scheduled: 0
+[2025-06-23 12:21:32]   window_start: 
+[2025-06-23 12:21:32]   window_end: 
+[2025-06-23 12:21:32] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:21:32] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 12:21:32] ========================================================================================
+[2025-06-23 12:23:00] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:23:00] REQUEST_METHOD: POST
+[2025-06-23 12:23:00] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T12:22
+    [window_end] => 2025-06-23T13:22
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:23:00] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:23:00] Parsed basic fields:
+[2025-06-23 12:23:00]   exam_id: 42
+[2025-06-23 12:23:00]   quiz_name: Untitled Quiz
+[2025-06-23 12:23:00]   exam_type: tech
+[2025-06-23 12:23:00]   duration: 60
+[2025-06-23 12:23:00] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:23:00] is_scheduled checkbox: CHECKED
+[2025-06-23 12:23:00] is_scheduled value: 1
+[2025-06-23 12:23:00] POST window_start: '2025-06-23T12:22'
+[2025-06-23 12:23:00] POST window_end: '2025-06-23T13:22'
+[2025-06-23 12:23:00] window_start empty?: NO
+[2025-06-23 12:23:00] window_end empty?: NO
+[2025-06-23 12:23:00] Processing scheduled exam...
+[2025-06-23 12:23:00] ✓ window_start raw: '2025-06-23T12:22' -> converted: '2025-06-23 12:22:00'
+[2025-06-23 12:23:00] ✓ window_end raw: '2025-06-23T13:22' -> converted: '2025-06-23 13:22:00'
+[2025-06-23 12:23:00] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 12:23:00] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:23:00] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:23:00] Parameter types: ssssiissii
+[2025-06-23 12:23:00] Parameters being saved:
+[2025-06-23 12:23:00]   quiz_name: 'Untitled Quiz'
+[2025-06-23 12:23:00]   quiz_description: ''
+[2025-06-23 12:23:00]   exam_instructions: ''
+[2025-06-23 12:23:00]   exam_type: 'tech'
+[2025-06-23 12:23:00]   duration: 60
+[2025-06-23 12:23:00]   is_scheduled: 1
+[2025-06-23 12:23:00]   window_start: '2025-06-23 12:22:00'
+[2025-06-23 12:23:00]   window_end: '2025-06-23 13:22:00'
+[2025-06-23 12:23:00]   randomize_questions: 0
+[2025-06-23 12:23:00]   randomize_choices: 0
+[2025-06-23 12:23:00] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:23:00] ✅ Database update successful
+[2025-06-23 12:23:00] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:23:00]   exam_id: 42
+[2025-06-23 12:23:00]   title: Untitled Quiz
+[2025-06-23 12:23:00]   is_scheduled: 1
+[2025-06-23 12:23:00]   window_start: 2025-06-23 12:22:00
+[2025-06-23 12:23:00]   window_end: 2025-06-23 13:22:00
+[2025-06-23 12:23:00] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:23:00] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 12:23:00] ========================================================================================
+[2025-06-23 12:26:39] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:26:39] REQUEST_METHOD: POST
+[2025-06-23 12:26:39] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T12:22
+    [window_end] => 2025-06-23T13:22
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:26:39] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:26:39] Parsed basic fields:
+[2025-06-23 12:26:39]   exam_id: 42
+[2025-06-23 12:26:39]   quiz_name: Untitled Quiz
+[2025-06-23 12:26:39]   exam_type: tech
+[2025-06-23 12:26:39]   duration: 60
+[2025-06-23 12:26:39] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:26:39] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 12:26:39] is_scheduled value: 0
+[2025-06-23 12:26:39] POST window_start: '2025-06-23T12:22'
+[2025-06-23 12:26:39] POST window_end: '2025-06-23T13:22'
+[2025-06-23 12:26:39] window_start empty?: NO
+[2025-06-23 12:26:39] window_end empty?: NO
+[2025-06-23 12:26:39] Exam not scheduled, skipping datetime processing
+[2025-06-23 12:26:39] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:26:39] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:26:39] Parameter types: ssssiissii
+[2025-06-23 12:26:39] Parameters being saved:
+[2025-06-23 12:26:39]   quiz_name: 'Untitled Quiz'
+[2025-06-23 12:26:39]   quiz_description: ''
+[2025-06-23 12:26:39]   exam_instructions: ''
+[2025-06-23 12:26:39]   exam_type: 'tech'
+[2025-06-23 12:26:39]   duration: 60
+[2025-06-23 12:26:39]   is_scheduled: 0
+[2025-06-23 12:26:39]   window_start: NULL
+[2025-06-23 12:26:39]   window_end: NULL
+[2025-06-23 12:26:39]   randomize_questions: 0
+[2025-06-23 12:26:39]   randomize_choices: 0
+[2025-06-23 12:26:39] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:26:39] ✅ Database update successful
+[2025-06-23 12:26:39] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:26:39]   exam_id: 42
+[2025-06-23 12:26:39]   title: Untitled Quiz
+[2025-06-23 12:26:39]   is_scheduled: 0
+[2025-06-23 12:26:39]   window_start: 
+[2025-06-23 12:26:39]   window_end: 
+[2025-06-23 12:26:39] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:26:39] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":42,"assignment_stats":null}
+[2025-06-23 12:26:39] ========================================================================================
+[2025-06-23 12:26:53] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 12:26:53] REQUEST_METHOD: POST
+[2025-06-23 12:26:53] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T12:26
+    [window_end] => 2025-06-23T13:26
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 12:26:53] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 12:26:53] Parsed basic fields:
+[2025-06-23 12:26:53]   exam_id: 24
+[2025-06-23 12:26:53]   quiz_name: Tech Exam 2
+[2025-06-23 12:26:53]   exam_type: tech
+[2025-06-23 12:26:53]   duration: 60
+[2025-06-23 12:26:53] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 12:26:53] is_scheduled checkbox: CHECKED
+[2025-06-23 12:26:53] is_scheduled value: 1
+[2025-06-23 12:26:53] POST window_start: '2025-06-23T12:26'
+[2025-06-23 12:26:53] POST window_end: '2025-06-23T13:26'
+[2025-06-23 12:26:53] window_start empty?: NO
+[2025-06-23 12:26:53] window_end empty?: NO
+[2025-06-23 12:26:53] Processing scheduled exam...
+[2025-06-23 12:26:53] ✓ window_start raw: '2025-06-23T12:26' -> converted: '2025-06-23 12:26:00'
+[2025-06-23 12:26:53] ✓ window_end raw: '2025-06-23T13:26' -> converted: '2025-06-23 13:26:00'
+[2025-06-23 12:26:53] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 12:26:53] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 12:26:53] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 12:26:53] Parameter types: ssssiissii
+[2025-06-23 12:26:53] Parameters being saved:
+[2025-06-23 12:26:53]   quiz_name: 'Tech Exam 2'
+[2025-06-23 12:26:53]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 12:26:53]   exam_instructions: ''
+[2025-06-23 12:26:53]   exam_type: 'tech'
+[2025-06-23 12:26:53]   duration: 60
+[2025-06-23 12:26:53]   is_scheduled: 1
+[2025-06-23 12:26:53]   window_start: '2025-06-23 12:26:00'
+[2025-06-23 12:26:53]   window_end: '2025-06-23 13:26:00'
+[2025-06-23 12:26:53]   randomize_questions: 1
+[2025-06-23 12:26:53]   randomize_choices: 1
+[2025-06-23 12:26:53] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 12:26:53] ✅ Database update successful
+[2025-06-23 12:26:53] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 12:26:53]   exam_id: 24
+[2025-06-23 12:26:53]   title: Tech Exam 2
+[2025-06-23 12:26:53]   is_scheduled: 1
+[2025-06-23 12:26:53]   window_start: 2025-06-23 12:26:00
+[2025-06-23 12:26:53]   window_end: 2025-06-23 13:26:00
+[2025-06-23 12:26:53] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 12:26:53] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 12:26:53] ========================================================================================
+[2025-06-23 13:29:01] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:29:01] REQUEST_METHOD: POST
+[2025-06-23 13:29:01] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T12:26
+    [window_end] => 2025-06-23T13:26
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:29:01] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:29:01] Parsed basic fields:
+[2025-06-23 13:29:01]   exam_id: 24
+[2025-06-23 13:29:01]   quiz_name: Tech Exam 2
+[2025-06-23 13:29:01]   exam_type: tech
+[2025-06-23 13:29:01]   duration: 60
+[2025-06-23 13:29:01] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:29:01] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 13:29:01] is_scheduled value: 0
+[2025-06-23 13:29:01] POST window_start: '2025-06-23T12:26'
+[2025-06-23 13:29:01] POST window_end: '2025-06-23T13:26'
+[2025-06-23 13:29:01] window_start empty?: NO
+[2025-06-23 13:29:01] window_end empty?: NO
+[2025-06-23 13:29:01] Exam not scheduled, skipping datetime processing
+[2025-06-23 13:29:01] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:29:01] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:29:01] Parameter types: ssssiissii
+[2025-06-23 13:29:01] Parameters being saved:
+[2025-06-23 13:29:01]   quiz_name: 'Tech Exam 2'
+[2025-06-23 13:29:01]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 13:29:01]   exam_instructions: ''
+[2025-06-23 13:29:01]   exam_type: 'tech'
+[2025-06-23 13:29:01]   duration: 60
+[2025-06-23 13:29:01]   is_scheduled: 0
+[2025-06-23 13:29:01]   window_start: NULL
+[2025-06-23 13:29:01]   window_end: NULL
+[2025-06-23 13:29:01]   randomize_questions: 1
+[2025-06-23 13:29:01]   randomize_choices: 1
+[2025-06-23 13:29:01] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:29:01] ✅ Database update successful
+[2025-06-23 13:29:01] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:29:01]   exam_id: 24
+[2025-06-23 13:29:01]   title: Tech Exam 2
+[2025-06-23 13:29:01]   is_scheduled: 0
+[2025-06-23 13:29:01]   window_start: 
+[2025-06-23 13:29:01]   window_end: 
+[2025-06-23 13:29:01] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:29:01] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 13:29:01] ========================================================================================
+[2025-06-23 13:29:34] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:29:34] REQUEST_METHOD: POST
+[2025-06-23 13:29:34] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T13:29
+    [window_end] => 2025-06-23T14:29
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:29:34] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:29:34] Parsed basic fields:
+[2025-06-23 13:29:34]   exam_id: 42
+[2025-06-23 13:29:34]   quiz_name: Untitled Quiz
+[2025-06-23 13:29:34]   exam_type: tech
+[2025-06-23 13:29:34]   duration: 60
+[2025-06-23 13:29:34] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:29:34] is_scheduled checkbox: CHECKED
+[2025-06-23 13:29:34] is_scheduled value: 1
+[2025-06-23 13:29:34] POST window_start: '2025-06-23T13:29'
+[2025-06-23 13:29:34] POST window_end: '2025-06-23T14:29'
+[2025-06-23 13:29:34] window_start empty?: NO
+[2025-06-23 13:29:34] window_end empty?: NO
+[2025-06-23 13:29:34] Processing scheduled exam...
+[2025-06-23 13:29:34] ✓ window_start raw: '2025-06-23T13:29' -> converted: '2025-06-23 13:29:00'
+[2025-06-23 13:29:34] ✓ window_end raw: '2025-06-23T14:29' -> converted: '2025-06-23 14:29:00'
+[2025-06-23 13:29:34] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 13:29:34] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:29:34] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:29:34] Parameter types: ssssiissii
+[2025-06-23 13:29:34] Parameters being saved:
+[2025-06-23 13:29:34]   quiz_name: 'Untitled Quiz'
+[2025-06-23 13:29:34]   quiz_description: ''
+[2025-06-23 13:29:34]   exam_instructions: ''
+[2025-06-23 13:29:34]   exam_type: 'tech'
+[2025-06-23 13:29:34]   duration: 60
+[2025-06-23 13:29:34]   is_scheduled: 1
+[2025-06-23 13:29:34]   window_start: '2025-06-23 13:29:00'
+[2025-06-23 13:29:34]   window_end: '2025-06-23 14:29:00'
+[2025-06-23 13:29:34]   randomize_questions: 0
+[2025-06-23 13:29:34]   randomize_choices: 0
+[2025-06-23 13:29:34] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:29:34] ✅ Database update successful
+[2025-06-23 13:29:34] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:29:34]   exam_id: 42
+[2025-06-23 13:29:34]   title: Untitled Quiz
+[2025-06-23 13:29:34]   is_scheduled: 1
+[2025-06-23 13:29:34]   window_start: 2025-06-23 13:29:00
+[2025-06-23 13:29:34]   window_end: 2025-06-23 14:29:00
+[2025-06-23 13:29:34] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:29:34] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 13:29:34] ========================================================================================
+[2025-06-23 13:30:22] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:30:22] REQUEST_METHOD: POST
+[2025-06-23 13:30:22] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T13:29
+    [window_end] => 2025-06-23T14:29
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:30:22] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:30:22] Parsed basic fields:
+[2025-06-23 13:30:22]   exam_id: 42
+[2025-06-23 13:30:22]   quiz_name: Untitled Quiz
+[2025-06-23 13:30:22]   exam_type: tech
+[2025-06-23 13:30:22]   duration: 60
+[2025-06-23 13:30:22] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:30:22] is_scheduled checkbox: CHECKED
+[2025-06-23 13:30:22] is_scheduled value: 1
+[2025-06-23 13:30:22] POST window_start: '2025-06-23T13:29'
+[2025-06-23 13:30:22] POST window_end: '2025-06-23T14:29'
+[2025-06-23 13:30:22] window_start empty?: NO
+[2025-06-23 13:30:22] window_end empty?: NO
+[2025-06-23 13:30:22] Processing scheduled exam...
+[2025-06-23 13:30:22] ✓ window_start raw: '2025-06-23T13:29' -> converted: '2025-06-23 13:29:00'
+[2025-06-23 13:30:22] ✓ window_end raw: '2025-06-23T14:29' -> converted: '2025-06-23 14:29:00'
+[2025-06-23 13:30:22] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 13:30:22] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:30:22] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:30:22] Parameter types: ssssiissii
+[2025-06-23 13:30:22] Parameters being saved:
+[2025-06-23 13:30:22]   quiz_name: 'Untitled Quiz'
+[2025-06-23 13:30:22]   quiz_description: ''
+[2025-06-23 13:30:22]   exam_instructions: ''
+[2025-06-23 13:30:22]   exam_type: 'tech'
+[2025-06-23 13:30:22]   duration: 60
+[2025-06-23 13:30:22]   is_scheduled: 1
+[2025-06-23 13:30:22]   window_start: '2025-06-23 13:29:00'
+[2025-06-23 13:30:22]   window_end: '2025-06-23 14:29:00'
+[2025-06-23 13:30:22]   randomize_questions: 0
+[2025-06-23 13:30:22]   randomize_choices: 0
+[2025-06-23 13:30:22] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:30:22] ✅ Database update successful
+[2025-06-23 13:30:22] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:30:22]   exam_id: 42
+[2025-06-23 13:30:22]   title: Untitled Quiz
+[2025-06-23 13:30:22]   is_scheduled: 1
+[2025-06-23 13:30:22]   window_start: 2025-06-23 13:29:00
+[2025-06-23 13:30:22]   window_end: 2025-06-23 14:29:00
+[2025-06-23 13:30:22] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:30:22] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 13:30:22] ========================================================================================
+[2025-06-23 13:32:12] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:32:12] REQUEST_METHOD: POST
+[2025-06-23 13:32:12] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T13:29
+    [window_end] => 2025-06-23T14:29
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:32:12] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:32:12] Parsed basic fields:
+[2025-06-23 13:32:12]   exam_id: 42
+[2025-06-23 13:32:12]   quiz_name: Untitled Quiz
+[2025-06-23 13:32:12]   exam_type: tech
+[2025-06-23 13:32:12]   duration: 60
+[2025-06-23 13:32:12] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:32:12] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 13:32:12] is_scheduled value: 0
+[2025-06-23 13:32:12] POST window_start: '2025-06-23T13:29'
+[2025-06-23 13:32:12] POST window_end: '2025-06-23T14:29'
+[2025-06-23 13:32:12] window_start empty?: NO
+[2025-06-23 13:32:12] window_end empty?: NO
+[2025-06-23 13:32:12] Exam not scheduled, skipping datetime processing
+[2025-06-23 13:32:12] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:32:12] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:32:12] Parameter types: ssssiissii
+[2025-06-23 13:32:12] Parameters being saved:
+[2025-06-23 13:32:12]   quiz_name: 'Untitled Quiz'
+[2025-06-23 13:32:12]   quiz_description: ''
+[2025-06-23 13:32:12]   exam_instructions: ''
+[2025-06-23 13:32:12]   exam_type: 'tech'
+[2025-06-23 13:32:12]   duration: 60
+[2025-06-23 13:32:12]   is_scheduled: 0
+[2025-06-23 13:32:12]   window_start: NULL
+[2025-06-23 13:32:12]   window_end: NULL
+[2025-06-23 13:32:12]   randomize_questions: 0
+[2025-06-23 13:32:12]   randomize_choices: 0
+[2025-06-23 13:32:12] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:32:12] ✅ Database update successful
+[2025-06-23 13:32:12] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:32:12]   exam_id: 42
+[2025-06-23 13:32:12]   title: Untitled Quiz
+[2025-06-23 13:32:12]   is_scheduled: 0
+[2025-06-23 13:32:12]   window_start: 
+[2025-06-23 13:32:12]   window_end: 
+[2025-06-23 13:32:12] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:32:12] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":42,"assignment_stats":null}
+[2025-06-23 13:32:12] ========================================================================================
+[2025-06-23 13:33:22] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:33:22] REQUEST_METHOD: POST
+[2025-06-23 13:33:22] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T13:33
+    [window_end] => 2025-06-23T14:33
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:33:22] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:33:22] Parsed basic fields:
+[2025-06-23 13:33:22]   exam_id: 24
+[2025-06-23 13:33:22]   quiz_name: Tech Exam 2
+[2025-06-23 13:33:22]   exam_type: tech
+[2025-06-23 13:33:22]   duration: 60
+[2025-06-23 13:33:22] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:33:22] is_scheduled checkbox: CHECKED
+[2025-06-23 13:33:22] is_scheduled value: 1
+[2025-06-23 13:33:22] POST window_start: '2025-06-23T13:33'
+[2025-06-23 13:33:22] POST window_end: '2025-06-23T14:33'
+[2025-06-23 13:33:22] window_start empty?: NO
+[2025-06-23 13:33:22] window_end empty?: NO
+[2025-06-23 13:33:22] Processing scheduled exam...
+[2025-06-23 13:33:22] ✓ window_start raw: '2025-06-23T13:33' -> converted: '2025-06-23 13:33:00'
+[2025-06-23 13:33:22] ✓ window_end raw: '2025-06-23T14:33' -> converted: '2025-06-23 14:33:00'
+[2025-06-23 13:33:22] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 13:33:22] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:33:22] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:33:22] Parameter types: ssssiissii
+[2025-06-23 13:33:22] Parameters being saved:
+[2025-06-23 13:33:22]   quiz_name: 'Tech Exam 2'
+[2025-06-23 13:33:22]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 13:33:22]   exam_instructions: ''
+[2025-06-23 13:33:22]   exam_type: 'tech'
+[2025-06-23 13:33:22]   duration: 60
+[2025-06-23 13:33:22]   is_scheduled: 1
+[2025-06-23 13:33:22]   window_start: '2025-06-23 13:33:00'
+[2025-06-23 13:33:22]   window_end: '2025-06-23 14:33:00'
+[2025-06-23 13:33:22]   randomize_questions: 1
+[2025-06-23 13:33:22]   randomize_choices: 1
+[2025-06-23 13:33:22] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:33:22] ✅ Database update successful
+[2025-06-23 13:33:22] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:33:22]   exam_id: 24
+[2025-06-23 13:33:22]   title: Tech Exam 2
+[2025-06-23 13:33:22]   is_scheduled: 1
+[2025-06-23 13:33:22]   window_start: 2025-06-23 13:33:00
+[2025-06-23 13:33:22]   window_end: 2025-06-23 14:33:00
+[2025-06-23 13:33:22] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:33:22] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 13:33:22] ========================================================================================
+[2025-06-23 13:42:25] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:42:25] REQUEST_METHOD: POST
+[2025-06-23 13:42:25] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T13:33
+    [window_end] => 2025-06-23T14:33
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:42:25] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:42:25] Parsed basic fields:
+[2025-06-23 13:42:25]   exam_id: 24
+[2025-06-23 13:42:25]   quiz_name: Tech Exam 2
+[2025-06-23 13:42:25]   exam_type: tech
+[2025-06-23 13:42:25]   duration: 60
+[2025-06-23 13:42:25] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:42:25] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 13:42:25] is_scheduled value: 0
+[2025-06-23 13:42:25] POST window_start: '2025-06-23T13:33'
+[2025-06-23 13:42:25] POST window_end: '2025-06-23T14:33'
+[2025-06-23 13:42:25] window_start empty?: NO
+[2025-06-23 13:42:25] window_end empty?: NO
+[2025-06-23 13:42:25] Exam not scheduled, skipping datetime processing
+[2025-06-23 13:42:25] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:42:25] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:42:25] Parameter types: ssssiissii
+[2025-06-23 13:42:25] Parameters being saved:
+[2025-06-23 13:42:25]   quiz_name: 'Tech Exam 2'
+[2025-06-23 13:42:25]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 13:42:25]   exam_instructions: ''
+[2025-06-23 13:42:25]   exam_type: 'tech'
+[2025-06-23 13:42:25]   duration: 60
+[2025-06-23 13:42:25]   is_scheduled: 0
+[2025-06-23 13:42:25]   window_start: NULL
+[2025-06-23 13:42:25]   window_end: NULL
+[2025-06-23 13:42:25]   randomize_questions: 1
+[2025-06-23 13:42:25]   randomize_choices: 1
+[2025-06-23 13:42:25] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:42:25] ✅ Database update successful
+[2025-06-23 13:42:25] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:42:25]   exam_id: 24
+[2025-06-23 13:42:25]   title: Tech Exam 2
+[2025-06-23 13:42:25]   is_scheduled: 0
+[2025-06-23 13:42:25]   window_start: 
+[2025-06-23 13:42:25]   window_end: 
+[2025-06-23 13:42:25] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:42:25] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 13:42:25] ========================================================================================
+[2025-06-23 13:42:36] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:42:36] REQUEST_METHOD: POST
+[2025-06-23 13:42:36] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T13:42
+    [window_end] => 2025-06-23T14:42
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:42:36] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:42:36] Parsed basic fields:
+[2025-06-23 13:42:36]   exam_id: 42
+[2025-06-23 13:42:36]   quiz_name: Untitled Quiz
+[2025-06-23 13:42:36]   exam_type: tech
+[2025-06-23 13:42:36]   duration: 60
+[2025-06-23 13:42:36] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:42:36] is_scheduled checkbox: CHECKED
+[2025-06-23 13:42:36] is_scheduled value: 1
+[2025-06-23 13:42:36] POST window_start: '2025-06-23T13:42'
+[2025-06-23 13:42:36] POST window_end: '2025-06-23T14:42'
+[2025-06-23 13:42:36] window_start empty?: NO
+[2025-06-23 13:42:36] window_end empty?: NO
+[2025-06-23 13:42:36] Processing scheduled exam...
+[2025-06-23 13:42:36] ✓ window_start raw: '2025-06-23T13:42' -> converted: '2025-06-23 13:42:00'
+[2025-06-23 13:42:36] ✓ window_end raw: '2025-06-23T14:42' -> converted: '2025-06-23 14:42:00'
+[2025-06-23 13:42:36] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 13:42:36] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:42:36] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:42:36] Parameter types: ssssiissii
+[2025-06-23 13:42:36] Parameters being saved:
+[2025-06-23 13:42:36]   quiz_name: 'Untitled Quiz'
+[2025-06-23 13:42:36]   quiz_description: ''
+[2025-06-23 13:42:36]   exam_instructions: ''
+[2025-06-23 13:42:36]   exam_type: 'tech'
+[2025-06-23 13:42:36]   duration: 60
+[2025-06-23 13:42:36]   is_scheduled: 1
+[2025-06-23 13:42:36]   window_start: '2025-06-23 13:42:00'
+[2025-06-23 13:42:36]   window_end: '2025-06-23 14:42:00'
+[2025-06-23 13:42:36]   randomize_questions: 0
+[2025-06-23 13:42:36]   randomize_choices: 0
+[2025-06-23 13:42:36] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:42:36] ✅ Database update successful
+[2025-06-23 13:42:36] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:42:36]   exam_id: 42
+[2025-06-23 13:42:36]   title: Untitled Quiz
+[2025-06-23 13:42:36]   is_scheduled: 1
+[2025-06-23 13:42:36]   window_start: 2025-06-23 13:42:00
+[2025-06-23 13:42:36]   window_end: 2025-06-23 14:42:00
+[2025-06-23 13:42:36] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:42:36] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 13:42:36] ========================================================================================
+[2025-06-23 13:46:13] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:46:13] REQUEST_METHOD: POST
+[2025-06-23 13:46:13] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T13:42
+    [window_end] => 2025-06-23T14:42
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:46:13] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:46:13] Parsed basic fields:
+[2025-06-23 13:46:13]   exam_id: 42
+[2025-06-23 13:46:13]   quiz_name: Untitled Quiz
+[2025-06-23 13:46:13]   exam_type: tech
+[2025-06-23 13:46:13]   duration: 60
+[2025-06-23 13:46:13] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:46:13] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 13:46:13] is_scheduled value: 0
+[2025-06-23 13:46:13] POST window_start: '2025-06-23T13:42'
+[2025-06-23 13:46:13] POST window_end: '2025-06-23T14:42'
+[2025-06-23 13:46:13] window_start empty?: NO
+[2025-06-23 13:46:13] window_end empty?: NO
+[2025-06-23 13:46:13] Exam not scheduled, skipping datetime processing
+[2025-06-23 13:46:13] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:46:13] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:46:13] Parameter types: ssssiissii
+[2025-06-23 13:46:13] Parameters being saved:
+[2025-06-23 13:46:13]   quiz_name: 'Untitled Quiz'
+[2025-06-23 13:46:13]   quiz_description: ''
+[2025-06-23 13:46:13]   exam_instructions: ''
+[2025-06-23 13:46:13]   exam_type: 'tech'
+[2025-06-23 13:46:13]   duration: 60
+[2025-06-23 13:46:13]   is_scheduled: 0
+[2025-06-23 13:46:13]   window_start: NULL
+[2025-06-23 13:46:13]   window_end: NULL
+[2025-06-23 13:46:13]   randomize_questions: 0
+[2025-06-23 13:46:13]   randomize_choices: 0
+[2025-06-23 13:46:13] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:46:13] ✅ Database update successful
+[2025-06-23 13:46:13] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:46:13]   exam_id: 42
+[2025-06-23 13:46:13]   title: Untitled Quiz
+[2025-06-23 13:46:13]   is_scheduled: 0
+[2025-06-23 13:46:13]   window_start: 
+[2025-06-23 13:46:13]   window_end: 
+[2025-06-23 13:46:13] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:46:13] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":42,"assignment_stats":null}
+[2025-06-23 13:46:13] ========================================================================================
+[2025-06-23 13:46:29] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 13:46:29] REQUEST_METHOD: POST
+[2025-06-23 13:46:29] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T13:46
+    [window_end] => 2025-06-23T14:46
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 13:46:29] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 13:46:29] Parsed basic fields:
+[2025-06-23 13:46:29]   exam_id: 24
+[2025-06-23 13:46:29]   quiz_name: Tech Exam 2
+[2025-06-23 13:46:29]   exam_type: tech
+[2025-06-23 13:46:29]   duration: 60
+[2025-06-23 13:46:29] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 13:46:29] is_scheduled checkbox: CHECKED
+[2025-06-23 13:46:29] is_scheduled value: 1
+[2025-06-23 13:46:29] POST window_start: '2025-06-23T13:46'
+[2025-06-23 13:46:29] POST window_end: '2025-06-23T14:46'
+[2025-06-23 13:46:29] window_start empty?: NO
+[2025-06-23 13:46:29] window_end empty?: NO
+[2025-06-23 13:46:29] Processing scheduled exam...
+[2025-06-23 13:46:29] ✓ window_start raw: '2025-06-23T13:46' -> converted: '2025-06-23 13:46:00'
+[2025-06-23 13:46:29] ✓ window_end raw: '2025-06-23T14:46' -> converted: '2025-06-23 14:46:00'
+[2025-06-23 13:46:29] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 13:46:29] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 13:46:29] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 13:46:29] Parameter types: ssssiissii
+[2025-06-23 13:46:29] Parameters being saved:
+[2025-06-23 13:46:29]   quiz_name: 'Tech Exam 2'
+[2025-06-23 13:46:29]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 13:46:29]   exam_instructions: ''
+[2025-06-23 13:46:29]   exam_type: 'tech'
+[2025-06-23 13:46:29]   duration: 60
+[2025-06-23 13:46:29]   is_scheduled: 1
+[2025-06-23 13:46:29]   window_start: '2025-06-23 13:46:00'
+[2025-06-23 13:46:29]   window_end: '2025-06-23 14:46:00'
+[2025-06-23 13:46:29]   randomize_questions: 1
+[2025-06-23 13:46:29]   randomize_choices: 1
+[2025-06-23 13:46:29] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 13:46:29] ✅ Database update successful
+[2025-06-23 13:46:29] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 13:46:29]   exam_id: 24
+[2025-06-23 13:46:29]   title: Tech Exam 2
+[2025-06-23 13:46:29]   is_scheduled: 1
+[2025-06-23 13:46:29]   window_start: 2025-06-23 13:46:00
+[2025-06-23 13:46:29]   window_end: 2025-06-23 14:46:00
+[2025-06-23 13:46:29] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 13:46:29] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 13:46:29] ========================================================================================
+[2025-06-23 14:55:48] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 14:55:48] REQUEST_METHOD: POST
+[2025-06-23 14:55:48] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T13:46
+    [window_end] => 2025-06-23T14:46
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 14:55:48] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 14:55:48] Parsed basic fields:
+[2025-06-23 14:55:48]   exam_id: 24
+[2025-06-23 14:55:48]   quiz_name: Tech Exam 2
+[2025-06-23 14:55:48]   exam_type: tech
+[2025-06-23 14:55:48]   duration: 60
+[2025-06-23 14:55:48] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 14:55:48] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 14:55:48] is_scheduled value: 0
+[2025-06-23 14:55:48] POST window_start: '2025-06-23T13:46'
+[2025-06-23 14:55:48] POST window_end: '2025-06-23T14:46'
+[2025-06-23 14:55:48] window_start empty?: NO
+[2025-06-23 14:55:48] window_end empty?: NO
+[2025-06-23 14:55:48] Exam not scheduled, skipping datetime processing
+[2025-06-23 14:55:48] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 14:55:48] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 14:55:48] Parameter types: ssssiissii
+[2025-06-23 14:55:48] Parameters being saved:
+[2025-06-23 14:55:48]   quiz_name: 'Tech Exam 2'
+[2025-06-23 14:55:48]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 14:55:48]   exam_instructions: ''
+[2025-06-23 14:55:48]   exam_type: 'tech'
+[2025-06-23 14:55:48]   duration: 60
+[2025-06-23 14:55:48]   is_scheduled: 0
+[2025-06-23 14:55:48]   window_start: NULL
+[2025-06-23 14:55:48]   window_end: NULL
+[2025-06-23 14:55:48]   randomize_questions: 1
+[2025-06-23 14:55:48]   randomize_choices: 1
+[2025-06-23 14:55:48] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 14:55:48] ✅ Database update successful
+[2025-06-23 14:55:48] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 14:55:48]   exam_id: 24
+[2025-06-23 14:55:48]   title: Tech Exam 2
+[2025-06-23 14:55:48]   is_scheduled: 0
+[2025-06-23 14:55:48]   window_start: 
+[2025-06-23 14:55:48]   window_end: 
+[2025-06-23 14:55:48] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 14:55:48] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 14:55:48] ========================================================================================
+[2025-06-23 14:56:23] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 14:56:23] REQUEST_METHOD: POST
+[2025-06-23 14:56:23] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T14:56
+    [window_end] => 2025-06-23T15:56
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 14:56:23] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 14:56:23] Parsed basic fields:
+[2025-06-23 14:56:23]   exam_id: 42
+[2025-06-23 14:56:23]   quiz_name: Untitled Quiz
+[2025-06-23 14:56:23]   exam_type: tech
+[2025-06-23 14:56:23]   duration: 60
+[2025-06-23 14:56:23] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 14:56:23] is_scheduled checkbox: CHECKED
+[2025-06-23 14:56:23] is_scheduled value: 1
+[2025-06-23 14:56:23] POST window_start: '2025-06-23T14:56'
+[2025-06-23 14:56:23] POST window_end: '2025-06-23T15:56'
+[2025-06-23 14:56:23] window_start empty?: NO
+[2025-06-23 14:56:23] window_end empty?: NO
+[2025-06-23 14:56:23] Processing scheduled exam...
+[2025-06-23 14:56:23] ✓ window_start raw: '2025-06-23T14:56' -> converted: '2025-06-23 14:56:00'
+[2025-06-23 14:56:23] ✓ window_end raw: '2025-06-23T15:56' -> converted: '2025-06-23 15:56:00'
+[2025-06-23 14:56:23] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 14:56:23] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 14:56:23] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 14:56:23] Parameter types: ssssiissii
+[2025-06-23 14:56:23] Parameters being saved:
+[2025-06-23 14:56:23]   quiz_name: 'Untitled Quiz'
+[2025-06-23 14:56:23]   quiz_description: ''
+[2025-06-23 14:56:23]   exam_instructions: ''
+[2025-06-23 14:56:23]   exam_type: 'tech'
+[2025-06-23 14:56:23]   duration: 60
+[2025-06-23 14:56:23]   is_scheduled: 1
+[2025-06-23 14:56:23]   window_start: '2025-06-23 14:56:00'
+[2025-06-23 14:56:23]   window_end: '2025-06-23 15:56:00'
+[2025-06-23 14:56:23]   randomize_questions: 0
+[2025-06-23 14:56:23]   randomize_choices: 0
+[2025-06-23 14:56:23] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 14:56:23] ✅ Database update successful
+[2025-06-23 14:56:23] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 14:56:23]   exam_id: 42
+[2025-06-23 14:56:23]   title: Untitled Quiz
+[2025-06-23 14:56:23]   is_scheduled: 1
+[2025-06-23 14:56:23]   window_start: 2025-06-23 14:56:00
+[2025-06-23 14:56:23]   window_end: 2025-06-23 15:56:00
+[2025-06-23 14:56:23] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 14:56:23] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 14:56:23] ========================================================================================
+[2025-06-23 14:57:55] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 14:57:55] REQUEST_METHOD: POST
+[2025-06-23 14:57:55] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T14:56
+    [window_end] => 2025-06-23T15:56
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 14:57:55] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 14:57:55] Parsed basic fields:
+[2025-06-23 14:57:55]   exam_id: 42
+[2025-06-23 14:57:55]   quiz_name: Untitled Quiz
+[2025-06-23 14:57:55]   exam_type: tech
+[2025-06-23 14:57:55]   duration: 60
+[2025-06-23 14:57:55] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 14:57:55] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 14:57:55] is_scheduled value: 0
+[2025-06-23 14:57:55] POST window_start: '2025-06-23T14:56'
+[2025-06-23 14:57:55] POST window_end: '2025-06-23T15:56'
+[2025-06-23 14:57:55] window_start empty?: NO
+[2025-06-23 14:57:55] window_end empty?: NO
+[2025-06-23 14:57:55] Exam not scheduled, skipping datetime processing
+[2025-06-23 14:57:55] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 14:57:55] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 14:57:55] Parameter types: ssssiissii
+[2025-06-23 14:57:55] Parameters being saved:
+[2025-06-23 14:57:55]   quiz_name: 'Untitled Quiz'
+[2025-06-23 14:57:55]   quiz_description: ''
+[2025-06-23 14:57:55]   exam_instructions: ''
+[2025-06-23 14:57:55]   exam_type: 'tech'
+[2025-06-23 14:57:55]   duration: 60
+[2025-06-23 14:57:55]   is_scheduled: 0
+[2025-06-23 14:57:55]   window_start: NULL
+[2025-06-23 14:57:55]   window_end: NULL
+[2025-06-23 14:57:55]   randomize_questions: 0
+[2025-06-23 14:57:55]   randomize_choices: 0
+[2025-06-23 14:57:55] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 14:57:55] ✅ Database update successful
+[2025-06-23 14:57:55] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 14:57:55]   exam_id: 42
+[2025-06-23 14:57:55]   title: Untitled Quiz
+[2025-06-23 14:57:55]   is_scheduled: 0
+[2025-06-23 14:57:55]   window_start: 
+[2025-06-23 14:57:55]   window_end: 
+[2025-06-23 14:57:55] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 14:57:55] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":42,"assignment_stats":null}
+[2025-06-23 14:57:55] ========================================================================================
+[2025-06-23 14:58:06] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 14:58:06] REQUEST_METHOD: POST
+[2025-06-23 14:58:06] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T14:58
+    [window_end] => 2025-06-23T15:58
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 14:58:06] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 14:58:06] Parsed basic fields:
+[2025-06-23 14:58:06]   exam_id: 24
+[2025-06-23 14:58:06]   quiz_name: Tech Exam 2
+[2025-06-23 14:58:06]   exam_type: tech
+[2025-06-23 14:58:06]   duration: 60
+[2025-06-23 14:58:06] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 14:58:06] is_scheduled checkbox: CHECKED
+[2025-06-23 14:58:06] is_scheduled value: 1
+[2025-06-23 14:58:06] POST window_start: '2025-06-23T14:58'
+[2025-06-23 14:58:06] POST window_end: '2025-06-23T15:58'
+[2025-06-23 14:58:06] window_start empty?: NO
+[2025-06-23 14:58:06] window_end empty?: NO
+[2025-06-23 14:58:06] Processing scheduled exam...
+[2025-06-23 14:58:06] ✓ window_start raw: '2025-06-23T14:58' -> converted: '2025-06-23 14:58:00'
+[2025-06-23 14:58:06] ✓ window_end raw: '2025-06-23T15:58' -> converted: '2025-06-23 15:58:00'
+[2025-06-23 14:58:06] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 14:58:06] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 14:58:06] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 14:58:06] Parameter types: ssssiissii
+[2025-06-23 14:58:06] Parameters being saved:
+[2025-06-23 14:58:06]   quiz_name: 'Tech Exam 2'
+[2025-06-23 14:58:06]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 14:58:06]   exam_instructions: ''
+[2025-06-23 14:58:06]   exam_type: 'tech'
+[2025-06-23 14:58:06]   duration: 60
+[2025-06-23 14:58:06]   is_scheduled: 1
+[2025-06-23 14:58:06]   window_start: '2025-06-23 14:58:00'
+[2025-06-23 14:58:06]   window_end: '2025-06-23 15:58:00'
+[2025-06-23 14:58:06]   randomize_questions: 1
+[2025-06-23 14:58:06]   randomize_choices: 1
+[2025-06-23 14:58:06] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 14:58:06] ✅ Database update successful
+[2025-06-23 14:58:06] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 14:58:06]   exam_id: 24
+[2025-06-23 14:58:06]   title: Tech Exam 2
+[2025-06-23 14:58:06]   is_scheduled: 1
+[2025-06-23 14:58:06]   window_start: 2025-06-23 14:58:00
+[2025-06-23 14:58:06]   window_end: 2025-06-23 15:58:00
+[2025-06-23 14:58:06] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 14:58:06] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 14:58:06] ========================================================================================
+[2025-06-23 15:30:07] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 15:30:07] REQUEST_METHOD: POST
+[2025-06-23 15:30:07] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T14:58
+    [window_end] => 2025-06-23T15:58
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 15:30:07] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 15:30:07] Parsed basic fields:
+[2025-06-23 15:30:07]   exam_id: 24
+[2025-06-23 15:30:07]   quiz_name: Tech Exam 2
+[2025-06-23 15:30:07]   exam_type: tech
+[2025-06-23 15:30:07]   duration: 60
+[2025-06-23 15:30:07] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 15:30:07] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 15:30:07] is_scheduled value: 0
+[2025-06-23 15:30:07] POST window_start: '2025-06-23T14:58'
+[2025-06-23 15:30:07] POST window_end: '2025-06-23T15:58'
+[2025-06-23 15:30:07] window_start empty?: NO
+[2025-06-23 15:30:07] window_end empty?: NO
+[2025-06-23 15:30:07] Exam not scheduled, skipping datetime processing
+[2025-06-23 15:30:07] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 15:30:07] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 15:30:07] Parameter types: ssssiissii
+[2025-06-23 15:30:07] Parameters being saved:
+[2025-06-23 15:30:07]   quiz_name: 'Tech Exam 2'
+[2025-06-23 15:30:07]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 15:30:07]   exam_instructions: ''
+[2025-06-23 15:30:07]   exam_type: 'tech'
+[2025-06-23 15:30:07]   duration: 60
+[2025-06-23 15:30:07]   is_scheduled: 0
+[2025-06-23 15:30:07]   window_start: NULL
+[2025-06-23 15:30:07]   window_end: NULL
+[2025-06-23 15:30:07]   randomize_questions: 1
+[2025-06-23 15:30:07]   randomize_choices: 1
+[2025-06-23 15:30:07] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 15:30:07] ✅ Database update successful
+[2025-06-23 15:30:07] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 15:30:07]   exam_id: 24
+[2025-06-23 15:30:07]   title: Tech Exam 2
+[2025-06-23 15:30:07]   is_scheduled: 0
+[2025-06-23 15:30:07]   window_start: 
+[2025-06-23 15:30:07]   window_end: 
+[2025-06-23 15:30:07] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 15:30:07] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 15:30:07] ========================================================================================
+[2025-06-23 15:30:19] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 15:30:19] REQUEST_METHOD: POST
+[2025-06-23 15:30:19] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T15:30
+    [window_end] => 2025-06-23T16:30
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 15:30:19] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 15:30:19] Parsed basic fields:
+[2025-06-23 15:30:19]   exam_id: 42
+[2025-06-23 15:30:19]   quiz_name: Untitled Quiz
+[2025-06-23 15:30:19]   exam_type: tech
+[2025-06-23 15:30:19]   duration: 60
+[2025-06-23 15:30:19] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 15:30:19] is_scheduled checkbox: CHECKED
+[2025-06-23 15:30:19] is_scheduled value: 1
+[2025-06-23 15:30:19] POST window_start: '2025-06-23T15:30'
+[2025-06-23 15:30:19] POST window_end: '2025-06-23T16:30'
+[2025-06-23 15:30:19] window_start empty?: NO
+[2025-06-23 15:30:19] window_end empty?: NO
+[2025-06-23 15:30:19] Processing scheduled exam...
+[2025-06-23 15:30:19] ✓ window_start raw: '2025-06-23T15:30' -> converted: '2025-06-23 15:30:00'
+[2025-06-23 15:30:19] ✓ window_end raw: '2025-06-23T16:30' -> converted: '2025-06-23 16:30:00'
+[2025-06-23 15:30:19] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 15:30:19] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 15:30:19] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 15:30:19] Parameter types: ssssiissii
+[2025-06-23 15:30:19] Parameters being saved:
+[2025-06-23 15:30:19]   quiz_name: 'Untitled Quiz'
+[2025-06-23 15:30:19]   quiz_description: ''
+[2025-06-23 15:30:19]   exam_instructions: ''
+[2025-06-23 15:30:19]   exam_type: 'tech'
+[2025-06-23 15:30:19]   duration: 60
+[2025-06-23 15:30:19]   is_scheduled: 1
+[2025-06-23 15:30:19]   window_start: '2025-06-23 15:30:00'
+[2025-06-23 15:30:19]   window_end: '2025-06-23 16:30:00'
+[2025-06-23 15:30:19]   randomize_questions: 0
+[2025-06-23 15:30:19]   randomize_choices: 0
+[2025-06-23 15:30:19] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 15:30:19] ✅ Database update successful
+[2025-06-23 15:30:19] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 15:30:19]   exam_id: 42
+[2025-06-23 15:30:19]   title: Untitled Quiz
+[2025-06-23 15:30:19]   is_scheduled: 1
+[2025-06-23 15:30:19]   window_start: 2025-06-23 15:30:00
+[2025-06-23 15:30:19]   window_end: 2025-06-23 16:30:00
+[2025-06-23 15:30:19] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 15:30:19] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 15:30:19] ========================================================================================
+[2025-06-23 15:39:23] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 15:39:23] REQUEST_METHOD: POST
+[2025-06-23 15:39:23] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T15:30
+    [window_end] => 2025-06-23T16:30
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 15:39:23] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 15:39:23] Parsed basic fields:
+[2025-06-23 15:39:23]   exam_id: 42
+[2025-06-23 15:39:23]   quiz_name: Untitled Quiz
+[2025-06-23 15:39:23]   exam_type: tech
+[2025-06-23 15:39:23]   duration: 60
+[2025-06-23 15:39:23] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 15:39:23] is_scheduled checkbox: CHECKED
+[2025-06-23 15:39:23] is_scheduled value: 1
+[2025-06-23 15:39:23] POST window_start: '2025-06-23T15:30'
+[2025-06-23 15:39:23] POST window_end: '2025-06-23T16:30'
+[2025-06-23 15:39:23] window_start empty?: NO
+[2025-06-23 15:39:23] window_end empty?: NO
+[2025-06-23 15:39:23] Processing scheduled exam...
+[2025-06-23 15:39:23] ✓ window_start raw: '2025-06-23T15:30' -> converted: '2025-06-23 15:30:00'
+[2025-06-23 15:39:23] ✓ window_end raw: '2025-06-23T16:30' -> converted: '2025-06-23 16:30:00'
+[2025-06-23 15:39:23] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 15:39:23] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 15:39:23] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 15:39:23] Parameter types: ssssiissii
+[2025-06-23 15:39:23] Parameters being saved:
+[2025-06-23 15:39:23]   quiz_name: 'Untitled Quiz'
+[2025-06-23 15:39:23]   quiz_description: ''
+[2025-06-23 15:39:23]   exam_instructions: ''
+[2025-06-23 15:39:23]   exam_type: 'tech'
+[2025-06-23 15:39:23]   duration: 60
+[2025-06-23 15:39:23]   is_scheduled: 1
+[2025-06-23 15:39:23]   window_start: '2025-06-23 15:30:00'
+[2025-06-23 15:39:23]   window_end: '2025-06-23 16:30:00'
+[2025-06-23 15:39:23]   randomize_questions: 0
+[2025-06-23 15:39:23]   randomize_choices: 0
+[2025-06-23 15:39:23] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 15:39:23] ✅ Database update successful
+[2025-06-23 15:39:23] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 15:39:23]   exam_id: 42
+[2025-06-23 15:39:23]   title: Untitled Quiz
+[2025-06-23 15:39:23]   is_scheduled: 1
+[2025-06-23 15:39:23]   window_start: 2025-06-23 15:30:00
+[2025-06-23 15:39:23]   window_end: 2025-06-23 16:30:00
+[2025-06-23 15:39:23] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 15:39:23] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"1","pending":"2"}}
+[2025-06-23 15:39:23] ========================================================================================
+[2025-06-23 15:39:36] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 15:39:36] REQUEST_METHOD: POST
+[2025-06-23 15:39:36] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T15:30
+    [window_end] => 2025-06-23T16:30
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 15:39:36] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 15:39:36] Parsed basic fields:
+[2025-06-23 15:39:36]   exam_id: 42
+[2025-06-23 15:39:36]   quiz_name: Untitled Quiz
+[2025-06-23 15:39:36]   exam_type: tech
+[2025-06-23 15:39:36]   duration: 60
+[2025-06-23 15:39:36] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 15:39:36] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 15:39:36] is_scheduled value: 0
+[2025-06-23 15:39:36] POST window_start: '2025-06-23T15:30'
+[2025-06-23 15:39:36] POST window_end: '2025-06-23T16:30'
+[2025-06-23 15:39:36] window_start empty?: NO
+[2025-06-23 15:39:36] window_end empty?: NO
+[2025-06-23 15:39:36] Exam not scheduled, skipping datetime processing
+[2025-06-23 15:39:36] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 15:39:36] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 15:39:36] Parameter types: ssssiissii
+[2025-06-23 15:39:36] Parameters being saved:
+[2025-06-23 15:39:36]   quiz_name: 'Untitled Quiz'
+[2025-06-23 15:39:36]   quiz_description: ''
+[2025-06-23 15:39:36]   exam_instructions: ''
+[2025-06-23 15:39:36]   exam_type: 'tech'
+[2025-06-23 15:39:36]   duration: 60
+[2025-06-23 15:39:36]   is_scheduled: 0
+[2025-06-23 15:39:36]   window_start: NULL
+[2025-06-23 15:39:36]   window_end: NULL
+[2025-06-23 15:39:36]   randomize_questions: 0
+[2025-06-23 15:39:36]   randomize_choices: 0
+[2025-06-23 15:39:36] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 15:39:36] ✅ Database update successful
+[2025-06-23 15:39:36] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 15:39:36]   exam_id: 42
+[2025-06-23 15:39:36]   title: Untitled Quiz
+[2025-06-23 15:39:36]   is_scheduled: 0
+[2025-06-23 15:39:36]   window_start: 
+[2025-06-23 15:39:36]   window_end: 
+[2025-06-23 15:39:36] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 15:39:36] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":42,"assignment_stats":null}
+[2025-06-23 15:39:36] ========================================================================================
+[2025-06-23 15:39:48] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 15:39:48] REQUEST_METHOD: POST
+[2025-06-23 15:39:48] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T15:39
+    [window_end] => 2025-06-23T16:39
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 15:39:48] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 15:39:48] Parsed basic fields:
+[2025-06-23 15:39:48]   exam_id: 24
+[2025-06-23 15:39:48]   quiz_name: Tech Exam 2
+[2025-06-23 15:39:48]   exam_type: tech
+[2025-06-23 15:39:48]   duration: 60
+[2025-06-23 15:39:48] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 15:39:48] is_scheduled checkbox: CHECKED
+[2025-06-23 15:39:48] is_scheduled value: 1
+[2025-06-23 15:39:48] POST window_start: '2025-06-23T15:39'
+[2025-06-23 15:39:48] POST window_end: '2025-06-23T16:39'
+[2025-06-23 15:39:48] window_start empty?: NO
+[2025-06-23 15:39:48] window_end empty?: NO
+[2025-06-23 15:39:48] Processing scheduled exam...
+[2025-06-23 15:39:48] ✓ window_start raw: '2025-06-23T15:39' -> converted: '2025-06-23 15:39:00'
+[2025-06-23 15:39:48] ✓ window_end raw: '2025-06-23T16:39' -> converted: '2025-06-23 16:39:00'
+[2025-06-23 15:39:48] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 15:39:48] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 15:39:48] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 15:39:48] Parameter types: ssssiissii
+[2025-06-23 15:39:48] Parameters being saved:
+[2025-06-23 15:39:48]   quiz_name: 'Tech Exam 2'
+[2025-06-23 15:39:48]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 15:39:48]   exam_instructions: ''
+[2025-06-23 15:39:48]   exam_type: 'tech'
+[2025-06-23 15:39:48]   duration: 60
+[2025-06-23 15:39:48]   is_scheduled: 1
+[2025-06-23 15:39:48]   window_start: '2025-06-23 15:39:00'
+[2025-06-23 15:39:48]   window_end: '2025-06-23 16:39:00'
+[2025-06-23 15:39:48]   randomize_questions: 1
+[2025-06-23 15:39:48]   randomize_choices: 1
+[2025-06-23 15:39:48] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 15:39:48] ✅ Database update successful
+[2025-06-23 15:39:48] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 15:39:48]   exam_id: 24
+[2025-06-23 15:39:48]   title: Tech Exam 2
+[2025-06-23 15:39:48]   is_scheduled: 1
+[2025-06-23 15:39:48]   window_start: 2025-06-23 15:39:00
+[2025-06-23 15:39:48]   window_end: 2025-06-23 16:39:00
+[2025-06-23 15:39:48] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 15:39:48] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":3,"completed":"0","pending":"3"}}
+[2025-06-23 15:39:48] ========================================================================================
+[2025-06-23 18:38:33] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:38:33] REQUEST_METHOD: POST
+[2025-06-23 18:38:33] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T15:39
+    [window_end] => 2025-06-23T16:39
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:38:33] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:38:33] Parsed basic fields:
+[2025-06-23 18:38:33]   exam_id: 24
+[2025-06-23 18:38:33]   quiz_name: Tech Exam 2
+[2025-06-23 18:38:33]   exam_type: tech
+[2025-06-23 18:38:33]   duration: 60
+[2025-06-23 18:38:33] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:38:33] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 18:38:33] is_scheduled value: 0
+[2025-06-23 18:38:33] POST window_start: '2025-06-23T15:39'
+[2025-06-23 18:38:33] POST window_end: '2025-06-23T16:39'
+[2025-06-23 18:38:33] window_start empty?: NO
+[2025-06-23 18:38:33] window_end empty?: NO
+[2025-06-23 18:38:33] Exam not scheduled, skipping datetime processing
+[2025-06-23 18:38:33] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:38:33] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:38:33] Parameter types: ssssiissii
+[2025-06-23 18:38:33] Parameters being saved:
+[2025-06-23 18:38:33]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:38:33]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:38:33]   exam_instructions: ''
+[2025-06-23 18:38:33]   exam_type: 'tech'
+[2025-06-23 18:38:33]   duration: 60
+[2025-06-23 18:38:33]   is_scheduled: 0
+[2025-06-23 18:38:33]   window_start: NULL
+[2025-06-23 18:38:33]   window_end: NULL
+[2025-06-23 18:38:33]   randomize_questions: 1
+[2025-06-23 18:38:33]   randomize_choices: 1
+[2025-06-23 18:38:33] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:38:33] ✅ Database update successful
+[2025-06-23 18:38:33] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:38:33]   exam_id: 24
+[2025-06-23 18:38:33]   title: Tech Exam 2
+[2025-06-23 18:38:33]   is_scheduled: 0
+[2025-06-23 18:38:33]   window_start: 
+[2025-06-23 18:38:33]   window_end: 
+[2025-06-23 18:38:33] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:38:33] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 18:38:33] ========================================================================================
+[2025-06-23 18:38:47] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:38:47] REQUEST_METHOD: POST
+[2025-06-23 18:38:47] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T18:38
+    [window_end] => 2025-06-23T19:38
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:38:47] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:38:47] Parsed basic fields:
+[2025-06-23 18:38:47]   exam_id: 42
+[2025-06-23 18:38:47]   quiz_name: Untitled Quiz
+[2025-06-23 18:38:47]   exam_type: tech
+[2025-06-23 18:38:47]   duration: 60
+[2025-06-23 18:38:47] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:38:47] is_scheduled checkbox: CHECKED
+[2025-06-23 18:38:47] is_scheduled value: 1
+[2025-06-23 18:38:47] POST window_start: '2025-06-23T18:38'
+[2025-06-23 18:38:47] POST window_end: '2025-06-23T19:38'
+[2025-06-23 18:38:47] window_start empty?: NO
+[2025-06-23 18:38:47] window_end empty?: NO
+[2025-06-23 18:38:47] Processing scheduled exam...
+[2025-06-23 18:38:47] ✓ window_start raw: '2025-06-23T18:38' -> converted: '2025-06-23 18:38:00'
+[2025-06-23 18:38:47] ✓ window_end raw: '2025-06-23T19:38' -> converted: '2025-06-23 19:38:00'
+[2025-06-23 18:38:47] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 18:38:47] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:38:47] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:38:47] Parameter types: ssssiissii
+[2025-06-23 18:38:47] Parameters being saved:
+[2025-06-23 18:38:47]   quiz_name: 'Untitled Quiz'
+[2025-06-23 18:38:47]   quiz_description: ''
+[2025-06-23 18:38:47]   exam_instructions: ''
+[2025-06-23 18:38:47]   exam_type: 'tech'
+[2025-06-23 18:38:47]   duration: 60
+[2025-06-23 18:38:47]   is_scheduled: 1
+[2025-06-23 18:38:47]   window_start: '2025-06-23 18:38:00'
+[2025-06-23 18:38:47]   window_end: '2025-06-23 19:38:00'
+[2025-06-23 18:38:47]   randomize_questions: 0
+[2025-06-23 18:38:47]   randomize_choices: 0
+[2025-06-23 18:38:47] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:38:47] ✅ Database update successful
+[2025-06-23 18:38:47] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:38:47]   exam_id: 42
+[2025-06-23 18:38:47]   title: Untitled Quiz
+[2025-06-23 18:38:47]   is_scheduled: 1
+[2025-06-23 18:38:47]   window_start: 2025-06-23 18:38:00
+[2025-06-23 18:38:47]   window_end: 2025-06-23 19:38:00
+[2025-06-23 18:38:47] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:38:47] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":42,"assignment_stats":{"total_assigned":3,"completed":"1","pending":"2"}}
+[2025-06-23 18:38:47] ========================================================================================
+[2025-06-23 18:39:16] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:39:16] REQUEST_METHOD: POST
+[2025-06-23 18:39:16] Raw POST data: Array
+(
+    [exam_id] => 42
+    [quiz-name] => Untitled Quiz
+    [quiz-description] => 
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T18:38
+    [window_end] => 2025-06-23T19:38
+    [passing_score_type] => 
+    [passing_score] => 
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:39:16] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:39:16] Parsed basic fields:
+[2025-06-23 18:39:16]   exam_id: 42
+[2025-06-23 18:39:16]   quiz_name: Untitled Quiz
+[2025-06-23 18:39:16]   exam_type: tech
+[2025-06-23 18:39:16]   duration: 60
+[2025-06-23 18:39:16] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:39:16] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 18:39:16] is_scheduled value: 0
+[2025-06-23 18:39:16] POST window_start: '2025-06-23T18:38'
+[2025-06-23 18:39:16] POST window_end: '2025-06-23T19:38'
+[2025-06-23 18:39:16] window_start empty?: NO
+[2025-06-23 18:39:16] window_end empty?: NO
+[2025-06-23 18:39:16] Exam not scheduled, skipping datetime processing
+[2025-06-23 18:39:16] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:39:16] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = NULL, passing_score = NULL, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:39:16] Parameter types: ssssiissii
+[2025-06-23 18:39:16] Parameters being saved:
+[2025-06-23 18:39:16]   quiz_name: 'Untitled Quiz'
+[2025-06-23 18:39:16]   quiz_description: ''
+[2025-06-23 18:39:16]   exam_instructions: ''
+[2025-06-23 18:39:16]   exam_type: 'tech'
+[2025-06-23 18:39:16]   duration: 60
+[2025-06-23 18:39:16]   is_scheduled: 0
+[2025-06-23 18:39:16]   window_start: NULL
+[2025-06-23 18:39:16]   window_end: NULL
+[2025-06-23 18:39:16]   randomize_questions: 0
+[2025-06-23 18:39:16]   randomize_choices: 0
+[2025-06-23 18:39:16] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:39:16] ✅ Database update successful
+[2025-06-23 18:39:16] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:39:16]   exam_id: 42
+[2025-06-23 18:39:16]   title: Untitled Quiz
+[2025-06-23 18:39:16]   is_scheduled: 0
+[2025-06-23 18:39:16]   window_start: 
+[2025-06-23 18:39:16]   window_end: 
+[2025-06-23 18:39:16] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:39:16] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":42,"assignment_stats":null}
+[2025-06-23 18:39:16] ========================================================================================
+[2025-06-23 18:39:27] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:39:27] REQUEST_METHOD: POST
+[2025-06-23 18:39:27] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T18:39
+    [window_end] => 2025-06-23T19:39
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:39:27] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:39:27] Parsed basic fields:
+[2025-06-23 18:39:27]   exam_id: 24
+[2025-06-23 18:39:27]   quiz_name: Tech Exam 2
+[2025-06-23 18:39:27]   exam_type: tech
+[2025-06-23 18:39:27]   duration: 60
+[2025-06-23 18:39:27] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:39:27] is_scheduled checkbox: CHECKED
+[2025-06-23 18:39:27] is_scheduled value: 1
+[2025-06-23 18:39:27] POST window_start: '2025-06-23T18:39'
+[2025-06-23 18:39:27] POST window_end: '2025-06-23T19:39'
+[2025-06-23 18:39:27] window_start empty?: NO
+[2025-06-23 18:39:27] window_end empty?: NO
+[2025-06-23 18:39:27] Processing scheduled exam...
+[2025-06-23 18:39:27] ✓ window_start raw: '2025-06-23T18:39' -> converted: '2025-06-23 18:39:00'
+[2025-06-23 18:39:27] ✓ window_end raw: '2025-06-23T19:39' -> converted: '2025-06-23 19:39:00'
+[2025-06-23 18:39:27] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 18:39:27] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:39:27] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:39:27] Parameter types: ssssiissii
+[2025-06-23 18:39:27] Parameters being saved:
+[2025-06-23 18:39:27]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:39:27]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:39:27]   exam_instructions: ''
+[2025-06-23 18:39:27]   exam_type: 'tech'
+[2025-06-23 18:39:27]   duration: 60
+[2025-06-23 18:39:27]   is_scheduled: 1
+[2025-06-23 18:39:27]   window_start: '2025-06-23 18:39:00'
+[2025-06-23 18:39:27]   window_end: '2025-06-23 19:39:00'
+[2025-06-23 18:39:27]   randomize_questions: 1
+[2025-06-23 18:39:27]   randomize_choices: 1
+[2025-06-23 18:39:27] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:39:27] ✅ Database update successful
+[2025-06-23 18:39:27] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:39:27]   exam_id: 24
+[2025-06-23 18:39:27]   title: Tech Exam 2
+[2025-06-23 18:39:27]   is_scheduled: 1
+[2025-06-23 18:39:27]   window_start: 2025-06-23 18:39:00
+[2025-06-23 18:39:27]   window_end: 2025-06-23 19:39:00
+[2025-06-23 18:39:27] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:39:27] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":4,"completed":"1","pending":"3"}}
+[2025-06-23 18:39:27] ========================================================================================
+[2025-06-23 18:40:22] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:40:22] REQUEST_METHOD: POST
+[2025-06-23 18:40:22] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T18:39
+    [window_end] => 2025-06-23T19:39
+    [randomize-questions] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:40:22] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:40:22] Parsed basic fields:
+[2025-06-23 18:40:22]   exam_id: 24
+[2025-06-23 18:40:22]   quiz_name: Tech Exam 2
+[2025-06-23 18:40:22]   exam_type: tech
+[2025-06-23 18:40:22]   duration: 60
+[2025-06-23 18:40:22] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:40:22] is_scheduled checkbox: CHECKED
+[2025-06-23 18:40:22] is_scheduled value: 1
+[2025-06-23 18:40:22] POST window_start: '2025-06-23T18:39'
+[2025-06-23 18:40:22] POST window_end: '2025-06-23T19:39'
+[2025-06-23 18:40:22] window_start empty?: NO
+[2025-06-23 18:40:22] window_end empty?: NO
+[2025-06-23 18:40:22] Processing scheduled exam...
+[2025-06-23 18:40:22] ✓ window_start raw: '2025-06-23T18:39' -> converted: '2025-06-23 18:39:00'
+[2025-06-23 18:40:22] ✓ window_end raw: '2025-06-23T19:39' -> converted: '2025-06-23 19:39:00'
+[2025-06-23 18:40:22] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 18:40:22] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:40:22] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:40:22] Parameter types: ssssiissii
+[2025-06-23 18:40:22] Parameters being saved:
+[2025-06-23 18:40:22]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:40:22]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:40:22]   exam_instructions: ''
+[2025-06-23 18:40:22]   exam_type: 'tech'
+[2025-06-23 18:40:22]   duration: 60
+[2025-06-23 18:40:22]   is_scheduled: 1
+[2025-06-23 18:40:22]   window_start: '2025-06-23 18:39:00'
+[2025-06-23 18:40:22]   window_end: '2025-06-23 19:39:00'
+[2025-06-23 18:40:22]   randomize_questions: 1
+[2025-06-23 18:40:22]   randomize_choices: 0
+[2025-06-23 18:40:22] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:40:22] ✅ Database update successful
+[2025-06-23 18:40:22] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:40:22]   exam_id: 24
+[2025-06-23 18:40:22]   title: Tech Exam 2
+[2025-06-23 18:40:22]   is_scheduled: 1
+[2025-06-23 18:40:22]   window_start: 2025-06-23 18:39:00
+[2025-06-23 18:40:22]   window_end: 2025-06-23 19:39:00
+[2025-06-23 18:40:22] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:40:22] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":4,"completed":"2","pending":"2"}}
+[2025-06-23 18:40:22] ========================================================================================
+[2025-06-23 18:41:25] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:41:25] REQUEST_METHOD: POST
+[2025-06-23 18:41:25] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T18:39
+    [window_end] => 2025-06-23T19:39
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:41:25] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:41:25] Parsed basic fields:
+[2025-06-23 18:41:25]   exam_id: 24
+[2025-06-23 18:41:25]   quiz_name: Tech Exam 2
+[2025-06-23 18:41:25]   exam_type: tech
+[2025-06-23 18:41:25]   duration: 60
+[2025-06-23 18:41:25] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:41:25] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 18:41:25] is_scheduled value: 0
+[2025-06-23 18:41:25] POST window_start: '2025-06-23T18:39'
+[2025-06-23 18:41:25] POST window_end: '2025-06-23T19:39'
+[2025-06-23 18:41:25] window_start empty?: NO
+[2025-06-23 18:41:25] window_end empty?: NO
+[2025-06-23 18:41:25] Exam not scheduled, skipping datetime processing
+[2025-06-23 18:41:25] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:41:25] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:41:25] Parameter types: ssssiissii
+[2025-06-23 18:41:25] Parameters being saved:
+[2025-06-23 18:41:25]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:41:25]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:41:25]   exam_instructions: ''
+[2025-06-23 18:41:25]   exam_type: 'tech'
+[2025-06-23 18:41:25]   duration: 60
+[2025-06-23 18:41:25]   is_scheduled: 0
+[2025-06-23 18:41:25]   window_start: NULL
+[2025-06-23 18:41:25]   window_end: NULL
+[2025-06-23 18:41:25]   randomize_questions: 0
+[2025-06-23 18:41:25]   randomize_choices: 0
+[2025-06-23 18:41:25] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:41:25] ✅ Database update successful
+[2025-06-23 18:41:25] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:41:25]   exam_id: 24
+[2025-06-23 18:41:25]   title: Tech Exam 2
+[2025-06-23 18:41:25]   is_scheduled: 0
+[2025-06-23 18:41:25]   window_start: 
+[2025-06-23 18:41:25]   window_end: 
+[2025-06-23 18:41:25] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:41:25] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 18:41:25] ========================================================================================
+[2025-06-23 18:41:37] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:41:37] REQUEST_METHOD: POST
+[2025-06-23 18:41:37] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T18:41
+    [window_end] => 2025-06-23T19:41
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:41:37] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:41:37] Parsed basic fields:
+[2025-06-23 18:41:37]   exam_id: 24
+[2025-06-23 18:41:37]   quiz_name: Tech Exam 2
+[2025-06-23 18:41:37]   exam_type: tech
+[2025-06-23 18:41:37]   duration: 60
+[2025-06-23 18:41:37] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:41:37] is_scheduled checkbox: CHECKED
+[2025-06-23 18:41:37] is_scheduled value: 1
+[2025-06-23 18:41:37] POST window_start: '2025-06-23T18:41'
+[2025-06-23 18:41:37] POST window_end: '2025-06-23T19:41'
+[2025-06-23 18:41:37] window_start empty?: NO
+[2025-06-23 18:41:37] window_end empty?: NO
+[2025-06-23 18:41:37] Processing scheduled exam...
+[2025-06-23 18:41:37] ✓ window_start raw: '2025-06-23T18:41' -> converted: '2025-06-23 18:41:00'
+[2025-06-23 18:41:37] ✓ window_end raw: '2025-06-23T19:41' -> converted: '2025-06-23 19:41:00'
+[2025-06-23 18:41:37] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 18:41:37] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:41:37] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:41:37] Parameter types: ssssiissii
+[2025-06-23 18:41:37] Parameters being saved:
+[2025-06-23 18:41:37]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:41:37]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:41:37]   exam_instructions: ''
+[2025-06-23 18:41:37]   exam_type: 'tech'
+[2025-06-23 18:41:37]   duration: 60
+[2025-06-23 18:41:37]   is_scheduled: 1
+[2025-06-23 18:41:37]   window_start: '2025-06-23 18:41:00'
+[2025-06-23 18:41:37]   window_end: '2025-06-23 19:41:00'
+[2025-06-23 18:41:37]   randomize_questions: 0
+[2025-06-23 18:41:37]   randomize_choices: 0
+[2025-06-23 18:41:37] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:41:37] ✅ Database update successful
+[2025-06-23 18:41:37] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:41:37]   exam_id: 24
+[2025-06-23 18:41:37]   title: Tech Exam 2
+[2025-06-23 18:41:37]   is_scheduled: 1
+[2025-06-23 18:41:37]   window_start: 2025-06-23 18:41:00
+[2025-06-23 18:41:37]   window_end: 2025-06-23 19:41:00
+[2025-06-23 18:41:37] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:41:37] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":4,"completed":"1","pending":"3"}}
+[2025-06-23 18:41:37] ========================================================================================
+[2025-06-23 18:51:08] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:51:08] REQUEST_METHOD: POST
+[2025-06-23 18:51:08] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T18:41
+    [window_end] => 2025-06-23T19:41
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:51:08] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:51:08] Parsed basic fields:
+[2025-06-23 18:51:08]   exam_id: 24
+[2025-06-23 18:51:08]   quiz_name: Tech Exam 2
+[2025-06-23 18:51:08]   exam_type: tech
+[2025-06-23 18:51:08]   duration: 60
+[2025-06-23 18:51:08] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:51:08] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 18:51:08] is_scheduled value: 0
+[2025-06-23 18:51:08] POST window_start: '2025-06-23T18:41'
+[2025-06-23 18:51:08] POST window_end: '2025-06-23T19:41'
+[2025-06-23 18:51:08] window_start empty?: NO
+[2025-06-23 18:51:08] window_end empty?: NO
+[2025-06-23 18:51:08] Exam not scheduled, skipping datetime processing
+[2025-06-23 18:51:08] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:51:08] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:51:08] Parameter types: ssssiissii
+[2025-06-23 18:51:08] Parameters being saved:
+[2025-06-23 18:51:08]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:51:08]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:51:08]   exam_instructions: ''
+[2025-06-23 18:51:08]   exam_type: 'tech'
+[2025-06-23 18:51:08]   duration: 60
+[2025-06-23 18:51:08]   is_scheduled: 0
+[2025-06-23 18:51:08]   window_start: NULL
+[2025-06-23 18:51:08]   window_end: NULL
+[2025-06-23 18:51:08]   randomize_questions: 0
+[2025-06-23 18:51:08]   randomize_choices: 0
+[2025-06-23 18:51:08] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:51:08] ✅ Database update successful
+[2025-06-23 18:51:08] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:51:08]   exam_id: 24
+[2025-06-23 18:51:08]   title: Tech Exam 2
+[2025-06-23 18:51:08]   is_scheduled: 0
+[2025-06-23 18:51:08]   window_start: 
+[2025-06-23 18:51:08]   window_end: 
+[2025-06-23 18:51:08] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:51:08] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 18:51:08] ========================================================================================
+[2025-06-23 18:51:20] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 18:51:20] REQUEST_METHOD: POST
+[2025-06-23 18:51:20] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T18:51
+    [window_end] => 2025-06-23T19:51
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 18:51:20] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 18:51:20] Parsed basic fields:
+[2025-06-23 18:51:20]   exam_id: 24
+[2025-06-23 18:51:20]   quiz_name: Tech Exam 2
+[2025-06-23 18:51:20]   exam_type: tech
+[2025-06-23 18:51:20]   duration: 60
+[2025-06-23 18:51:20] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 18:51:20] is_scheduled checkbox: CHECKED
+[2025-06-23 18:51:20] is_scheduled value: 1
+[2025-06-23 18:51:20] POST window_start: '2025-06-23T18:51'
+[2025-06-23 18:51:20] POST window_end: '2025-06-23T19:51'
+[2025-06-23 18:51:20] window_start empty?: NO
+[2025-06-23 18:51:20] window_end empty?: NO
+[2025-06-23 18:51:20] Processing scheduled exam...
+[2025-06-23 18:51:20] ✓ window_start raw: '2025-06-23T18:51' -> converted: '2025-06-23 18:51:00'
+[2025-06-23 18:51:20] ✓ window_end raw: '2025-06-23T19:51' -> converted: '2025-06-23 19:51:00'
+[2025-06-23 18:51:20] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 18:51:20] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 18:51:20] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 18:51:20] Parameter types: ssssiissii
+[2025-06-23 18:51:20] Parameters being saved:
+[2025-06-23 18:51:20]   quiz_name: 'Tech Exam 2'
+[2025-06-23 18:51:20]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 18:51:20]   exam_instructions: ''
+[2025-06-23 18:51:20]   exam_type: 'tech'
+[2025-06-23 18:51:20]   duration: 60
+[2025-06-23 18:51:20]   is_scheduled: 1
+[2025-06-23 18:51:20]   window_start: '2025-06-23 18:51:00'
+[2025-06-23 18:51:20]   window_end: '2025-06-23 19:51:00'
+[2025-06-23 18:51:20]   randomize_questions: 1
+[2025-06-23 18:51:20]   randomize_choices: 1
+[2025-06-23 18:51:20] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 18:51:20] ✅ Database update successful
+[2025-06-23 18:51:20] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 18:51:20]   exam_id: 24
+[2025-06-23 18:51:20]   title: Tech Exam 2
+[2025-06-23 18:51:20]   is_scheduled: 1
+[2025-06-23 18:51:20]   window_start: 2025-06-23 18:51:00
+[2025-06-23 18:51:20]   window_end: 2025-06-23 19:51:00
+[2025-06-23 18:51:20] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 18:51:20] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":4,"completed":"1","pending":"3"}}
+[2025-06-23 18:51:20] ========================================================================================
+[2025-06-23 19:08:54] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 19:08:54] REQUEST_METHOD: POST
+[2025-06-23 19:08:54] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [window_start] => 2025-06-23T18:51
+    [window_end] => 2025-06-23T19:51
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 19:08:54] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 19:08:54] Parsed basic fields:
+[2025-06-23 19:08:54]   exam_id: 24
+[2025-06-23 19:08:54]   quiz_name: Tech Exam 2
+[2025-06-23 19:08:54]   exam_type: tech
+[2025-06-23 19:08:54]   duration: 60
+[2025-06-23 19:08:54] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 19:08:54] is_scheduled checkbox: NOT CHECKED
+[2025-06-23 19:08:54] is_scheduled value: 0
+[2025-06-23 19:08:54] POST window_start: '2025-06-23T18:51'
+[2025-06-23 19:08:54] POST window_end: '2025-06-23T19:51'
+[2025-06-23 19:08:54] window_start empty?: NO
+[2025-06-23 19:08:54] window_end empty?: NO
+[2025-06-23 19:08:54] Exam not scheduled, skipping datetime processing
+[2025-06-23 19:08:54] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 19:08:54] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 19:08:54] Parameter types: ssssiissii
+[2025-06-23 19:08:54] Parameters being saved:
+[2025-06-23 19:08:54]   quiz_name: 'Tech Exam 2'
+[2025-06-23 19:08:54]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 19:08:54]   exam_instructions: ''
+[2025-06-23 19:08:54]   exam_type: 'tech'
+[2025-06-23 19:08:54]   duration: 60
+[2025-06-23 19:08:54]   is_scheduled: 0
+[2025-06-23 19:08:54]   window_start: NULL
+[2025-06-23 19:08:54]   window_end: NULL
+[2025-06-23 19:08:54]   randomize_questions: 1
+[2025-06-23 19:08:54]   randomize_choices: 1
+[2025-06-23 19:08:54] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 19:08:54] ✅ Database update successful
+[2025-06-23 19:08:54] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 19:08:54]   exam_id: 24
+[2025-06-23 19:08:54]   title: Tech Exam 2
+[2025-06-23 19:08:54]   is_scheduled: 0
+[2025-06-23 19:08:54]   window_start: 
+[2025-06-23 19:08:54]   window_end: 
+[2025-06-23 19:08:54] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 19:08:54] Final response: {"success":true,"message":"Exam updated successfully! (Not assigned to students because no schedule was set)","exam_id":24,"assignment_stats":null}
+[2025-06-23 19:08:54] ========================================================================================
+[2025-06-23 19:09:04] === EXAM SAVE PROCESS STARTED ===
+[2025-06-23 19:09:04] REQUEST_METHOD: POST
+[2025-06-23 19:09:04] Raw POST data: Array
+(
+    [exam_id] => 24
+    [quiz-name] => Tech Exam 2
+    [quiz-description] => Carefully answer the questions
+    [exam-instructions] => 
+    [exam-type] => tech
+    [duration] => 60
+    [is_scheduled] => 1
+    [window_start] => 2025-06-23T19:09
+    [window_end] => 2025-06-23T20:09
+    [randomize-questions] => on
+    [randomize-choices] => on
+    [passing_score_type] => percentage
+    [passing_score] => 70
+    [remove-cover-image] => 0
+)
+
+[2025-06-23 19:09:04] Raw FILES data: Array
+(
+    [cover-image] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-23 19:09:04] Parsed basic fields:
+[2025-06-23 19:09:04]   exam_id: 24
+[2025-06-23 19:09:04]   quiz_name: Tech Exam 2
+[2025-06-23 19:09:04]   exam_type: tech
+[2025-06-23 19:09:04]   duration: 60
+[2025-06-23 19:09:04] === SCHEDULING DATA PROCESSING ===
+[2025-06-23 19:09:04] is_scheduled checkbox: CHECKED
+[2025-06-23 19:09:04] is_scheduled value: 1
+[2025-06-23 19:09:04] POST window_start: '2025-06-23T19:09'
+[2025-06-23 19:09:04] POST window_end: '2025-06-23T20:09'
+[2025-06-23 19:09:04] window_start empty?: NO
+[2025-06-23 19:09:04] window_end empty?: NO
+[2025-06-23 19:09:05] Processing scheduled exam...
+[2025-06-23 19:09:05] ✓ window_start raw: '2025-06-23T19:09' -> converted: '2025-06-23 19:09:00'
+[2025-06-23 19:09:05] ✓ window_end raw: '2025-06-23T20:09' -> converted: '2025-06-23 20:09:00'
+[2025-06-23 19:09:05] ✅ Both datetime fields have values, scheduling enabled
+[2025-06-23 19:09:05] === DATABASE UPDATE PREPARATION ===
+[2025-06-23 19:09:05] SQL Query: UPDATE exams SET 
+                          title = ?, 
+                          description = ?, 
+                          instructions = ?,
+                          exam_type = ?,
+                          duration = ?,
+                          is_scheduled = ?,
+                          window_start = ?,
+                          window_end = ?,
+                          randomize_questions = ?,
+                          randomize_choices = ?,
+                          updated_at = NOW(), passing_score_type = ?, passing_score = ?, cover_image = ? WHERE exam_id = ?
+[2025-06-23 19:09:05] Parameter types: ssssiissii
+[2025-06-23 19:09:05] Parameters being saved:
+[2025-06-23 19:09:05]   quiz_name: 'Tech Exam 2'
+[2025-06-23 19:09:05]   quiz_description: 'Carefully answer the questions'
+[2025-06-23 19:09:05]   exam_instructions: ''
+[2025-06-23 19:09:05]   exam_type: 'tech'
+[2025-06-23 19:09:05]   duration: 60
+[2025-06-23 19:09:05]   is_scheduled: 1
+[2025-06-23 19:09:05]   window_start: '2025-06-23 19:09:00'
+[2025-06-23 19:09:05]   window_end: '2025-06-23 20:09:00'
+[2025-06-23 19:09:05]   randomize_questions: 1
+[2025-06-23 19:09:05]   randomize_choices: 1
+[2025-06-23 19:09:05] === EXECUTING DATABASE UPDATE ===
+[2025-06-23 19:09:05] ✅ Database update successful
+[2025-06-23 19:09:05] === VERIFICATION - WHAT WAS ACTUALLY SAVED ===
+[2025-06-23 19:09:05]   exam_id: 24
+[2025-06-23 19:09:05]   title: Tech Exam 2
+[2025-06-23 19:09:05]   is_scheduled: 1
+[2025-06-23 19:09:05]   window_start: 2025-06-23 19:09:00
+[2025-06-23 19:09:05]   window_end: 2025-06-23 20:09:00
+[2025-06-23 19:09:05] === EXAM SAVE PROCESS COMPLETED ===
+[2025-06-23 19:09:05] Final response: {"success":true,"message":"Exam updated and assigned successfully!","exam_id":24,"assignment_stats":{"total_assigned":4,"completed":"0","pending":"4"}}
+[2025-06-23 19:09:05] ========================================================================================

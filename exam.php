@@ -1,7 +1,11 @@
 <?php
-session_start();
+// Include admin session management
+require_once 'config/admin_session.php';
 include('config/config.php');
 include('get_exam.php'); // Include the file with exam functions
+
+// Check admin session and handle timeout
+checkAdminSession();
 
 // Get all exams
 $exams = getAllExams();
@@ -532,10 +536,13 @@ function getImageUrl($imagePath) {
                                 </div>
                             </div>
                             
-                            <?php if ($exam['is_scheduled'] && $exam['scheduled_date']): ?>
+                            <?php if ($exam['is_scheduled'] && $exam['window_start'] && $exam['window_end']): ?>
                                 <div class="scheduled-badge">
                                     <span class="material-symbols-rounded">event</span>
-                                    Scheduled: <?php echo date('M d, Y - h:i A', strtotime($exam['scheduled_date'])); ?>
+                                    Scheduled:
+                                    <?php echo date('F d, Y - h:i A', strtotime($exam['window_start'])); ?>
+                                    to
+                                    <?php echo date('F d, Y - h:i A', strtotime($exam['window_end'])); ?>
                                 </div>
                             <?php endif; ?>
                         </div>

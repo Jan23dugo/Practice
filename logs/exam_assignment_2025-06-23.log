@@ -1,0 +1,531 @@
+
+================================================================================
+[2025-06-23 12:20:48] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:20:00'
+  window_end: '2025-06-23 01:20:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:20:48] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:20:00'
+  window_end: '2025-06-23 01:20:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:20:51] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:20:00'
+  window_end: '2025-06-23 01:20:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:20:51] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:20:00'
+  window_end: '2025-06-23 01:20:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:21:10] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:20:00'
+  window_end: '2025-06-23 13:20:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:21:10] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:20:00'
+  window_end: '2025-06-23 13:20:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:23:00] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:22:00'
+  window_end: '2025-06-23 13:22:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 12:22:00'
+   Assigned window_end: '2025-06-23 13:22:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 12:22:00'
+   Assigned window_end: '2025-06-23 13:22:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 12:22:00'
+   Assigned window_end: '2025-06-23 13:22:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 12:23:00] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:22:00'
+  window_end: '2025-06-23 13:22:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 12:26:53] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:26:00'
+  window_end: '2025-06-23 13:26:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 12:26:00'
+   Assigned window_end: '2025-06-23 13:26:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 12:26:00'
+   Assigned window_end: '2025-06-23 13:26:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 12:26:00'
+   Assigned window_end: '2025-06-23 13:26:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 12:26:53] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 12:26:00'
+  window_end: '2025-06-23 13:26:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 13:29:34] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:29:00'
+  window_end: '2025-06-23 14:29:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 13:29:00'
+   Assigned window_end: '2025-06-23 14:29:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 13:29:00'
+   Assigned window_end: '2025-06-23 14:29:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 13:29:00'
+   Assigned window_end: '2025-06-23 14:29:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 13:29:34] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:29:00'
+  window_end: '2025-06-23 14:29:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 13:30:22] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:29:00'
+  window_end: '2025-06-23 14:29:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 13:30:22] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:29:00'
+  window_end: '2025-06-23 14:29:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 13:33:22] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:33:00'
+  window_end: '2025-06-23 14:33:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 13:33:00'
+   Assigned window_end: '2025-06-23 14:33:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 13:33:00'
+   Assigned window_end: '2025-06-23 14:33:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 13:33:00'
+   Assigned window_end: '2025-06-23 14:33:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 13:33:22] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:33:00'
+  window_end: '2025-06-23 14:33:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 13:42:36] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:42:00'
+  window_end: '2025-06-23 14:42:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 13:42:00'
+   Assigned window_end: '2025-06-23 14:42:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 13:42:00'
+   Assigned window_end: '2025-06-23 14:42:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 13:42:00'
+   Assigned window_end: '2025-06-23 14:42:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 13:42:36] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:42:00'
+  window_end: '2025-06-23 14:42:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 13:46:29] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:46:00'
+  window_end: '2025-06-23 14:46:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 13:46:00'
+   Assigned window_end: '2025-06-23 14:46:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 13:46:00'
+   Assigned window_end: '2025-06-23 14:46:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 13:46:00'
+   Assigned window_end: '2025-06-23 14:46:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 13:46:29] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 13:46:00'
+  window_end: '2025-06-23 14:46:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 14:56:23] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 14:56:00'
+  window_end: '2025-06-23 15:56:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 14:56:00'
+   Assigned window_end: '2025-06-23 15:56:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 14:56:00'
+   Assigned window_end: '2025-06-23 15:56:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 14:56:00'
+   Assigned window_end: '2025-06-23 15:56:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 14:56:23] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 14:56:00'
+  window_end: '2025-06-23 15:56:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 14:58:06] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 14:58:00'
+  window_end: '2025-06-23 15:58:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 14:58:00'
+   Assigned window_end: '2025-06-23 15:58:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 14:58:00'
+   Assigned window_end: '2025-06-23 15:58:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 14:58:00'
+   Assigned window_end: '2025-06-23 15:58:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 14:58:06] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 14:58:00'
+  window_end: '2025-06-23 15:58:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 15:30:19] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 15:30:00'
+  window_end: '2025-06-23 16:30:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 15:30:00'
+   Assigned window_end: '2025-06-23 16:30:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 15:30:00'
+   Assigned window_end: '2025-06-23 16:30:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 15:30:00'
+   Assigned window_end: '2025-06-23 16:30:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 15:30:19] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 15:30:00'
+  window_end: '2025-06-23 16:30:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 15:39:23] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 15:30:00'
+  window_end: '2025-06-23 16:30:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 15:39:23] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 15:30:00'
+  window_end: '2025-06-23 16:30:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 15:39:48] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 15:39:00'
+  window_end: '2025-06-23 16:39:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 3 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 15:39:00'
+   Assigned window_end: '2025-06-23 16:39:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 15:39:00'
+   Assigned window_end: '2025-06-23 16:39:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 15:39:00'
+   Assigned window_end: '2025-06-23 16:39:00'
+Completed exam assignment. Total new students assigned: 3
+
+================================================================================
+[2025-06-23 15:39:48] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 15:39:00'
+  window_end: '2025-06-23 16:39:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 18:38:47] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:38:00'
+  window_end: '2025-06-23 19:38:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 18:38:47] Starting exam assignment for exam_id: 42 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:38:00'
+  window_end: '2025-06-23 19:38:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 3 existing assignments
+
+================================================================================
+[2025-06-23 18:39:27] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:39:00'
+  window_end: '2025-06-23 19:39:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 1 new eligible students for assignment
+✅ Assigned exam to student: Shion Reeve (ID: 137)
+   Assigned window_start: '2025-06-23 18:39:00'
+   Assigned window_end: '2025-06-23 19:39:00'
+Completed exam assignment. Total new students assigned: 1
+
+================================================================================
+[2025-06-23 18:39:27] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:39:00'
+  window_end: '2025-06-23 19:39:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 4 existing assignments
+
+================================================================================
+[2025-06-23 18:40:22] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:39:00'
+  window_end: '2025-06-23 19:39:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 4 existing assignments
+
+================================================================================
+[2025-06-23 18:40:22] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:39:00'
+  window_end: '2025-06-23 19:39:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 4 existing assignments
+
+================================================================================
+[2025-06-23 18:41:37] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:41:00'
+  window_end: '2025-06-23 19:41:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 1 new eligible students for assignment
+✅ Assigned exam to student: Shion Reeve (ID: 137)
+   Assigned window_start: '2025-06-23 18:41:00'
+   Assigned window_end: '2025-06-23 19:41:00'
+Completed exam assignment. Total new students assigned: 1
+
+================================================================================
+[2025-06-23 18:41:37] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:41:00'
+  window_end: '2025-06-23 19:41:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 4 existing assignments
+
+================================================================================
+[2025-06-23 18:51:20] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:51:00'
+  window_end: '2025-06-23 19:51:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 1 new eligible students for assignment
+✅ Assigned exam to student: Shion Reeve (ID: 137)
+   Assigned window_start: '2025-06-23 18:51:00'
+   Assigned window_end: '2025-06-23 19:51:00'
+Completed exam assignment. Total new students assigned: 1
+
+================================================================================
+[2025-06-23 18:51:20] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 18:51:00'
+  window_end: '2025-06-23 19:51:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 4 existing assignments
+
+================================================================================
+[2025-06-23 19:09:05] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 19:09:00'
+  window_end: '2025-06-23 20:09:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 4 new eligible students for assignment
+✅ Assigned exam to student: Melody Tapay (ID: 131)
+   Assigned window_start: '2025-06-23 19:09:00'
+   Assigned window_end: '2025-06-23 20:09:00'
+✅ Assigned exam to student: Juan Pepito (ID: 132)
+   Assigned window_start: '2025-06-23 19:09:00'
+   Assigned window_end: '2025-06-23 20:09:00'
+✅ Assigned exam to student: Melody Tapay (ID: 136)
+   Assigned window_start: '2025-06-23 19:09:00'
+   Assigned window_end: '2025-06-23 20:09:00'
+✅ Assigned exam to student: Shion Reeve (ID: 137)
+   Assigned window_start: '2025-06-23 19:09:00'
+   Assigned window_end: '2025-06-23 20:09:00'
+Completed exam assignment. Total new students assigned: 4
+
+================================================================================
+[2025-06-23 19:09:05] Starting exam assignment for exam_id: 24 (Type: tech)
+✅ Exam is scheduled with valid datetime values
+Fetched datetime values from exams table:
+  window_start: '2025-06-23 19:09:00'
+  window_end: '2025-06-23 20:09:00'
+✅ Datetime values are valid, proceeding with assignment
+Found 0 new eligible students for assignment
+No new students to assign, exam already has 4 existing assignments

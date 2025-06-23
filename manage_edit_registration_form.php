@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
 session_start();
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header("Location: admin_login.php");
@@ -9,6 +10,118 @@ include('config/config.php');
 $editRow = null;
 $type = isset($_GET['type']) ? filter_var($_GET['type'], FILTER_SANITIZE_STRING) : null;
 $action = isset($_GET['action']) ? filter_var($_GET['action'], FILTER_SANITIZE_STRING) : null;
+=======
+// Include admin session management
+require_once 'config/admin_session.php';
+include('config/config.php');
+
+// Check admin session and handle timeout
+checkAdminSession();
+
+// Handle tech program form submissions
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    switch ($_POST['action']) {
+        case 'add_tech_program':
+            $program_name = $_POST['program_name'];
+            $program_code = $_POST['program_code'];
+            $stmt = $conn->prepare("INSERT INTO tech_programs (program_name, program_code, is_active) VALUES (?, ?, 1)");
+            $stmt->bind_param("ss", $program_name, $program_code);
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Tech program added successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error adding tech program: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab5");
+            exit();
+            break;
+
+        case 'update_tech_program':
+            $id = $_POST['id'];
+            $program_name = $_POST['program_name'];
+            $program_code = $_POST['program_code'];
+            $is_active = isset($_POST['is_active']) ? 1 : 0;
+            $stmt = $conn->prepare("UPDATE tech_programs SET program_name = ?, program_code = ?, is_active = ? WHERE id = ?");
+            $stmt->bind_param("ssii", $program_name, $program_code, $is_active, $id);
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Tech program updated successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error updating tech program: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab5");
+            exit();
+            break;
+
+        case 'delete_tech_program':
+            $id = $_POST['id'];
+            $stmt = $conn->prepare("DELETE FROM tech_programs WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Tech program deleted successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error deleting tech program: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab5");
+            exit();
+            break;
+
+        case 'add_coded_course':
+            $subject_code = $_POST['subject_code'];
+            $subject_description = $_POST['subject_description'];
+            $program = $_POST['program'];
+            $units = $_POST['units'];
+            
+            $stmt = $conn->prepare("INSERT INTO coded_courses (subject_code, subject_description, program, units) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("sssd", $subject_code, $subject_description, $program, $units);
+            
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Coded course added successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error adding coded course: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab6");
+            exit();
+            break;
+            
+        case 'edit_coded_course':
+            $course_id = $_POST['course_id'];
+            $subject_code = $_POST['subject_code'];
+            $subject_description = $_POST['subject_description'];
+            $program = $_POST['program'];
+            $units = $_POST['units'];
+            
+            $stmt = $conn->prepare("UPDATE coded_courses SET subject_code = ?, subject_description = ?, program = ?, units = ? WHERE course_id = ?");
+            $stmt->bind_param("sssdi", $subject_code, $subject_description, $program, $units, $course_id);
+            
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Coded course updated successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error updating coded course: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab6");
+            exit();
+            break;
+            
+        case 'delete_coded_course':
+            $course_id = $_POST['course_id'];
+            
+            $stmt = $conn->prepare("DELETE FROM coded_courses WHERE course_id = ?");
+            $stmt->bind_param("i", $course_id);
+            
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Coded course deleted successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error deleting coded course: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab6");
+            exit();
+            break;
+    }
+}
+
+$editRow = null;
+$type = isset($_GET['type']) ? htmlspecialchars($_GET['type'], ENT_QUOTES, 'UTF-8') : null;
+$action = isset($_GET['action']) ? htmlspecialchars($_GET['action'], ENT_QUOTES, 'UTF-8') : null;
+>>>>>>> Stashed changes
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $error_message = '';
 $success_message = '';
@@ -85,12 +198,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 }
 
                 $conn->commit();
+<<<<<<< Updated upstream
                 $success_message = "Grading system added successfully.";
             } catch (Exception $e) {
                 $conn->rollback();
                 error_log("Error in transaction: " . $e->getMessage());
                 $error_message = $e->getMessage();
             }
+=======
+                $_SESSION['success_message'] = "Grading system added successfully.";
+            } catch (Exception $e) {
+                $conn->rollback();
+                error_log("Error in transaction: " . $e->getMessage());
+                $_SESSION['error_message'] = $e->getMessage();
+            }
+            header("Location: manage_edit_registration_form.php#tab4");
+            exit();
+>>>>>>> Stashed changes
             break;
 
         case 'edit_bulk':
@@ -170,18 +294,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 }
 
                 $conn->commit();
+<<<<<<< Updated upstream
                 $success_message = "Grading system updated successfully.";
             } catch (Exception $e) {
                 $conn->rollback();
                 error_log("Error in transaction: " . $e->getMessage());
                 $error_message = $e->getMessage();
             }
+=======
+                $_SESSION['success_message'] = "Grading system updated successfully.";
+            } catch (Exception $e) {
+                $conn->rollback();
+                error_log("Error in transaction: " . $e->getMessage());
+                $_SESSION['error_message'] = $e->getMessage();
+            }
+            header("Location: manage_edit_registration_form.php#tab4");
+            exit();
+>>>>>>> Stashed changes
             break;
 
         case 'delete':
             if (!isset($_POST['university_name'])) {
+<<<<<<< Updated upstream
                 $error_message = "No university name provided for deletion.";
                 break;
+=======
+                $_SESSION['error_message'] = "No university name provided for deletion.";
+                header("Location: manage_edit_registration_form.php#tab4");
+                exit();
+>>>>>>> Stashed changes
             }
 
             $university_name = $_POST['university_name'];
@@ -189,10 +330,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $stmt->bind_param("s", $university_name);
             
             if ($stmt->execute()) {
+<<<<<<< Updated upstream
                 $success_message = "Grading system deleted successfully.";
             } else {
                 $error_message = "Error deleting grading system: " . $conn->error;
             }
+=======
+                $_SESSION['success_message'] = "Grading system deleted successfully.";
+            } else {
+                $_SESSION['error_message'] = "Error deleting grading system: " . $conn->error;
+            }
+            header("Location: manage_edit_registration_form.php#tab4");
+            exit();
+>>>>>>> Stashed changes
             break;
     }
 }
@@ -221,6 +371,7 @@ if ($type && isset($tableMap[$type])) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Sanitize inputs
+<<<<<<< Updated upstream
         $code = filter_var($_POST['code'], FILTER_SANITIZE_STRING);
         $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 
@@ -246,10 +397,33 @@ if ($type && isset($tableMap[$type])) {
                     }
                 } else {
                     // Check if code already exists
+=======
+        $code = htmlspecialchars($_POST['code'], ENT_QUOTES, 'UTF-8');
+        $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+
+        if (empty($code) || empty($name)) {
+            $_SESSION['error_message'] = "Both code and name are required.";
+            header("Location: manage_edit_registration_form.php#tab1");
+            exit();
+        } else {
+            try {
+                if ($action === 'edit' && $id) {
+                    $stmt = $conn->prepare("UPDATE `$table` SET `$codeKey`=?, `$nameKey`=? WHERE $idKey=?");
+                    $stmt->bind_param("ssi", $code, $name, $id);
+                    if ($stmt->execute()) {
+                        $_SESSION['success_message'] = "Record updated successfully!";
+                    } else {
+                        $_SESSION['error_message'] = "Error updating record.";
+                    }
+                    header("Location: manage_edit_registration_form.php#tab1");
+                    exit();
+                } else {
+>>>>>>> Stashed changes
                     $check_stmt = $conn->prepare("SELECT * FROM `$table` WHERE `$codeKey` = ?");
                     $check_stmt->bind_param("s", $code);
                     $check_stmt->execute();
                     $result = $check_stmt->get_result();
+<<<<<<< Updated upstream
                     
                     if ($result->num_rows > 0) {
                         $error_message = "Code already exists. Please use a different code.";
@@ -274,12 +448,36 @@ if ($type && isset($tableMap[$type])) {
                 // Log the error for administrators
                 error_log("Database error: " . $e->getMessage());
                 $error_message = "An error occurred while processing your request. Please try again later.";
+=======
+                    if ($result->num_rows > 0) {
+                        $_SESSION['error_message'] = "Code already exists. Please use a different code.";
+                        header("Location: manage_edit_registration_form.php#tab1");
+                        exit();
+                    } else {
+                        $stmt = $conn->prepare("INSERT INTO `$table` (`$codeKey`, `$nameKey`) VALUES (?, ?)");
+                        $stmt->bind_param("ss", $code, $name);
+                        if ($stmt->execute()) {
+                            $_SESSION['success_message'] = "Record added successfully!";
+                        } else {
+                            $_SESSION['error_message'] = "Error adding record.";
+                        }
+                        header("Location: manage_edit_registration_form.php#tab1");
+                        exit();
+                    }
+                }
+            } catch (Exception $e) {
+                error_log("Database error: " . $e->getMessage());
+                $_SESSION['error_message'] = "An error occurred while processing your request. Please try again later.";
+                header("Location: manage_edit_registration_form.php#tab1");
+                exit();
+>>>>>>> Stashed changes
             }
         }
     }
 
     if ($action === 'delete' && $id) {
         try {
+<<<<<<< Updated upstream
             // Check if the record exists and can be deleted (no dependencies)
             $stmt = $conn->prepare("DELETE FROM `$table` WHERE $idKey = ?");
             $stmt->bind_param("i", $id);
@@ -299,6 +497,22 @@ if ($type && isset($tableMap[$type])) {
             // Log the error for administrators
             error_log("Database error: " . $e->getMessage());
             $error_message = "An error occurred while deleting the record. It might be referenced by other records.";
+=======
+            $stmt = $conn->prepare("DELETE FROM `$table` WHERE $idKey = ?");
+            $stmt->bind_param("i", $id);
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Record deleted successfully!";
+            } else {
+                $_SESSION['error_message'] = "Error deleting record. It may be referenced by other records.";
+            }
+            header("Location: manage_edit_registration_form.php#tab1");
+            exit();
+        } catch (Exception $e) {
+            error_log("Database error: " . $e->getMessage());
+            $_SESSION['error_message'] = "An error occurred while deleting the record. It might be referenced by other records.";
+            header("Location: manage_edit_registration_form.php#tab1");
+            exit();
+>>>>>>> Stashed changes
         }
     }
 
@@ -311,6 +525,7 @@ if ($type && isset($tableMap[$type])) {
             $editRow = $result->fetch_assoc();
             
             if (!$editRow) {
+<<<<<<< Updated upstream
                 $error_message = "Record not found.";
             }
         } catch (Exception $e) {
@@ -320,6 +535,28 @@ if ($type && isset($tableMap[$type])) {
         }
     }
 }
+=======
+                $_SESSION['error_message'] = "Record not found.";
+            }
+        } catch (Exception $e) {
+            error_log("Database error: " . $e->getMessage());
+            $_SESSION['error_message'] = "An error occurred while retrieving the record.";
+            header("Location: manage_edit_registration_form.php#tab1");
+            exit();
+        }
+    }
+}
+
+// Show messages from session and clear them
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+}
+if (isset($_SESSION['success_message'])) {
+    $success_message = $_SESSION['success_message'];
+    unset($_SESSION['success_message']);
+}
+>>>>>>> Stashed changes
 ?>
 
 <!DOCTYPE html>
@@ -608,7 +845,11 @@ if ($type && isset($tableMap[$type])) {
 
         .modal-content.modal-lg {
             max-width: 800px !important;
+<<<<<<< Updated upstream
             max-height: 90vh !important;
+=======
+            max-height: 100vh !important;
+>>>>>>> Stashed changes
             margin: 20px auto;
             overflow: hidden;
             display: flex;
@@ -1025,10 +1266,16 @@ if ($type && isset($tableMap[$type])) {
                     <button class="tab-btn" data-tab="tab2">Previous Universities</button>
                     <button class="tab-btn" data-tab="tab3">Applied Programs</button>
                     <button class="tab-btn" data-tab="tab4">Grading Systems</button>
+<<<<<<< Updated upstream
+=======
+                    <button class="tab-btn" data-tab="tab5">Tech Programs</button>
+                    <button class="tab-btn" data-tab="tab6">Coded Courses</button>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 1: University Programs -->
                 <div id="tab1" class="tab-content active">
+<<<<<<< Updated upstream
                     <div class="tab-note info-box">
                         <strong>Note:</strong> Manage the list of university programs you have previously attended. You can add, edit, or delete program records here.
                     </div>
@@ -1076,10 +1323,14 @@ if ($type && isset($tableMap[$type])) {
                             ?>
                         </tbody>
                     </table>
+=======
+                    <?php include 'tabs/university_programs.php'; ?>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 2: Universities -->
                 <div id="tab2" class="tab-content">
+<<<<<<< Updated upstream
                     <div class="tab-note info-box">
                         <strong>Note:</strong> Manage the list of universities you have previously attended. You can add, edit, or delete university records here.
                     </div>
@@ -1127,10 +1378,14 @@ if ($type && isset($tableMap[$type])) {
                             ?>
                         </tbody>
                     </table>
+=======
+                    <?php include 'tabs/universities.php'; ?>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 3: Applied Programs -->
                 <div id="tab3" class="tab-content">
+<<<<<<< Updated upstream
                     <div class="tab-note info-box">
                         <strong>Note:</strong> Manage the programs you have applied for. You can add, edit, or delete applied program records here.
                     </div>
@@ -1178,10 +1433,14 @@ if ($type && isset($tableMap[$type])) {
                             ?>
                         </tbody>
                     </table>
+=======
+                    <?php include 'tabs/applied_programs.php'; ?>
+>>>>>>> Stashed changes
                 </div>
 
                 <!-- Tab 4: Grading Systems -->
                 <div id="tab4" class="tab-content">
+<<<<<<< Updated upstream
                     <div class="tab-note info-box">
                         <strong>Note:</strong> Manage the grading systems for each university. You can add a new grading system, view details, edit existing systems, or delete them.
                     </div>
@@ -1538,6 +1797,29 @@ if ($type && isset($tableMap[$type])) {
                     </form>
                 </div>
             </div>
+=======
+                    <?php include 'tabs/grading_systems.php'; ?>
+                </div>
+
+                <!-- Tab 5: Tech Programs -->
+                <div id="tab5" class="tab-content">
+                    <?php include 'tabs/tech_programs.php'; ?>
+                </div>
+
+                <!-- Tab 6: Coded Courses -->
+                <div id="tab6" class="tab-content">
+                    <?php include 'tabs/coded_courses.php'; ?>
+                </div>
+            </div>
+
+            <!-- Include all modals -->
+            <?php include 'tabs/modals.php'; ?>
+
+            <!-- Include JavaScript -->
+            <script src="js/tabs.js"></script>
+        </div>
+    </div>
+>>>>>>> Stashed changes
     <script src="assets/js/side.js"></script>
     <script>
         // Initialize grading systems data
@@ -1564,9 +1846,32 @@ if ($type && isset($tableMap[$type])) {
 
                 btn.classList.add('active');
                 document.getElementById(btn.dataset.tab).classList.add('active');
+<<<<<<< Updated upstream
             });
         });
 
+=======
+                // Save active tab to localStorage
+                localStorage.setItem('activeTab', btn.dataset.tab);
+            });
+        });
+
+        // Restore last active tab on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastTab = localStorage.getItem('activeTab');
+            if (lastTab) {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                const btn = document.querySelector(`.tab-btn[data-tab='${lastTab}']`);
+                const content = document.getElementById(lastTab);
+                if (btn && content) {
+                    btn.classList.add('active');
+                    content.classList.add('active');
+                }
+            }
+        });
+
+>>>>>>> Stashed changes
         // Search functionality
         function searchTable(input, tableId) {
             const filter = input.value.toLowerCase();
@@ -2025,6 +2330,50 @@ if ($type && isset($tableMap[$type])) {
                 gradesRows.innerHTML = `<div class='empty-grades-message'><p>No grades added yet. Click "Add Grade" to begin.</p></div>`;
             }
         });
+<<<<<<< Updated upstream
     </script>
     </body>
     </html>
+=======
+
+        // Tech Program Functions
+        function openAddTechProgramModal() {
+            openModal('addTechProgramModal');
+        }
+
+        function openEditTechProgram(program) {
+            document.getElementById('edit_tech_program_id').value = program.id;
+            document.getElementById('edit_program_name').value = program.program_name;
+            document.getElementById('edit_program_code').value = program.program_code;
+            document.getElementById('edit_is_active').checked = program.is_active == 1;
+            openModal('editTechProgramModal');
+        }
+
+        function confirmDeleteTechProgram(id) {
+            document.getElementById('delete_tech_program_id').value = id;
+            openModal('deleteTechProgramModal');
+        }
+
+        // Add status badge styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .status-badge {
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+            .status-active {
+                background-color: #d4edda;
+                color: #155724;
+            }
+            .status-inactive {
+                background-color: #f8d7da;
+                color: #721c24;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+>>>>>>> Stashed changes

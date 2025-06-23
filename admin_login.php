@@ -1,4 +1,7 @@
 <?php
+// Load session configuration first
+require_once 'config/session_config.php';
+
 // Include database connection
 include 'config/config.php';
 require 'vendor/autoload.php';
@@ -13,6 +16,11 @@ session_start();
 // Initialize variables
 $login_error = '';
 $verification_sent = false;
+
+// Check if user was redirected due to session timeout
+if (isset($_GET['timeout']) && $_GET['timeout'] == '1') {
+    $login_error = 'Your session has expired due to inactivity. Please login again.';
+}
 
 // Function to generate verification code
 function generateVerificationCode() {
@@ -153,6 +161,8 @@ if (isset($_POST['verify'])) {
             $_SESSION['admin_id'] = $verification['admin_id'];
             $_SESSION['email'] = $verification['email'];
             $_SESSION['is_admin'] = true;
+            $_SESSION['last_activity'] = time(); // Set initial activity time
+            $_SESSION['session_regenerated'] = time(); // Set initial regeneration time
             
             // Clear verification data
             unset($_SESSION['admin_verification']);
@@ -210,7 +220,11 @@ if (isset($_POST['verify'])) {
         header {
             background-color: #75343a;
             color: white;
+<<<<<<< Updated upstream
             padding: 10px;
+=======
+            padding: 5px 2%;
+>>>>>>> Stashed changes
             display: flex;
             position: fixed;
             justify-content: space-between;
@@ -218,12 +232,20 @@ if (isset($_POST['verify'])) {
             width: 100%;
             top: 0;
             z-index: 1000;
+<<<<<<< Updated upstream
         }
 
         header .logo img {
             width: 70px;
             height: auto;
             margin-left: 30px;
+=======
+            height: 70px;
+        }
+
+        header .logo img {
+            height: 50px;
+>>>>>>> Stashed changes
         }
 
         nav ul {
@@ -232,14 +254,23 @@ if (isset($_POST['verify'])) {
         }
 
         nav ul li {
+<<<<<<< Updated upstream
             margin-right: 50px;
             padding-left: 30px;
+=======
+            margin-right: 20px;
+            padding-left: 15px;
+>>>>>>> Stashed changes
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
+<<<<<<< Updated upstream
             font-size: 22px;
+=======
+            font-size: 1rem;
+>>>>>>> Stashed changes
             font-weight: 600;
             padding: 8px 0px;
             border-radius: 6px;
@@ -265,6 +296,7 @@ if (isset($_POST['verify'])) {
 
         .container {
             display: flex;
+<<<<<<< Updated upstream
             height: 100%;
             padding-top: 93px;
         }
@@ -346,10 +378,125 @@ if (isset($_POST['verify'])) {
         .form-group {
             width: 100%; /* Make sure each form group is 100% width */
             margin-bottom: 15px;
+=======
+            height: calc(100vh - 70px);
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .right {
+            position: fixed;
+            top: 70px;
+            right: 0;
+            width: 60%;
+            height: calc(100vh - 70px);
+            padding: 2rem;
+            background-image: url('assets/images/Homepage.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        .right .header {
+            margin-top: auto;
+            margin-bottom: 2rem;
+        }
+
+        .right h1 {
+            margin-top: 8rem;
+            margin-bottom: 15px;
+            font-size: clamp(1.5rem, 2vw, 2rem);
+            font-weight: 800;
+            color: #b8afa8;
+        }
+
+        .right h2 {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+            font-weight: 800;
+        }
+
+        .right p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+        }
+
+        .right .footer {
+            margin-bottom: 2rem;
+        }
+
+        .right .footer img {
+            width: clamp(60px, 8vw, 80px);
+            margin-bottom: 1rem;
+        }
+
+        .left {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 40%;
+            height: calc(100vh - 70px);
+            padding: 2rem 4rem 6rem;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        .back-link {
+            position: absolute;
+            top: 1.5rem;
+            left: 4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+
+        .back-link i {
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .auth-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .auth-header p {
+            color: #666;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+>>>>>>> Stashed changes
         }
 
         .form-group label {
             display: block;
+<<<<<<< Updated upstream
             font-size: 14px;
             color: #f4f4f4;
             margin-bottom: 8px;
@@ -406,10 +553,38 @@ if (isset($_POST['verify'])) {
             padding: 12px 20px;
             font-size: 18px;
             background-color: #75343a;
+=======
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(117, 52, 58, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.875rem;
+            font-size: 0.95rem;
+            background-color: var(--primary);
+>>>>>>> Stashed changes
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
+<<<<<<< Updated upstream
             transition: background-color 0.3s ease;
         }
 
@@ -459,40 +634,62 @@ if (isset($_POST['verify'])) {
 
         .alert-success {
             background-color: #2ecc71;
+=======
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .alert {
+            padding: 0.875rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+>>>>>>> Stashed changes
         }
 
         .verification-message {
-            margin-bottom: 20px;
-        }
-        
-        .alert-info {
-            background-color: #cce5ff;
-            border-color: #b8daff;
-            color: #004085;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .resend-code {
-            margin-top: 15px;
-            text-align: center;
-            font-size: 14px;
+            margin-bottom: 2rem;
         }
 
+        #verification_code {
+            letter-spacing: 0.25rem;
+            font-size: 1.25rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+<<<<<<< Updated upstream
         .resend-code p {
             color: var(--text-light);
         }
         
+=======
+        .resend-code {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .resend-code p {
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+>>>>>>> Stashed changes
         .resend-code a {
             color:rgb(0, 113, 233);
             text-decoration: none;
             font-weight: 500;
         }
-        
+
         .resend-code a:hover {
             text-decoration: underline;
         }
+<<<<<<< Updated upstream
         
         #verification_code {
             letter-spacing: 4px;
@@ -526,6 +723,8 @@ if (isset($_POST['verify'])) {
         .back-button .material-symbols-rounded {
             font-size: 20px;
         }
+=======
+>>>>>>> Stashed changes
     </style>
 </head>
 <body>
@@ -545,6 +744,7 @@ if (isset($_POST['verify'])) {
     
     <div class="container">
         <div class="left">
+<<<<<<< Updated upstream
             <div class="header-left">
                 <a href="index.php" class="back-button">
                 <i class="bi bi-arrow-left"></i>Back to Home
@@ -569,28 +769,58 @@ if (isset($_POST['verify'])) {
                             <i class="bi bi-envelope-check"></i>
                                 A verification code has been sent to your email.
                             </div>
+=======
+            <a href="index.php" class="back-link">
+                <i class="bi bi-arrow-left"></i>Back to Home
+            </a>
+            <div class="auth-header">
+                <h2>Administrator Login</h2>
+                <p>Access your administrative account</p>
+            </div>
+            <div class="auth-body">
+                <?php if (!empty($login_error)): ?>
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-circle"></i>
+                        <?php echo $login_error; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if ($verification_sent): ?>
+                    <div class="verification-message">
+                        <div class="alert alert-info">
+                            <i class="bi bi-envelope-check"></i>
+                            A verification code has been sent to your email address.
                         </div>
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label for="verification_code">Enter Verification Code</label>
-                                <input type="text" class="form-control" id="verification_code" 
-                                       name="verification_code" required maxlength="6" 
-                                       pattern="[0-9]{6}" placeholder="Enter 6-digit code">
-                                <small class="form-text text-muted">
-                                    The code will expire in 10 minutes
-                                </small>
-                            </div>
-                            <button type="submit" name="verify" class="btn btn-primary">
-                                Verify Code
-                            </button>
-                        </form>
-                        <div class="resend-code">
-                            <p>Didn't receive the code? 
-                                <a href="javascript:void(0)" onclick="window.location.reload();">
-                                    Send again
-                                </a>
-                            </p>
+                    </div>
+                    <form action="" method="post" class="verification-form">
+                        <div class="form-group">
+                            <label for="verification_code">Verification Code</label>
+                            <input type="text" id="verification_code" name="verification_code" 
+                                   required maxlength="6" pattern="[0-9]{6}" 
+                                   placeholder="Enter 6-digit code"
+                                   autocomplete="off">
+                            <small class="form-text">The code will expire in 10 minutes</small>
+>>>>>>> Stashed changes
                         </div>
+                        <button type="submit" name="verify" class="btn-primary">
+                            Verify Code
+                        </button>
+                    </form>
+                    <div class="resend-code">
+                        <p>Didn't receive the code? 
+                            <a href="javascript:void(0)" onclick="window.location.reload();">
+                                Send again
+                            </a>
+                        </p>
+                    </div>
+                <?php else: ?>
+                    <form action="" method="post" class="login-form">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" 
+                                   placeholder="Enter your email" required>
+                        </div>
+<<<<<<< Updated upstream
                     <?php else: ?>
                         <!-- Login Form -->
                         <form action="" method="post">
@@ -625,6 +855,34 @@ if (isset($_POST['verify'])) {
                 <img src="assets/images/PUPLogo.png" alt="PUP Logo">
             </div>
         </div>
+=======
+                        <div class="form-group">
+                            <label for="login_password">Password</label>
+                            <input type="password" id="login_password" name="login_password" 
+                                   placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" name="login" class="btn-primary">
+                            Login as Administrator
+                        </button>
+                    </form>
+                <?php endif; ?>
+            </div>
+        </div>
+        
+        <div class="right">
+            <div class="header">
+                <h1>COLLEGE OF COMPUTER AND INFORMATION SCIENCES</h1>
+                <h2>STUDENT REGISTRATION, EXAMINATION, AND MANAGEMENT SYSTEM PORTAL</h2>
+                <p>Welcome to the College of Computer and Information Sciences (CCIS)
+                    <br>qualifying examination portal for transferees, shiftees, and ladderized 
+                    <br>program students. This examination is a mandatory requirement for 
+                    <br>admission to BSIT and BSCS programs at PUP.</p>
+            </div>
+            <div class="footer">
+                <img src="assets/images/PUPLogo.png" alt="PUP Logo">
+            </div>
+        </div>
+>>>>>>> Stashed changes
     </div>
 </body>
 </html>
