@@ -82,11 +82,17 @@ try {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $stmt = $conn->prepare("UPDATE register_studentsqe SET status = ? WHERE reference_id = ?");
     if (!$stmt) {
         throw new Exception("Failed to prepare the status update query: " . $conn->error);
     }
     $stmt->bind_param("ss", $status, $reference_id);
+=======
+    $stmt = $conn->prepare("UPDATE register_studentsqe SET status = ? WHERE student_id = ?");
+    $statusString = (string)$status;
+    $stmt->bind_param("si", $statusString, $student_id);
+>>>>>>> Stashed changes
 =======
     $stmt = $conn->prepare("UPDATE register_studentsqe SET status = ? WHERE student_id = ?");
     $statusString = (string)$status;
@@ -134,6 +140,7 @@ try {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         // First, delete any existing rejection reason for this reference_id
         $stmt = $conn->prepare("DELETE FROM rejection_reasons WHERE reference_id = ?");
@@ -155,6 +162,15 @@ try {
         }
         $stmt->bind_param("ss", $reference_id, $reason);
 =======
+        $stmt = $conn->prepare("INSERT INTO rejection_reasons (student_id, reason) VALUES (?, ?)");
+        $stmt->bind_param("is", $student_id, $reason);
+>>>>>>> Stashed changes
+=======
+        // First, delete any existing rejection reason for this student_id
+        $stmt = $conn->prepare("DELETE FROM rejection_reasons WHERE student_id = ?");
+        $stmt->bind_param("i", $student_id);
+        $stmt->execute();
+        // Insert new rejection reason
         $stmt = $conn->prepare("INSERT INTO rejection_reasons (student_id, reason) VALUES (?, ?)");
         $stmt->bind_param("is", $student_id, $reason);
 >>>>>>> Stashed changes
