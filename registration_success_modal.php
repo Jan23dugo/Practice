@@ -4,6 +4,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <?php
 // This file contains the success modal that is shown after successful registration
 
@@ -413,6 +414,8 @@ if (!defined('INCLUDE_MODAL')) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 <?php
 // This file contains the success modal that is shown after successful registration
 
@@ -816,6 +819,9 @@ if (!defined('INCLUDE_MODAL')) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

@@ -580,7 +580,10 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -617,6 +620,9 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -665,8 +671,11 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <th>Email</th>
                 <th>Registration Date</th>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -693,7 +702,11 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <td colspan="8" style="text-align: center; padding: 20px; color: #666;">
+=======
+                    <td colspan="6" style="text-align: center; padding: 20px; color: #666;">
+>>>>>>> Stashed changes
 =======
                     <td colspan="6" style="text-align: center; padding: 20px; color: #666;">
 >>>>>>> Stashed changes
@@ -743,6 +756,7 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <tr>
                         <td><?php echo htmlspecialchars($row['reference_id']); ?></td>
                         <td>
@@ -765,6 +779,10 @@ th:nth-child(4), td:nth-child(4) {
 =======
                     <tr<?php if (!empty($row['admin_notes'])) echo ' class="manual-review-row"'; ?>>
                         <td>
+=======
+                    <tr<?php if (!empty($row['admin_notes'])) echo ' class="manual-review-row"'; ?>>
+                        <td>
+>>>>>>> Stashed changes
 =======
                     <tr<?php if (!empty($row['admin_notes'])) echo ' class="manual-review-row"'; ?>>
                         <td>
@@ -816,6 +834,9 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -853,8 +874,11 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                 admin_notes: '<?php echo !empty($row['admin_notes']) ? addslashes($row['admin_notes']) : ""; ?>'
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -874,6 +898,9 @@ th:nth-child(4), td:nth-child(4) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1059,6 +1086,7 @@ function openModal(details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         // Clean up the admin notes to remove technical error details
@@ -1080,6 +1108,8 @@ function openModal(details) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     document.getElementById("admin_notes").textContent = "";
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
@@ -1089,6 +1119,9 @@ function openModal(details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1273,11 +1306,14 @@ function viewDetails(button, details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     document.getElementById("prev_school").textContent = details.prev_school;
     document.getElementById("year_level").textContent = details.year_level;
     document.getElementById("prev_program").textContent = details.prev_program;
     document.getElementById("desired_program").textContent = details.desired_program;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1297,6 +1333,9 @@ function viewDetails(button, details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1355,6 +1394,7 @@ function viewDetails(button, details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         // Clean up the admin notes to remove technical error details
@@ -1376,6 +1416,8 @@ function viewDetails(button, details) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     document.getElementById("admin_notes").textContent = "";
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
@@ -1385,6 +1427,9 @@ function viewDetails(button, details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1412,7 +1457,10 @@ function viewDetails(button, details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1437,6 +1485,9 @@ function viewDetails(button, details) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

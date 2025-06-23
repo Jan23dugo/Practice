@@ -42,6 +42,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [randomize_questions] => 1
     [randomize_choices] => 1
     [passing_score_type] => percentage
@@ -211,6 +212,8 @@ Full Exam Data: Array
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     [randomize_questions] => 1
     [randomize_choices] => 1
     [passing_score_type] => percentage
@@ -229,6 +232,7 @@ Full Exam Data: Array
     [exam_id] => 24
     [title] => Tech Exam 2
     [description] => Carefully answer the questions
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -703,6 +707,8 @@ Full Exam Data: Array
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     [exam_type] => tech
     [is_scheduled] => 1
     [scheduled_date] => 2025-04-17
@@ -711,6 +717,7 @@ Full Exam Data: Array
     [cover_image] => uploads/covers/1743727309_images (2).jpg
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -736,6 +743,8 @@ dfgsdfg
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     [randomize_questions] => 1
     [randomize_choices] => 1
     [passing_score_type] => percentage
@@ -777,6 +786,7 @@ Full Exam Data: Array
     [description] => Carefully answer the questions
     [exam_type] => tech
     [is_scheduled] => 1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -828,6 +838,14 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-06-07 10:03:27
 >>>>>>> Stashed changes
+=======
+    [scheduled_date] => 2025-06-07
+    [scheduled_time] => 12:00:00
+    [duration] => 60
+    [cover_image] => uploads/covers/1743727309_images (2).jpg
+    [created_at] => 2025-04-04 07:41:56
+    [updated_at] => 2025-06-07 10:03:27
+>>>>>>> Stashed changes
     [randomize_questions] => 1
     [randomize_choices] => 1
     [passing_score_type] => percentage
@@ -850,6 +868,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -857,6 +876,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -874,6 +895,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -892,6 +916,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 
+    [window_end] => 
+>>>>>>> Stashed changes
 =======
     [window_start] => 
     [window_end] => 
@@ -930,6 +959,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -937,6 +967,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -954,6 +986,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -972,6 +1007,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 
+    [window_end] => 
+>>>>>>> Stashed changes
 =======
     [window_start] => 
     [window_end] => 
@@ -1010,6 +1050,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1017,6 +1058,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1034,6 +1077,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1052,6 +1098,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 
+    [window_end] => 
+>>>>>>> Stashed changes
 =======
     [window_start] => 
     [window_end] => 
@@ -1090,6 +1141,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1097,6 +1149,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1114,6 +1168,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1132,6 +1189,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 2025-06-12 13:48:00
+    [window_end] => 2025-06-12 15:00:00
+>>>>>>> Stashed changes
 =======
     [window_start] => 2025-06-12 13:48:00
     [window_end] => 2025-06-12 15:00:00
@@ -1170,6 +1232,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1177,6 +1240,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1193,6 +1258,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1211,6 +1279,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 2025-06-12 13:48:00
+    [window_end] => 2025-06-12 15:00:00
+>>>>>>> Stashed changes
 =======
     [window_start] => 2025-06-12 13:48:00
     [window_end] => 2025-06-12 15:00:00
@@ -1249,6 +1322,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1256,6 +1330,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1272,6 +1348,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1290,6 +1369,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 2025-06-12 13:48:00
+    [window_end] => 2025-06-12 20:00:00
+>>>>>>> Stashed changes
 =======
     [window_start] => 2025-06-12 13:48:00
     [window_end] => 2025-06-12 20:00:00
@@ -1328,6 +1412,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1335,6 +1420,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1351,6 +1438,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1369,6 +1459,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 2025-06-12 13:48:00
+    [window_end] => 2025-06-12 20:00:00
+>>>>>>> Stashed changes
 =======
     [window_start] => 2025-06-12 13:48:00
     [window_end] => 2025-06-12 20:00:00
@@ -1407,6 +1502,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1414,6 +1510,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1430,6 +1528,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1448,6 +1549,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 2025-06-12 13:48:00
+    [window_end] => 2025-06-12 20:00:00
+>>>>>>> Stashed changes
 =======
     [window_start] => 2025-06-12 13:48:00
     [window_end] => 2025-06-12 20:00:00
@@ -1486,6 +1592,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1493,6 +1600,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1509,6 +1618,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1527,6 +1639,11 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    [window_start] => 2025-06-13 08:00:00
+    [window_end] => 2025-06-13 10:00:00
+>>>>>>> Stashed changes
 =======
     [window_start] => 2025-06-13 08:00:00
     [window_end] => 2025-06-13 10:00:00
@@ -1565,6 +1682,7 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [scheduled_date] => 2025-04-17
     [scheduled_time] => 07:51:00
     [duration] => 60
@@ -1572,6 +1690,8 @@ Full Exam Data: Array
     [created_at] => 2025-04-04 07:41:56
     [updated_at] => 2025-04-17 07:51:15
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1588,6 +1708,9 @@ Full Exam Data: Array
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1601,6 +1724,7 @@ Full Exam Data: Array
     [randomize_choices] => 1
     [passing_score_type] => percentage
     [passing_score] => 70
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2953,6 +3077,8 @@ Full Exam Data: Array
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     [window_start] => 2025-06-13 08:00:00
     [window_end] => 2025-06-13 10:00:00
 )
@@ -3076,6 +3202,9 @@ dfgsdfg
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

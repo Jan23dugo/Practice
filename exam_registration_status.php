@@ -122,6 +122,7 @@ $activePage = 'registration';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         .sidebar-profile p {
             font-size: 14px;
             color: var(--text-dark);
@@ -267,6 +268,9 @@ $activePage = 'registration';
             flex: 1;
         }
 
+=======
+        /* Fix footer overlap issue */
+>>>>>>> Stashed changes
 =======
         /* Fix footer overlap issue */
 >>>>>>> Stashed changes
@@ -854,6 +858,7 @@ $activePage = 'registration';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     </header>
 
     <div class="main-wrapper">
@@ -920,6 +925,8 @@ $activePage = 'registration';
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         <nav class="nav-links">
             <a href="stud_dashboard.php" class="<?php echo $activePage == 'dashboard' ? 'active' : ''; ?>">
                 <span class="material-symbols-rounded">dashboard</span>
@@ -958,6 +965,9 @@ $activePage = 'registration';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
