@@ -1092,6 +1092,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <!-- Mobile Menu Toggle -->
         <button class="menu-toggle" id="menuToggle">
             <span class="material-symbols-rounded">menu</span>
@@ -1156,6 +1157,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
             </ul>
         </aside>
         
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1388,6 +1391,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // Adjust sidebar and content height
         function adjustLayout() {
             const sidebar = document.getElementById('sidebar');
@@ -1579,6 +1583,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         // Tab switching functionality
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -1592,6 +1598,9 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
