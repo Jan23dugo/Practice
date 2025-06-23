@@ -124,6 +124,7 @@
                     <a href="manage_edit_registration_form.php" class="nav-link">
                         <span class="nav-icon material-symbols-rounded">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             app_registration
                         </span>
                         <span class="nav-label">Manage Registration Form</span>
@@ -131,6 +132,8 @@
                     <span class="nav-tooltip">Manage Registration Form</span>
                 </li>
 =======
+=======
+>>>>>>> Stashed changes
                             grade
                         </span>
                         <span class="nav-label">Manage Grading Systems</span>

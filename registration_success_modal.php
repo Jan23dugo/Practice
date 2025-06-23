@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <?php
 // This file contains the success modal that is shown after successful registration
 
@@ -398,6 +399,8 @@ if (!defined('INCLUDE_MODAL')) {
     });
     <?php endif; ?>
 =======
+=======
+>>>>>>> Stashed changes
 <?php
 // This file contains the success modal that is shown after successful registration
 
@@ -796,5 +799,8 @@ if (!defined('INCLUDE_MODAL')) {
         <?php unset($_SESSION['show_success_modal']); ?>
     });
     <?php endif; ?>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </script> 

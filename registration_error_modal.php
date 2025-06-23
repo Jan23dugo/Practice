@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <?php
 // This file contains the error modal that is shown after failed registration
 
@@ -418,6 +419,8 @@ if (!defined('INCLUDE_MODAL')) {
         window.location.reload();
     }
 =======
+=======
+>>>>>>> Stashed changes
 <?php
 // This file contains the error modal that is shown after failed registration
 
@@ -836,5 +839,8 @@ if (!defined('INCLUDE_MODAL')) {
         // Reload the page for a guaranteed clean state
         window.location.reload();
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </script> 

@@ -379,6 +379,7 @@ select#programming_language:hover {
     margin-bottom: 20px;
     color: #666;
 }
+<<<<<<< Updated upstream
 
 .modal-footer {
     text-align: right;
@@ -397,6 +398,8 @@ select#programming_language:hover {
 .modal-btn:hover {
     background: #7d5bb9;
 }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     </style>
@@ -691,6 +694,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionForm = document.getElementById("questionForm");
     const pointsInput = document.getElementById("points_input");
 
+<<<<<<< Updated upstream
     // Modal functionality
     const validationModal = document.getElementById("validationModal");
     const validationMessage = document.getElementById("validationMessage");
@@ -713,6 +717,24 @@ document.addEventListener("DOMContentLoaded", function () {
             const modal = this.closest(".modal");
             modal.style.display = "none";
         });
+=======
+    // Add event listener for save button
+    saveQuestionBtn.addEventListener("click", function() {
+        // Update points value
+        pointsInput.value = document.getElementById('question_points').value;
+        
+        // Get Quill content and save it to the hidden textarea
+        const questionTextarea = document.getElementById('question');
+        questionTextarea.value = quill.root.innerHTML;
+        
+        // Validate the form
+        if (!validateForm()) {
+            return;
+        }
+        
+        // Submit the form
+        questionForm.submit();
+>>>>>>> Stashed changes
     });
 
     // Add click event listeners to OK buttons
@@ -734,10 +756,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update validation function to use modal
     function validateForm() {
         // Check if question is empty
-        const questionText = window.questionEditor ? 
-            window.questionEditor.getContent().trim() : 
-            document.getElementById("question").value.trim();
-            
+        const questionText = quill.getText().trim();
         if (questionText === "") {
             showValidationModal("Please enter a question description");
             return false;

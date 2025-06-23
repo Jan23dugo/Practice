@@ -209,6 +209,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
             flex-direction: column;
             justify-content: space-between;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+>>>>>>> Stashed changes
 =======
             margin-left: 0 !important;
             padding-left: 0 !important;
@@ -296,18 +301,24 @@ if ($reg_result && $reg_result->num_rows > 0) {
         /* Main content adjustments */
         .main-content {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             flex: 1;
             padding: 20px;
             padding-bottom: 30px !important; /* Reduced padding */
             margin-left: 250px; /* Match sidebar width */
             overflow-x: hidden; /* Prevent horizontal scroll */
 =======
+=======
+>>>>>>> Stashed changes
             margin-left: 0 !important;
             padding-left: 0 !important;
             width: 100% !important;
             box-sizing: border-box;
             max-width: 1200px;
             margin: 0 auto !important;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
         
@@ -650,8 +661,13 @@ if ($reg_result && $reg_result->num_rows > 0) {
         .registration-badge {
             position: absolute;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             top: -10px;
             right: -10px;
+=======
+            top: 1px;
+            right: -2px;
+>>>>>>> Stashed changes
 =======
             top: 1px;
             right: -2px;
@@ -912,6 +928,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
             overflow-y: auto;
             opacity: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             animation: fadeIn 0.3s ease forwards;
         }
         
@@ -919,6 +936,8 @@ if ($reg_result && $reg_result->num_rows > 0) {
             from { opacity: 0; }
             to { opacity: 1; }
 =======
+=======
+>>>>>>> Stashed changes
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
@@ -938,6 +957,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
                 opacity: 1;
                 visibility: visible;
             }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
         
@@ -1174,7 +1196,10 @@ if ($reg_result && $reg_result->num_rows > 0) {
                 width: 100%;
             }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         }
 
         /* Updated header styles */
@@ -1322,6 +1347,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
                 transform: translateY(0);
                 opacity: 1;
             }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     </style>
@@ -1383,6 +1411,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
     
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <!-- Mobile Menu Toggle -->
         <button class="menu-toggle" id="menuToggle">
@@ -1450,6 +1479,8 @@ if ($reg_result && $reg_result->num_rows > 0) {
         
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-title">
@@ -1471,11 +1502,14 @@ if ($reg_result && $reg_result->num_rows > 0) {
                         </div>
                     </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <a href="qualiexam_register.php" class="registration-action">
                         <span class="material-symbols-rounded">how_to_reg</span>
                         Register for Qualifying Exam
                     </a>
 =======
+=======
+>>>>>>> Stashed changes
                     <?php if (!$already_registered): ?>
                         <a href="qualiexam_register.php" class="registration-action">
                             <span class="material-symbols-rounded">how_to_reg</span>
@@ -1496,6 +1530,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
                             ?>
                         </div>
                     <?php endif; ?>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 </div>
             </div>
@@ -1688,7 +1725,10 @@ if ($reg_result && $reg_result->num_rows > 0) {
     </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     <!-- Alert Modal -->
     <div id="alertModal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
@@ -1706,6 +1746,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
         </div>
     </div>
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     <script src="js/main.js"></script>
     
@@ -1718,6 +1761,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
             const dontShowAgain = document.getElementById('dontShowAgain');
             
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             // Check if this is the first login (using localStorage)
             const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
             
@@ -1726,6 +1770,8 @@ if ($reg_result && $reg_result->num_rows > 0) {
                 welcomeModal.style.display = 'block';
                 document.body.classList.add('modal-open');
 =======
+=======
+>>>>>>> Stashed changes
             // Check if this is the first login (using both localStorage and session)
             const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
             const isFirstLogin = <?php echo isset($_SESSION['first_login']) ? 'true' : 'false'; ?>;
@@ -1749,13 +1795,20 @@ if ($reg_result && $reg_result->num_rows > 0) {
                     .catch(error => {
                         console.error('Error clearing first login flag:', error);
                     });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
             
             // Close modal when clicking the X
             closeModal.addEventListener('click', function() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 welcomeModal.style.display = 'none';
+=======
+                welcomeModal.classList.remove('active');
+>>>>>>> Stashed changes
 =======
                 welcomeModal.classList.remove('active');
 >>>>>>> Stashed changes
@@ -1769,7 +1822,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
             // Close modal when clicking the Get Started button
             modalClose.addEventListener('click', function() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 welcomeModal.style.display = 'none';
+=======
+                welcomeModal.classList.remove('active');
+>>>>>>> Stashed changes
 =======
                 welcomeModal.classList.remove('active');
 >>>>>>> Stashed changes
@@ -1779,7 +1836,10 @@ if ($reg_result && $reg_result->num_rows > 0) {
                     localStorage.setItem('hasSeenWelcome', 'true');
                 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
             });
             
             // Close modal when clicking outside of it
@@ -1792,6 +1852,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
                         localStorage.setItem('hasSeenWelcome', 'true');
                     }
                 }
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
             });
             
@@ -1914,6 +1975,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
             adjustLayout();
         });
 
+=======
+            });
+        });
+
+>>>>>>> Stashed changes
         // Handle profile dropdown menu
         document.addEventListener('DOMContentLoaded', function() {
             const profileMenu = document.getElementById('profile-menu');

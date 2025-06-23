@@ -575,7 +575,10 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .review-badge {
     display: inline-flex;
     align-items: center;
@@ -597,6 +600,9 @@ th:nth-child(4), td:nth-child(4) {
     background-color: #fff8e1 !important;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </style>
 </head>
@@ -630,8 +636,11 @@ th:nth-child(4), td:nth-child(4) {
                 <th>Name</th>
                 <th>Student Type</th>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <th>Email</th>
                 <th>Registration Date</th>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 <th>Category</th>
@@ -643,7 +652,11 @@ th:nth-child(4), td:nth-child(4) {
             <?php if ($result->num_rows == 0): ?>
                 <tr>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <td colspan="8" style="text-align: center; padding: 20px; color: #666;">
+=======
+                    <td colspan="6" style="text-align: center; padding: 20px; color: #666;">
+>>>>>>> Stashed changes
 =======
                     <td colspan="6" style="text-align: center; padding: 20px; color: #666;">
 >>>>>>> Stashed changes
@@ -673,6 +686,7 @@ th:nth-child(4), td:nth-child(4) {
                         }
                     ?>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <tr>
                         <td><?php echo htmlspecialchars($row['reference_id']); ?></td>
                         <td>
@@ -695,6 +709,10 @@ th:nth-child(4), td:nth-child(4) {
 =======
                     <tr<?php if (!empty($row['admin_notes'])) echo ' class="manual-review-row"'; ?>>
                         <td>
+=======
+                    <tr<?php if (!empty($row['admin_notes'])) echo ' class="manual-review-row"'; ?>>
+                        <td>
+>>>>>>> Stashed changes
                             <div class="student-name-container">
                                 <div class="student-name"><?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name'] ?? ''); ?></div>
                             </div>
@@ -721,6 +739,9 @@ th:nth-child(4), td:nth-child(4) {
                                     <?php endif; ?>
                                 </select>
                             </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         </td>
                         <td>
@@ -743,12 +764,18 @@ th:nth-child(4), td:nth-child(4) {
                                 tor: '<?php echo $row['tor']; ?>',
                                 school_id: '<?php echo $row['school_id']; ?>',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                 admin_notes: '<?php echo !empty($row['admin_notes']) ? addslashes($row['admin_notes']) : ""; ?>'
 =======
+=======
+>>>>>>> Stashed changes
                                 admin_notes: '<?php echo !empty($row['admin_notes']) ? addslashes($row['admin_notes']) : ""; ?>',
                                 previous_school_name: '<?php echo htmlspecialchars($row['previous_school_name'] ?? ''); ?>',
                                 desired_program_name: '<?php echo htmlspecialchars($row['desired_program_name'] ?? ''); ?>',
                                 previous_program_name: '<?php echo htmlspecialchars($row['previous_program_name'] ?? ''); ?>'
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                             })">View Details</button>
                         </td>
@@ -919,6 +946,7 @@ function openModal(details) {
     
     // Handle admin notes if present
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         // Clean up the admin notes to remove technical error details
@@ -930,10 +958,15 @@ function openModal(details) {
         
         document.getElementById("admin_notes").textContent = cleanedNotes;
 =======
+=======
+>>>>>>> Stashed changes
     document.getElementById("admin_notes").textContent = "";
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         document.getElementById("admin_notes").textContent = details.admin_notes;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         adminNotesSection.style.display = "block";
     } else {
@@ -1103,15 +1136,21 @@ function viewDetails(button, details) {
     document.getElementById("address").textContent = details.address;
     document.getElementById("student_type").textContent = details.student_type;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     document.getElementById("prev_school").textContent = details.prev_school;
     document.getElementById("year_level").textContent = details.year_level;
     document.getElementById("prev_program").textContent = details.prev_program;
     document.getElementById("desired_program").textContent = details.desired_program;
 =======
+=======
+>>>>>>> Stashed changes
     document.getElementById("prev_school").textContent = details.previous_school_name || details.prev_school;
     document.getElementById("year_level").textContent = details.year_level;
     document.getElementById("prev_program").textContent = details.previous_program_name || details.prev_program;
     document.getElementById("desired_program").textContent = details.desired_program_name || details.desired_program;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     document.getElementById("is_tech").textContent = details.is_tech;
     
@@ -1155,6 +1194,7 @@ function viewDetails(button, details) {
     
     // Handle admin notes if present
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         // Clean up the admin notes to remove technical error details
@@ -1166,10 +1206,15 @@ function viewDetails(button, details) {
         
         document.getElementById("admin_notes").textContent = cleanedNotes;
 =======
+=======
+>>>>>>> Stashed changes
     document.getElementById("admin_notes").textContent = "";
     const adminNotesSection = document.getElementById("admin-notes-section");
     if (details.admin_notes && details.admin_notes.trim() !== '') {
         document.getElementById("admin_notes").textContent = details.admin_notes;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         adminNotesSection.style.display = "block";
     } else {
@@ -1182,7 +1227,10 @@ function viewDetails(button, details) {
     button.innerHTML = 'View Details';
     button.disabled = false;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     // Hide Reference ID if status is pending or needs_review
     const status = details.status ? details.status.toLowerCase() : '';
@@ -1192,6 +1240,9 @@ function viewDetails(button, details) {
     } else {
         refIdRow.style.display = "";
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 </script>

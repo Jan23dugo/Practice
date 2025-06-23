@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /**
  * CCIS Qualifying Examination Registration Form Scripts
  * Handles form validation, navigation, and submission
@@ -1363,6 +1364,8 @@ document.addEventListener('DOMContentLoaded', function() {
         handleStudentTypeChange();
     }
 =======
+=======
+>>>>>>> Stashed changes
 /**
  * CCIS Qualifying Examination Registration Form Scripts
  * Handles form validation, navigation, and submission
@@ -2821,5 +2824,8 @@ document.addEventListener('DOMContentLoaded', function() {
         prevProgInput.addEventListener('awesomplete-selectcomplete', toggleOtherField);
         prevProgInput.addEventListener('input', toggleOtherField);
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }); 

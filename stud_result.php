@@ -513,7 +513,10 @@ $activePage = 'results';
                 padding: 12px;
             }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         }
 
         /* --- HEADER FLEX LAYOUT LIKE STUD_DASHBOARD.PHP --- */
@@ -729,6 +732,9 @@ $activePage = 'results';
 
         body.modal-open {
             overflow: hidden;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     </style>
@@ -736,6 +742,7 @@ $activePage = 'results';
 <body>
     <!-- Header -->
     <header>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <div class="container">
             <div class="header-content">
@@ -810,6 +817,15 @@ $activePage = 'results';
                 <p>Exam Results</p>
             </div>
         </div>
+=======
+        <div class="logo">
+            <img src="img/Logo.png" alt="PUP Logo">
+            <div class="logo-text">
+                <h1>PUP Qualifying Exam Portal</h1>
+                <p>Exam Results</p>
+            </div>
+        </div>
+>>>>>>> Stashed changes
         <nav class="nav-links">
             <a href="stud_dashboard.php" class="<?php echo $activePage == 'dashboard' ? 'active' : ''; ?>">
                 <span class="material-symbols-rounded">dashboard</span>
@@ -829,6 +845,9 @@ $activePage = 'results';
                 <span class="material-symbols-rounded">grade</span>
                 Results
             </a>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             
             <div class="profile-menu">
@@ -997,7 +1016,10 @@ $activePage = 'results';
     </footer>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     <!-- Alert Modal -->
     <div id="alertModal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
@@ -1015,6 +1037,9 @@ $activePage = 'results';
         </div>
     </div>
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     <script src="js/main.js"></script>
     <script>
@@ -1048,6 +1073,9 @@ $activePage = 'results';
             const sidebarOverlay = document.getElementById('sidebarOverlay');
             const mainContent = document.querySelector('.main-content');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
             
             if (menuToggle && sidebar && sidebarOverlay) {
                 menuToggle.addEventListener('click', function() {
@@ -1090,6 +1118,7 @@ $activePage = 'results';
             const profileMenu = document.getElementById('profile-menu');
             const dropdownMenu = document.querySelector('.dropdown-menu');
             
+<<<<<<< Updated upstream
 =======
             
             if (menuToggle && sidebar && sidebarOverlay) {
@@ -1134,6 +1163,8 @@ $activePage = 'results';
             const dropdownMenu = document.querySelector('.dropdown-menu');
             
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             if (profileMenu && dropdownMenu) {
                 profileMenu.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1161,6 +1192,7 @@ $activePage = 'results';
                     sidebarOverlay.classList.remove('active');
                     document.body.classList.remove('sidebar-open');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 }
             }
             
@@ -1186,6 +1218,8 @@ $activePage = 'results';
                 });
             });
 =======
+=======
+>>>>>>> Stashed changes
                 }
             }
             
@@ -1292,6 +1326,9 @@ $activePage = 'results';
             if (event.target === alertModal) {
                 closeAlertModal();
             }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         });
     </script>
