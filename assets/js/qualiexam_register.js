@@ -6,6 +6,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /**
  * CCIS Qualifying Examination Registration Form Scripts
  * Handles form validation, navigation, and submission
@@ -1370,6 +1371,8 @@ document.addEventListener('DOMContentLoaded', function() {
         handleStudentTypeChange();
     }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2849,6 +2852,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
