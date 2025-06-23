@@ -217,6 +217,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+>>>>>>> Stashed changes
 =======
             margin-left: 0 !important;
             padding-left: 0 !important;
@@ -344,12 +349,15 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             flex: 1;
             padding: 20px;
             padding-bottom: 30px !important; /* Reduced padding */
             margin-left: 250px; /* Match sidebar width */
             overflow-x: hidden; /* Prevent horizontal scroll */
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -380,6 +388,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -746,8 +757,13 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             top: -10px;
             right: -10px;
+=======
+            top: 1px;
+            right: -2px;
+>>>>>>> Stashed changes
 =======
             top: 1px;
             right: -2px;
@@ -1048,6 +1064,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             animation: fadeIn 0.3s ease forwards;
         }
         
@@ -1055,6 +1072,8 @@ if ($reg_result && $reg_result->num_rows > 0) {
             from { opacity: 0; }
             to { opacity: 1; }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1098,6 +1117,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1358,7 +1380,10 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1530,6 +1555,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1607,6 +1635,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
     
     <!-- Main Content Wrapper -->
     <div class="main-wrapper">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1698,6 +1727,8 @@ if ($reg_result && $reg_result->num_rows > 0) {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-title">
@@ -1727,11 +1758,14 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <a href="qualiexam_register.php" class="registration-action">
                         <span class="material-symbols-rounded">how_to_reg</span>
                         Register for Qualifying Exam
                     </a>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -1776,6 +1810,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1992,7 +2029,10 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2034,6 +2074,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2070,6 +2113,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             // Check if this is the first login (using localStorage)
             const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
             
@@ -2078,6 +2122,8 @@ if ($reg_result && $reg_result->num_rows > 0) {
                 welcomeModal.style.display = 'block';
                 document.body.classList.add('modal-open');
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2125,6 +2171,9 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2155,7 +2204,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 welcomeModal.style.display = 'none';
+=======
+                welcomeModal.classList.remove('active');
+>>>>>>> Stashed changes
 =======
                 welcomeModal.classList.remove('active');
 >>>>>>> Stashed changes
@@ -2201,7 +2254,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 welcomeModal.style.display = 'none';
+=======
+                welcomeModal.classList.remove('active');
+>>>>>>> Stashed changes
 =======
                 welcomeModal.classList.remove('active');
 >>>>>>> Stashed changes
@@ -2243,7 +2300,10 @@ if ($reg_result && $reg_result->num_rows > 0) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2272,6 +2332,7 @@ if ($reg_result && $reg_result->num_rows > 0) {
                         localStorage.setItem('hasSeenWelcome', 'true');
                     }
                 }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2402,6 +2463,11 @@ if ($reg_result && $reg_result->num_rows > 0) {
             adjustLayout();
         });
 
+=======
+            });
+        });
+
+>>>>>>> Stashed changes
 =======
             });
         });

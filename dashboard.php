@@ -8,6 +8,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     session_start(); // Start session if needed
 // Include database connection
 include('config/config.php');
@@ -18,6 +19,15 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header("Location: admin_login.php");
     exit();
 }
+=======
+    // Include admin session management
+    require_once 'config/admin_session.php';
+    // Include database connection
+    include('config/config.php');
+
+    // Check admin session and handle timeout
+    checkAdminSession();
+>>>>>>> Stashed changes
 =======
     // Include admin session management
     require_once 'config/admin_session.php';
@@ -1497,7 +1507,11 @@ try {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <h1 class="dashboard-title">STREAMS ADMIN DASHBOARD</h1>
+=======
+        <h1 class="dashboard-title">STREAMS Admin Dashboard</h1>
+>>>>>>> Stashed changes
 =======
         <h1 class="dashboard-title">STREAMS Admin Dashboard</h1>
 >>>>>>> Stashed changes
@@ -1600,7 +1614,11 @@ try {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <p style="margin-bottom: 10px; font-style: italic;">Click on the student name to view their application details.</p>
+=======
+                    <p style="margin-bottom: 10px; font-style: italic; color:rgb(97, 97, 97);">Click on the student name to view their application details.</p>
+>>>>>>> Stashed changes
 =======
                     <p style="margin-bottom: 10px; font-style: italic; color:rgb(97, 97, 97);">Click on the student name to view their application details.</p>
 >>>>>>> Stashed changes
@@ -1823,6 +1841,10 @@ try {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<script src="assets/js/admin-session.js"></script>
+>>>>>>> Stashed changes
 =======
 <script src="assets/js/admin-session.js"></script>
 >>>>>>> Stashed changes
